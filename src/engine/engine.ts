@@ -42,6 +42,7 @@ import { appliquerEffetsCommerce, nettoyerRoutesCommerce } from './commerce'
 import { appliquerTaxesCitesLibres, citesSuzerainesDe } from './citesLibres'
 import { appliquerConsommationsHabitations } from './habitations'
 import { transfererTributVassal } from './vassalite'
+import { appliquerBonusProximite } from './villes'
 import { populationTurn } from './population'
 import { recruitForArmies } from './armees'
 import { snapshotRessources } from './journal'
@@ -238,6 +239,14 @@ export function runTurn(state: GameState): GameState {
   const ministeresParJoueur: Record<number, Record<string, number>> =
     appliquerEffetsMinisteres(state, C)
 
+  // 3quaterdecies. Proximité des villes (marqueur (y), retour Thibaut
+  //  2026-10-15) : bonus automatique de Nourriture par tour de chaque
+  //  ville « au bord d'une rivière » (+12) ou « au bord de la mer »
+  //  (+7) — montants paramétrables (engine/villes.ts), canal
+  //  « Proximité » du récap ressources.
+  const proximiteParJoueur: Record<number, Record<string, number>> =
+    appliquerBonusProximite(state, C)
+
   // 3terdecies. Commerce (marqueur (t)) : les routes commerciales des
   //  marchands génèrent marchandOrTour Or pour CHAQUE joueur relié
   //  (propriétaire du marchand + joueur ciblé) ; le propriétaire copie
@@ -284,6 +293,7 @@ export function runTurn(state: GameState): GameState {
       citesLibres: citesLibresParJoueur[p.n] ?? {},
       ministeres: ministeresParJoueur[p.n] ?? {},
       commerce: commerceParJoueur[p.n] ?? {},
+      proximite: proximiteParJoueur[p.n] ?? {},
       population,
       vassalite,
     }
@@ -347,7 +357,7 @@ export {
   batimentsFaction, batimentsCapitale,
   type DetailFaction, type RegleActive, type SourceRegle,
 } from './factions'
-export { supprimerVille, transfererVille } from './villes'
+export { supprimerVille, transfererVille, appliquerBonusProximite, bonusProximite } from './villes'
 export { donnerPersonnage, marierPersonnages, numeroJoueurDe } from './cour'
 export {
   citesLibresDe, garnisonCiteLibre, facteurTaxesCite, emissairesDe,

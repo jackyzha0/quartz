@@ -22,8 +22,8 @@
 //    habitants restent rattachables sans ambiguïté.
 // ══════════════════════════════════════════════════════════════════════
 
-import type { Character, GameState, Player } from './types'
-import { cfgOf } from './gameData'
+import type { Character, City, GameState, Player } from './types'
+import { cfgOf, type Cfg } from './gameData'
 import { isNobleDyn } from './shared'
 
 /** Supprime la i-ème ville d'un joueur (bouton « Supprimer la ville »,
@@ -96,4 +96,42 @@ export function transfererVille(
     texte: `🗝 ${ancienNom}${renommee ? ` (renommée « ${renommee} »)` : ''} passe de ${p.nom} à ${cible.nom}${deplaces.length ? `, avec ses ${deplaces.length} habitant(s) (production des titres recalculée pour ${cible.nom})` : ''}${courRestee.length ? ` — la cour de ${p.nom} (${courRestee.length} noble(s)) reste auprès de lui` : ''}.`,
   })
   return true
+}
+
+// ── Proximité des villes (marqueur (y), retour Thibaut 2026-10-15) ──────
+
+/** Bonus de Nourriture par tour de la proximité d'une ville (marqueur
+ *  (y)) : « Rivière » → proxRiviereNourriture, « Mer » →
+ *  proxMerNourriture, « Plaine » (ou absent) → 0. Crédité
+ *  automatiquement à chaque fin de tour (canal « Proximité » du récap
+ *  ressources — appliquerBonusProximite dans engine.ts) ; montants
+ *  paramétrables dans Paramètres → Formules → Villes. */
+export function bonusProximite(ville: City, C: Cfg): number {
+  if (ville.proximite === 'Rivière') return C.p.proxRiviereNourriture
+  if (ville.proximite === 'Mer') return C.p.proxMerNourriture
+  return 0
+}
+
+/** Étape moteur (marqueur (y)) : crédite au stock le bonus de
+ *  proximité de CHAQUE ville (Rivière +12, Mer +7 Nourriture/tour par
+ *  défaut) et retourne les apports par joueur (canal « Proximité » du
+ *  récap ressources ; pas de log par tour pour ne pas noyer le
+ *  journal). */
+export function appliquerBonusProximite(
+  state: GameState, C: Cfg = cfgOf(state.config),
+): Record<number, Record<string, number>> {
+  const out: Record<number, Record<string, number>> = {}
+  for (const p of state.players) {
+    const gains: Record<string, number> = {}
+    for (const v of p.villes) {
+      const b = bonusProximite(v, C)
+      if (b !== 0) gains['Nourriture'] = (gains['Nourriture'] ?? 0) + b
+    }
+    for (const [res, v] of Object.entries(gains)) {
+      const rs = p.resources[res]
+      if (rs) rs.stock += v
+    }
+    if (Object.keys(gains).length > 0) out[p.n] = gains
+  }
+  return out
 }

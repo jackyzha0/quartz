@@ -21,8 +21,9 @@
 
 import type { City, GameState, Player, Saison } from './types'
 import { cfgOf, cultureDef, type Cfg } from './gameData'
+import { aMinistre } from './ministeres'
 import { garnisonBatiment } from './batiments'
-import { garnisonFactionVille } from './factions'
+import { garnisonFactionVille, rangPaysNiveau } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
 
 export { nomRang } from './habitations'
@@ -56,8 +57,14 @@ export function rangNiveau(ville: City, C: Cfg): number {
 export function garnisonHabitationVille(p: Player, ville: City, C: Cfg, state?: GameState): number {
   let g = garnisonBaseVille(ville, C)
   // Ministères : bonus permanent crédité à la prise de fonction d'un
-  //  Connétable (+5 par ville — engine/ministeres.ts).
+  //  Connétable (+15 par ville — engine/ministeres.ts, marqueur (y)).
   g += p.garnisonMinisteres ?? 0
+  // Grand prévôt (marqueur (y)) : « +10 Garnison dans vos habitations
+  //  par rang de pays » — bonus DYNAMIQUE (suit le rang courant du
+  //  pays), nécessite l'état (population) pour vérifier le ministre.
+  if (state && aMinistre(state, p, 'Grand prévôt')) {
+    g += 10 * rangPaysNiveau(p, C)
+  }
   for (const b of ville.batiments) g += garnisonBatiment(b, C)
   const regime = C.regimes.find((r) => r.nom === p.regime)
   const bonus = regime?.garnisonParRang ?? 0

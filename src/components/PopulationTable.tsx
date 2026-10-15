@@ -36,6 +36,7 @@ import {
 } from '../engine/engine'
 import { GenealogyTree } from './GenealogyTree'
 import { Card, Select, TextInput, Button, NumberInput, fmt } from './ui'
+import { ChoicePicker } from './Picker'
 
 type SortKey = 'nom' | 'age' | 'dynastie' | 'ville' | 'titre' | 'statut'
 
@@ -70,6 +71,29 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   const p = cite ? undefined : state?.players.find((x) => x.n === joueur)
   const pop = cite ? (cite.population ?? []) : (state?.population[joueur] ?? [])
   const C = cfgOf(state?.config)
+  // Description complète d'un titre pour le picker (marqueur (y)) :
+  //  gains par habitant/tour + noblesse + éducation requise.
+  const descTitre = (t: string): string => {
+    const td = (C.config.titres ?? []).find((x) => x.titre === t)
+    if (!td) return ''
+    const parts: string[] = []
+    if (td.ressource1 && td.valeur1) parts.push(`+${fmt(td.valeur1)} ${td.ressource1}`)
+    if (td.ressource2 && td.valeur2) parts.push(`+${fmt(td.valeur2)} ${td.ressource2}`)
+    return [
+      parts.length ? `${parts.join(' + ')} par habitant et par tour` : '',
+      td.nobleSeul ? 'Nobles seulement' : '',
+      td.education ? `Éducation requise : ${td.education}` : '',
+      td.description || '',
+    ].filter(Boolean).join('\n')
+  }
+  const resumeTitre = (t: string): string => {
+    const td = (C.config.titres ?? []).find((x) => x.titre === t)
+    if (!td) return ''
+    const parts: string[] = []
+    if (td.ressource1 && td.valeur1) parts.push(`+${fmt(td.valeur1)} ${td.ressource1}`)
+    if (td.ressource2 && td.valeur2) parts.push(`+${fmt(td.valeur2)} ${td.ressource2}`)
+    return parts.join(' + ')
+  }
   const nomPorteur = p?.nom ?? cite?.nom ?? ''
 
   // ── Séparation cour / population classique (retour Thibaut) ───────
@@ -320,17 +344,36 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       <td>{c.ville}</td>
       <td>{c.culture}</td>
       <td>
-        <Select
-          value={c.titre ?? ''}
-          options={[
-            ...(c.titre ? [{ value: c.titre, label: c.titre }] : []),
-            { value: '', label: c.statut === 'Décédé' ? '—' : '(retirer)' },
-            ...accessibles
-              .filter((t) => t !== c.titre)
-              .map((t) => ({ value: t, label: t })),
-          ]}
-          onChange={(v) => changeTitre(c, v)}
-        />
+        {/* Marqueur (y), retour Thibaut : attribution de titre avec
+            DESCRIPTION (gains du titre, noblesse, éducation) AVANT
+            le choix — badge du titre actuel + bouton Retirer. */}
+        <div className="row" style={{ alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
+          <span className={`badge ${c.titre ? 'badge-info' : 'badge-neutral'}`}>
+            {c.titre ?? '(sans titre)'}
+          </span>
+          {c.statut !== 'Décédé' && (
+            <ChoicePicker
+              bouton="Attribuer…"
+              categories={[
+                {
+                  label: 'Titres accessibles',
+                  options: accessibles
+                    .filter((t) => t !== c.titre)
+                    .map((t) => ({
+                      value: t,
+                      titre: t,
+                      droite: resumeTitre(t),
+                      description: descTitre(t),
+                    })),
+                },
+              ]}
+              onPick={(v) => changeTitre(c, v)}
+            />
+          )}
+          {c.titre && c.statut !== 'Décédé' && (
+            <Button tone="danger" title="Retirer le titre" onClick={() => changeTitre(c, '')}>✕</Button>
+          )}
+        </div>
         {errors[c.id] && <div className="neg small">⚠ {errors[c.id]}</div>}
       </td>
       <td>{c.education ?? '—'}</td>
@@ -472,32 +515,59 @@ export function PopulationTable({ joueur }: { joueur: number }) {
             }
             return (
               <div className="badges-wrap rows">
-                {mins.map((c) => (
-                  <div key={c.id} className="row" style={{ alignItems: 'center', gap: 8 }}>
-                    <span className="badge badge-info" title={`${fullName(c)} — ${c.ville}`}>
-                      {fullName(c)}
-                    </span>
-                    <Select
-                      value={c.ministere ?? ''}
-                      options={[
-                        { value: '', label: '(sans portefeuille)' },
-                        ...(C.config.ministeres ?? []).map((m) => ({
+                {mins.map((c) => {
+                  // Marqueur (y), retour Thibaut : portefeuilles
+                  //  CATÉGORISÉS PAR RANG DE PAYS REQUIS + description
+                  //  (effet complet) AVANT le choix — et un bouton
+                  //  « Retirer » toujours disponible (le portefeuille
+                  //  actuel est affiché en badge, plus jamais un
+                  //  <select> muet sur une valeur inconnue).
+                  const cats = rangsPays
+                    .map((r) => ({
+                      label: `${r.nom} (min.)`,
+                      options: (C.config.ministeres ?? [])
+                        .filter((m) => (m.rangMinimum ?? rangsPays[0]?.nom ?? '') === r.nom)
+                        .filter((m) => m.ministere !== c.ministere)
+                        .map((m) => ({
                           value: m.ministere,
-                          label: `${m.ministere} — min. ${m.rangMinimum ?? rangsPays[0]?.nom ?? '?'} (${m.mode === 'Auto' ? 'auto' : 'plateau'})`,
+                          titre: m.ministere,
+                          droite: m.mode === 'Auto' ? 'auto' : 'plateau',
+                          description: m.effet,
                         })),
-                      ]}
-                      onChange={(v) => update((s2) => {
-                        const tp = s2.players.find((x) => x.n === joueur)
-                        const tc = (s2.population[joueur] ?? []).find((x) => x.id === c.id)
-                        if (!tp || !tc) return
-                        changerPortefeuille(s2, tp, tc, v || null)
-                      })}
-                    />
-                    {avertissementPortefeuille(c.ministere) && (
-                      <div className="neg small">⚠ {avertissementPortefeuille(c.ministere)}</div>
-                    )}
-                  </div>
-                ))}
+                    }))
+                    .filter((cat) => cat.options.length > 0)
+                  return (
+                    <div key={c.id} className="row" style={{ alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                      <span className="badge badge-info" title={`${fullName(c)} — ${c.ville}`}>
+                        {fullName(c)}
+                      </span>
+                      <span className={`badge ${c.ministere ? 'badge-good' : 'badge-neutral'}`}>
+                        {c.ministere ?? '(sans portefeuille)'}
+                      </span>
+                      <ChoicePicker
+                        bouton="Changer de portefeuille…"
+                        categories={cats}
+                        onPick={(v) => update((s2) => {
+                          const tp = s2.players.find((x) => x.n === joueur)
+                          const tc = (s2.population[joueur] ?? []).find((x) => x.id === c.id)
+                          if (!tp || !tc) return
+                          changerPortefeuille(s2, tp, tc, v || null)
+                        })}
+                      />
+                      {c.ministere && (
+                        <Button tone="danger" title="Retirer le portefeuille" onClick={() => update((s2) => {
+                          const tp = s2.players.find((x) => x.n === joueur)
+                          const tc = (s2.population[joueur] ?? []).find((x) => x.id === c.id)
+                          if (!tp || !tc) return
+                          changerPortefeuille(s2, tp, tc, null)
+                        })}>✕ Retirer</Button>
+                      )}
+                      {avertissementPortefeuille(c.ministere) && (
+                        <div className="neg small">⚠ {avertissementPortefeuille(c.ministere)}</div>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
             )
           })()}

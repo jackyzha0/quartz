@@ -295,6 +295,50 @@ select.input option, select.input optgroup { background: var(--card); color: var
 }
 .add-bat { margin-top: 6px; }
 
+/* ═══ ChoicePicker (marqueur (y)) — sélecteur à catégories + ═══
+   descriptions : boutons de catégorie, grille de cartes nom + coût +
+   description (règle du classeur affichée AVANT le choix). */
+.picker {
+  margin-top: 6px;
+  border: 1px solid var(--border, #d8d4cc);
+  border-radius: 10px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.6);
+}
+.picker-cats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; align-items: center; }
+.btn-small { padding: 3px 9px; font-size: 12px; }
+.picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 8px;
+}
+.picker-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  text-align: left;
+  padding: 8px 10px;
+  border: 1px solid #d8d4cc;
+  border-radius: 10px;
+  background: #fffdf9;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.35;
+}
+.picker-card:hover { border-color: #3b6ea5; background: #eef3fa; }
+.picker-titre { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.picker-droite { color: #3f7a3f; font-size: 12px; white-space: nowrap; }
+.picker-desc {
+  color: #66625c;
+  font-size: 11.5px;
+  white-space: pre-line;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Panneau « Ressources » : très léger, collé au bord droit, dépliable */
 /* Barre Ressources — flottante en haut de la page « Pays », ouverte
    par défaut, minimaliste : une puce par ressource (stock modifiable +

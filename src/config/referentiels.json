@@ -1030,12 +1030,6 @@
       "mode": "Plateau"
     },
     {
-      "ministere": "Maître des arts",
-      "effet": "Lorsqu'une habitation est fondée par votre  culture ou qu'une habitation se convertie à votre culture, vous recevez 10 Tourisme.",
-      "rangMinimum": "Baronnie",
-      "mode": "Plateau"
-    },
-    {
       "ministere": "Grand prévôt",
       "effet": "Votre capitale produit +1 Fer par tour. +10 Garnison dans vos habitations par rang de pays.",
       "rangMinimum": "Baronnie",
@@ -1067,99 +1061,75 @@
     },
     {
       "ministere": "Sénéchal",
+      "effet": "+15 Nourriture à la fin de l'été (créditée automatiquement).",
       "rangMinimum": "Baronnie",
-      "mode": "Auto",
-      "effet": "+15 Nourriture à la fin de l'été (créditée automatiquement)."
+      "mode": "Auto"
     },
     {
       "ministere": "Trésorier",
+      "effet": "+5 Or par tour (crédité automatiquement).",
       "rangMinimum": "Baronnie",
-      "mode": "Auto",
-      "effet": "+5 Or par tour (crédité automatiquement)."
+      "mode": "Auto"
     },
     {
       "ministere": "Maître de cour",
+      "effet": "+2 Tourisme à la fin de chaque saison (crédité automatiquement).",
       "rangMinimum": "Baronnie",
-      "mode": "Auto",
-      "effet": "+2 Tourisme à la fin de chaque saison (crédité automatiquement)."
+      "mode": "Auto"
     },
     {
       "ministere": "Grand Précepteur",
+      "effet": "+1 Science par tour (crédité automatiquement).",
       "rangMinimum": "Comté",
-      "mode": "Auto",
-      "effet": "+1 Science par tour (crédité automatiquement)."
+      "mode": "Auto"
     },
     {
       "ministere": "Connétable",
-      "rangMinimum": "Comté",
-      "mode": "Auto",
-      "effet": "+5 Garnison à toutes vos villes dès la nomination (créditée une fois, automatiquement)."
-    },
-    {
-      "ministere": "Intendant des hommes",
-      "rangMinimum": "Comté",
-      "mode": "Plateau",
-      "effet": "À la fin de l'été, +15 habitants dans l'habitation de votre choix."
+      "effet": "+15 Garnison à toutes vos villes dès la nomination (créditée une fois, automatiquement).",
+      "rangMinimum": "Duché",
+      "mode": "Auto"
     },
     {
       "ministere": "Chancelier des émissaires",
-      "rangMinimum": "Duché",
-      "mode": "Plateau",
-      "effet": "+1 émissaire chaque saison avec la cité libre de votre choix (à saisir sur la page Cités libres)."
+      "effet": "+1 émissaire chaque saison avec la cité libre de votre choix (à saisir sur la page Cités libres).",
+      "rangMinimum": "Royaume",
+      "mode": "Plateau"
     },
     {
       "ministere": "Chancelier de justice",
+      "effet": "−25 % sur le coût des sacres (montée de rang et sacre d'avènement), appliqué automatiquement.",
       "rangMinimum": "Duché",
-      "mode": "Auto",
-      "effet": "−25 % sur le coût des sacres (montée de rang et sacre d'avènement), appliqué automatiquement."
-    },
-    {
-      "ministere": "Maître des œuvres",
-      "rangMinimum": "Duché",
-      "mode": "Plateau",
-      "effet": "Votre prochaine Merveille coûte 10 Or et 5 ressources de base de moins."
-    },
-    {
-      "ministere": "Maître des espions",
-      "rangMinimum": "Royaume",
-      "mode": "Plateau",
-      "effet": "Une fois par saison, une crise qui vous vise est annulée ou atténuée (arbitre)."
+      "mode": "Auto"
     },
     {
       "ministere": "Maître des guildes",
+      "effet": "Votre capitale peut posséder 1 Guilde supplémentaire",
       "rangMinimum": "Royaume",
-      "mode": "Plateau",
-      "effet": "Votre prochaine Guilde coûte moitié prix."
+      "mode": "Plateau"
     },
     {
       "ministere": "Légat du pontificat",
+      "effet": "+20 Tourisme.",
       "rangMinimum": "Royaume",
-      "mode": "Plateau",
-      "effet": "+20 Tourisme comptés uniquement pour les seuils de Pontificat."
+      "mode": "Auto"
     },
     {
       "ministere": "Maréchal",
+      "effet": "Vos armées ont +1 PM.",
       "rangMinimum": "Royaume",
-      "mode": "Plateau",
-      "effet": "+50 points d'armée au total, répartis à votre guise."
+      "mode": "Plateau"
     },
     {
       "ministere": "Grand Chambellan",
+      "effet": "+10 % sur toutes les taxes que vous recevez (villes et cités libres), appliqué automatiquement.",
       "rangMinimum": "Royaume",
-      "mode": "Auto",
-      "effet": "+10 % sur toutes les taxes que vous recevez (villes et cités libres), appliqué automatiquement."
-    },
-    {
-      "ministere": "Ambassadeur des cités",
-      "rangMinimum": "Empire",
-      "mode": "Plateau",
-      "effet": "Le seuil de suzeraineté des cités libres passe de 3 à 2 émissaires pour vous (ne se cumule pas avec le dogme Pacifisme de rang 3)."
+      "mode": "Auto"
     },
     {
       "ministere": "Archichancelier",
+      "effet": "Le sacre d'avènement de vos successions est réduit de moitié (appliqué automatiquement).",
       "rangMinimum": "Empire",
-      "mode": "Auto",
-      "effet": "Le sacre d'avènement de vos successions est réduit de moitié (appliqué automatiquement)."
+      "mode": "Auto"
     }
   ],
   "titresEffets": [

@@ -15,6 +15,8 @@
 import type { City, GameState, Player } from './types'
 import { cfgOf, type Cfg } from './gameData'
 import { parseCoutTexte } from './constructions'
+import { aMinistre } from './ministeres'
+import { rangPaysNiveau } from './factions'
 
 /** Nom court d'un rang d'habitation (« Hameau : 20 Or… » → « Hameau »). */
 export function nomRang(rang: string): string {
@@ -78,11 +80,25 @@ export function consommationsVille(ville: City, C: Cfg): Record<string, number> 
   return out
 }
 
-/** Consommation par tour de toutes les habitations d'un pays. */
-export function consommationsPays(p: Player, C: Cfg): Record<string, number> {
+/** Consommation par tour de toutes les habitations d'un pays.
+ *  Grand veneur (ministère, marqueur (y)) : « Vos habitations
+ *  consomment -5 Nourriture par rang de votre pays » — la
+ *  consommation de Nourriture de CHAQUE habitation est réduite de
+ *  5 × rang de pays (plafonnée à 0 par habitation, jamais inversée
+ *  en gain). Passer `state` active l'effet (moteur et récap) ;
+ *  sans `state` (affichages statiques), pas de réduction. */
+export function consommationsPays(
+  p: Player, C: Cfg, state?: GameState,
+): Record<string, number> {
   const out: Record<string, number> = {}
+  const veneur = state ? aMinistre(state, p, 'Grand veneur') : false
+  const reduc = veneur ? 5 * rangPaysNiveau(p, C) : 0
   for (const v of p.villes) {
-    for (const [res, val] of Object.entries(consommationsVille(v, C))) {
+    const consoVille = { ...consommationsVille(v, C) }
+    if (reduc > 0 && consoVille['Nourriture'] !== undefined) {
+      consoVille['Nourriture'] = Math.min(0, (consoVille['Nourriture'] ?? 0) + reduc)
+    }
+    for (const [res, val] of Object.entries(consoVille)) {
       out[res] = (out[res] ?? 0) + val
     }
   }
@@ -102,9 +118,19 @@ export function coutHabitation(ville: City, C: Cfg): Record<string, number> {
  *  habitants requis manquent. Retourne le coût débité. */
 export function debiterCoutHabitation(
   state: GameState, p: Player, ville: City, C: Cfg,
+  /** Fondation (nouvelle ville / château) et non simple amélioration :
+   *  active la réduction du Grand bailli (marqueur (y), −8 Or et
+   *  −3 Bois — plafonnés à 0). */
+  fondation = false,
 ): Record<string, number> {
   const def = habitationDef(ville, C)
   const cout = coutHabitation(ville, C)
+  let reducBailli = false
+  if (fondation && aMinistre(state, p, 'Grand bailli')) {
+    reducBailli = true
+    if (cout['Or'] !== undefined) cout['Or'] = Math.max(0, cout['Or'] - 8)
+    if (cout['Bois'] !== undefined) cout['Bois'] = Math.max(0, cout['Bois'] - 3)
+  }
   for (const [res, v] of Object.entries(cout)) {
     const rs = p.resources[res]
     if (rs && v !== 0) rs.stock -= v
@@ -118,6 +144,7 @@ export function debiterCoutHabitation(
     turn: state.turn, type: 'Système', joueur: p.n,
     texte: `🏰 ${ville.nom} — ${def?.rang ?? typeVille(ville)} (${typeVille(ville)})` +
       (parts ? ` — coût débité du stock : ${parts}` : ' — gratuit') +
+      (reducBailli ? ' (Grand bailli : −8 Or, −3 Bois).' : '') +
       (requis > 0 && vivants < requis
         ? ` ⚠ habitants insuffisants (${vivants}/${requis}).`
         : '.') +
@@ -132,7 +159,7 @@ export function debiterCoutHabitation(
 export function appliquerConsommationsHabitations(
   state: GameState, p: Player, C: Cfg = cfgOf(state.config),
 ): Record<string, number> {
-  const out = consommationsPays(p, C)
+  const out = consommationsPays(p, C, state)
   for (const [res, v] of Object.entries(out)) {
     const rs = p.resources[res]
     if (rs) rs.stock += v

@@ -159,6 +159,13 @@ export interface City {
    *  tour et la garnison de base (table typesHabitation). */
   type?: string
   taxes: TaxeNiveau
+  /** Proximité de la ville (marqueur (y), retour Thibaut 2026-10-15) :
+   *  « Plaine » (aucun bonus), « Rivière » (+proxRiviereNourriture
+   *  Nourriture/tour) ou « Mer » (+proxMerNourriture Nourriture/tour) —
+   *  bonus automatique à chaque fin de tour (canal « Proximité » du
+   *  récap). Champ optionnel : absent des vieilles sauvegardes →
+   *  « Plaine » (aucun bonus). */
+  proximite?: string
   /** Rang d'habitation (Hameau / Cité / Grande Cité — table
    *  rangsHabitation du classeur). Champ optionnel : absent des vieilles
    *  sauvegardes → « Hameau ». Utilisé par la garnison des habitations
@@ -370,6 +377,11 @@ export interface ApportsTour {
    *  d'une ressource d'un aménagement de la ville ciblée). Champ
    *  optionnel : absent des historiques d'avant le canal. */
   commerce?: Record<string, number>
+  /** bonus de proximité des villes (marqueur (y) : Rivière
+   *  +proxRiviereNourriture, Mer +proxMerNourriture Nourriture/tour —
+   *  engine/villes.ts). Champ optionnel : absent des historiques
+   *  d'avant le canal. */
+  proximite?: Record<string, number>
 }
 
 export interface HistoryRow {

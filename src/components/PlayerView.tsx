@@ -56,11 +56,12 @@ import {
   ressourcesCopiables, amenagementsCopiables,
   creerRouteCommerce, changerCopieRoute, supprimerRouteCommerce,
   impotPopulation, impotsVassaux, genererImpotPopulation, genererImpotVassaux,
-  debiterCoutHabitation,
+  debiterCoutHabitation, aMinistre, rangPaysNiveau, rangNiveau, bonusProximite,
   type ProductionDetail,
 } from '../engine/engine'
 import { peuplerNouvelleVille } from '../engine/setup'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
+import { ChoicePicker, type PickerCategorie } from './Picker'
 
 export function PlayerView({ joueur }: { joueur: number }) {
   const { state, update } = useGame()
@@ -95,6 +96,14 @@ export function PlayerView({ joueur }: { joueur: number }) {
   const [rcVille, setRcVille] = useState('')
   const [rcAmen, setRcAmen] = useState('')
   const [rcErr, setRcErr] = useState<string | null>(null)
+  // ── Surintendant des finances (marqueur (y)) : après la construction
+  //    d'un bâtiment, le ministre génère 1 ressource AU CHOIX produite
+  //    par l'habitation, × rang de l'habitation — le choix s'affiche
+  //    dans une carte dédiée le temps de la décision. ──────────────────
+  const [surint, setSurint] = useState<{
+    idx: number; options: string[]; qty: number
+  } | null>(null)
+  const [surintRes, setSurintRes] = useState('')
   const impotPopPrev = impotPopulation(state, p, C)
   const impotsVassPrev = impotsVassaux(state, p, C)
 
@@ -113,6 +122,16 @@ export function PlayerView({ joueur }: { joueur: number }) {
       // · bâtiment de capitale (groupe « Capitale ») : capitale uniquement.
       const ref = type === 'batiment' ? constructionRef(nom, C.config) : undefined
       const estCapitale = capitaleDe(t)?.nom === ville.nom
+      // Aménagement de faction (marqueur (y)) : comme les bâtiments de
+      //  faction, seuls ceux du PEUPLE du joueur sont constructibles.
+      const aref = type === 'amenagement' ? constructionRef(nom, C.config) : undefined
+      if (aref?.faction && aref.faction !== t.peuple) {
+        s.log.push({
+          turn: s.turn, type: 'Système', joueur: t.n,
+          texte: `🏗 ${nom} est un aménagement de faction des ${aref.faction} — seuls les aménagements de faction de ${t.peuple} sont constructibles.`,
+        })
+        return
+      }
       if (ref && ref.groupe === 'Capitale' && !estCapitale) {
         s.log.push({
           turn: s.turn, type: 'Système', joueur: t.n,
@@ -178,6 +197,22 @@ export function PlayerView({ joueur }: { joueur: number }) {
         texte: `🏗 ${nom} construit(e) à ${ville.nom} — coût déduit du stock : ${parts.length ? parts.join(' + ') : 'gratuit'}${sci > 0 ? ` — règle de culture : +${fmt(sci)} Science` : ''}${tour > 0 ? ` — Tourisme +${fmt(tour)} (valeur fixe)` : ''}${remplace ? ` — remplace ${remplace} (bâtiment de faction de la ville)` : ''}.`,
       })
     })
+    // Surintendant des finances (marqueur (y)) : « Après avoir
+    //  construit un bâtiment, générez 1 Ressource de votre choix
+    //  produite par l'habitation par rang de l'habitation » — on
+    //  ouvre une carte de choix (ressources produites par les
+    //  habitants + bâtiments de la ville, nouveau bâtiment inclus).
+    if (type === 'batiment' && aMinistre(state, p, 'Surintendant des finances')) {
+      const prodVille = new Set<string>()
+      for (const r of Object.keys(detailGainsVille(state, p, ville, C).titres)) prodVille.add(r)
+      for (const r of Object.keys(effetsTourBatiment(nom, C))) prodVille.add(r)
+      const options = [...prodVille].filter((r) => p.resources[r] !== undefined)
+      const qty = rangNiveau(ville, C)
+      if (options.length > 0 && qty > 0) {
+        setSurint({ idx, options, qty })
+        setSurintRes(options[0])
+      }
+    }
 
   // ── Référentiel des constructions (coût / production / description exacts) ──
   const refs = constructionsRefs(C.config)
@@ -188,39 +223,45 @@ export function PlayerView({ joueur }: { joueur: number }) {
   const refsBatFaction = batimentsFaction(p, C)
   const refsBatCapitale = batimentsCapitale(C)
   const nomCapitale = capitaleDe(p)?.nom ?? ''
-  const fmtOption = (b: { nom: string; cout: string }, groupe: string) => ({
-    value: `${groupe}|${b.nom}`,
-    label: `${b.nom} — ${fmtCout(parseCoutTexte(b.cout))}`,
-  })
-  /** Groupes de construction d'UNE ville : bâtiments de ville / château
-   *  (hors faction), bâtiments de FACTION du peuple du joueur (toutes
-   *  villes ; ceux de capitale uniquement dans la capitale), et
-   *  bâtiments de CAPITALE pour la capitale uniquement. */
-  const batParGroupePour = (estCapitale: boolean) => {
-    const groupes: { label: string; options: { value: string; label: string }[] }[] = [
-      {
-        label: 'Bâtiments de ville',
-        options: batRefs.filter((b) => b.groupe === 'Ville' && !b.faction).map((b) => fmtOption(b, 'Ville')),
-      },
-      {
-        label: 'Bâtiments de château',
-        options: batRefs.filter((b) => b.groupe === 'Château' && !b.faction).map((b) => fmtOption(b, 'Château')),
-      },
+  /** Catégories de construction d'UNE ville par TYPE de bâtiment
+   *  (marqueur (y), retour Thibaut : « peut-être même un bouton par
+   *  type de bâtiment ») — arbitrage : les 5 FAMILLES du référentiel
+   *  (Militaire, Economique, Guilde, Faction, Capitale). Contenu :
+   *  bâtiments de ville / château hors faction, bâtiments de FACTION
+   *  du peuple du joueur (ceux de capitale uniquement dans la
+   *  capitale), bâtiments de CAPITALE pour la capitale uniquement.
+   *  Chaque carte montre le coût ET la description du classeur. */
+  const batParFamillePour = (estCapitale: boolean): PickerCategorie[] => {
+    const eligibles = [
+      ...batRefs.filter((b) => b.groupe === 'Ville' && !b.faction).map((b) => ({ b, groupe: 'Ville' })),
+      ...batRefs.filter((b) => b.groupe === 'Château' && !b.faction).map((b) => ({ b, groupe: 'Château' })),
+      ...refsBatFaction
+        .filter((b) => estCapitale || b.groupe !== 'Capitale')
+        .map((b) => ({ b, groupe: 'Faction' })),
+      ...(estCapitale ? refsBatCapitale.map((b) => ({ b, groupe: 'Capitale' })) : []),
     ]
-    const faction = refsBatFaction.filter((b) => estCapitale || b.groupe !== 'Capitale')
-    if (faction.length > 0) {
-      groupes.push({
-        label: `Bâtiments de faction (${p.peuple})`,
-        options: faction.map((b) => fmtOption(b, 'Faction')),
-      })
-    }
-    if (estCapitale) {
-      groupes.push({
-        label: 'Bâtiments de capitale',
-        options: refsBatCapitale.map((b) => fmtOption(b, 'Capitale')),
-      })
-    }
-    return groupes
+    const familles: Array<[string, string]> = [
+      ['Militaire', 'Militaire'],
+      ['Economique', 'Économique'],
+      ['Guilde', 'Guilde'],
+      ['Faction', `Faction (${p.peuple})`],
+      ['Capitale', 'Capitale'],
+    ]
+    return familles.map(([fam, label]) => ({
+      label,
+      options: eligibles
+        .filter(({ b }) => (b.famille ?? '') === fam)
+        .map(({ b, groupe }) => ({
+          value: `${groupe}|${b.nom}`,
+          titre: b.nom,
+          droite: fmtCout(parseCoutTexte(b.cout)),
+          description: [
+            resumeConstruction(b) || b.production || '',
+            b.description,
+          ].filter(Boolean).join('\n'),
+          badge: FAM_BADGES[fam] ?? 'badge-info',
+        })),
+    }))
   }
 
   const coutAm = coutAmenagement(p, C.config)
@@ -231,6 +272,47 @@ export function PlayerView({ joueur }: { joueur: number }) {
       {/* Barre Ressources — flottante en haut de la page, ouverte par
           défaut, minimaliste (retour Thibaut 2026-10-14) */}
       <RessourcesBar p={p} C={C} prodDetail={prodDetail} setPlayer={setPlayer} />
+
+      {/* ═══ Surintendant des finances (marqueur (y)) : après la
+          construction d'un bâtiment, choix d'1 ressource produite par
+          l'habitation, × rang de l'habitation — carte éphémère. ═══ */}
+      {surint && (() => {
+        const villeSu = p.villes[surint.idx]
+        if (!villeSu) return null
+        return (
+          <Card title="🪙 Surintendant des finances — ressource générée par la construction">
+            <p>
+              Votre Surintendant des finances génère <strong>{surint.qty}</strong> × 1 ressource
+              au choix parmi celles produites par <strong>{villeSu.nom}</strong> —
+              choisissez la ressource puis validez :
+            </p>
+            <div className="filters">
+              <Select
+                value={surintRes}
+                options={surint.options.map((r) => ({ value: r, label: r }))}
+                onChange={setSurintRes}
+              />
+              <Button tone="primary" disabled={!surintRes} onClick={() => {
+                const res = surintRes
+                const qty = surint.qty
+                update((s2) => {
+                  const t = s2.players.find((x) => x.n === joueur)
+                  if (!t) return
+                  const rs = t.resources[res]
+                  if (rs) rs.stock += qty
+                  s2.log.push({
+                    turn: s2.turn, type: 'Système', joueur: t.n,
+                    texte: `👑 Ministères — Surintendant des finances : ${villeSu.nom} génère +${qty} ${res} (construction).`,
+                  })
+                })
+                setSurint(null)
+              }}>Créditer</Button>
+              <Button onClick={() => setSurint(null)}>Ignorer</Button>
+            </div>
+          </Card>
+        )
+      })()}
+
 
       {/* ═══ Culture du pays : règle de pays chiffrée (ex. Lunisme —
           +4 Tourisme par ville luniste dans le monde) avec le NOMBRE de
@@ -320,6 +402,21 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     value={ville.taxes}
                     options={TAX_OPTIONS}
                     onChange={(v) => setPlayer((x) => { x.villes[idx].taxes = v })}
+                  />
+                </Field>
+                {/* Proximité (marqueur (y), retour Thibaut) : plaine /
+                    bord de rivière / bord de mer — bonus de Nourriture
+                    par tour crédité automatiquement, montants dans
+                    Paramètres → Formules → Villes. */}
+                <Field label="Proximité">
+                  <Select
+                    value={ville.proximite ?? 'Plaine'}
+                    options={[
+                      { value: 'Plaine', label: 'Plaine (aucun bonus)' },
+                      { value: 'Rivière', label: `Rivière (+${fmt(C.p.proxRiviereNourriture)} Nourriture/tour)` },
+                      { value: 'Mer', label: `Mer (+${fmt(C.p.proxMerNourriture)} Nourriture/tour)` },
+                    ]}
+                    onChange={(v) => setPlayer((x) => { x.villes[idx].proximite = v })}
                   />
                 </Field>
                 </div>
@@ -486,14 +583,39 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   )
                 })}
                 <div className="add-bat">
-                  <Select
-                    value=""
-                    options={[{ value: '' as const, label: '+ Aménager une case…' },
-                      ...amRefs.map((a) => ({
-                        value: a.nom,
-                        label: `${a.nom} (${a.terrain}) — ${fmtCout(parseCoutTexte(a.cout))}`,
-                      }))]}
-                    onChange={(v) => v && construire(idx, v, 'amenagement')}
+                  {/* Marqueur (y) : choix à CATÉGORIES + DESCRIPTIONS —
+                      aménagements classiques et aménagements de FACTION
+                      du peuple du joueur (les autres factions ne sont
+                      plus constructibles, comme les bâtiments). */}
+                  <ChoicePicker
+                    bouton="+ Aménager une case…"
+                    categories={[
+                      {
+                        label: 'Aménagements',
+                        options: amRefs.filter((a) => !a.faction).map((a) => ({
+                          value: a.nom,
+                          titre: a.nom,
+                          droite: `${fmtCout(parseCoutTexte(a.cout))}${a.terrain ? ` · ${a.terrain}` : ''}`,
+                          description: [
+                            resumeConstruction(a) || a.production || '',
+                            a.description,
+                          ].filter(Boolean).join('\n'),
+                        })),
+                      },
+                      {
+                        label: `Aménagements de faction (${p.peuple})`,
+                        options: amRefs.filter((a) => a.faction === p.peuple).map((a) => ({
+                          value: a.nom,
+                          titre: a.nom,
+                          droite: `${fmtCout(parseCoutTexte(a.cout))}${a.terrain ? ` · ${a.terrain}` : ''}`,
+                          description: [
+                            resumeConstruction(a) || a.production || '',
+                            a.description,
+                          ].filter(Boolean).join('\n'),
+                        })),
+                      },
+                    ]}
+                    onPick={(v) => construire(idx, v, 'amenagement')}
                   />
                 </div>
                   </div>
@@ -532,12 +654,14 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   )
                 })}
                 <div className="add-bat">
-                  <Select
-                    value=""
-                    options={[{ value: '' as const, label: '+ Construire…' }]}
-                    groups={batParGroupePour(ville.nom === nomCapitale)}
-                    onChange={(v) => {
-                      if (!v) return
+                  {/* Marqueur (y) : un BOUTON PAR TYPE de bâtiment
+                      (militaire, économique, guilde, faction, capitale —
+                      arbitrage Thibaut : les 5 familles existantes) +
+                      description de chaque bâtiment AVANT le choix. */}
+                  <ChoicePicker
+                    bouton="+ Construire…"
+                    categories={batParFamillePour(ville.nom === nomCapitale)}
+                    onPick={(v) => {
                       const [groupe, nom] = v.split('|')
                       construire(idx, nom, 'batiment', groupe)
                     }}
@@ -771,7 +895,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
           <Button onClick={() => setPlayer((x, s) => {
             const nom = `${typeAjout} ${x.villes.length + 1}`
             x.villes.push({ nom, culture: x.culture, taxes: 'Moyenne', type: typeAjout, rang: rangsDisponibles(typeAjout, C)[0] ?? 'Hameau', batiments: [], amenagements: [], autres: [] })
-            debiterCoutHabitation(s, x, x.villes[x.villes.length - 1], C)
+            debiterCoutHabitation(s, x, x.villes[x.villes.length - 1], C, true)
             // Marqueur (w), retour Thibaut : une nouvelle ville (ou un
             // nouveau château) démarre avec 50 habitants SANS noble,
             // paramètres similaires à la première ville.
@@ -941,6 +1065,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
             ['Faction', prodDetail.faction],
             ['Cités libres', prodDetail.citesLibres],
             ['Commerce', prodDetail.commerce],
+            ['Proximité', prodDetail.proximite],
             ['Conso villes', prodDetail.habitations],
             ['Vassalité', prodDetail.vassalite],
           ]

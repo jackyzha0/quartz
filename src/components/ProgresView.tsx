@@ -21,6 +21,7 @@ import type { GameState } from '../engine/types'
 import type { ProgresArbre, ProgresTechDef } from '../config/defaultConfig'
 import { Card, Badge, Button } from './ui'
 import { debiterScienceTech, rembourserScienceTech, resumeEffetsTech } from '../engine/progres'
+import { aMinistre, rangPaysNiveau } from '../engine/engine'
 
 type Slot = 'a1' | 'a2' | 'b1' | 'b2' | 'c'
 const SLOTS: Slot[] = ['a1', 'a2', 'b1', 'b2', 'c']
@@ -139,9 +140,18 @@ export function ProgresView({ joueur }: { joueur: number }) {
       const t = arbres[i] ? techOf(arbres[i], s) : undefined
       if (!etaitDebloque && set.has(k)) {
         const cs = debiterScienceTech(q, t)
+        // Grand bibliothécaire (marqueur (y)) : « Après avoir
+        //  découvert une technologie, gagnez votre rang de pays sous
+        //  forme de Science » — crédité automatiquement au déblocage.
+        let biblio = 0
+        if (aMinistre(st, q, 'Grand bibliothécaire')) {
+          biblio = rangPaysNiveau(q, cfgOf(st.config))
+          const rsSci = q.resources['Science']
+          if (rsSci && biblio > 0) rsSci.stock += biblio
+        }
         st.log.push({
           turn: st.turn, type: 'Système', joueur,
-          texte: `${q.nom} — « ${t?.nom ?? '?'} » débloquée${cs ? ` : −${cs} Science (coût déduit du stock)` : ''}.`,
+          texte: `${q.nom} — « ${t?.nom ?? '?'} » débloquée${cs ? ` : −${cs} Science (coût déduit du stock)` : ''}${biblio > 0 ? ` — Grand bibliothécaire : +${biblio} Science` : ''}.`,
         })
       } else if (etaitDebloque) {
         const cs = rembourserScienceTech(q, t)

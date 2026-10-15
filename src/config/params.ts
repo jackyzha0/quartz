@@ -102,6 +102,8 @@ export interface GameParams {
   evMultExtreme: number
   dangerSeuilForte: number
   dangerSeuilExtreme: number
+  proxRiviereNourriture: number
+  proxMerNourriture: number
 }
 
 export const DEFAULT_PARAMS: GameParams = {
@@ -160,6 +162,8 @@ export const DEFAULT_PARAMS: GameParams = {
   soldatAgeMax: 30,
   vassalPrelevement: 0.5,
   marchandOrTour: 4,
+  proxRiviereNourriture: 12,
+  proxMerNourriture: 7,
   titreDirigeant: 'Dirigeant',
   titreGouverneur: 'Gouverneur',
   titreProfesseur: 'Professeur',
@@ -246,6 +250,8 @@ export const PARAM_META: {
   { key: 'marchandOrTour', label: 'Marchand — Or / tour par route commerciale', groupe: 'Commerce', aide: 'Or gagné CHAQUE tour par les DEUX joueurs reliés par une route de marchand (propriétaire + ville ciblée).' },
   { key: 'taxNaissFaibles', label: 'Taxes faibles — multiplicateur naissances', groupe: 'Taxes' },
   { key: 'taxNaissHautes', label: 'Taxes fortes — multiplicateur naissances', groupe: 'Taxes' },
+  { key: 'proxRiviereNourriture', label: 'Proximité rivière — Nourriture / tour', groupe: 'Villes', aide: 'Bonus automatique de chaque ville « au bord d\'une rivière » (marqueur (y)).' },
+  { key: 'proxMerNourriture', label: 'Proximité mer — Nourriture / tour', groupe: 'Villes', aide: 'Bonus automatique de chaque ville « au bord de la mer » (marqueur (y)).' },
   { key: 'puissanceGeneral', label: 'Puissance d\'un commandant', groupe: 'Armées' },
   { key: 'puissanceSoldat', label: 'Puissance d\'un soldat', groupe: 'Armées' },
   { key: 'soldatAgeMin', label: 'Âge minimal de recrutement', groupe: 'Armées' },

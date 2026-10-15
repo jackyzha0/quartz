@@ -26,6 +26,7 @@ import { effetsRegime, effetsCulturePays, detailCulturePays } from './regimes'
 import { effetsFaction } from './factions'
 import { citesLibresDe, detailCiteLibre } from './citesLibres'
 import { consommationsPays, consommationsVille, nomRang } from './habitations'
+import { bonusProximite } from './villes'
 import { effetsCommerceJoueur, detailCommerceJoueur } from './commerce'
 
 export interface ProductionDetail {
@@ -64,6 +65,9 @@ export interface ProductionDetail {
    *  3terdecies : +marchandOrTour Or pour chaque joueur relié + copie
    *  de l'aménagement entier de la ville ciblée, saisonnière (u)) */
   commerce: Record<string, number>
+  /** bonus de proximité des villes (marqueur (y) : Rivière +12, Mer
+   *  +7 Nourriture/tour par défaut — engine/villes.ts bonusProximite) */
+  proximite: Record<string, number>
   /** somme de tous les canaux */
   total: Record<string, number>
 }
@@ -141,6 +145,8 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     regimesCultures[res] = (regimesCultures[res] ?? 0) + v
   }
 
+  // (Proximité : agrégée plus bas, juste avant le total.)
+
   // Vassalité : tribut payé au suzerain + tributs reçus des vassaux
   // (seuls les revenus d'habitants sont prélevés — étape 3bis du moteur)
   const vassalite: Record<string, number> = {}
@@ -157,7 +163,7 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
   // Habitations : consommation par tour de chaque ville selon son type
   //  (Ville / Château) et son rang — étape 3octies du moteur.
   const habitations: Record<string, number> = {}
-  for (const [res, v] of Object.entries(consommationsPays(p, C))) {
+  for (const [res, v] of Object.entries(consommationsPays(p, C, state))) {
     if (v !== 0) habitations[res] = (habitations[res] ?? 0) + v
   }
 
@@ -187,14 +193,23 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     if (v !== 0) commerce[res] = v
   }
 
+  // Proximité (marqueur (y)) : bonus de Nourriture par tour de la
+  //  proximité de chaque ville (Rivière / Mer — engine/villes.ts),
+  //  non taxé, non prélevé.
+  const proximite: Record<string, number> = {}
+  for (const ville of p.villes) {
+    const b = bonusProximite(ville, C)
+    if (b !== 0) proximite['Nourriture'] = (proximite['Nourriture'] ?? 0) + b
+  }
+
   // Total
   const total: Record<string, number> = {}
-  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, vassalite]) {
+  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, proximite, vassalite]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, vassalite, total }
+  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, proximite, vassalite, total }
 }
 
 // ══════════════════════════════════════════════════════════════════════
@@ -301,7 +316,7 @@ export function attraitMaxMonde(state: GameState): number {
 /** Canal d'un apport (colonne du récap ressources). */
 export type CanalApport =
   | 'Base' | 'Habitants' | 'Bâtiments' | 'Aménagements' | 'Nourr - été' | 'Autres'
-  | 'Régimes & cultures' | 'Conso villes' | 'Progrès' | 'Cités libres' | 'Commerce' | 'Vassalité'
+  | 'Régimes & cultures' | 'Conso villes' | 'Progrès' | 'Cités libres' | 'Commerce' | 'Proximité' | 'Vassalité'
 
 export interface ProvenanceApport {
   /** canal de l'apport (colonne du récap) */
@@ -416,6 +431,15 @@ export function provenancesApports(
     for (const [res, v] of Object.entries(d.effets)) {
       push(res, 'Commerce', d.origine, v)
     }
+  }
+
+  // Proximité : bonus de Nourriture des villes au bord d'une rivière
+  //  ou de la mer (marqueur (y) — engine/villes.ts bonusProximite),
+  //  non taxé, non prélevé.
+  for (const ville of p.villes) {
+    const b = bonusProximite(ville, C)
+    if (b !== 0) push('Nourriture', 'Proximité',
+      `${ville.nom} (${ville.proximite === 'Mer' ? 'bord de mer' : 'bord de rivière'})`, b)
   }
 
   // Vassalité : tribut payé au suzerain + tributs reçus des vassaux

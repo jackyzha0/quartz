@@ -55,7 +55,7 @@ export function facteurAvencement(state: GameState, p: Player): number {
 
 /** Étape moteur (3duodecies) : effets AUTOMATIQUES par tour des
  *  portefeuilles — Trésorier +5 Or, Grand Précepteur +1 Science,
- *  PAR MINISTRE (cumulables). Crédite les stocks et retourne les
+ *  Grand prévôt +1 Fer (marqueur (y)) — PAR MINISTRE (cumulables). Crédite les stocks et retourne les
  *  apports par joueur (canal « Ministères » du récap ressources ;
  *  pas de log par tour pour ne pas noyer le journal). */
 export function appliquerEffetsMinisteres(
@@ -67,6 +67,11 @@ export function appliquerEffetsMinisteres(
     for (const m of portefeuillesDuJoueur(state, p)) {
       if (m === 'Trésorier') gains['Or'] = (gains['Or'] ?? 0) + 5
       else if (m === 'Grand Précepteur') gains['Science'] = (gains['Science'] ?? 0) + 1
+      // Grand prévôt (marqueur (y), arbitrage Thibaut) : « Votre
+      //  capitale produit +1 Fer par tour » (le 2e effet — +10
+      //  Garnison par rang de pays dans chaque habitation — est une
+      //  valeur d'état calculée dans garnisonHabitationVille).
+      else if (m === 'Grand prévôt') gains['Fer'] = (gains['Fer'] ?? 0) + 1
     }
     for (const [res, v] of Object.entries(gains)) {
       const rs = p.resources[res]
@@ -102,6 +107,17 @@ export function effetsFinSaisonMinisteres(
       if (rs) rs.stock += v
       parts.push(`+${v} Tourisme (${nbCour} Maître${nbCour > 1 ? 's' : ''} de cour)`)
     }
+    // Légat du pontificat (marqueur (y)) : « +20 Tourisme » — crédité
+    //  à la fin de CHAQUE saison, comme le Maître de cour (inter-
+    //  prétation retenue : récurrent ; ajustable dans Paramètres en
+    //  renommant l'effet si Thibaut préfère un one-shot).
+    const nbLegat = portefeuilles.filter((m) => m === 'Légat du pontificat').length
+    if (nbLegat > 0) {
+      const v = 20 * nbLegat
+      const rs = p.resources['Tourisme']
+      if (rs) rs.stock += v
+      parts.push(`+${v} Tourisme (${nbLegat} Légat${nbLegat > 1 ? 's' : ''} du pontificat)`)
+    }
     if (parts.length > 0) {
       state.log.push({
         turn: state.turn + 1, type: 'Système', joueur: p.n,
@@ -113,7 +129,7 @@ export function effetsFinSaisonMinisteres(
 
 /** Attribue (ou retire : ministere = null) le portefeuille d'un
  *  personnage titré « Ministre ». Effet immédiat du Connétable :
- *  +5 Garnison par ville du joueur, créditée UNE fois à la prise de
+ *  +15 Garnison par ville du joueur, créditée UNE fois à la prise de
  *  fonction dans p.garnisonMinisteres (bonus permanent intégré à la
  *  garnison calculée de chaque ville par garnisonHabitationVille —
  *  comme le Tourisme crédité à la construction, le départ ou la mort
@@ -124,10 +140,12 @@ export function changerPortefeuille(
 ): void {
   char.ministere = ministere
   if (ministere === 'Connétable') {
-    p.garnisonMinisteres = (p.garnisonMinisteres ?? 0) + 5
+    // Marqueur (y) : +15 Garnison à la prise de fonction (le texte
+    //  du référentiel passe de +5 à +15 — arbitrage Thibaut).
+    p.garnisonMinisteres = (p.garnisonMinisteres ?? 0) + 15
     state.log.push({
       turn: state.turn, type: 'Système', joueur: p.n,
-      texte: `👑 Ministères — ${fullName(char)} prend la charge de Connétable : +5 Garnison à toutes les villes de ${p.nom}.`,
+      texte: `👑 Ministères — ${fullName(char)} prend la charge de Connétable : +15 Garnison à toutes les villes de ${p.nom}.`,
     })
   }
 }
