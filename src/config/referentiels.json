@@ -3205,12 +3205,6 @@
     },
     {
       "categorie": "Guilde",
-      "nom": "1",
-      "cout": "Caverne de Lolth",
-      "effet": "+1 Soie par tour.\nA la fin de chaque hiver, gagnez 5 Influence avec la cité libre de votre choix."
-    },
-    {
-      "categorie": "Guilde",
       "nom": "2",
       "cout": "Jardin Flamboyants",
       "effet": "+10 Nourriture par tour.\n+10 habitants à la construction d'une habitation."
@@ -3485,7 +3479,7 @@
       "categorie": "Guilde",
       "nom": "Guilde des diplomates",
       "cout": "Ecole supérieure requise. 120 Or + 12 Pierre.",
-      "effet": "Remplace l'école supérieure. Consomme 1 Charbon par tour. Peut accueillir 4 Professeurs. Coût des Progrès \n-4 Science. Lorsque ce bâtiment est construit, générez 40 Influence avec la cité libre de votre choix."
+      "effet": "+2 Soie par tour. À la construction : +3 émissaires en réserve (automatique)."
     },
     {
       "categorie": "Guilde",
@@ -3515,7 +3509,7 @@
       "categorie": "Guilde",
       "nom": "Antre de la déesse araignée",
       "cout": "Habitation rang 3.\n80 Or + 30 Soie + 20 Charbon.",
-      "effet": "A la fin de chaque saison, gagnez 10 Influence avec la cité libre de votre choix.\n+2 Soie par tour."
+      "effet": "+2 Soie par tour. À la construction : +3 émissaires en réserve (automatique)."
     },
     {
       "categorie": "Guilde",
@@ -4454,31 +4448,45 @@
       "brancheA": [
         {
           "nom": "Geste",
-          "cout": "14",
-          "description": "Lorsque vous  débloquez cette  technologie, gagnez 30 Influence avec la cité libre de votre choix."
+          "cout": "18",
+          "description": "Lorsque vous débloquez cette technologie, recevez 1 Émissaire (crédité automatiquement en réserve).",
+          "effets": [
+            {
+              "type": "gain",
+              "montant": 1,
+              "ressource": "Émissaires"
+            }
+          ]
         },
         {
           "nom": "Offrande",
-          "cout": "25",
-          "description": "Lorsque vous  débloquez cette  technologie, gagnez 50 Influence avec la cité libre de votre choix."
+          "cout": "24",
+          "description": "Lorsque vous débloquez cette technologie, recevez 1 Émissaire (crédité automatiquement en réserve).",
+          "effets": [
+            {
+              "type": "gain",
+              "montant": 1,
+              "ressource": "Émissaires"
+            }
+          ]
         }
       ],
       "brancheB": [
         {
           "nom": "Délégation",
           "cout": "16",
-          "description": "Chaque fois que vous gagnez de l'Influence avec une cité libre, gagnez 5 Influence supplémentaire."
+          "description": "Le prochain assassin joué contre vous est annulé et le joueur l'ayant joué doit vous verser 10 fois son rang de pays sous forme d'Or (plateau)."
         },
         {
           "nom": "Ambassade",
           "cout": "28",
-          "description": "Chaque fois que vous gagnez de l'Influence avec une cité libre, gagnez 5 Influence supplémentaire."
+          "description": "Quiconque utilise un serment sur vous reçoit 10 Science. Vous recevez alors 15 Science (plateau)."
         }
       ],
       "techC": {
         "nom": "Vassalisation",
-        "cout": "48",
-        "description": ""
+        "cout": "46",
+        "description": "Les cartes de dynastie d'impôts génèrent 1 fois supplémentaire l'impôt et vous octroient, ainsi qu'à vos vassaux, 5 Science (les cartes de dynastie ne sont pas encore automatisées — à gérer au plateau)."
       }
     },
     {
@@ -5107,7 +5115,7 @@
     },
     {
       "seuil": 220,
-      "bonus": "A la fin de chaque été, recevez 10 Influence avec la cité libre de votre choix"
+      "bonus": "A la fin de chaque hiver, recevez 1 Émissaire en réserve (crédité automatiquement)."
     },
     {
       "seuil": 260,
@@ -6163,7 +6171,7 @@
       "nom": "Guilde des diplomates",
       "cout": "Ecole supérieure requise. 120 Or + 12 Pierre.",
       "production": "Consomme 1 Charbon par tour.",
-      "description": "Remplace l'école supérieure. Consomme 1 Charbon par tour. Peut accueillir 4 Professeurs. Coût des Progrès -4 Science. Lorsque ce bâtiment est construit, générez 40 Influence avec la cité libre de votre choix.",
+      "description": "Remplace l'école supérieure. Consomme 1 Charbon par tour. Peut accueillir 4 Professeurs. Coût des Progrès −4 Science. Lorsque ce bâtiment est construit, recevez 2 Émissaires en réserve (crédités automatiquement).",
       "effets": [
         {
           "ressource": "Charbon",
@@ -6797,7 +6805,7 @@
       "faction": "THRAKSANS",
       "cout": "6 Pierre + 2 Soie",
       "production": "",
-      "description": "Aménagement de faction des Thraaksans : à placer à 9 cases ou moins d'une de vos habitations ou d'un autre Autel corrupteur. +4 Tourisme et réduit la Garnison de 20. Ne peut être placé que dans les habitations des autres joueurs. Si placé dans une cité libre, vous gagnez 20 Influence avec celle-ci. (Effets de plateau à gérer manuellement.)",
+      "description": "Aménagement de faction des Thraksans (faction ignorée dans ce portage).",
       "effets": [
         {
           "ressource": "Tourisme",

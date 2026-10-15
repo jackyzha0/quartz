@@ -155,6 +155,14 @@ export function ProgresView({ joueur }: { joueur: number }) {
         //  « Lorsque vous découvrez un progrès, générez 3 d'une
         //  ressource de base aléatoire » — crédité automatiquement.
         const crystal = bonusTourDeCrystalProgres(q, makeRng(st.rngState))
+        // Geste / Offrande (Progrès de la diplomatie, retour Thibaut
+        //  2026-10-15) : « recevez 1 Émissaire » au déblocage —
+        //  crédité automatiquement en réserve.
+        let emissTxt = ''
+        if (t?.nom === 'Geste' || t?.nom === 'Offrande') {
+          q.emissaires = (q.emissaires ?? 0) + 1
+          emissTxt = ` — +1 émissaire en réserve (${q.emissaires}).`
+        }
         if (crystal) {
           st.rngState = makeRng(st.rngState).state()
           const rsC = q.resources[crystal.ressource]
@@ -162,7 +170,7 @@ export function ProgresView({ joueur }: { joueur: number }) {
         }
         st.log.push({
           turn: st.turn, type: 'Système', joueur,
-          texte: `${q.nom} — « ${t?.nom ?? '?'} » débloquée${cs ? ` : −${cs} Science (coût déduit du stock)` : ''}${biblio > 0 ? ` — Grand bibliothécaire : +${biblio} Science` : ''}${crystal ? ` — Tour de Crystal : +${crystal.montant} ${crystal.ressource}` : ''}.`,
+          texte: `${q.nom} — « ${t?.nom ?? '?'} » débloquée${cs ? ` : −${cs} Science (coût déduit du stock)` : ''}${biblio > 0 ? ` — Grand bibliothécaire : +${biblio} Science` : ''}${crystal ? ` — Tour de Crystal : +${crystal.montant} ${crystal.ressource}` : ''}${emissTxt}.`,
         })
       } else if (etaitDebloque) {
         const cs = rembourserScienceTech(q, t)

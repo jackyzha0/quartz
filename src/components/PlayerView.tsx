@@ -319,7 +319,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
       }
       // Merveille : effet one-shot à la construction (Antichambre
       //  +50 % Or, Jardins +40 Habitants, Palais conversions…).
-      const mervTxt = (ref?.famille ?? '') === 'Merveille' ? effetImmediatMerveille(s, t, nom) : ''
+      // Effets one-shot à la construction : MERVEILLES + Guilde des
+      //  diplomates (+2 émissaires, retour Thibaut 2026-10-15).
+      const mervTxt = ((ref?.famille ?? '') === 'Merveille' || nom === 'Guilde des diplomates')
+        ? effetImmediatMerveille(s, t, nom) : ''
       s.log.push({
         turn: s.turn, type: 'Système', joueur: t.n,
         texte: `🏗 ${nom} construit(e) à ${ville.nom} — coût déduit du stock : ${parts.length ? parts.join(' + ') : 'gratuit'}${sci > 0 ? ` — règle de culture : +${fmt(sci)} Science` : ''}${tour > 0 ? ` — Tourisme +${fmt(tour)} (valeur fixe)` : ''}${remplace ? ` — remplace ${remplace} (bâtiment de faction de la ville)` : ''}${mervTxt}.`,

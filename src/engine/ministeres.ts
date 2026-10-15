@@ -93,6 +93,17 @@ export function effetsFinSaisonMinisteres(
   for (const p of state.players) {
     const portefeuilles = portefeuillesDuJoueur(state, p)
     const parts: string[] = []
+    // Pontificat — palier 220 Tourisme (retour Thibaut 2026-10-15) :
+    //  « A la fin de chaque hiver, recevez 1 Émissaire en réserve »
+    //  — crédité automatiquement si le stock de Tourisme atteint le
+    //  seuil (les autres paliers restent au plateau).
+    if (saisonQuiTermine === 'Hiver') {
+      const tourisme = p.resources['Tourisme']?.stock ?? 0
+      if (tourisme >= 220) {
+        p.emissaires = (p.emissaires ?? 0) + 1
+        parts.push(`+1 émissaire en réserve (Pontificat : ${tourisme} Tourisme ≥ 220)`)
+      }
+    }
     // Chancelier des émissaires (revue 2026-10-15, ressource d'émissaires) :
     //  +1 émissaire en RÉSERVE à chaque fin de saison (cumulable).
     const nbChancEmiss = portefeuilles.filter((m) => m === 'Chancelier des émissaires').length

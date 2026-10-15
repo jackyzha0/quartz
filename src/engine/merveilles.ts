@@ -59,6 +59,12 @@ export function effetImmediatMerveille(
       p.emissaires = (p.emissaires ?? 0) + 3
       return ` \u2014 Antre de la déesse araignée : +3 émissaires en réserve (${p.emissaires}).`
     }
+    case 'Guilde des diplomates': {
+      // Retour Thibaut 2026-10-15 : +2 émissaires en réserve
+      //  à la construction (remplace l'ancien gain d'Influence).
+      p.emissaires = (p.emissaires ?? 0) + 2
+      return ` — Guilde des diplomates : +2 émissaires en réserve (${p.emissaires}).`
+    }
     case "Palais des empereurs de Lun": {
       // Chaque habitation de chaque joueur convertit 5 habitants
       //  vers la culture du constructeur.
