@@ -797,10 +797,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
           // introuvable » (les Selects contrôlés jamais touchés
           // gardaient '' comme valeur).
           const autresJoueurs = state.players.filter((q) => q.n !== p.n)
-          const mEff = rcMarchand || libres[0]?.id ?? ''
+          const mEff = rcMarchand || libres[0]?.id || ''
           const jEff = rcJoueur || String(autresJoueurs[0]?.n ?? '')
           const joueurCibleForm = state.players.find((q) => String(q.n) === jEff)
-          const vEff = rcVille || joueurCibleForm?.villes[0]?.nom ?? ''
+          const vEff = rcVille || joueurCibleForm?.villes[0]?.nom || ''
           const villeCibleForm = joueurCibleForm?.villes.find((v) => v.nom === vEff)
           const amenForm = villeCibleForm ? amenagementsCopiables(villeCibleForm, C.config) : []
           const aEff = rcAmen || amenForm[0] || ''
