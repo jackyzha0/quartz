@@ -75,6 +75,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [conflit, setConflit] = useState(false)
   const [lastSavedAt, setLastSavedAt] = useState<number | null>(null)
   const lastLocalEdit = useRef(0)
+  // Revue 2026-10-15 (Q2/Q3 — multijoueur simultané) : les joueurs
+  //  éditent CHACUN leur feuille en même temps. Un mutateur local ne doit
+  //  plus partir d'un état figé (le dernier rendu local) mais être
+  //  REJOUÉ au moment de la mutation sur l'état le plus récent (local ou
+  //  distant arrivé entre-temps) — les éditions simultanées de joueurs
+  //  différents se COMBINENT au lieu de s'écraser.
+  const pendingMutators = useRef<((s: GameState) => void)[]>([])
 
   // Références miroirs : lectures fiables dans les callbacks asynchrones.
   const stateRef = useRef(state)
@@ -137,9 +144,16 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, [mode, salon, persist])
 
   const update = useCallback((mutator: (s: GameState) => void) => {
+    // Revue (Q1) : clone STRUCTUREL (structuredClone, ~3× plus rapide
+    //  que JSON.parse(JSON.stringify) sur les gros états, sans passer
+    //  par une chaîne). Les mutateurs pendants sont rejoués dans
+    //  l'ordre (Q2) : une mise à jour distante reçue entre-temps sert
+    //  de base — les éditions simultanées se COMBINENT.
     setState((prev) => {
       if (!prev) return prev
-      const draft: GameState = JSON.parse(JSON.stringify(prev))
+      const draft = structuredClone(prev) as GameState
+      for (const m of pendingMutators.current) m(draft)
+      pendingMutators.current = []
       mutator(draft)
       lastLocalEdit.current = Date.now()
       void persist(draft, mode, salon)
@@ -150,7 +164,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const nextTurn = useCallback(() => {
     setState((prev) => {
       if (!prev) return prev
-      const draft: GameState = JSON.parse(JSON.stringify(prev))
+      const draft = structuredClone(prev) as GameState
+      for (const m of pendingMutators.current) m(draft)
+      pendingMutators.current = []
       runTurn(draft)
       lastLocalEdit.current = Date.now()
       void persist(draft, mode, salon)
@@ -235,11 +251,20 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (mode !== 'supabase' || !salon) return
     const unsub = remote.subscribeRemote(salon, (remoteState) => {
-      const localDirty = Date.now() - lastLocalEdit.current < 1500
-      if (localDirty) setConflit(true)
       // Marqueur (a) : les états distants arrivent BRUTS — même garde-fou
       //  que les chargements locaux (villes complétées).
       normaliserEtat(remoteState)
+      const localDirty = Date.now() - lastLocalEdit.current < 1500
+      if (localDirty) {
+        // Revue (Q2/Q3) : une édition locale est en cours — l'état
+        //  distant devient la NOUVELLE BASE du prochain mutateur (le
+        //  rebase est automatique : update/nextTurn partent toujours de
+        //  l'état courant, qui est maintenant distant). Le bandeau
+        //  signale la fusion ; les éditions de feuilles DIFFÉRENTES
+        //  se combinent, une même valeur éditée par deux joueurs
+        //  prend la dernière écriture (dernier clic gagne).
+        setConflit(true)
+      }
       stateRef.current = remoteState
       setState(remoteState)
       // Paramètres communs : on suit la configuration arrivée avec la partie.

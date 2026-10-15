@@ -142,9 +142,13 @@ export function detailCiteLibre(cite: CiteLibre, C: Cfg): DetailCiteLibre {
  *  par tour (somme des transferts — vue « prochain tour » du récap). */
 export function taxesCitesLibresRecues(state: GameState, p: Player, C: Cfg): Record<string, number> {
   const out: Record<string, number> = {}
+  // Grand Chambellan : +10 % sur les taxes reçues (même formule que
+  //  l'étape moteur appliquerTaxesCitesLibres — l'aperçu du récap
+  //  doit afficher la même valeur que le prochain débit réel).
+  const boostChambellan = aMinistre(state, p, 'Grand Chambellan') ? 1.1 : 1
   for (const cite of citesSuzerainesDe(state, p)) {
     for (const [res, v] of Object.entries(detailCiteLibre(cite, C).transfert)) {
-      out[res] = (out[res] ?? 0) + v
+      out[res] = (out[res] ?? 0) + v * boostChambellan
     }
   }
   return out

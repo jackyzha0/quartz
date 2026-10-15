@@ -14,12 +14,26 @@ import { computeAgeMax, killCharacter } from './sante'
 
 
 export function computeFecondite(state: GameState, p: Player, c: Character): number {
+  // Retour Thibaut (revue 2026-10-15) : le champ affiché doit refléter
+  //  la proba de conception RÉELLE du tour (conceptionEtNaissances) —
+  //  facteurs d'âge, traits des époux (fert_add), culture, orientation
+  //  et taxes de la ville.
   const C = cfgOf(state.config)
   if (c.statut === 'Décédé' || c.age < C.p.adultAge) return 0
-  if (c.sexe === 'F') {
-    return femaleAgeFactor(c.age) * cultureFertFactor(p.culture, C) * orientationFertFactor(c.orientation)
-  }
-  return maleAgeFactor(c.age) * orientationFertFactor(c.orientation)
+  if (c.sexe !== 'F') return maleAgeFactor(c.age) * orientationFertFactor(c.orientation)
+  const ville = p.villes.find((v) => v.nom === c.ville)
+  const popMonde = toutesLesPopulations(state)
+  const mari = c.mariage ? popMonde.find((x) => fullName(x) === c.mariage && x.statut !== 'Décédé') : undefined
+  if (mari && mari.sexe !== 'M') return 0
+  const factorMari = mari ? maleAgeFactor(mari.age) * orientationFertFactor(mari.orientation) : C.p.fertSingleFactor
+  let proba = C.p.fertBaseRate
+  proba *= femaleAgeFactor(c.age)
+  proba *= factorMari
+  proba *= traitsFertFactor(c, mari ?? null, C)
+  proba *= cultureFertFactor(p.culture, C)
+  proba *= orientationFertFactor(c.orientation)
+  proba *= taxBirthFactor(ville, C)
+  return proba
 }
 
 export function femaleAgeFactor(age: number): number {
@@ -116,7 +130,7 @@ export function conceptionEtNaissances(state: GameState, p: Player, rng: Rng, re
         if (rng.chance(C.p.adulteryRate)) {
           // adultère : amant aléatoire
           const amants = pop.filter(
-            (x) => x.sexe === 'M' && x.statut === 'Sain' && x.age >= C.p.adultAge && x.id !== mari.id,
+            (x) => x.sexe === 'M' && (x.statut === 'Sain' || x.statut === 'Malade') && x.age >= C.p.adultAge && x.id !== mari.id,
           )
           pereBio = amants.length > 0 ? rng.pick(amants) : undefined
           batard = true
@@ -126,7 +140,7 @@ export function conceptionEtNaissances(state: GameState, p: Player, rng: Rng, re
       } else {
         // célibataire : amant aléatoire, enfant bâtard
         const amants = pop.filter(
-          (x) => x.sexe === 'M' && x.statut === 'Sain' && x.age >= C.p.adultAge,
+          (x) => x.sexe === 'M' && (x.statut === 'Sain' || x.statut === 'Malade') && x.age >= C.p.adultAge,
         )
         pereBio = amants.length > 0 ? rng.pick(amants) : undefined
         batard = true

@@ -75,6 +75,10 @@ export function runTurn(state: GameState): GameState {
       C.events.filter((e) => e.saison === newSaison),
       (e) => e.poids,
     )
+    // Garde-fou (revue 2026-10-15) : un référentiel vidé de ses
+    //  événements ne doit pas faire crasher le fin de tour — on
+    //  passe la saison SANS événement.
+    if (ev) {
     const danger = rng.die(6) + state.modDanger
     const level: 'faible' | 'moyenne' | 'forte' | 'extreme' =
       danger <= 5 ? 'faible' : danger <= 8 ? 'moyenne' : danger < C.p.dangerSeuilForte ? 'forte' : 'extreme'
@@ -84,6 +88,7 @@ export function runTurn(state: GameState): GameState {
       texte: `【${newSaison}】 ${ev.nom} (danger ${danger}/6) : ${texte}`,
     })
     applyEventEffect(state, ev.nom, level)
+    }
     // Fin de la saison qui se termine : effets automatiques des
     // portefeuilles ministériels (Sénéchal fin d'été, Maître de cour
     // chaque saison — engine/ministeres.ts).

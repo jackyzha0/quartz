@@ -100,13 +100,24 @@ export async function loadRemote(id: string): Promise<GameState | null> {
   return data.state as GameState
 }
 
-/** Sauvegarde une partie (création ou mise à jour) — upsert. */
+/** Identité de CE navigateur dans le salon (multijoueur simultané,
+ *  revue Q3 2026-10-15) : permet à chaque client d'ignorer ses PROPRES
+ *  échos realtime (la boucle update → événement → setState était
+ *  inutile et creusait la fenêtre de conflit). */
+const CLIENT_ID = 'c' + Math.random().toString(36).slice(2, 10)
+export function clientId(): string { return CLIENT_ID }
+
+/** Sauvegarde une partie (création ou mise à jour) — upsert avec
+ *  identité du writers (updated_by) : la dernière écriture gagne
+ *  (garanti par le serveur), le rebase client fusionne les éditions
+ *  simultanées de feuilles différentes. */
 export async function saveRemote(id: string, state: GameState): Promise<boolean> {
   const sb = getSupabase()
   if (!sb) return false
   const { error } = await sb.from(TABLE).upsert({
     id,
     state,
+    updated_by: CLIENT_ID,
     updated_at: new Date().toISOString(),
   })
   return !error
@@ -126,8 +137,11 @@ export function subscribeRemote(
       schema: 'public',
       table: TABLE,
       filter: `id=eq.${id}`,
-    }, (payload: { new: { state: GameState } }) => {
-      if (payload.new?.state) onChange(payload.new.state)
+    }, (payload: { new: { state: GameState; updated_by?: string } }) => {
+      // Q3 : ignorer ses propres échos — on vient d'écrire cette
+      //  version, la réceptionner déclencherait un setState inutile
+      //  (et une fenêtre de conflit artificielle).
+      if (payload.new?.state && payload.new?.updated_by !== CLIENT_ID) onChange(payload.new.state)
     })
     .subscribe()
   return () => {

@@ -11,7 +11,10 @@ import { cfgOf, type Cfg } from './gameData'
 import { fullName } from './shared'
 
 export function saisonForTurn(turn: number, C: Cfg = cfgOf()): 'Été' | 'Hiver' {
-  return Math.floor(turn / Math.max(1, C.p.saisonLongueur)) % 2 === 0 ? 'Été' : 'Hiver'
+  // Retour Thibaut (revue 2026-10-15) : l'Été initial dure les tours
+  //  1 à saisonLongueur, l'Hiver commence au tour saisonLongueur+1
+  //  (avant : floor(turn/L) démarrait l'Hiver au tour 3 avec L=3).
+  return Math.floor(Math.max(0, turn - 1) / Math.max(1, C.p.saisonLongueur)) % 2 === 0 ? 'Été' : 'Hiver'
 }
 
 /**
