@@ -918,6 +918,17 @@ function gardeFous(m: GameConfig): void {
   m.peuplesLibres = ouDefauts(m.peuplesLibres, DEFAULT_CONFIG.peuplesLibres)
   m.peuplesAutres = ouDefauts(m.peuplesAutres, DEFAULT_CONFIG.peuplesAutres)
   m.constructions = ouDefauts(m.constructions, DEFAULT_CONFIG.constructions)
+  // Ajout des constructions du référentiel manquantes dans une config
+  //  déjà convergée (revue 2026-10-15) : les NOUVELLES constructions
+  //  (ex. les 12 MERVEILLES) sont AJOUTÉES sans toucher aux existantes —
+  //  la personnalisation (coûts édités, suppressions) persiste. Clé : nom.
+  //  Une construction existante du même nom N'EST PAS écrasée.
+  if (Array.isArray(m.constructions)) {
+    const connus = new Set(m.constructions.map((c) => c.nom))
+    for (const def of DEFAULT_CONFIG.constructions) {
+      if (!connus.has(def.nom)) m.constructions.push(def)
+    }
+  }
   m.couleurs = migrerCouleurs(m.couleurs)
 }
 

@@ -28,6 +28,7 @@ import { citesLibresDe, detailCiteLibre } from './citesLibres'
 import { consommationsPays, consommationsVille, nomRang } from './habitations'
 import { bonusProximite } from './villes'
 import { effetsCommerceJoueur, detailCommerceJoueur } from './commerce'
+import { portefeuillesDuJoueur } from './ministeres'
 
 export interface ProductionDetail {
   /** production de base du pays (stockée dans resources[r].prod) — la
@@ -68,6 +69,13 @@ export interface ProductionDetail {
   /** bonus de proximité des villes (marqueur (y) : Rivière +12, Mer
    *  +7 Nourriture/tour par défaut — engine/villes.ts bonusProximite) */
   proximite: Record<string, number>
+  /** effets automatiques par tour des portefeuilles ministériels
+   *  (Trésorier +5 Or, Grand Précepteur +1 Science… — engine/
+   *  ministeres.ts, cumulables) — canal « Ministères » du récap. */
+  ministeres: Record<string, number>
+  /** Entretien des armées : canal vide (règle du classeur — prix payé
+   *  UNE FOIS à la levée, pas d'entretien par tour). */
+  armees: Record<string, number>
   /** somme de tous les canaux */
   total: Record<string, number>
 }
@@ -202,14 +210,27 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     if (b !== 0) proximite['Nourriture'] = (proximite['Nourriture'] ?? 0) + b
   }
 
+  // Ministères : effets par tour des portefeuilles (Trésorier +5 Or,
+  //  Grand Précepteur +1 Science, Grand prévôt +1 Fer — cumulables,
+  //  même logique qu'appliquerEffetsMinisteres mais SANS créditer
+  //  le stock : vue pure pour le récap « prochain tour »).
+  const ministeres: Record<string, number> = {}
+  for (const m of portefeuillesDuJoueur(state, p)) {
+    if (m === 'Trésorier') ministeres['Or'] = (ministeres['Or'] ?? 0) + 5
+    else if (m === 'Grand Précepteur') ministeres['Science'] = (ministeres['Science'] ?? 0) + 1
+    else if (m === 'Grand prévôt') ministeres['Fer'] = (ministeres['Fer'] ?? 0) + 1
+  }
+  // Armées : entretien déjà payé à la LEVÉE (règle du classeur,
+  //  retour Thibaut : pas d'entretien par tour) — canal vide ici.
+  const armees: Record<string, number> = {}
   // Total
   const total: Record<string, number> = {}
-  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, proximite, vassalite]) {
+  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, proximite, vassalite, ministeres, armees]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, proximite, vassalite, total }
+  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, proximite, vassalite, ministeres, armees, total }
 }
 
 // ══════════════════════════════════════════════════════════════════════

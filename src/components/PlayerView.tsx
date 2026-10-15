@@ -1235,6 +1235,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
             ['Proximité', prodDetail.proximite],
             ['Conso villes', prodDetail.habitations],
             ['Vassalité', prodDetail.vassalite],
+            ['Ministères', prodDetail.ministeres],
           ]
           // « Nourr - été » en LIGNE (comme dans le classeur), pas en
           // colonne : sources séparées — Aménagements (Champ, Rizière) +
