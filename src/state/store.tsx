@@ -16,7 +16,7 @@ import type { GameState } from '../engine/types'
 import { runTurn, migrerNomsMinisteres } from '../engine/engine'
 import type { SetupLine } from '../engine/setup'
 import { createGame } from '../engine/setup'
-import { cfgOf, cloneDefaultConfig, migrateGameConfig, type GameConfig } from '../config/defaultConfig'
+import { cfgOf, convergerConfig, cloneDefaultConfig, type GameConfig } from '../config/defaultConfig'
 import * as storage from './storage'
 import * as remote from '../supabase/client'
 
@@ -60,7 +60,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<GameState | null>(() => {
     const loaded = storage.loadLocal()
     if (!loaded) return null
-    loaded.config = JSON.parse(JSON.stringify(globalConfig)) as GameConfig
+    loaded.config = JSON.parse(JSON.stringify(convergerConfig(globalConfig))) as GameConfig
     // Marqueur (v) : portefeuilles renommés (classeur → offices de cour).
     migrerNomsMinisteres(loaded)
     return loaded
@@ -94,11 +94,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
-  /** Aligne la configuration commune sur une config extérieure (partie rejointe, importée ou distante). */
+  /** Aligne la configuration commune sur une config extérieure (partie rejointe, importée ou distante).
+   *  Marqueur (x) : la config extérieure est CONVERGÉE (fusion + migrations
+   *  + tampon) avant sauvegarde — la structure brute sauvegardée est
+   *  identique à celle affichée dans Paramètres. */
   const syncGlobalCfg = useCallback((c: GameConfig) => {
-    // Migration : une partie ancienne (V2, 37 traits) aligne la configuration
-    // commune sur la table génétique 7.19 (traits_genetiques).
-    const clone = migrateGameConfig(JSON.parse(JSON.stringify(c)) as GameConfig)
+    const clone = JSON.parse(JSON.stringify(convergerConfig(c))) as GameConfig
     globalConfigRef.current = clone
     setGlobalConfig(clone)
     storage.saveGlobalConfig(clone)
@@ -111,7 +112,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    * avec une partie en cours, elle est propagée immédiatement.
    */
   const setGlobalCfg = useCallback((fn: (c: GameConfig) => void) => {
-    const draft = JSON.parse(JSON.stringify(globalConfigRef.current)) as GameConfig
+    // Marqueur (x) : le brouillon part de la config CONVERGÉE (fusion +
+    // migrations + tampon de version) — la structure sauvegardée est
+    // identique à celle affichée dans les onglets Paramètres, et les
+    // migrations ne sont jamais REJOUÉES : une entrée supprimée ou
+    // renommée (ministère, bâtiment…) ne « revient » plus.
+    const draft = JSON.parse(JSON.stringify(convergerConfig(globalConfigRef.current))) as GameConfig
     fn(draft)
     globalConfigRef.current = draft
     setGlobalConfig(draft)
@@ -150,8 +156,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, [mode, salon, persist])
 
   const newGame = useCallback((setups: SetupLine[], seed: number, m: Mode, salonId?: string) => {
-    // La nouvelle part démarre avec la configuration commune actuelle.
-    const s = createGame(setups, seed, m, globalConfigRef.current)
+    // La nouvelle part démarre avec la configuration commune actuelle,
+    // convergée (marqueur (x)) : format identique à l'affichage.
+    const s = createGame(setups, seed, m, convergerConfig(globalConfigRef.current))
     setMode(m)
     setSalon(salonId ?? '')
     setConflit(false)
@@ -166,6 +173,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (!s) return false
     // Paramètres communs : on adopte la configuration de la partie rejointe.
     if (s.config) syncGlobalCfg(s.config)
+    // Marqueur (x) : la config de la partie rejointe est convergée
+    // (migrations + tampon) — plus jamais re-migrée ensuite.
+    s.config = JSON.parse(JSON.stringify(convergerConfig(s.config))) as GameConfig
     // Marqueur (v) : portefeuilles renommés (classeur → offices de cour).
     migrerNomsMinisteres(s)
     setMode('supabase')
@@ -200,6 +210,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (s) {
       // Paramètres communs : la partie importée impose sa configuration.
       if (s.config) syncGlobalCfg(s.config)
+      // Marqueur (x) : la config importée est convergée (migrations +
+      // tampon) — plus jamais re-migrée ensuite.
+      s.config = JSON.parse(JSON.stringify(convergerConfig(s.config))) as GameConfig
       // Marqueur (v) : portefeuilles renommés (classeur → offices de cour).
       migrerNomsMinisteres(s)
       stateRef.current = s

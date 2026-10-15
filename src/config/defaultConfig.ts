@@ -299,6 +299,16 @@ export interface GameConfig {
    *  2026-10-14). Champ optionnel : les anciennes sauvegardes sont
    *  complétées par migrerCouleurs (défauts ci-dessous). */
   couleurs?: CouleursConfig
+  /** Tampon de convergence (marqueur (x), 2026-10-15) : une config
+   *  portant SCHEMA_VERSION_CONFIG courant a été fusionnée sur les
+   *  défauts + migrée une fois pour toutes (convergerConfig) — elle
+   *  n'est PLUS re-migrée à chaque lecture, pour que les entrées du
+   *  référentiel SUPPRIMÉES ou RENOMMÉES dans Paramètres y persistent
+   *  (elles étaient jusque-là « ressuscitées » à chaque cfgOf par les
+   *  migrations de complétion : impossible de supprimer un ministère,
+   *  un bâtiment… par défaut). Champ optionnel : absentes des
+   *  anciennes sauvegardes, elles migrent au premier passage. */
+  schemaVersion?: number
 }
 
 // ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
@@ -851,6 +861,56 @@ function migrerMinisteres(list: GameConfig['ministeres']): GameConfig['ministere
   return [...defauts, ...persos]
 }
 
+/** Version de schéma de la configuration (marqueur (x), 2026-10-15).
+ *  Une configuration convergée (fusion + migrations + tampon
+ *  schemaVersion = ce numéro) n'est plus re-migrée à chaque cfgOf —
+ *  les migrations de complétion (migrerMinisteres, migrerFactions,
+ *  migrerConstructions…) ne servent qu'à mettre au niveau les
+ *  ANCIENNES configurations : elles réintégraient sinon à CHAQUE
+ *  lecture les entrées par défaut manquantes, « ressuscitant » les
+ *  entrées supprimées ou renommées dans l'onglet Paramètres.
+ *  AJUSTER CE NUMÉRO quand une évolution du référentiel (nouvelles
+ *  entrées, renommages, nouveau format de table) doit être répercutée
+ *  dans les configurations existantes : les configs tamponnées au
+ *  numéro précédent repasseront alors une fois par les migrations. */
+export const SCHEMA_VERSION_CONFIG = 1
+
+/** Garde-fous appliqués à TOUTES les configurations, même convergées :
+ *  chaque table du référentiel migrée doit contenir au moins une entrée
+ *  (le moteur en lit certaines pour fonctionner : cultures, paysRangs…).
+ *  Ces tables retrouvaient leurs défauts quand elles étaient vides via
+ *  les migrations — le comportement est conservé une fois convergées.
+ *  Une table vidée par l'utilisateur repasse sur les défauts : les
+ *  entrées restent supprimables UNE À UNE, ce qui est le comportement
+ *  documenté de l'onglet Paramètres. */
+function gardeFous(m: GameConfig): void {
+  const ouDefauts = <T>(list: T[] | undefined, defauts: T[]): T[] =>
+    Array.isArray(list) && list.length > 0 ? list : defauts
+  m.traits = ouDefauts(m.traits, DEFAULT_CONFIG.traits)
+  m.cultures = ouDefauts(m.cultures, DEFAULT_CONFIG.cultures)
+  m.regimes = ouDefauts(m.regimes, DEFAULT_CONFIG.regimes)
+  m.typesHabitation = ouDefauts(m.typesHabitation, DEFAULT_CONFIG.typesHabitation)
+  m.progres = ouDefauts(m.progres, DEFAULT_CONFIG.progres)
+  m.paysRangs = ouDefauts(m.paysRangs, DEFAULT_CONFIG.paysRangs)
+  m.ministeres = ouDefauts(m.ministeres, DEFAULT_CONFIG.ministeres)
+  m.victoires = ouDefauts(m.victoires, DEFAULT_CONFIG.victoires)
+  m.peuplesLibres = ouDefauts(m.peuplesLibres, DEFAULT_CONFIG.peuplesLibres)
+  m.peuplesAutres = ouDefauts(m.peuplesAutres, DEFAULT_CONFIG.peuplesAutres)
+  m.constructions = ouDefauts(m.constructions, DEFAULT_CONFIG.constructions)
+  if (!m.couleurs) m.couleurs = migrerCouleurs(m.couleurs)
+}
+
+/** Converge une configuration quelconque vers le format courant :
+ *  fusion sur les défauts + migrations (si ancienne) + garde-fous +
+ *  tampon de version (marqueur (x), 2026-10-15). À utiliser avant de
+ *  SAUVEGARDER la configuration commune (édition dans Paramètres,
+ *  partie importée/jointe) ou d'en repartir (nouvelle partie) : la
+ *  structure sauvée devient identique à celle affichée, et la
+ *  convergence n'a plus jamais besoin d'être rejouée. */
+export function convergerConfig(c: GameConfig | undefined): GameConfig {
+  return cfgOf(c).config
+}
+
 export function cfgOf(config: GameConfig | undefined): Cfg {
   const c = config ?? DEFAULT_CONFIG
   const merged: GameConfig = {
@@ -858,34 +918,45 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
     ...c,
     params: mergeParams(c.params as unknown as Record<string, unknown>),
   }
-  // migrations : traits (V2), cultures et régimes (champs chiffrés)
-  merged.traits = migrateTraits(merged.traits)
-  merged.cultures = migrerCultures(merged.cultures)
-  merged.regimes = migrerRegimes(merged.regimes)
-  merged.typesHabitation = migrerTypesHabitation(merged.typesHabitation)
-  // arbres de progrès : migration de l'ancien format à plat du classeur
-  merged.progres = migrerProgres(merged.progres)
-  // rangs de pays : échelle féodale unique (refonte 2026-10-14)
-  merged.paysRangs = migrerPaysRangs(merged.paysRangs)
-  // ministères : complétion rangMinimum/mode (refonte 2026-10-14)
-  merged.ministeres = migrerMinisteres(merged.ministeres)
-  // couleurs d'affichage : complétion depuis les défauts (marqueur (o))
-  merged.couleurs = migrerCouleurs(c.couleurs)
-  // voies de victoire : rangs → lauriers (refonte 2026-10-14)
-  merged.victoires = migrerVictoires(merged.victoires)
-  // fiches de faction : structure (victoire/bâtiment/âges) du référentiel
-  //  + correctif Sylvains (Savoir ancestral ↔ Bibliothèque enfouie)
-  merged.peuplesLibres = migrerFactions(merged.peuplesLibres, DEFAULT_CONFIG.peuplesLibres).map(migrerSwapSylvains)
-  merged.peuplesAutres = migrerFactions(merged.peuplesAutres, DEFAULT_CONFIG.peuplesAutres)
-  // constructions de faction (Église, Apiculture, Puit de mana…) :
-  //  ajout des entrées du référentiel apparues depuis la sauvegarde
-  merged.constructions = migrerConstructions(merged.constructions, DEFAULT_CONFIG.constructions)
+  if ((c?.schemaVersion ?? 0) >= SCHEMA_VERSION_CONFIG) {
+    // Déjà convergée (marqueur (x)) : PAS de re-migration — les
+    // suppressions et renommements d'entrées du référentiel
+    // persistent. Seuls les garde-fous s'appliquent.
+    gardeFous(merged)
+  } else {
+    // Ancienne configuration : migrations une fois pour toutes, puis
+    // tampon — le résultat est sauvegardé convergé par les points
+    // d'entrée (setGlobalCfg, syncGlobalCfg, import/export…).
+    // migrations : traits (V2), cultures et régimes (champs chiffrés)
+    merged.traits = migrateTraits(merged.traits)
+    merged.cultures = migrerCultures(merged.cultures)
+    merged.regimes = migrerRegimes(merged.regimes)
+    merged.typesHabitation = migrerTypesHabitation(merged.typesHabitation)
+    // arbres de progrès : migration de l'ancien format à plat du classeur
+    merged.progres = migrerProgres(merged.progres)
+    // rangs de pays : échelle féodale unique (refonte 2026-10-14)
+    merged.paysRangs = migrerPaysRangs(merged.paysRangs)
+    // ministères : complétion rangMinimum/mode (refonte 2026-10-14)
+    merged.ministeres = migrerMinisteres(merged.ministeres)
+    // couleurs d'affichage : complétion depuis les défauts (marqueur (o))
+    merged.couleurs = migrerCouleurs(c.couleurs)
+    // voies de victoire : rangs → lauriers (refonte 2026-10-14)
+    merged.victoires = migrerVictoires(merged.victoires)
+    // fiches de faction : structure (victoire/bâtiment/âges) du référentiel
+    //  + correctif Sylvains (Savoir ancestral ↔ Bibliothèque enfouie)
+    merged.peuplesLibres = migrerFactions(merged.peuplesLibres, DEFAULT_CONFIG.peuplesLibres).map(migrerSwapSylvains)
+    merged.peuplesAutres = migrerFactions(merged.peuplesAutres, DEFAULT_CONFIG.peuplesAutres)
+    // constructions de faction (Église, Apiculture, Puit de mana…) :
+    //  ajout des entrées du référentiel apparues depuis la sauvegarde
+    merged.constructions = migrerConstructions(merged.constructions, DEFAULT_CONFIG.constructions)
+    merged.schemaVersion = SCHEMA_VERSION_CONFIG
+  }
   return {
     p: merged.params,
     ressources: merged.ressources,
     educations: merged.educations,
     titres: merged.titres,
-    traits: migrateTraits(merged.traits),
+    traits: merged.traits,
     cultures: merged.cultures,
     regimes: merged.regimes,
     events: merged.events,

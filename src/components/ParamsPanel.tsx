@@ -445,6 +445,11 @@ function JsonPanel({ config, setCfg, replaceState, exportState, importState }: {
               for (const k of Object.keys(parsed) as (keyof GameConfig)[]) {
                 ;(c as unknown as Record<string, unknown>)[k as string] = parsed[k]
               }
+              // Marqueur (x) : le contenu importé peut être d'un ANCIEN
+              // format (noms « Colonial », « Culture »…) — on retire le
+              // tampon de convergence pour que les migrations le remettent
+              // au niveau au prochain passage.
+              delete (c as unknown as { schemaVersion?: number }).schemaVersion
             })
             setMsg('Configuration importée ✓')
           } catch (e) {

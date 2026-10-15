@@ -455,6 +455,8 @@ export function MinisteresParams({ config, setCfg }: TableProps) {
         Chaque rang de pays octroie <strong>1 Ministre</strong> (nomination : nobles et dynasties).
         Portefeuilles <strong>cumulables</strong>, rang minimum selon « Pays & rangs » ; mode
         <strong> Auto</strong> = appliqué par l'application, mode <strong>Plateau</strong> = à la table.
+        Supprimer ou renommer une ligne est <strong>définitif</strong> ; seule une table vidée
+        entièrement retrouve les valeurs du classeur (marqueur (x)).
       </p>
       <table className="tbl small">
         <thead><tr><th>Ministère</th><th>Rang minimum</th><th>Mode</th><th>Effet</th><th></th></tr></thead>
