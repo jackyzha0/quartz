@@ -156,10 +156,21 @@ export function effetsFinSaisonMinisteres(
 export function changerPortefeuille(
   state: GameState, p: Player, char: Character, ministere: string | null,
 ): void {
+  // Connétable (marqueur (y)) : +15 Garnison à la prise de fonction
+  //  (le texte du référentiel passe de +5 à +15 — arbitrage Thibaut)
+  //  — REPRIS au retrait du portefeuille, sans cumul (revue
+  //  2026-10-16 : l'ancien code cumulait à chaque nomination et ne
+  //  reprenait jamais à la fin de charge).
+  const etaitConnetable = char.ministere === 'Connétable'
+  if (etaitConnetable && ministere !== 'Connétable') {
+    p.garnisonMinisteres = Math.max(0, (p.garnisonMinisteres ?? 0) - 15)
+    state.log.push({
+      turn: state.turn, type: 'Système', joueur: p.n,
+      texte: `👑 Ministères — ${fullName(char)} quitte la charge de Connétable : −15 Garnison.`,
+    })
+  }
   char.ministere = ministere
-  if (ministere === 'Connétable') {
-    // Marqueur (y) : +15 Garnison à la prise de fonction (le texte
-    //  du référentiel passe de +5 à +15 — arbitrage Thibaut).
+  if (ministere === 'Connétable' && !etaitConnetable) {
     p.garnisonMinisteres = (p.garnisonMinisteres ?? 0) + 15
     state.log.push({
       turn: state.turn, type: 'Système', joueur: p.n,

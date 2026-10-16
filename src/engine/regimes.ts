@@ -26,7 +26,7 @@ import { aMinistre, portefeuillesDuJoueur } from './ministeres'
 import { garnisonBatiment, tourismeStatiqueBatiment } from './batiments'
 import { garnisonFactionVille, rangPaysNiveau, effetsFaction } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
-import { garnisonProgresVille, lignesGarnisonProgresVille, aTech, fluxProgresJoueur } from './progresAuto'
+import { garnisonProgresVille, lignesGarnisonProgresVille, garnisonMinimaleProgres, aTech, fluxProgresJoueur } from './progresAuto'
 import { regleActive } from './factions'
 
 export { nomRang } from './habitations'
@@ -76,7 +76,9 @@ export function garnisonHabitationVille(p: Player, ville: City, C: Cfg, state?: 
   const bonus = regime?.garnisonParRang ?? 0
   if (bonus) g += bonus * rangNiveau(ville, C)
   if (state) g += garnisonFactionVille(state, p, ville, C)
-  return g
+  // Plancher « Combler les lacunes » (engine/progresAuto.ts) : les
+  //  habitations ne descendent pas sous 30 si la tech est débloquée.
+  return Math.max(g, garnisonMinimaleProgres(p, C))
 }
 
 /** Détail de la garnison d'une ville, ligne par ligne (même calibre

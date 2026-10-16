@@ -219,7 +219,6 @@ export function peuplerMarchands(state: GameState, p: Player): void {
   const pop = state.population[p.n] ?? []
   const vivants = pop.filter((c) => c.statut !== 'Décédé')
   const routes = routesCommerceDe(state, p.n)
-  let nommes = 0
   // 1. chaque route doit avoir un marchand vivant titré
   for (const route of routes) {
     const m = vivants.find((c) => c.id === route.marchandId && c.titre === TITRE_MARCHAND)
@@ -238,7 +237,6 @@ export function peuplerMarchands(state: GameState, p: Player): void {
     if (!elu) continue
     elu.titre = TITRE_MARCHAND
     route.marchandId = elu.id
-    nommes++
     state.log.push({
       turn: state.turn + 1, type: 'Commerce', joueur: p.n,
       texte: `🛒 ${fullName(elu)} est promu Marchand (reprend la route vers ${route.villeCible}).`,
@@ -254,13 +252,11 @@ export function peuplerMarchands(state: GameState, p: Player): void {
     if (!elu) break
     elu.titre = TITRE_MARCHAND
     nb++
-    nommes++
     state.log.push({
       turn: state.turn + 1, type: 'Commerce', joueur: p.n,
       texte: `🛒 ${fullName(elu)} est promu Marchand — ${nb}/${cap} route(s) disponible(s).`,
     })
   }
-  void nommes
 }
 
 /** Ouvre une route commerciale : un marchand (une seule route par

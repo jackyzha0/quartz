@@ -316,15 +316,6 @@ export interface Player {
    *  ville (garnisonHabitationVille). Champ optionnel : absent des
    *  vieilles sauvegardes → 0. */
   garnisonMinisteres?: number
-  /** Tourisme DYNAMIQUE déjà crédité au stock par les facteurs d'état
-   *  mouvants (loi de pays de la culture × villes du monde, techs
-   *  Surconsommation / Stands de goodies, champs basiléens…). À chaque
-   *  fin de tour (et à chaque changement de culture), la CIBLE est
-   *  recalculée et seul le DELTA est crédité/repris — le Tourisme
-   *  monte et descend exactement avec ses facteurs (revue
-   *  2026-10-16). Champ optionnel : vieilles sauvegardes → 0 (la
-   *  première réconciliation crédite l'écart). */
-  tourismeDynamique?: number
   /** Lauriers de victoire validés (refonte 2026-10-14) : clé = nom de la
    *  voie (table victoires du référentiel), valeur = nombre de Lauriers
    *  validés 0-4, en ORDRE STRICT (un Laurier ne se valide que si le
