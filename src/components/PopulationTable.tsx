@@ -56,6 +56,11 @@ function dictToString(dict: Record<string, number>): string {
 
 export function PopulationTable({ joueur }: { joueur: number }) {
   const { state, update } = useGame()
+  // OPTIMISATION RENDU 2026-10-16 : à 16 000+ personnages, rendre
+  //  toutes les lignes = DOM énorme (plusieurs secondes). Pagination
+  //  simple : 200 lignes par page.
+  const [pageCour, setPageCour] = useState(0)
+  const PAR_PAGE = 200
   const [filtreDyn, setFiltreDyn] = useState('')
   const [filtreVille, setFiltreVille] = useState('')
   const [filtreTitre, setFiltreTitre] = useState('')
@@ -680,7 +685,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
             {entetes}
             <tbody>
               {rowsCour.length
-                ? rowsCour.map((c) => renderLigne(c, true))
+                ? rowsCour.slice(pageCour * PAR_PAGE, (pageCour + 1) * PAR_PAGE).map((c) => renderLigne(c, true))
                 : <tr><td colSpan={14} className="muted">aucun noble</td></tr>}
             </tbody>
           </table>
@@ -707,10 +712,22 @@ export function PopulationTable({ joueur }: { joueur: number }) {
             {entetes}
             <tbody>
               {rowsClassique.length
-                ? rowsClassique.map((c) => renderLigne(c, false))
+                ? rowsClassique.slice(pageCour * PAR_PAGE, (pageCour + 1) * PAR_PAGE).map((c) => renderLigne(c, false))
                 : <tr><td colSpan={14} className="muted">aucun habitant</td></tr>}
             </tbody>
           </table>
+              {(() => {
+                const total = Math.max(rowsCour.length, rowsClassique.length)
+                const pages = Math.ceil(total / PAR_PAGE)
+                if (pages <= 1) return null
+                return (
+                  <div className="filters" style={{ alignItems: 'center', marginTop: 8 }}>
+                    <Button disabled={pageCour === 0} onClick={() => setPageCour((n) => n - 1)}>◀ Précédent</Button>
+                    <span className="small">Page {pageCour + 1} / {pages} — {total} personnage(s)</span>
+                    <Button disabled={pageCour + 1 >= pages} onClick={() => setPageCour((n) => n + 1)}>Suivant ▶</Button>
+                  </div>
+                )
+              })()}
         </div>
         <p className="muted small">
           Population « classique » {cite ? 'de la cité libre' : 'du joueur'} (hors nobles){cite
