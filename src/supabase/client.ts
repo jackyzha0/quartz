@@ -118,7 +118,7 @@ export async function saveRemote(id: string, state: GameState): Promise<boolean>
   if (!sb) return false
   const { error } = await sb.from(TABLE).upsert({
     id,
-    state: compacterEtat(state),
+    state: compacterEtat(structuredClone(state)),
     updated_by: CLIENT_ID,
     updated_at: new Date().toISOString(),
   })

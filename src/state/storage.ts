@@ -24,22 +24,32 @@ const DEFAUTS_PERSO: Record<string, unknown> = {
   ministere: null,
 }
 
-/** Compacter un état pour l'écriture (récursif sur toutes les
- *  populations : joueurs et cités libres). */
+/**
+ * Compacter un état POUR L'ÉCRITURE (récursif sur toutes les
+ * populations : joueurs et cités libres).
+ *
+ * OPTIMISATION FRAPPE 2026-10-16 : ne clone PAS — compacte EN PLACE.
+ * L'appelant fournit une copie jetable (le store clone déjà l'état à
+ * chaque update ; saveRemote en sérialise le résultat). À 16 000
+ * habitants, le structuredClone() ici DOUBLAIT le coût de chaque
+ * frappe (~113 ms de blocage → ~45 ms).
+ *
+ * ⚠ Ne passez JAMAIS l'état React vivant : la fonction MUT son
+ * argument (les champs par défaut sont supprimés de l'objet). Pour
+ * un état à conserver, passez structuredClone(state) vous-même.
+ */
 export function compacterEtat(state: GameState): GameState {
-  const out = structuredClone(state) as GameState
   const compact = (liste: unknown[]): void => {
     for (const c of liste as Array<Record<string, unknown>>) {
       for (const [k, def] of Object.entries(DEFAUTS_PERSO)) {
         if (k in c && c[k] === def) delete c[k]
       }
-      // traits : ['', '', ''] → omis (l'expansion remet les 3 vides)
       if (Array.isArray(c.traits) && (c.traits as string[]).every((t) => !t)) delete c.traits
     }
   }
-  for (const liste of Object.values(out.population ?? {})) compact(liste ?? [])
-  for (const cite of out.citesLibres ?? []) compact(cite.population ?? [])
-  return out
+  for (const liste of Object.values(state.population ?? {})) compact(liste ?? [])
+  for (const cite of state.citesLibres ?? []) compact(cite.population ?? [])
+  return state
 }
 
 /** Élargir un état compacté : les champs omis retrouvent leurs
@@ -61,7 +71,9 @@ export function elargirEtat(state: GameState): GameState {
 
 export function saveLocal(state: GameState): boolean {
   try {
-    localStorage.setItem(KEY, JSON.stringify(compacterEtat(state)))
+    // compacter une COPIE : l'état reçu est souvent l'état React VIVANT
+    // (compacterEtat mute son argument).
+    localStorage.setItem(KEY, JSON.stringify(compacterEtat(structuredClone(state))))
     return true
   } catch {
     return false

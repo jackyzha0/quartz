@@ -103,15 +103,24 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    */
   const persistDebounce = useRef<ReturnType<typeof setTimeout> | null>(null)
   const persistPending = useRef<GameState | null>(null)
+  /**
+   * SAUVEGARDE DEBOUNCÉE — locale ET réseau (optimisation frappe
+   * 2026-10-16) : à 16 000 habitants, chaque frappe coûtait ~113 ms
+   * de BLOCAGE (structuredClone du update + compacterEtat qui
+   * re-clonait + JSON.stringify + setItem synchrone + upsert). À la
+   * saisie, les mutations arrivent plus vite que la sauvegarde :
+   * le thread principal était saturé. Désormais UNE frappe ne
+   * déclenche AUCUNE écriture — la version finale part après
+   * 400 ms d'inactivité (la plus récente gagne, sémantique du
+   * salon inchangée). Anti-perte GARANTI :
+   *  · beforeunload → flush immédiat (fermeture d'onglet) ;
+   *  · visibilitychange (hidden) → flush (changement d'onglet /
+   *    mise en veille, notamment mobile) ;
+   *  · bouton Sauvegarder → flush ;
+   *  · REJOIGNE un salon / OUVRE une ancienne partie : le dernier
+   *    état flushé y est déjà.
+   */
   const persist = useCallback((s: GameState, m: Mode, salonId: string) => {
-    // Sauvegarde LOCALE immédiate (anti-perte)…
-    if (m === 'local' || !salonId) {
-      storage.saveLocal(s)
-      setLastSavedAt(Date.now())
-      return
-    }
-    storage.saveLocal(s)
-    // …et envoi réseau DEBOUNCÉ (800 ms sans mutation).
     persistPending.current = s
     if (persistDebounce.current) clearTimeout(persistDebounce.current)
     persistDebounce.current = setTimeout(async () => {
@@ -120,13 +129,16 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       if (!toSave) return
       setSaving(true)
       try {
-        const ok = await remote.saveRemote(salonId, toSave)
-        if (!ok) storage.saveLocal(toSave)
+        storage.saveLocal(toSave)
+        if (m === 'supabase' && salonId) {
+          const ok = await remote.saveRemote(salonId, toSave)
+          if (!ok) storage.saveLocal(toSave)
+        }
         setLastSavedAt(Date.now())
       } finally {
         setSaving(false)
       }
-    }, 800)
+    }, 400)
   }, [])
 
   /** Aligne la configuration commune sur une config extérieure (partie rejointe, importée ou distante).
@@ -284,13 +296,22 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   //  déclenche la requête fetch directement via saveRemote).
   useEffect(() => {
     const flush = () => {
+      if (persistDebounce.current) clearTimeout(persistDebounce.current)
       const toSave = persistPending.current
       if (!toSave) return
       persistPending.current = null
+      // anti-perte : TOUJOURS le localStorage, réseau si salon
+      storage.saveLocal(toSave)
       if (mode === 'supabase' && salon) void remote.saveRemote(salon, toSave)
     }
+    const onHidden = () => { if (document.hidden) flush() }
     window.addEventListener('beforeunload', flush)
-    return () => window.removeEventListener('beforeunload', flush)
+    // changement d'onglet / mise en veille : flush aussi (mobile !)
+    document.addEventListener('visibilitychange', onHidden)
+    return () => {
+      window.removeEventListener('beforeunload', flush)
+      document.removeEventListener('visibilitychange', onHidden)
+    }
   }, [mode, salon])
 
   // Abonnement realtime (mode supabase)
