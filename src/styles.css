@@ -794,3 +794,20 @@ input[type='range'] {
   padding: 0 6px;
   vertical-align: middle;
 }
+
+/* ── Page Accueil : radar + coches de victoire sur UNE LIGNE
+   (retour Thibaut 2026-10-15) — radar réduit, tableau de coches compact. */
+.victoire-grid {
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) minmax(300px, 1.2fr);
+  gap: 14px;
+  align-items: start;
+}
+@media (max-width: 1100px) {
+  .victoire-grid { grid-template-columns: 1fr; }
+}
+/* coches de Lauriers plus compactes */
+.victoire-grid .tbl td { padding: 2px 5px; }
+.victoire-grid .tbl th { padding: 2px 5px; }
+.victoire-grid .tbl span[style*="fontSize"] { font-size: 0.95em !important; margin-right: 1px; }
+.victoire-grid .chart-svg { max-width: 100%; margin: 0; }

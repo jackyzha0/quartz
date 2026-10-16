@@ -13,6 +13,7 @@ import {
 import { Card, fmt } from './ui'
 import { HistogrammeEmpile, CourbeRessource, Radar } from './charts'
 import type { GroupeChart, SerieCourbe, SerieRadar } from './charts'
+import { productionDetaillee } from '../engine/engine'
 
 const RESSOURCES_VUES = ['Or', 'Nourriture', 'Science', 'Tourisme']
 const RESSOURCES_BASE = ['Bétail', 'Bois', 'Charbon', 'Fer', 'Pierre', 'Soie']
@@ -91,77 +92,49 @@ export function Dashboard() {
 
   return (
     <div className="stack">
-      <Card title="Toutes les ressources">
+      <Card title="Toutes les ressources (stock / production par tour) + population">
         <div className="table-wrap">
           <table className="tbl small">
             <thead>
               <tr>
                 <th>Joueur</th>
+                <th>Pop.</th>
                 {RESOURCES.map((r) => (
                   <th key={r}><span className="dot-res" style={{ background: cR(r) }} />{r}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {state.players.map((p) => (
-                <tr key={p.n}>
-                  <td><strong>{p.nom}</strong></td>
-                  {RESOURCES.map((r) => (
-                    <td key={r} style={{ background: fR(r) }} className={(p.resources[r]?.stock ?? 0) < 0 ? 'neg' : ''}>
-                      {fmt(p.resources[r]?.stock ?? 0)}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Card>
-      <Card title="Ressources des joueurs (stock / production)">
-        <div className="table-wrap">
-          <table className="tbl">
-            <thead>
-              <tr>
-                <th>Joueur</th>
-                <th>Peuple / Culture</th>
-                <th>Pop.</th>
-                {RESSOURCES_VUES.map((r) => (
-                  <th key={r}><span className="dot-res" style={{ background: cR(r) }} />{r}</th>
-                ))}
-                <th>Villes</th>
-                <th>Armées</th>
-              </tr>
-            </thead>
-            <tbody>
-              {state.players.map((p, i) => {
+              {state.players.map((p) => {
                 const pop = (state.population[p.n] ?? []).filter((c) => c.statut !== 'Décédé').length
+                const prod = productionDetaillee(state, p, C)
                 return (
                   <tr key={p.n}>
                     <td><strong>{p.nom}</strong></td>
-                    <td className="muted">{p.peuple} · {p.culture}</td>
-                    <td>{pop}</td>
-                    {RESSOURCES_VUES.map((r) => {
-                      const rs = p.resources[r]
-                      const low = (r === 'Nourriture' && (rs?.stock ?? 0) < 0)
+                    <td><strong>{pop}</strong></td>
+                    {RESOURCES.map((r) => {
+                      const stock = p.resources[r]?.stock ?? 0
+                      const flux = prod.total[r] ?? 0
                       return (
-                        <td key={r} style={{ background: fR(r) }} className={low ? 'neg' : ''}>
-                          {fmt(rs?.stock ?? 0)} <span className="muted">/ {fmt(rs?.prod ?? 0)}</span>
+                        <td key={r} style={{ background: fR(r) }} className={stock < 0 ? 'neg' : ''}>
+                          <strong>{fmt(stock)}</strong>{' '}
+                          <span className="muted" style={{ fontSize: '0.85em' }}>
+                            / {flux > 0 ? '+' : ''}{fmt(flux)}
+                          </span>
                         </td>
                       )
                     })}
-                    <td>{p.villes.length}</td>
-                    <td>{p.armees.length === 0 ? '—' : p.armees.map((a) => a.nom).join(', ')}</td>
                   </tr>
                 )
               })}
             </tbody>
           </table>
         </div>
-        <p className="muted small">
-          La Nourriture en négatif est fidèle au classeur d'origine : la production de départ est nulle et
-          chaque habitant vivant consomme 1 Nourriture par tour (cf. README §5.3).
-        </p>
       </Card>
+      {/* Retour Thibaut 2026-10-15 : le tableau « Ressources des joueurs
+          (stock / production) » est retiré — tout est dans « Toutes les
+          ressources » ci-dessus (stock + production + population). */}
+
 
       <Card title="Ressources de base — Stock & Production">
         <HistogrammeEmpile groupes={groupesPour(RESSOURCES_BASE)}
@@ -224,13 +197,18 @@ export function Dashboard() {
             👑 Victoire : {vainqueurs.map((v) => `${v.nom} (${v.voie})`).join(' · ')}
           </div>
         )}
-        <Radar axes={axesVictoire.map((a) => a.label)} series={seriesRadar}
-          couleursJoueurs={couleursJoueurs} />
-        <p className="muted small">
-          0 % au centre, 100 % au bord = Laurier IV. Cochez les Lauriers dans le tableau
-          ci-dessous (ordre strict) ; chaque Laurier I-III validé déclenche une crise.
-        </p>
-        <div className="table-wrap">
+        {/* Retour Thibaut 2026-10-15 : radar + coches sur UNE LIGNE
+            (radar réduit à gauche, coches à droite). */}
+        <div className="victoire-grid">
+          <div>
+            <Radar axes={axesVictoire.map((a) => a.label)} series={seriesRadar}
+              couleursJoueurs={couleursJoueurs} largeur={430} />
+            <p className="muted small">
+              0 % au centre, 100 % au bord = Laurier IV. Cochez les Lauriers dans le
+              tableau à droite (ordre strict) ; chaque Laurier I-III validé déclenche une crise.
+            </p>
+          </div>
+          <div className="table-wrap">
           <table className="tbl">
             <thead>
               <tr>
@@ -277,6 +255,7 @@ export function Dashboard() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
         <ul className="muted small">
           {VICTORY_TEXT.map((v) => <li key={v.nom}><strong>{v.nom}</strong> — {v.texte}</li>)}
