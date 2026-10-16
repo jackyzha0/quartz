@@ -38,7 +38,7 @@ import { appliquerEffetsAutres, effetsNourrEteAutresVille } from './autres'
 import { appliquerEffetsRegimesCultures, resynchroniserTourisme } from './regimes'
 import { appliquerEffetsFaction, nbVassaux } from './factions'
 import { appliquerEffetsMinisteres, effetsFinSaisonMinisteres } from './ministeres'
-import { appliquerEffetsCommerce, nettoyerRoutesCommerce } from './commerce'
+import { appliquerEffetsCommerce, nettoyerRoutesCommerce, peuplerMarchands } from './commerce'
 import { appliquerTaxesCitesLibres, citesSuzerainesDe } from './citesLibres'
 import { appliquerConsommationsHabitations } from './habitations'
 import { transfererTributVassal } from './vassalite'
@@ -268,6 +268,10 @@ export function runTurn(state: GameState): GameState {
   //  taxes, pas de coefficient gainsCrediteStock, pas de tribut). Les
   //  routes mortes (marchand décédé ou déchu) sont d'abord fermées.
   nettoyerRoutesCommerce(state)
+  // Marchands automatiques (revue 2026-10-16, homogénéisation soldats /
+  //  professeurs) : chaque route reprend un marchand si le sien est
+  //  tombé, et les routes disponibles (cap) sont pré-pourvues.
+  for (const p of state.players) peuplerMarchands(state, p)
   const commerceParJoueur: Record<number, Record<string, number>> =
     appliquerEffetsCommerce(state, C)
 
@@ -418,7 +422,8 @@ export {
   marchandsDe, ressourcesCopiables, amenagementsCopiables,
   effetsRouteProprietaire, effetsCommerceJoueur, detailCommerceJoueur,
   appliquerEffetsCommerce, nettoyerRoutesCommerce, creerRouteCommerce,
-  changerCopieRoute, supprimerRouteCommerce,
+  changerCopieRoute, supprimerRouteCommerce, peuplerMarchands,
+  maxMarchandsJoueur,
   type RessourceCopiable, type DetailCommerce,
 } from './commerce'
 export { transfererTributVassal } from './vassalite'

@@ -54,7 +54,7 @@ import {
   supprimerVille, transfererVille,
   routesCommerceDe, routesCommerceVers, marchandsDe, fullName,
   ressourcesCopiables, amenagementsCopiables,
-  creerRouteCommerce, changerCopieRoute, supprimerRouteCommerce,
+  creerRouteCommerce, changerCopieRoute, supprimerRouteCommerce, maxMarchandsJoueur,
   impotPopulation, impotsVassaux, genererImpotPopulation, genererImpotVassaux,
   debiterCoutHabitation, aMinistre, rangPaysNiveau, rangNiveau, bonusProximite,
   type ProductionDetail,
@@ -1234,15 +1234,28 @@ export function PlayerView({ joueur }: { joueur: number }) {
           const villeCibleForm = joueurCibleForm?.villes.find((v) => v.nom === vEff)
           const amenForm = villeCibleForm ? amenagementsCopiables(villeCibleForm, C.config) : []
           const aEff = rcAmen || amenForm[0] || ''
+          const cap = maxMarchandsJoueur(p, C)
+          const nbMarchands = marchandsDe(state, p.n).length
+          const nbRoutes = mes.length
           return (
             <>
+              <p className="small">
+                <Badge tone={nbRoutes > cap ? 'warn' : 'good'}>
+                  {nbMarchands} marchand(s) · {nbRoutes} route(s) ouverte(s) · cap conseillé : {cap}
+                </Badge>{' '}
+                <span className="muted small">
+                  Les marchands sont nommés automatiquement. Le cap est indicatif —
+                  tu peux ouvrir autant de routes que tu veux (dépassement annoncé au journal).
+                </span>
+              </p>
               {mes.length === 0 && entrantes.length === 0 && (
                 <p className="muted">
-                  Aucune route commerciale. Attribue le titre « Marchand » à un
-                  personnage (page Population), puis ouvre une route vers la
-                  ville d'un autre joueur : chaque tour, les deux joueurs reliés
-                  gagnent {fmt(C.p.marchandOrTour)} Or et ton marchand copie la
-                  production entière d'un aménagement de la ville ciblée.
+                  Aucune route commerciale. Les marchands sont nommés
+                  automatiquement (comme les soldats et professeurs) : ouvre
+                  une route vers la ville d'un autre joueur — chaque tour, les
+                  deux joueurs reliés gagnent {fmt(C.p.marchandOrTour)} Or et
+                  ton marchand copie la production entière d'un aménagement de
+                  la ville ciblée.
                 </p>
               )}
               {mes.length > 0 && (
@@ -1340,9 +1353,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
                 </div>
               ) : (
                 <p className="muted small">
-                  Pour ouvrir une route : attribue le titre « Marchand » à un
-                  personnage vivant (page Population). Chaque marchand ne tient
-                  qu'une route.
+                  Aucun marchand disponible pour l'instant — ils sont nommés
+                  automatiquement à chaque fin de tour (il te faut des routes
+                  ouvertes ou un cap supérieur à 0 : techs Commerce/Collecte d'impôts,
+                  Echoppes, Plateformes commerciales, Guildes des marchands).
                 </p>
               )}
               {rcErr && <p className="small" style={{ color: '#E74C3C', marginBottom: 0 }}>{rcErr}</p>}

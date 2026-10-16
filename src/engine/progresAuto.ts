@@ -108,6 +108,39 @@ export function fluxProgresJoueur(state: GameState, p: Player, C: Cfg): Record<s
     add('Or', 2 * nbFoires)
     add('Tourisme', 2 * nbFoires)
   }
+  // ── prodParTitre (générique, revue 2026-10-16) : « +N RESSOURCE par
+  //  tour par TITULAIRE du titre X » — les techs du référentiel avec un
+  //  effet { type: 'prodParTitre', montant, ressource, titre } sont
+  //  appliquées pour TOUS leurs porteurs vivants. Corrige :
+  //  · « Commerce lointain » : +3 Or/marchand ;
+  //  · « Prix Gorback Nobel » : +6 Science/ministre ;
+  //  · « Culte de la personnalité » : +30 Tourisme/ministre.
+  const vivants = (state.population[p.n] ?? []).filter((c) => c.statut !== 'Décédé')
+  const nbTitre = (titre: string): number =>
+    vivants.filter((c) => c.titre === titre).length
+  for (let i = 0; i < C.config.progres.length; i++) {
+    const arbre = C.config.progres[i]
+    const debloquees = new Set(p.progresDebloques ?? [])
+    const techs: Array<{ effets?: Array<{ type?: string; montant?: number; ressource?: string; titre?: string }> | undefined }> = [
+      ...(arbre.brancheA ?? []), ...(arbre.brancheB ?? []), ...(arbre.techC ? [arbre.techC] : []),
+    ]
+    techs.forEach((t, k) => {
+      // clés de déblocage : a1|a2 (brancheA), b1|b2 (brancheB), c
+      const nbA = (arbre.brancheA ?? []).length
+      const nbB = (arbre.brancheB ?? []).length
+      let slot = ''
+      if (k < nbA) slot = `a${k + 1}`
+      else if (k < nbA + nbB) slot = `b${k - nbA + 1}`
+      else slot = 'c'
+      if (!slot || !debloquees.has(`${i}:${slot}`)) return
+      for (const e of t.effets ?? []) {
+        if (e.type === 'prodParTitre' && e.titre && e.montant && e.ressource) {
+          const n = nbTitre(e.titre)
+          if (n > 0) add(e.ressource, e.montant * n)
+        }
+      }
+    })
+  }
   return out
 }
 

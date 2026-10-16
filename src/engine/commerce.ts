@@ -202,6 +202,67 @@ export function appliquerEffetsCommerce(
   return out
 }
 
+/** Nomme automatiquement les marchands d'un joueur (revue
+ *  2026-10-16, homogénéisation avec les soldats et professeurs) :
+ *    · chaque ROUTE commerciale doit avoir son marchand — si un
+ *      marchand est mort ou a perdu son titre, un habitant vivant de
+ *      sa ville est promu pour reprendre la route ;
+ *    · jusqu'au CAP de routes disponibles (maxMarchandsJoueur :
+ *      paramètre + techs + échoppes/guildes), des marchands
+ *      supplémentaires sont nommés, prêts à ouvrir des routes.
+ *  Comme les soldats (armées) et professeurs (écoles), c'est
+ *  AUTOMATIQUE : le joueur n'attribue plus le titre à la main.
+ *  Dépasser le cap reste possible (annonce, jamais bloqué) — les
+ *  marchands au-delà ne sont simplement pas pré-nommés. */
+export function peuplerMarchands(state: GameState, p: Player): void {
+  const C = cfgOf(state.config)
+  const pop = state.population[p.n] ?? []
+  const vivants = pop.filter((c) => c.statut !== 'Décédé')
+  const routes = routesCommerceDe(state, p.n)
+  let nommes = 0
+  // 1. chaque route doit avoir un marchand vivant titré
+  for (const route of routes) {
+    const m = vivants.find((c) => c.id === route.marchandId && c.titre === TITRE_MARCHAND)
+    if (m) continue
+    // marchand manquant (mort, déchu) : remplacer par un habitant de
+    //  la ville du marchand d'origine, sinon n'importe quelle ville
+    //  du joueur.
+    const ancien = pop.find((c) => c.id === route.marchandId)
+    const estCandidat = (c: typeof vivants[number]) =>
+      c.age >= C.p.adultAge &&
+      (!c.titre || c.titre === C.p.titreChasseur) &&
+      p.villes.some((v) => v.nom === c.ville)
+    const poolVille = (ancien?.ville ?? '')
+    const elu = vivants.find((c) => estCandidat(c) && c.ville === poolVille)
+      ?? vivants.find((c) => estCandidat(c))
+    if (!elu) continue
+    elu.titre = TITRE_MARCHAND
+    route.marchandId = elu.id
+    nommes++
+    state.log.push({
+      turn: state.turn + 1, type: 'Commerce', joueur: p.n,
+      texte: `🛒 ${fullName(elu)} est promu Marchand (reprend la route vers ${route.villeCible}).`,
+    })
+  }
+  // 2. compléter jusqu'au cap de routes disponibles
+  const cap = maxMarchandsJoueur(p, C)
+  let nb = marchandsDe(state, p.n).length
+  while (nb < cap) {
+    const elu = vivants.find((c) =>
+      (!c.titre || c.titre === C.p.titreChasseur) && c.age >= C.p.adultAge &&
+      p.villes.some((v) => v.nom === c.ville))
+    if (!elu) break
+    elu.titre = TITRE_MARCHAND
+    nb++
+    nommes++
+    state.log.push({
+      turn: state.turn + 1, type: 'Commerce', joueur: p.n,
+      texte: `🛒 ${fullName(elu)} est promu Marchand — ${nb}/${cap} route(s) disponible(s).`,
+    })
+  }
+  void nommes
+}
+
 /** Ouvre une route commerciale : un marchand (une seule route par
  *  marchand), une ville d'un AUTRE joueur, un aménagement copiable de
  *  cette ville (l'aménagement ENTIER est copié, marqueur (u)).
@@ -234,12 +295,19 @@ export function creerRouteCommerce(
   amenagement: string,
 ): string | null {
   const C = cfgOf(state.config)
-  // Plafond de marchands (retour Thibaut : 0 par défaut + bonus).
+  // Plafond de marchands (revue 2026-10-16, homogénéisation soldats /
+  //  professeurs) : le cap est une ANNONCE, jamais un blocage — le
+  //  joueur peut dépasser le nombre de routes « disponibles » ; les
+  //  marchands manants sont nommés automatiquement (peuplerMarchands).
   const pj = state.players.find((q) => q.n === joueur)
   if (pj) {
     const nb = marchandsDe(state, joueur).length
-    if (nb >= maxMarchandsJoueur(pj, C)) {
-      return `Nombre maximal de marchands atteint (${nb}/${maxMarchandsJoueur(pj, C)} — modifiable dans Paramètres → Armées).`
+    const cap = maxMarchandsJoueur(pj, C)
+    if (nb > cap) {
+      state.log.push({
+        turn: state.turn, type: 'Commerce', joueur,
+        texte: `🛒 ${pj.nom} dépasse son cap de routes commerciales (${nb} marchand(s) pour ${cap} disponibles).`,
+      })
     }
   }
   if (!marchandId) {
