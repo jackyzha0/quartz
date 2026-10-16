@@ -208,7 +208,7 @@ function applyEventEffect(state: GameState, nom: string, level: 'faible' | 'moye
     for (const p of state.players) {
       const pop = state.population[p.n] ?? []
       for (const c of pop) {
-        if (c.statut === 'Sain' && c.statut !== 'Décédé') {
+        if (c.statut === 'Sain') {
           const r2 = makeRng(state.rngState ^ (hash(c.id) & 0xffff))
           if (r2.chance(risk)) c.statut = 'Malade'
           state.rngState = r2.state()
@@ -692,7 +692,6 @@ export function conceptionEtNaissances(state: GameState, p: Player, rng: Rng, re
   // 1. Naissances des femmes enceintes depuis le tour précédent
   for (const mere of pop) {
     if (mere.statut !== 'Enceinte') continue
-    if (mere.statut === 'Décédé') continue
     const pereBioName = mere.pereBio
     const pere = pereBioName ? pop.find((x) => fullName(x) === pereBioName) : undefined
     accoucher(state, p, mere, pere, rng, recap)
