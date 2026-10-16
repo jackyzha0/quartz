@@ -5307,7 +5307,7 @@
         },
         {
           "laurier": "Laurier IV",
-          "condition": "Capturer un total de 3 Capitales.",
+          "condition": "Contrôler 6 des habitations de départ.",
           "bonus": "Victoire !"
         }
       ]

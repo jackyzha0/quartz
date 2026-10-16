@@ -325,6 +325,9 @@ export interface GameConfig {
   /** Migration techs manquantes (2026-10-16) — slots vides complétés
    *  depuis le référentiel, descriptions corrigées. */
   techsManquantes2026?: boolean
+  /** Migration Laurier IV Militaire (2026-10-16) — condition mise à
+   *  jour « Contrôler 6 des habitations de départ ». */
+  laurier4Militaire2026?: boolean
 }
 
 // ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
@@ -1087,6 +1090,21 @@ export function cfgOf(config?: GameConfig): Cfg {
       }
     }
     merged.techsManquantes2026 = true
+  }
+  // LAURIER IV MILITAIRE (revue 2026-10-16) : « Capturer un total de
+  //  3 Capitales » \u2192 \u00ab Contr\u00f4ler 6 des habitations de d\u00e9part \u00bb.
+  //  Migration cibl\u00e9e (m\u00eame sch\u00e9ma que taxes25) : le texte n'est
+  //  remplac\u00e9 QUE s'il vaut encore l'ancienne condition \u2014 une
+  //  \u00e9dition personnalis\u00e9e est pr\u00e9serv\u00e9e. La validation des Lauriers
+  //  reste manuelle (radar de l'accueil) : aucun impact m\u00e9tier.
+  if (!merged.laurier4Militaire2026) {
+    const voieM = merged.victoires?.find((v) => v.voie === 'Militaire')
+    const l4 = voieM?.lauriers?.[3]
+    const ancien = 'Capturer un total de 3 Capitales.'
+    if (l4 && l4.condition === ancien) {
+      l4.condition = 'Contr\u00f4ler 6 des habitations de d\u00e9part.'
+    }
+    merged.laurier4Militaire2026 = true
   }
   if (!merged.taxes25) {
     const pm = merged.params as unknown as Record<string, unknown>
