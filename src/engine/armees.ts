@@ -110,8 +110,11 @@ export function prixArmee(
     // Merveilles (retour Thibaut 2026-10-15) : Temple de Bahamutt et
     //  Ordre des chevaliers de Notan : -20/-25 Or sur les levées.
     prix -= reductionLeveeArmeesMerveilles(p)
-    // Conscription I (revue 2026-10-15) : -10 Or sur les lev\u00e9es.
+    // Conscription I (revue 2026-10-15) : -10 Or sur les levées.
     prix -= reductionLevee(p, cfg)
+    // Stratégies militaires I : la PROCHAINE armée coûte 50 Or de moins
+    if (p.prochaineArmeeReduite) prix -= 50
+    //  (one-shot — flag consommé à la levée ; consommé par ArmiesPanel).
     // Bonus des BÂTIMENTS DE LA VILLE DE LEVÉE (retour Thibaut
     //  2026-10-15) : la levée se passe DANS une habitation — le
     //  joueur choisit la ville, ses bâtiments s'appliquent :

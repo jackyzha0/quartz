@@ -21,6 +21,9 @@
 import type { GameState, Player, City } from './types'
 import { cfgOf, type Cfg } from './gameData'
 import { capitaleDe } from './factions'
+import { rangNiveau } from './regimes'
+
+const rangNiveauVille = rangNiveau
 import { portefeuillesDuJoueur } from './ministeres'
 
 /** Le joueur a-t-il débloqué la tech portant ce NOM ? */
@@ -70,6 +73,20 @@ export function fluxProgresJoueur(state: GameState, p: Player, C: Cfg): Record<s
   if (nbCotes > 0) {
     if (aTech(p, 'Cours de p\u00eache', C)) add('Nourriture', 4 * nbCotes)
     if (aTech(p, 'Commerce maritime I', C)) add('Or', 2 * nbCotes)
+    if (aTech(p, 'Pêche de culture', C)) add('Nourriture', 3 * nbCotes)
+  }
+  // ── Surconsommation (industrialisation) : habitations +1 Science
+  //  +5 Tourisme par RANG d'habitation (consommation +10 Nourriture
+  //  par rang — appliquée dans consommationsVille, engine/habitations.ts).
+  if (aTech(p, 'Surconsommation', C)) {
+    let sci = 0, tour = 0
+    for (const v of p.villes) {
+      const r = rangNiveauVille(v, C)
+      sci += 1 * r
+      tour += 5 * r
+    }
+    if (sci > 0) add('Science', sci)
+    if (tour > 0) add('Tourisme', tour)
   }
   // ── par aménagement (Champs / Rizières) ──
   const nbChamps = p.villes.reduce((n, v) => n + (v.amenagements ?? []).filter((a) => a === 'Champ' || a === 'Rizi\u00e8re').length, 0)
@@ -148,10 +165,15 @@ export function reductionAmenagement(p: Player, C: Cfg): Record<string, number> 
 }
 
 /** Réduction de co\u00fbt d'une FONDATION d'habitation. */
-export function reductionFondation(p: Player, C: Cfg): Record<string, number> {
+export function reductionFondation(p: Player, C: Cfg, ville?: { proximite?: string }): Record<string, number> {
   const out: Record<string, number> = {}
   if (aTech(p, 'Colonialisme durable', C)) out['Bois'] = (out['Bois'] ?? 0) + 5
   if (aTech(p, 'Colonialisme \u00e9conome', C)) out['Or'] = (out['Or'] ?? 0) + 20
+  // Expansion maritime (développement côtier) : côtières −3 Bois −3 Pierre.
+  if (ville?.proximite === 'Mer' && aTech(p, 'Expansion maritime', C)) {
+    out['Bois'] = (out['Bois'] ?? 0) + 3
+    out['Pierre'] = (out['Pierre'] ?? 0) + 3
+  }
   return out
 }
 
@@ -180,4 +202,12 @@ export function garnisonProgresVille(p: Player, ville: City, C: Cfg): number {
   if (aTech(p, 'Pr\u00e9 carr\u00e9', C)) g += 20
   if (aTech(p, 'Vasselit\u00e9', C) && p.vassalDe != null) g += 20
   return g
+}
+
+/** Garnison MINIMALE des habitations (retour Thibaut 2026-10-15) :
+ *  « Combler les lacunes » — vos habitations ne peuvent avoir moins de
+ *  30 Garnison. Retourne le plancher (0 si la tech n'est pas débloquée) ;
+ *  garnisonHabitationVille prend le max. */
+export function garnisonMinimaleProgres(p: Player, C: Cfg): number {
+  return aTech(p, 'Combler les lacunes', C) ? 30 : 0
 }

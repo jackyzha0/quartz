@@ -281,6 +281,9 @@ export interface Player {
   /** Notes libres du joueur (retour Thibaut 2026-10-15) : pense-bête
    *  affiché en bas de l'onglet Pays. Champ optionnel. */
   notes?: string
+  /** Stratégies militaires I : la prochaine levée d'armée coûte 50 Or de
+   *  moins (flag consommé à la première levée — revue 2026-10-15). */
+  prochaineArmeeReduite?: boolean
   resources: Record<string, ResourceState> // clés = RESOURCES
   villes: City[]
   dynastie: { nom: string; description: string } | null

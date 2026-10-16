@@ -369,6 +369,14 @@ export function garnisonFactionVille(
 ): number {
   const ctx: CtxFaction = { state, p, C }
   let g = 0
+  // Norls « Conquête territoriale » (Âge III, revue 2026-10-15) :
+  //  garnison des bâtiments de FACTION +30 (les expansions −5
+  //  Nourriture restent au plateau — non modélisées).
+  if (p.peuple === 'NORLS' && regleActive(p, C, 'Conquête territoriale')) {
+    for (const b of ville.batiments) {
+      if (batimentsFaction(p, C).some((bf) => bf.nom === b)) g += 30
+    }
+  }
   for (const r of reglesActives(p, C)) {
     const e = EFFETS[`${p.peuple}|${r.nom}`]
     if (e?.garnisonVille) g += e.garnisonVille(ctx, ville)

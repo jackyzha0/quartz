@@ -161,6 +161,10 @@ export function ProgresView({ joueur }: { joueur: number }) {
         //  « applique tout ce que tu peux ») : Science, Or, Habitants,
         //  Émissaires — crédités automatiquement par
         //  gainDeblocageProgres (engine/progresAuto.ts).
+        // Stratégies militaires I : marque la PROCHAINE levée à −50 Or.
+        if (t?.nom === 'Stratégies militaires I') {
+          q.prochaineArmeeReduite = true
+        }
         const gainTxt = gainDeblocageProgres(q, t?.nom ?? '')
         const emissTxt = gainTxt ? ` — ${gainTxt}.` : ''
         if (crystal) {

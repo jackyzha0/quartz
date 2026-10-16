@@ -72,6 +72,14 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
       const rs = target.resources['Or']
       if (rs && rs.stock < prix2) return
       if (rs && prix2 > 0) rs.stock -= prix2
+      // Stratégies militaires I : flag one-shot consommé.
+      if (target.prochaineArmeeReduite) target.prochaineArmeeReduite = false
+      // Norls « Armées des traditions » (Âge III) : chaque levée
+      //  rapporte 10 Tourisme définitivement.
+      if (target.peuple === 'NORLS' && target.regleAge3 === 'Armées des traditions') {
+        const rsT = target.resources['Tourisme']
+        if (rsT) rsT.stock += 10
+      }
       target.armees.push({
         nom: nomArmee,
         puissanceCible: puissance,

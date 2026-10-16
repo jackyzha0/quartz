@@ -462,6 +462,50 @@ function CardFaction({ joueur }: { joueur: number }) {
       const cur = age === 2 ? t.regleAge2 : t.regleAge3
       if (age === 2) t.regleAge2 = cur === nom ? null : nom
       else t.regleAge3 = cur === nom ? null : nom
+      // Basiléens « Suzeraineté » (Âge III, revue 2026-10-15) :
+      //  la capitale reçoit immédiatement 150 habitants à l'ACTIVATION
+      //  de la règle (+1 ministre : déjà dans le plafond, PopulationTable).
+      // Elfes d'Or « Savoir ancestral » (Âge II) : découvrir
+      //  immédiatement 2 progrès d'un même arbre (a1+a2 du 1er
+      //  arbre d'âge 1 encore disponible).
+      if (age === 2 && cur !== nom && nom === 'Savoir ancestral' && t.peuple === "ELFES D'OR") {
+        const arbres = cfgOf(s.config).config.progres
+        const set = new Set(t.progresDebloques ?? [])
+        const ai = arbres.findIndex((a, idx) =>
+          a.age === 1 && !set.has(`${idx}:a1`) && (a.brancheA?.[0]?.nom ?? '') !== '')
+        if (ai >= 0) {
+          ;(t.progresDebloques ?? (t.progresDebloques = [])).push(`${ai}:a1`, `${ai}:a2`)
+          s.log.push({
+            turn: s.turn, type: 'Système', joueur: t.n,
+            texte: `🔬 Savoir ancestral — ${t.nom} découvre « ${arbres[ai].brancheA[0].nom} » et « ${arbres[ai].brancheA[1]?.nom ?? '?'} ».`,
+          })
+        }
+      }
+      // Sylvains « Savoir ancestral » (Âge III) : +10 Science
+      //  immédiatement par apiculture déjà possédée.
+      if (age === 3 && cur !== nom && nom === 'Savoir ancestral' && t.peuple === 'Sylvains') {
+        let nbApi = 0
+        for (const v of t.villes) nbApi += (v.amenagements ?? []).filter((a) => a === 'Apiculture').length
+        const rs = t.resources['Science']
+        if (rs && nbApi > 0) rs.stock += 10 * nbApi
+        if (nbApi > 0) {
+          s.log.push({
+            turn: s.turn, type: 'Système', joueur: t.n,
+            texte: `🔬 Savoir ancestral — ${t.nom} gagne ${10 * nbApi} Science (${nbApi} apiculture(s)).`,
+          })
+        }
+      }
+      if (age === 3 && cur !== nom && nom === 'Suzeraineté' && t.peuple === 'Basiléens') {
+        const cap = t.villes[0]
+        if (cap) {
+          const rs = t.resources['Habitants']
+          if (rs) rs.stock += 150
+          s.log.push({
+            turn: s.turn, type: 'Système', joueur: t.n,
+            texte: `🏔 ${t.nom} active « Suzeraineté » — ${cap.nom} reçoit 150 habitants (+1 ministre).`,
+          })
+        }
+      }
     })
 
   // Badge « ✓ auto » / « manuel » d'une règle active.

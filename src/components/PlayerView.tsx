@@ -63,6 +63,7 @@ import { peuplerNouvelleVille } from '../engine/setup'
 import { effetImmediatMerveille } from '../engine/merveilles'
 import { reductionAmenagement, reductionBatiment, reductionFondation } from '../engine/progresAuto'
 import { statutMerveille, pastilleClass } from '../engine/statutAuto'
+import { aTech } from '../engine/progresAuto'
 import { villeDevientCiteLibre } from '../engine/citesLibres'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
 import { ChoicePicker, type PickerCategorie } from './Picker'
@@ -182,11 +183,19 @@ export function PlayerView({ joueur }: { joueur: number }) {
       //    par ville.
       const fam = ref?.famille ?? ''
       if (fam === 'Economique') {
+        // « Urbanisme », Elfes d'Or « Cité d'Or » / « Palais des Dieux » :
+        //  la capitale accueille un bâtiment supplémentaire (+1 slot
+        //  économique de la capitale).
+        const bonusCapitale =
+          (aTech(t, 'Urbanisme', C) ? 1 : 0)
+          + (t.peuple === "ELFES D'OR" && t.regleAge2 === "Cité d'Or" ? 1 : 0)
+          + (t.peuple === "ELFES D'OR" && t.regleAge3 === 'Palais des Dieux' ? 1 : 0)
+        const maxEco = rangNiveau(ville, C) + (estCapitale ? bonusCapitale : 0)
         const nbEco = ville.batiments.filter((b) => (constructionRef(b, C.config)?.famille ?? '') === 'Economique').length
-        if (nbEco >= rangNiveau(ville, C)) {
+        if (nbEco >= maxEco) {
           s.log.push({
             turn: s.turn, type: 'Système', joueur: t.n,
-            texte: `🏛 ${nom} : limite atteinte — un seul bâtiment Économique par rang d'habitation (${ville.nom}, rang ${rangNiveau(ville, C)}).`,
+            texte: `🏛 ${nom} : limite atteinte — un seul bâtiment Économique par rang d'habitation (${ville.nom}, ${maxEco} max).`,
           })
           return
         }
@@ -268,6 +277,11 @@ export function PlayerView({ joueur }: { joueur: number }) {
       //  prestige : merveilles −4 de CHAQUE ressource du coût
       //  (plancher 0). Techs débloquées du joueur, cumulables.
       if (ref?.famille === 'Merveille') {
+        // Exposition universelle (ouverture culturelle) : merveilles de
+        //  la CAPITALE −30 Or de plus.
+        if (estCapitale && aTech(t, 'Exposition universelle', C) && cout['Or'] !== undefined) {
+          cout['Or'] = Math.max(0, cout['Or'] - 30)
+        }
         const debloquees = new Set(t.progresDebloques ?? [])
         const arbresT = C.config.progres.filter((a) => a.nom === 'Progrès du Tourisme')
         const possede = (nomTech: string) => {
