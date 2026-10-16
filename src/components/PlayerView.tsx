@@ -114,12 +114,19 @@ export function PlayerView({ joueur }: { joueur: number }) {
     })
 
   // ── Production / tour détaillée (calculée, non modifiable) ────────────
-  const prodDetail = productionDetaillee(state, p, C)
+  // OPTIMISATION RENDU 2026-10-16 : ces calculs parcourent les
+  //  populations entières (~4 ms à 16 000 habitants) — mémoïsés par
+  //  référence d'état : recalculés seulement quand l'état change,
+  //  pas aux re-rendus internes du composant.
+  const prodDetail = React.useMemo(
+    () => productionDetaillee(state, p, C), [state, p, C])
 
   // Prévisualisation de l'impôt d'UN tour (population / vassaux) pour
   //  les boutons « Générer l'impôt » de la carte récap.
-  const impotPopPrev = impotPopulation(state, p, C)
-  const impotsVassPrev = impotsVassaux(state, p, C)
+  const impotPopPrev = React.useMemo(
+    () => impotPopulation(state, p, C), [state, p, C])
+  const impotsVassPrev = React.useMemo(
+    () => impotsVassaux(state, p, C), [state, p, C])
 
   // ── Attrait migratoire : borne haute = ville la plus attractive du
   //    monde (pour la heatmap sous chaque ville). ─────────────────────────

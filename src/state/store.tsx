@@ -180,15 +180,27 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     }
   }, [mode, salon, persist])
 
+  /**
+   * CLONE SÉLECTIF (optimisation frappe 2026-10-16) : clone l'état en
+   *  SÉPARANT la population (l'objet le plus lourd : 34 des 39 ms du
+   *  clone) et la config (181 Ko, immuable entre deux saves —
+   *  setGlobalCfg la remplace par un nouvel objet, jamais mutée).
+   *  La config est réattachée PAR RÉFÉRENCE : sûr car aucun mutateur
+   *  ne la touche en place.
+   */
   const update = useCallback((mutator: (s: GameState) => void) => {
-    // Revue (Q1) : clone STRUCTUREL (structuredClone, ~3× plus rapide
-    //  que JSON.parse(JSON.stringify) sur les gros états, sans passer
-    //  par une chaîne). Les mutateurs pendants sont rejoués dans
-    //  l'ordre (Q2) : une mise à jour distante reçue entre-temps sert
-    //  de base — les éditions simultanées se COMBINENT.
+    // Revue (Q1) : clone STRUCTUREL. Les mutateurs pendants sont
+    //  rejoués dans l'ordre (Q2) : une mise à jour distante reçue
+    //  entre-temps sert de base — les éditions simultanées se
+    //  COMBINENT.
     setState((prev) => {
       if (!prev) return prev
-      const draft = structuredClone(prev) as GameState
+      const popClone = structuredClone(prev.population)
+      const draft = {
+        ...structuredClone({ ...prev, population: {}, config: undefined }),
+        population: popClone,
+        config: prev.config,
+      } as GameState
       for (const m of pendingMutators.current) m(draft)
       pendingMutators.current = []
       mutator(draft)
@@ -201,7 +213,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const nextTurn = useCallback(() => {
     setState((prev) => {
       if (!prev) return prev
-      const draft = structuredClone(prev) as GameState
+      const popClone = structuredClone(prev.population)
+      const draft = {
+        ...structuredClone({ ...prev, population: {}, config: undefined }),
+        population: popClone,
+        config: prev.config,
+      } as GameState
       for (const m of pendingMutators.current) m(draft)
       pendingMutators.current = []
       runTurn(draft)
