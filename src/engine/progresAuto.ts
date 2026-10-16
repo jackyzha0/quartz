@@ -59,6 +59,8 @@ export function fluxProgresJoueur(state: GameState, p: Player, C: Cfg): Record<s
     if (aTech(p, 'Organisation fiscale', C)) add('Or', 2)
     if (aTech(p, 'Granges', C)) add('Nourriture', 10)
     if (aTech(p, 'Usinage', C)) add('Charbon', 1)
+    if (aTech(p, 'Musées', C)) add('Tourisme', 30)
+    if (aTech(p, 'Hausse du loyer', C)) add('Or', 15)
     // relations diplomatiques (Âge 1) : SUZERAIN
     if (aTech(p, 'Garde suzeraine', C) && citesSuzerainesCount(state, p) > 0) add('Nourriture', 12)
     if (aTech(p, 'Patronage', C) && citesSuzerainesCount(state, p) > 0) add('Science', 1)
@@ -95,19 +97,34 @@ export function fluxProgresJoueur(state: GameState, p: Player, C: Cfg): Record<s
     if (aTech(p, 'Engrais naturels I', C)) add('Nourriture', 2 * nbChamps)
     if (aTech(p, 'Engrais naturels II', C)) add('Nourriture', 3 * nbChamps)
   }
+  // ── Charues (21:a1) : champs +5 Nourriture et +1 Or par tour —──────────
+  if (nbChamps > 0 && aTech(p, 'Charues', C)) {
+    add('Nourriture', 5 * nbChamps)
+    add('Or', 1 * nbChamps)
+  }
   // ── par merveille : +1 Science chacune ──
   const nbMerveilles = p.villes.reduce((n, v) => n + v.batiments.filter((b) => (C.config.constructions ?? []).find((c) => c.nom === b)?.famille === 'Merveille').length, 0)
   if (nbMerveilles > 0 && aTech(p, 'Merveilleux', C)) add('Science', 1 * nbMerveilles)
-  // ── par ministre : +6 Science chacun (Prix Gorback Nobel) ──
-  if (aTech(p, 'Prix Gorback Nobel', C)) {
-    const nb = portefeuillesDuJoueur(state, p).length
-    if (nb > 0) add('Science', 6 * nb)
-  }
+  // Prix Gorback Nobel (+6 Science/ministre) : appliqué par le
+  //  générique prodParTitre ci-dessous — codage en dur retiré
+  //  (doublon détecté par l'audit 2026-10-16 : 12 au lieu de 6).
   // ── foires : +2 Or +2 Tourisme par Foire (Stands de goodies) ──
   const nbFoires = p.villes.reduce((n, v) => n + (v.amenagements ?? []).filter((a) => a === 'Foire').length, 0)
   if (nbFoires > 0 && aTech(p, 'Stands de goodies', C)) {
     add('Or', 2 * nbFoires)
     add('Tourisme', 2 * nbFoires)
+  }
+  // ── par FOIRE : +2 Tourisme (Fascination culturelle, 14:a1) ────────
+  if (nbFoires > 0 && aTech(p, 'Fascination culturelle', C)) {
+    add('Tourisme', 2 * nbFoires)
+  }
+  // ── par SITE ARCHÉOLOGIQUE : +8 Tourisme (Parcs naturels, 14:b2 —
+  //  homonyme de 18:b2 mais effet différent ; aTech matche les deux
+  //  par nom, l'effet ici est celui de l'arbre Tourisme) ─────────────
+  const nbSitesArcheo = p.villes.reduce(
+    (n, v) => n + (v.amenagements ?? []).filter((a) => a === 'site arch\u00e9ologique' || a === 'Site arch\u00e9ologique').length, 0)
+  if (nbSitesArcheo > 0 && aTech(p, 'Parcs naturels', C)) {
+    add('Tourisme', 8 * nbSitesArcheo)
   }
   // ── prodParTitre (générique, revue 2026-10-16) : « +N RESSOURCE par
   //  tour par TITULAIRE du titre X » — les techs du référentiel avec un
@@ -178,6 +195,8 @@ export function gainDeblocageProgres(state: GameState, p: Player, nomTech: strin
       return credit('Habitants', 15 * Math.max(1, p.villes.length))
     }
     case 'Greniers': return credit('Habitants', 40)
+    case 'Une ville magnifique': return credit('Habitants', 20)
+    case "Collecte d'imp\u00f4ts": return credit('Or', 20)
     case 'Recyclage': return credit('Or', 30)
     case 'Taxe n\u00e9c\u00e9ssaire I': return credit('Or', 250)
     case 'Taxes n\u00e9c\u00e9ssaire II': return credit('Or', 300)
@@ -246,6 +265,7 @@ export function lignesGarnisonProgresVille(p: Player, ville: City, C: Cfg): Lign
   const out: LigneGarnison[] = []
   if (aTech(p, 'Milices civiles I', C) && estCap) out.push({ label: 'Milices civiles I (capitale)', valeur: 30 })
   if (aTech(p, 'Fortifications solides', C)) out.push({ label: 'Fortifications solides', valeur: 15 })
+  if (aTech(p, 'Milices civiles', C)) out.push({ label: 'Milices civiles (toutes habitations)', valeur: 30 })
   if (aTech(p, 'Muraille', C)) out.push({ label: 'Muraille', valeur: 40 })
   if (aTech(p, 'Progrès de la défense nationale A1', C)) out.push({ label: 'Défense nationale A1', valeur: 40 })
   if (aTech(p, 'Milices civiles III', C)) out.push({ label: 'Milices civiles III', valeur: 20 })
