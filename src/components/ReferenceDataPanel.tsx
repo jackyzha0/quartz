@@ -179,52 +179,64 @@ export function ReferenceDataPanel() {
 
       {onglet === 'Bâtiments' && (
         <>
-          <Card title={`Wiki — bâtiments (${(cfg.constructions ?? []).filter((c) => c.categorie === 'Bâtiment').length})`}>
+          <Card title={`Wiki — bâtiments par groupe, rang et famille (${(cfg.constructions ?? []).filter((c) => c.categorie === 'Bâtiment' && (c.groupe === 'Ville' || c.groupe === 'Château')).length})`}>
             <p className="muted small">
               Effets calculés par le moteur : flux / tour, production d'été (canal
               « Nourr - été »), Tourisme crédité UNE fois à la construction, Garnison
-              (valeur d'état).
+              (valeur d'état). Retour Thibaut 2026-10-15 : deux colonnes — VILLE et
+              CHÂTEAU ; tri par RANG d'habitation puis par FAMILLE (Militaire,
+              Économique, Guilde, Faction, Merveille, Capitale).
             </p>
-            <div className="table-wrap">
-              <table className="tbl small">
-                <thead><tr><th>Groupe</th><th>Bâtiment</th><th>Famille</th><th>Faction</th><th>Coût</th><th>Effets</th><th>Description</th></tr></thead>
-                <tbody>
-                  {(cfg.constructions ?? []).filter((c) => c.categorie === 'Bâtiment').map((c, i) => (
-                    <tr key={i}>
-                      <td>{c.groupe}</td>
-                      <td><strong>{c.nom}</strong></td>
-                      <td>{c.famille || '—'}</td>
-                      <td>{c.faction || '—'}</td>
-                      <td>{c.cout || '—'}</td>
-                      <td>{resumeConstruction(c) || <span className="muted">—</span>}</td>
-                      <td className="muted">{c.description}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Card>
-          <Card title={`Bâtiments de ville (${cfg.batimentsVille.length})`}>
-            <div className="grid-2">
-              {cfg.batimentsVille.map((b, i) => (
-                <div key={i} className="mini">
-                  <strong>{b.nom}</strong>
-                  <div className="small muted">{b.cout} {b.effet}</div>
+            <div className="refbat-grid">
+              {[['Ville', 'VILLES'], ['Château', 'CHÂTEAUX']].map(([groupe, label]) => (
+                <div key={groupe}>
+                  <h3 className="refbat-titre">{label}</h3>
+                  {(() => {
+                    const bats = (cfg.constructions ?? [])
+                      .filter((c) => c.categorie === 'Bâtiment' && c.groupe === groupe)
+                      .sort((a, z) =>
+                        ((a.rangMinHabitation ?? 99) - (z.rangMinHabitation ?? 99))
+                        || (a.famille ?? '').localeCompare(z.famille ?? '')
+                        || a.nom.localeCompare(z.nom))
+                    const familles: Array<[string, string]> = [
+                      ['Militaire', 'Militaire'], ['Economique', 'Économique'],
+                      ['Guilde', 'Guilde'], ['Faction', 'Faction'],
+                      ['Merveille', 'Merveille'], ['Capitale', 'Capitale'],
+                    ]
+                    return [1, 2, 3].map((rang) => {
+                      const duRang = bats.filter((b) => (b.rangMinHabitation ?? 1) === rang)
+                      if (duRang.length === 0) return null
+                      return (
+                        <div key={rang} className="refbat-rang">
+                          <div className="refbat-rang-titre">Rang {rang}</div>
+                          {familles.map(([fam, famLabel]) => {
+                            const deLaFamille = duRang.filter((b) => (b.famille ?? '') === fam)
+                            if (deLaFamille.length === 0) return null
+                            return (
+                              <div key={fam} className="refbat-famille">
+                                <div className="refbat-famille-titre">{famLabel}</div>
+                                {deLaFamille.map((b) => (
+                                  <div key={b.nom} className="refbat-bat">
+                                    <strong>{b.nom}</strong>
+                                    <span className="refbat-cout">{b.cout || '—'}</span>
+                                    <span className="refbat-effets">
+                                      {resumeConstruction(b) || b.production || ''}
+                                    </span>
+                                    <span className="muted small">{b.description}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )
+                    })
+                  })()}
                 </div>
               ))}
             </div>
           </Card>
-          <Card title={`Bâtiments de château (${cfg.batimentsChateau.length})`}>
-            <div className="grid-2">
-              {cfg.batimentsChateau.map((b, i) => (
-                <div key={i} className="mini">
-                  <strong>{b.nom}</strong>
-                  <div className="small muted">{b.cout} {b.effet}</div>
-                </div>
-              ))}
-            </div>
-          </Card>
-          <Card title="Bâtiments à effet moteur (santé, écoles)">
+          <Card title={`Bâtiments à effet moteur (santé, écoles)`}>
             <div className="table-wrap">
               <table className="tbl small">
                 <thead><tr><th>Bâtiment</th><th>Maladie (contraction)</th><th>Guérison</th><th>Guérison globale</th><th>Rang école</th></tr></thead>

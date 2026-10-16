@@ -811,3 +811,64 @@ input[type='range'] {
 .victoire-grid .tbl th { padding: 2px 5px; }
 .victoire-grid .tbl span[style*="fontSize"] { font-size: 0.95em !important; margin-right: 1px; }
 .victoire-grid .chart-svg { max-width: 100%; margin: 0; }
+
+/* ── Référentiel Bâtiments : DEUX colonnes (Villes / Châteaux), tri par
+   rang puis par famille (retour Thibaut 2026-10-15). ── */
+.refbat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+@media (max-width: 1100px) {
+  .refbat-grid { grid-template-columns: 1fr; }
+}
+.refbat-titre {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--secondary, #284b63);
+  border-bottom: 2px solid var(--lightgray, #e5e5e5);
+  padding-bottom: 4px;
+}
+.refbat-rang { margin-bottom: 12px; }
+.refbat-rang-titre {
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gray, #b8b8b8);
+  margin: 0 0 6px;
+}
+.refbat-famille { margin-bottom: 8px; }
+.refbat-famille-titre {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--secondary, #284b63);
+  border: 1px solid var(--lightgray, #e5e5e5);
+  border-radius: 999px;
+  padding: 0 8px;
+  margin-bottom: 4px;
+}
+.refbat-bat {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  align-items: baseline;
+  padding: 3px 0;
+  border-bottom: 1px solid var(--lightgray, #eef0f0);
+  font-size: 0.85em;
+  line-height: 1.35;
+}
+.refbat-bat:last-child { border-bottom: none; }
+.refbat-cout {
+  color: #3f7a3f;
+  font-size: 0.78em;
+  white-space: nowrap;
+}
+.refbat-effets { color: #66625c; font-size: 0.78em; }
+.refbat-bat .muted { flex-basis: 100%; }
+.refbat-bat .muted.small { font-size: 0.75em; }
