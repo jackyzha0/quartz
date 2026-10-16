@@ -5,6 +5,7 @@
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
 
+import { invaliderIndexPopulation } from './naissances'
 import type { Character, GameState, Player, PlayerRecap } from './types'
 import { makeRng, type Rng } from './rng'
 import { cfgOf, traitDef, type Cfg } from './gameData'
@@ -91,6 +92,8 @@ export function maladieStep(state: GameState, p: Player, c: Character, rng: Rng,
 // ── Décès ────────────────────────────────────────────────────────────────
 
 export function killCharacter(state: GameState, p: Player, c: Character, cause: 'vieillesse' | 'maladie', recap: PlayerRecap) {
+  invaliderIndexPopulation()
+
   const C = cfgOf(state.config)
   c.statut = 'Décédé'
   // libérer le conjoint — il peut vivre chez un AUTRE porteur depuis

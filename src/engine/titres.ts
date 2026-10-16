@@ -10,6 +10,7 @@ import type { Rng } from './rng'
 import { cfgOf, titreDef, cultureDef, traitDef, type Cfg } from './gameData'
 import { schoolRankOf } from './gameData2'
 import { bump, fullName, isNobleDyn } from './shared'
+import { invaliderIndexPopulation } from './naissances'
 import { martialiteOk } from './armees'
 
 // ── Professeurs ─────────────────────────────────────────────────────────
@@ -51,6 +52,7 @@ export function gestionMariages(state: GameState, p: Player, rng: Rng, recap: Pl
   )
   const mariesIds = new Set<string>()
   const marier = (a: Character, b: Character) => {
+    invaliderIndexPopulation()
     a.mariage = fullName(b)
     b.mariage = fullName(a)
     mariesIds.add(b.id)

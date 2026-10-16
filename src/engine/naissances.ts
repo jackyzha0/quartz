@@ -8,10 +8,42 @@
 import type { Character, GameState, Player, PlayerRecap } from './types'
 import type { Rng } from './rng'
 import { cfgOf, traitDef, cultureDef, peupleDef, type Cfg } from './gameData'
-import { bump, fullName, isNobleDyn, newId, toutesLesPopulations } from './shared'
+import { bump, fullName, isNobleDyn, newId } from './shared'
 import { taxBirthFactor } from './economie'
 import { computeAgeMax, killCharacter } from './sante'
 
+
+/**
+ * INDEX DE POPULATION MONDE (optimisation 2026-10-16) : carte
+ * nomComplet -> personnage vivant, reconstruite UNE fois par tour
+ * (invalidée à chaque appel pour rester correcte après migrations,
+ * mariages et naissances — mais construite en O(N) au lieu d'être
+ * rescannée en O(N) PAR APPEL). Les 16 000+ personnages de fin de
+ * partie rendaient computeFecondite quadratique (≈ 3,5 s/tour).
+ */
+let cacheIndexPop: { state: object; index: Map<string, Character> } | null = null
+function indexPopulationMonde(state: GameState): Map<string, Character> {
+  if (cacheIndexPop && cacheIndexPop.state === state) return cacheIndexPop.index
+  const index = new Map<string, Character>()
+  for (const liste of Object.values(state.population ?? {})) {
+    for (const c of liste ?? []) {
+      if (c.statut !== 'Décédé') index.set(fullName(c), c)
+    }
+  }
+  for (const cite of state.citesLibres ?? []) {
+    for (const c of cite.population ?? []) {
+      if (c.statut !== 'Décédé') index.set(fullName(c), c)
+    }
+  }
+  cacheIndexPop = { state, index }
+  return index
+}
+
+/** Invalide l'index (mariage, migration, naissance, mort : les noms
+ *  complets changent d'état). Coût O(1). */
+export function invaliderIndexPopulation(): void {
+  cacheIndexPop = null
+}
 
 export function computeFecondite(state: GameState, p: Player, c: Character): number {
   // Retour Thibaut (revue 2026-10-15) : le champ affiché doit refléter
@@ -22,8 +54,7 @@ export function computeFecondite(state: GameState, p: Player, c: Character): num
   if (c.statut === 'Décédé' || c.age < C.p.adultAge) return 0
   if (c.sexe !== 'F') return maleAgeFactor(c.age) * orientationFertFactor(c.orientation)
   const ville = p.villes.find((v) => v.nom === c.ville)
-  const popMonde = toutesLesPopulations(state)
-  const mari = c.mariage ? popMonde.find((x) => fullName(x) === c.mariage && x.statut !== 'Décédé') : undefined
+  const mari = c.mariage ? indexPopulationMonde(state).get(c.mariage) : undefined
   if (mari && mari.sexe !== 'M') return 0
   const factorMari = mari ? maleAgeFactor(mari.age) * orientationFertFactor(mari.orientation) : C.p.fertSingleFactor
   let proba = C.p.fertBaseRate
@@ -106,12 +137,13 @@ export function conceptionEtNaissances(state: GameState, p: Player, rng: Rng, re
   //    manuels entre cours (engine/cour.ts, 2026-10-14) : on cherche
   //    donc le conjoint dans TOUTES les populations du monde, joueurs
   //    ET cités libres (retour Thibaut 2026-10-14).
-  const popMonde: Character[] = toutesLesPopulations(state)
+  const indexMonde = indexPopulationMonde(state)
+  const villesParNom = new Map(p.villes.map((v) => [v.nom, v]))
   for (const mere of pop) {
     if (mere.sexe !== 'F' || (mere.statut !== 'Sain' && mere.statut !== 'Malade')) continue
     if (mere.age < C.p.adultAge) continue
-    const ville = p.villes.find((v) => v.nom === mere.ville)
-    const mari = mere.mariage ? popMonde.find((x) => fullName(x) === mere.mariage && x.statut !== 'Décédé') : undefined
+    const ville = villesParNom.get(mere.ville)
+    const mari = mere.mariage ? indexMonde.get(mere.mariage) : undefined
     // Mariage homosexuel (culture l'autorisant — mariages dans titres.ts) :
     // pas de conception entre épouses de même sexe.
     if (mari && mari.sexe !== 'M') continue
@@ -197,6 +229,7 @@ function accoucher(state: GameState, p: Player, mere: Character, pere: Character
     if (consanguin) ensureTraitPresent(enfant, C.p.traitConsanguin)
     enfant.ageMax = computeAgeMax(enfant, rng, C)
     pop.push(enfant)
+    invaliderIndexPopulation()
     bump(recap.naissances, enfant.dynastie)
     state.log.push({
       turn: state.turn + 1, type: 'Naissance', joueur: p.n,

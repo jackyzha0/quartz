@@ -95,12 +95,29 @@ export function populationTurn(state: GameState, p: Player, rng: Rng) {
 /** Cible de migration : une ville, chez un joueur donné. */
 interface CibleVille { joueur: Player; ville: City }
 
-/** Villes d'un joueur abritant au moins un Professeur vivant. */
+/**
+ * Villes d'un joueur abritant au moins un Professeur vivant.
+ * OPTIMISATION 2026-10-16 : cache par état (invalidé quand l'état
+ *  change) — l'ancien pop.some() scannait toute la population du
+ *  joueur pour CHAQUE appel, lui-même fait par migrant.
+ */
+let cacheVillesProfState: { state: object; parJoueur: Map<number, Set<string>> } | null = null
 function villesAvecProfesseur(state: GameState, joueur: Player): City[] {
   const C = cfgOf(state.config)
-  const pop = state.population[joueur.n] ?? []
-  return joueur.villes.filter((v) =>
-    pop.some((c) => c.statut !== 'Décédé' && c.ville === v.nom && c.titre === C.p.titreProfesseur))
+  if (!cacheVillesProfState || cacheVillesProfState.state !== state) {
+    const parJoueur = new Map<number, Set<string>>()
+    for (const [nStr, liste] of Object.entries(state.population ?? {})) {
+      const n = Number(nStr)
+      const villes = new Set<string>()
+      for (const c of liste ?? []) {
+        if (c.statut !== 'Décédé' && c.titre === C.p.titreProfesseur) villes.add(c.ville)
+      }
+      parJoueur.set(n, villes)
+    }
+    cacheVillesProfState = { state, parJoueur }
+  }
+  const villes = cacheVillesProfState.parJoueur.get(joueur.n) ?? new Set<string>()
+  return joueur.villes.filter((v) => villes.has(v.nom))
 }
 
 export function migrerPopulation(state: GameState, p: Player, rng: Rng) {
@@ -177,14 +194,31 @@ export function migrerPopulation(state: GameState, p: Player, rng: Rng) {
   }
   if (cibles.length === 0) return
 
-  /** joueur auquel appartient actuellement un personnage. */
-  const proprietaireDe = (x: Character): number | null => {
-    for (const q of state.players) {
-      if ((state.population[q.n] ?? []).includes(x)) return q.n
+  /** OPTIMISATION 2026-10-16 : index id→joueur et nom→personnages
+   *  construits UNE fois (la famille d'un migrant était recherchée
+   *  dans toutes les populations du monde à CHAQUE migrant : O(N²)
+   *  à 16 000 personnages). */
+  const proprietaireParId = new Map<string, number>()
+  const vivantsParNom = new Map<string, Character[]>()
+  const mineursParParent = new Map<string, Character[]>()
+  for (const q of state.players) {
+    for (const x of state.population[q.n] ?? []) {
+      proprietaireParId.set(x.id, q.n)
+      if (x.statut === 'Décédé') continue
+      const nom = fullName(x)
+      const lst = vivantsParNom.get(nom)
+      if (lst) lst.push(x)
+      else vivantsParNom.set(nom, [x])
+      if (x.age < C.p.adultAge && !x.armee) {
+        for (const parent of [x.mere, x.pere]) {
+          if (!parent) continue
+          const l2 = mineursParParent.get(parent)
+          if (l2) l2.push(x)
+          else mineursParParent.set(parent, [x])
+        }
+      }
     }
-    return null
   }
-
   for (const c of [...pop]) {
     if (c.statut === 'Décédé' || deplaces.has(c.id)) continue
     if (c.armee) continue // les soldats ne déménagent pas
@@ -193,19 +227,21 @@ export function migrerPopulation(state: GameState, p: Player, rng: Rng) {
     if (dispo.length === 0) continue
     const dest = rng.pickWeighted(dispo, (t) => t.attrait)
     migrer(c, p.n, dest.cible, 'attrait touristique')
-    // le conjoint et les enfants mineurs suivent
+    // le conjoint et les enfants mineurs suivent (via index)
     const nomComplet = fullName(c)
     const famille: Character[] = []
-    for (const q of state.players) {
-      for (const x of state.population[q.n] ?? []) {
-        if (x.statut === 'Décédé' || deplaces.has(x.id) || x.id === c.id || x.armee) continue
-        const estConjoint = !!c.mariage && fullName(x) === c.mariage
-        const estEnfant = (x.mere === nomComplet || x.pere === nomComplet) && x.age < C.p.adultAge
-        if (estConjoint || estEnfant) famille.push(x)
+    if (c.mariage) {
+      for (const x of vivantsParNom.get(c.mariage) ?? []) {
+        if (deplaces.has(x.id) || x.id === c.id || x.armee) continue
+        famille.push(x)
       }
     }
+    for (const x of mineursParParent.get(nomComplet) ?? []) {
+      if (deplaces.has(x.id) || x.id === c.id || famille.includes(x)) continue
+      famille.push(x)
+    }
     for (const x of famille) {
-      const srcN = proprietaireDe(x)
+      const srcN = proprietaireParId.get(x.id)
       if (srcN == null) continue
       migrer(x, srcN, dest.cible, `accompagne ${nomComplet} — attrait touristique`)
     }
