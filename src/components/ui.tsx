@@ -44,20 +44,35 @@ export function Field({ label, children, hint }: {
   )
 }
 
+/**
+ * Champ texte à état LOCAL (optimisation frappe 2026-10-16) : la
+ * saisie ne déclenche PAS le store — chaque caractère ne clone plus
+ * l'état entier (~34 ms à 16 000 habitants). La valeur remonte au
+ * store quand le champ est QUITTÉ (blur) ou validé (Entrée).
+ * L'affichage suit les changements externes tant que l'utilisateur
+ * n'est pas en train d'écrire (focus actif).
+ */
 export function TextInput({ value, onChange, placeholder, disabled }: {
   value: string
   onChange: (v: string) => void
   placeholder?: string
   disabled?: boolean
 }) {
+  const [local, setLocal] = React.useState(value)
+  const [focused, setFocused] = React.useState(false)
+  React.useEffect(() => { if (!focused) setLocal(value) }, [value, focused])
+  const commit = () => { if (local !== value) onChange(local) }
   return (
     <input
       type="text"
       className="input"
-      value={value}
+      value={local}
       placeholder={placeholder}
       disabled={disabled}
-      onChange={(e) => onChange(e.target.value)}
+      onChange={(e) => setLocal(e.target.value)}
+      onFocus={() => setFocused(true)}
+      onBlur={() => { setFocused(false); commit() }}
+      onKeyDown={(e) => { if (e.key === 'Enter') { commit(); (e.target as HTMLInputElement).blur() } }}
     />
   )
 }
@@ -72,6 +87,8 @@ export function NumberInput({ value, onChange, step = 1, min, max }: {
 }) {
   const [text, setText] = useState<string>(String(value))
   useEffect(() => {
+    // pendant la saisie (focus), ne pas écraser le texte local
+    if (focused) return
     const parsed = parseFloat(text.replace(',', '.'))
     if (!isNaN(parsed) && parsed !== value) setText(String(value))
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -84,16 +101,20 @@ export function NumberInput({ value, onChange, step = 1, min, max }: {
     if (max !== undefined) v = Math.min(max, v)
     onChange(v)
   }
+  // OPTIMISATION FRAPPE 2026-10-16 : le commit (onChange → store,
+  //  clone de l'état entier ~34 ms) ne se fait plus À CHAQUE
+  //  caractère mais au BLUR / Entrée — la saisie est instantanée.
+  const [focused, setFocused] = useState(false)
   return (
     <input
       type="number"
       className="input num"
       step={step}
       value={text}
-      onChange={(e) => {
-        setText(e.target.value)
-        commit(e.target.value)
-      }}
+      onChange={(e) => { setText(e.target.value) }}
+      onFocus={() => setFocused(true)}
+      onBlur={() => { setFocused(false); commit(text) }}
+      onKeyDown={(e) => { if (e.key === 'Enter') { commit(text); (e.target as HTMLInputElement).blur() } }}
     />
   )
 }
