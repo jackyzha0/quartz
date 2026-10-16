@@ -31,6 +31,7 @@ import { useGame } from '../state/store'
 import type { Character, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
 import { detailsFaction, rangPaysNiveau } from '../engine/factions'
+import { reconcilierTourismeDynamique } from '../engine/regimes'
 import { statutFaction, pastilleClass } from '../engine/statutAuto'
 import { rangParDefaut } from '../engine/setup'
 import { citesSuzerainesDe, sermentsPossedes, facteurSacre } from '../engine/engine'
@@ -182,7 +183,17 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
               options={C.cultures.map((c) => ({
                 value: c.nom, label: `${c.nom} (hérédité ${String(c.heredite).toLowerCase()})`,
               }))}
-              onChange={(v) => setPlayer((x) => { x.culture = v })}
+              onChange={(v) => update((s) => {
+                const x = s.players.find((q) => q.n === joueur)
+                if (!x || x.culture === v) return
+                const ancienne = x.culture
+                x.culture = v
+                // Tourisme dynamique (revue 2026-10-16) : la loi de
+                //  pays de l'ANCIENNE culture (ex. Lunisme +4 ×
+                //  villes lunistes) est REPRISE, celle de la nouvelle
+                //  est crédité — le delta suit le changement.
+                reconcilierTourismeDynamique(s, x, `culture ${ancienne} → ${v}`)
+              })}
             />
           </Field>
           <Field label="Régime politique">

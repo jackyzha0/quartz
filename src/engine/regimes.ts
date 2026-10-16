@@ -25,7 +25,8 @@ import { aMinistre } from './ministeres'
 import { garnisonBatiment } from './batiments'
 import { garnisonFactionVille, rangPaysNiveau } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
-import { garnisonProgresVille } from './progresAuto'
+import { garnisonProgresVille, aTech } from './progresAuto'
+import { regleActive } from './factions'
 
 export { nomRang } from './habitations'
 
@@ -170,6 +171,71 @@ export function effetsCulturePays(state: GameState, p: Player, C: Cfg): Record<s
     out[d.res] = (out[d.res] ?? 0) + d.total
   }
   return out
+}
+
+/** Cible du Tourisme DYNAMIQUE d'un joueur (valeur d'état mouvante,
+ *  revue 2026-10-16) : somme de tous les facteurs de Tourisme qui
+ *  suivent l'état courant du monde —
+ *    · loi de pays de la culture (ex. Lunisme : +4 × villes
+ *      lunistes dans le MONDE) ;
+ *    · tech « Surconsommation » : +5 par rang d'habitation ;
+ *    · tech « Stands de goodies » : +2 par Foire ;
+ *    · Basiléens « Abuser des serfs » : +3 par Champ.
+ *  La réconciliation (reconcilierTourismeDynamique) crédite/reprend
+ *  le DELTA entre cette cible et ce qui a déjà été crédité
+ *  (p.tourismeDynamique) — le stock suit exactement les facteurs,
+ *  y compris au changement de culture (Lunisme → Déisme : retrait). */
+export function cibleTourismeDynamique(state: GameState, p: Player, C: Cfg): number {
+  let cible = 0
+  // Loi de pays de la culture : +N Tourisme par ville de cette culture
+  //  dans le monde (LA capitale génère, mais la valeur appartient au
+  //  pays tant qu'il pratique cette culture).
+  const cult = cultureDef(p.culture, C.config)
+  if (cult?.capitalTourismeParHabMonde && p.villes.length > 0) {
+    cible += cult.capitalTourismeParHabMonde * nbVillesCultureMonde(state, p.culture)
+  }
+  // Tech « Surconsommation » : +5 Tourisme par rang d'habitation.
+  if (aTech(p, 'Surconsommation', C)) {
+    for (const v of p.villes) cible += 5 * rangNiveau(v, C)
+  }
+  // Tech « Stands de goodies » : +2 Tourisme par Foire.
+  if (aTech(p, 'Stands de goodies', C)) {
+    for (const v of p.villes) cible += 2 * (v.amenagements ?? []).filter((a) => a === 'Foire').length
+  }
+  // Basiléens « Abuser des serfs » : +3 Tourisme par Champ.
+  if (p.peuple === 'Basiléens' && regleActive(p, C, 'Abuser des serfs')) {
+    for (const v of p.villes) {
+      cible += 3 * (v.amenagements ?? []).filter((a) => a === 'Champ' || a === 'Rizière').length
+    }
+  }
+  return cible
+}
+
+/** Reconcilie le stock de Tourisme avec la cible dynamique : crédite
+ *  la hausse, REPREND la baisse (plafonnée au stock disponible),
+ *  mémorise la nouvelle valeur dans p.tourismeDynamique. Journalise
+ *  les mouvements (à la fin de tour et au changement de culture). */
+export function reconcilierTourismeDynamique(
+  state: GameState, p: Player, contexte: string, C: Cfg = cfgOf(state.config),
+): void {
+  const rs = p.resources['Tourisme']
+  if (!rs) return
+  const deja = p.tourismeDynamique ?? 0
+  const cible = cibleTourismeDynamique(state, p, C)
+  const delta = cible - deja
+  if (delta === 0) return
+  if (delta > 0) {
+    rs.stock += delta
+  } else {
+    const v = Math.min(-delta, Math.max(0, rs.stock))
+    if (v <= 0) { p.tourismeDynamique = cible; return }
+    rs.stock -= v
+  }
+  p.tourismeDynamique = cible
+  state.log.push({
+    turn: state.turn, type: 'Système', joueur: p.n,
+    texte: `🌉 Tourisme d'état ${delta > 0 ? '+' : '−'}${Math.abs(delta)} (${contexte}) — total dynamique : ${Math.round(cible * 10) / 10}.`,
+  })
 }
 
 /** Étape moteur : crédite au stock les effets de la loi du régime et de
