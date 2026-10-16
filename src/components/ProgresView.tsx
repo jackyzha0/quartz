@@ -24,6 +24,7 @@ import { debiterScienceTech, rembourserScienceTech, resumeEffetsTech } from '../
 import { aMinistre, rangPaysNiveau } from '../engine/engine'
 import { bonusTourDeCrystalProgres } from '../engine/merveilles'
 import { gainDeblocageProgres } from '../engine/progresAuto'
+import { statutTech, pastilleClass } from '../engine/statutAuto'
 import { makeRng } from '../engine/rng'
 
 type Slot = 'a1' | 'a2' | 'b1' | 'b2' | 'c'
@@ -197,6 +198,11 @@ export function ProgresView({ joueur }: { joueur: number }) {
           {t?.cout ? <span className="muted"> · coût : {t.cout} Science (déduit du stock au déblocage)</span> : null}
         </div>
         <div className={actif ? '' : 'muted'}>
+          <span className={pastilleClass(statutTech(t?.nom ?? ''))} title={
+            statutTech(t?.nom ?? '') === 'auto' ? 'Appliqué automatiquement par le moteur'
+            : statutTech(t?.nom ?? '') === 'possible' ? 'Automatisable — pas encore codé, à gérer au plateau'
+            : 'Impossible à automatiser (plateau / choix humain)'
+          } />
           <strong>{t?.nom || '— emplacement vide —'}</strong>
         </div>
         <div className="muted small tech-desc" title={t?.description || undefined}>
@@ -223,6 +229,11 @@ export function ProgresView({ joueur }: { joueur: number }) {
 
   return (
     <div className="stack">
+      <div className="p-legende">
+        <span><span className="p-auto" /> appliqué automatiquement</span>
+        <span><span className="p-possible" /> automatisable (pas encore codé — au plateau)</span>
+        <span><span className="p-impossible" /> impossible sans plateau</span>
+      </div>
       <Card title={`Progrès de ${p.nom} — ${totalDebloques} technologie(s) débloquée(s)`}>
         <p className="muted small">
           Coût en Science débité au déblocage (remboursé à la reprise).

@@ -872,3 +872,21 @@ input[type='range'] {
 .refbat-effets { color: #66625c; font-size: 0.78em; }
 .refbat-bat .muted { flex-basis: 100%; }
 .refbat-bat .muted.small { font-size: 0.75em; }
+
+/* ── Pastilles d'automatisme (retour Thibaut 2026-10-15) :
+   VERT = appliqué automatiquement par le moteur ;
+   JAUNE = automatisable mais pas encore codé ;
+   ROUGE = impossible sans modéliser le plateau / choix humain. ── */
+.p-auto, .p-possible, .p-impossible {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.p-auto { background: #3fa34d; box-shadow: 0 0 0 2px rgba(63,163,77,.25); }
+.p-possible { background: #e0a11b; box-shadow: 0 0 0 2px rgba(224,161,27,.25); }
+.p-impossible { background: #d64545; box-shadow: 0 0 0 2px rgba(214,69,69,.25); }
+.p-legende { display: flex; gap: 14px; align-items: center; margin: 6px 0; flex-wrap: wrap; }
+.p-legende span { display: inline-flex; align-items: center; font-size: 0.8rem; color: var(--darkgray, #4e4e4e); }

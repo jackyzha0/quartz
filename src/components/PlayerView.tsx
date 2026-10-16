@@ -62,6 +62,7 @@ import {
 import { peuplerNouvelleVille } from '../engine/setup'
 import { effetImmediatMerveille } from '../engine/merveilles'
 import { reductionAmenagement, reductionBatiment, reductionFondation } from '../engine/progresAuto'
+import { statutMerveille, pastilleClass } from '../engine/statutAuto'
 import { villeDevientCiteLibre } from '../engine/citesLibres'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
 import { ChoicePicker, type PickerCategorie } from './Picker'
@@ -475,12 +476,12 @@ export function PlayerView({ joueur }: { joueur: number }) {
         options: ms.map((b) => ({
           value: `${b.groupe}|${b.nom}`,
           titre: b.nom,
+          badge: pastilleClass(statutMerveille(b.nom)),
           droite: fmtCout(parseCoutTexte(b.cout)),
           description: [
             resumeConstruction(b) || b.production || '',
             b.description,
           ].filter(Boolean).join('\n'),
-          badge: FAM_BADGES['Merveille'] ?? 'badge-info',
         })),
       })
     }

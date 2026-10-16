@@ -31,6 +31,7 @@ import { useGame } from '../state/store'
 import type { Character, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
 import { detailsFaction } from '../engine/factions'
+import { statutFaction, pastilleClass } from '../engine/statutAuto'
 import { rangParDefaut } from '../engine/setup'
 import { citesSuzerainesDe, sermentsPossedes, facteurSacre } from '../engine/engine'
 import { Card, Select, TextInput, Button, Badge, Field } from './ui'
@@ -464,14 +465,19 @@ function CardFaction({ joueur }: { joueur: number }) {
     })
 
   // Badge « ✓ auto » / « manuel » d'une règle active.
-  const badgeAuto = (d: { auto: string | null } | undefined) =>
-    d ? (
-      d.auto ? (
-        <span className="badge badge-good">✓ auto</span>
-      ) : (
-        <span className="badge badge-neutral">manuel</span>
-      )
-    ) : null
+  // Retour Thibaut 2026-10-15 : pastille VERT (auto) / JAUNE (automatisable,
+  //  pas encore codé) / ROUGE (impossible — plateau) sur chaque règle.
+  const badgeAuto = (d: { auto: string | null } | undefined, nom: string) => {
+    if (!d) return null
+    const st = statutFaction(p.peuple, nom)
+    return (
+      <span className={pastilleClass(st)} title={
+        st === 'auto' ? 'Appliquée automatiquement par le moteur'
+        : st === 'possible' ? 'Automatisable — pas encore codée, à gérer au plateau'
+        : 'Impossible à automatiser (plateau / non modélisé)'
+      } />
+    )
+  }
 
   const ligneAge = (label: string, regles: { nom: string; texte: string }[] | undefined, choisie: string | null | undefined, age: 2 | 3) => (
     <div className="stack small-gap">
@@ -492,7 +498,7 @@ function CardFaction({ joueur }: { joueur: number }) {
               onClick={() => choisir(age, r.nom)}
               title={choisie === r.nom ? 'Règle choisie — cliquer pour annuler' : 'Choisir cette règle'}
             >
-              <div className="frule-title">{r.nom} {badgeAuto(d)}</div>
+              <div className="frule-title">{r.nom} {badgeAuto(d, r.nom)}</div>
               <div className="frule-text">{r.texte}</div>
               {d?.auto && <div className="frule-auto">⚙️ {d.auto}</div>}
             </button>
@@ -525,7 +531,7 @@ function CardFaction({ joueur }: { joueur: number }) {
           const d = autoDe('Base', r.nom)
           return (
             <div key={r.nom} className="frule frule-muted">
-              <div className="frule-title">{r.nom} {badgeAuto(d)}</div>
+              <div className="frule-title">{r.nom} {badgeAuto(d, r.nom)}</div>
               <div className="frule-text">{r.texte}</div>
               {d?.auto && <div className="frule-auto">⚙️ {d.auto}</div>}
             </div>

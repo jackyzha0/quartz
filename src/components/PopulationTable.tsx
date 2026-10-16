@@ -38,6 +38,7 @@ import { GenealogyTree } from './GenealogyTree'
 import { Card, Select, TextInput, Button, NumberInput, fmt } from './ui'
 import { ChoicePicker } from './Picker'
 import { traitDef } from '../engine/gameData'
+import { statutMinistre, pastilleClass } from '../engine/statutAuto'
 
 type SortKey = 'nom' | 'age' | 'dynastie' | 'ville' | 'titre' | 'statut'
 
@@ -591,11 +592,13 @@ export function PopulationTable({ joueur }: { joueur: number }) {
                       {c.ministere && (() => {
                         const ref = (C.config.ministeres ?? []).find((m) => m.ministere === c.ministere)
                         if (!ref) return null
+                        const st = statutMinistre(ref.mode)
                         return (
                           <div className="small muted" style={{ flexBasis: '100%' }}>
-                            <span className={`badge ${ref.mode === 'Auto' ? 'badge-good' : 'badge-neutral'}`}>
-                              {ref.mode === 'Auto' ? 'auto' : 'plateau'}
-                            </span>{' '}
+                            <span className={pastilleClass(st)} title={
+                              st === 'auto' ? 'Appliqué automatiquement par le moteur'
+                              : 'Impossible à automatiser (plateau)'
+                            } />
                             {ref.effet}
                           </div>
                         )
