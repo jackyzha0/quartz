@@ -22,10 +22,21 @@ drop trigger if exists touch_partie on public.parties;
 
 create table if not exists public.parties_chasse_peche (
   id         text primary key,          -- code du salon (ex: 'chasse-1')
-  state      jsonb not null,            -- GameState complet
+  state      jsonb not null,            -- GameState complet (etat de reference)
+  sections   jsonb,                     -- TOUR-SIMULTANE : sections des joueurs
+                                          --   { "<n>": { player, population, routes,
+                                          --     citesLibres, log, tour } }
+  turn_done  integer not null default 0, -- n.o du tour couvert par les sections
   updated_at timestamptz not null default now(),
   updated_by text
 );
+
+-- Migration des salons existants (idempotent) :
+alter table public.parties_chasse_peche
+  add column if not exists sections jsonb;
+alter table public.parties_chasse_peche
+  add column if not exists turn_done integer not null default 0;
+
 
 alter table public.parties_chasse_peche enable row level security;
 

@@ -125,6 +125,84 @@ export async function saveRemote(id: string, state: GameState): Promise<boolean>
   return !error
 }
 
+
+// ═══════════════════════════════════════════════════════════════════════
+//  TOUR-SIMULTANÉ — BARRIÈRE STRICTE (2026-10-16)
+//  Chaque joueur joue en LOCAL pendant le tour (zéro réseau par clic).
+//  Au « Fin de tour » il pousse SA SECTION ; quand tous les joueurs
+//  attendus ont poussé, le premier qui le constate fusionne, exécute
+//  runTurn() et publie le nouvel état de référence.
+// ═══════════════════════════════════════════════════════════════════════
+
+/** Section d'un joueur pour la barrière : tout ce qu'il peut modifier
+ *  pendant son tour. Sérialisée telle quelle (déjà compactée par
+ *  l'appelant si besoin). */
+export interface SectionJoueur {
+  player: unknown
+  population: unknown
+  routes: unknown
+  citesLibres: unknown
+  log: unknown
+  tour: number
+}
+
+/** Pousser MA section de fin de tour. Retourne l'état de la barrière
+ *  après écriture : { sections, turn_done } — null si erreur réseau. */
+export async function pousserSection(
+  id: string, n: number, section: SectionJoueur,
+): Promise<{ sections: Record<string, SectionJoueur>; turn_done: number } | null> {
+  const sb = getSupabase()
+  if (!sb) return null
+  // upsert de la clé sections."<n>" — Supabase (jsonb) : lire-modifier-écrire
+  //  via une requête unique avec jsonb_set serait idéale mais l'API REST
+  //  ne la propose pas : on lit, fusionne, écrit. Le risque de collision
+  //  est borné par la barrière : chaque n° écrit une clé distincte.
+  const { data: row, error: errLecture } = await sb
+    .from(TABLE).select('sections, turn_done').eq('id', id).maybeSingle()
+  if (errLecture || !row) return null
+  const sections = { ...((row.sections as Record<string, SectionJoueur>) ?? {}) }
+  // barrière incompatible (nouveau tour lancé entre-temps) : abandon
+  if ((row.turn_done ?? 0) !== section.tour) return null
+  sections[String(n)] = section
+  const { error: errEcriture } = await sb
+    .from(TABLE).update({
+      sections,
+      updated_by: CLIENT_ID,
+      updated_at: new Date().toISOString(),
+    }).eq('id', id)
+  if (errEcriture) return null
+  return { sections, turn_done: row.turn_done ?? 0 }
+}
+
+/** Publier l'état de référence du NOUVEAU tour (résolution de la
+ *  barrière) et réinitialiser les sections. */
+export async function publierEtatFusionne(
+  id: string, state: GameState,
+): Promise<boolean> {
+  const sb = getSupabase()
+  if (!sb) return false
+  const { error } = await sb.from(TABLE).update({
+    state,
+    sections: {},
+    turn_done: state.turn,
+    updated_by: CLIENT_ID,
+    updated_at: new Date().toISOString(),
+  }).eq('id', id)
+  return !error
+}
+
+/** Lire l'état de la barrière (sections poussées, tour couvert). */
+export async function lireBarriere(
+  id: string,
+): Promise<{ sections: Record<string, SectionJoueur> | null; turn_done: number } | null> {
+  const sb = getSupabase()
+  if (!sb) return null
+  const { data, error } = await sb
+    .from(TABLE).select('sections, turn_done').eq('id', id).maybeSingle()
+  if (error || !data) return null
+  return { sections: data.sections ?? null, turn_done: data.turn_done ?? 0 }
+}
+
 /** S'abonne aux changements du salon. Retourne la fonction de désabonnement.
  *
  * OPTIMISATION MULTIJOUEUR 2026-10-16 : à 16 000 habitants l'état

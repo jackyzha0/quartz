@@ -22,6 +22,13 @@ import * as remote from '../supabase/client'
 
 export type Mode = 'local' | 'supabase'
 
+/** État de la barrière du tour en cours (mode multijoueur) :
+ *  n° des joueurs qui ont poussé leur section de fin de tour. */
+export interface EtatBarriere {
+  prets: Set<number>
+  monTourPousse: boolean
+}
+
 interface GameContextValue {
   state: GameState | null
   mode: Mode
@@ -35,6 +42,12 @@ interface GameContextValue {
   setGlobalCfg: (fn: (c: GameConfig) => void) => void
   newGame: (setups: SetupLine[], seed: number, mode: Mode, salon?: string) => void
   joinGame: (salon: string) => Promise<boolean>
+  /** Mon n° de joueur dans le salon multijoueur (persisté par salon). */
+  monNumero: number
+  /** Le définir (choix à l'entrée du salon). */
+  setMonNumero: (n: number) => void
+  /** État de la barrière du tour (joueurs qui ont finit leur tour). */
+  barriere: EtatBarriere
   nextTurn: () => void
   update: (mutator: (s: GameState) => void) => void
   replaceState: (s: GameState) => void
@@ -73,6 +86,24 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [salon, setSalon] = useState<string>('')
   const [saving, setSaving] = useState(false)
   const [conflit, setConflit] = useState(false)
+  // ── TOUR-SIMULTANÉ (barrière stricte, 2026-10-16) ──
+  // Mon n° de joueur : persisté par salon (localStorage) — chaque
+  //  navigateur choisit son numéro à l'entrée du salon (SetupPanel).
+  const [monNumero, setMonNumero] = useState<number>(() => {
+    try {
+      const raw = localStorage.getItem('cpe.monNumero')
+      return raw ? parseInt(raw, 10) : 1
+    } catch { return 1 }
+  })
+  const monNumeroRef = useRef(monNumero)
+  useEffect(() => { monNumeroRef.current = monNumero }, [monNumero])
+  const setMonNumeroPersist = useCallback((n: number) => {
+    setMonNumero(n)
+    monNumeroRef.current = n
+    try { localStorage.setItem('cpe.monNumero', String(n)) } catch { /* noop */ }
+  }, [])
+  // Barrière du tour en cours : joueurs qui ont poussé leur section.
+  const [barriere, setBarriere] = useState<EtatBarriere>({ prets: new Set(), monTourPousse: false })
   const [lastSavedAt, setLastSavedAt] = useState<number | null>(null)
   const lastLocalEdit = useRef(0)
   // Revue 2026-10-15 (Q2/Q3 — multijoueur simultané) : les joueurs
@@ -210,23 +241,138 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     })
   }, [mode, salon, persist])
 
+  /**
+   * FIN DE TOUR — TOUR-SIMULTANÉ (barrière stricte, 2026-10-16).
+   *  Mode LOCAL : comportement inchangé (runTurn immédiat).
+   *  Mode SUPABASE : je pousse MA section (mes changements du tour),
+   *   puis on attend que TOUS les joueurs aient poussé. Le premier
+   *   client qui constate la barrière complète fusionne les sections
+   *   dans l'état de référence, exécute runTurn() et publie le
+   *   résultat — tout le monde reçoit le tour suivant par realtime.
+   *   Barrière STRICTE : le tour n'avance que si tous ont cliqué.
+   */
   const nextTurn = useCallback(() => {
-    setState((prev) => {
-      if (!prev) return prev
-      const popClone = structuredClone(prev.population)
-      const draft = {
-        ...structuredClone({ ...prev, population: {}, config: undefined }),
-        population: popClone,
-        config: prev.config,
-      } as GameState
-      for (const m of pendingMutators.current) m(draft)
-      pendingMutators.current = []
-      runTurn(draft)
-      lastLocalEdit.current = Date.now()
-      persist(draft, mode, salon)
-      return draft
-    })
+    // ── MODE LOCAL : runTurn immédiat ──
+    if (mode !== 'supabase' || !salon) {
+      setState((prev) => {
+        if (!prev) return prev
+        const popClone = structuredClone(prev.population)
+        const draft = {
+          ...structuredClone({ ...prev, population: {}, config: undefined }),
+          population: popClone,
+          config: prev.config,
+        } as GameState
+        for (const m of pendingMutators.current) m(draft)
+        pendingMutators.current = []
+        runTurn(draft)
+        lastLocalEdit.current = Date.now()
+        persist(draft, mode, salon)
+        return draft
+      })
+      return
+    }
+    // ── MODE SUPABASE : barrière stricte ──
+    void (async () => {
+      const st = stateRef.current
+      if (!st) return
+      const moi = monNumeroRef.current
+      // 1. extraire MA section (ce que j'ai modifié ce tour-ci)
+      const maSection: remote.SectionJoueur = {
+        player: structuredClone(st.players.find((q) => q.n === moi) ?? null),
+        population: structuredClone(st.population[moi] ?? []),
+        routes: structuredClone(st.routesCommerce ?? []),
+        citesLibres: structuredClone(st.citesLibres ?? []),
+        log: structuredClone(st.log.slice(-50)),
+        tour: st.turn,
+      }
+      setBarriere({ prets: new Set([moi]), monTourPousse: true })
+      // 2. pousser ma section
+      const apres = await remote.pousserSection(salon, moi, maSection)
+      if (!apres) {
+        setBarriere({ prets: new Set(), monTourPousse: false })
+        return
+      }
+      // 3. observer la barrière (poll léger) jusqu'à ce que tous
+      //    les joueurs de la partie aient poussé
+      const attendus = st.players.map((q) => q.n)
+      const prets = new Set(Object.keys(apres.sections ?? {}).map(Number))
+      setBarriere({ prets, monTourPousse: true })
+      if (prets.size >= attendus.length) {
+        // je suis le dernier : résoudre la barrière
+        await resoudreBarriere(apres.sections, attendus)
+      } else {
+        // attendre : poll toutes les 2 s (le realtime nous préviendra
+        //  aussi, le poll est le filet de sécurité)
+        void pollerBarriere(attendus)
+      }
+    })()
   }, [mode, salon, persist])
+
+  /** Résoudre la barrière : fusionner les sections dans l'état de
+   *  référence (téléchargé frais), exécuter runTurn, publier. */
+  const resoudreBarriere = useCallback(async (
+    sections: Record<string, remote.SectionJoueur>,
+    attendus: number[],
+  ) => {
+    // état de référence FRAIS (pas notre état local)
+    const ref = await remote.loadRemote(salon)
+    if (!ref) return
+    // fusionner chaque section dans le clone de référence
+    const popClone = structuredClone(ref.population)
+    const draft = {
+      ...structuredClone({ ...ref, population: {}, config: undefined }),
+      population: popClone,
+      config: ref.config,
+    } as GameState
+    const newLogs: unknown[] = []
+    for (const nStr of Object.keys(sections)) {
+      const n = Number(nStr)
+      const sec = sections[nStr]
+      if (!sec) continue
+      const pj = draft.players.find((q) => q.n === n)
+      if (pj && sec.player) Object.assign(pj, sec.player)
+      if (sec.population) draft.population[n] = sec.population as typeof draft.population[number]
+      if (sec.routes) draft.routesCommerce = sec.routes as typeof draft.routesCommerce
+      if (sec.citesLibres) draft.citesLibres = sec.citesLibres as typeof draft.citesLibres
+      if (Array.isArray(sec.log)) newLogs.push(...(sec.log as unknown[]))
+    }
+    // journal fusionné : entrées de tous les joueurs, triées par tour
+    const logFusionne = [...draft.log, ...(newLogs as typeof draft.log)]
+    draft.log = logFusionne.slice(-Math.max(50, draft.log.length))
+    void attendus
+    // exécuter le tour
+    runTurn(draft)
+    // publier le nouvel état de référence
+    const ok = await remote.publierEtatFusionne(salon, draft)
+    if (ok) {
+      stateRef.current = draft
+      setState(draft)
+      lastLocalEdit.current = 0
+      setBarriere({ prets: new Set(), monTourPousse: false })
+      setConflit(false)
+    }
+  }, [salon])
+
+  /** Poller la barrière jusqu'à résolution (filet de sécurité du
+   *  realtime ; s'arrête dès que la barrière est complète ou que le
+   *  tour a changé). */
+  const pollerBarriere = useCallback(async (attendus: number[]) => {
+    const tourDebut = stateRef.current?.turn ?? 0
+    for (let i = 0; i < 60; i++) {  // max 2 minutes
+      await new Promise((r) => setTimeout(r, 2000))
+      const b = await remote.lireBarriere(salon)
+      if (!b) continue
+      // le tour a été résolu par quelqu'un d'autre : le realtime
+      //  nous amènera l'état ; on arrête le poll
+      if (b.turn_done !== tourDebut) { setBarriere({ prets: new Set(), monTourPousse: false }); return }
+      const prets = new Set(Object.keys(b.sections ?? {}).map(Number))
+      setBarriere({ prets, monTourPousse: true })
+      if (prets.size >= attendus.length) {
+        await resoudreBarriere(b.sections ?? {}, attendus)
+        return
+      }
+    }
+  }, [salon, resoudreBarriere])
 
   const newGame = useCallback((setups: SetupLine[], seed: number, m: Mode, salonId?: string) => {
     // La nouvelle part démarre avec la configuration commune actuelle,
@@ -361,8 +507,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     state, mode, salon, saving, conflit, lastSavedAt,
     globalConfig, setGlobalCfg,
     newGame, joinGame, nextTurn, update, replaceState, saveNow, reset, importState, exportState,
+    monNumero, setMonNumero: setMonNumeroPersist, barriere,
   }), [state, mode, salon, saving, conflit, lastSavedAt, globalConfig, setGlobalCfg,
-    newGame, joinGame, nextTurn, update, replaceState, saveNow, reset, importState, exportState])
+    newGame, joinGame, nextTurn, update, replaceState, saveNow, reset, importState, exportState,
+    monNumero, setMonNumeroPersist, barriere])
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>
 }
