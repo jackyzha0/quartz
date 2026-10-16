@@ -941,6 +941,18 @@ function gardeFous(m: GameConfig): void {
   //  la personnalisation (coûts édités, suppressions) persiste. Clé : nom.
   //  Une construction existante du même nom N'EST PAS écrasée.
   if (Array.isArray(m.constructions)) {
+    // Mise à jour des RANGS d'habitation (revue 2026-10-15 : les
+    //  configs convergées gardaient les anciens défauts — sans
+    //  rangMinHabitation — d'où l'absence de séparation par rang
+    //  dans le picker). La règle du référentiel fait foi ; une
+    //  construction EXISTANTE du même nom dont le rang diffère est
+    //  actualisée (les autres champs — coûts édités — sont
+    //  préservés).
+    const parNom = new Map(DEFAULT_CONFIG.constructions.map((c) => [c.nom, c]))
+    for (const c of m.constructions) {
+      const def = parNom.get(c.nom)
+      if (def && def.rangMinHabitation !== undefined) c.rangMinHabitation = def.rangMinHabitation
+    }
     const connus = new Set(m.constructions.map((c) => c.nom))
     for (const def of DEFAULT_CONFIG.constructions) {
       if (!connus.has(def.nom)) m.constructions.push(def)

@@ -386,8 +386,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
     const type = (ville.type ?? 'Ville').toLowerCase()
     const estCapitale = ville.nom === nomCapitale
     const rang = rangNiveau(ville, C)
+    // Les bâtiments de CAPITALE sont ajoutés explicitement plus bas (une
+    //  seule fois) — okGroupe les EXCLUT pour éviter le doublon.
     const okGroupe = (b: { groupe: string; famille?: string }) =>
-      b.groupe === 'Capitale' ? estCapitale
+      b.groupe === 'Capitale' ? false
       // Les MERVEILLES se construisent dans les DEUX types d'habitation
       //  (Ville et Château) — leur description dit « Habitation rang
       //  1+/2+/3 » sans distinction de type.
