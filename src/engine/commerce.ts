@@ -310,14 +310,31 @@ export function creerRouteCommerce(
       })
     }
   }
-  if (!marchandId) {
-    return 'Choisis un marchand (titre « Marchand » attribué à un personnage vivant, page Population).'
-  }
-  const m = (state.population[joueur] ?? []).find((c) => c.id === marchandId)
-  if (!m || m.statut === 'Décédé') return 'Marchand introuvable ou décédé.'
-  if (m.titre !== TITRE_MARCHAND) return `${fullName(m)} ne porte pas le titre ${TITRE_MARCHAND}.`
-  if (routesCommerceDe(state, joueur).some((r) => r.marchandId === marchandId)) {
-    return `${fullName(m)} tient déjà une route commerciale (un marchand ne tient qu'une route).`
+  // Revue 2026-10-16 (retour Thibaut) : une route commerciale peut
+  //  être créée EN TOUTE SITUATION. Si le marchand fourni est
+  //  invalide (absent, décédé, non titré, tient déjà une route), un
+  //  ROTURIER VIVANT reçoit automatiquement le titre de Marchand pour
+  //  tenir la route — plus aucun refus lié au personnage.
+  const popJoueur = state.population[joueur] ?? []
+  let m = marchandId ? popJoueur.find((c) => c.id === marchandId) : undefined
+  const invalide = !m || m.statut === 'Décédé' || m.titre !== TITRE_MARCHAND
+    || routesCommerceDe(state, joueur).some((r) => r.marchandId === marchandId)
+  if (invalide) {
+    // roturier disponible : adulte vivant sans titre ni titre
+    //  spécialisé, dans une ville du joueur.
+    const roturier = popJoueur.find((c) =>
+      c.statut !== 'Décédé' && c.age >= C.p.adultAge &&
+      (!c.titre || c.titre === C.p.titreChasseur) &&
+      pj?.villes.some((v) => v.nom === c.ville))
+    if (!roturier) {
+      return 'Aucun roturier disponible pour tenir la route (population adulte vide).'
+    }
+    roturier.titre = TITRE_MARCHAND
+    m = roturier
+    state.log.push({
+      turn: state.turn, type: 'Commerce', joueur,
+      texte: `🛒 ${fullName(roturier)} reçoit le titre de Marchand pour tenir la nouvelle route.`,
+    })
   }
   if (joueurCible === joueur) return "La route doit viser la ville d'un autre joueur."
   const cible = state.players.find((q) => q.n === joueurCible)
@@ -330,9 +347,10 @@ export function creerRouteCommerce(
   if (cops.length === 0) {
     return `« ${amenagement} » n'a aucune production copiable.`
   }
+  if (!m) return 'Aucun personnage disponible pour tenir la route.'
   ;(state.routesCommerce ?? (state.routesCommerce = [])).push({
-    id: `rc-${marchandId}-${joueurCible}-${villeCible}`,
-    joueur, marchandId, joueurCible, villeCible, amenagement,
+    id: `rc-${m.id}-${joueurCible}-${villeCible}`,
+    joueur, marchandId: m.id, joueurCible, villeCible, amenagement,
   })
   state.log.push({
     turn: state.turn, type: 'Commerce', joueur,

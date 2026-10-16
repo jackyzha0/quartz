@@ -1253,7 +1253,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
           // introuvable » (les Selects contrôlés jamais touchés
           // gardaient '' comme valeur).
           const autresJoueurs = state.players.filter((q) => q.n !== p.n)
-          const mEff = rcMarchand || libres[0]?.id || ''
+          const mEff = rcMarchand ?? ''
           const jEff = rcJoueur || String(autresJoueurs[0]?.n ?? '')
           const joueurCibleForm = state.players.find((q) => String(q.n) === jEff)
           const vEff = rcVille || joueurCibleForm?.villes[0]?.nom || ''
@@ -1356,10 +1356,17 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   }).join(' · ')}
                 </p>
               )}
-              {libres.length > 0 ? (
+              {true ? (
                 <div className="filters" style={{ alignItems: 'flex-end', flexWrap: 'wrap' }}>
                   <Field label="Marchand">
-                    <Select value={mEff} options={libres.map((c) => ({ value: c.id, label: `${fullName(c)} (${c.ville})` }))} onChange={setRcMarchand} />
+                    <Select
+                      value={mEff}
+                      options={[
+                        { value: '', label: '— Automatique (un roturier sera promu)' },
+                        ...libres.map((c) => ({ value: c.id, label: `${fullName(c)} (${c.ville})` })),
+                      ]}
+                      onChange={setRcMarchand}
+                    />
                   </Field>
                   <Field label="Joueur ciblé">
                     <Select value={jEff} options={autresJoueurs.map((q) => ({ value: String(q.n), label: q.nom }))} onChange={(v) => { setRcJoueur(v); setRcVille(''); setRcAmen('') }} />
@@ -1379,10 +1386,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
                 </div>
               ) : (
                 <p className="muted small">
-                  Aucun marchand disponible pour l'instant — ils sont nommés
-                  automatiquement à chaque fin de tour (il te faut des routes
-                  ouvertes ou un cap supérieur à 0 : techs Commerce/Collecte d'impôts,
-                  Echoppes, Plateformes commerciales, Guildes des marchands).
+                  Aucun marchand titré pour l'instant — laisse « — Automatique » :
+                  un roturier de ta population recevra le titre de Marchand en
+                  ouvrant la route.
                 </p>
               )}
               {rcErr && <p className="small" style={{ color: '#E74C3C', marginBottom: 0 }}>{rcErr}</p>}
