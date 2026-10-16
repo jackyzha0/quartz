@@ -237,7 +237,7 @@ export function runTurn(state: GameState): GameState {
   }
 
   // 3decies. Cités libres : chaque cité libre possédant un suzerain lui
-  // verse ses taxes (production nette de ses habitants, Chasseurs ×2
+  // verse ses taxes (production nette de ses habitants, Chasseurs ×1,1
   // Nourriture — engine/citesLibres.ts), canal « Cités libres ».
   const citesLibresParJoueur: Record<number, Record<string, number>> =
     appliquerTaxesCitesLibres(state, C)
@@ -394,7 +394,7 @@ export {
   citesSuzerainesDe, detailCiteLibre, taxesCitesLibresRecues,
   appliquerTaxesCitesLibres, ajouterHabitantsCiteLibre, taxesCite,
   ajouterFamilleNobleCiteLibre, titresAccessiblesCite,
-  pseudoJoueurDeCite, CONSO_NOURR_CITE_LIBRE,
+  pseudoJoueurDeCite, MULT_NOURR_CHASSEUR_CITE,
   type DetailCiteLibre,
 } from './citesLibres'
 export {

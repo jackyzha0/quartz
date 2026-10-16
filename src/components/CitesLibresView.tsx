@@ -3,8 +3,9 @@
 //  libres » du référentiel) :
 //    · chaque cité possède sa PROPRE POPULATION (habitants titrés,
 //      roturiers OU nobles — les Chasseurs des cités libres produisent
-//      le DOUBLE de Nourriture, la cité consomme 1 Nourriture par
-//      tour). Retour Thibaut (2026-10-14, suite) : la population n'est
+//      1,1 × la Nourriture, la population consomme de la Nourriture
+//      comme une ville de joueur). Retour Thibaut (2026-10-14, suite) :
+//      la population n'est
 //      PLUS gérée ici — elle vit dans l'onglet « 👥 Population »,
 //      avec un onglet 🗼 par cité « comme si c'étaient des joueurs »
 //      (mêmes tableaux, ajout, titres, dons et mariages) ;
@@ -183,11 +184,10 @@ export function CitesLibresView() {
       <Card title="🗼 Cités libres — règle et fonctionnement">
         <p className="small muted pre-wrap">{C.config.regleCitesLibres}</p>
         <div className="badges-wrap">
-          <Badge tone="good">✓ population : habitants titrés (Chasseurs ×2 Nourriture)</Badge>
+          <Badge tone="good">✓ population : habitants titrés (Chasseurs ×1,1 Nourriture)</Badge>
           <Badge tone="good">✓ garnison : 100 + 40 × rang de pays le plus haut (auto)</Badge>
           <Badge tone="good">✓ taxes au suzerain : versées à chaque fin de tour (canal « Cités libres »)</Badge>
-          <Badge tone="warn">émissaires / influence : 1 tentative par saison au plateau (suivi ici)</Badge>
-          <Badge tone="warn">batailles / annexions : manuel</Badge>
+          <Badge tone="good">✓ consommation de Nourriture : par habitant vivant, comme une ville de joueur</Badge>
         </div>
         <p className="muted small">
           Chaque cité libre sous suzeraineté verse ses taxes à son suzerain à chaque fin de tour
@@ -386,7 +386,7 @@ export function CitesLibresView() {
             <div className="small">
               <span className="muted">
                 {d.habitants} vivant(s), dont {d.chasseurs} chasseur(s)
-                {d.chasseurs > 0 && <> — <strong>Nourriture ×2</strong> (règle des cités libres)</>}
+                {d.chasseurs > 0 && <> — <strong>Nourriture ×1,1</strong> (règle des cités libres)</>}
                 {' '}· taxes ×{d.taxeMult}
               </span>
               <div className="badges-wrap">

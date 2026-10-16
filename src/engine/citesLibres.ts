@@ -3,8 +3,8 @@
 //  Une cité libre est une habitation sans joueur (règle « Cités libres »
 //  du référentiel). Elle possède sa PROPRE POPULATION : ses habitants
 //  ont des titres comme ceux d'une ville de joueur, avec une règle
-//  propre aux cités libres — les Chasseurs y produisent le DOUBLE de
-//  Nourriture.
+//  propre aux cités libres — les Chasseurs y produisent 1,1 × la
+//  Nourriture (revue 2026-10-16).
 //  Garnison (règle du référentiel) : 100 + 40 par rang de pays du
 //  joueur ayant le plus haut rang (valeur d'état, batailles manuelles).
 //  Suzerain : lorsqu'un joueur devient suzerain de la cité (3
@@ -13,9 +13,9 @@
 //  production nette (titres × niveau de taxes de la cité, moins sa
 //  consommation), plafonnée à 0 par ressource — canal « Cités
 //  libres » du récap ressources.
-//  Retour Thibaut (2026-10-14) : une cité libre CONSOMME 1 Nourriture
-//  par tour (PLAT, indépendant de l'effectif — voir
-//  CONSO_NOURR_CITE_LIBRE), sa population démarre à 50 habitants et
+//  La population d'une cité libre CONSOMME de la Nourriture comme une
+//  ville de joueur (consoNourrParHab par habitant vivant — voir
+//  engine/economie.ts) ; sa population démarre à 50 habitants et
 //  est gérée dans l'onglet « 👥 Population » comme si c'était un
 //  joueur (roturiers OU nobles, dons et mariages inter-porteurs).
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
@@ -29,9 +29,11 @@ import { rangPaysNiveau } from './factions'
 import { aMinistre } from './ministeres'
 import { isNobleDyn } from './shared'
 
-/** Consommation d'une cité libre : 1 Nourriture par tour, PLATE
- *  (retour Thibaut 2026-10-14 — indépendante de l'effectif). */
-export const CONSO_NOURR_CITE_LIBRE = 1
+/** Consommation d'une cité libre : même règle qu'une ville de joueur —
+ *  chaque habitant vivant consomme consoNourrParHab Nourriture par tour. */
+/** Multiplicateur de Nourriture des Chasseurs d'une cité libre : ×1,1
+ *  (revue 2026-10-16 — était ×2). */
+export const MULT_NOURR_CHASSEUR_CITE = 1.1
 
 // ── État ──────────────────────────────────────────────────────────────
 
@@ -67,15 +69,15 @@ export function citesSuzerainesDe(state: GameState, p: Player): CiteLibre[] {
   return citesLibresDe(state).filter((c) => c.suzerain === p.n)
 }
 
-// ── Gains de la population de la cité (chasseurs ×2 Nourriture) ────────
+// ── Gains de la population de la cité (chasseurs ×1,1 Nourriture) ──────
 
 /** Détail des gains d'une cité libre, canal par canal :
  *    titres     : production brute des titres des habitants vivants —
- *                 les Chasseurs produisent le DOUBLE de Nourriture,
+ *                 les Chasseurs produisent 1,1 × la Nourriture,
  *    taxeMult   : multiplicateur de taxes de la cité,
  *    taxes      : production taxée (= titres × taxeMult),
- *    conso      : consommation de la cité (négative — 1 Nourriture
- *                par tour, plate),
+ *    conso      : consommation de la cité (négative — Nourriture par
+ *                habitant vivant, comme une ville de joueur),
  *    net        : taxes − conso (peut être négatif),
  *    transfert  : net plafonné à 0 par ressource, × gainsCrediteStock
  *                 — ce que le suzerain reçoit réellement. */
@@ -91,8 +93,8 @@ export interface DetailCiteLibre {
 }
 
 /** Production brute des titres des habitants vivants d'une cité libre.
- *  Règle propre aux cités libres : les Chasseurs produisent le DOUBLE
- *  de Nourriture (les autres ressources du titre sont inchangées). */
+ *  Règle propre aux cités libres : les Chasseurs produisent 1,1 × la
+ *  Nourriture (les autres ressources du titre sont inchangées). */
 export function detailCiteLibre(cite: CiteLibre, C: Cfg): DetailCiteLibre {
   const vivants = (cite.population ?? []).filter((c) => c.statut !== 'Décédé')
   const titres: Record<string, number> = {}
@@ -104,11 +106,11 @@ export function detailCiteLibre(cite: CiteLibre, C: Cfg): DetailCiteLibre {
     const chass = c.titre === C.p.titreChasseur
     if (chass) chasseurs++
     if (td.ressource1 && td.valeur1 !== 0) {
-      const v = chass && td.ressource1 === 'Nourriture' ? td.valeur1 * 2 : td.valeur1
+      const v = chass && td.ressource1 === 'Nourriture' ? td.valeur1 * MULT_NOURR_CHASSEUR_CITE : td.valeur1
       titres[td.ressource1] = (titres[td.ressource1] ?? 0) + v
     }
     if (td.ressource2 && td.valeur2 !== 0) {
-      const v = chass && td.ressource2 === 'Nourriture' ? td.valeur2 * 2 : td.valeur2
+      const v = chass && td.ressource2 === 'Nourriture' ? td.valeur2 * MULT_NOURR_CHASSEUR_CITE : td.valeur2
       titres[td.ressource2] = (titres[td.ressource2] ?? 0) + v
     }
   }
@@ -119,10 +121,11 @@ export function detailCiteLibre(cite: CiteLibre, C: Cfg): DetailCiteLibre {
     const tv = v * taxeMult
     if (tv !== 0) taxes[res] = tv
   }
-  // Consommation de la cité (retour Thibaut 2026-10-14) : 1 Nourriture
-  //  par tour, PLATE — quel que soit l'effectif.
+  // Consommation de la cité : comme une ville de joueur — la population
+  //  vivante consomme consoNourrParHab Nourriture par habitant et par tour.
   const conso: Record<string, number> = {}
-  conso['Nourriture'] = -CONSO_NOURR_CITE_LIBRE
+  const consoNourr = C.p.consoNourrParHab * vivants.length
+  if (consoNourr !== 0) conso['Nourriture'] = -consoNourr
   // Net = taxes − conso
   const net: Record<string, number> = {}
   for (const [res, v] of Object.entries(taxes)) net[res] = (net[res] ?? 0) + v
@@ -187,7 +190,7 @@ export function appliquerTaxesCitesLibres(
     if (parts.length > 0) {
       state.log.push({
         turn: state.turn + 1, type: 'Système', joueur: suz.n,
-        texte: `🗼 Cités libres — ${suz.nom} reçoit les taxes de ${cite.nom} (${d.habitants} hab., ${d.chasseurs} chasseur(s) : Nourriture ×2) : ${parts.join(', ')}.`,
+        texte: `🗼 Cités libres — ${suz.nom} reçoit les taxes de ${cite.nom} (${d.habitants} hab., ${d.chasseurs} chasseur(s) : Nourriture ×1,1) : ${parts.join(', ')}.`,
       })
     }
   }

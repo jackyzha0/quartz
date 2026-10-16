@@ -79,8 +79,8 @@ export function createGame(setups: SetupLine[], seed: number, mode?: 'local' | '
   // Cités libres : AUTANT de cités libres que de joueurs (retour
   //  Thibaut 2026-10-14 : une par joueur, créées AUTOMATIQUEMENT).
   // Chaque cité démarre avec 50 habitants (adultes Chasseurs —
-  // Nourriture ×2 pour les cités libres) et consomme 1 Nourriture par
-  // tour. Retour Thibaut (suite) : culture et type tirés AU HASARD
+  // Nourriture ×1,1 pour les cités libres) ; la population consomme
+  //  de la Nourriture comme une ville de joueur.
   // (plus de répartition tournante), et type d'habitation Hameau ou
   // Château tiré au hasard. Tout est modifiable ensuite dans
   // l'onglet « 🗼 Cités libres ».
@@ -102,7 +102,7 @@ export function createGame(setups: SetupLine[], seed: number, mode?: 'local' | '
   }
   state.log.push({
     turn: 1, type: 'Système', joueur: null,
-    texte: `🗼 ${state.citesLibres.length} cités libres créées (une par joueur) — chacune démarre avec 50 habitants (Chasseurs : Nourriture ×2), une culture et un type tirés au hasard (habitation Hameau ou Château), et consomme 1 Nourriture par tour. Chaque joueur démarre avec 1 ville de 50 habitants et 100 Nourriture, 80 Or, 15 Bois.`,
+    texte: `🗼 ${state.citesLibres.length} cités libres créées (une par joueur) — chacune démarre avec 50 habitants (Chasseurs : Nourriture ×1,1), une culture et un type tirés au hasard (habitation Hameau ou Château) ; sa population consomme de la Nourriture comme une ville de joueur. Chaque joueur démarre avec 1 ville de 50 habitants et 100 Nourriture, 80 Or, 15 Bois.`,
   })
   return state
 }

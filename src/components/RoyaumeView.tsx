@@ -356,7 +356,7 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
                     : cites.map((c) => (
                       <div key={c.nom} className="muted small">
                         <strong>{c.nom}</strong> — verse ses taxes à chaque fin de tour
-                        (Chasseurs ×2 Nourriture, canal « Cités libres »).
+                        (Chasseurs ×1,1 Nourriture, canal « Cités libres »).
                       </div>
                     ))}
                 </div>
