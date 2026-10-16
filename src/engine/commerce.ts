@@ -25,6 +25,8 @@ import { cfgOf, type Cfg } from './gameData'
 import { fullName } from './shared'
 import { amenagementRef } from './amenagements'
 import { effetsConstructionRef, effetsEteConstructionRef } from './constructions'
+import { nbBatiments } from './factions'
+import { aTech } from './progresAuto'
 
 /** Nom du titre (fixe, comme « Ministre » dans engine/ministeres.ts). */
 export const TITRE_MARCHAND = 'Marchand'
@@ -208,12 +210,20 @@ export function appliquerEffetsCommerce(
  *  convention « dons et mariages », marqueur (r)). */
 /** Nombre maximal de marchands d'un joueur (revue 2026-10-15) :
  *  paramètre maxMarchands (0 par défaut) + 1 par règle de faction qui
- *  accorde un marchand supplémentaire (Krovors « Caravanes »). */
+ *  accorde un marchand supplémentaire, +1 par technologie « marchand
+ *  supplémentaire » (Commerce, Collecte d'impôts), +1 par Plateforme
+ *  commerciale ou Guilde des marchands (qui la remplace), +1 par Echoppe
+ *  (« permet d'entretenir 1 route commerciale supplémentaire »). */
 export function maxMarchandsJoueur(
   p: Player,
   C: { p: { maxMarchands: number } } & import('./gameData').Cfg,
 ): number {
   let max = C.p.maxMarchands
+  if (aTech(p, 'Commerce', C)) max += 1
+  if (aTech(p, "Collecte d'impôts", C)) max += 1
+  max += nbBatiments(p, 'Plateforme commerciale')
+  max += nbBatiments(p, 'Guilde des marchands')
+  max += nbBatiments(p, 'Echoppe')
   return max
 }
 
