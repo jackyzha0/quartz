@@ -51,6 +51,7 @@ export function fluxProgresJoueur(state: GameState, p: Player, C: Cfg): Record<s
   // ── prodCapitale : la capitale produit +N ──
   if (cap) {
     if (aTech(p, 'Comprendre la soie', C)) add('Science', 1)
+    if (aTech(p, 'Technologies futures I', C)) add('Science', 3)
     if (aTech(p, 'Etude astronomique', C)) add('Science', 1)
     if (aTech(p, 'Lumi\u00e8re', C)) add('Science', 1)
     if (aTech(p, 'D\u00e9forestation', C)) add('Bois', 1)
