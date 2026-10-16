@@ -33,6 +33,14 @@ const TECHS: Record<string, StatutAuto> = {
   // ── ROUGE : plateau / non mod\u00e9lis\u00e9 ──
   'P\u00eache de culture': 'auto', 'Expansion maritime': 'auto',
   'Rations': 'impossible', 'Service militaire': 'impossible',
+  // Revue 2026-10-16 (techs manquantes) : Muraille et Défense
+  //  nationale A1 = garnisons automatiques ; éco C = rang + Or
+  //  automatiques ; futur C = ministre supplémentaire (avertissement).
+  'Muraille': 'auto', 'Progrès de la défense nationale A1': 'auto',
+  'Progrès du développement économique C': 'auto',
+  'Progrès du développement futur C': 'auto',
+  // Art de la Guerre : choix de liste APRÈS l'adversaire — plateau.
+  'Art de la Guerre': 'impossible',
   'Raliement ! I': 'impossible', 'Strat\u00e9gies militaires I': 'auto',
   'Eriger des murs': 'impossible', 'Quadrilat\u00e8re strat\u00e9gique': 'impossible',
   'Conqu\u00eate maritime': 'impossible', 'D\u00e9l\u00e9gation': 'impossible', 'Ambassade': 'impossible',

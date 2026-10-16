@@ -4561,7 +4561,7 @@
       "techC": {
         "nom": "Muraille",
         "cout": "30",
-        "description": "+10 Défense dans vos habitations."
+        "description": "+40 Garnison dans vos habitations."
       }
     },
     {
@@ -4812,7 +4812,7 @@
       "techC": {
         "nom": "Art de la Guerre",
         "cout": "66",
-        "description": "Lorsque vous menez une bataille, vous pouvez choisir votre liste de renforts."
+        "description": "Lorsque vous menez une bataille, vous pouvez choisir votre liste d'armée après votre adversaire."
       }
     },
     {
@@ -4821,9 +4821,9 @@
       "tags": "",
       "brancheA": [
         {
-          "nom": "",
-          "cout": "",
-          "description": ""
+          "nom": "Progrès de la défense nationale A1",
+          "cout": "20",
+          "description": "+40 Garnison dans vos habitations."
         },
         {
           "nom": "Réservistes",
@@ -4913,9 +4913,14 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Progrès du développement futur C",
+        "cout": "60",
+        "description": "Vous pouvez posséder 1 ministre supplémentaire.",
+        "effets": [
+          {
+            "type": "ministreSup"
+          }
+        ]
       }
     },
     {
@@ -4968,9 +4973,18 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Progrès du développement économique C",
+        "cout": "40",
+        "description": "Lorsque vous débloquez cette technologie, montez de rang de pays puis recevez 50 Or par ministre que vous possédez.",
+        "effets": [
+          {
+            "type": "rangPays"
+          },
+          {
+            "type": "orParMinistre",
+            "montant": 50
+          }
+        ]
       }
     },
     {

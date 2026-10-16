@@ -152,6 +152,15 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   const maxMinistres =
     (rangsPays[idxRangJoueur]?.ministres ?? rangsPays[0]?.ministres ?? 1)
     + (p?.peuple === 'Basiléens' && p?.regleAge3 === 'Suzeraineté' ? 1 : 0)
+    + (p?.progresDebloques?.some((k) => {
+      // « Progrès du développement futur C » : +1 ministre (revue 2026-10-16)
+      const C2 = C
+      const [iStr, slot] = k.split(':')
+      const a = C2.config.progres[Number(iStr)]
+      if (!a) return false
+      const t = slot === 'c' ? a.techC : (slot[0] === 'a' ? a.brancheA : a.brancheB)[+slot[1] - 1]
+      return t?.nom === 'Progrès du développement futur C'
+    }) ? 1 : 0)
   const nbMinistres = pop.filter((c) => c.titre === 'Ministre' && c.statut !== 'Décédé' && c.ministere).length
 
   // Aucune contrainte bloquante : le titre est TOUJOURS appliqué ;

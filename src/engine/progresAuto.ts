@@ -151,7 +151,7 @@ function citesSuzerainesCount(state: GameState, p: Player): number {
 /** One-shot au DÉBLOCAGE d'une technologie (appelé par ProgresView) :
  *  crédite Science / Or / Habitants / Émissaires et retourne un texte
  *  de log (vide = rien à créditer). */
-export function gainDeblocageProgres(p: Player, nomTech: string): string {
+export function gainDeblocageProgres(state: GameState, p: Player, nomTech: string): string {
   const credit = (res: string, v: number): string => {
     if (res === '\u00c9missaires') {
       p.emissaires = (p.emissaires ?? 0) + v
@@ -181,6 +181,13 @@ export function gainDeblocageProgres(p: Player, nomTech: string): string {
     case 'Taxe n\u00e9c\u00e9ssaire I': return credit('Or', 250)
     case 'Taxes n\u00e9c\u00e9ssaire II': return credit('Or', 300)
     case '\u00c9missaires de cour': return credit('\u00c9missaires', 1)
+    case 'Progrès du développement économique C': {
+      // Revue 2026-10-16 : 50 Or par ministre en poste au déblocage
+      //  (la montée de rang est gérée par ProgresView, qui a l'état).
+      const nbMinistres = (state.population[p.n] ?? [])
+        .filter((c) => c.statut !== 'Décédé' && c.titre === 'Ministre' && c.ministere).length
+      return nbMinistres > 0 ? credit('Or', 50 * nbMinistres) : ''
+    }
     case 'Geste': return credit('\u00c9missaires', 1)
     case 'Offrande': return credit('\u00c9missaires', 1)
     default: return ''
@@ -238,6 +245,8 @@ export function lignesGarnisonProgresVille(p: Player, ville: City, C: Cfg): Lign
   const out: LigneGarnison[] = []
   if (aTech(p, 'Milices civiles I', C) && estCap) out.push({ label: 'Milices civiles I (capitale)', valeur: 30 })
   if (aTech(p, 'Fortifications solides', C)) out.push({ label: 'Fortifications solides', valeur: 15 })
+  if (aTech(p, 'Muraille', C)) out.push({ label: 'Muraille', valeur: 40 })
+  if (aTech(p, 'Progrès de la défense nationale A1', C)) out.push({ label: 'Défense nationale A1', valeur: 40 })
   if (aTech(p, 'Milices civiles III', C)) out.push({ label: 'Milices civiles III', valeur: 20 })
   if (aTech(p, 'Milices civiles V', C)) out.push({ label: 'Milices civiles V', valeur: 40 })
   if (aTech(p, 'Pr\u00e9 carr\u00e9', C)) out.push({ label: 'Pr\u00e9 carr\u00e9', valeur: 20 })

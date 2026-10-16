@@ -165,7 +165,21 @@ export function ProgresView({ joueur }: { joueur: number }) {
         if (t?.nom === 'Stratégies militaires I') {
           q.prochaineArmeeReduite = true
         }
-        const gainTxt = gainDeblocageProgres(q, t?.nom ?? '')
+        // Progrès du développement économique C (revue 2026-10-16) :
+        //  montée de rang de pays IMMÉDIATE (sacre gratuit).
+        if (t?.nom === 'Progrès du développement économique C') {
+          const rangs = cfgOf(st.config).config.paysRangs ?? []
+          const idx = rangs.findIndex((r) => r.nom === (q.rang ?? ''))
+          const next = rangs[Math.min(idx + 1, rangs.length - 1)]
+          if (next && next.nom !== q.rang) {
+            q.rang = next.nom
+            st.log.push({
+              turn: st.turn, type: 'Système', joueur: q.n,
+              texte: `👑 ${q.nom} monte au rang de pays ${next.nom} (Progrès du développement économique C).`,
+            })
+          }
+        }
+        const gainTxt = gainDeblocageProgres(st, q, t?.nom ?? '')
         const emissTxt = gainTxt ? ` — ${gainTxt}.` : ''
         if (crystal) {
           st.rngState = makeRng(st.rngState).state()
