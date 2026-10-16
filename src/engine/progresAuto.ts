@@ -21,7 +21,7 @@
 import type { GameState, Player, City } from './types'
 import { cfgOf, type Cfg } from './gameData'
 import { capitaleDe } from './factions'
-import { rangNiveau } from './regimes'
+import { rangNiveau, garnisonHabitationVille } from './regimes'
 
 const rangNiveauVille = rangNiveau
 import { portefeuillesDuJoueur } from './ministeres'
@@ -96,6 +96,36 @@ export function fluxProgresJoueur(state: GameState, p: Player, C: Cfg): Record<s
   if (nbChamps > 0) {
     if (aTech(p, 'Engrais naturels I', C)) add('Nourriture', 2 * nbChamps)
     if (aTech(p, 'Engrais naturels II', C)) add('Nourriture', 3 * nbChamps)
+  }
+  // ── Service militaire avanc\u00e9 (17:b2) : habitations +0,5 \u00d7 garnison
+  //  d'habitants par tour (doublon renomm\u00e9, revue 2026-10-16) ───────
+  if (aTech(p, 'Service militaire avanc\u00e9', C)) {
+    let bonusHab = 0
+    for (const v of p.villes) bonusHab += 0.5 * garnisonHabitationVille(p, v, C, state)
+    if (bonusHab > 0) add('Habitants', bonusHab)
+  }
+  // ── Exploitation foresti\u00e8re (21:a2) : les Scieries produisent du
+  //  Charbon au lieu du Bois (doublon renomm\u00e9) ───────────────
+  if (aTech(p, 'Exploitation foresti\u00e8re', C)) {
+    const nbScieries = p.villes.reduce(
+      (n, v) => n + (v.amenagements ?? []).filter((a) => a === 'Scierie').length, 0)
+    if (nbScieries > 0) {
+      add('Bois', -1 * nbScieries)
+      add('Charbon', 1 * nbScieries)
+    }
+  }
+  // ── Industrialisation (21:b2) : +1 Charbon par tour et par b\u00e2timent
+  //  (doublon renomm\u00e9 ; r\u00e9duction de co\u00fbt \u00e0 la construction) ────────
+  if (aTech(p, 'Industrialisation', C)) {
+    const nbBat = p.villes.reduce((n, v) => n + v.batiments.length, 0)
+    if (nbBat > 0) add('Charbon', nbBat)
+  }
+  // ── Merveilles naturelles (18:b2) : +10 Tourisme par merveille et
+  //  par tour (doublon renomm\u00e9 ; r\u00e9duction \u00e0 la construction) ───────
+  if (aTech(p, 'Merveilles naturelles', C)) {
+    let nbMervNat = 0
+    for (const v of p.villes) nbMervNat += v.batiments.filter((b) => (C.config.constructions ?? []).find((c) => c.nom === b)?.famille === 'Merveille').length
+    if (nbMervNat > 0) add('Tourisme', 10 * nbMervNat)
   }
   // ── Charues (21:a1) : champs +5 Nourriture et +1 Or par tour —──────────
   if (nbChamps > 0 && aTech(p, 'Charues', C)) {
@@ -209,6 +239,7 @@ export function gainDeblocageProgres(state: GameState, p: Player, nomTech: strin
       return nbMinistres > 0 ? credit('Or', 50 * nbMinistres) : ''
     }
     case 'Geste': return credit('\u00c9missaires', 1)
+    case 'Hommage solennel': return credit('\u00c9missaires', 2)
     case 'Offrande': return credit('\u00c9missaires', 1)
     default: return ''
   }

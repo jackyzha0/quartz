@@ -4804,7 +4804,7 @@
           "description": "Recruter une armée vous coûte 12 Or de moins. Vos armées ont +1 PM."
         },
         {
-          "nom": "Sappeurs",
+          "nom": "Grand déploiement",
           "cout": "58",
           "description": "Lorsque vous menez une bataille, votre adversaire déploie son armée entièrement, puis vous déployez la votre. Vous choissez qui a le premier tour."
         }
@@ -4845,7 +4845,7 @@
           ]
         },
         {
-          "nom": "Service militaire",
+          "nom": "Service militaire avancé",
           "cout": "64",
           "description": "Vos habitations gagnent un nombre d'habitants par tour égal à 0,5 fois leur garnison."
         }
@@ -4907,7 +4907,7 @@
           ]
         },
         {
-          "nom": "Parcs naturels",
+          "nom": "Merveilles naturelles",
           "cout": "48",
           "description": "Coût de construction des merveilles -10 Ressources. Les merveilles génèrent +10 Tourisme."
         }
@@ -5048,7 +5048,7 @@
           "description": "Vos champs produisent +5 Nourriture  et +1 Or par tour."
         },
         {
-          "nom": "Déforestation",
+          "nom": "Exploitation forestière",
           "cout": "58",
           "description": "Vos Scieries ne produisent plus de Bois mais du Charbon."
         }
@@ -5060,7 +5060,7 @@
           "description": "Vos habitations consomment 10 Nourriture par rang de l'habitation mais génèrent 1 Science et 5 Tourisme par rang de l'habitation."
         },
         {
-          "nom": "Usinage",
+          "nom": "Industrialisation",
           "cout": "52",
           "description": "Vos bâtiments coûtent 3 Ressources de moins et produisent+1 Charbon par tour."
         }
@@ -5077,7 +5077,7 @@
       "tags": "",
       "brancheA": [
         {
-          "nom": "Geste",
+          "nom": "Hommage solennel",
           "cout": "46",
           "description": "Lorsque vous débloquez cette technologie, recevez 2 Émissaires."
         },
@@ -5089,18 +5089,18 @@
       ],
       "brancheB": [
         {
-          "nom": "Délégation",
+          "nom": "Cartes de dynastie",
           "cout": "16",
           "description": "Recevez 3 Cartes de dynastie."
         },
         {
-          "nom": "Ambassade",
+          "nom": "Diplomatie effrénée",
           "cout": "28",
           "description": "Vous pouvez jouer autant de cartes Dynastie que vous souhaitez à chaque tour."
         }
       ],
       "techC": {
-        "nom": "Vassalisation",
+        "nom": "Vassalité élargie",
         "cout": "46",
         "description": "Vous pouvez posséder 1 carte Dynastie supplémentaire. Vous piochez donc une carte Dynastie de plus à chaque tour."
       }
