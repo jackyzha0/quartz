@@ -89,19 +89,44 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const globalConfigRef = useRef(globalConfig)
   useEffect(() => { globalConfigRef.current = globalConfig }, [globalConfig])
 
-  const persist = useCallback(async (s: GameState, m: Mode, salonId: string) => {
-    setSaving(true)
-    try {
-      if (m === 'supabase' && salonId) {
-        const ok = await remote.saveRemote(salonId, s)
-        if (!ok) storage.saveLocal(s)
-      } else {
-        storage.saveLocal(s)
-      }
+
+  /**
+   * SAUVEGARDE DEBOUNCÉE (optimisation multijoueur 2026-10-16) :
+   * à 16 000 habitants, l'état JSON fait ~5 Mo — l'envoyer à CHAQUE
+   * clic (clone 37 ms + sérialisation 15 ms + upload) sature le
+   * réseau des 8 joueurs et le realtime Supabase. Les mutations
+   * rapprochées (une saisie, une série de constructions) sont
+   * FUSIONNÉES : seule la version finale part (la dernière gagne —
+   * c'est déjà la sémantique du salon). La sauvegarde locale reste
+   * immédiate (perte de données impossible : le localStorage est
+   * écrit à chaque mutation).
+   */
+  const persistDebounce = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const persistPending = useRef<GameState | null>(null)
+  const persist = useCallback((s: GameState, m: Mode, salonId: string) => {
+    // Sauvegarde LOCALE immédiate (anti-perte)…
+    if (m === 'local' || !salonId) {
+      storage.saveLocal(s)
       setLastSavedAt(Date.now())
-    } finally {
-      setSaving(false)
+      return
     }
+    storage.saveLocal(s)
+    // …et envoi réseau DEBOUNCÉ (800 ms sans mutation).
+    persistPending.current = s
+    if (persistDebounce.current) clearTimeout(persistDebounce.current)
+    persistDebounce.current = setTimeout(async () => {
+      const toSave = persistPending.current
+      persistPending.current = null
+      if (!toSave) return
+      setSaving(true)
+      try {
+        const ok = await remote.saveRemote(salonId, toSave)
+        if (!ok) storage.saveLocal(toSave)
+        setLastSavedAt(Date.now())
+      } finally {
+        setSaving(false)
+      }
+    }, 800)
   }, [])
 
   /** Aligne la configuration commune sur une config extérieure (partie rejointe, importée ou distante).
@@ -139,7 +164,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       stateRef.current = s2
       setState(s2)
       lastLocalEdit.current = Date.now()
-      void persist(s2, mode, salon)
+      persist(s2, mode, salon)
     }
   }, [mode, salon, persist])
 
@@ -156,7 +181,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       pendingMutators.current = []
       mutator(draft)
       lastLocalEdit.current = Date.now()
-      void persist(draft, mode, salon)
+      persist(draft, mode, salon)
       return draft
     })
   }, [mode, salon, persist])
@@ -169,7 +194,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       pendingMutators.current = []
       runTurn(draft)
       lastLocalEdit.current = Date.now()
-      void persist(draft, mode, salon)
+      persist(draft, mode, salon)
       return draft
     })
   }, [mode, salon, persist])
@@ -183,7 +208,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     setConflit(false)
     stateRef.current = s
     setState(s)
-    void persist(s, m, salonId ?? '')
+    persist(s, m, salonId ?? '')
   }, [persist])
 
   /** Rejoint une partie multijoueur existante (chargée depuis Supabase). */
@@ -211,11 +236,16 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     stateRef.current = s
     setState(s)
     lastLocalEdit.current = Date.now()
-    void persist(s, mode, salon)
+    persist(s, mode, salon)
   }, [mode, salon, persist])
 
   const saveNow = useCallback(() => {
-    if (state) void persist(state, mode, salon)
+    // FLUSH : annule le debounce et envoie immédiatement la version
+    //  la plus récente (bouton « Sauvegarder » = intention explicite).
+    if (persistDebounce.current) clearTimeout(persistDebounce.current)
+    const toSave = persistPending.current ?? state
+    persistPending.current = null
+    if (toSave) persist(toSave, mode, salon)
   }, [state, mode, salon, persist])
 
   const reset = useCallback(() => {
@@ -239,13 +269,29 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       stateRef.current = s
       setState(s)
       lastLocalEdit.current = Date.now()
-      void persist(s, mode, salon)
+      persist(s, mode, salon)
       return true
     }
     return false
   }, [mode, salon, persist, syncGlobalCfg])
 
   const exportState = useCallback(() => (state ? storage.exportJson(state) : ''), [state])
+
+  // FLUSH avant fermeture/rafraîchissement de l'onglet (anti-perte,
+  //  optimisation multijoueur 2026-10-16) : le debounce de 800 ms
+  //  peut encore tenir la dernière action du joueur — on l'envoie
+  //  immédiatement (sendBeacon n'accepte pas l'API Supabase, on
+  //  déclenche la requête fetch directement via saveRemote).
+  useEffect(() => {
+    const flush = () => {
+      const toSave = persistPending.current
+      if (!toSave) return
+      persistPending.current = null
+      if (mode === 'supabase' && salon) void remote.saveRemote(salon, toSave)
+    }
+    window.addEventListener('beforeunload', flush)
+    return () => window.removeEventListener('beforeunload', flush)
+  }, [mode, salon])
 
   // Abonnement realtime (mode supabase)
   useEffect(() => {

@@ -123,13 +123,22 @@ export async function saveRemote(id: string, state: GameState): Promise<boolean>
   return !error
 }
 
-/** S'abonne aux changements du salon. Retourne la fonction de désabonnement. */
+/** S'abonne aux changements du salon. Retourne la fonction de désabonnement.
+ *
+ * OPTIMISATION MULTIJOUEUR 2026-10-16 : à 16 000 habitants l'état
+ * JSON fait ~5 Mo — le payload postgres_changes est limité à ~1 MiB
+ * par message côté Supabase (wal2json) : les évènements seraient
+ * silencieusement DROPPÉS en fin de partie. On s'abonne donc à un
+ * signal LÉGER (updated_at) et on RECHERCHE la ligne par SELECT :
+ * un évènement de quelques octets + un fetch ciblé.
+ */
 export function subscribeRemote(
   id: string,
   onChange: (state: GameState) => void,
 ): () => void {
   const sb = getSupabase()
   if (!sb) return () => {}
+  let lastSeen = ''
   const channel = sb
     .channel(`parties:${id}`)
     .on('postgres_changes', {
@@ -137,14 +146,35 @@ export function subscribeRemote(
       schema: 'public',
       table: TABLE,
       filter: `id=eq.${id}`,
-    }, (payload: { new: { state: GameState; updated_by?: string } }) => {
+    }, async (payload: { new: { updated_at?: string; updated_by?: string } }) => {
       // Q3 : ignorer ses propres échos — on vient d'écrire cette
-      //  version, la réceptionner déclencherait un setState inutile
-      //  (et une fenêtre de conflit artificielle).
-      if (payload.new?.state && payload.new?.updated_by !== CLIENT_ID) onChange(payload.new.state)
+      //  version, la réceptionner déclencherait un setState inutile.
+      const stamp = payload.new?.updated_at ?? ''
+      if (!stamp || stamp === lastSeen) return
+      if (payload.new?.updated_by === CLIENT_ID) { lastSeen = stamp; return }
+      lastSeen = stamp
+      // Signal reçu → récupérer l'état complet par SELECT (léger en
+      //  évènement, exact en donnée).
+      const { data } = await sb.from(TABLE).select('state').eq('id', id).maybeSingle()
+      if (data?.state) onChange(data.state as GameState)
     })
     .subscribe()
+  // Filet de sécurité (anti-perte) : polling léger de updated_at —
+  //  si le realtime droppe l'event (payload trop gros, réseau), le
+  //  client reçoit quand même la mise à jour en retard de ≤ 5 s.
+  const poll = setInterval(async () => {
+    try {
+      const { data } = await sb.from(TABLE).select('updated_at, updated_by').eq('id', id).maybeSingle()
+      const stamp = data?.updated_at ?? ''
+      if (stamp && stamp !== lastSeen && data?.updated_by !== CLIENT_ID) {
+        lastSeen = stamp
+        const full = await sb.from(TABLE).select('state').eq('id', id).maybeSingle()
+        if (full.data?.state) onChange(full.data.state as GameState)
+      }
+    } catch { /* réseau indisponible — le prochain tick réessaiera */ }
+  }, 5000)
   return () => {
+    clearInterval(poll)
     sb.removeChannel(channel)
   }
 }
