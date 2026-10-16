@@ -48,6 +48,9 @@ interface GameContextValue {
   setMonNumero: (n: number) => void
   /** État de la barrière du tour (joueurs qui ont finit leur tour). */
   barriere: EtatBarriere
+  /** FORCER le passage du tour (ignore la barrière) — test solo,
+   *  joueur absent : applique et publie l'état local immédiatement. */
+  forceNextTurn: () => void
   nextTurn: () => void
   update: (mutator: (s: GameState) => void) => void
   replaceState: (s: GameState) => void
@@ -289,7 +292,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       // 2. pousser ma section
       const apres = await remote.pousserSection(salon, moi, maSection)
       if (!apres) {
+        // REPLI (2026-10-16) : la barrière a échoué — schéma Supabase
+        //  non migré (colonnes sections/turn_done absentes : exécutez
+        //  supabase/schema.sql), erreur réseau, ou salon en test solo.
+        //  On ne bloque JAMAIS le tour : retour à la résolution
+        //  immédiate (runTurn local + publication directe).
         setBarriere({ prets: new Set(), monTourPousse: false })
+        await resoudreSeul()
         return
       }
       // 3. observer la barrière (poll léger) jusqu'à ce que tous
@@ -307,6 +316,35 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       }
     })()
   }, [mode, salon, persist])
+
+  /** REPLI : résolution IMMÉDIATE sans barrière — runTurn sur l'état
+   *  local courant puis publication directe (l'ancien flux, utilisé
+   *  quand la barrière est indisponible : schéma non migré, réseau
+   *  KO, ou test en solo dans un salon multijoueur). */
+  const resoudreSeul = useCallback(async () => {
+    const st = stateRef.current
+    if (!st) return
+    const popClone = structuredClone(st.population)
+    const draft = {
+      ...structuredClone({ ...st, population: {}, config: undefined }),
+      population: popClone,
+      config: st.config,
+    } as GameState
+    for (const m of pendingMutators.current) m(draft)
+    pendingMutators.current = []
+    runTurn(draft)
+    stateRef.current = draft
+    setState(draft)
+    lastLocalEdit.current = Date.now()
+    persist(draft, mode, salon)
+  }, [mode, salon, persist])
+
+  /** FORCER le tour : ignorer la barrière, résoudre seul + publier.
+   *  Bouton « ⏭ Forcer » (test solo, joueur absent). */
+  const forceNextTurn = useCallback(() => {
+    setBarriere({ prets: new Set(), monTourPousse: false })
+    void resoudreSeul()
+  }, [resoudreSeul])
 
   /** Résoudre la barrière : fusionner les sections dans l'état de
    *  référence (téléchargé frais), exécuter runTurn, publier. */
@@ -507,10 +545,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     state, mode, salon, saving, conflit, lastSavedAt,
     globalConfig, setGlobalCfg,
     newGame, joinGame, nextTurn, update, replaceState, saveNow, reset, importState, exportState,
-    monNumero, setMonNumero: setMonNumeroPersist, barriere,
+    monNumero, setMonNumero: setMonNumeroPersist, barriere, forceNextTurn,
   }), [state, mode, salon, saving, conflit, lastSavedAt, globalConfig, setGlobalCfg,
     newGame, joinGame, nextTurn, update, replaceState, saveNow, reset, importState, exportState,
-    monNumero, setMonNumeroPersist, barriere])
+    monNumero, setMonNumeroPersist, barriere, forceNextTurn])
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>
 }

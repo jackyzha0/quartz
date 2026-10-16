@@ -7,7 +7,7 @@ import { useGame } from '../state/store'
 import { Button } from './ui'
 
 export function TurnBar() {
-  const { state, mode, salon, saving, conflit, nextTurn, saveNow, exportState, importState, reset, barriere, monNumero } = useGame()
+  const { state, mode, salon, saving, conflit, nextTurn, saveNow, exportState, importState, reset, barriere, monNumero, forceNextTurn } = useGame()
   const fileRef = useRef<HTMLInputElement>(null)
 
   if (!state) return null
@@ -50,6 +50,14 @@ export function TurnBar() {
         <Button tone="primary" onClick={nextTurn} disabled={mode === 'supabase' && barriere.monTourPousse}>
           {mode === 'supabase' && barriere.monTourPousse ? '⏳ En attente…' : '▶ Tour suivant'}
         </Button>
+        {mode === 'supabase' && barriere.monTourPousse && (
+          <Button
+            title="Forcer le passage du tour (test solo / joueur absent) — vos actions locales sont appliquées et publiées"
+            onClick={() => { if (window.confirm('Forcer le passage du tour ? La barrière sera ignorée : vos actions locales sont appliquées et publiées (les autres joueurs perdent leurs actions non poussées de ce tour).')) { forceNextTurn() } }}
+          >
+            ⏭ Forcer
+          </Button>
+        )}
         <Button onClick={saveNow} title="Sauvegarder maintenant">💾</Button>
         <Button onClick={download} title="Exporter la partie en JSON">⬇ Export</Button>
         <Button onClick={() => fileRef.current?.click()} title="Importer une partie JSON">⬆ Import</Button>
