@@ -30,7 +30,7 @@ import React from 'react'
 import { useGame } from '../state/store'
 import type { Character, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
-import { detailsFaction } from '../engine/factions'
+import { detailsFaction, rangPaysNiveau } from '../engine/factions'
 import { statutFaction, pastilleClass } from '../engine/statutAuto'
 import { rangParDefaut } from '../engine/setup'
 import { citesSuzerainesDe, sermentsPossedes, facteurSacre } from '../engine/engine'
@@ -101,6 +101,19 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
       const suz = s.players.find((x) => x.n === suzerainN)
       if (!t || !suz) return
       t.vassalDe = suzerainN
+      // Vassal « +15 Tourisme × rang de pays du suzerain » : VALEUR
+      //  D'ÉTAT (revue 2026-10-16) — créditée UNE FOIS au serment,
+      //  retirée à la rupture (plus de flux par tour).
+      const rangSuz = rangPaysNiveau(suz, C)
+      const tourVassal = 15 * rangSuz
+      if (tourVassal > 0) {
+        const rs = t.resources['Tourisme']
+        if (rs) rs.stock += tourVassal
+        s.log.push({
+          turn: s.turn, type: 'Système', joueur: t.n,
+          texte: `🌉 Vassal : +${tourVassal} Tourisme (valeur d'état, 15 × rang de pays de ${suz.nom}).`,
+        })
+      }
       s.log.push({
         turn: s.turn, type: 'Système', joueur: t.n,
         texte: `🤝 ${t.nom} prête serment à ${suz.nom} et devient son vassal : il lui reverse ${pct} % des revenus de ses habitants à chaque fin de tour.`,
@@ -112,6 +125,22 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
       const t = s.players.find((x) => x.n === joueur)
       if (!t) return
       const ancien = s.players.find((x) => x.n === t.vassalDe)
+      // Retire le Tourisme de vassalité (valeur d'état, revue
+      //  2026-10-16) — plafonné au stock disponible.
+      if (ancien) {
+        const tourVassal = 15 * rangPaysNiveau(ancien, C)
+        const rs = t.resources['Tourisme']
+        if (rs && tourVassal > 0) {
+          const v = Math.min(tourVassal, Math.max(0, rs.stock))
+          if (v > 0) {
+            rs.stock -= v
+            s.log.push({
+              turn: s.turn, type: 'Système', joueur: t.n,
+              texte: `🌉 Fin de vassalité : −${v} Tourisme (valeur d'état reprise).`,
+            })
+          }
+        }
+      }
       t.vassalDe = null
       s.log.push({
         turn: s.turn, type: 'Système', joueur: t.n,

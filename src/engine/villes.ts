@@ -25,6 +25,7 @@
 import type { Character, City, GameState, Player } from './types'
 import { cfgOf, type Cfg } from './gameData'
 import { isNobleDyn } from './shared'
+import { retirerTourismeVille, tourismeStatiqueBatiment } from './batiments'
 
 /** MARQUEUR (a) — garde-fou ANCIENNES SAUVEGARDES / états distants : complète
  *  les tableaux et dictionnaires indispensables au moteur et au rendu.
@@ -57,6 +58,9 @@ export function normaliserEtat(state: GameState): void {
 export function supprimerVille(state: GameState, p: Player, idx: number): string | null {
   const ville = p.villes[idx]
   if (!ville) return null
+  // Tourisme : valeur d'état des constructions de la ville, reprise
+  //  quand la ville disparaît (revue 2026-10-16).
+  retirerTourismeVille(state, p, ville, `ville « ${ville.nom} » supprimée`)
   p.villes.splice(idx, 1)
   state.log.push({
     turn: state.turn, type: 'Système', joueur: p.n,
@@ -77,8 +81,16 @@ export function transfererVille(
   const C = cfgOf(state.config)
   const ville = p.villes[idx]
   if (!ville || cible.n === p.n) return false
+  // Tourisme : valeur d'état des constructions de la ville — reprise
+  //  à l'ancien propriétaire, créditée au nouveau (revue 2026-10-16).
+  retirerTourismeVille(state, p, ville, `ville « ${ville.nom} » transférée à ${cible.nom}`)
   p.villes.splice(idx, 1)
   cible.villes.push(ville)
+  for (const b of [...(ville.batiments ?? []), ...(ville.amenagements ?? [])]) {
+    const tour = tourismeStatiqueBatiment(b, C)
+    const rs = cible.resources['Tourisme']
+    if (tour > 0 && rs) rs.stock += tour
+  }
   // Les habitants « classiques » de la ville suivent (vivants ET
   //  décédés, pour l'arbre généalogique) ; la cour (nobles) reste
   //  auprès de son joueur — on ne déplace un noble que sur DON

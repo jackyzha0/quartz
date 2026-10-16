@@ -354,7 +354,7 @@ export {
 export {
   effetsTourBatiment, effetsBatimentsVille, appliquerEffetsBatiments,
   garnisonBatiment, coutBatiment, detailsBatimentsJoueur, batimentRef,
-  batimentsConstructionsRefs, tourismeStatiqueBatiment, type LigneBatiment,
+  batimentsConstructionsRefs, tourismeStatiqueBatiment, retirerTourismeConstruction, type LigneBatiment,
 } from './batiments'
 export {
   AMENAGEMENTS, amenagementDef, amenagementRef, amenagementsDefs, aCampDeBatisseurs,

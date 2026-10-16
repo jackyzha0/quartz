@@ -46,7 +46,7 @@ import {
   coutAmenagement, constructionRef,
   productionDetaillee, detailGainsVille, parseCoutTexte,
   garnisonHabitationVille, nomRang, typeVille, habitationDef,
-  rangsDisponibles, consommationsVille, tourismeStatiqueBatiment, resumeConstruction,
+  rangsDisponibles, consommationsVille, tourismeStatiqueBatiment, retirerTourismeConstruction, resumeConstruction,
   detailCulturePays, productionVille, provenancesApports,
   attraitTouristiqueVille, attraitMaxMonde,
   capitaleDe, batimentsFaction, batimentsCapitale,
@@ -320,6 +320,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
           const b = ville.batiments[i]
           if (b !== nom && constructionRef(b, C.config)?.faction) {
             remplace = b
+            // Tourisme : valeur d'état de l'ancien bâtiment de
+            //  faction, reprise quand il est remplacé (revue
+            //  2026-10-16).
+            retirerTourismeConstruction(s, t, b, `remplacé par ${nom}`)
             ville.batiments.splice(i, 1)
           }
         }
@@ -530,7 +534,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
               <li><strong>Routes commerciales</strong> : +{fmt(C.p.marchandOrTour)} Or aux DEUX joueurs + copie de l'aménagement (une production d'été n'est copiée qu'en été).</li>
               <li><strong>Ministres « Auto »</strong> (badge page 👥 Population) : Trésorier +5 Or/tour, Grand Précepteur +1 Science/tour, Grand prévôt +1 Fer/tour, Grand veneur −5 Nourriture × rang par habitation, Grand Chambellan +10 % taxes reçues, Sénéchal +15 Nourriture fin d'été, Maître de cour et Légat +Tourisme fin de saison, Connétable +15 Garnison à la nomination, Grand bailli (fondations), Surintendant des finances (après construction), Grand bibliothécaire (après technologie), Grand écuyer (prix de levée d'armée −10 Or par rang de pays), Chanceliers (sacres réduits).</li>
               <li><strong>Gouverneur</strong> : le noble le plus âgé est nommé automatiquement, +10 % d'impôts sur sa ville.</li>
-              <li><strong>Tourisme & Garnison = valeurs d'état</strong> : le Tourisme est crédité UNE fois à la construction, jamais par tour.</li>
+              <li><strong>Tourisme = valeur d'état</strong> : crédité UNE fois à la construction (ou au serment de vassalité / à la nomination d'un Maître de cour ou Légat), jamais par tour — et REPRISES quand la source disparaît (bâtiment remplacé, ville supprimée/transférée/devenue cité libre, serment rompu, portefeuille retiré). Garnison : valeur d'état au moment de l'acquisition.</li>
               <li><strong>Démographie des joueurs</strong> : naissances (modulées par les taxes), vieillissement, décès, migrations (attrait Tourisme).</li>
               <li><strong>Coûts débités automatiquement</strong> : constructions, habitations (fondation / changement de rang), technologies (Science déduite au déblocage, remboursée à la reprise), sacre d'avènement (moitié du prix — gratuit avec la loi Démocratie).</li>
             </ul>

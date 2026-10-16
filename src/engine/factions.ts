@@ -154,16 +154,15 @@ const EFFETS: Record<string, EffetRegle> = {
         out['Nourriture'] = 5 * vs
         out['Or'] = 2 * vs
       }
-      if (c.p.vassalDe != null) {
-        const suz = c.state.players.find((q) => q.n === c.p.vassalDe)
-        if (suz) out['Tourisme'] = 15 * rangPaysNiveau(suz, c.C)
-      }
+      // Vassal « +15 Tourisme × rang » : VALEUR D'ÉTAT (revue
+      //  2026-10-16) — créditée UNE FOIS au prêt de serment, retirée à
+      //  la fin du serment (voir serments.ts / finSerment), pas un flux.
       return out
     },
   },
   'Basiléens|Abuser des serfs': {
-    auto: (c) => `champs : +3 Tourisme/tour chacun (${nbChamps(c.p)} champ(s))`,
-    flux: (c) => ({ Tourisme: 3 * nbChamps(c.p) }),
+    auto: (c) => `champs : +3 Tourisme chacun, valeur d'état (crédité à la construction du Champ) — ${nbChamps(c.p)} champ(s)`,
+    flux: () => ({}),
   },
 
   // ── Peaux Vertes ────────────────────────────────────────────────────

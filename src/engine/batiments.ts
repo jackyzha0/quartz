@@ -13,7 +13,7 @@
 // ══════════════════════════════════════════════════════════════════════
 
 import type { City, Player } from './types'
-import type { Cfg } from './gameData'
+import { cfgOf, type Cfg } from './gameData'
 import { buildingDef } from './gameData2'
 import { aLaboratoireFalheim } from './merveilles'
 import { capitaleDe } from './factions'
@@ -160,6 +160,40 @@ export function garnisonBatiment(nom: string, C: Cfg): number {
 /** Tourisme statique accordé par un bâtiment — valeur d'état acquise
  *  UNE FOIS à la construction (« Tourisme +15 », « Chapelle : Tourisme
  *  +35 »…), pas un flux par tour. Utilisé par construire() (page Pays). */
+/** Retire du stock de Tourisme d'un joueur la valeur statique d'une
+ *  construction perdue (bâtiment ou aménagement détruit, remplacé, ou
+ *  ville perdue/supprimée). Le Tourisme est une VALEUR D'ÉTAT : acquis
+ *  une fois à la construction, perdu quand la source disparaît. Le
+ *  stock ne descend jamais sous 0. Journalise le retrait. */
+export function retirerTourismeConstruction(
+  state: import('./types').GameState, p: import('./types').Player,
+  nom: string, contexte: string,
+): void {
+  const C = cfgOf(state.config)
+  const tour = tourismeStatiqueBatiment(nom, C)
+  if (tour <= 0) return
+  const rs = p.resources['Tourisme']
+  if (!rs) return
+  const v = Math.min(tour, Math.max(0, rs.stock))
+  if (v <= 0) return
+  rs.stock -= v
+  state.log.push({
+    turn: state.turn, type: 'Système', joueur: p.n,
+    texte: `🌉 ${nom} perdu(e) (${contexte}) — Tourisme −${v} (valeur d'état reprise ; stock restant : ${Math.round(rs.stock * 10) / 10}).`,
+  })
+}
+
+/** Retire le Tourisme statique de TOUTES les constructions d'une ville
+ *  perdue par un joueur (suppression, transfert, cité libre). */
+export function retirerTourismeVille(
+  state: import('./types').GameState, p: import('./types').Player,
+  ville: import('./types').City, contexte: string,
+): void {
+  for (const b of [...(ville.batiments ?? []), ...(ville.amenagements ?? [])]) {
+    retirerTourismeConstruction(state, p, b, contexte)
+  }
+}
+
 export function tourismeStatiqueBatiment(nom: string, C: Cfg): number {
   const ref = constructionRef(nom, C.config)
   // Effets STRUCTURÉS (marqueur (s)) : le Tourisme est une case à part

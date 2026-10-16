@@ -162,6 +162,11 @@ export function effetsCulturePays(state: GameState, p: Player, C: Cfg): Record<s
   const out: Record<string, number> = {}
   if (p.villes.length === 0) return out
   for (const d of detailCulturePays(state, p, C)) {
+    // Le Tourisme est une VALEUR D'ÉTAT (revue 2026-10-16) : la loi de
+    //  pays « +N Tourisme par ville de la culture » n'est PLUS un flux
+    //  par tour — affichée en aide de jeu, à créditer une fois au
+    //  changement (villes/rang) via la page Pays si Thibaut le veut.
+    if (d.res === 'Tourisme') continue
     out[d.res] = (out[d.res] ?? 0) + d.total
   }
   return out
