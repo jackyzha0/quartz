@@ -209,6 +209,18 @@ export function eteSeulementRef(ref: ConstructionRef): boolean {
   return /en\s+été/i.test(ref.production)
 }
 
+/** Bâtiment (ou aménagement) prérequis d'une construction, extrait du
+ *  texte de coût (« Poste de garde requis. », « Herboristerie requise. »,
+ *  « Caserne requise »…). Retourne null si aucun. Le prérequis doit être
+ *  présent dans la MÊME ville (règle du classeur). */
+export function prerequisConstruction(ref: ConstructionRef | undefined): string | null {
+  if (!ref) return null
+  const m = ref.cout.match(/([A-ZÉÈÀÂÎÔÛ][\wàâäéèêëîïôöûüç'’ .-]*?)\s+requis(?:e)?s?\b/i)
+    ?? ref.cout.match(/requis(?:e)?s?\s*:?\s*([A-ZÉÈÀÂÎÔÛ][\wàâäéèêëîïôöûüç'’ .-]*?)(?:\.|$)/i)
+  if (!m) return null
+  return m[1].trim().replace(/\s*$/,'') || null
+}
+
 /** Garnison statique accordée par une construction (valeur d'état, pas un flux). */
 export function garnisonConstructionRef(ref: ConstructionRef): number {
   if (ref.effets) {

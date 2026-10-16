@@ -363,7 +363,7 @@ export {
   detailsAmenagementsJoueur, type LigneAmenagement, type AmenagementDef,
 } from './amenagements'
 export {
-  constructionsRefs, constructionRef, amenagementsRefs, batimentsRefs,
+  constructionsRefs, constructionRef, prerequisConstruction, amenagementsRefs, batimentsRefs,
   parseCoutTexte, parseProductionTexte, coutBatimentRef, coutConstructionRef,
   effetsConstructionRef, effetsConstructionEntries, effetsEteConstructionRef,
   instantanesConstructionRef, eteSeulementRef, garnisonConstructionRef,

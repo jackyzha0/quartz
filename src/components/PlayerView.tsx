@@ -43,7 +43,7 @@ import { cfgOf, cultureDef, couleurRessource, fondRessource, type Cfg } from '..
 import {
   effetsTourBatiment, garnisonBatiment, coutBatiment,
   batimentsConstructionsRefs, constructionsRefs, amenagementRef, aCampDeBatisseurs,
-  coutAmenagement, constructionRef,
+  coutAmenagement, constructionRef, prerequisConstruction,
   productionDetaillee, detailGainsVille, parseCoutTexte,
   garnisonHabitationVille, nomRang, typeVille, habitationDef,
   rangsDisponibles, consommationsVille, tourismeStatiqueBatiment, retirerTourismeConstruction, resumeConstruction,
@@ -224,6 +224,19 @@ export function PlayerView({ joueur }: { joueur: number }) {
           texte: `🏛 ${nom} exige une habitation de rang ${ref.rangMinHabitation} minimum (${ville.nom} est de rang ${rangNiveau(ville, C)}).`,
         })
         return
+      }
+      // Prérequis de construction (revue 2026-10-16) : « X requis » dans
+      //  le coût du référentiel (Caserne ← Poste de garde, Etable ←
+      //  Grange…) — le prérequis doit être présent dans la MÊME ville.
+      if (type === 'batiment') {
+        const pre = prerequisConstruction(ref)
+        if (pre && !ville.batiments.includes(pre)) {
+          s.log.push({
+            turn: s.turn, type: 'Système', joueur: t.n,
+            texte: `🏛 ${nom} exige d'abord « ${pre} » dans ${ville.nom} (prérequis du référentiel).`,
+          })
+          return
+        }
       }
       if (fam === 'Merveille') {
         const rangRequis = ref?.rangMinHabitation ?? 1
@@ -462,6 +475,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
             titre: b.nom,
             droite: fmtCout(parseCoutTexte(b.cout)),
             description: [
+              prerequisConstruction(b) ? `⚠ Prérequis : ${prerequisConstruction(b)} dans cette ville.` : '',
               resumeConstruction(b) || b.production || '',
               b.description,
             ].filter(Boolean).join('\n'),
@@ -479,6 +493,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
           titre: b.nom,
           droite: fmtCout(parseCoutTexte(b.cout)),
           description: [
+            prerequisConstruction(b) ? `⚠ Prérequis : ${prerequisConstruction(b)} dans cette ville.` : '',
             resumeConstruction(b) || b.production || '',
             b.description,
           ].filter(Boolean).join('\n'),
@@ -497,6 +512,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
           badge: pastilleClass(statutMerveille(b.nom)),
           droite: fmtCout(parseCoutTexte(b.cout)),
           description: [
+            prerequisConstruction(b) ? `⚠ Prérequis : ${prerequisConstruction(b)} dans cette ville.` : '',
             resumeConstruction(b) || b.production || '',
             b.description,
           ].filter(Boolean).join('\n'),
