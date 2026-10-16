@@ -319,6 +319,9 @@ export interface GameConfig {
    *  schemaVersion (les suppressions/renommages du référentiel
    *  persistent — règle (x)). */
   taxes25?: boolean
+  /** Migration renommages de techs doublons (2026-10-16) — rejouée
+   *  tant que false/absente, puis tamponnée. */
+  renommagesTechs2026?: boolean
 }
 
 // ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
@@ -1020,6 +1023,37 @@ export function cfgOf(config?: GameConfig): Cfg {
   //  (0.5 / 1.5) ; toute valeur personnalisée est conservée. Le
   //  champ taxes25 marque la migration faite (persisté par
   //  convergerConfig aux points de sauvegarde).
+  // RENOMMAGES DE TECHS DOUBLONS (revue 2026-10-16) : les homonymes
+  //  du r\u00e9f\u00e9rentiel ont \u00e9t\u00e9 renomm\u00e9s. Une config sauvegard\u00e9e AVANT
+  //  embarque encore les anciens noms \u2014 aTech/gainDeblocage ne
+  //  reconnaissent plus les effets. Migration cibl\u00e9e par SLOT (comme
+  //  taxes25, ind\u00e9pendante du tampon schemaVersion), marqu\u00e9e
+  //  renommagesTechs2026 pour n'\u00eatre pas rejou\u00e9e. Le nom n'est
+  //  remplac\u00e9 QUE s'il vaut encore l'ancien homonyme : une \u00e9dition
+  //  personnalis\u00e9e dans ConfigTables est pr\u00e9serv\u00e9e. Les cl\u00e9s de
+  //  d\u00e9blocage (i:slot) ne changent pas \u2014 les parties en cours
+  //  gardent leurs d\u00e9blocages.
+  if (!merged.renommagesTechs2026) {
+    // [index d'arbre, slot, ancien nom, nouveau nom]
+    const RENOMS: Array<[number, string, string, string]> = [
+      [17, 'b2', 'Service militaire', 'Service militaire avanc\u00e9'],
+      [21, 'a2', 'D\u00e9forestation', 'Exploitation foresti\u00e8re'],
+      [21, 'b2', 'Usinage', 'Industrialisation'],
+      [22, 'a1', 'Geste', 'Hommage solennel'],
+      [22, 'b1', 'D\u00e9l\u00e9gation', 'Cartes de dynastie'],
+      [22, 'b2', 'Ambassade', 'Diplomatie effr\u00e9n\u00e9e'],
+      [22, 'c', 'Vassalisation', 'Vassalit\u00e9 \u00e9largie'],
+      [18, 'b2', 'Parcs naturels', 'Merveilles naturelles'],
+      [16, 'b2', 'Sappeurs', 'Grand d\u00e9ploiement'],
+    ]
+    for (const [iArbre, slot, ancien, nouveau] of RENOMS) {
+      const a = merged.progres?.[iArbre]
+      if (!a) continue
+      const t = slot === 'c' ? a.techC : (slot[0] === 'a' ? a.brancheA : a.brancheB)?.[+slot[1] - 1]
+      if (t && t.nom === ancien) t.nom = nouveau
+    }
+    merged.renommagesTechs2026 = true
+  }
   if (!merged.taxes25) {
     const pm = merged.params as unknown as Record<string, unknown>
     if (pm.taxOrFaibles === 0.5) pm.taxOrFaibles = 0.75
