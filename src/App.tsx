@@ -58,6 +58,8 @@ function sectionFromHash(): Section {
 export default function App() {
   const { state } = useGame()
   const [section, setSection] = useState<Section>(sectionFromHash)
+  const [theme, setTheme] = useState<'light' | 'dark'>(() =>
+    typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light')
   const [joueur, setJoueur] = useState(1)
 
   // Suit aussi les changements de hash pendant la visite
@@ -108,6 +110,18 @@ export default function App() {
     <div className="app">
       <header className="header">
         <h1>🐗 Chasse &amp; Pêche <span className="thin">— Légendes</span></h1>
+        <button
+          className="theme-toggle"
+          title="Basculer le thème clair / sombre (mémorisé dans ce navigateur)"
+          onClick={() => {
+            const cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
+            document.documentElement.setAttribute('data-theme', cur)
+            try { localStorage.setItem('theme', cur) } catch { /* noop */ }
+            setTheme(cur)
+          }}
+        >
+          {theme === 'dark' ? '☀️ Clair' : '🌙 Sombre'}
+        </button>
         <span className="muted small">
           {state ? `${state.players.length} joueurs` : '2 à 8 joueurs'} · un tour = 2 ans
         </span>

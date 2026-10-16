@@ -320,8 +320,8 @@ select.input option, select.input optgroup { background: var(--card); color: var
   padding: 24px;
 }
 .picker-modal {
-  background: #fffdf9;
-  border: 1px solid #d8d4cc;
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 12px;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
   padding: 14px 16px 16px;
@@ -352,18 +352,18 @@ select.input option, select.input optgroup { background: var(--card); color: var
   align-items: flex-start;
   text-align: left;
   padding: 8px 10px;
-  border: 1px solid #d8d4cc;
+  border: 1px solid var(--border);
   border-radius: 10px;
-  background: #fffdf9;
+  background: var(--card);
   cursor: pointer;
   font-size: 13px;
   line-height: 1.35;
 }
-.picker-card:hover { border-color: #3b6ea5; background: #eef3fa; }
+.picker-card:hover { border-color: var(--accent); background: var(--card2); }
 .picker-titre { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
-.picker-droite { color: #3f7a3f; font-size: 12px; white-space: nowrap; }
+.picker-droite { color: var(--good); font-size: 12px; white-space: nowrap; }
 .picker-desc {
-  color: #66625c;
+  color: var(--muted);
   font-size: 11.5px;
   white-space: pre-line;
   display: -webkit-box;
@@ -756,9 +756,9 @@ input[type='range'] {
   width: 100%;
   min-height: 80px;
   padding: 8px 10px;
-  border: 1px solid #d8d4cc;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background: #fffdf9;
+  background: var(--card);
   font: inherit;
   font-size: 13px;
   line-height: 1.45;
@@ -890,3 +890,16 @@ input[type='range'] {
 .p-impossible { background: #d64545; box-shadow: 0 0 0 2px rgba(214,69,69,.25); }
 .p-legende { display: flex; gap: 14px; align-items: center; margin: 6px 0; flex-wrap: wrap; }
 .p-legende span { display: inline-flex; align-items: center; font-size: 0.8rem; color: var(--darkgray, #4e4e4e); }
+
+/* ── Bouton bascule clair/sombre (retour Thibaut 2026-10-15). ── */
+.theme-toggle {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1.2;
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
