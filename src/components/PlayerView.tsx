@@ -146,16 +146,14 @@ export function PlayerView({ joueur }: { joueur: number }) {
       if (aref?.faction && aref.faction !== t.peuple) {
         s.log.push({
           turn: s.turn, type: 'Système', joueur: t.n,
-          texte: `🏗 ${nom} est un aménagement de faction des ${aref.faction} — seuls les aménagements de faction de ${t.peuple} sont constructibles.`,
+          texte: `⚠ ${nom} est un aménagement de faction des ${aref.faction} — seuls ceux de ${t.peuple} sont prévus (construction quand même enregistrée).`,
         })
-        return
       }
       if (ref && ref.groupe === 'Capitale' && !estCapitale) {
         s.log.push({
           turn: s.turn, type: 'Système', joueur: t.n,
-          texte: `🏗 ${nom} ne peut être construit(e) que dans la capitale (${capitaleDe(t)?.nom ?? '—'}).`,
+          texte: `⚠ ${nom} se construit normalement dans la capitale (${capitaleDe(t)?.nom ?? '—'}) — ici il est hors zone (construction quand même enregistrée).`,
         })
-        return
       }
 
       // Retour Thibaut 2026-10-15 : un bâtiment du groupe Ville ne se
@@ -167,9 +165,8 @@ export function PlayerView({ joueur }: { joueur: number }) {
         if (ref.groupe.toLowerCase() !== typeVilleActuel) {
           s.log.push({
             turn: s.turn, type: 'Système', joueur: t.n,
-            texte: `🏛 ${nom} est un bâtiment de ${ref.groupe} — il ne se construit pas dans ${ville.nom} (${ville.type ?? 'Ville'}).`,
+            texte: `⚠ ${nom} est un bâtiment de ${ref.groupe} — il se construit normalement dans ce type d'habitation, pas dans ${ville.nom} (${ville.type ?? 'Ville'}). Construction quand même enregistrée.`,
           })
-          return
         }
       }
 
@@ -196,9 +193,8 @@ export function PlayerView({ joueur }: { joueur: number }) {
         if (nbEco >= maxEco) {
           s.log.push({
             turn: s.turn, type: 'Système', joueur: t.n,
-            texte: `🏛 ${nom} : limite atteinte — un seul bâtiment Économique par rang d'habitation (${ville.nom}, ${maxEco} max).`,
+            texte: `⚠ ${nom} : ${ville.nom} dépasse la limite d'un bâtiment Économique par rang (${nbEco}/${maxEco}). Construction quand même enregistrée.`,
           })
-          return
         }
       }
       if (fam === 'Guilde') {
@@ -209,9 +205,8 @@ export function PlayerView({ joueur }: { joueur: number }) {
         if (nbGui >= maxGuildes) {
           s.log.push({
             turn: s.turn, type: 'Système', joueur: t.n,
-            texte: `🏛 ${nom} : limite atteinte — ${maxGuildes} Guilde(s) maximum à ${ville.nom}${maxGuildes > 1 ? ' (Maître des guildes)' : ''}.`,
+            texte: `⚠ ${nom} : ${ville.nom} dépasse la limite de ${maxGuildes} Guilde(s)${maxGuildes > 1 ? ' (Maître des guildes)' : ''}. Construction quand même enregistrée.`,
           })
-          return
         }
       }
       // Rang d'habitation requis (retour Thibaut 2026-10-15) : un
@@ -222,9 +217,8 @@ export function PlayerView({ joueur }: { joueur: number }) {
       if (ref && ref.rangMinHabitation && rangNiveau(ville, C) < ref.rangMinHabitation) {
         s.log.push({
           turn: s.turn, type: 'Système', joueur: t.n,
-          texte: `🏛 ${nom} exige une habitation de rang ${ref.rangMinHabitation} minimum (${ville.nom} est de rang ${rangNiveau(ville, C)}).`,
+          texte: `⚠ ${nom} exige normalement une habitation de rang ${ref.rangMinHabitation} minimum (${ville.nom} est de rang ${rangNiveau(ville, C)}). Construction quand même enregistrée.`,
         })
-        return
       }
       // Prérequis de construction (revue 2026-10-16) : « X requis » dans
       //  le coût du référentiel (Caserne ← Poste de garde, Etable ←
@@ -234,9 +228,8 @@ export function PlayerView({ joueur }: { joueur: number }) {
         if (pre && !ville.batiments.includes(pre)) {
           s.log.push({
             turn: s.turn, type: 'Système', joueur: t.n,
-            texte: `🏛 ${nom} exige d'abord « ${pre} » dans ${ville.nom} (prérequis du référentiel).`,
+            texte: `⚠ ${nom} exige normalement d'abord « ${pre} » dans ${ville.nom} (prérequis). Construction quand même enregistrée.`,
           })
-          return
         }
       }
       if (fam === 'Merveille') {
@@ -244,25 +237,22 @@ export function PlayerView({ joueur }: { joueur: number }) {
         if (rangNiveau(ville, C) < rangRequis) {
           s.log.push({
             turn: s.turn, type: 'Système', joueur: t.n,
-            texte: `🏛 ${nom} : cette merveille exige une habitation de rang ${rangRequis} minimum (${ville.nom} est de rang ${rangNiveau(ville, C)}).`,
+            texte: `⚠ ${nom} : cette merveille exige normalement une habitation de rang ${rangRequis} minimum (${ville.nom} est de rang ${rangNiveau(ville, C)}). Construction quand même enregistrée.`,
           })
-          return
         }
         const nbMerv = ville.batiments.filter((b) => (constructionRef(b, C.config)?.famille ?? '') === 'Merveille').length
         if (nbMerv >= 1) {
           s.log.push({
             turn: s.turn, type: 'Système', joueur: t.n,
-            texte: `🏛 ${nom} : ${ville.nom} possède déjà une merveille — une seule par ville.`,
+            texte: `⚠ ${nom} : ${ville.nom} possède déjà ${nbMerv} merveille(s) — la règle en prévoit une seule par ville. Construction quand même enregistrée.`,
           })
-          return
         }
       }
       if (ref?.faction && ref.faction !== t.peuple) {
         s.log.push({
           turn: s.turn, type: 'Système', joueur: t.n,
-          texte: `🏗 ${nom} est un bâtiment de faction des ${ref.faction} — seuls les bâtiments de faction de ${t.peuple} sont constructibles.`,
+          texte: `⚠ ${nom} est un bâtiment de faction des ${ref.faction} — seuls ceux de ${t.peuple} sont prévus. Construction quand même enregistrée.`,
         })
-        return
       }
       const cout = type === 'batiment'
         ? coutBatiment(nom, C, groupe)
@@ -325,7 +315,15 @@ export function PlayerView({ joueur }: { joueur: number }) {
       //  en revanche un AMÉNAGEMENT peut être présent PLUSIEURS FOIS
       //  (plusieurs cases du même terrain, ex. 2 Champs) — chaque
       //  exemplaire produit ses effets (retour Thibaut 2026-10-14).
-      if (type === 'batiment' && cible.includes(nom)) return
+      // Revue 2026-10-16 : plus JAMAIS de blocage silencieux — le
+      //  doublon s'annonce (le joueur peut vouloir dépasser les
+      //  limites du référentiel en connaissance de cause).
+      if (type === 'batiment' && cible.includes(nom)) {
+        s.log.push({
+          turn: s.turn, type: 'Système', joueur: t.n,
+          texte: `⚠ ${nom} figure déjà à ${ville.nom} (le référentiel prévoit un seul exemplaire par ville). Construction quand même enregistrée.`,
+        })
+      }
       // Bâtiment de faction : UN par ville — le nouveau remplace l'ancien
       // (ex. Église → Grande Cathédrale → Palais du Palatinat).
       let remplace = ''
@@ -411,6 +409,31 @@ export function PlayerView({ joueur }: { joueur: number }) {
     const type = (ville.type ?? 'Ville').toLowerCase()
     const estCapitale = ville.nom === nomCapitale
     const rang = rangNiveau(ville, C)
+    // Alerte rouge d'une construction (revue 2026-10-16 : les limites
+    //  s'INDIQUENT en rouge dans le picker, elles ne bloquent jamais).
+    const alertePour = (b: { nom: string; famille?: string; cout: string }): string => {
+      const warns: string[] = []
+      if (ville.batiments.includes(b.nom)) warns.push('Déjà construit dans cette ville (le référentiel prévoit un seul exemplaire).')
+      const pre = prerequisConstruction(b)
+      if (pre && !ville.batiments.includes(pre)) warns.push(`Prérequis manquant : ${pre}.`)
+      const fam = b.famille ?? ''
+      if (fam === 'Economique') {
+        const nbEco = ville.batiments.filter((x) => (constructionRef(x, C.config)?.famille ?? '') === 'Economique').length
+        const bonusCap = (aTech(p, 'Urbanisme', C) ? 1 : 0) + (estCapitale && p.peuple === "ELFES D'OR" && (p.regleAge2 === "Cité d'Or" || p.regleAge3 === 'Palais des Dieux') ? 1 : 0)
+        const maxEco = rang + (estCapitale ? bonusCap : 0)
+        if (nbEco >= maxEco) warns.push(`Limite Économique atteinte (${nbEco}/${maxEco} — un par rang).`)
+      }
+      if (fam === 'Guilde') {
+        const nbGui = ville.batiments.filter((x) => (constructionRef(x, C.config)?.famille ?? '') === 'Guilde').length
+        const maxGui = estCapitale && aMinistre(state, p, 'Maître des guildes') ? 2 : 1
+        if (nbGui >= maxGui) warns.push(`Limite Guilde atteinte (${nbGui}/${maxGui} par ville).`)
+      }
+      if (fam === 'Merveille') {
+        const nbMerv = ville.batiments.filter((x) => (constructionRef(x, C.config)?.famille ?? '') === 'Merveille').length
+        if (nbMerv >= 1) warns.push(`${nbMerv} merveille(s) déjà présentes (une seule par ville).`)
+      }
+      return warns.join(' ')
+    }
     // Les bâtiments de CAPITALE sont ajoutés explicitement plus bas (une
     //  seule fois) — okGroupe les EXCLUT pour éviter le doublon.
     const okGroupe = (b: { groupe: string; famille?: string }) =>
@@ -467,8 +490,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
             value: `${groupe}|${b.nom}`,
             titre: b.nom,
             droite: fmtCout(parseCoutTexte(b.cout)),
+            alerte: alertePour(b) || undefined,
             description: [
-              prerequisConstruction(b) ? `⚠ Prérequis : ${prerequisConstruction(b)} dans cette ville.` : '',
+              prerequisConstruction(b) ? `Prérequis : ${prerequisConstruction(b)} dans cette ville.` : '',
               resumeConstruction(b) || b.production || '',
               b.description,
             ].filter(Boolean).join('\n'),
@@ -485,8 +509,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
           value: `${groupe}|${b.nom}`,
           titre: b.nom,
           droite: fmtCout(parseCoutTexte(b.cout)),
+          alerte: alertePour(b) || undefined,
           description: [
-            prerequisConstruction(b) ? `⚠ Prérequis : ${prerequisConstruction(b)} dans cette ville.` : '',
+            prerequisConstruction(b) ? `Prérequis : ${prerequisConstruction(b)} dans cette ville.` : '',
             resumeConstruction(b) || b.production || '',
             b.description,
           ].filter(Boolean).join('\n'),
@@ -504,8 +529,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
           titre: b.nom,
           badge: pastilleClass(statutMerveille(b.nom)),
           droite: fmtCout(parseCoutTexte(b.cout)),
+          alerte: alertePour(b) || undefined,
           description: [
-            prerequisConstruction(b) ? `⚠ Prérequis : ${prerequisConstruction(b)} dans cette ville.` : '',
+            prerequisConstruction(b) ? `Prérequis : ${prerequisConstruction(b)} dans cette ville.` : '',
             resumeConstruction(b) || b.production || '',
             b.description,
           ].filter(Boolean).join('\n'),

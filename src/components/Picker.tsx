@@ -24,6 +24,9 @@ export interface PickerOption {
   description?: string
   /** classe du badge de famille (badge-fam-mil…) — optionnel */
   badge?: string
+  /** avertissement rouge affiché en tête de description (revue
+   *  2026-10-16 : les limites s'INDIQUENT, elles ne bloquent jamais) */
+  alerte?: string
 }
 
 export interface PickerCategorie {
@@ -98,6 +101,7 @@ export function ChoicePicker({ bouton, categories, onPick, disabled }: {
                 <strong>{o.titre}</strong>
                 {o.droite && <span className="picker-droite">{o.droite}</span>}
               </span>
+              {o.alerte && <span className="picker-desc neg">⚠ {o.alerte}</span>}
               {o.description && <span className="picker-desc">{o.description}</span>}
             </button>
           ))}

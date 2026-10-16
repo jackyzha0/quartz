@@ -219,7 +219,7 @@ export function eteSeulementRef(ref: ConstructionRef): boolean {
  *  texte de coût (« Poste de garde requis. », « Herboristerie requise. »,
  *  « Caserne requise »…). Retourne null si aucun. Le prérequis doit être
  *  présent dans la MÊME ville (règle du classeur). */
-export function prerequisConstruction(ref: ConstructionRef | undefined): string | null {
+export function prerequisConstruction(ref: Pick<ConstructionRef, 'cout'> | undefined): string | null {
   if (!ref) return null
   const m = ref.cout.match(/([A-ZÉÈÀÂÎÔÛ][\wàâäéèêëîïôöûüç'’ .-]*?)\s+requis(?:e)?s?\b/i)
     ?? ref.cout.match(/requis(?:e)?s?\s*:?\s*([A-ZÉÈÀÂÎÔÛ][\wàâäéèêëîïôöûüç'’ .-]*?)(?:\.|$)/i)
