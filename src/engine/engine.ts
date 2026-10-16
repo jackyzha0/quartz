@@ -383,6 +383,7 @@ export {
   nomRang, rangNiveau, garnisonHabitationVille, garnisonHabitationsPays,
   effetsRegime, effetsCulturePays, appliquerEffetsRegimesCultures,
   nbVillesCultureMonde, detailCulturePays, type DetailCultureBonus,
+  detailGarnisonVille, type LigneDetailGarnison,
 } from './regimes'
 export {
   ficheFaction, reglesActives, regleActive, detailsFaction, effetsFaction,

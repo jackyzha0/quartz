@@ -45,7 +45,7 @@ import {
   batimentsConstructionsRefs, constructionsRefs, amenagementRef, aCampDeBatisseurs,
   coutAmenagement, constructionRef, prerequisConstruction,
   productionDetaillee, detailGainsVille, parseCoutTexte,
-  garnisonHabitationVille, nomRang, typeVille, habitationDef,
+  garnisonHabitationVille, detailGarnisonVille, nomRang, typeVille, habitationDef,
   rangsDisponibles, consommationsVille, tourismeStatiqueBatiment, retirerTourismeConstruction, resumeConstruction,
   detailCulturePays, productionVille, provenancesApports,
   attraitTouristiqueVille, attraitMaxMonde,
@@ -780,15 +780,38 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     + loi éventuelle du régime ; ne change pas à chaque tour. */}
                 {(() => {
                   const g = garnisonHabitationVille(p, ville, C, state)
-                  const base = habitationDef(ville, C)?.garnison ?? 0
-                  const bats = g - base
-                  const bonusRegime = (C.regimes.find((r) => r.nom === p.regime)?.garnisonParRang ?? 0) > 0
+                  const lignes = detailGarnisonVille(p, ville, C, state)
+                  const sousTotal = lignes.reduce((n, l) => n + l.valeur, 0)
+                  const plancher = g - sousTotal
                   return (
-                    <div className="small">
-                      Garnison des habitations : <strong>{fmt(g)}</strong>
-                      <span className="muted small">
-                        {' '}(base {fmt(base)} du rang{bats > 0 ? ` + ${fmt(bats)} de bâtiments` : ''}{bonusRegime && base > 0 ? ' (loi du régime incluse)' : bonusRegime ? ' + loi du régime' : ''})
-                      </span>
+                    <div className="small stack small-gap">
+                      <div>
+                        Garnison des habitations : <strong>{fmt(g)}</strong>
+                        <span className="muted small"> — d'où vient ce chiffre :</span>
+                      </div>
+                      <table className="small" style={{ borderCollapse: 'collapse', width: '100%' }}>
+                        <tbody>
+                          {lignes.map((l, i) => (
+                            <tr key={i}>
+                              <td className="muted small">{ORIGINE_LABEL[l.origine] ?? l.origine}</td>
+                              <td>{l.label}</td>
+                              <td className={l.valeur < 0 ? 'neg' : ''}>{l.valeur > 0 ? '+' : ''}{fmt(l.valeur)}</td>
+                            </tr>
+                          ))}
+                          {plancher > 0 && (
+                            <tr>
+                              <td className="muted small">plancher</td>
+                              <td>« Combler les lacunes » : minimum 30</td>
+                              <td>+{fmt(plancher)}</td>
+                            </tr>
+                          )}
+                          <tr>
+                            <td />
+                            <td><strong>Total</strong></td>
+                            <td><strong>{fmt(g)}</strong></td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   )
                 })()}
@@ -1738,6 +1761,11 @@ function RessourcesBar({ p, C, prodDetail, setPlayer }: {
 
 /** Formate des effets par tour : « +2 Or, -10 Nourriture ». Garnison et
  *  Tourisme sont des VALEURS D'ÉTAT (pas des flux) : sans signe. */
+const ORIGINE_LABEL: Record<string, string> = {
+  base: 'rang', 'bâtiment': 'bâtiment', technologie: 'techno', régime: 'régime',
+  ministre: 'ministre', faction: 'faction',
+}
+
 const RESSOURCES_ETAT = ['Garnison', 'Tourisme']
 /** Ressources hors « Habitants » et « Garnison » dans les récaps de
  *  production (retour Thibaut : ce ne sont pas des flux de production

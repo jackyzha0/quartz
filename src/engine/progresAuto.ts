@@ -192,17 +192,25 @@ export function reductionLevee(p: Player, C: Cfg): number {
 
 /** Garnison accordée par les techs débloquées à UNE ville
  *  (valeur d'état, intégrée à garnisonHabitationVille). */
+export interface LigneGarnison { label: string; valeur: number }
+
 export function garnisonProgresVille(p: Player, ville: City, C: Cfg): number {
+  return lignesGarnisonProgresVille(p, ville, C).reduce((n, l) => n + l.valeur, 0)
+}
+
+/** Détail chiffré de la garnison des technologies d'une ville (une
+ *  ligne par tech active — moteur et interface partagent le calcul). */
+export function lignesGarnisonProgresVille(p: Player, ville: City, C: Cfg): LigneGarnison[] {
   const cap = capitaleDe(p)
   const estCap = cap?.nom === ville.nom
-  let g = 0
-  if (aTech(p, 'Milices civiles I', C) && estCap) g += 30
-  if (aTech(p, 'Fortifications solides', C)) g += 15
-  if (aTech(p, 'Milices civiles III', C)) g += 20
-  if (aTech(p, 'Milices civiles V', C)) g += 40
-  if (aTech(p, 'Pr\u00e9 carr\u00e9', C)) g += 20
-  if (aTech(p, 'Vasselit\u00e9', C) && p.vassalDe != null) g += 20
-  return g
+  const out: LigneGarnison[] = []
+  if (aTech(p, 'Milices civiles I', C) && estCap) out.push({ label: 'Milices civiles I (capitale)', valeur: 30 })
+  if (aTech(p, 'Fortifications solides', C)) out.push({ label: 'Fortifications solides', valeur: 15 })
+  if (aTech(p, 'Milices civiles III', C)) out.push({ label: 'Milices civiles III', valeur: 20 })
+  if (aTech(p, 'Milices civiles V', C)) out.push({ label: 'Milices civiles V', valeur: 40 })
+  if (aTech(p, 'Pr\u00e9 carr\u00e9', C)) out.push({ label: 'Pr\u00e9 carr\u00e9', valeur: 20 })
+  if (aTech(p, 'Vasselit\u00e9', C) && p.vassalDe != null) out.push({ label: 'Vasselit\u00e9 (vassal)', valeur: 20 })
+  return out
 }
 
 /** Garnison MINIMALE des habitations (retour Thibaut 2026-10-15) :

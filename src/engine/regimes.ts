@@ -25,7 +25,7 @@ import { aMinistre } from './ministeres'
 import { garnisonBatiment } from './batiments'
 import { garnisonFactionVille, rangPaysNiveau } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
-import { garnisonProgresVille, aTech } from './progresAuto'
+import { garnisonProgresVille, lignesGarnisonProgresVille, aTech } from './progresAuto'
 import { regleActive } from './factions'
 
 export { nomRang } from './habitations'
@@ -76,6 +76,46 @@ export function garnisonHabitationVille(p: Player, ville: City, C: Cfg, state?: 
   if (bonus) g += bonus * rangNiveau(ville, C)
   if (state) g += garnisonFactionVille(state, p, ville, C)
   return g
+}
+
+/** Détail de la garnison d'une ville, ligne par ligne (même calibre
+ *  que garnisonHabitationVille — l'interface affiche exactement ce
+ *  que le moteur calcule). Les lignes à 0 sont omises. */
+export interface LigneDetailGarnison {
+  label: string
+  valeur: number
+  /** catégorie affichable : base / bâtiment / technologie /
+   *  régime / ministre / faction */
+  origine: 'base' | 'bâtiment' | 'technologie' | 'régime' | 'ministre' | 'faction'
+}
+
+export function detailGarnisonVille(
+  p: Player, ville: City, C: Cfg, state?: GameState,
+): LigneDetailGarnison[] {
+  const out: LigneDetailGarnison[] = []
+  const push = (origine: LigneDetailGarnison['origine'], label: string, valeur: number) => {
+    if (valeur !== 0) out.push({ origine, label, valeur })
+  }
+  // 1. Base du rang d'habitation (ex. Hameau 10, Cité 24, Motte 26…)
+  const base = garnisonBaseVille(ville, C)
+  push('base', `base du rang ${nomRang(ville.rang ?? '') || ville.rang || 'Hameau'}`, base)
+  // 2. Bâtiments de la ville (Poste de garde +40, Caserne +40…)
+  for (const b of ville.batiments) push('bâtiment', b, garnisonBatiment(b, C))
+  // 3. Technologies (Milices civiles, Fortifications, Pré carré…)
+  for (const l of lignesGarnisonProgresVille(p, ville, C)) push('technologie', l.label, l.valeur)
+  // 4. Loi du régime (ex. Autoritarisme : +15 par rang d'habitation)
+  const regime = C.regimes.find((r) => r.nom === p.regime)
+  const bonus = regime?.garnisonParRang ?? 0
+  if (bonus) push('régime', `${p.regime} : ${bonus} × rang de la ville`, bonus * rangNiveau(ville, C))
+  // 5. Ministres : Connétable (+15 par ville, crédité à la prise de
+  //    fonction) et Grand prévôt (+10 × rang de pays).
+  if (p.garnisonMinisteres) push('ministre', 'Connétable (prise de fonction)', p.garnisonMinisteres)
+  if (state && aMinistre(state, p, 'Grand prévôt')) {
+    push('ministre', 'Grand prévôt : 10 × rang de pays', 10 * rangPaysNiveau(p, C))
+  }
+  // 6. Règles de faction (Puit de mana +40, vassaux +20…)
+  if (state) push('faction', 'règles de faction', garnisonFactionVille(state, p, ville, C))
+  return out
 }
 
 /** Garnison totale des habitations d'un pays (toutes villes). */
