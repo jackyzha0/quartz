@@ -12,6 +12,7 @@
 
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import type { GameState } from '../engine/types'
+import { compacterEtat, elargirEtat } from '../state/storage'
 
 const LS_URL = 'cpe.supabase.url'
 const LS_KEY = 'cpe.supabase.anon'
@@ -97,7 +98,8 @@ export async function loadRemote(id: string): Promise<GameState | null> {
   if (!sb) return null
   const { data, error } = await sb.from(TABLE).select('state').eq('id', id).maybeSingle()
   if (error || !data) return null
-  return data.state as GameState
+  // format compact : reconstruire les champs omis (valeurs par défaut)
+  return elargirEtat(data.state as GameState)
 }
 
 /** Identité de CE navigateur dans le salon (multijoueur simultané,
@@ -116,7 +118,7 @@ export async function saveRemote(id: string, state: GameState): Promise<boolean>
   if (!sb) return false
   const { error } = await sb.from(TABLE).upsert({
     id,
-    state,
+    state: compacterEtat(state),
     updated_by: CLIENT_ID,
     updated_at: new Date().toISOString(),
   })

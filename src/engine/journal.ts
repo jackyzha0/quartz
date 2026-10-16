@@ -31,6 +31,14 @@ export function snapshotRessources(
       ? { turn, joueur: p.n, stocks, prods, apports }
       : { turn, joueur: p.n, stocks, prods })
   }
+  // OPTIMISATION 2026-10-16 : plafond de l'historique — chaque tour
+  //  ajoute 8 snapshots (~800 octets), sans limite l'état grossit
+  //  indéfiniment (12 Mo de state → sauvegardes et realtime lourds).
+  const maxH = C.p.maxHistory ?? 120
+  const total = state.history.length
+  if (total > maxH * Math.max(1, state.players.length)) {
+    state.history = state.history.slice(total - maxH * Math.max(1, state.players.length))
+  }
 }
 
 // ── Récap (WriteRecapA3) ────────────────────────────────────────────────

@@ -104,6 +104,7 @@ export interface GameParams {
   dynastieRoturier: string
   // ── Système ──
   maxLog: number
+  maxHistory: number
   saisonLongueur: number
   // ── Effets chiffrés des événements (multiplicateurs par niveau) ──
   evMultFaible: number
@@ -192,6 +193,7 @@ export const DEFAULT_PARAMS: GameParams = {
   traitObstine: 'Obstiné',
   dynastieRoturier: 'Roturier',
   maxLog: 4000,
+  maxHistory: 120,
   saisonLongueur: 3,
   evMultFaible: 1,
   evMultMoyenne: 2,
@@ -279,6 +281,7 @@ export const PARAM_META: {
   { key: 'soldatAgeMax', label: 'Âge maximal de recrutement', groupe: 'Armées' },
   { key: 'vassalPrelevement', label: "Part des revenus d'habitants reversée au suzerain", groupe: 'Vassaux', unite: 'proportion', aide: "Un vassal prête serment à un autre joueur : à chaque fin de tour, il reverse cette part des gains d'Or de ses habitants à son suzerain (0,5 = 50 %)." },
   { key: 'maxLog', label: 'Taille maximale du journal', groupe: 'Système' },
+  { key: 'maxHistory', label: 'Tours d’historique conservés (snapshots)', groupe: 'Système', aide: 'Chaque tour ajoute un snapshot par joueur (stocks + apports). Les plus anciens au-delà du plafond sont retirés.' },
   { key: 'saisonLongueur', label: 'Durée d\'une saison (tours)', groupe: 'Système', aide: 'Un tour = 2 ans de temps de jeu ; Été/Hiver alternent toutes les N saisons… modifiable à volonté.' },
   { key: 'evMultFaible', label: 'Multiplicateur événement — faible (dé 1-5)', groupe: 'Événements' },
   { key: 'evMultMoyenne', label: 'Multiplicateur événement — moyenne (6-8)', groupe: 'Événements' },
