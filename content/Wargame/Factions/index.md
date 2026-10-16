@@ -77,7 +77,7 @@
       <p class="cp-wg-ct">Légions d'Outre-Tombe</p>
       <p class="cp-wg-cd">test</p>
     </a>
-    <a class="cp-wg-card" href="/Wargame/Factions/Les-Sylvains">
+    <a class="cp-wg-card" href="/Wargame/Factions/Sylvains">
       <svg class="cp-wg-ic" viewBox="0 0 36 36" width="42" height="42" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <!-- Tronc central stylisé (Opacité forte) -->
         <path d="M 18 4 V 32" opacity="0.85"/>
@@ -93,7 +93,7 @@
         <path d="M 14 32 L 13 35 M 22 32 L 23 35 M 18 32 L 18 35" stroke-width="1.5" opacity="0.55"/>
       </svg>
       <div class="cp-wg-rule"></div>
-      <p class="cp-wg-ct">Les Sylvains</p>
+      <p class="cp-wg-ct">Sylvains</p>
       <p class="cp-wg-cd">test</p>
     </a>
     <a class="cp-wg-card" href="/Wargame/Factions/Norls">
