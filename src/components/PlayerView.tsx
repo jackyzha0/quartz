@@ -1092,6 +1092,23 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   // de Nourriture UNIQUEMENT en été par le moteur.
                   const nEteAm = effetsNourrEteAmenagementsVille(ville, C.config)['Nourriture'] ?? 0
                   const nEteAut = effetsNourrEteAutresVille(ville)['Nourriture'] ?? 0
+                  // ÉTÉ pour TOUTE ressource (revue 2026-10-16) : les effets
+                  //  marqués été d'une autre ressource sont affichés comme
+                  //  lignes « <Ressource> - été » au même endroit.
+                  const eteAutres = (() => {
+                    const am = effetsNourrEteAmenagementsVille(ville, C.config)
+                    const au = effetsNourrEteAutresVille(ville)
+                    const out: Array<[string, number]> = []
+                    const vus = new Set(['Nourriture'])
+                    for (const src2 of [am, au]) {
+                      for (const [res, v] of Object.entries(src2)) {
+                        if (vus.has(res) || !v) continue
+                        vus.add(res)
+                        out.push([res, v])
+                      }
+                    }
+                    return out
+                  })()
                   const nEteTot = nEteAm + nEteAut
                   // Retour Thibaut (marqueur (r)) : toutes les ressources,
                   // même à production 0 (lignes teintées → lisibles).
@@ -1109,13 +1126,21 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   // Retour Thibaut 2026-10-15 : la ligne « Nourr - été »
                   //  est TOUJOURS visible (même à 0) juste sous la
                   //  Nourriture, avec un style DISTINCT (badge été).
-                  const lignesV: Array<{ kind: 'res'; r: string } | { kind: 'ete' }> = []
+                  const lignesV: Array<{ kind: 'res'; r: string } | { kind: 'ete' } | { kind: 'eteAutre'; r: string }> = []
                   let eteInsere = false
                   for (const r of resV) {
                     lignesV.push({ kind: 'res', r })
                     if (r === 'Nourriture') { lignesV.push({ kind: 'ete' }); eteInsere = true }
                   }
                   if (!eteInsere) lignesV.unshift({ kind: 'ete' })
+                  // ÉTÉ d'autres ressources (revue 2026-10-16) : une ligne
+                  //  « <Ressource> - été » après la ressource concernée.
+                  for (const [res, v] of eteAutres) {
+                    if (v === 0) continue
+                    const idx = lignesV.findIndex((l) => l.kind === 'res' && l.r === res)
+                    if (idx >= 0) lignesV.splice(idx + 1, 0, { kind: 'eteAutre', r: res })
+                    else lignesV.push({ kind: 'eteAutre', r: res })
+                  }
                   return (
                     <div>
                       <div className="mini-title">Production de la ville</div>
@@ -1150,6 +1175,28 @@ export function PlayerView({ joueur }: { joueur: number }) {
                                     <td>—</td>
                                     <td>
                                       <strong>{fmtNum(nEteTot)}</strong>{' '}
+                                      <span className="muted small">(créditée en été seulement)</span>
+                                    </td>
+                                  </tr>
+                                )
+                              }
+                              if (l.kind === 'eteAutre') {
+                                const vEte = eteAutres.find(([res2]) => res2 === l.r)?.[1] ?? 0
+                                return (
+                                  <tr key={`ete-${l.r}`} className="ligne-ete"
+                                    style={{ background: fondRessource(`${l.r} - été`, C) }}>
+                                    <td>
+                                      <span className="dot-res dot-ete" style={{ background: couleurRessource(l.r, C) }} />
+                                      <strong>{l.r} - été</strong>{' '}
+                                      <span className="badge-ete">☀ été</span>
+                                    </td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                    <td>
+                                      <strong>{fmtNum(vEte)}</strong>{' '}
                                       <span className="muted small">(créditée en été seulement)</span>
                                     </td>
                                   </tr>

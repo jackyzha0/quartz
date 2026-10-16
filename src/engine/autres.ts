@@ -8,6 +8,7 @@
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
 
+import { nourritureBetail } from './economie'
 import type { City, Player } from './types'
 import type { AutreDef } from './types'
 
@@ -59,6 +60,11 @@ export function appliquerEffetsAutres(p: Player): Record<string, number> {
       out[res] = (out[res] ?? 0) + v
     }
   }
+  // NOURRITURE DU BÉTAIL (revue valeurs 2026-10-16) : chaque unité de
+  //  Bétail en stock rapporte 4 Nourriture par tour (revenu des
+  //  troupeaux) — même canal que les lignes « Autres » du classeur.
+  const nBetail = nourritureBetail(p)
+  if (nBetail > 0) out['Nourriture'] = (out['Nourriture'] ?? 0) + nBetail
   for (const [res, v] of Object.entries(out)) {
     if (!v) continue
     const rs = p.resources[res]

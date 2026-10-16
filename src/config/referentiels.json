@@ -5454,12 +5454,12 @@
       "famille": "Economique",
       "nom": "Grange",
       "cout": "10 Or + 3 Bétail + 3 Bois",
-      "production": "+15 Nourriture par tour.",
+      "production": "+20 Nourriture par tour.",
       "description": "+ 15 Nourriture par tour.",
       "effets": [
         {
           "ressource": "Nourriture",
-          "quantite": 15
+          "quantite": 20
         }
       ],
       "rangMinHabitation": 1
@@ -5570,7 +5570,7 @@
       "famille": "Economique",
       "nom": "Moulin à vent",
       "cout": "Silo à grain requis. 15 Or + 4 Bois + 4 Bétail.",
-      "production": "Consomme 1 Charbon par tour. +45 Nourriture par tour.",
+      "production": "Consomme 1 Charbon par tour. +60 Nourriture par tour.",
       "description": "Remplace le Silo à grain. Consomme 1 Charbon par tour.\n+ 45 Nourriture par tour.\nCette cité ne peut être améliorée en Grande Cité.",
       "effets": [
         {
@@ -5579,7 +5579,7 @@
         },
         {
           "ressource": "Nourriture",
-          "quantite": 45
+          "quantite": 60
         }
       ],
       "rangMinHabitation": 2
@@ -5636,12 +5636,12 @@
       "famille": "Economique",
       "nom": "Silo à grain",
       "cout": "20 Or + 8 Bois.",
-      "production": "+25 Nourriture par tour.",
+      "production": "+35 Nourriture par tour.",
       "description": "Remplace la Grange.\n+ 25 Nourriture par tour.",
       "effets": [
         {
           "ressource": "Nourriture",
-          "quantite": 25
+          "quantite": 35
         }
       ],
       "rangMinHabitation": 2
@@ -5652,7 +5652,7 @@
       "famille": "Guilde",
       "nom": "Guilde des artisans de la terre.",
       "cout": "40 Or + 16 Bois + 6 Bétails",
-      "production": "Consomme 1 Charbon par tour. +45 Nourriture par tour.",
+      "production": "Consomme 1 Charbon par tour. +60 Nourriture par tour.",
       "description": "Remplace le moulin à vent. Consomme 1 Charbon par tour. + 45 Nourriture par tour et réduit de 10 la consommation en nourriture de toutes vos Habitations. Cette cité ne peut être améliorée en Grande Cité.",
       "effets": [
         {
@@ -5661,7 +5661,7 @@
         },
         {
           "ressource": "Nourriture",
-          "quantite": 45
+          "quantite": 60
         }
       ],
       "rangMinHabitation": 2
@@ -6368,12 +6368,12 @@
       "nom": "Champ",
       "terrain": "Plaine",
       "cout": "8 Or + 3 Bois",
-      "production": "+10 Nourriture par tour en été.",
+      "production": "+15 Nourriture par tour en été.",
       "description": "+10 Nourriture par tour en été.",
       "effets": [
         {
           "ressource": "Nourriture",
-          "quantite": 10,
+          "quantite": 15,
           "ete": true
         }
       ]
@@ -6465,7 +6465,7 @@
       "nom": "Pâturage",
       "terrain": "Bétail",
       "cout": "8 Or + 3 Bois",
-      "production": "+1 Bétail et +8 Nourriture par tour.",
+      "production": "+1 Bétail et +4 Nourriture par tour (chaque Bétail en stock rapporte en +4 Nourriture/tour).",
       "description": "+1 Bétail et +8 Nourriture par tour.",
       "effets": [
         {
@@ -6474,7 +6474,7 @@
         },
         {
           "ressource": "Nourriture",
-          "quantite": 8
+          "quantite": 4
         }
       ]
     },
@@ -6485,12 +6485,12 @@
       "nom": "Rizière",
       "terrain": "Marais",
       "cout": "8 Or + 3 Bois",
-      "production": "+15 Nourriture par tour en été.",
+      "production": "+20 Nourriture par tour en été.",
       "description": "+15 Nourriture par tour en été.",
       "effets": [
         {
           "ressource": "Nourriture",
-          "quantite": 15,
+          "quantite": 20,
           "ete": true
         }
       ]
