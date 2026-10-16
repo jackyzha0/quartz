@@ -40,10 +40,6 @@ function gainsPopulationJoueur(state: GameState, p: Player, C: Cfg): Record<stri
   const totals: Record<string, number> = {}
   for (const ville of p.villes) {
     for (const [res, v] of Object.entries(gainsVilleBruts(state, p, ville, C))) {
-      // Le Tourisme est une VALEUR D'ÉTAT (revue 2026-10-16) : les
-      //  habitants n'en produisent PAS par tour — acquis/descendu
-      //  uniquement via les constructions et bonus one-shot.
-      if (res === 'Tourisme') continue
       totals[res] = (totals[res] ?? 0) + v
     }
   }

@@ -79,14 +79,14 @@ export function fluxProgresJoueur(state: GameState, p: Player, C: Cfg): Record<s
   //  +5 Tourisme par RANG d'habitation (consommation +10 Nourriture
   //  par rang — appliquée dans consommationsVille, engine/habitations.ts).
   if (aTech(p, 'Surconsommation', C)) {
-    let sci = 0
+    let sci = 0, tour = 0
     for (const v of p.villes) {
       const r = rangNiveauVille(v, C)
       sci += 1 * r
+      tour += 5 * r
     }
     if (sci > 0) add('Science', sci)
-    // « +5 Tourisme par rang » : VALEUR D'ÉTAT (revue 2026-10-16) —
-    //  affiché en aide de jeu, plus crédité par tour.
+    if (tour > 0) add('Tourisme', tour)
   }
   // ── par aménagement (Champs / Rizières) ──
   const nbChamps = p.villes.reduce((n, v) => n + (v.amenagements ?? []).filter((a) => a === 'Champ' || a === 'Rizi\u00e8re').length, 0)
@@ -106,8 +106,7 @@ export function fluxProgresJoueur(state: GameState, p: Player, C: Cfg): Record<s
   const nbFoires = p.villes.reduce((n, v) => n + (v.amenagements ?? []).filter((a) => a === 'Foire').length, 0)
   if (nbFoires > 0 && aTech(p, 'Stands de goodies', C)) {
     add('Or', 2 * nbFoires)
-    // « +2 Tourisme par Foire » : VALEUR D'ÉTAT (revue 2026-10-16) —
-    //  la Foire crédite son Tourisme à la construction ; plus de flux.
+    add('Tourisme', 2 * nbFoires)
   }
   return out
 }

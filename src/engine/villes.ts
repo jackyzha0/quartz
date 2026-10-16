@@ -25,7 +25,8 @@
 import type { Character, City, GameState, Player } from './types'
 import { cfgOf, type Cfg } from './gameData'
 import { isNobleDyn } from './shared'
-import { retirerTourismeVille, tourismeStatiqueBatiment } from './batiments'
+import { tourismeStatiqueBatiment } from './batiments'
+import { resynchroniserTourisme } from './regimes'
 
 /** MARQUEUR (a) — garde-fou ANCIENNES SAUVEGARDES / états distants : complète
  *  les tableaux et dictionnaires indispensables au moteur et au rendu.
@@ -58,9 +59,9 @@ export function normaliserEtat(state: GameState): void {
 export function supprimerVille(state: GameState, p: Player, idx: number): string | null {
   const ville = p.villes[idx]
   if (!ville) return null
-  // Tourisme : valeur d'état des constructions de la ville, reprise
-  //  quand la ville disparaît (revue 2026-10-16).
-  retirerTourismeVille(state, p, ville, `ville « ${ville.nom} » supprimée`)
+  // Tourisme (retour Thibaut 2026-10-16) : la production de la ville
+  //  disparaît — le stock est recalculé = production courante.
+  resynchroniserTourisme(state, p, `ville « ${ville.nom} » supprimée`)
   p.villes.splice(idx, 1)
   state.log.push({
     turn: state.turn, type: 'Système', joueur: p.n,
@@ -81,9 +82,10 @@ export function transfererVille(
   const C = cfgOf(state.config)
   const ville = p.villes[idx]
   if (!ville || cible.n === p.n) return false
-  // Tourisme : valeur d'état des constructions de la ville — reprise
-  //  à l'ancien propriétaire, créditée au nouveau (revue 2026-10-16).
-  retirerTourismeVille(state, p, ville, `ville « ${ville.nom} » transférée à ${cible.nom}`)
+  // Tourisme (retour Thibaut 2026-10-16) : recalculé des deux côtés
+  //  — la production suit la ville.
+  resynchroniserTourisme(state, p, `ville « ${ville.nom} » transférée à ${cible.nom}`)
+  resynchroniserTourisme(state, cible, `ville « ${ville.nom} » reçue de ${p.nom}`)
   p.villes.splice(idx, 1)
   cible.villes.push(ville)
   for (const b of [...(ville.batiments ?? []), ...(ville.amenagements ?? [])]) {

@@ -35,7 +35,7 @@ import { designerGouverneurs } from './titres'
 import { appliquerEffetsBatiments } from './batiments'
 import { appliquerEffetsAmenagements, effetsNourrEteAmenagementsVille } from './amenagements'
 import { appliquerEffetsAutres, effetsNourrEteAutresVille } from './autres'
-import { appliquerEffetsRegimesCultures, reconcilierTourismeDynamique } from './regimes'
+import { appliquerEffetsRegimesCultures, resynchroniserTourisme } from './regimes'
 import { appliquerEffetsFaction, nbVassaux } from './factions'
 import { appliquerEffetsMinisteres, effetsFinSaisonMinisteres } from './ministeres'
 import { appliquerEffetsCommerce, nettoyerRoutesCommerce } from './commerce'
@@ -217,10 +217,9 @@ export function runTurn(state: GameState): GameState {
   const regimesCulturesParJoueur: Record<number, Record<string, number>> = {}
   for (const p of state.players) {
     regimesCulturesParJoueur[p.n] = appliquerEffetsRegimesCultures(state, p, state.saison, C)
-    // Tourisme dynamique (revue 2026-10-16) : reconcile le stock avec
-    //  la cible (loi de culture, techs, champs) — hausse créditée,
-    //  baisse reprise (plafonnée au stock).
-    reconcilierTourismeDynamique(state, p, 'fin de tour')
+    // Tourisme (retour Thibaut 2026-10-16) : le stock est RECALCULÉ
+    //  pour égaler la production courante — jamais cumulé (stock = prod).
+    resynchroniserTourisme(state, p, 'fin de tour')
   }
 
   // 3octies. Habitations : consommation par tour de chaque ville selon

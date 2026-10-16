@@ -143,8 +143,14 @@ export function coutBatimentRef(nom: string, cfg?: GameConfig, groupe?: string):
 // valeur d'état — jamais des flux par tour. Le repli texte ci-dessus reste
 // utilisé pour les configs sans `effets` (anciennes sauvegardes).
 
-/** Ressources instantanées : jamais créditées comme flux par tour. */
-const RESSOURCES_INSTANTANEES = new Set(['Tourisme', 'Garnison'])
+/**
+ * Ressources instantanées : jamais créditées comme flux par tour.
+ * La Garnison reste une valeur d'état. Le Tourisme (retour Thibaut
+ * 2026-10-16) redevient un FLUX normal — affiché dans les récaps de
+ * ville et de tour comme le Bois ; seule différence : le moteur
+ * recalcul le stock (= production) au lieu de le cumuler.
+ */
+const RESSOURCES_INSTANTANEES = new Set(['Garnison'])
 
 /** Effets structurés d'une construction — tableau `effets` prioritaire,
  *  repli sur l'analyse du texte de production (comportement historique). */

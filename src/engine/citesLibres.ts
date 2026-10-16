@@ -35,7 +35,7 @@ import { computeAgeMax } from './sante'
 import { rangPaysNiveau } from './factions'
 import { aMinistre } from './ministeres'
 import { isNobleDyn } from './shared'
-import { retirerTourismeVille } from './batiments'
+import { resynchroniserTourisme } from './regimes'
 
 /** Consommation d'une cité libre : même règle qu'une ville de joueur —
  *  chaque habitant vivant consomme consoNourrParHab Nourriture par tour. */
@@ -382,9 +382,9 @@ export function villeDevientCiteLibre(
 ): string | null {
   const ville = p.villes[idx]
   if (!ville) return null
-  // Tourisme : valeur d'état des constructions de la ville, reprise
-  //  quand la ville devient une cité libre (revue 2026-10-16).
-  retirerTourismeVille(state, p, ville, `ville « ${ville.nom} » devenue cité libre`)
+  // Tourisme (retour Thibaut 2026-10-16) : la production de la ville
+  //  part avec elle — stock recalculé = production courante.
+  resynchroniserTourisme(state, p, `ville « ${ville.nom} » devenue cité libre`)
   const nom = ville.nom
   const cites = state.citesLibres ?? (state.citesLibres = [])
   // nom unique parmi les cités libres

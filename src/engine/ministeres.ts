@@ -118,9 +118,24 @@ export function effetsFinSaisonMinisteres(
       if (rs) rs.stock += v
       parts.push(`+${v} Nourriture (${nbSenechal} Sénéchal${nbSenechal > 1 ? 's' : ''})`)
     }
-    // Maître de cour et Légat du pontificat : leur Tourisme est une
-    //  VALEUR D'ÉTAT (revue 2026-10-16) — créditée UNE FOIS à la
-    //  nomination (changerPortefeuille), plus à chaque saison.
+    const nbCour = portefeuilles.filter((m) => m === 'Maître de cour').length
+    if (nbCour > 0) {
+      const v = 2 * nbCour
+      const rs = p.resources['Tourisme']
+      if (rs) rs.stock += v
+      parts.push(`+${v} Tourisme (${nbCour} Maître${nbCour > 1 ? 's' : ''} de cour)`)
+    }
+    // Légat du pontificat (marqueur (y)) : « +20 Tourisme » — crédité
+    //  à la fin de CHAQUE saison, comme le Maître de cour (inter-
+    //  prétation retenue : récurrent ; ajustable dans Paramètres en
+    //  renommant l'effet si Thibaut préfère un one-shot).
+    const nbLegat = portefeuilles.filter((m) => m === 'Légat du pontificat').length
+    if (nbLegat > 0) {
+      const v = 20 * nbLegat
+      const rs = p.resources['Tourisme']
+      if (rs) rs.stock += v
+      parts.push(`+${v} Tourisme (${nbLegat} Légat${nbLegat > 1 ? 's' : ''} du pontificat)`)
+    }
     if (parts.length > 0) {
       state.log.push({
         turn: state.turn + 1, type: 'Système', joueur: p.n,
@@ -141,27 +156,6 @@ export function effetsFinSaisonMinisteres(
 export function changerPortefeuille(
   state: GameState, p: Player, char: Character, ministere: string | null,
 ): void {
-  // Retire d'abord le Tourisme de l'ANCIEN portefeuille (valeur
-  //  d'état, revue 2026-10-16) : Maître de cour −2, Légat −20,
-  //  plafonné au stock disponible.
-  const TOURISME_MINISTERES: Record<string, number> = {
-    'Maître de cour': 2,
-    'Légat du pontificat': 20,
-  }
-  const ancienTour = TOURISME_MINISTERES[char.ministere ?? ''] ?? 0
-  if (ancienTour > 0) {
-    const rs = p.resources['Tourisme']
-    if (rs) {
-      const v = Math.min(ancienTour, Math.max(0, rs.stock))
-      if (v > 0) {
-        rs.stock -= v
-        state.log.push({
-          turn: state.turn, type: 'Système', joueur: p.n,
-          texte: `👑 Ministères — ${fullName(char)} quitte la charge de ${char.ministere} : −${v} Tourisme (valeur d'état reprise).`,
-        })
-      }
-    }
-  }
   char.ministere = ministere
   if (ministere === 'Connétable') {
     // Marqueur (y) : +15 Garnison à la prise de fonction (le texte
@@ -170,21 +164,6 @@ export function changerPortefeuille(
     state.log.push({
       turn: state.turn, type: 'Système', joueur: p.n,
       texte: `👑 Ministères — ${fullName(char)} prend la charge de Connétable : +15 Garnison à toutes les villes de ${p.nom}.`,
-    })
-  }
-  // Maître de cour (+2) et Légat du pontificat (+20) : Tourisme
-  //  VALEUR D'ÉTAT (revue 2026-10-16) — crédité UNE FOIS à la prise
-  //  de fonction, retiré si le portefeuille est retiré (ministere =
-  //  null ou changé) ; le départ ou la mort du ministre retire AUSSI
-  //  le portefeuille (géré par la page Population, qui appelle
-  //  changerPortefeuille(null) — le retrait y est alors appliqué).
-  const tour = TOURISME_MINISTERES[ministere ?? ''] ?? 0
-  if (tour > 0) {
-    const rs = p.resources['Tourisme']
-    if (rs) rs.stock += tour
-    state.log.push({
-      turn: state.turn, type: 'Système', joueur: p.n,
-      texte: `👑 Ministères — ${fullName(char)} prend la charge de ${ministere} : +${tour} Tourisme (valeur d'état).`,
     })
   }
 }

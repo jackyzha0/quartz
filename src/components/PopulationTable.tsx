@@ -39,6 +39,7 @@ import { Card, Select, TextInput, Button, NumberInput, fmt } from './ui'
 import { ChoicePicker } from './Picker'
 import { traitDef } from '../engine/gameData'
 import { statutMinistre, pastilleClass } from '../engine/statutAuto'
+import { resynchroniserTourisme } from '../engine/regimes'
 
 type SortKey = 'nom' | 'age' | 'dynastie' | 'ville' | 'titre' | 'statut'
 
@@ -572,6 +573,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
                           const tc = (s2.population[joueur] ?? []).find((x) => x.id === c.id)
                           if (!tp || !tc) return
                           changerPortefeuille(s2, tp, tc, v || null)
+                          resynchroniserTourisme(s2, tp, 'portefeuille ministériel')
                         })}
                       />
                       {c.ministere && (
@@ -580,6 +582,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
                           const tc = (s2.population[joueur] ?? []).find((x) => x.id === c.id)
                           if (!tp || !tc) return
                           changerPortefeuille(s2, tp, tc, null)
+                          resynchroniserTourisme(s2, tp, 'portefeuille retiré')
                         })}>✕ Retirer</Button>
                       )}
                       {avertissementPortefeuille(c.ministere) && (

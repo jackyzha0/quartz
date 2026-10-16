@@ -20,12 +20,13 @@
 // ══════════════════════════════════════════════════════════════════════
 
 import type { City, GameState, Player, Saison } from './types'
+import { detailGainsVille } from './economie'
 import { cfgOf, cultureDef, type Cfg } from './gameData'
-import { aMinistre } from './ministeres'
-import { garnisonBatiment } from './batiments'
-import { garnisonFactionVille, rangPaysNiveau } from './factions'
+import { aMinistre, portefeuillesDuJoueur } from './ministeres'
+import { garnisonBatiment, tourismeStatiqueBatiment } from './batiments'
+import { garnisonFactionVille, rangPaysNiveau, effetsFaction } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
-import { garnisonProgresVille, lignesGarnisonProgresVille, aTech } from './progresAuto'
+import { garnisonProgresVille, lignesGarnisonProgresVille, aTech, fluxProgresJoueur } from './progresAuto'
 import { regleActive } from './factions'
 
 export { nomRang } from './habitations'
@@ -203,78 +204,79 @@ export function effetsCulturePays(state: GameState, p: Player, C: Cfg): Record<s
   const out: Record<string, number> = {}
   if (p.villes.length === 0) return out
   for (const d of detailCulturePays(state, p, C)) {
-    // Le Tourisme est une VALEUR D'ÉTAT (revue 2026-10-16) : la loi de
-    //  pays « +N Tourisme par ville de la culture » n'est PLUS un flux
-    //  par tour — affichée en aide de jeu, à créditer une fois au
-    //  changement (villes/rang) via la page Pays si Thibaut le veut.
-    if (d.res === 'Tourisme') continue
     out[d.res] = (out[d.res] ?? 0) + d.total
   }
   return out
 }
 
-/** Cible du Tourisme DYNAMIQUE d'un joueur (valeur d'état mouvante,
- *  revue 2026-10-16) : somme de tous les facteurs de Tourisme qui
- *  suivent l'état courant du monde —
- *    · loi de pays de la culture (ex. Lunisme : +4 × villes
- *      lunistes dans le MONDE) ;
- *    · tech « Surconsommation » : +5 par rang d'habitation ;
- *    · tech « Stands de goodies » : +2 par Foire ;
- *    · Basiléens « Abuser des serfs » : +3 par Champ.
- *  La réconciliation (reconcilierTourismeDynamique) crédite/reprend
- *  le DELTA entre cette cible et ce qui a déjà été crédité
- *  (p.tourismeDynamique) — le stock suit exactement les facteurs,
- *  y compris au changement de culture (Lunisme → Déisme : retrait). */
-export function cibleTourismeDynamique(state: GameState, p: Player, C: Cfg): number {
-  let cible = 0
-  // Loi de pays de la culture : +N Tourisme par ville de cette culture
-  //  dans le monde (LA capitale génère, mais la valeur appartient au
-  //  pays tant qu'il pratique cette culture).
-  const cult = cultureDef(p.culture, C.config)
-  if (cult?.capitalTourismeParHabMonde && p.villes.length > 0) {
-    cible += cult.capitalTourismeParHabMonde * nbVillesCultureMonde(state, p.culture)
+/**
+ * RESSYNCHRONISATION DU TOURISME (revue 2026-10-16, retour Thibaut) :
+ * le Tourisme est traité comme une ressource normale (Bois, Or…)
+ * partout — production affichée dans les récaps de ville et de tour,
+ * imposable, imputée dans les tableaux — à UNE exception près : le
+ * stock n'est JAMAIS cumulé. À chaque fin de tour (et à chaque
+ * changement de culture), le stock est RECALCULÉ pour égaler la
+ * production courante : stock = prod. Construire une Chapelle monte
+ * la production (et le stock) ; perdre le bâtiment le fait
+ * redescendre ; les bonus d'état (ministres, vassalité) sont
+ * simplement des lignes de production.
+ *
+ * `tourismeCourant` calcule la production Tourisme d'un joueur à
+ * partir des mêmes canaux que le récap (bâtiments & aménagements
+ * statiques + gains d'habitants + lois de culture + techs + faction
+ * + ministres de fin de saison), et `resynchroniserTourisme` écrase
+ * le stock avec cette valeur.
+ */
+export function tourismeCourant(state: GameState, p: Player, C: Cfg): number {
+  // canaux déjà rétablis comme flux : cette fonction somme les
+  //  composantes Tourisme de la production par tour du joueur.
+  let total = 0
+  // 1. base réglée manuellement (p.resources.prod)
+  total += p.resources['Tourisme']?.prod ?? 0
+  // 2. gains d'habitants (Artistes) — même canal que le Bois
+  for (const v of p.villes) {
+    const d = detailGainsVille(state, p, v, C)
+    total += (d.taxes['Tourisme'] ?? 0) * C.p.gainsCrediteStock
   }
-  // Tech « Surconsommation » : +5 Tourisme par rang d'habitation.
-  if (aTech(p, 'Surconsommation', C)) {
-    for (const v of p.villes) cible += 5 * rangNiveau(v, C)
+  // 3. lois de culture & régime — composante Tourisme seulement
+  total += effetsCulturePays(state, p, C)['Tourisme'] ?? 0
+  // 4. technologies (Surconsommation, Stands de goodies)
+  total += fluxProgresJoueur(state, p, C)['Tourisme'] ?? 0
+  // 5. règles de faction (vassalité, champs basiléens)
+  total += effetsFaction(state, p, C)['Tourisme'] ?? 0
+  // 6. ministres (Maître de cour +2, Légat +20) — fin de saison :
+  //  production équivalente par tour
+  const portefeuilles = portefeuillesDuJoueur(state, p)
+  total += 2 * portefeuilles.filter((m) => m === 'Maître de cour').length
+  total += 20 * portefeuilles.filter((m) => m === 'Légat du pontificat').length
+  // 7. constructions statiques (Chapelle +35…) : tourisme statique
+  //  des bâtiments/aménagements — valeur d'état, partie intégrante
+  //  de la « production » de Tourisme du joueur.
+  for (const v of p.villes) {
+    for (const b of v.batiments) total += tourismeStatiqueBatiment(b, C)
+    for (const a of v.amenagements ?? []) total += tourismeStatiqueBatiment(a, C)
   }
-  // Tech « Stands de goodies » : +2 Tourisme par Foire.
-  if (aTech(p, 'Stands de goodies', C)) {
-    for (const v of p.villes) cible += 2 * (v.amenagements ?? []).filter((a) => a === 'Foire').length
+  // 8. vassalité : +15 × rang du suzerain tant que le serment tient
+  if (p.vassalDe != null) {
+    const suz = state.players.find((q) => q.n === p.vassalDe)
+    if (suz) total += 15 * rangPaysNiveau(suz, C)
   }
-  // Basiléens « Abuser des serfs » : +3 Tourisme par Champ.
-  if (p.peuple === 'Basiléens' && regleActive(p, C, 'Abuser des serfs')) {
-    for (const v of p.villes) {
-      cible += 3 * (v.amenagements ?? []).filter((a) => a === 'Champ' || a === 'Rizière').length
-    }
-  }
-  return cible
+  return total
 }
 
-/** Reconcilie le stock de Tourisme avec la cible dynamique : crédite
- *  la hausse, REPREND la baisse (plafonnée au stock disponible),
- *  mémorise la nouvelle valeur dans p.tourismeDynamique. Journalise
- *  les mouvements (à la fin de tour et au changement de culture). */
-export function reconcilierTourismeDynamique(
+/** Écrase le stock de Tourisme avec la production courante (le
+ *  Tourisme n'est jamais cumulé — stock = prod). */
+export function resynchroniserTourisme(
   state: GameState, p: Player, contexte: string, C: Cfg = cfgOf(state.config),
 ): void {
   const rs = p.resources['Tourisme']
   if (!rs) return
-  const deja = p.tourismeDynamique ?? 0
-  const cible = cibleTourismeDynamique(state, p, C)
-  const delta = cible - deja
-  if (delta === 0) return
-  if (delta > 0) {
-    rs.stock += delta
-  } else {
-    const v = Math.min(-delta, Math.max(0, rs.stock))
-    if (v <= 0) { p.tourismeDynamique = cible; return }
-    rs.stock -= v
-  }
-  p.tourismeDynamique = cible
+  const cible = Math.max(0, tourismeCourant(state, p, C))
+  if (rs.stock === cible) return
+  rs.stock = cible
   state.log.push({
     turn: state.turn, type: 'Système', joueur: p.n,
-    texte: `🌉 Tourisme d'état ${delta > 0 ? '+' : '−'}${Math.abs(delta)} (${contexte}) — total dynamique : ${Math.round(cible * 10) / 10}.`,
+    texte: `🌉 Tourisme recalculé (${contexte}) : stock = production courante = ${Math.round(cible * 10) / 10}.`,
   })
 }
 
