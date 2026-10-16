@@ -451,7 +451,7 @@ export function provenancesApports(
     const d = detailCiteLibre(cite, C)
     for (const [res, v] of Object.entries(d.transfert)) {
       push(res, 'Cités libres',
-        `taxes de ${cite.nom} (${d.habitants} hab., ${d.chasseurs} chasseur(s) : Nourriture ×1,1)`, v)
+        `taxes de ${cite.nom} (${d.habitants} hab. dont ${d.adultes} adulte(s) / ${d.enfants} enfant(s), ${d.chasseurs} chasseur(s) : Nourriture ×1,1)`, v)
     }
   }
 

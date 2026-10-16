@@ -112,10 +112,15 @@ export function CitesLibresView() {
 
   const supprimerCite = (nom: string) =>
     update((s) => {
+      // La population de la cité disparaît AVEC elle (revue
+      //  2026-10-16) : une cité détruite/annexée hors « → Ville »
+      //  n'a nulle part où aller.
+      const cite = (s.citesLibres ?? []).find((c) => c.nom === nom)
+      const nbVivants = (cite?.population ?? []).filter((c) => c.statut !== 'Décédé').length
       s.citesLibres = (s.citesLibres ?? []).filter((c) => c.nom !== nom)
       s.log.push({
         turn: s.turn, type: 'Système', joueur: null,
-        texte: `🗼 La cité libre ${nom} n'est plus une cité libre (annexée ou détruite).`,
+        texte: `🏬 La cité libre ${nom} n'est plus une cité libre (annexée ou détruite)${nbVivants > 0 ? ` — ses ${nbVivants} habitant(s) vivant(s) disparaissent avec elle` : ''}.`,
       })
     })
 
@@ -184,7 +189,7 @@ export function CitesLibresView() {
       <Card title="🗼 Cités libres — règle et fonctionnement">
         <p className="small muted pre-wrap">{C.config.regleCitesLibres}</p>
         <div className="badges-wrap">
-          <Badge tone="good">✓ population : habitants titrés (Chasseurs ×1,1 Nourriture)</Badge>
+          <Badge tone="good">✓ population : adultes titrés (Chasseurs ×1,1 Nourriture) ; enfants sans titre (consomment, ne produisent pas)</Badge>
           <Badge tone="good">✓ garnison : 100 + 40 × rang de pays le plus haut (auto)</Badge>
           <Badge tone="good">✓ taxes au suzerain : versées à chaque fin de tour (canal « Cités libres »)</Badge>
           <Badge tone="good">✓ consommation de Nourriture : par habitant vivant, comme une ville de joueur</Badge>
@@ -385,7 +390,7 @@ export function CitesLibresView() {
             </div>
             <div className="small">
               <span className="muted">
-                {d.habitants} vivant(s), dont {d.chasseurs} chasseur(s)
+                {d.habitants} vivant(s) — {d.adultes} adulte(s), {d.enfants} enfant(s){d.enfants > 0 ? ' (ne produisent pas, consomment)' : ''}, dont {d.chasseurs} chasseur(s)
                 {d.chasseurs > 0 && <> — <strong>Nourriture ×1,1</strong> (règle des cités libres)</>}
                 {' '}· taxes ×{d.taxeMult}
               </span>

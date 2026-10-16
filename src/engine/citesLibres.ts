@@ -18,6 +18,13 @@
 //  engine/economie.ts) ; sa population démarre à 50 habitants et
 //  est gérée dans l'onglet « 👥 Population » comme si c'était un
 //  joueur (roturiers OU nobles, dons et mariages inter-porteurs).
+//  PYRAMIDE D'ÂGES (revue 2026-10-16) : comme chez les joueurs, la
+//  population compte des ENFANTS (sans titre — ils ne produisent
+//  pas mais consomment) et des adultes titrés (Chasseur par
+//  défaut) ; la population suit TOUJOURS la cité dans ses
+//  transformations (ville → cité : les inscrits partent ; cité →
+//  ville : ils rejoignent l'acquéreur ; cité supprimée : ils
+//  disparaissent avec elle).
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
 
@@ -84,6 +91,10 @@ export function citesSuzerainesDe(state: GameState, p: Player): CiteLibre[] {
  *                 — ce que le suzerain reçoit réellement. */
 export interface DetailCiteLibre {
   habitants: number
+  /** adultes (âge >= adultAge) — les seuls qui portent un titre et produisent */
+  adultes: number
+  /** enfants vivants (âge < adultAge) — ne produisent pas mais consomment */
+  enfants: number
   chasseurs: number
   titres: Record<string, number>
   taxeMult: number
@@ -98,6 +109,8 @@ export interface DetailCiteLibre {
  *  Nourriture (les autres ressources du titre sont inchangées). */
 export function detailCiteLibre(cite: CiteLibre, C: Cfg): DetailCiteLibre {
   const vivants = (cite.population ?? []).filter((c) => c.statut !== 'Décédé')
+  const adultes = vivants.filter((c) => c.age >= C.p.adultAge).length
+  const enfants = vivants.length - adultes
   const titres: Record<string, number> = {}
   let chasseurs = 0
   for (const c of vivants) {
@@ -140,7 +153,7 @@ export function detailCiteLibre(cite: CiteLibre, C: Cfg): DetailCiteLibre {
     const t = v * C.p.gainsCrediteStock
     if (t !== 0) transfert[res] = t
   }
-  return { habitants: vivants.length, chasseurs, titres, taxeMult, taxes, conso, net, transfert }
+  return { habitants: vivants.length, adultes, enfants, chasseurs, titres, taxeMult, taxes, conso, net, transfert }
 }
 
 /** Taxes que les cités libres sous suzeraineté d'un joueur lui versent
@@ -191,7 +204,7 @@ export function appliquerTaxesCitesLibres(
     if (parts.length > 0) {
       state.log.push({
         turn: state.turn + 1, type: 'Système', joueur: suz.n,
-        texte: `🗼 Cités libres — ${suz.nom} reçoit les taxes de ${cite.nom} (${d.habitants} hab., ${d.chasseurs} chasseur(s) : Nourriture ×1,1) : ${parts.join(', ')}.`,
+        texte: `🗼 Cités libres — ${suz.nom} reçoit les taxes de ${cite.nom} (${d.habitants} hab. dont ${d.adultes} adulte(s) / ${d.enfants} enfant(s), ${d.chasseurs} chasseur(s) : Nourriture ×1,1) : ${parts.join(', ')}.`,
       })
     }
   }
@@ -259,13 +272,19 @@ function ajouterCiteLibre(
     traits[0] = draw([])
     if (traits[0]) traits[1] = rng.chance(0.5) ? draw([traits[0]]) : ''
     if (traits[1] && rng.chance(0.3)) traits[2] = draw([traits[0], traits[1]])
+    // tirage de l'âge UNE fois : enfant ou adulte (comme setup)
+    const ageTiree = rng.int(0, Math.max(1, Math.round(C.p.setupAgeMax)))
     const c: Character = {
       id: `cl_${cite.nom}_${state.turn}_${pop.length + 1}_${i}`,
       nom: noble ? dynNoble : rng.pick(banque.noms),
       prenom: sexe === 'M' ? rng.pick(banque.prenomsM) : rng.pick(banque.prenomsF),
       dynastie: noble ? dynNoble : C.p.dynastieRoturier,
       sexe,
-      age: rng.int(C.p.adultAge, Math.max(C.p.adultAge + 1, 60)),
+      // Pyramide d'âges réaliste (revue 2026-10-16) : comme la
+      //  population d'un joueur au setup — certains habitants sont
+      //  des ENFANTS (0..adultAge) sans titre (ils ne produisent pas
+      //  mais consomment), les adultes reçoivent le titre Chasseur.
+      age: ageTiree,
       culture,
       ville: cite.nom,
       orientation: rng.pickWeighted(C.orientations, (o) => o.poids).nom as Character['orientation'],
@@ -276,7 +295,7 @@ function ajouterCiteLibre(
       pere: null,
       pereBio: null,
       enfantBatard: false,
-      titre: C.p.titreChasseur,
+      titre: ageTiree >= C.p.adultAge ? C.p.titreChasseur : null,
       education: null,
       fecondite: 0,
       ageMax: 0,
