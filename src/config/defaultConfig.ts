@@ -322,6 +322,9 @@ export interface GameConfig {
   /** Migration renommages de techs doublons (2026-10-16) — rejouée
    *  tant que false/absente, puis tamponnée. */
   renommagesTechs2026?: boolean
+  /** Migration techs manquantes (2026-10-16) — slots vides complétés
+   *  depuis le référentiel, descriptions corrigées. */
+  techsManquantes2026?: boolean
 }
 
 // ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
@@ -1053,6 +1056,37 @@ export function cfgOf(config?: GameConfig): Cfg {
       if (t && t.nom === ancien) t.nom = nouveau
     }
     merged.renommagesTechs2026 = true
+  }
+  // TECHS MANQUANTES (revue 2026-10-16) : Muraille (+40 Garnison),
+  //  Art de la Guerre (16:c), D\u00e9fense nationale A1 (17:a1), d\u00e9veloppement
+  //  \u00e9conomique C (19:c) et futur C (18:c) ont \u00e9t\u00e9 ajout\u00e9es au
+  //  r\u00e9f\u00e9rentiel du bundle \u2014 mais une config sauvegard\u00e9e AVANT garde
+  //  ces slots vides (ou la vieille description). Copie cibl\u00e9e depuis
+  //  DEFAULT_CONFIG : un slot VIDE re\u00e7oit la tech ; Muraille et Art
+  //  de la Guerre voient leur description mise \u00e0 jour si le nom
+  //  correspond (une \u00e9dition personnalis\u00e9e d'un autre slot n'est pas
+  //  touch\u00e9e). Marqu\u00e9e techsManquantes2026.
+  if (!merged.techsManquantes2026) {
+    const FIX: Array<[number, string]> = [
+      [11, 'c'], [16, 'c'], [17, 'a1'], [18, 'c'], [19, 'c'],
+    ]
+    for (const [iArbre, slot] of FIX) {
+      const a = merged.progres?.[iArbre]
+      const d = DEFAULT_CONFIG.progres?.[iArbre]
+      if (!a || !d) continue
+      const t = slot === 'c' ? a.techC : (slot[0] === 'a' ? a.brancheA : a.brancheB)?.[+slot[1] - 1]
+      const dt = slot === 'c' ? d.techC : (slot[0] === 'a' ? d.brancheA : d.brancheB)?.[+slot[1] - 1]
+      if (!t || !dt) continue
+      if (!t.nom) {
+        // slot vide : la tech manquante est copi\u00e9e enti\u00e8rement
+        Object.assign(t, dt)
+      } else if (t.nom === dt.nom) {
+        // m\u00eame tech : description \u00e0 jour (Muraille +40 Garnison,
+        // Art de la Guerre liste d'arm\u00e9e apr\u00e8s l'adversaire)
+        t.description = dt.description
+      }
+    }
+    merged.techsManquantes2026 = true
   }
   if (!merged.taxes25) {
     const pm = merged.params as unknown as Record<string, unknown>
