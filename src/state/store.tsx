@@ -118,6 +118,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, [])
   // Barrière du tour en cours : joueurs qui ont poussé leur section.
   const [barriere, setBarriere] = useState<EtatBarriere>({ prets: new Set(), monTourPousse: false })
+  // Miroir asynchrone (lecture fiable dans les callbacks async).
+  const barriereRef = useRef(barriere)
+  useEffect(() => { barriereRef.current = barriere }, [barriere])
   const [lastSavedAt, setLastSavedAt] = useState<number | null>(null)
   const lastLocalEdit = useRef(0)
   // Revue 2026-10-15 (Q2/Q3 — multijoueur simultané) : les joueurs
@@ -272,6 +275,25 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       //  toujours de l'état le plus récent.
       stateRef.current = draft
       persist(draft, mode, salon)
+      // SECTION VIVANTE (bug « techs/constructions perdues au tour
+      //  suivant » 2026-10-17) : après avoir cliqué « Fin de tour »,
+      //  un joueur qui continue à jouer (déblocage d'une tech,
+      //  construction…) produisait des actions ABSENTES de sa
+      //  section déjà poussée — perdues à la résolution. Chaque
+      //  mutation RAFRAÎCHIT la section (upsert idempotent par
+      //  (salon, tour, joueur, 'section')) : elle reste exacte
+      //  jusqu'à la résolution, quel que soit le moment du clic.
+      if (mode === 'supabase' && salon && proto2Actif() && barriereRef.current.monTourPousse) {
+        const moi = monNumeroRef.current
+        void remote.pousserSectionV2(salon, moi, {
+          player: structuredClone(draft.players.find((q) => q.n === moi) ?? null),
+          population: structuredClone(draft.population[moi] ?? []),
+          routes: structuredClone(draft.routesCommerce ?? []),
+          citesLibres: structuredClone(draft.citesLibres ?? []),
+          log: structuredClone(draft.log.slice(-50)),
+          tour: draft.turn,
+        })
+      }
       return draft
     })
   }, [mode, salon, persist])
