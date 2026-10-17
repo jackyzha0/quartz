@@ -83,6 +83,56 @@ export function recomputeArmy(state: GameState, p: Player, armee: { nom: string;
     }).length * C.p.puissanceSoldat + (cmd && cmd.statut !== 'Décédé' ? C.p.puissanceGeneral : 0)
 }
 
+/**
+ * INFLIGER DES PERTES (revue 2026-10-17) : tue `nb` soldats d'une armée
+ *  (l'ordre du tableau = l'ordre d'engagement), retire leurs ids de
+ *  l'armée, et tue le commandant en premier si demandé. Les soldats
+ *  tombés au combat : statut « Décédé », conjoint libéré, puissance
+ *  recalculée. Retourne la liste des noms des soldats tués.
+ */
+export function infligerPertes(
+  state: GameState, p: Player, idxArmee: number, nb: number,
+  tuerCommandant = false,
+): string[] {
+  const armee = p.armees?.[idxArmee]
+  if (!armee || nb <= 0) return []
+  const pop = state.population[p.n] ?? []
+  const tombes: string[] = []
+  const tuer = (c: import('./types').Character) => {
+    c.statut = 'Décédé'
+    if (c.mariage) {
+      for (const liste of Object.values(state.population ?? {})) {
+        for (const x of liste ?? []) {
+          if (x.mariage === fullName(c)) x.mariage = null
+        }
+      }
+    }
+    armee.soldats = armee.soldats.filter((id) => id !== c.id)
+    c.armee = null
+    tombes.push(fullName(c))
+  }
+  if (tuerCommandant && armee.commandant) {
+    const cmd = pop.find((x) => x.id === armee.commandant)
+    if (cmd && cmd.statut !== 'Décédé') {
+      tuer(cmd)
+      armee.commandant = null
+    }
+  }
+  for (const id of [...armee.soldats]) {
+    if (tombes.length >= nb) break
+    const c = pop.find((x) => x.id === id)
+    if (c && c.statut !== 'Décédé') tuer(c)
+  }
+  recomputeArmy(state, p, armee)
+  if (tombes.length > 0) {
+    state.log.push({
+      turn: state.turn, type: 'Armée', joueur: p.n,
+      texte: `⚔ Pertes — ${armee.nom} : ${tombes.length} tombé(s) au combat (${tombes.join(', ')}). Puissance restante : ${Math.round(armee.puissance)}.`,
+    })
+  }
+  return tombes
+}
+
 /** Prix de levée d'une armée : Or facturés pour sa puissance CIBLE,
  *  1 Or tous les 2 points de force (paramétrable via armeePrixOr /
  *  armeePriXPuissance). Payé UNE FOIS à la levée — pas d'entretien. */

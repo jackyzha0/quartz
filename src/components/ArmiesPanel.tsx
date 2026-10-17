@@ -9,7 +9,7 @@ import React, { useState } from 'react'
 import { useGame } from '../state/store'
 import type { GameState, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
-import { prixArmee, maxArmeesJoueur } from '../engine/armees'
+import { prixArmee, maxArmeesJoueur, infligerPertes } from '../engine/armees'
 import { isNobleDyn, martialiteOk } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, fmt } from './ui'
 
@@ -25,6 +25,10 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
   //  −25, Grande caserne −8, Guilde des explorateurs −20,
   //  Autel eud Guer' −20).
   const [villeLevee, setVilleLevee] = useState('')
+  // Pertes par armée (revue 2026-10-17) : saisie locale du nombre de
+  //  soldats à tuer (l'ordre d'engagement = ordre du tableau).
+  const [pertesParArmee, setPertesParArmee] = useState<Record<number, number>>({})
+  const [tuerCmdParArmee, setTuerCmdParArmee] = useState<Record<number, boolean>>({})
 
   if (!state) return null
   const C = cfgOf(state.config)
@@ -178,6 +182,30 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
                 }
                 x.armees.splice(idx, 1)
               })}>Dissoudre l'armée</Button>
+              {/* ── Infliger des pertes (revue 2026-10-17) : tuer N soldats
+                  de l'armée — batailles au plateau, saisie des pertes ici. */}
+              <div className="row" style={{ alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
+                <span className="muted small">⚔ Pertes :</span>
+                <NumberInput
+                  value={pertesParArmee[idx] ?? 1}
+                  step={1} min={0} max={999}
+                  onChange={(v) => setPertesParArmee((m) => ({ ...m, [idx]: Math.round(v) }))}
+                />
+                <label className="small" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                  <input
+                    type="checkbox"
+                    checked={!!tuerCmdParArmee[idx]}
+                    onChange={(e) => setTuerCmdParArmee((m) => ({ ...m, [idx]: e.target.checked }))}
+                  />
+                  commandant aussi
+                </label>
+                <Button tone="danger" onClick={() => {
+                  const nb = Math.round(pertesParArmee[idx] ?? 0)
+                  if (nb <= 0) return
+                  if (!window.confirm(`Infliger ${nb} perte(s) à « ${a.nom} » ? Les soldats correspondants seront tués (statut « Décédé »).`)) return
+                  setPlayer((x, s2) => { infligerPertes(s2, x, idx, nb, !!tuerCmdParArmee[idx]) })
+                }}>⚔ Infliger {Math.round(pertesParArmee[idx] ?? 0)} perte(s)</Button>
+              </div>
             </div>
           )
         })}
