@@ -519,6 +519,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (mode !== 'supabase' || !salon) return
     const unsub = remote.subscribeRemote(salon, (remoteState) => {
+      // GARDE DE TOUR (correctif rollback aléatoire 2026-10-17) :
+      //  ignorer tout état PLUS ANCIEN que l'état courant — même si
+      //  un écriture périmée passait la garde serveur, elle ne peut
+      //  plus faire RECULER l'affichage des clients à jour.
+      const tourLocal = stateRef.current?.turn ?? 0
+      if (typeof remoteState.turn === 'number' && remoteState.turn < tourLocal) return
       // Marqueur (a) : les états distants arrivent BRUTS — même garde-fou
       //  que les chargements locaux (villes complétées).
       normaliserEtat(remoteState)
