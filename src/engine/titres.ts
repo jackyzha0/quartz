@@ -208,6 +208,14 @@ export function assignAdultTitle(state: GameState, p: Player, c: Character, rng:
  *  par ville) ne figurent pas dans la liste manuelle. */
 export function titresAccessibles(state: GameState, p: Player, C: Cfg = cfgOf(state.config)): string[] {
   const out: string[] = [C.p.titreChasseur, C.p.titreGouverneur]
+  // Dirigeant / Héritier (retour utilisateur 2026-10-17) : nomination
+  //  MANUELLE possible — le picker « Attribuer… » de la page
+  //  Population remplace automatiquement l'actuel porteur (le titre
+  //  est unique : l'ancien Dirigeant/Héritier redevient sans titre).
+  //  Le remplacement est fait par l'interface (changeTitre) ; la
+  //  validation (unicité, dynastie) reste un AVERTISSEMENT, jamais
+  //  bloquant — convention du jeu.
+  out.push(C.p.titreDirigeant, C.p.titreHeritierStr)
   // « Ministre » (refonte 2026-10-14) : nomination manuelle — le cap
   //  (nombre de Ministres = rang de pays, table paysRangs) et la règle
   //  « nobleSeul » sont contrôlés par validateTitleAssignment

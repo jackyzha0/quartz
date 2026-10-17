@@ -202,6 +202,22 @@ export function PopulationTable({ joueur }: { joueur: number }) {
         : (s.population[joueur] ?? [])
       const target = liste.find((x) => x.id === c.id)
       if (target) {
+        // Dirigeant / Héritier UNIQUE (retour utilisateur
+        //  2026-10-17) : nommer un nouveau porteur relève
+        //  automatiquement l'ancien (il redevient sans titre) — la
+        //  validation ne fait qu'avertir, jamais bloquer, mais on
+        //  garantit l'unicité du titre dans l'état.
+        if (titre === C.p.titreDirigeant || titre === C.p.titreHeritierStr) {
+          for (const autre of liste) {
+            if (autre.id !== target.id && autre.titre === titre) {
+              autre.titre = null
+              s.log.push({
+                turn: s.turn, type: 'Titre', joueur,
+                texte: `\u{1F451} ${fullName(autre)} quitte le titre ${titre} — remplacé(e) par ${fullName(target)}.`,
+              })
+            }
+          }
+        }
         target.titre = titre
         // On quitte le titre « Ministre » → le portefeuille part avec.
         if (titre !== 'Ministre') target.ministere = null
@@ -369,7 +385,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   //  cour (le mariage manuel unit deux nobles — le reste de la
   //  population se marie au fil des tours).
   const renderLigne = (c: Character, avecMariage: boolean) => (
-    <tr key={c.id} className={c.statut === 'Décédé' ? 'dead' : c.titre === 'Dirigeant' ? 'lead' : ''}>
+    <tr key={c.id} className={c.statut === 'Décédé' ? 'dead' : (c.titre === C.p.titreDirigeant || c.titre === C.p.titreHeritierStr) ? 'lead' : ''}>
       <td><strong>{c.prenom} {c.nom}</strong></td>
       <td>{c.dynastie}</td>
       <td>{c.sexe}</td>
