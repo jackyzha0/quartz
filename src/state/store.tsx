@@ -368,6 +368,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     setState(draft)
     lastLocalEdit.current = Date.now()
     persist(draft, mode, salon)
+    // v2 : persist ne pousse PLUS l'état pendant le tour — une
+    //  résolution locale doit TOUJOURS publier, sinon le salon
+    //  reste à l'ancien tour (tour fantôme local, bug 2026-10-17).
+    if (mode === 'supabase' && salon && proto2Actif()) {
+      await remote.publierEtatFusionne(salon, draft)
+    }
   }, [mode, salon, persist])
 
   /** FORCER le tour : ignorer la barrière, résoudre seul + publier.
@@ -425,6 +431,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    *  JAMAIS l'état global. Repli : si l'événement ne passe pas
    *  (table absente — SQL v2 non exécuté) ou si la fonction serveur
    *  n'est pas déployée, retour au flux v1 puis à resoudreSeul. */
+  /** Indirections pour les déclarations anticipées (ordre de
+   *  déclaration : nextTurnV2 est défini avant les deux fonctions
+   *  de repli qu'il appelle). */
+  const pollerBarriereV2Ref = useRef<(attendus: number[], tour: number) => Promise<void>>(async () => {})
+  const resoudreBarriereLocaleV2Ref = useRef<(attendus: number[], tour: number) => Promise<void>>(async () => {})
+
   const nextTurnV2 = useCallback(async (st: GameState, moi: number) => {
     const maSection: remote.SectionJoueur = {
       player: structuredClone(st.players.find((q) => q.n === moi) ?? null),
@@ -435,11 +447,23 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       tour: st.turn,
     }
     setBarriere({ prets: new Set([moi]), monTourPousse: true })
-    const ok = await remote.pousserSectionV2(salon, moi, maSection)
+    // Poussée avec RETRY (bug 2026-10-17 : un échec transitoire faisait
+    //  passer le joueur au tour suivant LOCALEMENT sans rien publier —
+    //  le salon restait à l'ancien tour et le reload perdait tout).
+    //  Si la section ne part vraiment pas, ON N'AVANCE PAS : le joueur
+    //  reste sur « ▶ Tour suivant » et peut recliquer. Un tour fantôme
+    //  local est TOUJOURS pire qu'un tour non résolu.
+    let ok = false
+    for (let essai = 0; essai < 3 && !ok; essai++) {
+      ok = await remote.pousserSectionV2(salon, moi, maSection)
+      if (!ok) await new Promise((r) => setTimeout(r, 800 * (essai + 1)))
+    }
     if (!ok) {
-      // table cp_events absente (SQL v2 non exécuté) : repli v1
+      // table cp_events absente (SQL v2 non exécuté) ou réseau KO :
+      //  dernier repli — résolution LOCALE AVEC PUBLICATION (le
+      //  joueur n'est jamais bloqué, et le salon avance pour tous).
       setBarriere({ prets: new Set(), monTourPousse: false })
-      await resoudreSeul()
+      await resoudreBarriereLocaleV2Ref.current([moi], st.turn)
       return
     }
     const attendus = st.players.map((q) => q.n)
@@ -467,15 +491,15 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         //  Function le ferait, on exécute runTurn, et on PUBLIE :
         //  les autres joueurs reçoivent le tour par le realtime.
         setBarriere({ prets: new Set(), monTourPousse: false })
-        await resoudreBarriereLocaleV2(attendus, st.turn)
+        await resoudreBarriereLocaleV2Ref.current(attendus, st.turn)
       }
     } else {
       // attendre : poll léger des événements du tour ; quand la
       //  barrière est complète, n'importe qui invoque le serveur —
       //  elle est idempotente, un double appel est sans effet.
-      void pollerBarriereV2(attendus, st.turn)
+      void pollerBarriereV2Ref.current(attendus, st.turn)
     }
-  }, [salon, resoudreSeul])
+  }, [salon])
 
   /** REPLI v2 — résolution LOCALE AVEC PUBLICATION : la Edge
    *  Function est indisponible (absente, erreur, quota). Même
@@ -517,6 +541,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     }
     void attendus
   }, [salon, resoudreSeul])
+  resoudreBarriereLocaleV2Ref.current = resoudreBarriereLocaleV2
 
   /** Poll v2 : barrière sur cp_events, résolution serveur dès
    *  complète. S'arrête dès que le tour publié a changé (le realtime
@@ -551,7 +576,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         return
       }
     }
-  }, [salon, resoudreBarriereLocaleV2])
+  }, [salon])
 
 
 
