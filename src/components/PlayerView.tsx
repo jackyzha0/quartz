@@ -428,8 +428,14 @@ export function PlayerView({ joueur }: { joueur: number }) {
     const rang = rangNiveau(ville, C)
     // Alerte rouge d'une construction (revue 2026-10-16 : les limites
     //  s'INDIQUENT en rouge dans le picker, elles ne bloquent jamais).
-    const alertePour = (b: { nom: string; famille?: string; cout: string }): string => {
+    const alertePour = (b: { nom: string; famille?: string; cout: string; faction?: string }): string => {
       const warns: string[] = []
+      // Bâtiment de faction : la règle du classeur exige « une
+      //  habitation de votre culture » — alerte si la ville est
+      //  d'une autre culture (indicatif, jamais bloquant).
+      if (b.faction && ville.culture && ville.culture !== p.culture) {
+        warns.push(`Habitation de culture ${ville.culture} — la règle prévoit une habitation de votre culture (${p.culture}).`)
+      }
       if (ville.batiments.includes(b.nom)) warns.push('Déjà construit dans cette ville (le référentiel prévoit un seul exemplaire).')
       const pre = prerequisConstruction(b)
       if (pre && !ville.batiments.includes(pre)) warns.push(`Prérequis manquant : ${pre}.`)
@@ -462,8 +468,17 @@ export function PlayerView({ joueur }: { joueur: number }) {
       : b.groupe.toLowerCase() === type
     const eligibles = [
       ...batRefs.filter((b) => okGroupe(b) && !b.faction).map((b) => ({ b, groupe: b.groupe })),
+      // Bâtiments de FACTION (bug 2026-10-17 : « toutes les villes ne
+      //  peuvent pas les construire ») : le filtre de TYPE okGroupe
+      //  (« Ville » seulement dans les villes de type Ville) leur
+      //  était appliqué — or la règle du référentiel est « peut
+      //  uniquement être construit dans une habitation de votre
+      //  culture », SANS distinction Ville/Château. Ils sont donc
+      //  proposés dans TOUTES les habitations du joueur ; l'alerte
+      //  rouge signale une ville de culture différente (jamais
+      //  bloquant, convention du jeu).
       ...refsBatFaction
-        .filter((b) => okGroupe(b))
+        .filter((b) => b.groupe !== 'Capitale' || estCapitale)
         .map((b) => ({ b, groupe: 'Faction' })),
       ...(estCapitale ? refsBatCapitale.map((b) => ({ b, groupe: 'Capitale' })) : []),
     ]
