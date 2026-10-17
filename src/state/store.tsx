@@ -459,12 +459,15 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
           setConflit(false)
         }
       } else if (!res.dejaPublie) {
-        // fonction serveur absente/échouée : repli résolution locale
-        //  (même sémantique que v1, sur les événements)
-        const sections = new Map<number, remote.SectionJoueur>()
+        // FONCTION SERVEUR INDISPONIBLE — repli : résolution LOCALE
+        //  AVEC PUBLICATION (bug 2026-10-17 : l'ancien repli faisait
+        //  runTurn SANS publier — chaque joueur avançait chez lui,
+        //  le salon restait à l'ancien tour, et un reload perdait
+        //  tout). On fusionne les sections du tour comme la Edge
+        //  Function le ferait, on exécute runTurn, et on PUBLIE :
+        //  les autres joueurs reçoivent le tour par le realtime.
         setBarriere({ prets: new Set(), monTourPousse: false })
-        await resoudreSeul()
-        void sections
+        await resoudreBarriereLocaleV2(attendus, st.turn)
       }
     } else {
       // attendre : poll léger des événements du tour ; quand la
@@ -472,6 +475,47 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       //  elle est idempotente, un double appel est sans effet.
       void pollerBarriereV2(attendus, st.turn)
     }
+  }, [salon, resoudreSeul])
+
+  /** REPLI v2 — résolution LOCALE AVEC PUBLICATION : la Edge
+   *  Function est indisponible (absente, erreur, quota). Même
+   *  sémantique qu'elle : télécharge l'état de référence, fusionne
+   *  les sections du tour (cp_events), runTurn, PUBLIE. Les autres
+   *  joueurs reçoivent le tour par le realtime — aucune perte. */
+  const resoudreBarriereLocaleV2 = useCallback(async (attendus: number[], tour: number) => {
+    const sections = await remote.lireSectionsV2(salon, tour)
+    if (!sections) { await resoudreSeul(); return }
+    const ref = await remote.loadRemote(salon)
+    if (!ref) { await resoudreSeul(); return }
+    const popClone = structuredClone(ref.population)
+    const draft: GameState = {
+      ...structuredClone({ ...ref, population: {}, config: undefined }),
+      population: popClone,
+      config: ref.config,
+    } as GameState
+    const newLogs: unknown[] = []
+    for (const nStr of Object.keys(sections)) {
+      const n = Number(nStr)
+      const sec = sections[nStr]
+      const pj = draft.players.find((q) => q.n === n)
+      if (pj && sec.player) Object.assign(pj, sec.player)
+      if (sec.population) draft.population[n] = sec.population as typeof draft.population[number]
+      if (sec.routes) draft.routesCommerce = sec.routes as typeof draft.routesCommerce
+      if (sec.citesLibres) draft.citesLibres = sec.citesLibres as typeof draft.citesLibres
+      if (Array.isArray(sec.log)) newLogs.push(...(sec.log as unknown[]))
+    }
+    const logFusionne = [...draft.log, ...(newLogs as typeof draft.log)]
+    draft.log = logFusionne.slice(-Math.max(50, draft.log.length))
+    runTurn(draft)
+    const ok = await remote.publierEtatFusionne(salon, draft)
+    if (ok) {
+      stateRef.current = draft
+      setState(draft)
+      lastLocalEdit.current = 0
+      setBarriere({ prets: new Set(), monTourPousse: false })
+      setConflit(false)
+    }
+    void attendus
   }, [salon, resoudreSeul])
 
   /** Poll v2 : barrière sur cp_events, résolution serveur dès
@@ -501,9 +545,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
           return
         }
         if (res.dejaPublie) return
+        // repli avec publication (cf. nextTurnV2)
+        setBarriere({ prets: new Set(), monTourPousse: false })
+        await resoudreBarriereLocaleV2(attendus, tour)
+        return
       }
     }
-  }, [salon])
+  }, [salon, resoudreBarriereLocaleV2])
 
 
 

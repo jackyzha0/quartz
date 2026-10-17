@@ -208,6 +208,9 @@ export async function publierEtatFusionne(
     state,
     sections: {},
     turn_done: state.turn,
+    // v2 : le tour publié avance aussi pour la garde anti-rollback
+    //  (le trigger SQL refuse tout recul ultérieur).
+    tour_publie: state.turn,
     updated_by: CLIENT_ID,
     updated_at: new Date().toISOString(),
   }).eq('id', id)
@@ -298,11 +301,42 @@ export async function pousserSectionV2(
 ): Promise<boolean> {
   const sb = getSupabase()
   if (!sb) return false
-  const { error } = await sb.from('cp_events').upsert({
+  const ligne = {
     salon: id, tour: section.tour, joueur: n, type: 'section',
     payload: section as unknown as Record<string, unknown>,
-  }, { onConflict: 'salon,tour,joueur,type' })
-  return !error
+  }
+  // 1. upsert idempotent — nécessite l'index unique
+  //    cp_events_section_unique (schema-v2.sql §6). S'il est absent
+  //    (SQL collé avant son ajout), PostgREST refuse onConflict.
+  const { error } = await sb.from('cp_events')
+    .upsert(ligne, { onConflict: 'salon,tour,joueur,type' })
+  if (!error) return true
+  // 2. REPLI sans index : delete ma ligne puis insert (remplace la
+  //    précédente — même idempotence, sans dépendre du SQL §6).
+  await sb.from('cp_events').delete()
+    .eq('salon', id).eq('tour', section.tour)
+    .eq('joueur', n).eq('type', 'section')
+  const { error: err2 } = await sb.from('cp_events').insert(ligne)
+  return !err2
+}
+
+/** Lire les sections COMPLÈTES du tour (payload inclus) — repli de
+ *  résolution locale quand la Edge Function est indisponible. */
+export async function lireSectionsV2(
+  id: string, tour: number,
+): Promise<Record<string, SectionJoueur> | null> {
+  const sb = getSupabase()
+  if (!sb) return null
+  const { data, error } = await sb
+    .from('cp_events')
+    .select('joueur, payload')
+    .eq('salon', id)
+    .eq('tour', tour)
+    .eq('type', 'section')
+  if (error) return null
+  const out: Record<string, SectionJoueur> = {}
+  for (const r of data ?? []) out[String(r.joueur)] = r.payload as SectionJoueur
+  return out
 }
 
 /** Lire la barrière v2 : quels joueurs ont poussé leur section pour
