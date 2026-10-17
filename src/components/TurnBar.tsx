@@ -10,7 +10,7 @@ export function TurnBar() {
   const { state, mode, salon, saving, conflit, nextTurn, saveNow, exportState, importState, reset, barriere, monNumero, forceNextTurn } = useGame()
   const fileRef = useRef<HTMLInputElement>(null)
 
-  if (!state) return null
+  if (!state || !Array.isArray(state.players)) return null
 
   const annee = 1 + (state.turn - 1) * 2
 

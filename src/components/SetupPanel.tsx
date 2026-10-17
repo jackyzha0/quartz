@@ -10,8 +10,7 @@ import React, { useState } from 'react'
 import { useGame, type Mode } from '../state/store'
 import type { SetupLine } from '../engine/setup'
 import { defaultSetups } from '../engine/setup'
-import { CULTURES, PEUPLES } from '../engine/gameData'
-import { REGIMES } from '../engine/gameData'
+import { CULTURES as CULTURES_ALL, PEUPLES as PEUPLES_ALL, REGIMES as REGIMES_ALL } from '../engine/gameData'
 import { newSeed } from '../engine/rng'
 import {
   supabaseAvailable, supabaseCreds, setSupabaseCredentials,
@@ -22,11 +21,20 @@ import { Card, NumberInput, Select, TextInput, Button, Badge } from './ui'
 const SCHEMA_URL =
   'https://raw.githubusercontent.com/losth230/quartz/chasse-et-peche-web/supabase/schema.sql'
 
+// BLINDAGE (crash signalé 2026-10-17 : « Cannot read properties of
+//  undefined (reading 'filter') » à la page Nouvelle partie) : une
+//  config localStorage ancienne/corrompue peut avoir des tableaux
+//  vides ou absents (cultures, peuples, régimes supprimés ou mal
+//  sauvegardés) — le SetupPanel doit rester utilisable.
+const CULTURES = CULTURES_ALL ?? []
+const PEUPLES = PEUPLES_ALL ?? []
+const REGIMES = REGIMES_ALL ?? []
+
 export function SetupPanel() {
   const { newGame, joinGame, monNumero, setMonNumero } = useGame()
   const [setups, setSetups] = useState<SetupLine[]>(() => defaultSetups().map((s, i) => ({
     ...s,
-    culture: CULTURES[i % CULTURES.length].nom,
+    culture: CULTURES.length > 0 ? CULTURES[i % CULTURES.length].nom : s.culture,
     villes: ['Capitale'],
   })))
   const [seed, setSeed] = useState<number>(() => newSeed())
@@ -72,7 +80,7 @@ export function SetupPanel() {
   const setLine = (i: number, patch: Partial<SetupLine>) =>
     setSetups((prev) => prev.map((s, idx) => (idx === i ? { ...s, ...patch } : s)))
 
-  const culturesPrises = setups.map((s) => s.culture)
+  const culturesPrises = (setups ?? []).map((s) => s?.culture ?? '')
 
   return (
     <div className="stack">
@@ -175,7 +183,7 @@ export function SetupPanel() {
                       value={s.culture}
                       options={CULTURES.map((c) => ({
                         value: c.nom,
-                        label: `${c.nom}${culturesPrises.filter((x) => x === c.nom).length > 1 ? ' (déjà prise)' : ''}`,
+                        label: `${c.nom}${(culturesPrises ?? []).filter((x) => x === c.nom).length > 1 ? ' (déjà prise)' : ''}`,
                       }))}
                       onChange={(v) => setLine(i, { culture: v })}
                     />
@@ -206,7 +214,7 @@ export function SetupPanel() {
                       onChange={(v) => setLine(i, { pourcentageMariages: Math.round(v) })} />
                   </td>
                   <td style={{ minWidth: 180 }}>
-                    <TextInput value={s.villes.join(', ')}
+                    <TextInput value={(s.villes ?? []).join(', ')}
                       onChange={(v) => setLine(i, { villes: v.split(',').map((x) => x.trim()).filter(Boolean) })} />
                   </td>
                 </tr>
