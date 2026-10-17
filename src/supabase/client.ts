@@ -146,42 +146,23 @@ export interface SectionJoueur {
   tour: number
 }
 
-/**
- * Pousser MA section de fin de tour. Retourne l'état de la barrière
- *  après écriture : { sections, turn_done } — null si erreur réseau.
- *
- *  ANTI-COLLISION (revue lag 2026-10-17) : le lire-modifier-écrire
- *  était non protégé — deux « Fin de tour » SIMULTANÉS lisaient la
- *  même ligne puis le second écrivait SA version de `sections`
- *  (sans la clé du premier : section PERDUE, barrière bloquée).
- *  Maintenant : l'UPDATE passe par une FONCTION RPC serveur qui
- *  fusionne atomiquement MA clé dans `sections` — plus de fenêtre
- *  d'écrasement. Repli : lire-modifier-écrire avec vérification du
- *  tour (le repli reste rare : RPC présente par schema.sql).
- */
+/** Pousser MA section de fin de tour. Retourne l'état de la barrière
+ *  après écriture : { sections, turn_done } — null si erreur réseau. */
 export async function pousserSection(
   id: string, n: number, section: SectionJoueur,
 ): Promise<{ sections: Record<string, SectionJoueur>; turn_done: number } | null> {
   const sb = getSupabase()
   if (!sb) return null
-  // 1. FUSION ATOMIQUE serveur : la fonction SQL pousser_section
-  //    (supabase/schema.sql) fait sections = sections || {"<n>": section}
-  //    dans la transaction — deux Fin de tour simultanés ne peuvent
-  //    plus s'écraser mutuellement leurs clés.
-  const { data: apres, error } = await sb
-    .rpc('pousser_section', { p_id: id, p_n: n, p_section: section })
-  if (!error && apres) {
-    const out = apres as { sections?: Record<string, SectionJoueur>; turn_done?: number }
-    return { sections: out.sections ?? {}, turn_done: out.turn_done ?? 0 }
-  }
-  // 2. REPLI (RPC absente — schéma non mis à jour) : lire-modifier-
-  //    écrire avec vérification du tour. La fenêtre de collision
-  //    existe mais reste rare (deux clics à la milliseconde près).
+  // upsert de la clé sections."<n>" — Supabase (jsonb) : lire-modifier-écrire
+  //  via une requête unique avec jsonb_set serait idéale mais l'API REST
+  //  ne la propose pas : on lit, fusionne, écrit. Le risque de collision
+  //  est borné par la barrière : chaque n° écrit une clé distincte.
   const { data: row, error: errLecture } = await sb
     .from(TABLE).select('sections, turn_done').eq('id', id).maybeSingle()
   if (errLecture || !row) return null
-  if ((row.turn_done ?? 0) !== section.tour) return null
   const sections = { ...((row.sections as Record<string, SectionJoueur>) ?? {}) }
+  // barrière incompatible (nouveau tour lancé entre-temps) : abandon
+  if ((row.turn_done ?? 0) !== section.tour) return null
   sections[String(n)] = section
   const { error: errEcriture } = await sb
     .from(TABLE).update({
@@ -238,11 +219,6 @@ export function subscribeRemote(
   const sb = getSupabase()
   if (!sb) return () => {}
   let lastSeen = ''
-  // Dernier tour PUBLIÉ déjà reçu : les UPDATE de sections (Fin de
-  //  tour des autres joueurs) et les saveRemote ne changent PAS
-  //  l'état de référence — inutile de re-télécharger ~5 Mo à chaque
-  //  événement (revue lag simultané 2026-10-17).
-  let tourPublie = -1
   const channel = sb
     .channel(`parties:${id}`)
     .on('postgres_changes', {
@@ -257,20 +233,10 @@ export function subscribeRemote(
       if (!stamp || stamp === lastSeen) return
       if (payload.new?.updated_by === CLIENT_ID) { lastSeen = stamp; return }
       lastSeen = stamp
-            // OPTIMISATION SIMULTANÉ (revue lag 2026-10-17) : pendant le tour,
-      //  les UPDATE de sections (Fin de tour des autres) et les saveRemote
-      //  périodiques ne changent PAS l'état de référence — re-télécharger
-      //  ~5 Mo à chaque événement saturait le réseau des joueurs en
-      //  simultané. On ne télécharge l'état complet QUE si le tour
-      //  publié a avancé (résolution de barrière).
-      const { data: meta } = await sb.from(TABLE).select('turn_done').eq('id', id).maybeSingle()
-      if (meta && (meta.turn_done ?? 0) <= tourPublie) return
+      // Signal reçu → récupérer l'état complet par SELECT (léger en
+      //  évènement, exact en donnée).
       const { data } = await sb.from(TABLE).select('state').eq('id', id).maybeSingle()
-      if (data?.state) {
-        const el = data.state as GameState
-        if (typeof el.turn === 'number') tourPublie = el.turn
-        onChange(el)
-      }
+      if (data?.state) onChange(data.state as GameState)
     })
     .subscribe()
   // Filet de sécurité (anti-perte) : polling léger de updated_at —
@@ -282,16 +248,8 @@ export function subscribeRemote(
       const stamp = data?.updated_at ?? ''
       if (stamp && stamp !== lastSeen && data?.updated_by !== CLIENT_ID) {
         lastSeen = stamp
-        // Même logique que le realtime : ne re-télécharger que si le
-        //  tour publié a AVANCÉ (résolution de barrière).
-        const { data: meta } = await sb.from(TABLE).select('turn_done').eq('id', id).maybeSingle()
-        if (meta && (meta.turn_done ?? 0) <= tourPublie) return
         const full = await sb.from(TABLE).select('state').eq('id', id).maybeSingle()
-        if (full.data?.state) {
-          const el = full.data.state as GameState
-          if (typeof el.turn === 'number') tourPublie = el.turn
-          onChange(el)
-        }
+        if (full.data?.state) onChange(full.data.state as GameState)
       }
     } catch { /* réseau indisponible — le prochain tick réessaiera */ }
   }, 5000)

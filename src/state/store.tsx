@@ -137,11 +137,6 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    */
   const persistDebounce = useRef<ReturnType<typeof setTimeout> | null>(null)
   const persistPending = useRef<GameState | null>(null)
-  /** Dernière sauvegarde RÉSEAU (revue lag simultané 2026-10-17) :
-   *  en mode barrière, on pousse l'état complet au plus toutes les
-   *  30 s pendant le tour — le reste part au flush et à la
-   *  résolution du tour. */
-  const lastRemotePush = useRef(0)
   /**
    * SAUVEGARDE DEBOUNCÉE — locale ET réseau (optimisation frappe
    * 2026-10-16) : à 16 000 habitants, chaque frappe coûtait ~113 ms
@@ -168,28 +163,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       if (!toSave) return
       setSaving(true)
       try {
-        // Local TOUJOURS (anti-perte : le localStorage est écrit à
-        //  chaque mutation).
         storage.saveLocal(toSave)
-        // RÉSEAU — BEAUCOUP PLUS RARE (revue lag simultané
-        //  2026-10-17) : en mode barrière stricte, l'état de
-        //  RÉFÉRENCE n'est utile aux autres joueurs qu'à la
-        //  résolution du tour (publierEtatFusionne). Pousser ~5 Mo
-        //  à chaque mutation arrosait tous les clients d'événements
-        //  realtime → re-téléchargements complets en boucle → lag
-        //  dès que deux joueurs jouent en même temps. Désormais :
-        //  sauvegarde réseau réduite à toutes les 30 s minimum
-        //  (filet anti-panne : un client qui CRASHE peut être
-        //  récupéré par une autre machine avec ≤ 30 s de retard),
-        //  le reste ne part qu'au flush (beforeunload/onglet
-        //  caché/Sauvegarder) et à la résolution du tour.
         if (m === 'supabase' && salonId) {
-          const maintenant = Date.now()
-          if (maintenant - lastRemotePush.current >= 30000) {
-            lastRemotePush.current = maintenant
-            const ok = await remote.saveRemote(salonId, toSave)
-            if (!ok) storage.saveLocal(toSave)
-          }
+          const ok = await remote.saveRemote(salonId, toSave)
+          if (!ok) storage.saveLocal(toSave)
         }
         setLastSavedAt(Date.now())
       } finally {
