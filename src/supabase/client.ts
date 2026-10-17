@@ -320,6 +320,44 @@ export async function pousserSectionV2(
   return !err2
 }
 
+/** Pousser un ÉVÉNEMENT PARTAGÉ du tour (mutations inter-joueurs —
+ *  ex. transfert de ville) : rejoint les sections dans cp_events et
+ *  est REJOUÉ par la résolution (Edge Function ou repli local)
+ *  APRÈS la fusion des sections — c'est la seule façon de préserver
+ *  une action qui touche l'état d'un AUTRE joueur (sa section,
+ *  poussée avant, écraserait le transfert). */
+export async function pousserEvenementPartage(
+  id: string, tour: number, joueur: number,
+  type: string, payload: Record<string, unknown>,
+): Promise<boolean> {
+  const sb = getSupabase()
+  if (!sb) return false
+  const { error } = await sb.from('cp_events').insert({
+    salon: id, tour, joueur, type, payload,
+  })
+  return !error
+}
+
+/** Lire les ÉVÉNEMENTS PARTAGÉS du tour (hors sections) : mutations
+ *  inter-joueurs (ex. transferts de villes) à rejouer par la
+ *  résolution APRÈS la fusion des sections. */
+export async function lireEvenementsPartages(
+  id: string, tour: number,
+): Promise<Array<{ joueur: number; type: string; payload: Record<string, unknown> }>> {
+  const sb = getSupabase()
+  if (!sb) return []
+  const { data, error } = await sb
+    .from('cp_events')
+    .select('joueur, type, payload')
+    .eq('salon', id)
+    .eq('tour', tour)
+    .neq('type', 'section')
+  if (error) return []
+  return (data ?? []).map((r) => ({
+    joueur: r.joueur, type: r.type, payload: (r.payload ?? {}) as Record<string, unknown>,
+  }))
+}
+
 /** Lire les sections COMPLÈTES du tour (payload inclus) — repli de
  *  résolution locale quand la Edge Function est indisponible. */
 export async function lireSectionsV2(

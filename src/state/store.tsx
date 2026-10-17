@@ -13,7 +13,7 @@ import React, {
   createContext, useCallback, useContext, useEffect, useMemo, useRef, useState,
 } from 'react'
 import type { GameState } from '../engine/types'
-import { runTurn, migrerNomsMinisteres, normaliserEtat } from '../engine/engine'
+import { runTurn, migrerNomsMinisteres, normaliserEtat, rejouerTransfertVille } from '../engine/engine'
 import type { SetupLine } from '../engine/setup'
 import { createGame } from '../engine/setup'
 import { cfgOf, convergerConfig, cloneDefaultConfig, type GameConfig } from '../config/defaultConfig'
@@ -584,6 +584,16 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     draft.citesLibres = [...citeFusionnes.values()]
     const logFusionne = [...draft.log, ...(newLogs as typeof draft.log)]
     draft.log = logFusionne.slice(-Math.max(50, draft.log.length))
+    // ÉVÉNEMENTS PARTAGÉS du tour (transferts de villes...) : rejoués
+    //  APRÈS la fusion des sections, AVANT runTurn — une mutation
+    //  inter-joueurs ne peut pas vivre dans une section (elle
+    //  écraserait l'état du joueur cible, bug 2026-10-17).
+    const evts = await remote.lireEvenementsPartages(salon, tour)
+    for (const ev of evts) {
+      if (ev.type === 'transfert_ville') {
+        rejouerTransfertVille(draft, ev.payload as { ville: string; src: number; dst: number })
+      }
+    }
     runTurn(draft)
     const ok = await remote.publierEtatFusionne(salon, draft)
     if (ok) {

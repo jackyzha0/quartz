@@ -135,6 +135,24 @@ Deno.serve(async (req) => {
       draft.citesLibres = [...citeFusionnes.values()]
       const logFusionne = [...draft.log, ...newLogs]
       draft.log = logFusionne.slice(-Math.max(50, draft.log.length))
+      // ÉVÉNEMENTS PARTAGÉS du tour (transferts de villes...) : rejoués
+      //  APRÈS la fusion des sections, AVANT runTurn (bug 2026-10-17 :
+      //  une mutation inter-joueurs ne peut pas vivre dans une section —
+      //  la section du receveur, poussée avant, l'écraserait).
+      const { data: evtsPartages, error: errEvts } = await sb
+        .from('cp_events')
+        .select('joueur, type, payload')
+        .eq('salon', salon)
+        .eq('tour', tour)
+        .neq('type', 'section')
+      if (!errEvts) {
+        for (const ev of evtsPartages ?? []) {
+          if (ev.type === 'transfert_ville') {
+            rejouerTransfertVille(draft, ev.payload)
+          }
+        }
+      }
+
 
       // 5. Exécution du tour par le moteur pur.
       runTurn(draft)

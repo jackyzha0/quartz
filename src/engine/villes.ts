@@ -136,6 +136,33 @@ export function transfererVille(
   return true
 }
 
+/** Rejouer un transfert de ville au moment de la RÉSOLUTION du tour
+ *  (protocole v2 — bug 2026-10-17 : une ville transférée était perdue
+ *  à la fin de tour). Le transfert est une mutation INTER-JOUEURS :
+ *  il modifie l'état du joueur CIBLE (villes, population), or la
+ *  section d'un joueur ne porte que sur lui-même — la section du
+ *  receveur, poussée avant le transfert, l'écrasait à la fusion.
+ *  Le transfert est donc stocké en ÉVÉNEMENT PARTAGÉ du tour
+ *  (type 'transfert_ville') et REJOUÉ ici, APRÈS la fusion des
+ *  sections, sur l'état fusionné. */
+export function rejouerTransfertVille(
+  state: GameState,
+  payload: { ville: string; src: number; dst: number },
+): boolean {
+  const src = state.players.find((q) => q.n === payload.src)
+  const dst = state.players.find((q) => q.n === payload.dst)
+  if (!src || !dst) return false
+  // La ville a pu être renommée (collision chez le receveur lors du
+  //  premier passage) : on la retrouve par nom chez le source.
+  const idx = src.villes.findIndex((v) => v.nom === payload.ville)
+  if (idx < 0) {
+    // déjà rejouée (double événement) ou ville rendue libre :
+    //  sans effet, idempotent.
+    return false
+  }
+  return transfererVille(state, src, idx, dst)
+}
+
 // ── Proximité des villes (marqueur (y), retour Thibaut 2026-10-15) ──────
 
 /** Bonus de Nourriture par tour de la proximité d'une ville (marqueur

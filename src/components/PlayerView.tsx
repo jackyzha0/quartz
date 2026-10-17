@@ -38,6 +38,7 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import { useGame } from '../state/store'
+import * as remote from '../supabase/client'
 import type { City, GameState, Player, AutreDef } from '../engine/types'
 import { cfgOf, cultureDef, couleurRessource, fondRessource, type Cfg } from '../engine/gameData'
 import {
@@ -71,7 +72,7 @@ import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS }
 import { ChoicePicker, type PickerCategorie } from './Picker'
 
 export function PlayerView({ joueur }: { joueur: number }) {
-  const { state, update } = useGame()
+  const { state, update, mode, salon } = useGame()
   // ── MARQUEUR (a) — RÈGLES DE HOOKS REACT : tous les useState AVANT tout
   //    retour anticipé. Les retours anticipés (`return null`, « Joueur
   //    introuvable ») se trouvaient AVANT ces hooks : si un rendu
@@ -783,7 +784,24 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     onChange={(v) => v && update((st) => {
                       const src = st.players.find((x) => x.n === joueur)
                       const dst = st.players.find((x) => x.n === parseInt(v, 10))
-                      if (src && dst) transfererVille(st, src, idx, dst)
+                      if (src && dst) {
+                        const nomAvant = src.villes[idx]?.nom ?? ''
+                        transfererVille(st, src, idx, dst)
+                        // PROTOCOLE v2 (bug 2026-10-17 : ville transférée
+                        //  perdue en fin de tour) : le transfert est une
+                        //  mutation INTER-JOUEURS — la section du
+                        //  RECEVEUR, poussée avant, l'écraserait à la
+                        //  fusion. Il part donc aussi en ÉVÉNEMENT
+                        //  PARTAGÉ (cp_events, type 'transfert_ville'),
+                        //  rejoué par la résolution APRÈS la fusion des
+                        //  sections (idempotent). best effort : si
+                        //  l'insert échoue, le transfert reste visible
+                        //  localement chez l'émetteur.
+                        void remote.pousserEvenementPartage(
+                          salon, st.turn, joueur, 'transfert_ville',
+                          { ville: nomAvant, src: joueur, dst: parseInt(v, 10) },
+                        )
+                      }
                     })}
                   />
                   <Button
