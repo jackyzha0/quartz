@@ -9,7 +9,7 @@ import React, { useState } from 'react'
 import { useGame } from '../state/store'
 import type { GameState, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
-import { prixArmee, maxArmeesJoueur, infligerPertes } from '../engine/armees'
+import { prixArmee, maxArmeesJoueur, infligerPertes, libererSoldats } from '../engine/armees'
 import { isNobleDyn, martialiteOk } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, fmt } from './ui'
 
@@ -205,6 +205,14 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
                   if (!window.confirm(`Infliger ${nb} perte(s) à « ${a.nom} » ? Les soldats correspondants seront tués (statut « Décédé »).`)) return
                   setPlayer((x, s2) => { infligerPertes(s2, x, idx, nb, !!tuerCmdParArmee[idx]) })
                 }}>⚔ Infliger {Math.round(pertesParArmee[idx] ?? 0)} perte(s)</Button>
+                {/* ── Fin de service (revue 2026-10-17) : N soldats
+                    quittent l'armée, redeviennent Chasseurs. */}
+                <Button onClick={() => {
+                  const nb = Math.round(pertesParArmee[idx] ?? 0)
+                  if (nb <= 0) return
+                  if (!window.confirm(`Libérer ${nb} soldat(s) de « ${a.nom} » ? Ils quittent l'armée et redeviennent Chasseurs (vivants et productifs).`)) return
+                  setPlayer((x, s2) => { libererSoldats(s2, x, idx, nb, !!tuerCmdParArmee[idx]) })
+                }}>🕊 Libérer {Math.round(pertesParArmee[idx] ?? 0)} en fin de service</Button>
               </div>
             </div>
           )

@@ -133,6 +133,48 @@ export function infligerPertes(
   return tombes
 }
 
+/**
+ * FIN DE SERVICE (revue 2026-10-17) : N soldats quittent l'armée et
+ *  redeviennent CHASSEURS (même convention que Dissoudre — ils restent
+ *  vivants et productifs). Le commandant peut être démobilisé aussi.
+ *  Puissance recalculée. Retourne les noms des soldats libérés.
+ */
+export function libererSoldats(
+  state: GameState, p: Player, idxArmee: number, nb: number,
+  libererCommandant = false,
+): string[] {
+  const armee = p.armees?.[idxArmee]
+  if (!armee || nb <= 0) return []
+  const pop = state.population[p.n] ?? []
+  const liberes: string[] = []
+  const liberer = (c: import('./types').Character) => {
+    c.armee = null
+    c.titre = 'Chasseur' // re-titré comme Dissoudre / RetirerArmee
+    armee.soldats = armee.soldats.filter((id) => id !== c.id)
+    liberes.push(fullName(c))
+  }
+  if (libererCommandant && armee.commandant) {
+    const cmd = pop.find((x) => x.id === armee.commandant)
+    if (cmd && cmd.statut !== 'Décédé') {
+      liberer(cmd)
+      armee.commandant = null
+    }
+  }
+  for (const id of [...armee.soldats]) {
+    if (liberes.length >= nb) break
+    const c = pop.find((x) => x.id === id)
+    if (c && c.statut !== 'Décédé') liberer(c)
+  }
+  recomputeArmy(state, p, armee)
+  if (liberes.length > 0) {
+    state.log.push({
+      turn: state.turn, type: 'Armée', joueur: p.n,
+      texte: `🕊 Fin de service — ${armee.nom} : ${liberes.length} soldat(s) libéré(s) comme Chasseur(s) (${liberes.join(', ')}). Puissance restante : ${Math.round(armee.puissance)}.`,
+    })
+  }
+  return liberes
+}
+
 /** Prix de levée d'une armée : Or facturés pour sa puissance CIBLE,
  *  1 Or tous les 2 points de force (paramétrable via armeePrixOr /
  *  armeePriXPuissance). Payé UNE FOIS à la levée — pas d'entretien. */
