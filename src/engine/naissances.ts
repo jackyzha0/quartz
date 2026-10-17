@@ -96,12 +96,12 @@ function cultureFertFactor(culture: string, C: Cfg = cfgOf()): number {
 
 function traitsFertFactor(a: Character, b: Character | null, C: Cfg = cfgOf()): number {
   let sum = 0
-  for (const t of a.traits) {
+  for (const t of (a.traits ?? [])) {
     const td = t ? traitDef(t, C.config) : undefined
     if (td) sum += td.fert_add
   }
   if (b) {
-    for (const t of b.traits) {
+    for (const t of (b.traits ?? [])) {
       const td = t ? traitDef(t, C.config) : undefined
       if (td) sum += td.fert_add
     }
@@ -282,7 +282,7 @@ export function inheritTraits(enfant: Character, mere: Character, pere: Characte
   const parents = [mere, ...(pere ? [pere] : [])]
   const nbEssais = Math.max(0, Math.round(C.p.traitHeriteEssais))
   for (const parent of parents) {
-    for (const t of parent.traits) {
+    for (const t of (parent.traits ?? [])) {
       if (!t) continue
       const td = traitDef(t, C.config)
       if (!td || !td.heritable) continue
@@ -294,10 +294,10 @@ export function inheritTraits(enfant: Character, mere: Character, pere: Characte
     }
   }
   // VBA : tirage pondéré par slot libre, hors traits déjà présents.
-  const pris = enfant.traits.filter(Boolean) as string[]
+  const pris = (enfant.traits ?? []).filter(Boolean) as string[]
   const pool = C.traits.filter((td) => td.weight > 0 && !pris.includes(td.name))
   for (let slot = 0; slot < 3 && pool.length > 0; slot++) {
-    if (enfant.traits[slot]) continue
+    if ((enfant.traits ?? [])[slot]) continue
     if (rng.chance(C.p.traitTirageSlot)) {
       const t = rng.pickWeighted(pool, (td) => td.weight)
       addTraitIfFree(enfant, t.name)
@@ -306,6 +306,7 @@ export function inheritTraits(enfant: Character, mere: Character, pere: Characte
 }
 
 function addTraitIfFree(c: Character, trait: string): boolean {
+  if (!Array.isArray(c.traits)) c.traits = ['', '', '']
   if (c.traits.includes(trait)) return false
   const idx = c.traits.findIndex((t) => !t)
   if (idx < 0) return false
@@ -314,6 +315,7 @@ function addTraitIfFree(c: Character, trait: string): boolean {
 }
 
 function ensureTraitPresent(c: Character, trait: string) {
+  if (!Array.isArray(c.traits)) c.traits = ['', '', '']
   if (!c.traits.includes(trait)) {
     const idx = c.traits.findIndex((t) => !t)
     if (idx >= 0) c.traits[idx] = trait

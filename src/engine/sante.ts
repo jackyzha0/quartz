@@ -18,7 +18,7 @@ import { regleActive } from './factions'
 export function computeAgeMax(c: Character, rng: Rng, C: Cfg = cfgOf()): number {
   // VBA ComputeAgeMaxEx : somme des life_delta des trois traits.
   let delta = 0
-  for (const t of c.traits) {
+  for (const t of (c.traits ?? [])) {
     const td = t ? traitDef(t, C.config) : undefined
     if (td) delta += td.life_delta
   }
@@ -26,7 +26,7 @@ export function computeAgeMax(c: Character, rng: Rng, C: Cfg = cfgOf()): number 
 }
 
 export function tryResurrection(c: Character, rng: Rng, C: Cfg = cfgOf()): boolean {
-  const t1 = traitDef(c.traits[0], C.config)
+  const t1 = traitDef((c.traits ?? [])[0], C.config)
   const seuil = t1 ? t1.resurrection_min_roll : 0
   if (seuil > 0 && rng.die(6) >= seuil) {
     c.ageMax += rng.die(6) + rng.die(6)

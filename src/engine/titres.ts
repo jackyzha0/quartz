@@ -28,7 +28,7 @@ export function maybeAssignProfesseurs(state: GameState, p: Player, rng: Rng, re
     const chance = C.p.professeurBaseChance / Math.log(nbProfs + 2.72)
     if (!rng.chance(chance)) continue
     // VBA : pas de Professeur « Obstiné » (TRAIT_NO_EDUC)
-    const candidats = vivants.filter((c) => c.age >= C.p.adultAge && !c.titre && !c.traits.includes(C.p.traitObstine))
+    const candidats = vivants.filter((c) => c.age >= C.p.adultAge && !c.titre && !(c.traits ?? []).includes(C.p.traitObstine))
     if (candidats.length === 0) continue
     const elu = rng.pick(candidats)
     elu.titre = C.p.titreProfesseur
@@ -121,8 +121,8 @@ export function computeMarriageProbability(f: Character, h: Character, C: Cfg = 
   // écart d'âge
   score -= Math.abs(f.age - h.age) * C.p.mariageParAnEcart
   // bâtards
-  const batF = f.traits.includes(C.p.traitBatard)
-  const batH = h.traits.includes(C.p.traitBatard)
+  const batF = (f.traits ?? []).includes(C.p.traitBatard)
+  const batH = (h.traits ?? []).includes(C.p.traitBatard)
   if (batF) score += C.p.mariageBatard
   if (batH) score += C.p.mariageBatard
   if (batF && batH) score += C.p.mariageDeuxBatards
@@ -133,7 +133,7 @@ export function computeMarriageProbability(f: Character, h: Character, C: Cfg = 
 
 function characterMarriageMod(c: Character, C: Cfg = cfgOf()): number {
   let total = 0
-  for (const t of c.traits) {
+  for (const t of (c.traits ?? [])) {
     if (!t) continue
     const td = traitDef(t, C.config)
     if (td) total += td.marriage_mod
@@ -146,7 +146,7 @@ function characterMarriageMod(c: Character, C: Cfg = cfgOf()): number {
 export function tryEducateMinor(state: GameState, p: Player, c: Character, rng: Rng, recap: PlayerRecap) {
   const C = cfgOf(state.config)
   // VBA : le trait « Obstiné » refuse toute éducation.
-  if (c.traits.includes(C.p.traitObstine)) return
+  if ((c.traits ?? []).includes(C.p.traitObstine)) return
   const ville = p.villes.find((v) => v.nom === c.ville)
   if (!ville) return
   const rank = schoolRankOf(ville.batiments, C.config)
@@ -172,7 +172,7 @@ export function tryEducateMinor(state: GameState, p: Player, c: Character, rng: 
 
 export function assignAdultTitle(state: GameState, p: Player, c: Character, rng: Rng, recap: PlayerRecap) {
   const C = cfgOf(state.config)
-  if (c.traits.includes(C.p.traitBatard)) {
+  if ((c.traits ?? []).includes(C.p.traitBatard)) {
     c.titre = C.p.titreChasseur
     bump(recap.titresAttribues, C.p.titreChasseur)
     return

@@ -164,7 +164,7 @@ export function migrerPopulation(state: GameState, p: Player, rng: Rng) {
     if (c.statut === 'Décédé' || c.age >= C.p.adultAge) continue
     if (c.education) continue
     // VBA : les « Obstinés » ne migrent pas — l'éducation ne les tentera jamais.
-    if (c.traits.includes(C.p.traitObstine)) continue
+    if ((c.traits ?? []).includes(C.p.traitObstine)) continue
     if (deplaces.has(c.id)) continue
     // un Professeur dans SA ville → pas de migration scolaire
     if (profsChezMoi.some((v) => v.nom === c.ville)) continue
