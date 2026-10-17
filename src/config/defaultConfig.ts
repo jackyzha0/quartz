@@ -328,6 +328,9 @@ export interface GameConfig {
   /** Migration Laurier IV Militaire (2026-10-16) — condition mise à
    *  jour « Contrôler 6 des habitations de départ ». */
   laurier4Militaire2026?: boolean
+  /** Migration Sylvains (2026-10-16) — fiche et peuple ré-ajoutés
+   *  si absents (le tampon schemaVersion avait avalé leur ajout). */
+  sylvains2026?: boolean
 }
 
 // ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
@@ -1105,6 +1108,28 @@ export function cfgOf(config?: GameConfig): Cfg {
       l4.condition = 'Contr\u00f4ler 6 des habitations de d\u00e9part.'
     }
     merged.laurier4Militaire2026 = true
+  }
+  // SYLVAINS (revue 2026-10-16) : le tampon schemaVersion \u00ab les
+  //  suppressions persistent \u00bb a aval\u00e9 l'AJOUT des Sylvains \u2014 une
+  //  config sauvegard\u00e9e \u00e0 l'\u00e9poque \u00ab peuples r\u00e9duits \u00bb ne les
+  //  r\u00e9-ajoutait jamais (le peuple du joueur existait mais sa fiche
+  //  avait disparu \u2192 remplac\u00e9 par Basil\u00e9ens au setup). Migration
+  //  cibl\u00e9e (m\u00eame sch\u00e9ma que taxes25) : la fiche Sylvains et le
+  //  peuple sont r\u00e9-ajout\u00e9s s'ils manquent. Une suppression
+  //  VOLONTAIRE reste possible : supprimer de nouveau dans Param\u00e8tres
+  //  apr\u00e8s cette migration la retire pour de bon.
+  if (!merged.sylvains2026) {
+    const dLibres = DEFAULT_CONFIG.peuplesLibres
+    const dAutres = DEFAULT_CONFIG.peuplesAutres
+    const defSyl = [...dLibres, ...dAutres].find((f) => f.nom === 'Sylvains')
+    if (defSyl && !(merged.peuplesLibres ?? []).some((f) => f.nom === 'Sylvains')
+      && !(merged.peuplesAutres ?? []).some((f) => f.nom === 'Sylvains')) {
+      merged.peuplesLibres = [...(merged.peuplesLibres ?? []), structuredClone(defSyl)]
+    }
+    if (defSyl && !(merged.peuples ?? []).includes('Sylvains')) {
+      merged.peuples = [...(merged.peuples ?? []), 'Sylvains']
+    }
+    merged.sylvains2026 = true
   }
   if (!merged.taxes25) {
     const pm = merged.params as unknown as Record<string, unknown>

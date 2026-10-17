@@ -64,6 +64,7 @@ import { effetImmediatMerveille } from '../engine/merveilles'
 import { reductionAmenagement, reductionBatiment, reductionFondation } from '../engine/progresAuto'
 import { statutMerveille, pastilleClass } from '../engine/statutAuto'
 import { resynchroniserTourisme } from '../engine/regimes'
+import { regleActive } from '../engine/factions'
 import { aTech } from '../engine/progresAuto'
 import { villeDevientCiteLibre } from '../engine/citesLibres'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
@@ -282,6 +283,15 @@ export function PlayerView({ joueur }: { joueur: number }) {
       //  bâtiments −3 Pierres à la construction (toutes familles).
       if (t.peuple === 'Basiléens' && t.regleAge2 === 'Heure de la prière' && type === 'batiment') {
         if (cout['Pierre'] !== undefined) cout['Pierre'] = Math.max(0, cout['Pierre'] - 3)
+      }
+      // SYLVAINS « Amis de la forêt » (revue 2026-10-16) : aucun coût en
+      //  Bois — tous les coûts en Bois sont TRANSFORMÉS en Nourriture
+      //  (et la Scierie n'est pas constructible chez eux).
+      if (t.peuple === 'Sylvains' && regleActive(t, C, 'Amis de la for\u00eat')) {
+        if (cout['Bois'] !== undefined) {
+          cout['Nourriture'] = (cout['Nourriture'] ?? 0) + cout['Bois']
+          delete cout['Bois']
+        }
       }
       // Merveilles & progrès « Tourisme » (retour Thibaut 2026-10-15) :
       //  a.1 Trésor public : merveilles −20 Or ; a.2 Matériaux de
