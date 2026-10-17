@@ -79,3 +79,47 @@ drop trigger if exists touch_partie on public.parties_chasse_peche;
 create trigger touch_partie
   before update on public.parties_chasse_peche
   for each row execute function public.touch_partie();
+
+-- ══════════════════════════════════════════════════════════════════
+-- FUSION ATOMIQUE DES SECTIONS (revue lag simultané 2026-10-17)
+-- Deux « Fin de tour » simultanés faisaient un lire-modifier-écrire
+-- concurrent côté client : le second écrasait la section du premier
+-- (section PERDUE, barrière bloquée). Cette fonction fusionne MA clé
+-- DANS la transaction serveur — plus de fenêtre d'écrasement.
+-- Appelée par le client via .rpc('pousser_section', ...) ; le client
+-- a un repli lire-modifier-écrire si la fonction est absente.
+-- ══════════════════════════════════════════════════════════════════
+create or replace function public.pousser_section(
+  p_id text,
+  p_n int,
+  p_section jsonb
+)
+returns table (sections jsonb, turn_done int)
+language plpgsql
+security definer
+as $$
+declare
+  v_turn_done int;
+begin
+  select s.turn_done into v_turn_done
+    from public.parties_chasse_peche s
+    where s.id = p_id
+    for update;  -- verrou : les pousser_section concurrents s'ordonnent
+
+  if v_turn_done is null then
+    return;  -- salon introuvable (sections/turn_done NULL)
+  end if;
+
+  update public.parties_chasse_peche
+    set sections = coalesce(sections, '{}'::jsonb) || jsonb_build_object(p_n::text, p_section),
+        updated_at = now()
+    where id = p_id;
+
+  return query
+    select p.sections, p.turn_done
+      from public.parties_chasse_peche p
+      where p.id = p_id;
+end;
+$$;
+
+grant execute on function public.pousser_section(text, int, jsonb) to anon;
