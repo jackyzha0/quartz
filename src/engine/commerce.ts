@@ -242,21 +242,17 @@ export function peuplerMarchands(state: GameState, p: Player): void {
       texte: `🛒 ${fullName(elu)} est promu Marchand (reprend la route vers ${route.villeCible}).`,
     })
   }
-  // 2. compléter jusqu'au cap de routes disponibles
-  const cap = maxMarchandsJoueur(p, C)
-  let nb = marchandsDe(state, p.n).length
-  while (nb < cap) {
-    const elu = vivants.find((c) =>
-      (!c.titre || c.titre === C.p.titreChasseur) && c.age >= C.p.adultAge &&
-      p.villes.some((v) => v.nom === c.ville))
-    if (!elu) break
-    elu.titre = TITRE_MARCHAND
-    nb++
-    state.log.push({
-      turn: state.turn + 1, type: 'Commerce', joueur: p.n,
-      texte: `🛒 ${fullName(elu)} est promu Marchand — ${nb}/${cap} route(s) disponible(s).`,
-    })
-  }
+  // 2. (SUPPRIMÉ — bug 2026-10-17 « marchands aléatoires
+  //    indestructibles ») l'ancienne étape promouvait des marchands
+  //    « en réserve » pour remplir le cap SANS route ouverte :
+  //    des marchands apparaissaient aléatoirement, et un titre
+  //    retiré à la main était re-promu au tour suivant. La demande
+  //    d'origine est « les marchands sont nommés automatiquement
+  //    S'IL Y A DES ROUTES commerciales » (comme les soldats avec
+  //    les armées, les professeurs avec les écoles) : un marchand
+  //    n'existe que s'il tient une route. L'étape 1 couvre ce cas —
+  //    le cap reste un ANNONCE jamais bloquant (maxMarchandsJoueur,
+  //    affiché sur la page Pays), pas un pré-provisionnement.
 }
 
 /** Ouvre une route commerciale : un marchand (une seule route par
