@@ -258,11 +258,13 @@ export function tourismeCourant(state: GameState, p: Player, C: Cfg): number {
     for (const b of v.batiments) total += tourismeStatiqueBatiment(b, C)
     for (const a of v.amenagements ?? []) total += tourismeStatiqueBatiment(a, C)
   }
-  // 8. vassalité : +15 × rang du suzerain tant que le serment tient
-  if (p.vassalDe != null) {
-    const suz = state.players.find((q) => q.n === p.vassalDe)
-    if (suz) total += 15 * rangPaysNiveau(suz, C)
-  }
+  // VASSALITÉ — CORRECTIF (retour utilisateur 2026-10-17) : le
+  //  « +15 Tourisme × rang du suzerain » est une règle de FACTION
+  //  (Basiléens « Temps de paix », choix d'âge) : elle est déjà
+  //  comptée au canal 5 ci-dessus, et UNIQUEMENT pour un Basiléens
+  //  qui a choisi cette règle. L'ancien point 8 la créditait à TOUT
+  //  joueur vassal (quelle que soit sa faction) ET la comptait deux
+  //  fois pour un Basiléens vassal — supprimé.
   return total
 }
 

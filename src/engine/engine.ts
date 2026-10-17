@@ -237,6 +237,11 @@ export function runTurn(state: GameState): GameState {
   const factionsParJoueur: Record<number, Record<string, number>> = {}
   for (const p of state.players) {
     factionsParJoueur[p.n] = appliquerEffetsFaction(state, p, C)
+    // Tourisme : les flux de faction (vassal basiléen +15×rang,
+    //  champs +3…) ont été crédités au stock par
+    //  appliquerEffetsFaction — or le Tourisme n'est JAMAIS cumulé
+    //  (stock = production) : re-resynchronisation immédiate.
+    resynchroniserTourisme(state, p, 'fin de tour')
   }
 
   // 3decies. Cités libres : chaque cité libre possédant un suzerain lui
@@ -286,6 +291,10 @@ export function runTurn(state: GameState): GameState {
       const rs = p.resources[res]
       if (rs && v !== 0) rs.stock += v
     }
+    // Tourisme : même règle — les flux Tourisme des techs
+    //  (Surconsommation, Stands de goodies, Musées…) ne se
+    //  cumulent pas : le stock reste égal à la production.
+    resynchroniserTourisme(state, p, 'fin de tour')
     if (Object.keys(flux).length > 0) {
       const parts = Object.entries(flux).map(([r, v]) => `${v > 0 ? '+' : ''}${Math.round(v * 10) / 10} ${r}`).join(', ')
       state.log.push({
