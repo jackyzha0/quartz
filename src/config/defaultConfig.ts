@@ -331,6 +331,10 @@ export interface GameConfig {
   /** Migration Sylvains (2026-10-16) — fiche et peuple ré-ajoutés
    *  si absents (le tampon schemaVersion avait avalé leur ajout). */
   sylvains2026?: boolean
+  /** Migration valeurs de Nourriture (2026-10-16) — Grange 20, Silo 35,
+   *  Moulin/Guilde 60, Champ 15 été, Rizière 20 été, Pâturage +1 Bétail
+   *  +4 Nourr. Mise à jour uniquement des anciennes valeurs exactes. */
+  valeursNourriture2026?: boolean
 }
 
 // ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
@@ -1130,6 +1134,39 @@ export function cfgOf(config?: GameConfig): Cfg {
       merged.peuples = [...(merged.peuples ?? []), 'Sylvains']
     }
     merged.sylvains2026 = true
+  }
+  // VALEURS DE NOURRITURE (revue 2026-10-16) : Grange 20, Silo à grain
+  //  35, Moulin à vent 60, Guilde des artisans de la terre 60,
+  //  Champ 15 été, Rizière 20 été, Pâturage +1 Bétail +4 Nourr.
+  //  Le tampon schemaVersion « les valeurs persistent » gardait les
+  //  ANCIENNES valeurs dans les parties existantes — migration ciblée
+  //  (même schéma que taxes25) : les valeurs sont mises à jour UNIQUEMENT
+  //  si elles valent encore l'ancienne valeur exacte (une édition
+  //  personnalisée dans Paramètres est préservée).
+  if (!merged.valeursNourriture2026) {
+    const MAJ: Array<[string, EffetConstruction[], string | null, string | null]> = [
+      // [nom, effets attendus, ancienne production, nouvelle production]
+      ['Grange', [{ ressource: 'Nourriture', quantite: 20 }], '+15 Nourriture par tour.', '+20 Nourriture par tour.'],
+      ['Silo à grain', [{ ressource: 'Nourriture', quantite: 35 }], '+25 Nourriture par tour.', '+35 Nourriture par tour.'],
+      ['Moulin à vent', [{ ressource: 'Charbon', quantite: -1 }, { ressource: 'Nourriture', quantite: 60 }], 'Consomme 1 Charbon par tour. +45 Nourriture par tour.', 'Consomme 1 Charbon par tour. +60 Nourriture par tour.'],
+      ["Guilde des artisans de la terre.", [{ ressource: 'Charbon', quantite: -1 }, { ressource: 'Nourriture', quantite: 60 }], 'Consomme 1 Charbon par tour. +45 Nourriture par tour.', 'Consomme 1 Charbon par tour. +60 Nourriture par tour.'],
+      ['Champ', [{ ressource: 'Nourriture', quantite: 15, ete: true }], '+10 Nourriture par tour en été.', '+15 Nourriture par tour en été.'],
+      ['Rizière', [{ ressource: 'Nourriture', quantite: 20, ete: true }], '+15 Nourriture par tour en été.', '+20 Nourriture par tour en été.'],
+      ['Pâturage', [{ ressource: 'Bétail', quantite: 1 }, { ressource: 'Nourriture', quantite: 4 }], '+1 Bétail et +8 Nourriture par tour.', '+1 Bétail et +4 Nourriture par tour.'],
+    ]
+    for (const c of merged.constructions ?? []) {
+      const maj = MAJ.find(([nom]) => nom === c.nom)
+      if (!maj) continue
+      const [, effets, ancienneProd, nouvelleProd] = maj
+      // ne remplacer QUE si la valeur actuelle est l'ANCIENNE exacte
+      const estAncienne = Array.isArray(c.effets) && JSON.stringify(c.effets) !== JSON.stringify(effets)
+        && c.production === ancienneProd
+      if (estAncienne) {
+        c.effets = effets
+        if (nouvelleProd) c.production = nouvelleProd
+      }
+    }
+    merged.valeursNourriture2026 = true
   }
   if (!merged.taxes25) {
     const pm = merged.params as unknown as Record<string, unknown>
