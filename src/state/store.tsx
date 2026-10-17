@@ -25,7 +25,10 @@ import * as remote from '../supabase/client'
  *  résolution SERVEUR (Edge Function resoudre-tour). Défaut : v1
  *  (l'ancien flux). Bascule par joueur, dans la barre de jeu. */
 function proto2Actif(): boolean {
-  try { return window.localStorage.getItem('cpe.proto2') === '1' } catch { return false }
+  // Étape 3 : v2 est le PROTOCOLE PAR DÉFAUT. Le flag ne sert plus
+  //  qu'au DOWNGRADE volontaire (« cpe.proto2 » = "0") pour revenir
+  //  à l'ancien flux (dépannage).
+  try { return window.localStorage.getItem('cpe.proto2') !== '0' } catch { return true }
 }
 
 export type Mode = 'local' | 'supabase'
@@ -162,7 +165,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    *  · REJOIGNE un salon / OUVRE une ancienne partie : le dernier
    *    état flushé y est déjà.
    */
-  const persist = useCallback((s: GameState, m: Mode, salonId: string) => {
+  const persist = useCallback((s: GameState, m: Mode, salonId: string, forcer = false) => {
     persistPending.current = s
     if (persistDebounce.current) clearTimeout(persistDebounce.current)
     persistDebounce.current = setTimeout(async () => {
@@ -171,8 +174,22 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       if (!toSave) return
       setSaving(true)
       try {
+        // Local TOUJOURS (anti-perte perso : chaque mutation est
+        //  dans le localStorage de la machine).
         storage.saveLocal(toSave)
-        if (m === 'supabase' && salonId) {
+        // Réseau — PROTOCOLE v2 (étape 3, 2026-10-17) : pendant le
+        //  tour, PLUS AUCUN upsert d'état complet par mutation. À
+        //  16 000 habitants, chaque action poussait ~5 Mo qui
+        //  déclenchait chez les 7 autres joueurs un événement
+        //  realtime → re-téléchargement complet → lag en simultané.
+        //  L'état du salon n'est plus écrit qu'à la RÉSOLUTION du
+        //  tour par la Edge Function (fusion des sections par
+        //  joueur — rien ne peut être perdu : chaque joueur est
+        //  entièrement reconstruit depuis SA section). Anti-panne :
+        //  bouton 💾 (forcer=true) et flush beforeunload/onglet
+        //  caché poussent toujours l'état complet (reprise depuis
+        //  n'importe quelle machine après un crash).
+        if (m === 'supabase' && salonId && (!proto2Actif() || forcer)) {
           const ok = await remote.saveRemote(salonId, toSave)
           if (!ok) storage.saveLocal(toSave)
         }
@@ -357,8 +374,47 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    *  Bouton « ⏭ Forcer » (test solo, joueur absent). */
   const forceNextTurn = useCallback(() => {
     setBarriere({ prets: new Set(), monTourPousse: false })
+    // v2 : le Forcer passe par la résolution SERVEUR avec la liste
+    //  d'attendus RÉDUITE aux joueurs ayant poussé (les absents
+    //  sont ignorés — leurs sections non poussées ne seront pas
+    //  dans la fusion, c'est la sémantique du Forcer). On garde le
+    //  repli local si le serveur est indisponible.
+    if (proto2Actif() && mode === 'supabase' && salon) {
+      void (async () => {
+        const st = stateRef.current
+        if (!st) return
+        const moi = monNumeroRef.current
+        // MA section d'abord (si pas déjà poussée)
+        const maSection: remote.SectionJoueur = {
+          player: structuredClone(st.players.find((q) => q.n === moi) ?? null),
+          population: structuredClone(st.population[moi] ?? []),
+          routes: structuredClone(st.routesCommerce ?? []),
+          citesLibres: structuredClone(st.citesLibres ?? []),
+          log: structuredClone(st.log.slice(-50)),
+          tour: st.turn,
+        }
+        await remote.pousserSectionV2(salon, moi, maSection)
+        const prets = await remote.lireBarriereV2(salon, st.turn)
+        const attendus = [...(prets ?? new Set([moi]))]
+        if (attendus.length === 0) attendus.push(moi)
+        const res = await remote.resoudreTourServeur(salon, st.turn, attendus)
+        if (res.ok) {
+          const nouveau = await remote.loadRemote(salon)
+          if (nouveau) {
+            normaliserEtat(nouveau)
+            stateRef.current = nouveau
+            setState(nouveau)
+            setConflit(false)
+          }
+        } else {
+          // repli local (serveur indisponible)
+          await resoudreSeul()
+        }
+      })()
+      return
+    }
     void resoudreSeul()
-  }, [resoudreSeul])
+  }, [resoudreSeul, mode, salon])
 
   /** PROTOCOLE v2 — Fin de tour : MA section en ÉVÉNEMENT append-only
    *  (table cp_events), puis la barrière est observée sur les
@@ -563,7 +619,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (persistDebounce.current) clearTimeout(persistDebounce.current)
     const toSave = persistPending.current ?? state
     persistPending.current = null
-    if (toSave) persist(toSave, mode, salon)
+    if (toSave) persist(toSave, mode, salon, true)
   }, [state, mode, salon, persist])
 
   const reset = useCallback(() => {
@@ -606,7 +662,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       const toSave = persistPending.current
       if (!toSave) return
       persistPending.current = null
-      // anti-perte : TOUJOURS le localStorage, réseau si salon
+      // anti-perte : TOUJOURS le localStorage, réseau si salon —
+      //  y compris en v2 (fermeture d'onglet / mise en veille :
+      //  l'état complet part pour la reprise multi-machines).
       storage.saveLocal(toSave)
       if (mode === 'supabase' && salon) void remote.saveRemote(salon, toSave)
     }
@@ -630,6 +688,17 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       //  plus faire RECULER l'affichage des clients à jour.
       const tourLocal = stateRef.current?.turn ?? 0
       if (typeof remoteState.turn === 'number' && remoteState.turn < tourLocal) return
+      // PROTOCOLE v2 (étape 3) : pendant le tour, un état de MÊME tour
+      //  ne peut venir que d'un 💾 ou d'un flush d'un autre joueur —
+      //  or en v2 la source de vérité du tour est la résolution
+      //  SERVEUR (sections par joueur, fusionnées au tour suivant).
+      //  Accepter un état de même tour écraserait les actions locales
+      //  en cours des autres joueurs. En v2, on n'accepte donc
+      //  qu'un tour STRICTEMENT plus récent (la résolution serveur).
+      if (proto2Actif() && typeof remoteState.turn === 'number'
+        && remoteState.turn === tourLocal) {
+        return
+      }
       // Marqueur (a) : les états distants arrivent BRUTS — même garde-fou
       //  que les chargements locaux (villes complétées).
       normaliserEtat(remoteState)

@@ -14,7 +14,7 @@ export function TurnBar() {
   //  Function). v1 (défaut) = l'ancien flux. Le bouton affiche le
   //  mode ACTIF ; cliquer bascule et recharge pour l'appliquer.
   const [proto2, setProto2] = React.useState<boolean>(() => {
-    try { return window.localStorage.getItem('cpe.proto2') === '1' } catch { return false }
+    try { return window.localStorage.getItem('cpe.proto2') !== '0' } catch { return true }
   })
   const toggleProto2 = () => {
     const nouveau = !proto2
