@@ -20,6 +20,14 @@ import { cfgOf, convergerConfig, cloneDefaultConfig, type GameConfig } from '../
 import * as storage from './storage'
 import * as remote from '../supabase/client'
 
+/** PROTOCOLE v2 (étape 2, 2026-10-17) — feature flag localStorage
+ *  « cpe.proto2 » = "1" : Fin de tour par événements append-only +
+ *  résolution SERVEUR (Edge Function resoudre-tour). Défaut : v1
+ *  (l'ancien flux). Bascule par joueur, dans la barre de jeu. */
+function proto2Actif(): boolean {
+  try { return window.localStorage.getItem('cpe.proto2') === '1' } catch { return false }
+}
+
 export type Mode = 'local' | 'supabase'
 
 /** État de la barrière du tour en cours (mode multijoueur) :
@@ -279,6 +287,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       const st = stateRef.current
       if (!st) return
       const moi = monNumeroRef.current
+      // ── PROTOCOLE v2 (flag cpe.proto2) : événements + serveur ──
+      if (proto2Actif()) {
+        await nextTurnV2(st, moi)
+        return
+      }
+      // ── PROTOCOLE v1 (défaut) : barrière par colonne sections ──
       // 1. extraire MA section (ce que j'ai modifié ce tour-ci)
       const maSection: remote.SectionJoueur = {
         player: structuredClone(st.players.find((q) => q.n === moi) ?? null),
@@ -345,6 +359,97 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     setBarriere({ prets: new Set(), monTourPousse: false })
     void resoudreSeul()
   }, [resoudreSeul])
+
+  /** PROTOCOLE v2 — Fin de tour : MA section en ÉVÉNEMENT append-only
+   *  (table cp_events), puis la barrière est observée sur les
+   *  événements du tour. Quand tous les joueurs attendus ont poussé,
+   *  le premier qui le constate invoque la Edge Function
+   *  « resoudre-tour » : la fusion + runTurn + publication se font
+   *  côté SERVEUR (idempotent, verrouillé). Le client ne pousse
+   *  JAMAIS l'état global. Repli : si l'événement ne passe pas
+   *  (table absente — SQL v2 non exécuté) ou si la fonction serveur
+   *  n'est pas déployée, retour au flux v1 puis à resoudreSeul. */
+  const nextTurnV2 = useCallback(async (st: GameState, moi: number) => {
+    const maSection: remote.SectionJoueur = {
+      player: structuredClone(st.players.find((q) => q.n === moi) ?? null),
+      population: structuredClone(st.population[moi] ?? []),
+      routes: structuredClone(st.routesCommerce ?? []),
+      citesLibres: structuredClone(st.citesLibres ?? []),
+      log: structuredClone(st.log.slice(-50)),
+      tour: st.turn,
+    }
+    setBarriere({ prets: new Set([moi]), monTourPousse: true })
+    const ok = await remote.pousserSectionV2(salon, moi, maSection)
+    if (!ok) {
+      // table cp_events absente (SQL v2 non exécuté) : repli v1
+      setBarriere({ prets: new Set(), monTourPousse: false })
+      await resoudreSeul()
+      return
+    }
+    const attendus = st.players.map((q) => q.n)
+    const prets = await remote.lireBarriereV2(salon, st.turn) ?? new Set<number>([moi])
+    setBarriere({ prets, monTourPousse: true })
+    if (prets.size >= attendus.length) {
+      // je suis le dernier : demander la résolution SERVEUR
+      const res = await remote.resoudreTourServeur(salon, st.turn, attendus)
+      if (res.ok) {
+        // le serveur a publié : récupérer l'état du tour suivant
+        const nouveau = await remote.loadRemote(salon)
+        if (nouveau) {
+          normaliserEtat(nouveau)
+          stateRef.current = nouveau
+          setState(nouveau)
+          setBarriere({ prets: new Set(), monTourPousse: false })
+          setConflit(false)
+        }
+      } else if (!res.dejaPublie) {
+        // fonction serveur absente/échouée : repli résolution locale
+        //  (même sémantique que v1, sur les événements)
+        const sections = new Map<number, remote.SectionJoueur>()
+        setBarriere({ prets: new Set(), monTourPousse: false })
+        await resoudreSeul()
+        void sections
+      }
+    } else {
+      // attendre : poll léger des événements du tour ; quand la
+      //  barrière est complète, n'importe qui invoque le serveur —
+      //  elle est idempotente, un double appel est sans effet.
+      void pollerBarriereV2(attendus, st.turn)
+    }
+  }, [salon, resoudreSeul])
+
+  /** Poll v2 : barrière sur cp_events, résolution serveur dès
+   *  complète. S'arrête dès que le tour publié a changé (le realtime
+   *  apporte le nouvel état au handler subscribeRemote). */
+  const pollerBarriereV2 = useCallback(async (attendus: number[], tour: number) => {
+    for (let i = 0; i < 60; i++) {  // max 2 minutes
+      await new Promise((r) => setTimeout(r, 2000))
+      const prets = await remote.lireBarriereV2(salon, tour)
+      if (!prets) continue
+      if (stateRef.current?.turn !== tour) {
+        setBarriere({ prets: new Set(), monTourPousse: false })
+        return
+      }
+      setBarriere({ prets, monTourPousse: true })
+      if (prets.size >= attendus.length) {
+        const res = await remote.resoudreTourServeur(salon, tour, attendus)
+        if (res.ok) {
+          const nouveau = await remote.loadRemote(salon)
+          if (nouveau) {
+            normaliserEtat(nouveau)
+            stateRef.current = nouveau
+            setState(nouveau)
+            setBarriere({ prets: new Set(), monTourPousse: false })
+            setConflit(false)
+          }
+          return
+        }
+        if (res.dejaPublie) return
+      }
+    }
+  }, [salon])
+
+
 
   /** Résoudre la barrière : fusionner les sections dans l'état de
    *  référence (téléchargé frais), exécuter runTurn, publier. */

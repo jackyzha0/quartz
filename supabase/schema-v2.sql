@@ -101,3 +101,9 @@ end $$;
 grant execute on function public.cp_advisory_lock(text) to anon, service_role;
 grant execute on function public.cp_advisory_unlock(text) to anon, service_role;
 grant execute on function public.cp_nettoie_events() to anon, service_role;
+
+-- 6. Idempotence de pousserSectionV2 : un seul événement 'section'
+--    par (salon, tour, joueur) — un double-clic REMPLACE la ligne au
+--    lieu de la dupliquer (upsert côté client).
+create unique index if not exists cp_events_section_unique
+  on public.cp_events (salon, tour, joueur, type);

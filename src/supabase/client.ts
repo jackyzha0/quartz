@@ -281,3 +281,68 @@ export function subscribeRemote(
     sb.removeChannel(channel)
   }
 }
+
+// ══════════════════════════════════════════════════════════════════
+//  PROTOCOLE v2 (serveur autoritaire + events append-only)
+//  Étape 2 (2026-10-17) — utilisé derrière le feature flag
+//  localStorage « cpe.proto2 » = "1". L'ancien flux reste le défaut.
+// ══════════════════════════════════════════════════════════════════
+
+/** Pousser MA section de fin de tour en ÉVÉNEMENT append-only :
+ *  un INSERT ne peut pas écraser la section d'un autre joueur
+ *  (fin du lire-modifier-écrire). Idempotent côté serveur : la clé
+ *  unique (salon, tour, joueur, 'section') fait qu'un double-clic
+ *  remplace la ligne au lieu de la dupliquer. */
+export async function pousserSectionV2(
+  id: string, n: number, section: SectionJoueur,
+): Promise<boolean> {
+  const sb = getSupabase()
+  if (!sb) return false
+  const { error } = await sb.from('cp_events').upsert({
+    salon: id, tour: section.tour, joueur: n, type: 'section',
+    payload: section as unknown as Record<string, unknown>,
+  }, { onConflict: 'salon,tour,joueur,type' })
+  return !error
+}
+
+/** Lire la barrière v2 : quels joueurs ont poussé leur section pour
+ *  le tour N. Léger — payload exclu, on ne ramène que les clés. */
+export async function lireBarriereV2(
+  id: string, tour: number,
+): Promise<Set<number> | null> {
+  const sb = getSupabase()
+  if (!sb) return null
+  const { data, error } = await sb
+    .from('cp_events')
+    .select('joueur')
+    .eq('salon', id)
+    .eq('tour', tour)
+    .eq('type', 'section')
+  if (error) return null
+  return new Set((data ?? []).map((r) => r.joueur))
+}
+
+/** Invoquer la Edge Function de résolution serveur. Idempotente et
+ *  verrouillée : l'invoquer plusieurs fois ou à plusieurs est sans
+ *  effet si le tour est déjà publié. */
+export async function resoudreTourServeur(
+  salon: string, tour: number, attendus: number[],
+): Promise<{ ok: boolean; dejaPublie?: boolean; tour?: number; error?: string }> {
+  const creds = supabaseCreds()
+  if (!creds) return { ok: false, error: 'supabase non configuré' }
+  const { url, key } = creds
+  try {
+    const resp = await fetch(`${url}/functions/v1/resoudre-tour`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${key}`,
+        apikey: key,
+      },
+      body: JSON.stringify({ salon, tour, attendus }),
+    })
+    return await resp.json() as { ok: boolean; dejaPublie?: boolean; tour?: number; error?: string }
+  } catch (e) {
+    return { ok: false, error: String(e) }
+  }
+}

@@ -9,6 +9,18 @@ import { Button } from './ui'
 export function TurnBar() {
   const { state, mode, salon, saving, conflit, nextTurn, saveNow, exportState, importState, reset, barriere, monNumero, forceNextTurn } = useGame()
   const fileRef = useRef<HTMLInputElement>(null)
+  // PROTOCOLE v2 (étape 2) : bascule par joueur, mémorisée localement.
+  //  v2 = Fin de tour par événements + résolution SERVEUR (Edge
+  //  Function). v1 (défaut) = l'ancien flux. Le bouton affiche le
+  //  mode ACTIF ; cliquer bascule et recharge pour l'appliquer.
+  const [proto2, setProto2] = React.useState<boolean>(() => {
+    try { return window.localStorage.getItem('cpe.proto2') === '1' } catch { return false }
+  })
+  const toggleProto2 = () => {
+    const nouveau = !proto2
+    setProto2(nouveau)
+    try { window.localStorage.setItem('cpe.proto2', nouveau ? '1' : '0') } catch { /* noop */ }
+  }
 
   if (!state || !Array.isArray(state.players)) return null
 
@@ -56,6 +68,16 @@ export function TurnBar() {
             onClick={() => { if (window.confirm('Forcer le passage du tour ? La barrière sera ignorée : vos actions locales sont appliquées et publiées (les autres joueurs perdent leurs actions non poussées de ce tour).')) { forceNextTurn() } }}
           >
             ⏭ Forcer
+          </Button>
+        )}
+        {mode === 'supabase' && (
+          <Button
+            onClick={toggleProto2}
+            title={proto2
+              ? 'Protocole v2 ACTIF : fin de tour par événements + résolution serveur (recommandé). Cliquer pour revenir au protocole v1.'
+              : 'Protocole v1 (ancien). Cliquer pour activer le protocole v2 : résolution serveur des fins de tour (événements append-only, plus de pertes possibles).'}
+          >
+            {proto2 ? 'v2 🜲' : 'v1'}
           </Button>
         )}
         <Button onClick={saveNow} title="Sauvegarder maintenant">💾</Button>
