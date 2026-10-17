@@ -6,3 +6,6 @@ dist
 .DS_Store
 coverage
 tsconfig.tsbuildinfo
+
+# moteur copié dans la Edge Function (regénéré par scripts/build-function.mjs)
+supabase/functions/resoudre-tour/engine/
