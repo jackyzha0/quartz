@@ -159,9 +159,15 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    *  · REJOIGNE un salon / OUVRE une ancienne partie : le dernier
    *    état flushé y est déjà.
    */
-  const persist = useCallback((s: GameState, m: Mode, salonId: string) => {
+  const persist = useCallback((s: GameState, m: Mode, salonId: string, forcer = false) => {
     persistPending.current = s
     if (persistDebounce.current) clearTimeout(persistDebounce.current)
+    // FORCER (bouton « Sauvegarder », flush beforeunload/onglet
+    //  caché) : écriture IMMÉDIATE, hors debounce ET hors limite
+    //  des 30 s — une intention explicite de sauvegarder passe
+    //  toujours (correctif 2026-10-17 : le bouton pouvait ne rien
+    //  pousser si une sauvegarde réseau de moins de 30 s existait).
+    const delai = forcer ? 0 : 400
     persistDebounce.current = setTimeout(async () => {
       const toSave = persistPending.current
       persistPending.current = null
@@ -185,7 +191,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         //  caché/Sauvegarder) et à la résolution du tour.
         if (m === 'supabase' && salonId) {
           const maintenant = Date.now()
-          if (maintenant - lastRemotePush.current >= 30000) {
+          if (forcer || maintenant - lastRemotePush.current >= 30000) {
             lastRemotePush.current = maintenant
             const ok = await remote.saveRemote(salonId, toSave)
             if (!ok) storage.saveLocal(toSave)
@@ -481,7 +487,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (persistDebounce.current) clearTimeout(persistDebounce.current)
     const toSave = persistPending.current ?? state
     persistPending.current = null
-    if (toSave) persist(toSave, mode, salon)
+    if (toSave) persist(toSave, mode, salon, true)
   }, [state, mode, salon, persist])
 
   const reset = useCallback(() => {
@@ -526,7 +532,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       persistPending.current = null
       // anti-perte : TOUJOURS le localStorage, réseau si salon
       storage.saveLocal(toSave)
-      if (mode === 'supabase' && salon) void remote.saveRemote(salon, toSave)
+      if (mode === 'supabase' && salon) {
+        lastRemotePush.current = Date.now()
+        void remote.saveRemote(salon, toSave)
+      }
     }
     const onHidden = () => { if (document.hidden) flush() }
     window.addEventListener('beforeunload', flush)
