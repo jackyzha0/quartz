@@ -264,6 +264,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       pendingMutators.current = []
       mutator(draft)
       lastLocalEdit.current = Date.now()
+      // BUG « actions non prises en compte » (2026-10-17) : stateRef
+      //  n'était mis à jour que par le useEffect de rendu — une
+      //  action suivie d'un « Fin de tour » RAPIDE capturait la
+      //  section sur un état SANS la dernière action. Mise à jour
+      //  SYNCHRONE : la section du prochain Fin de tour part
+      //  toujours de l'état le plus récent.
+      stateRef.current = draft
       persist(draft, mode, salon)
       return draft
     })
@@ -517,17 +524,42 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       population: popClone,
       config: ref.config,
     } as GameState
+    // FUSION (bug 2026-10-17) : routes et cités libres sont PARTAGÉES —
+    //  remplacer tout le tableau par la section du dernier joueur
+    //  perdait les actions des autres. Routes : par PROPRIÉTAIRE.
+    //  Cités libres : par cité, uniquement si modifiée vs référence.
     const newLogs: unknown[] = []
+    const refCiteParNom = new Map((ref.citesLibres ?? []).map((c) => [c.nom, JSON.stringify(c)]))
+    const citeFusionnes = new Map((draft.citesLibres ?? []).map((c) => [c.nom, c]))
+    const routesFusionnees = [...(draft.routesCommerce ?? [])]
     for (const nStr of Object.keys(sections)) {
       const n = Number(nStr)
       const sec = sections[nStr]
       const pj = draft.players.find((q) => q.n === n)
       if (pj && sec.player) Object.assign(pj, sec.player)
       if (sec.population) draft.population[n] = sec.population as typeof draft.population[number]
-      if (sec.routes) draft.routesCommerce = sec.routes as typeof draft.routesCommerce
-      if (sec.citesLibres) draft.citesLibres = sec.citesLibres as typeof draft.citesLibres
+      if (Array.isArray(sec.routes)) {
+        for (let i = routesFusionnees.length - 1; i >= 0; i--) {
+          if (routesFusionnees[i]?.joueur === n) routesFusionnees.splice(i, 1)
+        }
+        for (const r of sec.routes as typeof routesFusionnees) routesFusionnees.push(r)
+      }
+      if (Array.isArray(sec.citesLibres)) {
+        for (const c of (sec.citesLibres ?? []) as NonNullable<typeof draft.citesLibres>) {
+          const refJson = refCiteParNom.get(c.nom)
+          if (refJson === undefined) {
+            // cité créée pendant le tour
+            if (!citeFusionnes.has(c.nom)) citeFusionnes.set(c.nom, c)
+          } else if (JSON.stringify(c) !== refJson) {
+            // cité modifiée par ce joueur → sa version
+            citeFusionnes.set(c.nom, c)
+          }
+        }
+      }
       if (Array.isArray(sec.log)) newLogs.push(...(sec.log as unknown[]))
     }
+    draft.routesCommerce = routesFusionnees
+    draft.citesLibres = [...citeFusionnes.values()]
     const logFusionne = [...draft.log, ...(newLogs as typeof draft.log)]
     draft.log = logFusionne.slice(-Math.max(50, draft.log.length))
     runTurn(draft)

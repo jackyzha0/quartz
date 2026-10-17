@@ -76,18 +76,63 @@ Deno.serve(async (req) => {
         return json({ ok: false, error: `barriere incomplete : ${manquants.join(', ')}` }, 409)
       }
 
-      // 4. Fusion (même sémantique que le client v1).
+      // 4. Fusion (bug 2026-10-17 : routes et cités libres sont
+      //    PARTAGÉES — l'ancienne fusion écrasait tout le tableau
+      //    avec la version du dernier joueur, perdant les actions
+      //    des autres sur le même tour).
+      //    · routes : une route n'appartient qu'à SON propriétaire
+      //      (route.joueur) — chaque section ne remplace que les
+      //      routes de son joueur, les autres sont préservées ;
+      //    · cités libres : fusion PAR CITÉ (clé nom) — une section
+      //      ne remplace que les cités qu'elle a réellement
+      //      modifiées (différentes de la référence), les autres
+      //      sont préservées.
+      const ref = row.state
       const draft = structuredClone(row.state)
       const newLogs = []
+      const refCiteParNom = new Map((ref.citesLibres ?? []).map((c) => [c.nom, JSON.stringify(c)]))
+      const citeFusionnes = new Map((draft.citesLibres ?? []).map((c) => [c.nom, c]))
+      const routesFusionnees = [...(draft.routesCommerce ?? [])]
       for (const e of events) {
         const sec = e.payload
         const pj = draft.players.find((q) => q.n === e.joueur)
         if (pj && sec.player) Object.assign(pj, sec.player)
         if (sec.population) draft.population[e.joueur] = sec.population
-        if (sec.routes) draft.routesCommerce = sec.routes
-        if (sec.citesLibres) draft.citesLibres = sec.citesLibres
+        // ROUTES : remplacer uniquement les routes de CE joueur
+        if (Array.isArray(sec.routes)) {
+          for (let i = routesFusionnees.length - 1; i >= 0; i--) {
+            if (routesFusionnees[i].joueur === e.joueur) routesFusionnees.splice(i, 1)
+          }
+          for (const r of sec.routes) routesFusionnees.push(r)
+        }
+        // CITÉS LIBRES : ne prendre que les cités MODIFIÉES par ce
+        //  joueur (différentes de la référence de début de tour)
+        if (Array.isArray(sec.citesLibres)) {
+          for (const c of sec.citesLibres) {
+            const cle = c.nom
+            const refJson = refCiteParNom.get(cle)
+            if (refJson !== undefined && JSON.stringify(c) !== refJson) {
+              citeFusionnes.set(cle, c)
+            }
+          }
+          // cité créée pendant le tour (absente de la référence)
+          if (!refCiteParNom.has('') ) { /* noop */ }
+        }
         if (Array.isArray(sec.log)) newLogs.push(...sec.log)
       }
+      draft.routesCommerce = routesFusionnees
+      // cités créées pendant le tour : présentes dans une section
+      //  mais absentes de la référence → les ajouter
+      for (const e of events) {
+        const sec = e.payload
+        if (!Array.isArray(sec.citesLibres)) continue
+        for (const c of sec.citesLibres) {
+          if (!refCiteParNom.has(c.nom) && !citeFusionnes.has(c.nom)) {
+            citeFusionnes.set(c.nom, c)
+          }
+        }
+      }
+      draft.citesLibres = [...citeFusionnes.values()]
       const logFusionne = [...draft.log, ...newLogs]
       draft.log = logFusionne.slice(-Math.max(50, draft.log.length))
 
