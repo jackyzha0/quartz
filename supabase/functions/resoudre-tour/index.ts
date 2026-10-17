@@ -120,7 +120,14 @@ Deno.serve(async (req) => {
         }
         if (Array.isArray(sec.log)) newLogs.push(...sec.log)
       }
-      draft.routesCommerce = routesFusionnees
+      // Déduplication par id (défense en profondeur contre les
+      //  sections déjà polluées ce tour).
+      const vusRoutes = new Set()
+      draft.routesCommerce = routesFusionnees.filter((r) => {
+        if (vusRoutes.has(r.id)) return false
+        vusRoutes.add(r.id)
+        return true
+      })
       // cités créées pendant le tour : présentes dans une section
       //  mais absentes de la référence → les ajouter
       for (const e of events) {

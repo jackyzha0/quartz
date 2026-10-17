@@ -288,7 +288,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         void remote.pousserSectionV2(salon, moi, {
           player: structuredClone(draft.players.find((q) => q.n === moi) ?? null),
           population: structuredClone(draft.population[moi] ?? []),
-          routes: structuredClone(draft.routesCommerce ?? []),
+          // SEULEMENT mes routes (bug duplication : la section
+          //  embarquait toutes les routes du monde).
+          routes: structuredClone(draft.routesCommerce ?? []).filter((r) => r.joueur === moi),
           citesLibres: structuredClone(draft.citesLibres ?? []),
           log: structuredClone(draft.log.slice(-50)),
           tour: draft.turn,
@@ -343,7 +345,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       const maSection: remote.SectionJoueur = {
         player: structuredClone(st.players.find((q) => q.n === moi) ?? null),
         population: structuredClone(st.population[moi] ?? []),
-        routes: structuredClone(st.routesCommerce ?? []),
+        // SEULEMENT mes routes (bug duplication 2026-10-17 : la
+      //  section embarquait toutes les routes du monde).
+      routes: structuredClone(st.routesCommerce ?? []).filter((r) => r.joueur === moi),
         citesLibres: structuredClone(st.citesLibres ?? []),
         log: structuredClone(st.log.slice(-50)),
         tour: st.turn,
@@ -423,7 +427,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         const maSection: remote.SectionJoueur = {
           player: structuredClone(st.players.find((q) => q.n === moi) ?? null),
           population: structuredClone(st.population[moi] ?? []),
-          routes: structuredClone(st.routesCommerce ?? []),
+          // SEULEMENT mes routes (bug duplication 2026-10-17 : la
+          //  section embarquait toutes les routes du monde).
+          routes: structuredClone(st.routesCommerce ?? []).filter((r) => r.joueur === moi),
           citesLibres: structuredClone(st.citesLibres ?? []),
           log: structuredClone(st.log.slice(-50)),
           tour: st.turn,
@@ -470,7 +476,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const maSection: remote.SectionJoueur = {
       player: structuredClone(st.players.find((q) => q.n === moi) ?? null),
       population: structuredClone(st.population[moi] ?? []),
-      routes: structuredClone(st.routesCommerce ?? []),
+      // SEULEMENT mes routes (bug duplication 2026-10-17 : la
+      //  section embarquait toutes les routes du monde).
+      routes: structuredClone(st.routesCommerce ?? []).filter((r) => r.joueur === moi),
       citesLibres: structuredClone(st.citesLibres ?? []),
       log: structuredClone(st.log.slice(-50)),
       tour: st.turn,
@@ -580,7 +588,15 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       }
       if (Array.isArray(sec.log)) newLogs.push(...(sec.log as unknown[]))
     }
-    draft.routesCommerce = routesFusionnees
+    // Déduplication par id (défense en profondeur : les sections
+    //  déjà poussées ce tour peuvent encore contenir des routes
+    //  d'autres joueurs — on n'ajoute jamais deux fois une route).
+    const vus = new Set<string>()
+    draft.routesCommerce = routesFusionnees.filter((r) => {
+      if (vus.has(r.id)) return false
+      vus.add(r.id)
+      return true
+    })
     draft.citesLibres = [...citeFusionnes.values()]
     const logFusionne = [...draft.log, ...(newLogs as typeof draft.log)]
     draft.log = logFusionne.slice(-Math.max(50, draft.log.length))
