@@ -27,8 +27,15 @@ export function maybeAssignProfesseurs(state: GameState, p: Player, rng: Rng, re
     // chance = professeurBaseChance / ln(profs + 2,72)
     const chance = C.p.professeurBaseChance / Math.log(nbProfs + 2.72)
     if (!rng.chance(chance)) continue
-    // VBA : pas de Professeur « Obstiné » (TRAIT_NO_EDUC)
-    const candidats = vivants.filter((c) => c.age >= C.p.adultAge && !c.titre && !(c.traits ?? []).includes(C.p.traitObstine))
+    // VBA : pas de Professeur « Obstiné » (TRAIT_NO_EDUC).
+    // Candidats : SANS titre ou roturier (titre Chasseur) — le setup
+    //  titre tous les adultes Chasseur, l'ancien filtre !c.titre
+    //  rendait la liste TOUJOURS vide (bug : aucun professeur n'était
+    //  jamais nommé automatiquement). Même logique que peuplerMarchands.
+    const candidats = vivants.filter((c) =>
+      c.age >= C.p.adultAge &&
+      (!c.titre || c.titre === C.p.titreChasseur) &&
+      !(c.traits ?? []).includes(C.p.traitObstine))
     if (candidats.length === 0) continue
     const elu = rng.pick(candidats)
     elu.titre = C.p.titreProfesseur
