@@ -335,6 +335,10 @@ export interface GameConfig {
    *  Moulin/Guilde 60, Champ 15 été, Rizière 20 été, Pâturage +1 Bétail
    *  +4 Nourr. Mise à jour uniquement des anciennes valeurs exactes. */
   valeursNourriture2026?: boolean
+  /** Migration pontificats (2026-10-17) — retrait de la mention
+   *  « crédité automatiquement » du palier 220 Tourisme : tous les
+   *  paliers sont des aides de jeu au plateau (décision Thibaut). */
+  pontificats2026?: boolean
 }
 
 // ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
@@ -1167,6 +1171,20 @@ export function cfgOf(config?: GameConfig): Cfg {
       }
     }
     merged.valeursNourriture2026 = true
+  }
+  // Migration pontificats (2026-10-17) : le palier 220 Tourisme
+  //  affichait encore « (crédité automatiquement) » alors que
+  //  l'automatisation a été retirée du moteur (commit d5d3005b) —
+  //  tous les paliers de pontificat sont des aides de jeu au
+  //  plateau. Ne remplace QUE si le texte actuel est l'ancien exact
+  //  (édition personnalisée préservée). Même schéma que taxes25.
+  if (!merged.pontificats2026) {
+    const ANCIEN = 'A la fin de chaque hiver, recevez 1 Émissaire en réserve (crédité automatiquement).'
+    const NOUVEAU = 'A la fin de chaque hiver, recevez 1 Émissaire en réserve (à gérer au plateau).'
+    for (const t of merged.tourismeSeuils ?? []) {
+      if (t.seuil === 220 && t.bonus === ANCIEN) t.bonus = NOUVEAU
+    }
+    merged.pontificats2026 = true
   }
   if (!merged.taxes25) {
     const pm = merged.params as unknown as Record<string, unknown>
