@@ -170,6 +170,19 @@ export function PopulationTable({ joueur }: { joueur: number }) {
 
   // Aucune contrainte bloquante : le titre est TOUJOURS appliqué ;
   // le contrôle de cohérence n'affiche qu'un avertissement (ignorable).
+  /** Éducation enseignée par un professeur — modifiable à tout moment
+   *  (même le titre « sans éducation » est possible). Uniquement pour
+   *  les Professeurs vivants, comme demandé — les autres gardent leur
+   *  éducation (acquise via un professeur pendant l'enfance). */
+  const changerEducationProf = (c: Character, v: string) => {
+    update((s) => {
+      const liste = cite
+        ? ((s.citesLibres ?? [])[citeIdx]?.population ?? [])
+        : (s.population[joueur] ?? [])
+      const target = liste.find((x) => x.id === c.id)
+      if (target) target.education = v || null
+    })
+  }
   const changeTitre = (c: Character, titre: string) => {
     // Cité libre : validation via un pseudo-joueur (culture de la cité,
     // mêmes contrôles de cohérence que pour un joueur).
@@ -396,7 +409,20 @@ export function PopulationTable({ joueur }: { joueur: number }) {
         </div>
         {errors[c.id] && <div className="neg small">⚠ {errors[c.id]}</div>}
       </td>
-      <td>{c.education ?? '—'}</td>
+      <td>
+        {c.titre === C.p.titreProfesseur && c.statut !== 'Décédé' ? (
+          <Select
+            value={c.education ?? ''}
+            options={[
+              { value: '', label: '—' },
+              ...C.educations.map((e) => ({ value: e, label: e })),
+            ]}
+            onChange={(v) => changerEducationProf(c, v)}
+          />
+        ) : (
+          (c.education ?? '—')
+        )}
+      </td>
       <td className="small">
         {(c.traits ?? []).filter(Boolean).map((t) => (
           <span key={t} title={traitDef(t, C.config)?.description || undefined}
