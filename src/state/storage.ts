@@ -136,6 +136,8 @@ export function importJson(text: string): GameState | null {
     const state = JSON.parse(text) as GameState
     if (!state || !Array.isArray(state.players) || state.players.length === 0) return null
     if (!state.config) state.config = cloneDefaultConfig()
+    // format compact : reconstruire les champs omis (valeurs par défaut)
+    elargirEtat(state)
     return state
   } catch {
     return null

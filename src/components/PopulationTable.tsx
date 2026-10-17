@@ -398,7 +398,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       </td>
       <td>{c.education ?? '—'}</td>
       <td className="small">
-        {c.traits.filter(Boolean).map((t) => (
+        {(c.traits ?? []).filter(Boolean).map((t) => (
           <span key={t} title={traitDef(t, C.config)?.description || undefined}
             className={`badge ${t === 'Bâtard' || t === 'Consanguin' ? 'badge-bad' : 'badge-neutral'}`}>{t}</span>
         ))}
