@@ -1,0 +1,9 @@
+{
+  "name": "syndicate",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@atproto/api": "^0.13.0",
+    "gray-matter": "^4.0.3"
+  }
+}

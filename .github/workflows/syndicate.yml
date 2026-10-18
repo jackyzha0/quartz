@@ -1,0 +1,49 @@
+name: Divulgar nas redes
+
+on:
+  push:
+    branches: [v5]   # branch principal deste repositório
+    paths: ["content/posts/**"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: syndicate
+  cancel-in-progress: false
+
+jobs:
+  syndicate:
+    # evita loop: o commit do próprio bot não dispara de novo
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependências
+        run: npm install --prefix .github/scripts
+
+      - name: Publicar nas redes
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          MASTODON_URL: ${{ secrets.MASTODON_URL }}
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+        run: node .github/scripts/syndicate.mjs
+
+      - name: Gravar "syndicated: true"
+        run: |
+          if [ -n "$(git status --porcelain content)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add content
+            git commit -m "chore: marca posts como divulgados"
+            git push
+          fi

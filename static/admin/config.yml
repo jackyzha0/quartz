@@ -1,0 +1,31 @@
+backend:
+  name: github
+  repo: soumfilipe/blog-struc
+  branch: v5
+  # site_domain: filipecosta.eti.br    # <- descomente se o login falhar no domínio próprio
+
+locale: pt
+media_folder: static/uploads
+public_folder: /uploads
+
+collections:
+  - name: posts
+    label: Posts
+    folder: content/posts
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    sortable_fields: [date, title]
+    fields:
+      - { label: Título, name: title, widget: string }
+      - { label: Palavra em destaque (aparece em roxo no título), name: destaque, widget: string, required: false }
+      - { label: Data, name: date, widget: datetime, format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: Resumo (usado no post das redes), name: summary, widget: text, required: false }
+      - { label: Autor, name: author, widget: hidden, default: Filipe }
+      - { label: Categorias, name: categories, widget: list, required: false }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: Rascunho, name: draft, widget: boolean, default: false }
+      - { label: Já divulgado, name: syndicated, widget: hidden, default: false }
+      - { label: Endereços antigos, name: aliases, widget: hidden, required: false }
+      - { label: Texto, name: body, widget: markdown }

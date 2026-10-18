@@ -1,0 +1,52 @@
+baseURL = "https://filipecosta.eti.br/"
+languageCode = "pt-BR"
+defaultContentLanguage = "pt-br"
+title = "Filipe Costa"
+theme = "filipe-costa"
+timeZone = "America/Sao_Paulo"
+buildFuture = true   # evita post sumir por diferença de fuso horário
+removePathAccents = true
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 12
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[params]
+  author = "Filipe Costa"
+  description = "Textos sobre tecnologia, sociedade e processos."
+  mainSections = ["posts"]
+  archive = "/posts/"
+
+  # Placeholder: a copy final precisa ser validada (Guia de Identidade, seção 7)
+  [params.hero]
+    label = "programador · designer · processos"
+    title = "Faço o complexo parecer"
+    highlight = "simples"
+    end = "."
+    lead = "Textos sobre tecnologia, sociedade e o trabalho por trás das ferramentas."
+
+  # Botão em pílula do cabeçalho. Descomente quando houver página de contato.
+  # [params.cta]
+  #   label = "vamos conversar"
+  #   url = "/sobre/"
+
+[[menus.main]]
+  name = "textos"
+  pageRef = "/posts"
+  weight = 10
+[[menus.main]]
+  name = "categorias"
+  pageRef = "/categories"
+  weight = 20
+
+# Necessário para o realce de sintaxe usar as cores da marca
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3

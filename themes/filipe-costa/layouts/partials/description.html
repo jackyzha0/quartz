@@ -1,5 +1,5 @@
-{{- /* Aceita description, descricao ou descrição no front matter; senão usa o resumo */ -}}
-{{- $d := or .Description .Params.descricao (index .Params "descrição") -}}
+{{- /* Aceita description, summary, descricao ou descrição no front matter; senão usa o resumo */ -}}
+{{- $d := or .Description .Params.summary .Params.descricao (index .Params "descrição") -}}
 {{- if and (not $d) .IsPage -}}
   {{- $d = .Summary | plainify | htmlUnescape | truncate 160 -}}
 {{- end -}}
