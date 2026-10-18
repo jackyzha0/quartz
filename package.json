@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "docx": "python3 scripts/make_docx.py",
     "build:strict": "tsc && vite build",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test src/**/*.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",
