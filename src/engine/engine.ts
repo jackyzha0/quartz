@@ -405,6 +405,7 @@ export {
   type DetailFaction, type RegleActive, type SourceRegle,
 } from './factions'
 export { supprimerVille, transfererVille, rejouerTransfertVille, appliquerBonusProximite, bonusProximite, normaliserEtat } from './villes'
+export { fusionnerSections, rejouerEvenementsPartages, type SectionJoueurFusion, type EvenementPartage } from './fusion'
 export { donnerPersonnage, marierPersonnages, numeroJoueurDe } from './cour'
 export {
   citesLibresDe, garnisonCiteLibre, facteurTaxesCite, emissairesDe,

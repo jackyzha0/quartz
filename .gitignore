@@ -9,3 +9,4 @@ tsconfig.tsbuildinfo
 
 # moteur copié dans la Edge Function (regénéré par scripts/build-function.mjs)
 supabase/functions/resoudre-tour/engine/
+supabase/functions/resoudre-tour/_engine.mjs

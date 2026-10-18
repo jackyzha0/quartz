@@ -12,6 +12,8 @@
 // ══════════════════════════════════════════════════════════════════════
 
 import { DEFAULT_CONFIG, type GameConfig, type ConstructionRef, type EffetConstruction } from '../config/defaultConfig'
+import { reglePourConstruction, contexteLectureSeule } from '../rules/registry'
+import { appliquerRegles } from '../rules/effects/banque'
 
 export type { ConstructionRef, EffetConstruction }
 
@@ -164,6 +166,15 @@ export function effetsConstructionEntries(ref: ConstructionRef): EffetConstructi
 /** Effets par tour FLUX d'une construction : hors production d'ÉTÉ (canal
  *  « Nourr - été ») et hors ressources instantanées (Tourisme/Garnison). */
 export function effetsConstructionRef(ref: ConstructionRef): Record<string, number> {
+  // BRANCHEMENT BANQUE D'EFFETS (étape 2) : les constructions à effets
+  //  structurés passent par la banque (rules/registry → rules/effects)
+  //  — la règle devient une DONNÉE ; le repli texte (configs sans
+  //  `effets`) reste géré ici, inchangé.
+  const regle = reglePourConstruction(ref)
+  if (regle) {
+    const out = appliquerRegles([regle], contexteLectureSeule())
+    return out.flux
+  }
   if (!ref.effets) return eteSeulementRef(ref) ? {} : parseProductionTexte(ref.nom, ref.production)
   const out: Record<string, number> = {}
   for (const e of ref.effets) {
@@ -229,8 +240,10 @@ export function prerequisConstruction(ref: Pick<ConstructionRef, 'cout'> | undef
 
 /** Garnison statique accordée par une construction (valeur d'état, pas un flux). */
 export function garnisonConstructionRef(ref: ConstructionRef): number {
-  if (ref.effets) {
-    return ref.effets.filter((e) => e.ressource === 'Garnison').reduce((s, e) => s + e.quantite, 0)
+  // BRANCHEMENT BANQUE (étape 2) : garnison via la banque d'effets.
+  const regle = reglePourConstruction(ref)
+  if (regle) {
+    return appliquerRegles([regle], contexteLectureSeule()).garnison
   }
   const m = ref.description.match(/Garnison\s*\+?\s*(\d+)/i)
   return m ? parseInt(m[1], 10) : 0

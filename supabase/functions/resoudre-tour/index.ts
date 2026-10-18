@@ -4,22 +4,22 @@
 // Résolution du tour CÔTÉ SERVEUR :
 //   1. verrou consultatif (un seul exécutant par salon) ;
 //   2. idempotence par tour_publie (double appel = sans effet) ;
-//   3. fusion des sections du tour — IMPLÉMENTATION PARTAGÉE avec le
-//      client : ./engine/src/engine/fusion.ts (copié par
-//      scripts/build-function.mjs — plus AUCUN chargement de bundle
-//      distant cp-moteur.mjs : le moteur voyage AVEC la fonction,
-//      versionné dans le même commit) ;
-//   4. runTurn par le moteur pur (même bundle local) ;
+//   3. fusion des sections — IMPLÉMENTATION PARTAGÉE avec le client
+//      (src/engine/fusion.ts, mêmes tests fusion.test.ts) ;
+//   4. runTurn par le moteur pur ;
 //   5. publication + purge de la file.
+//
+// MOTEUR : bundle local _engine.mjs, construit par esbuild —
+//   node scripts/build-function.mjs && node scripts/test-function.mjs
+//   supabase functions deploy resoudre-tour
+// (esbuild résout les imports sans extension et inline le JSON des
+//  référentiels — une copie brute de src/engine ne fonctionne PAS en
+//  Deno. Le bundle voyage AVEC ce fichier, versionné dans le dépôt.)
 //
 // Payload : { salon: string, tour: number, attendus: number[] }
 // ═══════════════════════════════════════════════════════════════════════════
 import { createClient } from 'jsr:@supabase/supabase-js@2'
-// Moteur et fusion : BUNDLE LOCAL copié par scripts/build-function.mjs
-//  (lancer `node scripts/build-function.mjs` avant
-//   `supabase functions deploy resoudre-tour`).
-import { runTurn } from './engine/src/engine/engine.ts'
-import { fusionnerSections, rejouerEvenementsPartages } from './engine/src/engine/fusion.ts'
+import { runTurn, fusionnerSections, rejouerEvenementsPartages } from './_engine.mjs'
 
 const cors = {
   'Access-Control-Allow-Origin': '*',
@@ -77,8 +77,7 @@ Deno.serve(async (req) => {
       }
 
       // 4. Fusion — IMPLÉMENTATION PARTAGÉE avec le client
-      //    (src/engine/fusion.ts, mêmes tests fusion.test.ts).
-      //    Format des événements : { joueur, payload } → sections.
+      //    (src/engine/fusion.ts, verrouillée par fusion.test.ts).
       const sections: Record<string, unknown> = {}
       for (const e of events ?? []) sections[String(e.joueur)] = e.payload
       const draft = fusionnerSections(row.state, sections)
@@ -95,7 +94,7 @@ Deno.serve(async (req) => {
         rejouerEvenementsPartages(draft, evtsPartages ?? [])
       }
 
-      // 5. Exécution du tour par le moteur pur (bundle local).
+      // 5. Exécution du tour par le moteur pur (bundle local testé).
       runTurn(draft)
 
       // 6. Publication + purge (transaction logique : update puis delete).

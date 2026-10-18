@@ -1,0 +1,36 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  CI JEU — Chasse & Pêche (branche chasse-et-peche-web + v4)
+#  Typecheck strict + tests moteur/fusion/banque + bundle Edge Function
+#  + test d'exécution du bundle (celui que Deno chargera).
+#  Sans cette CI, les tests ne tournaient NULLE PART (le workflow du
+#  site quartz lance ses propres tests, pas ceux du jeu).
+# ═══════════════════════════════════════════════════════════════════════════
+name: CI jeu
+
+on:
+  push:
+    branches: [chasse-et-peche-web, v4]
+  pull_request:
+    branches: [chasse-et-peche-web, v4]
+
+jobs:
+  jeu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Typecheck strict
+        run: npx tsc --noEmit
+      - name: Tests (moteur, fusion multijoueur, banque d'effets)
+        run: npm test
+      - name: Bundle Edge Function (esbuild — résout extensions + JSON)
+        run: npm run build:function
+      - name: Test d'exécution du bundle (comme Deno le chargera)
+        run: npm run test:function
+      - name: Build du jeu (tsc + vite)
+        run: npm run build

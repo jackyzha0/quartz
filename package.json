@@ -11,7 +11,9 @@
     "docx": "python3 scripts/make_docx.py",
     "build:strict": "tsc && vite build",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test src/**/*.test.ts"
+    "test": "tsx --test src/**/*.test.ts",
+    "build:function": "node scripts/build-function.mjs",
+    "test:function": "node scripts/test-function.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",
@@ -22,6 +24,8 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "esbuild": "^0.27.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.5.3",
     "vite": "^5.4.0"
   }

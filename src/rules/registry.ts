@@ -15,7 +15,7 @@
 //  fonctions historiques pour tout ce qui n'est pas encore migré.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import type { Effet, RegleBanque, SourceRegle } from './types'
+import type { ContexteEffet, Effet, RegleBanque, SourceRegle } from './types'
 import { cfgOf } from '../engine/gameData'
 import type { GameConfig } from '../config/defaultConfig'
 import type { EffetConstruction } from '../config/defaultConfig'
@@ -80,4 +80,38 @@ export function registreComplet(config?: GameConfig): RegleBanque[] {
   return [...reglesConstructions(config)]
   // Les sources suivantes migrent une par une (dogmes, factions…) :
   //  [...reglesConstructions(config), ...reglesDogmes(config), …]
+}
+
+/** Cache du registre par référence de config (les règles ne dépendent
+ *  que du référentiel — recalculées seulement si la config change). */
+let cacheRegles: { config: object; regles: RegleBanque[]; parNom: Map<string, RegleBanque> } | null = null
+
+/** Règle de banque d'une construction PAR SON NOM (accès moteur).
+ *  Retourne undefined si la construction n'a pas d'effets structurés
+ *  (repli texte du moteur historique). */
+export function reglePourConstruction(ref: { nom: string }, config?: GameConfig): RegleBanque | undefined {
+  const cfg = config ?? undefined
+  if (!cacheRegles || cacheRegles.config !== (cfg as object)) {
+    const regles = reglesConstructions(cfg)
+    cacheRegles = {
+      config: cfg as object,
+      regles,
+      parNom: new Map(regles.map((r) => [r.nom, r])),
+    }
+  }
+  return cacheRegles.parNom.get(ref.nom)
+}
+
+/** Contexte LECTURE SEULE pour évaluer les effets d'une construction
+ *  hors partie (récapitulatifs, coûts, UI). Les effets des
+ *  constructions sont inconditionnels : aucune condition (peuple,
+ *  saison…) ne s'applique à cette source — le contexte factice ne
+ *  fausse donc rien. Les types sont relâchés (unknown) car la
+ *  production d'une ville ne dépend d'aucun champ du contexte. */
+export function contexteLectureSeule(): ContexteEffet {
+  return {
+    state: {} as never,
+    joueur: {} as never,
+    saison: '',
+  } as ContexteEffet
 }
