@@ -420,6 +420,11 @@ export interface GameState {
    *  Absente des vieilles sauvegardes → complétée par cloneDefaultConfig(). */
   config?: import('../config/defaultConfig').GameConfig
   version: number
+  /** Version du schéma de sauvegarde (migrations versionnées — cf.
+   *  engine/migrations.ts) : tampon des migrations déjà appliquées à
+   *  CET état. Absent des anciennes sauvegardes → 0 (toutes jouées
+   *  au chargement). Les états neufs naissent à SCHEMA_VERSION_ETAT. */
+  schema?: number
   seed: number
   rngState: number
   turn: number                // numéro du tour en cours

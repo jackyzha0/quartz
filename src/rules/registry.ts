@@ -23,7 +23,10 @@ import type { EffetConstruction } from '../config/defaultConfig'
 /** Slug d'identifiant stable depuis un nom affiché (les accents et
  *  espaces deviennent des tirets) : 'Poste de garde' → 'poste-de-garde'.
  *  L'id reste stable même si le nom affiché change (l'id est dérivé une
- *  fois et stocké dans le registre, jamais recalculé depuis l'UI). */
+ *  fois et stocké dans le registre, jamais recalculé depuis l'UI).
+ *  CLÉ = (nom, groupe) : 15 constructions existent en DOUBLE (version
+ *  Ville ET Château du même bâtiment, effets identiques — ex. Poste de
+ *  garde) ; le groupe distingue leurs règles. */
 function slug(nom: string): string {
   return nom
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -65,9 +68,11 @@ export function reglesConstructions(config?: GameConfig): RegleBanque[] {
       ? 'merveille'
       : ref.categorie === 'Aménagement' ? 'amenagement' : 'batiment'
     out.push({
-      id: `${source}.${slug(ref.nom)}`,
+      id: `${source}.${slug(ref.nom)}@${slug(ref.groupe)}`,
       source,
       nom: ref.nom,
+      // Le groupe est porté par la règle (accès moteur par nom+groupe).
+      groupe: ref.groupe,
       effets: effetsConstructionVersBanque(ref.effets),
     })
   }
@@ -84,22 +89,28 @@ export function registreComplet(config?: GameConfig): RegleBanque[] {
 
 /** Cache du registre par référence de config (les règles ne dépendent
  *  que du référentiel — recalculées seulement si la config change). */
-let cacheRegles: { config: object; regles: RegleBanque[]; parNom: Map<string, RegleBanque> } | null = null
+let cacheRegles: { config: object; regles: RegleBanque[]; parCle: Map<string, RegleBanque> } | null = null
 
-/** Règle de banque d'une construction PAR SON NOM (accès moteur).
+/** Clé d'accès d'une règle de construction : nom + groupe (les
+ *  constructions doublées Ville/Château portent le même nom). */
+function cleConstruction(nom: string, groupe?: string): string {
+  return `${nom}|${groupe ?? ''}`
+}
+
+/** Règle de banque d'une construction PAR (nom, groupe) — accès moteur.
  *  Retourne undefined si la construction n'a pas d'effets structurés
  *  (repli texte du moteur historique). */
-export function reglePourConstruction(ref: { nom: string }, config?: GameConfig): RegleBanque | undefined {
+export function reglePourConstruction(ref: { nom: string; groupe?: string }, config?: GameConfig): RegleBanque | undefined {
   const cfg = config ?? undefined
   if (!cacheRegles || cacheRegles.config !== (cfg as object)) {
     const regles = reglesConstructions(cfg)
     cacheRegles = {
       config: cfg as object,
       regles,
-      parNom: new Map(regles.map((r) => [r.nom, r])),
+      parCle: new Map(regles.map((r) => [cleConstruction(r.nom, r.groupe), r])),
     }
   }
-  return cacheRegles.parNom.get(ref.nom)
+  return cacheRegles.parCle.get(cleConstruction(ref.nom, ref.groupe))
 }
 
 /** Contexte LECTURE SEULE pour évaluer les effets d'une construction

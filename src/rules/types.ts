@@ -235,6 +235,11 @@ export interface RegleBanque {
   /** Nom affiché de la règle (ex. 'Poste de garde') — pour les logs
    *  et l'UI ; MODIFIABLE librement. */
   nom: string
+  /** Groupe de la source (constructions : 'Ville' | 'Château' | 'Capitale' | 'Terrain')
+   *  — 15 constructions existent en double (Ville ET Château), le
+   *  groupe distingue leurs règles. Optionnel pour les sources sans
+   *  groupe (dogmes, factions…). */
+  groupe?: string
   /** Conditions d'activation (toutes en ET). Vide = toujours actif
    *  quand la source est possédée. */
   conditions?: ConditionRegle

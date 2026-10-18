@@ -12,6 +12,7 @@ import { cfgOf, cloneDefaultConfig, peupleDef, type Cfg } from './gameData'
 import type { GameConfig } from '../config/defaultConfig'
 import { computeAgeMax, computeFecondite, isNobleDyn, ajouterHabitantsCiteLibre, rangsDisponibles } from './engine'
 import { fullName } from './shared'
+import { SCHEMA_VERSION_ETAT } from './migrations'
 
 export interface SetupLine {
   nom: string
@@ -43,6 +44,8 @@ export function createGame(setups: SetupLine[], seed: number, mode?: 'local' | '
   const C = cfgOf(startConfig)
   const state: GameState = {
     version: 1,
+    // Né à la version courante du schéma (aucune migration à jouer).
+    schema: SCHEMA_VERSION_ETAT,
     seed,
     rngState: rng.state(),
     turn: 1,

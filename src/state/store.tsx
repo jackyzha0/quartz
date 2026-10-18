@@ -13,7 +13,8 @@ import React, {
   createContext, useCallback, useContext, useEffect, useMemo, useRef, useState,
 } from 'react'
 import type { GameState } from '../engine/types'
-import { runTurn, migrerNomsMinisteres, normaliserEtat } from '../engine/engine'
+import { runTurn } from '../engine/engine'
+import { migrerEtat } from '../engine/migrations'
 import { fusionnerSections, rejouerEvenementsPartages } from '../engine/fusion'
 import type { SetupLine } from '../engine/setup'
 import { createGame } from '../engine/setup'
@@ -106,11 +107,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const loaded = storage.loadLocal()
     if (!loaded) return null
     loaded.config = JSON.parse(JSON.stringify(convergerConfig(globalConfig))) as GameConfig
-    // Marqueur (v) : portefeuilles renommés (classeur → offices de cour).
-    migrerNomsMinisteres(loaded)
-    // Marqueur (a) : garde-fou anciennes sauvegardes — tableaux
-    //  history/log/villes complétés (manquants = crash moteur/rendu).
-    normaliserEtat(loaded)
+    // MIGRATIONS VERSIONNÉES (étape 3) : normalisation + renommages
+    //  portefeuilles exécutés UNE FOIS par état (tampon state.schema),
+    //  au lieu d'appels manuels rejoués à chaque chargement.
+    migrerEtat(loaded)
     return loaded
   })
 
@@ -460,7 +460,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         if (res.ok) {
           const nouveau = await remote.loadRemote(salon)
           if (nouveau) {
-            normaliserEtat(nouveau)
+            migrerEtat(nouveau)
             stateRef.current = nouveau
             setState(nouveau)
             setConflit(false)
@@ -531,7 +531,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         // le serveur a publié : récupérer l'état du tour suivant
         const nouveau = await remote.loadRemote(salon)
         if (nouveau) {
-          normaliserEtat(nouveau)
+          migrerEtat(nouveau)
           stateRef.current = nouveau
           setState(nouveau)
           setBarriere({ prets: new Set(), monTourPousse: false })
@@ -603,7 +603,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         if (res.ok) {
           const nouveau = await remote.loadRemote(salon)
           if (nouveau) {
-            normaliserEtat(nouveau)
+            migrerEtat(nouveau)
             stateRef.current = nouveau
             setState(nouveau)
             setBarriere({ prets: new Set(), monTourPousse: false })
@@ -692,9 +692,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     // Marqueur (x) : la config de la partie rejointe est convergée
     // (migrations + tampon) — plus jamais re-migrée ensuite.
     s.config = JSON.parse(JSON.stringify(convergerConfig(s.config))) as GameConfig
-    // Marqueur (v) : portefeuilles renommés (classeur → offices de cour).
-    migrerNomsMinisteres(s)
-    normaliserEtat(s)
+    migrerEtat(s)
     setMode('supabase')
     setSalon(salonId)
     persistSalon(salonId)
@@ -736,8 +734,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       if (garderLocal) return
       if (distant.config) syncGlobalCfg(distant.config)
       distant.config = JSON.parse(JSON.stringify(convergerConfig(distant.config))) as GameConfig
-      migrerNomsMinisteres(distant)
-      normaliserEtat(distant)
+      migrerEtat(distant)
       setConflit(false)
       lastLocalEdit.current = 0
       stateRef.current = distant
@@ -779,9 +776,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       // Marqueur (x) : la config importée est convergée (migrations +
       // tampon) — plus jamais re-migrée ensuite.
       s.config = JSON.parse(JSON.stringify(convergerConfig(s.config))) as GameConfig
-      // Marqueur (v) : portefeuilles renommés (classeur → offices de cour).
-      migrerNomsMinisteres(s)
-      normaliserEtat(s)
+      migrerEtat(s)
       stateRef.current = s
       setState(s)
       lastLocalEdit.current = Date.now()
@@ -841,9 +836,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         && remoteState.turn === tourLocal) {
         return
       }
-      // Marqueur (a) : les états distants arrivent BRUTS — même garde-fou
-      //  que les chargements locaux (villes complétées).
-      normaliserEtat(remoteState)
+      // Les états distants arrivent BRUTS — migrations versionnées
+      //  (idempotentes, tamponnées par état).
+      migrerEtat(remoteState)
       const localDirty = Date.now() - lastLocalEdit.current < 1500
       if (localDirty) {
         // Revue (Q2/Q3) : une édition locale est en cours — l'état
