@@ -5,7 +5,8 @@
 //  Il est partagé par :
 //   · le client (src/state/store.tsx — repli local de la résolution v2) ;
 //   · l'Edge Function « resoudre-tour » (résolution serveur, via le
-//     bundle copié par scripts/build-function.mjs).
+//     bundle esbuild _engine.mjs construit par scripts/build-function.mjs
+//     et testé par scripts/test-function.mjs avant tout déploiement).
 //
 //  Historique (bugs corrigés ici, ne pas régresser — tests fusion.test.ts) :
 //   · 2026-10-17 : routes et cités libres sont PARTAGÉES — remplacer tout
