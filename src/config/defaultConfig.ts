@@ -339,6 +339,12 @@ export interface GameConfig {
    *  « crédité automatiquement » du palier 220 Tourisme : tous les
    *  paliers sont des aides de jeu au plateau (décision Thibaut). */
   pontificats2026?: boolean
+  /** Migration Muraille +40 Garnison (2026-10-17) — les configs
+   *  tamponnées avant le passage +10 Défense → +40 Garnison gardent
+   *  l'ancienne description (la migration techsManquantes2026 était
+   *  déjà jouée et ne se rejoue pas). Ne remplace QUE l'ancien
+   *  texte exact — les éditions personnalisées sont préservées. */
+  muraille40_2026?: boolean
 }
 
 // ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
@@ -1185,6 +1191,25 @@ export function cfgOf(config?: GameConfig): Cfg {
       if (t.seuil === 220 && t.bonus === ANCIEN) t.bonus = NOUVEAU
     }
     merged.pontificats2026 = true
+  }
+  // MIGRATION MURAILLE (2026-10-17) : « +10 Défense dans vos
+  //  habitations. » → « +40 Garnison dans vos habitations. » —
+  //  les configs sauvegardées AVANT le changement de valeur
+  //  gardaient l'ancienne description (le tampon techsManquantes2026
+  //  était déjà posé et le bloc ne se rejoue pas). Remplacement
+  //  ciblé : uniquement si la description vaut ENCORE l'ancien
+  //  texte exact (une édition personnalisée est préservée).
+  if (!merged.muraille40_2026) {
+    const ANCIENNE_MURAILLE = '+10 Défense dans vos habitations.'
+    const NOUVELLE_MURAILLE = '+40 Garnison dans vos habitations.'
+    for (const arbre of merged.progres ?? []) {
+      for (const t of [...(arbre.brancheA ?? []), ...(arbre.brancheB ?? []), ...(arbre.techC ? [arbre.techC] : [])]) {
+        if (t?.nom === 'Muraille' && t.description === ANCIENNE_MURAILLE) {
+          t.description = NOUVELLE_MURAILLE
+        }
+      }
+    }
+    merged.muraille40_2026 = true
   }
   if (!merged.taxes25) {
     const pm = merged.params as unknown as Record<string, unknown>
