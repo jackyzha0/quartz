@@ -38,7 +38,7 @@ jobs:
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
         run: node .github/scripts/syndicate.mjs
 
-      - name: Gravar "syndicated: true"
+      - name: 'Gravar "syndicated: true"'
         run: |
           if [ -n "$(git status --porcelain content)" ]; then
             git config user.name "github-actions[bot]"

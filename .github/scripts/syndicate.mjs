@@ -17,6 +17,9 @@ try {
   files = execSync("git ls-files content/posts", { encoding: "utf8" }).split("\n").filter((f) => f.endsWith(".md"));
 }
 
+// Ignora _index.md e outros arquivos que não são posts
+files = files.filter((f) => !path.basename(f).startsWith("_"));
+
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function waitForSite(url) {
