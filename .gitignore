@@ -12,3 +12,5 @@ replit.nix
 .quartz/
 quartz/cli/tui/dist/
 .turbo/
+.hugo_build.lock
+resources/_gen/

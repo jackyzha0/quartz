@@ -1,0 +1,11 @@
+name = "Filipe Costa"
+license = "MIT"
+description = "Tema editorial da identidade visual de Filipe Costa: roxo neon pastel, Bricolage Grotesque, JetBrains Mono e o cursor ▌."
+homepage = "https://filipecosta.eti.br"
+tags = ["blog", "dark", "editorial", "portuguese", "minimal"]
+features = ["modo escuro padrão", "tema claro", "design tokens", "movimento reduzido", "ícones em SVG"]
+min_version = "0.128.0"
+
+[author]
+  name = "Filipe Costa"
+  homepage = "https://filipecosta.eti.br"

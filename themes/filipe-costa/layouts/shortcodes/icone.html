@@ -1,0 +1,5 @@
+{{- /* {{< icone "processo" >}} · {{< icone name="ok" size="32" label="Concluído" >}} */ -}}
+{{- $name := .Get "name" | default (.Get 0) -}}
+{{- $size := .Get "size" | default "" -}}
+{{- $class := cond (ne $size "") (printf "icon--%s icon--accent" $size) "icon--accent" -}}
+{{- partial "icon.html" (dict "name" $name "class" $class "label" (.Get "label")) -}}

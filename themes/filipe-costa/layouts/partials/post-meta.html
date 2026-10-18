@@ -1,0 +1,5 @@
+{{- /* Rótulo mono: data · primeira categoria */ -}}
+<span class="label">
+  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time>
+  {{- with .Params.categories }} · {{ index . 0 }}{{ end }}
+</span>

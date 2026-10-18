@@ -1,0 +1,24 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    {{ partial "logo.html" (dict "static" false) }}
+    {{- with site.Menus.main }}
+    <nav class="site-nav" aria-label="Principal">
+      <ul class="site-nav__links">
+        {{- range . }}
+        {{- $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+        <li><a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+    </nav>
+    {{- end }}
+    <div class="site-header__actions">
+      <button class="btn btn--icon theme-toggle" type="button" data-theme-toggle aria-label="Alternar tema">
+        {{ partial "icon.html" (dict "name" "sol" "class" "icon--sun") }}
+        {{ partial "icon.html" (dict "name" "lua" "class" "icon--moon") }}
+      </button>
+      {{- with site.Params.cta }}
+      <a class="btn btn--primary" href="{{ .url | relURL }}">{{ .label }}</a>
+      {{- end }}
+    </div>
+  </div>
+</header>

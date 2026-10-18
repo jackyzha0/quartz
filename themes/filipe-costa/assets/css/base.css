@@ -1,0 +1,136 @@
+/* Base e layout */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 var(--text-body)/var(--lead-body) var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg, video { max-width: 100%; height: auto; }
+
+a { color: var(--accent); text-underline-offset: .2em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+::selection { background: var(--accent-fill); color: var(--on-accent); }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 4rem);
+}
+
+main { flex: 1; }
+main:focus { outline: none; }
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  z-index: 10;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--accent-fill);
+  color: var(--on-accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+.skip-link:focus { top: var(--space-4); }
+
+/* ---------- Tipografia utilitária ---------- */
+.h-display { margin: 0; font: 800 var(--text-display)/var(--lead-display) var(--font-display); letter-spacing: var(--track-display); }
+.h1 { margin: 0; font: 800 var(--text-h1)/var(--lead-heading) var(--font-display); letter-spacing: var(--track-heading); }
+.h2 { margin: 0; font: 800 var(--text-h2)/var(--lead-heading) var(--font-display); letter-spacing: var(--track-heading); }
+.h3 { margin: 0; font: 700 var(--text-h3)/1.15 var(--font-display); letter-spacing: -.01em; }
+
+.label {
+  margin: 0;
+  font: 400 var(--text-label)/1.4 var(--font-mono);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.label--accent { color: var(--accent); }
+
+.hl { color: var(--accent); }   /* uma palavra-chave em roxo por título */
+
+.lead { margin: 0; font-size: var(--text-body-lg); color: var(--text-2); max-width: 36rem; }
+
+/* ---------- Cabeçalho ---------- */
+.site-header { border-bottom: var(--border-width) solid var(--border); }
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-6);
+  min-height: 5.5rem;
+  flex-wrap: wrap;
+  padding-block: var(--space-3);
+}
+.site-nav__links { display: flex; gap: var(--space-2) var(--space-6); margin: 0; padding: 0; list-style: none; flex-wrap: wrap; }
+.site-nav__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--text-2);
+  text-decoration: none;
+}
+.site-nav__links a:hover,
+.site-nav__links a[aria-current='page'] { color: var(--text); }
+.site-nav__links a[aria-current='page'] { box-shadow: inset 0 -2px 0 var(--accent); }
+.site-header__actions { display: flex; align-items: center; gap: var(--space-3); }
+
+@media (max-width: 40rem) {
+  .site-nav { order: 3; width: 100%; }
+}
+
+/* ---------- Rodapé ---------- */
+.site-footer {
+  margin-top: var(--space-16);
+  border-top: var(--border-width) solid var(--border);
+  padding-block: var(--space-12);
+}
+.site-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+.site-footer__links { display: flex; gap: var(--space-2) var(--space-6); flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
+.site-footer__links a { color: var(--text-2); text-decoration: none; display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; }
+.site-footer__links a:hover { color: var(--text); }
+.site-footer__note { margin-top: var(--space-8); }
+
+/* ---------- Seções ---------- */
+.hero { padding-block: clamp(3rem, 9vw, 6rem) clamp(2.5rem, 6vw, 4rem); }
+.hero .h-display { margin-top: var(--space-6); max-width: 14ch; }
+.hero .lead { margin-top: var(--space-8); }
+
+.section { padding-block: var(--space-12); }
+.section__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-8);
+}
+
+.page-head { padding-block: clamp(2.5rem, 7vw, 5rem) var(--space-8); }
+.page-head .h1 { margin-top: var(--space-4); }
+.page-head .lead { margin-top: var(--space-4); }

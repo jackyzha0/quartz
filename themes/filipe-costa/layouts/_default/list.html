@@ -1,0 +1,38 @@
+{{ define "main" }}
+{{- $count := len .Pages }}
+<header class="page-head container">
+  <p class="label label--accent">{{ if eq .Kind "term" }}{{ .Data.Singular }}{{ else }}arquivo{{ end }} · {{ $count }} {{ cond (eq $count 1) "texto" "textos" }}</p>
+  <h1 class="h1">{{ partial "title.html" . }}<span class="cursor" aria-hidden="true"></span></h1>
+  {{- with partial "description.html" . }}
+  <p class="lead">{{ . }}</p>
+  {{- end }}
+</header>
+
+<section class="container">
+  {{- with .Content }}
+  <div class="prose" style="margin-bottom: var(--space-8)">{{ . }}</div>
+  {{- end }}
+
+  {{- $paginator := .Paginate .Pages }}
+  <ul class="post-list">
+    {{- range $paginator.Pages }}
+    <li class="post-list__item">
+      {{ partial "post-meta.html" . }}
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+    {{- end }}
+  </ul>
+
+  {{- if gt $paginator.TotalPages 1 }}
+  <nav class="pagination" aria-label="Paginação">
+    {{- with $paginator.Prev }}
+    <a class="btn" href="{{ .URL }}">{{ partial "icon.html" (dict "name" "voltar") }} mais recentes</a>
+    {{- else }}<span></span>{{ end }}
+    <span class="label">página {{ $paginator.PageNumber }} de {{ $paginator.TotalPages }}</span>
+    {{- with $paginator.Next }}
+    <a class="btn" href="{{ .URL }}">mais antigos {{ partial "icon.html" (dict "name" "seguir") }}</a>
+    {{- else }}<span></span>{{ end }}
+  </nav>
+  {{- end }}
+</section>
+{{ end }}

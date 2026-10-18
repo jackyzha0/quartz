@@ -1,0 +1,21 @@
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div>
+      {{ partial "logo.html" (dict "static" true) }}
+      {{- with site.Params.tagline }}
+      <p class="label">{{ . }}</p>
+      {{- end }}
+    </div>
+    <ul class="site-footer__links">
+      {{- range site.Params.social }}
+      <li><a href="{{ .url }}" rel="me noopener">{{ with .icon }}{{ partial "icon.html" (dict "name" . "class" "icon--16 icon--accent") }}{{ end }}{{ .name }}</a></li>
+      {{- end }}
+      {{- with site.Home.OutputFormats.Get "rss" }}
+      <li><a href="{{ .RelPermalink }}">{{ partial "icon.html" (dict "name" "rss" "class" "icon--16 icon--accent") }}RSS</a></li>
+      {{- end }}
+    </ul>
+  </div>
+  <div class="container">
+    <p class="label site-footer__note">© {{ now.Year }} {{ site.Params.author | default site.Title }}{{ with site.Params.footerNote }} · {{ . }}{{ end }}</p>
+  </div>
+</footer>

@@ -1,0 +1,40 @@
+{{ define "main" }}
+{{- $hero := site.Params.hero }}
+<section class="hero container">
+  <p class="label label--accent">{{ $hero.label | default site.Params.tagline }}</p>
+  <h1 class="h-display">
+    <span class="reveal"><span>
+      {{- with $hero.title }}{{ . }}{{ with $hero.highlight }} <span class="hl">{{ . }}</span>{{ end }}{{ with $hero.end }}{{ . }}{{ end }}
+      {{- else }}{{ site.Title }}{{ end -}}
+    </span></span>
+  </h1>
+  {{- with $hero.lead }}
+  <p class="lead">{{ . }}</p>
+  {{- end }}
+  {{- with .Content }}
+  <div class="prose" style="margin-top: var(--space-8)">{{ . }}</div>
+  {{- end }}
+</section>
+
+{{- /* Posts: seções em params.mainSections; sem seções, todas as páginas */}}
+{{- $pages := site.RegularPages }}
+{{- with site.Params.mainSections }}
+  {{- $pages = where site.RegularPages "Section" "in" . }}
+{{- end }}
+{{- $limit := site.Params.homePosts | default 7 }}
+{{- if $pages }}
+<section class="section container" aria-labelledby="ultimos">
+  <div class="section__head">
+    <h2 id="ultimos" class="h2">Últimos <span class="hl">textos</span></h2>
+    {{- with site.Params.archive }}
+    <a class="btn" href="{{ . | relURL }}">ver todos {{ partial "icon.html" (dict "name" "seguir") }}</a>
+    {{- end }}
+  </div>
+  <div class="card-grid card-grid--featured">
+    {{- range $i, $p := first $limit $pages }}
+    {{ partial "post-card.html" (dict "page" $p "accent" (eq $i 0) "featured" (eq $i 0)) }}
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+{{ end }}

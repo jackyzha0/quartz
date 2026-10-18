@@ -1,0 +1,80 @@
+{{ define "main" }}
+{{- $isPost := and .IsPage (not .Params.pagina) }}
+<article class="container">
+  <header class="post-head">
+    {{- if $isPost }}
+    <div class="post-head__meta">
+      {{ partial "post-meta.html" . }}
+      <span class="label">{{ .ReadingTime }} min de leitura</span>
+    </div>
+    {{- end }}
+    <h1 class="h1 post-head__title">{{ partial "title.html" . }}</h1>
+    {{- with .Params.subtitulo | default .Params.subtitle }}
+    <p class="lead post-head__summary">{{ . }}</p>
+    {{- end }}
+    {{- if $isPost }}
+    <div class="post-head__byline">
+      <span class="label">por {{ .Params.author | default site.Params.author }}</span>
+      {{- if gt (.Lastmod.Sub .Date).Hours 24 }}
+      <span class="label">atualizado em <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_medium" }}</time></span>
+      {{- end }}
+    </div>
+    {{- end }}
+  </header>
+
+  {{- if and (.Params.toc | default site.Params.toc) (gt (len .Fragments.Headings) 0) }}
+  <div class="toc">
+    <details>
+      <summary class="label label--accent">Sumário</summary>
+      {{ .TableOfContents }}
+    </details>
+  </div>
+  {{- end }}
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+
+  {{- if $isPost }}
+  {{- $cats := .GetTerms "categories" }}
+  {{- $tags := .GetTerms "tags" }}
+  {{- if or $cats $tags }}
+  <footer class="post-foot">
+    {{- with $cats }}
+    <div>
+      <p class="label">Categorias</p>
+      <ul class="tags">
+        {{- range . }}<li><a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+      </ul>
+    </div>
+    {{- end }}
+    {{- with $tags }}
+    <div>
+      <p class="label">Tags</p>
+      <ul class="tags">
+        {{- range . }}<li><a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+      </ul>
+    </div>
+    {{- end }}
+  </footer>
+  {{- end }}
+
+  {{- if or .PrevInSection .NextInSection }}
+  <nav class="post-nav" aria-label="Outros textos">
+    {{- with .NextInSection }}
+    <article class="card">
+      <span class="label">{{ partial "icon.html" (dict "name" "voltar" "class" "icon--16") }} mais recente</span>
+      <h2 class="card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    </article>
+    {{- end }}
+    {{- with .PrevInSection }}
+    <article class="card card--next">
+      <span class="label">mais antigo {{ partial "icon.html" (dict "name" "seguir" "class" "icon--16") }}</span>
+      <h2 class="card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    </article>
+    {{- end }}
+  </nav>
+  {{- end }}
+  {{- end }}
+</article>
+{{ end }}

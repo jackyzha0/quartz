@@ -1,0 +1,27 @@
+/*
+ * Realce de sintaxe (Chroma com classes: markup.highlight.noClasses = false)
+ * Paleta enxuta: acento da marca para palavras-chave, neutros para o resto.
+ */
+.chroma { color: var(--text); background: none; }
+.chroma .err { color: var(--danger-text); }
+.chroma .hl { display: block; color: inherit; background: rgb(185 148 255 / .12); }
+.chroma .lnt, .chroma .ln { color: var(--text-muted); margin-right: 1em; }
+
+/* Palavras-chave e tipos */
+.chroma :is(.k, .kc, .kd, .kn, .kp, .kr, .kt, .nt) { color: var(--accent); font-weight: 700; }
+/* Nomes de funções e classes */
+.chroma :is(.nf, .fm, .nc, .nd, .ne) { color: var(--text); font-weight: 700; }
+/* Atributos e propriedades */
+.chroma :is(.na, .nb, .bp, .nv, .vc, .vg, .vi) { color: var(--text-2); }
+/* Strings */
+.chroma :is(.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss) { color: var(--success-text); }
+/* Números */
+.chroma :is(.m, .mb, .mf, .mh, .mi, .il, .mo) { color: var(--danger-text); }
+/* Comentários */
+.chroma :is(.c, .ch, .cm, .c1, .cs, .cp, .cpf) { color: var(--text-muted); font-style: italic; }
+/* Operadores e pontuação */
+.chroma :is(.o, .ow, .p) { color: var(--text-2); }
+/* Diff */
+.chroma .gi { color: var(--success-text); }
+.chroma .gd { color: var(--danger-text); }
+.chroma :is(.gh, .gu) { color: var(--accent); font-weight: 700; }

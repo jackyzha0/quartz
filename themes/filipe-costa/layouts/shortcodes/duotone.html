@@ -1,0 +1,10 @@
+{{- /* Foto em duotone: sombras em Noite, luzes em roxo pastel.
+   {{< duotone src="foto.jpg" alt="Descrição da foto" legenda="Foto: arquivo pessoal" >}} */ -}}
+{{- $src := .Get "src" -}}
+{{- with .Page.Resources.Get $src }}{{ $src = .RelPermalink }}{{ end -}}
+<figure>
+  <div class="duotone"><img src="{{ $src }}" alt="{{ .Get "alt" }}" loading="lazy" decoding="async"></div>
+  {{- with .Get "legenda" }}
+  <figcaption>{{ . }}</figcaption>
+  {{- end }}
+</figure>

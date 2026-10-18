@@ -1,0 +1,69 @@
+# Site de exemplo do tema "filipe-costa".
+# Para rodar:  cd themes/filipe-costa/exampleSite && hugo server --themesDir ../..
+baseURL = "https://filipecosta.eti.br/"
+title = "Filipe Costa"
+theme = "filipe-costa"
+languageCode = "pt-BR"
+defaultContentLanguage = "pt-br"
+timeZone = "America/Sao_Paulo"
+enableRobotsTXT = true
+removePathAccents = true
+
+[pagination]
+  pagerSize = 12
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[permalinks]
+  [permalinks.page]
+    posts = "/blog/:year/:month/:day/:slug/"
+
+[params]
+  author = "Filipe Costa"
+  description = "Textos sobre tecnologia, sociedade e processos."
+  # Seções cujos posts aparecem na página inicial (vazio = todas as páginas)
+  mainSections = ["posts"]
+  # Link do botão "ver todos" na página inicial
+  archive = "/posts/"
+  # Mostrar sumário nos posts (também pode ser ligado por post com toc: true)
+  toc = true
+
+  # Placeholder: a copy final precisa ser validada (ver Guia de Identidade, seção 7)
+  [params.hero]
+    label = "programador · designer · processos"
+    title = "Faço o complexo parecer"
+    highlight = "simples"
+    end = "."
+    lead = "Textos sobre tecnologia, sociedade e o trabalho por trás das ferramentas."
+
+  [params.cta]
+    label = "vamos conversar"
+    url = "/sobre/"
+
+  [[params.social]]
+    name = "e-mail"
+    icon = "email"
+    url = "mailto:contato@seusite.com"
+
+[[menus.main]]
+  name = "textos"
+  pageRef = "/posts"
+  weight = 10
+[[menus.main]]
+  name = "categorias"
+  pageRef = "/categories"
+  weight = 20
+[[menus.main]]
+  name = "sobre"
+  pageRef = "/sobre"
+  weight = 30
+
+# Necessário para o realce de sintaxe usar as cores da marca (assets/css/syntax.css)
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3

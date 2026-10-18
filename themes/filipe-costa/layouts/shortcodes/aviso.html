@@ -1,0 +1,7 @@
+{{- /* Bloco de destaque.
+   {{< aviso titulo="Fonte" >}}texto em **markdown**{{< /aviso >}}
+   destaque="true" usa o fundo roxo (no máximo um por página). */ -}}
+<aside class="callout{{ if eq (.Get "destaque") "true" }} callout--accent{{ end }}">
+  {{- with .Get "titulo" }}<span class="label">{{ . }}</span>{{ end }}
+  {{ .Inner | .Page.RenderString (dict "display" "block") }}
+</aside>

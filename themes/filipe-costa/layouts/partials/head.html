@@ -1,0 +1,71 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{- $title := cond .IsHome site.Title (printf "%s · %s" .Title site.Title) }}
+<title>{{ $title }}</title>
+{{- $desc := partial "description.html" . }}
+{{- with $desc }}
+<meta name="description" content="{{ . }}">
+{{- end }}
+<meta name="theme-color" content="#0B0A10" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F4F1FA" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+{{- with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">
+{{- end }}
+
+{{- /* Tema: aplica a escolha salva antes da pintura, para a página não piscar */}}
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('fc-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+
+{{- /* Fontes */}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
+
+{{- /* CSS: tokens → base → componentes → texto corrido → sintaxe */}}
+{{- $css := slice
+  (resources.Get "css/tokens.css")
+  (resources.Get "css/base.css")
+  (resources.Get "css/components.css")
+  (resources.Get "css/prose.css")
+  (resources.Get "css/syntax.css")
+  | resources.Concat "css/main.css" }}
+{{- with resources.Get "css/custom.css" }}
+  {{- $css = slice $css . | resources.Concat "css/main.css" }}
+{{- end }}
+{{- if hugo.IsProduction }}
+  {{- $css = $css | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- else }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{- end }}
+
+{{- $js := resources.Get "js/theme.js" }}
+{{- if hugo.IsProduction }}
+  {{- $js = $js | minify | fingerprint }}
+{{- end }}
+<script src="{{ $js.RelPermalink }}" defer></script>
+
+{{- /* Open Graph */}}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+{{- with $desc }}
+<meta property="og:description" content="{{ . }}">
+{{- end }}
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:locale" content="pt_BR">
+{{- with or .Params.imagem .Params.image site.Params.ogImage }}
+<meta property="og:image" content="{{ . | absURL }}">
+<meta name="twitter:card" content="summary_large_image">
+{{- end }}
+{{- if .IsPage }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- end }}

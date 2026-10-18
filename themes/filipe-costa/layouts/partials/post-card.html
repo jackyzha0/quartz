@@ -1,0 +1,10 @@
+{{- /* Card de post. (dict "page" $p "accent" true "featured" true) para o único card de destaque da tela. */ -}}
+{{- $p := .page -}}
+<article class="card{{ if .accent }} card--accent{{ end }}">
+  {{ partial "post-meta.html" $p }}
+  <h3 class="card__title"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+  {{- with partial "description.html" $p }}
+  <p class="card__summary">{{ . | truncate (cond $.featured 240 140) }}</p>
+  {{- end }}
+  <span class="label card__meta">{{ $p.ReadingTime }} min de leitura</span>
+</article>

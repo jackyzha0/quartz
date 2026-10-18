@@ -1,0 +1,154 @@
+/*
+ * Design tokens — Filipe Costa
+ * Fonte: "Design Tokens e CSS — Filipe Costa (Desenvolvimento)", v1.0.
+ * Duas camadas: primitivos (valores brutos) e semânticos (significado).
+ * Componentes consomem só os semânticos.
+ */
+
+/* ---------- Primitivos ---------- */
+:root {
+  /* Marca */
+  --brand-300: #B994FF;   /* Roxo Neon Pastel */
+  --brand-700: #5B3FD1;   /* Profundo */
+  --ink-900:   #0B0A10;   /* Noite */
+  --mist-50:   #F4F1FA;   /* Névoa */
+  --white:     #FFFFFF;
+
+  /* Neutros */
+  --neutral-200: #C9C4D8;
+  --neutral-300: #D9D3EA;
+  --neutral-400: #8D88A0;
+  --neutral-500: #6B6680;
+  --neutral-700: #4A4560;
+  --neutral-800: #2A2735;
+
+  /* Estados */
+  --red-300:   #FF7FA8;
+  --red-500:   #E5487F;
+  --red-600:   #B3194F;
+  --green-300: #5FD3A0;   /* proposta para o escuro: validar com o design */
+  --green-700: #17714B;
+
+  /* Concreto: só ilustrações e texturas, sobre Noite */
+  --concrete-100: #D7D4CE;
+  --concrete-300: #A9A59F;
+  --concrete-500: #8F8B85;
+  --concrete-800: #3A3835;
+}
+
+/* ---------- Semânticos: escuro (padrão) ---------- */
+:root {
+  color-scheme: dark;
+  --bg:             var(--ink-900);
+  --surface:        var(--ink-900);
+  --input-bg:       var(--ink-900);
+  --text:           var(--mist-50);
+  --text-2:         var(--neutral-200);
+  --text-muted:     var(--neutral-400);
+  --border:         var(--neutral-800);
+  --accent:         var(--brand-300);   /* texto, ícones, contornos */
+  --accent-fill:    var(--brand-300);   /* preenchimentos */
+  --on-accent:      var(--ink-900);
+  --danger-border:  var(--red-500);
+  --danger-text:    var(--red-300);
+  --success-border: var(--green-700);
+  --success-text:   var(--green-300);
+  --code-bg:        #15131C;
+}
+
+/* ---------- Semânticos: claro ---------- */
+[data-theme='light'] {
+  color-scheme: light;
+  --bg:             var(--mist-50);
+  --surface:        var(--white);
+  --input-bg:       var(--white);
+  --text:           var(--ink-900);
+  --text-2:         var(--neutral-700);
+  --text-muted:     var(--neutral-500);
+  --border:         var(--neutral-300);
+  --accent:         var(--brand-700);   /* nunca o roxo pastel aqui */
+  --accent-fill:    var(--brand-300);
+  --on-accent:      var(--ink-900);
+  --danger-border:  var(--red-600);
+  --danger-text:    var(--red-600);
+  --success-border: var(--green-700);
+  --success-text:   var(--green-700);
+  --code-bg:        var(--white);
+}
+
+/* Segue a preferência do sistema quando o leitor não escolheu um tema */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    color-scheme: light;
+    --bg:             var(--mist-50);
+    --surface:        var(--white);
+    --input-bg:       var(--white);
+    --text:           var(--ink-900);
+    --text-2:         var(--neutral-700);
+    --text-muted:     var(--neutral-500);
+    --border:         var(--neutral-300);
+    --accent:         var(--brand-700);
+    --accent-fill:    var(--brand-300);
+    --on-accent:      var(--ink-900);
+    --danger-border:  var(--red-600);
+    --danger-text:    var(--red-600);
+    --success-border: var(--green-700);
+    --success-text:   var(--green-700);
+    --code-bg:        var(--white);
+  }
+}
+
+/* ---------- Tipografia ---------- */
+:root {
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+
+  --text-display: clamp(3.5rem, 9vw, 7.75rem);   /* hero, cerca de 124px */
+  --text-h1: clamp(2.5rem, 5vw, 4rem);           /* 64px */
+  --text-h2: clamp(1.75rem, 3.5vw, 2.75rem);     /* 44px */
+  --text-h3: 1.5rem;
+  --text-body-lg: 1.25rem;
+  --text-body: 1.0625rem;
+  --text-small: .875rem;
+  --text-label: .75rem;
+
+  --track-display: -.04em;
+  --track-heading: -.03em;
+  --track-label: .04em;
+
+  --lead-display: .92;
+  --lead-heading: 1;
+  --lead-body: 1.6;
+}
+
+/* ---------- Espaçamento, raio, borda e foco ---------- */
+:root {
+  --space-1: .25rem;  --space-2: .5rem;  --space-3: .75rem; --space-4: 1rem;
+  --space-6: 1.5rem;  --space-8: 2rem;   --space-12: 3rem;  --space-16: 4rem;
+
+  --radius-input: 14px;
+  --radius-card: 20px;
+  --radius-card-lg: 24px;
+  --radius-panel: 28px;
+  --radius-pill: 999px;
+
+  --border-width: 1px;
+  --border-width-strong: 2px;
+  --ring: 0 0 0 4px rgb(185 148 255 / .4);
+  --tap-min: 48px;   /* mínimo absoluto de toque: 44px */
+
+  --container: 72rem;
+  --measure: 42rem;   /* largura de leitura do texto corrido */
+}
+
+/* ---------- Movimento ---------- */
+:root {
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --dur-press: 120ms;
+  --dur-base: 250ms;
+  --dur-fill: 350ms;
+  --dur-enter: 600ms;
+  --blink: 1s;
+  --type-step: 50ms;   /* por caractere, entre 40 e 60ms */
+}

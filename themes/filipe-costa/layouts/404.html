@@ -1,0 +1,8 @@
+{{ define "main" }}
+<section class="hero container">
+  <p class="label label--accent">erro 404</p>
+  <h1 class="h-display">Página <span class="hl">perdida</span><span class="cursor" aria-hidden="true"></span></h1>
+  <p class="lead">O endereço não existe ou mudou de lugar. Volte para o início e siga por lá.</p>
+  <p style="margin-top: var(--space-8)"><a class="btn btn--primary" href="{{ "/" | relURL }}">ir para o início {{ partial "icon.html" (dict "name" "seguir") }}</a></p>
+</section>
+{{ end }}

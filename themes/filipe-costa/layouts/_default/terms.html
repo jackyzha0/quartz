@@ -1,0 +1,13 @@
+{{ define "main" }}
+<header class="page-head container">
+  <p class="label label--accent">{{ len .Data.Terms }} {{ .Data.Plural }}</p>
+  <h1 class="h1">{{ .Title }}<span class="cursor" aria-hidden="true"></span></h1>
+</header>
+<section class="container">
+  <ul class="tags">
+    {{- range .Data.Terms.ByCount }}
+    <li><a class="tag" href="{{ .Page.RelPermalink }}">{{ .Page.Title }} · {{ .Count }}</a></li>
+    {{- end }}
+  </ul>
+</section>
+{{ end }}

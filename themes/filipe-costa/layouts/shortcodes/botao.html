@@ -1,0 +1,4 @@
+{{- /* {{< botao href="/sobre/" primario="true" >}}vamos conversar{{< /botao >}} */ -}}
+{{- $href := .Get "href" -}}
+{{- $external := strings.HasPrefix $href "http" -}}
+<a class="btn{{ if eq (.Get "primario") "true" }} btn--primary{{ end }}" href="{{ $href }}"{{ if $external }} rel="noopener"{{ end }}>{{ .Inner | .Page.RenderString }} {{ partial "icon.html" (dict "name" (.Get "icone" | default "seguir")) }}</a>

@@ -1,0 +1,10 @@
+{{- /*
+  Título com uma palavra-chave em roxo.
+  Front matter: destaque: "palavra" (ou highlight). Só a primeira ocorrência recebe o acento.
+*/ -}}
+{{- $title := .Title | htmlEscape -}}
+{{- with or .Params.destaque .Params.highlight -}}
+  {{- $word := . | strings.TrimSpace | htmlEscape -}}
+  {{- $title = replace $title $word (printf `<span class="hl">%s</span>` $word) 1 -}}
+{{- end -}}
+{{- return ($title | safeHTML) -}}

@@ -1,0 +1,8 @@
+# Padrões do tema. O site pode sobrescrever qualquer valor no próprio hugo.toml.
+# Atenção: o Hugo não herda [markup] de temas. Copie o bloco [markup] do
+# exampleSite/hugo.toml para o hugo.toml do site.
+[params]
+  wordmark = "filipe costa"
+  tagline = "programador · designer · processos"
+  toc = false
+  homePosts = 7

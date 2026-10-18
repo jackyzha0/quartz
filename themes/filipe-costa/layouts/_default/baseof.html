@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="{{ site.Language.LanguageCode | default "pt-BR" }}"{{ with .Params.tema }} data-theme="{{ . }}"{{ end }}>
+<head>
+  {{- partial "head.html" . }}
+</head>
+<body class="kind-{{ .Kind }}">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  {{- partial "header.html" . }}
+  <main id="conteudo" tabindex="-1">
+    {{- block "main" . }}{{ end }}
+  </main>
+  {{- partial "footer.html" . }}
+</body>
+</html>

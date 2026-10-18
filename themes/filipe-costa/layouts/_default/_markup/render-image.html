@@ -1,0 +1,10 @@
+{{- $src := .Destination -}}
+{{- with .Page.Resources.Get .Destination }}{{ $src = .RelPermalink }}{{ end -}}
+{{- if .Title -}}
+<figure>
+  <img src="{{ $src | safeURL }}" alt="{{ .PlainText }}" loading="lazy" decoding="async">
+  <figcaption>{{ .Title }}</figcaption>
+</figure>
+{{- else -}}
+<img src="{{ $src | safeURL }}" alt="{{ .PlainText }}" loading="lazy" decoding="async">
+{{- end -}}

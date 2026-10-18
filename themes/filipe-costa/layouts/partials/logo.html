@@ -1,0 +1,5 @@
+{{- /* Wordmark: minúsculas, Bricolage 800, cursor ▌ como único elemento em roxo */ -}}
+{{- $name := site.Params.wordmark | default (lower site.Title) -}}
+<a class="logo" href="{{ "/" | relURL }}" aria-label="{{ $name }}, página inicial">
+  <span aria-hidden="true">{{ $name }}</span><span class="cursor{{ if .static }} cursor--static{{ end }}" aria-hidden="true"></span>
+</a>
