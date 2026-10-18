@@ -1,0 +1,51 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  DÉPLOIEMENT AUTOMATIQUE — Edge Function « resoudre-tour » (Supabase)
+#  À chaque push qui touche le moteur (src/engine, src/rules) ou la
+#  fonction elle-même :
+#    1. bundle esbuild (_engine.mjs — JSON inliné, extensions résolues) ;
+#    2. TEST D'EXÉCUTION du bundle (runTurn + intégration) — un bundle
+#       cassé n'est JAMAIS déployé ;
+#    3. déploiement via la CLI Supabase.
+#  Le token vit dans les GitHub Secrets (SUPABASE_ACCESS_TOKEN) — jamais
+#  dans le code. Tant que le secret n'existe pas, ce workflow échoue à
+#  l'étape deploy sans rien casser d'autre.
+# ═══════════════════════════════════════════════════════════════════════════
+name: Deploy Edge Function resoudre-tour
+
+on:
+  push:
+    branches: [chasse-et-peche-web]
+    paths:
+      - 'src/engine/**'
+      - 'src/rules/**'
+      - 'src/config/**'
+      - 'supabase/functions/resoudre-tour/**'
+      - 'scripts/build-function.mjs'
+      - 'scripts/test-function.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Bundle du moteur (esbuild)
+        run: npm run build:function
+      - name: Test d'exécution du bundle (refuse de déployer un bundle cassé)
+        run: npm run test:function
+      - name: Deploy Supabase
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - run: supabase functions deploy resoudre-tour --project-ref kucgmmefluwmlobujanc
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
