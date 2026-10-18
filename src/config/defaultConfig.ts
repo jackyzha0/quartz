@@ -345,6 +345,11 @@ export interface GameConfig {
    *  déjà jouée et ne se rejoue pas). Ne remplace QUE l'ancien
    *  texte exact — les éditions personnalisées sont préservées. */
   muraille40_2026?: boolean
+  /** Migration slots vides (2026-10-18) — TOUT slot vide d'un arbre
+   *  existant reçoit la tech du référentiel à jour (clé : nom+âge
+   *  de l'arbre, indépendant des index). Couvre les trous laissés
+   *  par les techs ajoutées après la création de la partie. */
+  slotsVides2026?: boolean
 }
 
 // ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
@@ -1210,6 +1215,37 @@ export function cfgOf(config?: GameConfig): Cfg {
       }
     }
     merged.muraille40_2026 = true
+  }
+  // MIGRATION SLOTS VIDES (2026-10-18) : les « — emplacement
+  //  vide — » dans Référentiels → Progrès venaient des configs
+  //  tamponnées dont les arbres dataient d'avant l'ajout de techs
+  //  au référentiel. La migration techsManquantes2026 ne couvrait
+  //  que 5 slots prédéfinis et ne se rejoue pas (tampon). Ici :
+  //  pour CHAQUE arbre de la config (retrouvé par nom+âge dans le
+  //  référentiel à jour), tout slot VIDE reçoit la tech du
+  //  référentiel. Les slots remplis (éditions personnalisées
+  //  comprises) ne sont JAMAIS touchés.
+  if (!merged.slotsVides2026) {
+    for (const arbre of merged.progres ?? []) {
+      const ref = DEFAULT_CONFIG.progres.find((d) => d.nom === arbre.nom && d.age === arbre.age)
+      if (!ref) continue
+      arbre.brancheA = arbre.brancheA ?? []
+      arbre.brancheB = arbre.brancheB ?? []
+      while (arbre.brancheA.length < 2) arbre.brancheA.push({ nom: '', cout: '', description: '' } as never)
+      while (arbre.brancheB.length < 2) arbre.brancheB.push({ nom: '', cout: '', description: '' } as never)
+      for (let k = 0; k < 2; k++) {
+        if (!arbre.brancheA[k]?.nom && ref.brancheA?.[k]?.nom) {
+          arbre.brancheA[k] = ref.brancheA[k]
+        }
+        if (!arbre.brancheB[k]?.nom && ref.brancheB?.[k]?.nom) {
+          arbre.brancheB[k] = ref.brancheB[k]
+        }
+      }
+      if (!arbre.techC?.nom && ref.techC?.nom) {
+        arbre.techC = ref.techC
+      }
+    }
+    merged.slotsVides2026 = true
   }
   if (!merged.taxes25) {
     const pm = merged.params as unknown as Record<string, unknown>
