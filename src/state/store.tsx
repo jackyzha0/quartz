@@ -13,7 +13,8 @@ import React, {
   createContext, useCallback, useContext, useEffect, useMemo, useRef, useState,
 } from 'react'
 import type { GameState } from '../engine/types'
-import { runTurn, migrerNomsMinisteres, normaliserEtat, rejouerTransfertVille } from '../engine/engine'
+import { runTurn, migrerNomsMinisteres, normaliserEtat } from '../engine/engine'
+import { fusionnerSections, rejouerEvenementsPartages } from '../engine/fusion'
 import type { SetupLine } from '../engine/setup'
 import { createGame } from '../engine/setup'
 import { cfgOf, convergerConfig, cloneDefaultConfig, type GameConfig } from '../config/defaultConfig'
@@ -565,68 +566,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (!sections) { await resoudreSeul(); return }
     const ref = await remote.loadRemote(salon)
     if (!ref) { await resoudreSeul(); return }
-    const popClone = structuredClone(ref.population)
-    const draft: GameState = {
-      ...structuredClone({ ...ref, population: {}, config: undefined }),
-      population: popClone,
-      config: ref.config,
-    } as GameState
-    // FUSION (bug 2026-10-17) : routes et cités libres sont PARTAGÉES —
-    //  remplacer tout le tableau par la section du dernier joueur
-    //  perdait les actions des autres. Routes : par PROPRIÉTAIRE.
-    //  Cités libres : par cité, uniquement si modifiée vs référence.
-    const newLogs: unknown[] = []
-    const refCiteParNom = new Map((ref.citesLibres ?? []).map((c) => [c.nom, JSON.stringify(c)]))
-    const citeFusionnes = new Map((draft.citesLibres ?? []).map((c) => [c.nom, c]))
-    const routesFusionnees = [...(draft.routesCommerce ?? [])]
-    for (const nStr of Object.keys(sections)) {
-      const n = Number(nStr)
-      const sec = sections[nStr]
-      const pj = draft.players.find((q) => q.n === n)
-      if (pj && sec.player) Object.assign(pj, sec.player)
-      if (sec.population) draft.population[n] = sec.population as typeof draft.population[number]
-      if (Array.isArray(sec.routes)) {
-        for (let i = routesFusionnees.length - 1; i >= 0; i--) {
-          if (routesFusionnees[i]?.joueur === n) routesFusionnees.splice(i, 1)
-        }
-        for (const r of sec.routes as typeof routesFusionnees) routesFusionnees.push(r)
-      }
-      if (Array.isArray(sec.citesLibres)) {
-        for (const c of (sec.citesLibres ?? []) as NonNullable<typeof draft.citesLibres>) {
-          const refJson = refCiteParNom.get(c.nom)
-          if (refJson === undefined) {
-            // cité créée pendant le tour
-            if (!citeFusionnes.has(c.nom)) citeFusionnes.set(c.nom, c)
-          } else if (JSON.stringify(c) !== refJson) {
-            // cité modifiée par ce joueur → sa version
-            citeFusionnes.set(c.nom, c)
-          }
-        }
-      }
-      if (Array.isArray(sec.log)) newLogs.push(...(sec.log as unknown[]))
-    }
-    // Déduplication par id (défense en profondeur : les sections
-    //  déjà poussées ce tour peuvent encore contenir des routes
-    //  d'autres joueurs — on n'ajoute jamais deux fois une route).
-    const vus = new Set<string>()
-    draft.routesCommerce = routesFusionnees.filter((r) => {
-      if (vus.has(r.id)) return false
-      vus.add(r.id)
-      return true
-    })
-    draft.citesLibres = [...citeFusionnes.values()]
-    const logFusionne = [...draft.log, ...(newLogs as typeof draft.log)]
-    draft.log = logFusionne.slice(-Math.max(50, draft.log.length))
-    // ÉVÉNEMENTS PARTAGÉS du tour (transferts de villes...) : rejoués
-    //  APRÈS la fusion des sections, AVANT runTurn — une mutation
-    //  inter-joueurs ne peut pas vivre dans une section (elle
-    //  écraserait l'état du joueur cible, bug 2026-10-17).
+    // FUSION : implémentation UNIQUE partagée avec l'Edge Function
+    //  (src/engine/fusion.ts — tests fusion.test.ts). Les bugs de
+    //  routes/cités/transferts corrigés en production y sont verrouillés.
+    const draft = fusionnerSections(ref, sections)
     const evts = await remote.lireEvenementsPartages(salon, tour)
-    for (const ev of evts) {
-      if (ev.type === 'transfert_ville') {
-        rejouerTransfertVille(draft, ev.payload as { ville: string; src: number; dst: number })
-      }
-    }
+    rejouerEvenementsPartages(draft, evts)
     runTurn(draft)
     const ok = await remote.publierEtatFusionne(salon, draft)
     if (ok) {
@@ -686,28 +631,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     // état de référence FRAIS (pas notre état local)
     const ref = await remote.loadRemote(salon)
     if (!ref) return
-    // fusionner chaque section dans le clone de référence
-    const popClone = structuredClone(ref.population)
-    const draft = {
-      ...structuredClone({ ...ref, population: {}, config: undefined }),
-      population: popClone,
-      config: ref.config,
-    } as GameState
-    const newLogs: unknown[] = []
-    for (const nStr of Object.keys(sections)) {
-      const n = Number(nStr)
-      const sec = sections[nStr]
-      if (!sec) continue
-      const pj = draft.players.find((q) => q.n === n)
-      if (pj && sec.player) Object.assign(pj, sec.player)
-      if (sec.population) draft.population[n] = sec.population as typeof draft.population[number]
-      if (sec.routes) draft.routesCommerce = sec.routes as typeof draft.routesCommerce
-      if (sec.citesLibres) draft.citesLibres = sec.citesLibres as typeof draft.citesLibres
-      if (Array.isArray(sec.log)) newLogs.push(...(sec.log as unknown[]))
-    }
-    // journal fusionné : entrées de tous les joueurs, triées par tour
-    const logFusionne = [...draft.log, ...(newLogs as typeof draft.log)]
-    draft.log = logFusionne.slice(-Math.max(50, draft.log.length))
+    // FUSION : même implémentation partagée que la Edge Function
+    //  (src/engine/fusion.ts). Le protocole v1 n'a pas d'événements
+    //  partagés — fusion seule.
+    const draft = fusionnerSections(ref, sections)
     void attendus
     // exécuter le tour
     runTurn(draft)
