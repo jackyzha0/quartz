@@ -7,11 +7,15 @@
 # ═══════════════════════════════════════════════════════════════════════════
 name: CI jeu
 
+# Ne tourne QUE sur la branche du jeu : sur v4, le package.json et le
+#  tsconfig à la racine sont ceux du SITE quartz (jsx preact, deps
+#  différentes) — typechecker src/ du jeu dans cet environnement
+#  produit des centaines de faux positifs.
 on:
   push:
-    branches: [chasse-et-peche-web, v4]
+    branches: [chasse-et-peche-web]
   pull_request:
-    branches: [chasse-et-peche-web, v4]
+    branches: [chasse-et-peche-web]
 
 jobs:
   jeu:
