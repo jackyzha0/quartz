@@ -33,6 +33,23 @@ function proto2Actif(): boolean {
 
 export type Mode = 'local' | 'supabase'
 
+/** Salon multijoueur persisté (clé cpe.salon) — restauré au chargement
+ *  pour RÉINTÉGRER automatiquement la partie après un rechargement de
+ *  page (bug 2026-10-18 : mode et salon n'étaient JAMAIS persistés ; un
+ *  joueur qui rechargeait retombait en mode 'local' — il jouait tout un
+ *  tour débranché du salon, son Fin de tour ne poussait AUCUNE section,
+ *  et la résolution du tour ignorait toutes ses actions). */
+const LS_SALON = 'cpe.salon'
+function readPersistedSalon(): string {
+  try { return window.localStorage.getItem(LS_SALON) ?? '' } catch { return '' }
+}
+function persistSalon(salonId: string): void {
+  try {
+    if (salonId) window.localStorage.setItem(LS_SALON, salonId)
+    else window.localStorage.removeItem(LS_SALON)
+  } catch { /* noop */ }
+}
+
 /** État de la barrière du tour en cours (mode multijoueur) :
  *  n° des joueurs qui ont poussé leur section de fin de tour. */
 export interface EtatBarriere {
@@ -732,6 +749,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const s = createGame(setups, seed, m, convergerConfig(globalConfigRef.current))
     setMode(m)
     setSalon(salonId ?? '')
+    persistSalon(m === 'supabase' ? (salonId ?? '') : '')
     setConflit(false)
     stateRef.current = s
     setState(s)
@@ -752,12 +770,53 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     normaliserEtat(s)
     setMode('supabase')
     setSalon(salonId)
+    persistSalon(salonId)
     setConflit(false)
     lastLocalEdit.current = 0
     stateRef.current = s
     setState(s)
     return true
   }, [syncGlobalCfg])
+
+  // RÉINTÉGRATION AUTO au chargement (bug 2026-10-18) : un joueur qui
+  //  rechargeait la page retombait en mode 'local' (mode/salon vivaient
+  //  seulement en mémoire React) — il jouait tout un tour DÉBRANCHÉ du
+  //  salon : ses actions restaient dans son localStorage, son « Fin de
+  //  tour » ne poussait AUCUNE section (branche locale de nextTurn), et
+  //  la résolution ignorait tout son tour. Désormais, si un salon était
+  //  rejoint lors de la session précédente (clé cpe.salon), on le
+  //  RÉINTÈGRE immédiatement : mode 'supabase' restauré, salon
+  //  réactivé (realtime). On n'utilise PAS joinGame ici : il écraserait
+  //  l'état local par la référence distante — or au rechargement en
+  //  MILIEU de tour, l'état local contient les actions du tour en
+  //  cours (pas encore poussées). Règle : on adopte le distant seulement
+  //  s'il est PLUS RÉCENT (la résolution a tourné pendant notre absence)
+  //  ou si nous n'avons pas d'état local ; sinon on garde le local.
+  const reintegrationFaite = useRef(false)
+  useEffect(() => {
+    if (reintegrationFaite.current) return
+    reintegrationFaite.current = true
+    const salonId = readPersistedSalon()
+    if (!salonId) return
+    void (async () => {
+      const distant = await remote.loadRemote(salonId)
+      if (!distant) { persistSalon(''); return }
+      const local = stateRef.current
+      const garderLocal = !!local && typeof distant.turn === 'number'
+        && local.turn >= distant.turn
+      setMode('supabase')
+      setSalon(salonId)
+      if (garderLocal) return
+      if (distant.config) syncGlobalCfg(distant.config)
+      distant.config = JSON.parse(JSON.stringify(convergerConfig(distant.config))) as GameConfig
+      migrerNomsMinisteres(distant)
+      normaliserEtat(distant)
+      setConflit(false)
+      lastLocalEdit.current = 0
+      stateRef.current = distant
+      setState(distant)
+    })()
+  }, [])
 
   const replaceState = useCallback((s: GameState) => {
     stateRef.current = s
@@ -777,6 +836,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   const reset = useCallback(() => {
     storage.clearLocal()
+    // le salon persisté suit la sauvegarde locale : effacer l'un efface
+    //  l'autre (sinon le prochain chargement réintègre un salon orphelin).
+    persistSalon('')
     stateRef.current = null
     setState(null)
     setConflit(false)
