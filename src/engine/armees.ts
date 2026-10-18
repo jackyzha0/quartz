@@ -235,17 +235,12 @@ export function prixArmee(
   return Math.max(0, Math.round(prix))
 }
 
-/** Nombre maximal d'armées d'un joueur (revue 2026-10-15) : paramètre
- *  maxArmees (2 par défaut) + 1 par règle de faction qui accorde une
- *  armée supplémentaire (« Tous avek moa ! », « L'art du viking »,
- *  « Armées des traditions » des Norls). */
+/** Plafond d'armées — SUPPRIMÉ (retour joueur 2026-10-18) : plus aucun
+ *  hardcap, le paramètre maxArmees est ignoré. Fonction conservée pour la
+ *  compatibilité de l'API (autres modules) mais ne plafonne plus. */
 export function maxArmeesJoueur(
-  p: Player,
-  C: { p: { maxArmees: number } } & import('./gameData').Cfg,
+  _p: Player,
+  _C: { p: { maxArmees: number } } & import('./gameData').Cfg,
 ): number {
-  let max = C.p.maxArmees
-  if (p.peuple === 'PEAUX VERTES' && regleActive(p, C, 'Tous avek moa !')) max += 1
-  if (p.peuple === 'NORLS' && regleActive(p, C, "L'art du viking")) max += 1
-  if (p.peuple === 'NORLS' && regleActive(p, C, 'Armées des traditions')) max += 1
-  return max
+  return Number.POSITIVE_INFINITY
 }
