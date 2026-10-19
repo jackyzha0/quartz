@@ -277,15 +277,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     globalConfigRef.current = draft
     setGlobalConfig(draft)
     storage.saveGlobalConfig(draft)
-    const s = stateRef.current
-    if (s) {
-      const s2 = JSON.parse(JSON.stringify(s)) as GameState
-      s2.config = JSON.parse(JSON.stringify(draft)) as GameConfig
-      stateRef.current = s2
-      setState(s2)
-      lastLocalEdit.current = Date.now()
-      persist(s2, mode, salon)
-    }
+    // (RETRAIT 2026-10-19, audit M2) : la branche morte « const s =
+    //  stateRef.current; if (s) { …réinjection de la config dans la
+    //  partie en cours… } » a été supprimée — INATTEIGNABLE depuis le
+    //  garde `if (stateRef.current) return` ci-dessus (reste du refactor
+    //  « config hors partie ») ; aucune partie chargée ne doit plus
+    //  voir sa config muter, la config mondiale est unique (règle
+    //  2026-10-19 ci-dessous).
     // CONFIG MONDIALE UNIQUE (règle 2026-10-19) : la config n'appartient
     //  à AUCUNE partie — elle est publiée dans la ligne mondiale '__config__'
     //  et s'applique à TOUTES les parties de tous les salons. Le garde du

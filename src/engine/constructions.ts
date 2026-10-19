@@ -27,7 +27,13 @@ export function constructionsRefs(cfg?: GameConfig): ConstructionRef[] {
   return Array.isArray(liste) && liste.length > 0 ? liste : DEFAULT_CONFIG.constructions
 }
 
-/** Une construction précise (par nom, éventuellement restreinte à un groupe). */
+/** Une construction précise (par nom, éventuellement restreinte à un groupe).
+ *  M4 (audit 2026-10-19, repli ASSUMÉ et documenté) : si le `groupe`
+ *  demandé n'existe pas dans les variantes de ce nom (constructions
+ *  doublées Ville/Château), on replie silencieusement sur la première
+ *  variante (historiquement « Ville »). Pragmatisme assumé : ce lookup
+ *  est appelé sur les chemins chauds d'affichage — pas de log (le
+ *  moteur est pur, zéro console) ; le repli est celui-ci, connu. */
 export function constructionRef(nom: string, cfg?: GameConfig, groupe?: string): ConstructionRef | undefined {
   const liste = constructionsRefs(cfg).filter((c) => c.nom === nom)
   return (groupe ? liste.find((c) => c.groupe === groupe) : undefined) ?? liste[0]

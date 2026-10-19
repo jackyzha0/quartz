@@ -74,7 +74,16 @@ export function TurnBar() {
             de protocole v1/v2 retiré — v2 est l'unique flux. */}
         <Button onClick={download} title="Exporter la partie en JSON">⬇ Export</Button>
         <Button onClick={() => fileRef.current?.click()} title="Importer une partie JSON">⬆ Import</Button>
-        <Button tone="danger" onClick={reset} title="Effacer la sauvegarde locale">✕</Button>
+        {/* M3 (audit 2026-10-19) : confirmation AVANT l'effacement — les
+            actions destructrices voisines (Forcer, Import) confirment
+            toutes ; le ✕ détruit la partie locale sans appel. */}
+        <Button
+          tone="danger"
+          title="Effacer la sauvegarde locale"
+          onClick={() => { if (window.confirm('Effacer la sauvegarde locale ? La partie locale sera perdue (le salon distant reste rejoignable).')) reset() }}
+        >
+          ✕
+        </Button>
         <input
           ref={fileRef}
           type="file"
