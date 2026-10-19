@@ -27,6 +27,7 @@ import { garnisonBatiment, tourismeStatiqueBatiment } from './batiments'
 import { rangPaysNiveau } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
 import { garnisonProgresVille, lignesGarnisonProgresVille, garnisonMinimaleProgres, fluxProgresJoueur } from './progresAuto'
+import { effetsCommerceJoueur } from './commerce'
 
 export { nomRang } from './habitations'
 
@@ -221,8 +222,13 @@ export function effetsCulturePays(state: GameState, p: Player, C: Cfg): Record<s
  *
  * `tourismeCourant` calcule la production Tourisme d'un joueur à
  * partir des mêmes canaux que le récap (bâtiments & aménagements
- * statiques + gains d'habitants + lois de culture + techs + faction
- * + ministres de fin de saison), et `resynchroniserTourisme` écrase
+ * statiques + gains d'habitants + lois de culture + techs
+
+ * + ministres de fin de saison + COMMERCE (arbitrage Thibaut 2026-10-19 : le
+
+ * Tourisme copié par une route commerciale est une production comme les
+
+ * autres — il compte dans « stock = production »), et `resynchroniserTourisme` écrase
  * le stock avec cette valeur.
  */
 export function tourismeCourant(state: GameState, p: Player, C: Cfg): number {
@@ -252,6 +258,11 @@ export function tourismeCourant(state: GameState, p: Player, C: Cfg): number {
     for (const b of v.batiments) total += tourismeStatiqueBatiment(b, C, v.type)
     for (const a of v.amenagements ?? []) total += tourismeStatiqueBatiment(a, C, v.type)
   }
+  // 7. COMMERCE (arbitrage Thibaut 2026-10-19, clôture du B4 de l'audit) :
+  // le Tourisme copié par une route commerciale est une production comme
+  // les autres — il doit compter dans « stock = production », sinon le
+  // récap l'affiche (canal Commerce) mais le stock l'ignore.
+  total += effetsCommerceJoueur(state, p, state.saison, C)['Tourisme'] ?? 0
   // VASSALITÉ — CORRECTIF (retour utilisateur 2026-10-17) : le
   //  « +15 Tourisme × rang du suzerain » est une règle de FACTION
   //  (Basiléens « Temps de paix », choix d'âge) : elle est déjà

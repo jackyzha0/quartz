@@ -8,8 +8,10 @@
 //  tour, la production de l'aménagement ENTIER choisi dans la ville
 //  ciblée (choix fait à l'ouverture de la route, modifiable à tout
 //  moment — toutes ses ressources positives ; une production d'été
-//  n'est copiée qu'en été ; ressources instantanées Tourisme/Garnison
-//  et effets négatifs exclus) — marqueur (u) : plus de choix de
+//  n'est copiée qu'en été ; la Garnison (valeur
+//  d'état) et les effets négatifs sont exclus ; le Tourisme EST copiable —
+//  arbitrage Thibaut 2026-10-19 : stock de Tourisme = production, jamais
+//  cumulé) — marqueur (u) : plus de choix de
 //  ressource, arbitrage Thibaut « c'est l'aménagement entier qui est
 //  copié ».
 //  La route se ferme si le marchand perd son titre ou meurt.
@@ -68,9 +70,12 @@ export interface RessourceCopiable {
 }
 
 /** Ressources COPiables d'un aménagement : flux POSITIFS (hors été) et
- *  production d'été positive — les ressources instantanées (Tourisme,
- *  Garnison) sont déjà exclues par effetsConstructionRef /
- *  effetsEteConstructionRef (marqueur (s)), les effets négatifs
+ *  production d'été positive — les ressources instantanées (Tourisme, Garnison — valeur d'état, RESSOURCES_INSTANTANEES) est
+ *  exclue par effetsConstructionRef / effetsEteConstructionRef
+ *  (marqueur (s)) ; le Tourisme, redevenu un flux normal (retour Thibaut
+ *  2026-10-16), EST copiable — CONFIRMÉ par arbitrage Thibaut 2026-10-19
+ *  (« le Tourisme peut être copié : le stock n'est jamais mis à jour avec
+ *  la production, il est recalculé pour l'égaler — stock = production »), les effets négatifs
  *  (coûts, ex. Charbon −1 du Moulin à vent) ne sont pas copiables. */
 export function ressourcesCopiables(nom: string, cfg?: GameConfig): RessourceCopiable[] {
   const ref = amenagementRef(nom, cfg)
