@@ -66,8 +66,13 @@ interface GameContextValue {
   saving: boolean
   conflit: boolean
   lastSavedAt: number | null
-  /** Configuration commune à toutes les parties (éditable en permanence). */
+  /** Configuration commune à toutes les parties (éditable en permanence).
+   *  En multijoueur, SEUL le créateur de la partie peut l'éditer (règle
+   *  2026-10-19) — sa config est publiée au salon et adoptée par tous. */
   globalConfig: GameConfig
+  /** True si CE navigateur peut éditer la configuration : en local toujours ;
+   *  en multijoueur, uniquement le créateur de la partie. */
+  peutEditerConfig: boolean
   /** Édite la configuration commune — persistée et propagée à la partie en cours. */
   setGlobalCfg: (fn: (c: GameConfig) => void) => void
   newGame: (setups: SetupLine[], seed: number, mode: Mode, salon?: string) => void
@@ -244,6 +249,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     // identique à celle affichée dans les onglets Paramètres, et les
     // migrations ne sont jamais REJOUÉES : une entrée supprimée ou
     // renommée (ministère, bâtiment…) ne « revient » plus.
+    // RÈGLE CRÉATEUR (2026-10-19) : en multijoueur, SEUL le créateur de
+    //  la partie peut modifier la configuration. Les autres joueurs
+    //  voient l'onglet Paramètres en lecture seule (cf. ParamsPanel) ;
+    //  ce garde-fou bloque aussi tout appel programmatique.
+    if (mode === 'supabase' && salon && stateRef.current?.createur != null
+      && stateRef.current.createur !== monNumeroRef.current) {
+      return
+    }
     const draft = JSON.parse(JSON.stringify(convergerConfig(globalConfigRef.current))) as GameConfig
     fn(draft)
     globalConfigRef.current = draft
@@ -257,6 +270,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       setState(s2)
       lastLocalEdit.current = Date.now()
       persist(s2, mode, salon)
+    }
+    // PUBLICATION AU SALON (config commune à tout le monde) : la config
+    //  ne voyage PAS dans l'état 5 Mo ni dans les sections — un event
+    //  dédié, léger, que chaque client adopte à la réception.
+    if (mode === 'supabase' && salon) {
+      void remote.pousserEvenementPartage(salon, stateRef.current?.turn ?? 0, monNumeroRef.current, 'config', {
+        config: draft as unknown as Record<string, unknown>,
+      })
     }
   }, [mode, salon, persist])
 
@@ -674,6 +695,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     // La nouvelle part démarre avec la configuration commune actuelle,
     // convergée (marqueur (x)) : format identique à l'affichage.
     const s = createGame(setups, seed, m, convergerConfig(globalConfigRef.current))
+    // CRÉATEUR (règle config 2026-10-19) : le navigateur qui crée la
+    //  partie est le SEUL habilité à éditer la config en multijoueur.
+    s.createur = monNumeroRef.current
     setMode(m)
     setSalon(salonId ?? '')
     persistSalon(m === 'supabase' ? (salonId ?? '') : '')
@@ -818,6 +842,24 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   // Abonnement realtime (mode supabase)
   useEffect(() => {
     if (mode !== 'supabase' || !salon) return
+    // CONFIG COMMUNE (règle créateur) : adoption temps réel — les events
+    //  'config' publiés par le créateur sont adoptés par CE client dès
+    //  leur parution (poll léger : payload des events, pas l'état 5 Mo).
+    const pollConfig = setInterval(async () => {
+      try {
+        const tour = stateRef.current?.turn ?? 0
+        if (!tour) return
+        const evts = await remote.lireEvenementsPartages(salon, tour)
+        const evConfig = [...evts].reverse().find((e) => e.type === 'config')
+        if (evConfig?.payload?.config) {
+          const cfg = evConfig.payload.config as unknown as GameConfig
+          const actuelle = globalConfigRef.current
+          if (JSON.stringify(cfg) !== JSON.stringify(actuelle)) {
+            syncGlobalCfg(cfg)
+          }
+        }
+      } catch { /* réseau indisponible — le prochain tick réessaiera */ }
+    }, 5000)
     const unsub = remote.subscribeRemote(salon, (remoteState) => {
       // GARDE DE TOUR (correctif rollback aléatoire 2026-10-17) :
       //  ignorer tout état PLUS ANCIEN que l'état courant — même si
@@ -855,15 +897,25 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       // Paramètres communs : on suit la configuration arrivée avec la partie.
       if (remoteState.config) syncGlobalCfg(remoteState.config)
     })
-    return unsub
+    return () => {
+      clearInterval(pollConfig)
+      unsub()
+    }
   }, [mode, salon, syncGlobalCfg])
+
+  // RÈGLE CRÉATEUR : en multijoueur seul le créateur édite la config ;
+  //  parties sans créateur (anciennes sauvegardes) → édition libre
+  //  (rétrocompatibilité).
+  const peutEditerConfig = mode !== 'supabase'
+    || state?.createur == null
+    || state.createur === monNumero
 
   const value = useMemo<GameContextValue>(() => ({
     state, mode, salon, saving, conflit, lastSavedAt,
-    globalConfig, setGlobalCfg,
+    globalConfig, peutEditerConfig, setGlobalCfg,
     newGame, joinGame, nextTurn, update, replaceState, saveNow, reset, importState, exportState,
     monNumero, setMonNumero: setMonNumeroPersist, barriere, forceNextTurn,
-  }), [state, mode, salon, saving, conflit, lastSavedAt, globalConfig, setGlobalCfg,
+  }), [state, mode, salon, saving, conflit, lastSavedAt, globalConfig, peutEditerConfig, setGlobalCfg,
     newGame, joinGame, nextTurn, update, replaceState, saveNow, reset, importState, exportState,
     monNumero, setMonNumeroPersist, barriere, forceNextTurn])
 

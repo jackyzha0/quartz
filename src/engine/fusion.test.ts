@@ -133,6 +133,17 @@ test('BUG 2026-10-17 : transfert de ville (événement partagé) rejoué après 
   assert.equal(out.players[0].villes.filter((v) => v.nom === villeB.nom).length, 1, 'la ville est chez J1')
 })
 
+test('CONFIG COMMUNE : l event config du créateur remplace la config de l état fusionné', () => {
+  const ref = base()
+  const out = fusionnerSections(ref, {})
+  const nouvelleCfg = { ...out.config, params: { ...(out.config?.params ?? {}), armeePrixOr: 99 } }
+  rejouerEvenementsPartages(out, [
+    { joueur: 1, type: 'config', payload: { config: nouvelleCfg } },
+  ])
+  assert.equal((out.config?.params as Record<string, unknown>)?.armeePrixOr, 99,
+    'la config publiée par le créateur doit être adoptée par la fusion')
+})
+
 test('événements de type inconnu ignorés silencieusement (forward compat)', () => {
   const ref = base()
   const out = fusionnerSections(ref, {})

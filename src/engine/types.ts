@@ -417,9 +417,16 @@ export interface GameSetup {
 
 export interface GameState {
   /** Configuration de la partie : référentiels + paramètres des formules.
-   *  Absente des vieilles sauvegardes → complétée par cloneDefaultConfig(). */
+   *  Absente des vieilles sauvegardes → complétée par cloneDefaultConfig().
+   *  RÈGLE (2026-10-19) : en multijoueur, SEUL le créateur de la partie
+   *  peut modifier la configuration — la config est COMMUNE à tout le
+   *  salon, publiée par le créateur et adoptée par tous (cf. store). */
   config?: import('../config/defaultConfig').GameConfig
   version: number
+  /** Numéro de joueur du CRÉATEUR de la partie (celui qui l'a créée via
+   *  newGame) — en multijoueur, seul lui peut éditer la config. Absent
+   *  des anciennes sauvegardes → null (édition libre en local). */
+  createur?: number | null
   /** Version du schéma de sauvegarde (migrations versionnées — cf.
    *  engine/migrations.ts) : tampon des migrations déjà appliquées à
    *  CET état. Absent des anciennes sauvegardes → 0 (toutes jouées

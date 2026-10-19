@@ -25,6 +25,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import type { GameState, RouteCommerce, CiteLibre, LogEntry } from './types'
+import type { GameConfig } from '../config/defaultConfig'
 import { rejouerTransfertVille } from './villes'
 
 /** Section d'un joueur pour la barrière de fin de tour (cf. supabase/client.ts).
@@ -132,6 +133,13 @@ export function rejouerEvenementsPartages(
   for (const ev of evenements) {
     if (ev.type === 'transfert_ville') {
       rejouerTransfertVille(draft, ev.payload as { ville: string; src: number; dst: number })
+    }
+    // CONFIG COMMUNE (règle créateur 2026-10-19) : l'event 'config'
+    //  publié par le créateur remplace la config de l'état fusionné —
+    //  la même config pour tout le salon. Le DERNIER event du tour gagne
+    //  (un seul éditeur : le créateur — pas de conflit possible).
+    if (ev.type === 'config' && ev.payload?.config) {
+      draft.config = ev.payload.config as unknown as GameConfig
     }
   }
 }
