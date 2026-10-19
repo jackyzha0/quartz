@@ -61,6 +61,12 @@ interface GameContextValue {
   saving: boolean
   conflit: boolean
   lastSavedAt: number | null
+  /** R3 (audit 2026-10-19, arbitrage Thibaut « bandeau d'alerte ») :
+   *  true si la DERNIÈRE sauvegarde locale a échoué (quota localStorage
+   *  dépassé / mode privé). Le bandeau de TurnBar propose l'export
+   *  JSON de secours — la partie reste en mémoire, un rechargement
+   *  sans export la perdrait. */
+  saveLocaleEchec: boolean
   /** Configuration commune à toutes les parties (éditable en permanence).
    *  En multijoueur, SEUL le créateur de la partie peut l'éditer (règle
    *  2026-10-19) — sa config est publiée au salon et adoptée par tous. */
@@ -132,6 +138,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [salon, setSalon] = useState<string>('')
   const [saving, setSaving] = useState(false)
   const [conflit, setConflit] = useState(false)
+  // R3 (audit 2026-10-19, arbitrage « bandeau d'alerte ») : miroir du
+  //  retour de storage.saveLocal — persist l'arme à chaque flush.
+  const [saveLocaleEchec, setSaveLocaleEchec] = useState(false)
   // ── TOUR-SIMULTANÉ (barrière stricte, 2026-10-16) ──
   // Mon n° de joueur : persisté par salon (localStorage) — chaque
   //  navigateur choisit son numéro à l'entrée du salon (SetupPanel).
@@ -207,7 +216,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       try {
         // Local TOUJOURS (anti-perte perso : chaque mutation est
         //  dans le localStorage de la machine).
-        storage.saveLocal(toSave)
+        // R3 (audit 2026-10-19, arbitrage Thibaut « bandeau d'alerte ») :
+        //  on ne jette plus le retour — saveLocal peut échouer (QuotaExceeded,
+        //  mode privé) ; l'échec arme le bandeau de TurnBar.
+        setSaveLocaleEchec(!storage.saveLocal(toSave))
         // Réseau — RÈGLE (2026-10-19) : PLUS AUCUN upsert d'état par
         //  mutation, même en protocole v1 — la SEULE synchronisation
         //  est la fin de tour (résolution : Edge Function ou repli
@@ -805,11 +817,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const peutEditerConfig = state == null
 
   const value = useMemo<GameContextValue>(() => ({
-    state, mode, salon, saving, conflit, lastSavedAt,
+    state, mode, salon, saving, conflit, lastSavedAt, saveLocaleEchec,
     globalConfig, peutEditerConfig, setGlobalCfg,
     newGame, joinGame, nextTurn, update, replaceState, reset, importState, exportState,
     monNumero, setMonNumero: setMonNumeroPersist, barriere, forceNextTurn,
-  }), [state, mode, salon, saving, conflit, lastSavedAt, globalConfig, peutEditerConfig, setGlobalCfg,
+  }), [state, mode, salon, saving, conflit, lastSavedAt, saveLocaleEchec, globalConfig, peutEditerConfig, setGlobalCfg,
     newGame, joinGame, nextTurn, update, replaceState, reset, importState, exportState,
     monNumero, setMonNumeroPersist, barriere, forceNextTurn])
 

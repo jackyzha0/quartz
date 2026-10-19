@@ -7,7 +7,7 @@ import { useGame } from '../state/store'
 import { Button } from './ui'
 
 export function TurnBar() {
-  const { state, mode, salon, saving, conflit, nextTurn, exportState, importState, reset, barriere, forceNextTurn } = useGame()
+  const { state, mode, salon, saving, conflit, saveLocaleEchec, nextTurn, exportState, importState, reset, barriere, forceNextTurn } = useGame()
   const fileRef = useRef<HTMLInputElement>(null)
   // (RETRAIT 2026-10-19, brûlage audit R5) : la bascule de protocole
   //  v1/v2 (state « proto2 » + toggleProto2) a été retirée — le
@@ -40,6 +40,15 @@ export function TurnBar() {
       {conflit && (
         <div className="banner-warn">
           ⚠ Une modification d'un autre joueur est arrivée pendant votre édition — l'état a été rechargé.
+        </div>
+      )}
+      {/* R3 (audit 2026-10-19, arbitrage Thibaut « bandeau d'alerte ») :
+          la sauvegarde locale a échoué (quota navigateur) — la partie
+          ne vit plus qu'en mémoire : on propose l'export JSON de secours. */}
+      {saveLocaleEchec && (
+        <div className="banner-warn">
+          ⚠ Sauvegarde locale impossible (quota du navigateur dépassé) — un rechargement de la page perdrait le tour en cours.{' '}
+          <Button onClick={download} title="Exporter la partie en JSON (copie de secours)">⬇ Exporter maintenant</Button>
         </div>
       )}
       <div className="turnbar-actions">
