@@ -46,7 +46,8 @@ async function cloneWithSubdirAsync({ url, ref, subdir, pluginDir }) {
   }
 }
 
-async function buildPluginAsync(pluginDir, name) {
+/** @internal Exported for testing only. */
+export async function buildPluginAsync(pluginDir, name) {
   if (hasPrebuiltDist(pluginDir)) {
     console.log(styleText("green", `  ✓ ${name}: using pre-built dist/`))
     linkPeerPlugins(pluginDir)
@@ -56,12 +57,14 @@ async function buildPluginAsync(pluginDir, name) {
   try {
     const skipBuild = !needsBuild(pluginDir)
     console.log(styleText("cyan", `  → ${name}: installing dependencies...`))
-    await execAsync("npm install --ignore-scripts", { cwd: pluginDir })
+    // Quartz's .npmrc reaches a nested npm only when npm started Quartz; without it, npm installs
+    // the peers a dependency declares, and the plugin keeps its own Preact
+    await execAsync("npm install --ignore-scripts --legacy-peer-deps", { cwd: pluginDir })
     if (!skipBuild) {
       console.log(styleText("cyan", `  → ${name}: building...`))
       await execAsync("npm run build", { cwd: pluginDir })
     }
-    await execAsync("npm prune --omit=dev", { cwd: pluginDir })
+    await execAsync("npm prune --omit=dev --legacy-peer-deps", { cwd: pluginDir })
     linkPeerPlugins(pluginDir)
     return true
   } catch (error) {
@@ -132,7 +135,8 @@ function trySymlink(target, linkPath) {
   symlinkOrCopySync(target, linkPath)
 }
 
-function linkPeerPlugins(pluginDir) {
+/** @internal Exported for testing only. */
+export function linkPeerPlugins(pluginDir) {
   const pkgPath = path.join(pluginDir, "package.json")
   if (!fs.existsSync(pkgPath)) return
 
@@ -141,16 +145,39 @@ function linkPeerPlugins(pluginDir) {
 
   const quartzRoot = path.resolve(pluginDir, "..", "..", "..")
   const hostNodeModules = path.join(quartzRoot, "node_modules")
+  // a local plugin is a symlink; relative links made through it would dangle
+  const realDir = fs.realpathSync(pluginDir)
+  const local = fs.lstatSync(pluginDir).isSymbolicLink()
 
   for (const peerName of Object.keys(peers)) {
-    const peerNodeModulesPath = path.join(pluginDir, "node_modules", ...peerName.split("/"))
-    if (fs.existsSync(peerNodeModulesPath)) continue
+    const peerNodeModulesPath = path.join(realDir, "node_modules", ...peerName.split("/"))
+    const hostPeerPath = path.join(hostNodeModules, ...peerName.split("/"))
+    if (fs.existsSync(peerNodeModulesPath)) {
+      if (!local || peerName.startsWith("@quartz-community/") || !fs.existsSync(hostPeerPath)) {
+        continue
+      }
+      if (fs.realpathSync(peerNodeModulesPath) === fs.realpathSync(hostPeerPath)) continue
+      // a second copy breaks singletons like Preact's hooks; replace a link, never a directory
+      if (!fs.lstatSync(peerNodeModulesPath).isSymbolicLink()) {
+        console.warn(
+          styleText(
+            "yellow",
+            `⚠ ${peerName} is installed in ${realDir}, so it will not share Quartz's copy`,
+          ),
+        )
+        continue
+      }
+      fs.unlinkSync(peerNodeModulesPath)
+    } else if (fs.lstatSync(peerNodeModulesPath, { throwIfNoEntry: false })?.isSymbolicLink()) {
+      // dangling
+      fs.unlinkSync(peerNodeModulesPath)
+    }
 
     if (peerName.startsWith("@quartz-community/")) {
       const siblingPlugin = findPluginByPackageName(peerName)
       if (!siblingPlugin) continue
 
-      const scopeDir = path.join(pluginDir, "node_modules", peerName.split("/")[0])
+      const scopeDir = path.join(realDir, "node_modules", peerName.split("/")[0])
       fs.mkdirSync(scopeDir, { recursive: true })
 
       const target = path.relative(scopeDir, siblingPlugin)
@@ -158,15 +185,14 @@ function linkPeerPlugins(pluginDir) {
       continue
     }
 
-    const hostPeerPath = path.join(hostNodeModules, ...peerName.split("/"))
     if (!fs.existsSync(hostPeerPath)) continue
 
     const parts = peerName.split("/")
     if (parts.length > 1) {
-      const scopeDir = path.join(pluginDir, "node_modules", parts[0])
+      const scopeDir = path.join(realDir, "node_modules", parts[0])
       fs.mkdirSync(scopeDir, { recursive: true })
     } else {
-      fs.mkdirSync(path.join(pluginDir, "node_modules"), { recursive: true })
+      fs.mkdirSync(path.join(realDir, "node_modules"), { recursive: true })
     }
 
     const target = path.relative(path.dirname(peerNodeModulesPath), hostPeerPath)
