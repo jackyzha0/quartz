@@ -20,6 +20,7 @@ import type { SetupLine } from '../engine/setup'
 import { createGame } from '../engine/setup'
 import { cfgOf, convergerConfig, cloneDefaultConfig, type GameConfig } from '../config/defaultConfig'
 import * as storage from './storage'
+import { adopterConfig } from './configPriorite'
 import * as remote from '../supabase/client'
 
 /** PROTOCOLE v2 (étape 2, 2026-10-17) — feature flag localStorage
@@ -736,17 +737,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const joinGame = useCallback(async (salonId: string): Promise<boolean> => {
     const s = await remote.loadRemote(salonId)
     if (!s) return false
-    // CONFIG MONDIALE (règle 2026-10-19) : la mondiale PRIME — l'état du
-    //  salon porte une config injectée à la dernière résolution, qui peut
-    //  être PLUS ANCIENNE que la mondiale (édition depuis l'accueil entre
-    //  deux tours). On adopte la mondiale et on l'injecte dans l'état.
+    // CONFIG MONDIALE (règle 2026-10-19) : contrat de priorité testé
+    //  (state/configPriorite.ts — config.test.ts) : la mondiale PRIME
+    //  sur l'embarquée du salon (édition depuis l'accueil entre deux
+    //  tours), puis injection dans l'état (l'UI lit state.config).
     const cfgMondiale = await remote.chargerConfigMondiale()
-    if (cfgMondiale) {
-      syncGlobalCfg(cfgMondiale)
-      s.config = cfgMondiale
-    } else if (s.config) {
-      syncGlobalCfg(s.config)
-    }
+    const choisie = adopterConfig(s, { mondiale: cfgMondiale, embarquee: s.config ?? null })
+    if (choisie) syncGlobalCfg(choisie)
     migrerEtat(s)
     setMode('supabase')
     setSalon(salonId)
@@ -787,14 +784,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       setMode('supabase')
       setSalon(salonId)
       if (garderLocal) return
-      // CONFIG MONDIALE : la mondiale PRIME sur l'embarquée du salon.
+      // CONFIG MONDIALE : contrat de priorité testé (configPriorite.ts).
       const cfgMondiale2 = await remote.chargerConfigMondiale()
-      if (cfgMondiale2) {
-        syncGlobalCfg(cfgMondiale2)
-        distant.config = cfgMondiale2
-      } else if (distant.config) {
-        syncGlobalCfg(distant.config)
-      }
+      const choisie2 = adopterConfig(distant, { mondiale: cfgMondiale2, embarquee: distant.config ?? null })
+      if (choisie2) syncGlobalCfg(choisie2)
       migrerEtat(distant)
       setConflit(false)
       lastLocalEdit.current = 0
