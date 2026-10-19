@@ -150,7 +150,7 @@ function characterMarriageMod(c: Character, C: Cfg = cfgOf()): number {
 
 // ── Éducation des mineurs (TryEducateMinor) ─────────────────────────────
 
-export function tryEducateMinor(state: GameState, p: Player, c: Character, rng: Rng, recap: PlayerRecap) {
+export function tryEducateMinor(state: GameState, p: Player, c: Character, rng: Rng) {
   const C = cfgOf(state.config)
   // VBA : le trait « Obstiné » refuse toute éducation.
   if ((c.traits ?? []).includes(C.p.traitObstine)) return
@@ -177,7 +177,7 @@ export function tryEducateMinor(state: GameState, p: Player, c: Character, rng: 
 
 // ── Titre automatique à l'âge adulte ────────────────────────────────────
 
-export function assignAdultTitle(state: GameState, p: Player, c: Character, rng: Rng, recap: PlayerRecap) {
+export function assignAdultTitle(state: GameState, p: Player, c: Character, recap: PlayerRecap) {
   const C = cfgOf(state.config)
   if ((c.traits ?? []).includes(C.p.traitBatard)) {
     c.titre = C.p.titreChasseur

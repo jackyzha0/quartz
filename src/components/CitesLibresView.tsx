@@ -22,7 +22,7 @@
 //  (voie Diplomatique : suzerain de 3 cités libres).
 // ══════════════════════════════════════════════════════════════════════
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useGame } from '../state/store'
 import { cfgOf } from '../engine/gameData'
 import {

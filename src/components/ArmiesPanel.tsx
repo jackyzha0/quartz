@@ -5,7 +5,7 @@
 //  à la Martialité de la culture.
 // ══════════════════════════════════════════════════════════════════════
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useGame } from '../state/store'
 import type { GameState, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
@@ -16,7 +16,7 @@ import { Card, NumberInput, Select, TextInput, Button, fmt } from './ui'
 export function ArmiesPanel({ joueur }: { joueur: number }) {
   const { state, update } = useGame()
   const [nom, setNom] = useState('')
-  const [cible, setCible] = useState<number | null>(null)
+  const [cible] = useState<number | null>(null)
   const [commandant, setCommandant] = useState('')
   const [puissance, setPuissance] = useState(90)
   // Revue Thibaut 2026-10-15 : la levée se passe DANS une habitation

@@ -2,7 +2,7 @@
 //  Application principale — navigation 7 sections + sélecteur J1..J8
 // ══════════════════════════════════════════════════════════════════════
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useGame } from './state/store'
 import { TurnBar } from './components/TurnBar'
 import { Dashboard } from './components/Dashboard'

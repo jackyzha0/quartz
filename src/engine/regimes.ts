@@ -26,8 +26,7 @@ import { aMinistre, portefeuillesDuJoueur } from './ministeres'
 import { garnisonBatiment, tourismeStatiqueBatiment } from './batiments'
 import { garnisonFactionVille, rangPaysNiveau, effetsFaction } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
-import { garnisonProgresVille, lignesGarnisonProgresVille, garnisonMinimaleProgres, aTech, fluxProgresJoueur } from './progresAuto'
-import { regleActive } from './factions'
+import { garnisonProgresVille, lignesGarnisonProgresVille, garnisonMinimaleProgres, fluxProgresJoueur } from './progresAuto'
 
 export { nomRang } from './habitations'
 

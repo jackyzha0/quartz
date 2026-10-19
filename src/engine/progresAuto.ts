@@ -19,12 +19,11 @@
 // ═════════════════════════════════════════════════════════════════════
 
 import type { GameState, Player, City } from './types'
-import { cfgOf, type Cfg } from './gameData'
+import type { Cfg } from './gameData'
 import { capitaleDe } from './factions'
 import { rangNiveau, garnisonHabitationVille } from './regimes'
 
 const rangNiveauVille = rangNiveau
-import { portefeuillesDuJoueur } from './ministeres'
 
 /** Le joueur a-t-il débloqué la tech portant ce NOM ? */
 export function aTech(p: Player, nomTech: string, C: Cfg): boolean {

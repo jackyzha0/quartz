@@ -2,7 +2,7 @@
 //  Journal des événements (filtrable par type et joueur)
 // ══════════════════════════════════════════════════════════════════════
 
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useGame } from '../state/store'
 import type { LogEntry } from '../engine/types'
 import { Card, Select } from './ui'

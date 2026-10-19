@@ -3,7 +3,7 @@
 //  Équivalent de RefreshEvolCharts / _Historique.
 // ══════════════════════════════════════════════════════════════════════
 
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useGame } from '../state/store'
 import { cfgOf, couleurJoueur } from '../engine/gameData'
 import { Card, Select, fmt } from './ui'
@@ -55,7 +55,7 @@ export function HistoryPanel() {
       ) : (
         <svg viewBox={`0 0 ${W} ${H}`} className="chart">
           <line x1={pad} y1={y(0)} x2={W - pad} y2={y(0)} className="chart-axis" />
-          {data.series.map((s, si) => (
+          {data.series.map((s) => (
             <polyline
               key={s.nom}
               fill="none"
@@ -73,7 +73,7 @@ export function HistoryPanel() {
         </svg>
       )}
       <div className="legend">
-        {data.series.map((s, si) => (
+        {data.series.map((s) => (
           <span key={s.nom} className="legend-item">
             <span className="dot" style={{ background: couleurJoueur(s.n, C) }} />
             {s.nom}

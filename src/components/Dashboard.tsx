@@ -15,7 +15,6 @@ import { HistogrammeEmpile, CourbeRessource, Radar } from './charts'
 import type { GroupeChart, SerieCourbe, SerieRadar } from './charts'
 import { productionDetaillee } from '../engine/engine'
 
-const RESSOURCES_VUES = ['Or', 'Nourriture', 'Science', 'Tourisme']
 const RESSOURCES_BASE = ['Bétail', 'Bois', 'Charbon', 'Fer', 'Pierre', 'Soie']
 
 export function Dashboard() {

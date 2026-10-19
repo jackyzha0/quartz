@@ -9,7 +9,7 @@
 //  les stocks peuvent être négatifs, les poids nuls, les textes vides.
 // ══════════════════════════════════════════════════════════════════════
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useGame } from '../state/store'
 import { cfgOf, cloneDefaultConfig } from '../config/defaultConfig'
 import type { GameConfig } from '../config/defaultConfig'
@@ -29,7 +29,7 @@ const ONGLETS = [
 ] as const
 
 export function ParamsPanel() {
-  const { state, globalConfig, setGlobalCfg, peutEditerConfig, replaceState, exportState, importState } = useGame()
+  const { globalConfig, setGlobalCfg, peutEditerConfig, replaceState, exportState, importState } = useGame()
   const [onglet, setOnglet] = useState<(typeof ONGLETS)[number]>('Formules')
 
   // Configuration commune, fusionnée sur les défauts (clés manquantes, etc.)

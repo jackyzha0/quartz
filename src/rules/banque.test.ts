@@ -12,15 +12,14 @@
 
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { appliquerRegles, contributionVide, conditionsRemplies } from './effects/banque'
-import { reglesConstructions, effetsConstructionVersBanque } from './registry'
-import type { ContexteEffet, Effet, RegleBanque } from './types'
+import { appliquerRegles } from './effects/banque'
+import { reglesConstructions } from './registry'
+import type { Effet, RegleBanque } from './types'
 import { cfgOf } from '../engine/gameData'
-import { effetVilleMock, partieMock } from './mocks'
+import { partieMock } from './mocks'
 import {
   effetsConstructionRef, effetsEteConstructionRef, instantanesConstructionRef,
 } from '../engine/constructions'
-import { constructionRef } from '../engine/constructions'
 import { createGame } from '../engine/setup'
 
 // ── 1. Unitaires : types d'effets ───────────────────────────────────────────
