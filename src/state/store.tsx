@@ -259,18 +259,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     // identique à celle affichée dans les onglets Paramètres, et les
     // migrations ne sont jamais REJOUÉES : une entrée supprimée ou
     // renommée (ministère, bâtiment…) ne « revient » plus.
-    // RÈGLE CRÉATEUR (2026-10-19) : en multijoueur, SEUL le créateur de
-    //  la partie peut modifier la configuration. Les autres joueurs
-    //  voient l'onglet Paramètres en lecture seule (cf. ParamsPanel) ;
-    //  ce garde-fou bloque aussi tout appel programmatique.
-    // N°2 (revue critique) : la publication mondiale exige une partie
-    //  en cours dont on est le créateur — sans partie (navigateur isolé),
-    //  l'édition reste LOCALE : elle ne peut pas réécrire la config
-    //  mondiale d'un salon auquel ce navigateur ne participe pas.
-    if (mode === 'supabase' && salon) {
-      const createur = stateRef.current?.createur
-      if (createur == null || createur !== monNumeroRef.current) return
-    }
+    // RÈGLE (2026-10-19, simplification) : la configuration ne se
+    //  modifie PLUS pendant une partie — uniquement HORS partie
+    //  (page d'accueil sans partie en cours). Ce garde-fou bloque tout
+    //  appel programmatique pendant qu'une partie est chargée.
+    if (stateRef.current) return
     const draft = JSON.parse(JSON.stringify(convergerConfig(globalConfigRef.current))) as GameConfig
     fn(draft)
     globalConfigRef.current = draft
@@ -288,11 +281,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     // CONFIG MONDIALE UNIQUE (règle 2026-10-19) : la config n'appartient
     //  à AUCUNE partie — elle est publiée dans la ligne mondiale '__config__'
     //  et s'applique à TOUTES les parties de tous les salons. Le garde du
-    //  haut (créateur en multijoueur) reste l'unique autorisation d'écriture.
-    if (mode === 'supabase') {
-      void remote.sauverConfigMondiale(draft)
-    }
-  }, [mode, salon, persist])
+    //  haut garantit qu'on est HORS partie : édition libre, dernier
+    //  écrivain gagne ; les autres joueurs l'obtiennent en actualisant.
+    void remote.sauverConfigMondiale(draft)
+  }, [])
 
   /**
    * CLONE SÉLECTIF (optimisation frappe 2026-10-16) : clone l'état en
@@ -719,9 +711,6 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     // La nouvelle part démarre avec la configuration commune actuelle,
     // convergée (marqueur (x)) : format identique à l'affichage.
     const s = createGame(setups, seed, m, convergerConfig(globalConfigRef.current))
-    // CRÉATEUR (règle config 2026-10-19) : le navigateur qui crée la
-    //  partie est le SEUL habilité à éditer la config en multijoueur.
-    s.createur = monNumeroRef.current
     setMode(m)
     setSalon(salonId ?? '')
     persistSalon(m === 'supabase' ? (salonId ?? '') : '')
@@ -909,11 +898,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     return unsub
   }, [mode, salon, syncGlobalCfg])
 
-  // RÈGLE CRÉATEUR : en multijoueur seul le créateur édite la config.
-  //  createur OBLIGATOIRE (2026-10-19) : les anciennes parties sans
-  //  créateur sont supprimées — plus de fallback d'édition libre.
-  const peutEditerConfig = mode !== 'supabase'
-    || state?.createur === monNumero
+  // RÈGLE (2026-10-19, simplification) : la config s'édite uniquement
+  //  HORS partie — aucune modification pendant une partie. Les joueurs
+  //  obtiennent les changements en actualisant la page.
+  const peutEditerConfig = state == null
 
   const value = useMemo<GameContextValue>(() => ({
     state, mode, salon, saving, conflit, lastSavedAt,

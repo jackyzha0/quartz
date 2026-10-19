@@ -54,8 +54,9 @@ export function ParamsPanel() {
       <Card title="Paramètres communs à toutes les parties — modifiables à tout moment">
         {!peutEditerConfig && (
           <div className="banner-warn">
-            🔒 Lecture seule — en multijoueur, seul le créateur de la partie peut modifier la
-            configuration. Les changements du créateur s'appliquent à tout le salon en temps réel.
+            🔒 Lecture seule — la configuration ne se modifie plus pendant une partie.
+            Retournez à l'accueil (finissez ou supprimez la partie) pour l'éditer ; les
+            changements s'appliquent à tout le monde après un simple rafraîchissement de la page.
           </div>
         )}
         <p className="muted small">
