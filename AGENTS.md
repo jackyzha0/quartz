@@ -82,9 +82,16 @@ automatique de l'état global (un client périmé écraserait le salon).
 
 1. `npx tsc --noEmit` — **strict** : `noUnusedLocals` et `noUnusedParameters` sont
    ACTIVÉS (depuis le 2026-10-19) ; toute déclaration non lue casse la CI.
-2. `npm test` — tests natifs `node --test` (48 : fusion, migrations, régression 20 tours
+2. `npx tsc -p supabase/functions/resoudre-tour/tsconfig.check.json` — check strict
+   DÉDIÉ au handler de l'Edge Function (stubs jsr:/`_engine.mjs` dans
+   `supabase/functions/resoudre-tour/types/stubs.d.ts`). Le tsconfig du jeu
+   n'inclut PAS `supabase/functions/` et les tests ne couvrent que le bundle
+   moteur : sans ce check, un identifiant non défini dans le handler part en
+   production (incident 2026-10-19 : `cfgMondiale`, ReferenceError à chaque
+   résolution serveur, déployé vert par tous les contrôles).
+3. `npm test` — tests natifs `node --test` (48 : fusion, migrations, régression 20 tours
    avec invariants, config, registre, banque, mutateurs) + tests de rendu (12 vues).
-3. `npm run build` (vite) — le job CI « Build jeu » bundle le tout.
+4. `npm run build` (vite) — le job CI « Build jeu » bundle le tout.
 
 La CI (« CI jeu ») tourne sur la branche du jeu : type-check strict + tests + build +
 déploiement GitHub Pages + Edge Function. Un push qui casse un test NE DOIT PAS être

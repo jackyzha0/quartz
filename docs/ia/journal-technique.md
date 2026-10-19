@@ -194,6 +194,61 @@ règles CSS orphelines `.taxes-tbl`/`.frule-manuel`/`.cl-reserves`), `6e55751c`
   798 l., ReferenceDataPanel 647, RoyaumeView 626, ConfigTables 609, CitesLibresView
   429). Vague suivante, à proposer à l'arbitre.
 
+## Audit complet du code + correctifs multijoueur (2026-10-19, soir)
+
+Audit complet du dépôt à la tête `66282293` (moteur, store, fusion, Edge Function,
+schémas SQL, UI, règles, tests, CI). Verdict global : architecture et hygiène très
+au-dessus de la moyenne — mais DEUX bugs réels dans la couche multijoueur v2, dont
+un EN PRODUCTION :
+
+1. **Edge Function cassée en prod** — `resoudre-tour/index.ts` appelait
+   `appliquerConfigMondiale(draft, cfgMondiale)` sans que `cfgMondiale` ne soit
+   défini NULLE PART (introduit par `714a54bb`) → `ReferenceError` → 500 à
+   CHAQUE résolution serveur → repli local systématique depuis le 19/10 matin.
+   Le jeu avançait quand même (le repli fait fusion + événements + config
+   mondiale + runTurn + publication), personne n'a rien vu — mais l'atomicité
+   serveur (verrou, transaction) était perdue. CORRIGÉ (`362e1db4`) : la config
+   mondiale est LUE dans la ligne réservée `__config__` avant l'injection
+   (ligne absente → null → config embarquée conservée, même sémantique que le
+   repli client).
+2. **`pollerBarriereV2Ref` jamais assigné** (store.tsx) — le ref était déclaré
+   no-op, APPELÉ par `nextTurnV2` quand un joueur pousse sans être le dernier,
+   mais la fonction `pollerBarriereV2` n'existait pas : les clients en attente
+   ne pollaient RIEN. Si le dernier pousseur fermait son onglet avant la
+   résolution, le salon se bloquait pour tous (seul « Forcer » ou un
+   rechargement débloquait). CORRIGÉ (`362e1db4`) : poller v2 implémenté
+   (toutes les 2 s, max 2 min, arrêt si le tour local a avancé) + assignation
+   au ref comme son jumeau `resoudreBarriereLocaleV2Ref`.
+3. **Cause racine : la CI ne type-checkait pas le handler Deno** —
+   `npm run test:function` ne teste que le bundle moteur `_engine.mjs`, et le
+   tsconfig du jeu n'inclut pas `supabase/functions/` : le bug (1) est parti en
+   production vert. CORRIGÉ (`ccfa04ef`) : check dédié
+   `npx tsc -p supabase/functions/resoudre-tour/tsconfig.check.json`
+   (strict, stubs `jsr:@supabase/supabase-js@2` et `*_engine.mjs` dans
+   `types/stubs.d.ts`), dans CI jeu ET deploy-function. Un `deno check`
+   complet a été essayé en premier : il échoue en CI (il tente d'installer les
+   dépendances npm transitives de supabase-js hors package-lock — reproduit
+   localement, Deno 2.9.7). Le check tsc est vérifié en POSITIF (handler
+   corrigé = pass) et en NÉGATIF (le bug historique rejoué → TS2304
+   « Cannot find name 'cfgMondiale' » → échec de la CI).
+4. **Preuve en production** : après redéploiement de l'Edge Function
+   (workflow deploy-function vert sur `ccfa04ef`), résolution serveur vérifiée
+   BOUT-EN-BOUT sur un salon de test jetable `{ok:true, tour:2}` — idempotence
+   (2e appel = `dejaPublie`), config mondiale injectée dans l'état publié,
+   garde `tour_publie` posée. NB : `parties_chasse_peche` n'a PAS de policy
+   DELETE anon → le salon de test (`audit-probe-fix`) a été réduit à une tombe
+   inerte ; purge manuelle en SQL :
+   `delete from parties_chasse_peche where id = 'audit-probe-fix';`.
+
+Constats de l'audit NON corrigés (priorisés, à arbitrer) : RLS DELETE ouverte à anon
+sur `cp_events` (sabotage de barrière possible) ; retour de `saveLocal` jamais
+vérifié (quota localStorage dépassable en fin de partie, échec silencieux) ;
+identité démographique par NOM COMPLET (`mariage`/`mere`/`pere` = strings —
+collisions possibles à 16 000 habitants) ; doc drift Tourisme (AGENTS.md dit
+« crédité UNE fois » alors que le code actuel le traite en flux avec
+stock = production) ; mélange de protocoles v1/v2 possible dans un même salon ;
+bouton reset (✕) sans confirmation.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
