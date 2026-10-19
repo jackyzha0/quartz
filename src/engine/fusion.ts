@@ -25,6 +25,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import type { GameState, RouteCommerce, CiteLibre, LogEntry } from './types'
+import type { GameConfig } from '../config/defaultConfig'
 import { rejouerTransfertVille } from './villes'
 
 /** Section d'un joueur pour la barrière de fin de tour (cf. supabase/client.ts).
@@ -134,4 +135,18 @@ export function rejouerEvenementsPartages(
       rejouerTransfertVille(draft, ev.payload as { ville: string; src: number; dst: number })
     }
   }
+}
+
+/** CONFIG MONDIALE (règle 2026-10-19) : injecte la config mondiale dans
+ *  l'état fusionné AVANT runTurn — la mise à jour de la config se fait
+ *  EN FIN DE TOUR, comme tout le reste (sections, événements). Le créateur
+ *  publie ses éditions dans la ligne '__config__' à tout moment ; elles
+ *  prennent effet à la prochaine résolution du tour (Edge Function ou
+ *  repli local — même chemin, ici). `null` = pas de config mondiale
+ *  publiée : l'état garde sa config embarquée (comportement historique). */
+export function appliquerConfigMondiale(
+  draft: GameState,
+  cfg: GameConfig | null | undefined,
+): void {
+  if (cfg) draft.config = cfg
 }

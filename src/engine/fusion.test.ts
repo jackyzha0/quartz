@@ -140,3 +140,22 @@ test('événements de type inconnu ignorés silencieusement (forward compat)', (
   rejouerEvenementsPartages(out, [{ joueur: 1, type: 'type_du_futur', payload: {} }])
   assert.equal(JSON.stringify(out), avant)
 })
+
+test('CONFIG MONDIALE : injection à la résolution — le tour est calculé avec la config publiée', async () => {
+  const { appliquerConfigMondiale } = await import('./fusion')
+  const ref = base()
+  const out = fusionnerSections(ref, {})
+  // config périmée embarquée dans l'état du salon
+  assert.ok(out.config, 'l état de référence embarque une config')
+  // la config mondiale publiée par le créateur remplace l embarquée
+  const cfgMondiale = JSON.parse(JSON.stringify(out.config))
+  cfgMondiale.params = { ...(cfgMondiale.params ?? {}), armeePrixOr: 99 }
+  appliquerConfigMondiale(out, cfgMondiale)
+  assert.equal((out.config.params as unknown as Record<string, unknown>).armeePrixOr, 99,
+    'la config mondiale doit remplacer l embarquée avant runTurn')
+  // null = pas de config mondiale publiée → l embarquée est conservée
+  const out2 = fusionnerSections(ref, {})
+  const avant = out2.config
+  appliquerConfigMondiale(out2, null)
+  assert.equal(out2.config, avant, 'sans config mondiale, l embarquée fait foi')
+})

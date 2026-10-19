@@ -19,7 +19,7 @@
 // Payload : { salon: string, tour: number, attendus: number[] }
 // ═══════════════════════════════════════════════════════════════════════════
 import { createClient } from 'jsr:@supabase/supabase-js@2'
-import { runTurn, fusionnerSections, rejouerEvenementsPartages, migrerEtat } from './_engine.mjs'
+import { runTurn, fusionnerSections, rejouerEvenementsPartages, migrerEtat, appliquerConfigMondiale } from './_engine.mjs'
 
 const cors = {
   'Access-Control-Allow-Origin': '*',
@@ -101,6 +101,10 @@ Deno.serve(async (req) => {
       if (!errEvts) {
         rejouerEvenementsPartages(draft, evtsPartages ?? [])
       }
+
+      // CONFIG MONDIALE : injection avant l'exécution du tour — le
+      //  tour N+1 est calculé avec les règles publiées par le créateur.
+      appliquerConfigMondiale(draft, cfgMondiale)
 
       // 5. Exécution du tour par le moteur pur (bundle local testé).
       runTurn(draft)

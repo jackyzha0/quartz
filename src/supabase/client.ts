@@ -130,6 +130,9 @@ export async function sauverConfigMondiale(config: GameConfig): Promise<boolean>
 export async function loadRemote(id: string): Promise<GameState | null> {
   const sb = getSupabase()
   if (!sb) return null
+  // La ligne '__config__' n'est PAS une partie (config mondiale) :
+  //  jamais joignable comme salon.
+  if (id === CONFIG_MONDIALE_ID) return null
   const { data, error } = await sb.from(TABLE).select('state').eq('id', id).maybeSingle()
   if (error || !data) return null
   // format compact : reconstruire les champs omis (valeurs par défaut)

@@ -15,7 +15,7 @@ import React, {
 import type { GameState } from '../engine/types'
 import { runTurn } from '../engine/engine'
 import { migrerEtat } from '../engine/migrations'
-import { fusionnerSections, rejouerEvenementsPartages } from '../engine/fusion'
+import { fusionnerSections, rejouerEvenementsPartages, appliquerConfigMondiale } from '../engine/fusion'
 import type { SetupLine } from '../engine/setup'
 import { createGame } from '../engine/setup'
 import { cfgOf, convergerConfig, cloneDefaultConfig, type GameConfig } from '../config/defaultConfig'
@@ -106,18 +106,6 @@ function initialGlobalConfig(): GameConfig {
 export function GameProvider({ children }: { children: React.ReactNode }) {
   // ── Configuration commune (localStorage dédié, indépendant des parties) ──
   const [globalConfig, setGlobalConfig] = useState<GameConfig>(initialGlobalConfig)
-  // CONFIG MONDIALE (règle 2026-10-19) : adoption au démarrage — une
-  //  seule et unique config, indépendante des parties ; le localStorage
-  //  local sert d'amorçe (mode hors-ligne) puis est remplacé par la
-  //  config mondiale dès qu'elle est joignable.
-  useEffect(() => {
-    void (async () => {
-      const cfg = await remote.chargerConfigMondiale()
-      if (cfg) syncGlobalCfg(cfg)
-    })()
-    // une seule fois au montage ; syncGlobalCfg est stable
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   // ── État de jeu : une partie reprend TOUJOURS la configuration commune ──
   const [state, setState] = useState<GameState | null>(() => {
@@ -247,6 +235,16 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     globalConfigRef.current = clone
     setGlobalConfig(clone)
     storage.saveGlobalConfig(clone)
+    // N°1 (revue critique) : réinjecter dans l'état de partie courant —
+    //  l'UI de jeu lit state.config (75 sites cfgOf(state.config)) ;
+    //  sans cette réinjection, l'onglet Paramètres montrait la nouvelle
+    //  config pendant que tout le jeu tournait sur l'ancienne.
+    const s = stateRef.current
+    if (s && s.config !== clone) {
+      const s2 = { ...s, config: clone }
+      stateRef.current = s2
+      setState(s2)
+    }
   }, [])
 
   /**
@@ -265,9 +263,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     //  la partie peut modifier la configuration. Les autres joueurs
     //  voient l'onglet Paramètres en lecture seule (cf. ParamsPanel) ;
     //  ce garde-fou bloque aussi tout appel programmatique.
-    if (mode === 'supabase' && salon && stateRef.current?.createur != null
-      && stateRef.current.createur !== monNumeroRef.current) {
-      return
+    // N°2 (revue critique) : la publication mondiale exige une partie
+    //  en cours dont on est le créateur — sans partie (navigateur isolé),
+    //  l'édition reste LOCALE : elle ne peut pas réécrire la config
+    //  mondiale d'un salon auquel ce navigateur ne participe pas.
+    if (mode === 'supabase' && salon) {
+      const createur = stateRef.current?.createur
+      if (createur == null || createur !== monNumeroRef.current) return
     }
     const draft = JSON.parse(JSON.stringify(convergerConfig(globalConfigRef.current))) as GameConfig
     fn(draft)
@@ -446,6 +448,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     } as GameState
     for (const m of pendingMutators.current) m(draft)
     pendingMutators.current = []
+    // CONFIG MONDIALE : effet en fin de tour, comme tout le reste
+    //  (seulement en réseau : en local sans réseau, la config commune
+    //  locale fait foi — pas de serveur pour la config mondiale).
+    if (mode === 'supabase' && salon) {
+      appliquerConfigMondiale(draft, await remote.chargerConfigMondiale())
+    }
     runTurn(draft)
     stateRef.current = draft
     setState(draft)
@@ -604,6 +612,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const draft = fusionnerSections(ref, sections)
     const evts = await remote.lireEvenementsPartages(salon, tour)
     rejouerEvenementsPartages(draft, evts)
+    // CONFIG MONDIALE : effet en fin de tour, comme tout le reste —
+    //  le repli local applique exactement ce que l'Edge Function applique.
+    appliquerConfigMondiale(draft, await remote.chargerConfigMondiale())
     runTurn(draft)
     const ok = await remote.publierEtatFusionne(salon, draft)
     if (ok) {
@@ -668,6 +679,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     //  partagés — fusion seule.
     const draft = fusionnerSections(ref, sections)
     void attendus
+    // CONFIG MONDIALE : effet en fin de tour, comme tout le reste.
+    appliquerConfigMondiale(draft, await remote.chargerConfigMondiale())
     // exécuter le tour
     runTurn(draft)
     // publier le nouvel état de référence
@@ -722,13 +735,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const joinGame = useCallback(async (salonId: string): Promise<boolean> => {
     const s = await remote.loadRemote(salonId)
     if (!s) return false
-    // CONFIG MONDIALE (règle 2026-10-19) : la partie rejointe n'impose
-    //  PLUS sa config — la config mondiale prime sur tout état embarqué.
-    const cfgMondiale = await remote.chargerConfigMondiale()
-    if (cfgMondiale) {
-      syncGlobalCfg(cfgMondiale)
-      s.config = JSON.parse(JSON.stringify(convergerConfig(cfgMondiale))) as GameConfig
-    }
+    // CONFIG MONDIALE (règle 2026-10-19) : l'état du salon publié
+    //  contient DÉJÀ la config mondiale — elle y a été injectée à la
+    //  résolution (Edge Function ou repli local, appliquerConfigMondiale).
+    //  On l'adopte depuis l'état : une seule source, aucune divergence.
+    if (s.config) syncGlobalCfg(s.config)
     migrerEtat(s)
     setMode('supabase')
     setSalon(salonId)
@@ -763,22 +774,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     void (async () => {
       const distant = await remote.loadRemote(salonId)
       if (!distant) { persistSalon(''); return }
-      const cfgMondiale = await remote.chargerConfigMondiale()
       const local = stateRef.current
       const garderLocal = !!local && typeof distant.turn === 'number'
         && local.turn >= distant.turn
       setMode('supabase')
       setSalon(salonId)
-      if (garderLocal) {
-        // la config mondiale s'applique quand même (elle est indépendante
-        //  de l'état de partie).
-        if (cfgMondiale) syncGlobalCfg(cfgMondiale)
-        return
-      }
-      if (cfgMondiale) {
-        syncGlobalCfg(cfgMondiale)
-        distant.config = JSON.parse(JSON.stringify(convergerConfig(cfgMondiale))) as GameConfig
-      }
+      if (garderLocal) return
+      // L'état distant porte la config injectée à la dernière résolution.
+      if (distant.config) syncGlobalCfg(distant.config)
       migrerEtat(distant)
       setConflit(false)
       lastLocalEdit.current = 0
@@ -863,17 +866,6 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   // Abonnement realtime (mode supabase)
   useEffect(() => {
     if (mode !== 'supabase' || !salon) return
-    // CONFIG MONDIALE (règle 2026-10-19) : adoption périodique — la
-    //  config mondiale (ligne '__config__') prime sur toute config
-    //  embarquée dans une partie, quelle que soit la partie rejointe.
-    const pollConfig = setInterval(async () => {
-      try {
-        const cfg = await remote.chargerConfigMondiale()
-        if (cfg && JSON.stringify(cfg) !== JSON.stringify(globalConfigRef.current)) {
-          syncGlobalCfg(cfg)
-        }
-      } catch { /* réseau indisponible — le prochain tick réessaiera */ }
-    }, 5000)
     const unsub = remote.subscribeRemote(salon, (remoteState) => {
       // GARDE DE TOUR (correctif rollback aléatoire 2026-10-17) :
       //  ignorer tout état PLUS ANCIEN que l'état courant — même si
@@ -914,18 +906,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       //  fait foi (adoptée au montage + poll). On ne sync plus depuis
       //  remoteState.config : la partie n'impose jamais sa config.
     })
-    return () => {
-      clearInterval(pollConfig)
-      unsub()
-    }
+    return unsub
   }, [mode, salon, syncGlobalCfg])
 
-  // RÈGLE CRÉATEUR : en multijoueur seul le créateur édite la config ;
-  //  parties sans créateur (anciennes sauvegardes) → édition libre
-  //  (rétrocompatibilité).
+  // RÈGLE CRÉATEUR : en multijoueur seul le créateur édite la config.
+  //  createur OBLIGATOIRE (2026-10-19) : les anciennes parties sans
+  //  créateur sont supprimées — plus de fallback d'édition libre.
   const peutEditerConfig = mode !== 'supabase'
-    || state?.createur == null
-    || state.createur === monNumero
+    || state?.createur === monNumero
 
   const value = useMemo<GameContextValue>(() => ({
     state, mode, salon, saving, conflit, lastSavedAt,

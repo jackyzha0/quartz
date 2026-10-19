@@ -405,7 +405,7 @@ export {
   type DetailFaction, type RegleActive, type SourceRegle,
 } from './factions'
 export { supprimerVille, transfererVille, rejouerTransfertVille, appliquerBonusProximite, bonusProximite, normaliserEtat } from './villes'
-export { fusionnerSections, rejouerEvenementsPartages, type SectionJoueurFusion, type EvenementPartage } from './fusion'
+export { fusionnerSections, rejouerEvenementsPartages, appliquerConfigMondiale, type SectionJoueurFusion, type EvenementPartage } from './fusion'
 export { migrerEtat, SCHEMA_VERSION_ETAT } from './migrations'
 export { donnerPersonnage, marierPersonnages, numeroJoueurDe } from './cour'
 export {
