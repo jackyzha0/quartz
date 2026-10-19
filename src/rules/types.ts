@@ -85,9 +85,11 @@ export interface EffetGarnisonJoueur {
   valeur: number
 }
 
-/** Tourisme FLAT crédité UNE FOIS (à la construction — jamais un flux).
- *  N'est appliqué que par le site « construction » (construire), pas
- *  par le calcul de tour. */
+/** TYPE HISTORIQUE — plus AUCUN producteur depuis le retour Thibaut
+ *  2026-10-16 : le Tourisme est un FLUX NORMAL (fluxVille ; stock
+ *  recalculé en fin de tour — stock = production). Conservé dans le
+ *  contrat de types pour compatibilité des règles déjà saisies ; le
+ *  registre de constructions ne le produit plus. */
 export interface EffetTourismeInstantane {
   type: 'tourismeInstantane'
   valeur: number

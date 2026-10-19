@@ -2,24 +2,26 @@
 //  TESTS DE LA BANQUE D'EFFETS (node:test — `npm test src/rules/`)
 //
 //  1. Unitaires : chaque type d'effet, chaque condition ;
-//  2. ÉQUIVALENCE : pour TOUTES les constructions du référentiel,
-//     la banque doit redonner exactement les mêmes flux par tour,
-//     flux d'été, garnison et tourisme instantané que le moteur
-//     historique (effetsConstructionRef / instantanesConstructionRef /
-//     garnisonConstructionRef). C'est le verrou du refactor : la
-//     banque ne change AUCUN comportement.
+//  2. VOIE UNIQUE (retour Thibaut 2026-10-19 « tout ce qui a rapport à
+//     une production passe par la banque ») : les accès moteur
+//     (effetsConstructionRef / effetsEteConstructionRef /
+//     instantanesConstructionRef / garnisonConstructionRef) lisent
+//     EXCLUSIVEMENT la banque — et une construction SANS règle de
+//     banque ne produit RIEN (l'ancien repli d'analyse du texte de
+//     production a été retiré : plus de seconde interprétation).
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { appliquerRegles } from './effects/banque'
 import { reglesConstructions } from './registry'
-import type { Effet, RegleBanque } from './types'
+import type { RegleBanque } from './types'
 import { cfgOf } from '../engine/gameData'
 import { partieMock } from './mocks'
 import {
-  effetsConstructionRef, effetsEteConstructionRef, instantanesConstructionRef,
+  effetsConstructionRef, effetsEteConstructionRef, instantanesConstructionRef, eteSeulementRef,
 } from '../engine/constructions'
+import { productionTourismeBatiment } from '../engine/batiments'
 import { createGame } from '../engine/setup'
 
 // ── 1. Unitaires : types d'effets ───────────────────────────────────────────
@@ -105,9 +107,9 @@ test('conditions peuple / saison / vassal (ET logique)', () => {
   assert.equal(appliquerRegles([regleVassal], base).flux['Or'], undefined)
 })
 
-// ── 2. Équivalence référentiel complet ─────────────────────────────────────
+// ── 2. Voie unique : le moteur ne lit QUE la banque ───────────────────────
 
-test('ÉQUIVALENCE : la banque redonne exactement le moteur historique sur toutes les constructions', () => {
+test('VOIE UNIQUE : les accès moteur rendent exactement la contribution de la règle de banque', () => {
   const C = cfgOf(undefined)
   const refs = C.config.constructions ?? []
   assert.ok(refs.length > 50, 'référentiel constructions attendu')
@@ -122,12 +124,12 @@ test('ÉQUIVALENCE : la banque redonne exactement le moteur historique sur toute
     const ctx = partieMock()
     const out = appliquerRegles([regle], ctx)
 
-    // flux par tour (hors été, hors instantanés)
+    // flux par tour (hors été, hors garnison)
     const attenduFlux = effetsConstructionRef(ref)
     assert.deepEqual(
       Object.fromEntries(Object.entries(out.flux).filter(([, v]) => v !== 0)),
       Object.fromEntries(Object.entries(attenduFlux).filter(([, v]) => v !== 0)),
-      `flux différents pour ${ref.nom} : banque=${JSON.stringify(out.flux)} historique=${JSON.stringify(attenduFlux)}`,
+      `flux différents pour ${ref.nom} : banque=${JSON.stringify(out.flux)} moteur=${JSON.stringify(attenduFlux)}`,
     )
     // flux d'été
     const attenduEte = effetsEteConstructionRef(ref)
@@ -136,26 +138,53 @@ test('ÉQUIVALENCE : la banque redonne exactement le moteur historique sur toute
       Object.fromEntries(Object.entries(attenduEte).filter(([, v]) => v !== 0)),
       `flux été différents pour ${ref.nom}`,
     )
-    // instantanés : Garnison (état) et Tourisme (une fois) du moteur historique
+    // garnison (valeur d'état)
     const attenduInst = instantanesConstructionRef(ref)
-    const garnisonBanque = out.garnison
-    assert.equal(garnisonBanque, attenduInst['Garnison'] ?? 0, `garnison différente pour ${ref.nom}`)
-    const tourismeBanque = out.instantanes
-      .filter((e): e is Extract<Effet, { type: 'tourismeInstantane' }> => e.type === 'tourismeInstantane')
-      .reduce((acc, e) => acc + e.valeur, 0)
-    assert.equal(tourismeBanque, attenduInst['Tourisme'] ?? 0, `tourisme instantané différent pour ${ref.nom}`)
+    assert.equal(out.garnison, attenduInst['Garnison'] ?? 0, `garnison différente pour ${ref.nom}`)
   }
 })
 
-test('les constructions sans effets structurés ne sont pas migrées (repli historique préservé)', () => {
+test('SANS règle de banque : production NULLE sur tous les canaux (repli texte retiré)', () => {
   const refs = cfgOf(undefined).config.constructions ?? []
   const sansEffets = refs.filter((r) => !r.effets?.length)
-  assert.ok(sansEffets.length > 0, 'le repli texte reste nécessaire pour certaines entrées')
+  assert.ok(sansEffets.length > 0, 'des constructions sans effets structurés existent')
   for (const ref of sansEffets) {
-    // ces entrées restent gérées par le moteur historique : rien dans la banque
+    // ces entrées n'ont PAS de règle dans la banque…
     const regles = reglesConstructions(undefined).filter((r) => r.nom === ref.nom)
     assert.equal(regles.length, 0, `${ref.nom} ne doit pas être dans la banque sans effets structurés`)
+    // …et le moteur ne produit RIEN pour elles : plus AUCUN repli texte
+    //  (l'ancien parseProductionTexte a été retiré le 2026-10-19).
+    assert.deepEqual(effetsConstructionRef(ref), {}, `${ref.nom} : flux attendu nul`)
+    assert.deepEqual(effetsEteConstructionRef(ref), {}, `${ref.nom} : flux été attendu nul`)
+    assert.deepEqual(instantanesConstructionRef(ref), {}, `${ref.nom} : aucune valeur d'état attendue`)
   }
+})
+
+test('Tourisme = FLUX NORMAL via la banque (Chapelle +35 : ni instantané, ni stock cumulé)', () => {
+  const refs = cfgOf(undefined).config.constructions ?? []
+  const chapelle = refs.find((r) => r.nom === 'Chapelle')
+  assert.ok(chapelle?.effets?.length, 'la Chapelle doit avoir des effets structurés')
+  // le Tourisme se lit dans le FLUX de la règle de banque…
+  assert.equal(effetsConstructionRef(chapelle)['Tourisme'], 35)
+  // …et n'est PLUS un instantané « crédité une fois » (sémantique retirée).
+  assert.equal(instantanesConstructionRef(chapelle)['Tourisme'], undefined)
+  // idem productionTourismeBatiment (voie unique du stock = production).
+  const C = cfgOf(undefined)
+  assert.equal(productionTourismeBatiment('Chapelle', C, 'Ville'), 35)
+})
+
+test('Champ / Rizière : production d’ÉTÉ uniquement, lue sur la règle (canal « Nourr - été »)', () => {
+  const refs = cfgOf(undefined).config.constructions ?? []
+  const champ = refs.find((r) => r.nom === 'Champ')
+  assert.ok(champ, 'Champ présent dans le référentiel')
+  assert.equal(eteSeulementRef(champ), true, 'Champ ne produit qu’en été')
+  assert.equal(Object.keys(effetsConstructionRef(champ)).length, 0, 'Champ : aucun flux hors été')
+  assert.ok(Object.keys(effetsEteConstructionRef(champ)).length > 0, 'Champ : production d’été attendue')
+  // le Camp de bûcheron, lui, est un flux NORMAL (pas marqué été)
+  const camp = refs.find((r) => r.nom === 'Camp de bûcheron')
+  assert.ok(camp, 'Camp de bûcheron présent')
+  assert.equal(eteSeulementRef(camp), false)
+  assert.ok(Object.keys(effetsConstructionRef(camp)).length > 0, 'Camp de bûcheron : flux attendu')
 })
 
 test('runTurn fonctionne après création d’une partie (sanity moteur)', () => {

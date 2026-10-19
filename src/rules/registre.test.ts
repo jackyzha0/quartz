@@ -11,8 +11,8 @@
 //     dans un type = règle silencieusement ignorée) ;
 //   · les ids sont uniques et stables (le nom affiché peut changer,
 //     l'id jamais) ;
-//   · le chemin moteur réel consomme bien la banque (égalité avec
-//     le calcul historique, sur la config par défaut).
+//   · le chemin moteur réel EST la banque (voie unique de production
+//     depuis le 2026-10-19 — retour Thibaut).
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { test } from 'node:test'
@@ -81,7 +81,7 @@ test('registre : la traduction referentiels → banque est exhaustive (aucun eff
   }
 })
 
-test('registre : le chemin moteur consomme la banque (égalité avec le calcul historique)', () => {
+test('registre : le chemin moteur EST la banque (voie unique de production)', () => {
   const refs = cfgOf(undefined).config.constructions ?? []
   const cle = (nom: string, groupe?: string) => `${nom}|${groupe ?? ''}`
   const regles = new Map(reglesConstructions(undefined).map((r) => [cle(r.nom, r.groupe), r]))
@@ -100,12 +100,11 @@ test('registre : le chemin moteur consomme la banque (égalité avec le calcul h
     )
     // Garnison : idem via garnisonConstructionRef (chemin réel)
     assert.equal(out.garnison, garnisonConstructionRef(ref), `garnison divergente pour ${ref.nom}`)
-    // Tourisme instantané : la banque le crédite comme flux (retour
-    //  Thibaut 2026-10-16) — cohérence avec instantanesConstructionRef
-    //  qui ne garde que la Garnison comme instantané.
+    // Le Tourisme est un FLUX de la banque (retour Thibaut 2026-10-16) :
+    //  instantanesConstructionRef ne rend plus QUE la Garnison.
     const tourismeBanque = Object.entries(out.flux).find(([r]) => r === 'Tourisme')?.[1] ?? 0
     const attenduInst = instantanesConstructionRef(ref)
-    assert.ok(!('Tourisme' in attenduInst) || true, 'le Tourisme est un flux, pas un instantané (retour Thibaut)')
+    assert.equal(attenduInst['Tourisme'], undefined, 'le Tourisme n’est plus un instantané')
     void tourismeBanque
   }
   assert.ok(verifiees > 20, `trop peu de règles vérifiées contre le moteur (${verifiees})`)

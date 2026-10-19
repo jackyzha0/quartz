@@ -9,7 +9,7 @@ import type { GameState, Player, PlayerRecap } from './types'
 import type { Rng } from './rng'
 import { cfgOf } from './gameData'
 import { bump, fullName } from './shared'
-import { tourismeStatiqueBatiment } from './batiments'
+import { productionTourismeBatiment } from './batiments'
 import { detailGainsVille } from './economie'
 
 // ── Influence culturelle (ApplyCultureInfluence) ─────────────────────────
@@ -21,8 +21,8 @@ import { detailGainsVille } from './economie'
 function tourismeVilleDe(state: GameState, p: Player, ville: import('./types').City): number {
   const C = cfgOf(state.config)
   let t = 0
-  for (const b of ville.batiments ?? []) t += tourismeStatiqueBatiment(b, C, ville.type)
-  for (const a of ville.amenagements ?? []) t += tourismeStatiqueBatiment(a, C, ville.type)
+  for (const b of ville.batiments ?? []) t += productionTourismeBatiment(b, C, ville.type)
+  for (const a of ville.amenagements ?? []) t += productionTourismeBatiment(a, C, ville.type)
   const d = detailGainsVille(state, p, ville, C)
   t += Math.max(0, (d.taxes['Tourisme'] ?? 0) * C.p.gainsCrediteStock)
   return t

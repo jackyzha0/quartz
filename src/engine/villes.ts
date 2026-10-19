@@ -25,7 +25,7 @@
 import type { Character, City, GameState, Player } from './types'
 import { cfgOf, type Cfg } from './gameData'
 import { isNobleDyn } from './shared'
-// (M6 2026-10-19) : tourismeStatiqueBatiment n'est plus importé ici —
+// (M6 2026-10-19) : productionTourismeBatiment n'est plus importé ici —
 //  le transfert de ville passe par resynchroniserTourisme (stock =
 //  production courante), plus de crédit « statique » manuel.
 import { resynchroniserTourisme } from './regimes'
@@ -87,11 +87,10 @@ export function transfererVille(
   // M6 (audit 2026-10-19, unification) : Tourisme = stock recalculé sur
   //  la production courante (retour Thibaut 2026-10-16) — CHAQUE côté est
   //  resynchronisé APRÈS le déplacement (le donneur sans la ville, le
-  //  receveur avec). L'ancien crédit « statique » manuel
-  //  (tourismeStatiqueBatiment par bâtiment, posé AVANT le push de la
-  //  ville) approximait la production sans les canaux flux
-  //  (banque/commerce) et était écrasé au resync du tour suivant —
-  //  incohérence transitoire supprimée.
+  //  receveur avec). L'ancien crédit « statique » manuel par bâtiment
+  //  (posé AVANT le push de la ville) approximait la production sans
+  //  les canaux flux (banque/commerce) et était écrasé au resync du
+  //  tour suivant — incohérence transitoire supprimée.
   p.villes.splice(idx, 1)
   resynchroniserTourisme(state, p, `ville « ${ville.nom} » transférée à ${cible.nom}`)
   cible.villes.push(ville)

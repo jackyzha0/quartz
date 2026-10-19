@@ -363,7 +363,7 @@ export {
 export {
   effetsTourBatiment, effetsBatimentsVille, appliquerEffetsBatiments,
   garnisonBatiment, coutBatiment, detailsBatimentsJoueur, batimentRef,
-  batimentsConstructionsRefs, tourismeStatiqueBatiment, type LigneBatiment,
+  batimentsConstructionsRefs, productionTourismeBatiment, type LigneBatiment,
 } from './batiments'
 export {
   AMENAGEMENTS, amenagementDef, amenagementRef, amenagementsDefs, aCampDeBatisseurs,
@@ -373,8 +373,8 @@ export {
 } from './amenagements'
 export {
   constructionsRefs, constructionRef, prerequisConstruction, amenagementsRefs, batimentsRefs,
-  parseCoutTexte, parseProductionTexte, coutBatimentRef, coutConstructionRef,
-  effetsConstructionRef, effetsConstructionEntries, effetsEteConstructionRef,
+  parseCoutTexte, coutBatimentRef, coutConstructionRef,
+  effetsConstructionRef, effetsEteConstructionRef,
   instantanesConstructionRef, eteSeulementRef, garnisonConstructionRef,
   resumeConstruction, reductionCampDeBatisseurs, type ConstructionRef,
   type EffetConstruction,

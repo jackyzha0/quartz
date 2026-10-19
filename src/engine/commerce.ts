@@ -84,13 +84,14 @@ export interface RessourceCopiable {
 }
 
 /** Ressources COPiables d'un aménagement : flux POSITIFS (hors été) et
- *  production d'été positive — les ressources instantanées (Tourisme, Garnison — valeur d'état, RESSOURCES_INSTANTANEES) est
- *  exclue par effetsConstructionRef / effetsEteConstructionRef
- *  (marqueur (s)) ; le Tourisme, redevenu un flux normal (retour Thibaut
+ *  production d'été positive — la Garnison (valeur d'état, canal
+ *  dédié de la banque) est exclue par effetsConstructionRef /
+ *  effetsEteConstructionRef ; le Tourisme, flux NORMAL (retour Thibaut
  *  2026-10-16), EST copiable — CONFIRMÉ par arbitrage Thibaut 2026-10-19
  *  (« le Tourisme peut être copié : le stock n'est jamais mis à jour avec
- *  la production, il est recalculé pour l'égaler — stock = production »), les effets négatifs
- *  (coûts, ex. Charbon −1 du Moulin à vent) ne sont pas copiables. */
+ *  la production, il est recalculé pour l'égaler — stock = production ») ;
+ *  les effets négatifs (coûts, ex. Charbon −1 du Moulin à vent) ne sont
+ *  pas copiables. */
 export function ressourcesCopiables(nom: string, cfg?: GameConfig): RessourceCopiable[] {
   // 2026-10-19 (correctif cycle d'import, incident CI #36) : constructionRef
   //  remplace amenagementRef (alias strict — amenagements.ts l'implémente

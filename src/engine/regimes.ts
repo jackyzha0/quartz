@@ -23,7 +23,7 @@ import type { City, GameState, Player, Saison } from './types'
 import { detailGainsVille } from './economie'
 import { cfgOf, cultureDef, type Cfg } from './gameData'
 import { aMinistre, portefeuillesDuJoueur } from './ministeres'
-import { garnisonBatiment, tourismeStatiqueBatiment } from './batiments'
+import { garnisonBatiment, productionTourismeBatiment } from './batiments'
 import { rangPaysNiveau } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
 import { garnisonProgresVille, lignesGarnisonProgresVille, garnisonMinimaleProgres, fluxProgresJoueur } from './progresAuto'
@@ -251,12 +251,12 @@ export function tourismeCourant(state: GameState, p: Player, C: Cfg): number {
   const portefeuilles = portefeuillesDuJoueur(state, p)
   total += 2 * portefeuilles.filter((m) => m === 'Maître de cour').length
   total += 20 * portefeuilles.filter((m) => m === 'Légat du pontificat').length
-  // 6. constructions statiques (Chapelle +35…) : tourisme statique
-  //  des bâtiments/aménagements — valeur d'état, partie intégrante
-  //  de la « production » de Tourisme du joueur.
+  // 6. CONSTRUCTIONS (Chapelle +35, Bahamutt +16…) : production Tourisme
+  //  des bâtiments/aménagements, lue sur la règle de BANQUE (voie unique
+  //  depuis le 2026-10-19 — même valeur que le canal Bâtiments du récap).
   for (const v of p.villes) {
-    for (const b of v.batiments) total += tourismeStatiqueBatiment(b, C, v.type)
-    for (const a of v.amenagements ?? []) total += tourismeStatiqueBatiment(a, C, v.type)
+    for (const b of v.batiments) total += productionTourismeBatiment(b, C, v.type)
+    for (const a of v.amenagements ?? []) total += productionTourismeBatiment(a, C, v.type)
   }
   // 7. COMMERCE (arbitrage Thibaut 2026-10-19, clôture du B4 de l'audit) :
   // le Tourisme copié par une route commerciale est une production comme

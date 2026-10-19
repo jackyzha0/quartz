@@ -13,6 +13,7 @@
 
 import { DEFAULT_CONFIG, type GameConfig, type ConstructionRef, type EffetConstruction } from '../config/defaultConfig'
 import { reglePourConstruction, contexteLectureSeule } from '../rules/registry'
+import type { Effet } from '../rules/types'
 import { appliquerRegles } from '../rules/effects/banque'
 
 export type { ConstructionRef, EffetConstruction }
@@ -49,11 +50,9 @@ export function batimentsRefs(cfg?: GameConfig): ConstructionRef[] {
   return constructionsRefs(cfg).filter((c) => c.categorie === 'Bâtiment')
 }
 
-// ── Analyseurs de texte (coût et production) ───────────────────────────
+// ── Analyseurs de texte (coût uniquement) ───────────────────────────────
 
 const NOMBRE = String.raw`\d+(?:[.,]\d+)?`
-/** Ressources de flux (Garnison et Habitants exclus : valeurs d'état). */
-export const RESSOURCES_FLUX = 'Or|Bois|Pierre|Fer|Charbon|Bétail|Soie|Nourritures?|Science'
 /** Ressources telles qu'elles apparaissent dans les textes de coût du classeur. */
 const RESSOURCES_COUT = 'Or|Bois|Pierres?|Fer|Charbon|Bétails?|Soie|Nourritures?|Science|Tourisme'
 
@@ -77,57 +76,32 @@ export function parseCoutTexte(texte: string): Record<string, number> {
   return out
 }
 
-/** Découpe un texte en phrases exploitables. */
-function phrases(texte: string): string[] {
-  return texte
-    .replace(/\.\s+/g, '.\n')
-    .split(/\n+/)
-    .map((p) => p.trim())
-    .filter(Boolean)
-}
+// ── Effets (marqueur (s)) : la BANQUE D'EFFETS est la voie UNIQUE ──────
+// Retour Thibaut 2026-10-16, renforcé le 2026-10-19 (« tout ce qui a
+// rapport à une production passe par la banque ») : chaque construction
+// porte ses effets en tableau structuré `effets` (paramétrable dans
+// l'onglet 🎛 Paramètres), traduit en RÈGLE par le registre
+// (rules/registry.ts) et interprété UNE fois par la banque
+// (rules/effects/banque.ts). Sémantique :
+//   · le Tourisme est un FLUX NORMAL (comme le Bois) — affiché dans les
+//     récaps de ville et de tour ; seule différence : son stock est
+//     RECALCULÉ en fin de tour pour égaler la production courante
+//     (stock = production), jamais cumulé (resynchroniserTourisme) ;
+//   · la Garnison est une valeur D'ÉTAT (défense tant que la construction
+//     tient) — canal dédié, jamais un flux ;
+//   · les effets marqués « été » (Champ, Rizière) produisent uniquement
+//     pendant l'Été (canal « Nourr - été »).
+// L'ancien repli d'analyse du TEXTE de production (parseProductionTexte)
+// a été RETIRÉ le 2026-10-19 : une construction sans règle de banque ne
+// produit RIEN — il n'existe plus de seconde interprétation des effets.
 
-/** Analyse une phrase et renvoie les flux par tour qu'elle décrit. */
-function analyserPhrase(phrase: string): Record<string, number> {
-  // Les réductions de coût ne sont pas des flux par tour.
-  if (/coût/i.test(phrase)) return {}
-  const out: Record<string, number> = {}
-  const push = (negatif: boolean, nb: string, res: string) => {
-    let v = parseFloat(nb.replace(',', '.'))
-    if (negatif) v = -v
-    out[normaliserRessource(res)] = (out[normaliserRessource(res)] ?? 0) + v
-  }
-  // Consommation : « Consomme 10 Nourriture par tour »
-  if (/consomme/i.test(phrase)) {
-    const re = new RegExp(String.raw`(${NOMBRE})\s*(?:de\s+)?(${RESSOURCES_FLUX})\b`, 'gi')
-    for (const m of phrase.matchAll(re)) push(true, m[1], m[2])
-    return out
-  }
-  // Signe avant la ressource : « +1 Bois par tour », « −10 Or »
-  const reSigne = new RegExp(String.raw`([+\-\u2212])\s*(${NOMBRE})\s*(${RESSOURCES_FLUX})\b`, 'gi')
-  for (const m of phrase.matchAll(reSigne)) push(m[1] === '-' || m[1] === '\u2212', m[2], m[3])
-  // Ressource avant le signe : « Tourisme +15 »
-  const reInverse = new RegExp(String.raw`(${RESSOURCES_FLUX})\s*([+\-\u2212])\s*(${NOMBRE})\b`, 'gi')
-  for (const m of phrase.matchAll(reInverse)) push(m[2] === '-' || m[2] === '\u2212', m[3], m[1])
-  return out
-}
-
-/** Cache des productions analysées, par (nom, texte de production). */
-const CACHE: Map<string, Record<string, number>> = new Map()
-
-/** Analyse le texte de production EXACT d'une construction en flux par tour. */
-export function parseProductionTexte(nom: string, texte: string): Record<string, number> {
-  if (!texte) return {}
-  const cle = `${nom}|${texte}`
-  const cache = CACHE.get(cle)
-  if (cache) return cache
-  const out: Record<string, number> = {}
-  for (const phrase of phrases(texte)) {
-    for (const [res, v] of Object.entries(analyserPhrase(phrase))) {
-      out[res] = (out[res] ?? 0) + v
-    }
-  }
-  CACHE.set(cle, out)
-  return out
+/** Contribution de la banque pour une construction (règle identifiée par
+ *  (nom, groupe)). Retourne undefined si la construction n'a pas de
+ *  règle — production nulle, par convention ci-dessus. */
+function contributionBanque(ref: ConstructionRef): ReturnType<typeof appliquerRegles> | undefined {
+  const regle = reglePourConstruction(ref)
+  if (!regle) return undefined
+  return appliquerRegles([regle], contexteLectureSeule())
 }
 
 // ── Accès moteur : coûts et effets ─────────────────────────────────────
@@ -143,93 +117,39 @@ export function coutBatimentRef(nom: string, cfg?: GameConfig, groupe?: string):
   return ref ? coutConstructionRef(ref) : {}
 }
 
-// ── Effets STRUCTURÉS (marqueur (s)) : case RESSOURCE + case QUANTITÉ ──
-// Retour Thibaut : plus de texte à analyser — chaque construction porte
-// ses effets en tableau structuré `effets` (paramétrable dans l'onglet
-// 🎛 Paramètres). Tourisme et Garnison sont des ressources INSTANTANÉES :
-// le Tourisme est crédité UNE FOIS à la construction, la Garnison est une
-// valeur d'état — jamais des flux par tour. Le repli texte ci-dessus reste
-// utilisé pour les configs sans `effets` (anciennes sauvegardes).
-
-/**
- * Ressources instantanées : jamais créditées comme flux par tour.
- * La Garnison reste une valeur d'état. Le Tourisme (retour Thibaut
- * 2026-10-16) redevient un FLUX normal — affiché dans les récaps de
- * ville et de tour comme le Bois ; seule différence : le moteur
- * recalcul le stock (= production) au lieu de le cumuler.
- */
-const RESSOURCES_INSTANTANEES = new Set(['Garnison'])
-
-/** Effets structurés d'une construction — tableau `effets` prioritaire,
- *  repli sur l'analyse du texte de production (comportement historique). */
-export function effetsConstructionEntries(ref: ConstructionRef): EffetConstruction[] {
-  if (ref.effets) return ref.effets
-  const ete = eteSeulementRef(ref)
-  return Object.entries(parseProductionTexte(ref.nom, ref.production))
-    .map(([ressource, quantite]) => ({ ressource, quantite, ...(ete ? { ete: true } : {}) }))
-}
-
-/** Effets par tour FLUX d'une construction : hors production d'ÉTÉ (canal
- *  « Nourr - été ») et hors ressources instantanées (Tourisme/Garnison). */
+/** Effets par tour FLUX d'une construction : production régulière de la
+ *  règle de banque (le Tourisme est un flux NORMAL ; la Garnison, valeur
+ *  d'état, passe par son canal dédié ; l'Été par le canal été). Sans
+ *  règle : production nulle. */
 export function effetsConstructionRef(ref: ConstructionRef): Record<string, number> {
-  // BRANCHEMENT BANQUE D'EFFETS (étape 2) : les constructions à effets
-  //  structurés passent par la banque (rules/registry → rules/effects)
-  //  — la règle devient une DONNÉE ; le repli texte (configs sans
-  //  `effets`) reste géré ici, inchangé.
-  const regle = reglePourConstruction(ref)
-  if (regle) {
-    const out = appliquerRegles([regle], contexteLectureSeule())
-    return out.flux
-  }
-  if (!ref.effets) return eteSeulementRef(ref) ? {} : parseProductionTexte(ref.nom, ref.production)
-  const out: Record<string, number> = {}
-  for (const e of ref.effets) {
-    if (e.ete || RESSOURCES_INSTANTANEES.has(e.ressource)) continue
-    out[e.ressource] = (out[e.ressource] ?? 0) + e.quantite
-  }
-  return out
+  const c = contributionBanque(ref)
+  return c ? c.flux : {}
 }
 
 /** Production d'ÉTÉ d'une construction (canal « Nourr - été » : Champ,
- *  Rizière) — effets marqués « été ». */
+ *  Rizière) — effets marqués « été » dans la banque. */
 export function effetsEteConstructionRef(ref: ConstructionRef): Record<string, number> {
-  if (!ref.effets) return eteSeulementRef(ref) ? parseProductionTexte(ref.nom, ref.production) : {}
-  const out: Record<string, number> = {}
-  for (const e of ref.effets) {
-    if (!e.ete || RESSOURCES_INSTANTANEES.has(e.ressource)) continue
-    out[e.ressource] = (out[e.ressource] ?? 0) + e.quantite
-  }
-  return out
+  const c = contributionBanque(ref)
+  return c ? c.fluxEte : {}
 }
 
-/** Ressources INSTANTANÉES d'une construction : Tourisme (crédité une
- *  fois à la construction) et Garnison (valeur d'état tant qu'elle tient). */
+/** Valeur d'ÉTAT d'une construction : la Garnison (défense tant que la
+ *  construction tient). Le Tourisme n'y figure PLUS : flux normal depuis
+ *  le retour Thibaut 2026-10-16 (voir la sémantique en tête de section). */
 export function instantanesConstructionRef(ref: ConstructionRef): Record<string, number> {
-  const out: Record<string, number> = {}
-  if (ref.effets) {
-    for (const e of ref.effets) {
-      if (!RESSOURCES_INSTANTANEES.has(e.ressource)) continue
-      out[e.ressource] = (out[e.ressource] ?? 0) + e.quantite
-    }
-    return out
-  }
-  const texte = [ref.description, ref.production].filter(Boolean).join(' ')
-  const mT = texte.match(/Tourisme\s*\+?\s*(\d+(?:[.,]\d+)?)/i)
-    ?? texte.match(/\+\s*(\d+(?:[.,]\d+)?)\s*Tourisme/i)
-  if (mT) out.Tourisme = parseFloat(mT[1].replace(',', '.'))
-  const mG = ref.description.match(/Garnison\s*\+?\s*(\d+)/i)
-  if (mG) out.Garnison = parseInt(mG[1], 10)
-  return out
+  const c = contributionBanque(ref)
+  if (!c || !c.garnison) return {}
+  return { Garnison: c.garnison }
 }
 
-/** Une construction ne produit-t-elle qu'en Été ? */
+/** Une construction ne produit-t-elle qu'en Été ? (Champ, Rizière — lu
+ *  sur la RÈGLE de banque : tout flux qu'elle porte est marqué été.) */
 export function eteSeulementRef(ref: ConstructionRef): boolean {
-  if (ref.effets) {
-    return ref.effets.length > 0
-      && ref.effets.some((e) => e.ete)
-      && ref.effets.every((e) => e.ete || RESSOURCES_INSTANTANEES.has(e.ressource))
-  }
-  return /en\s+été/i.test(ref.production)
+  const regle = reglePourConstruction(ref)
+  const flux = (regle?.effets ?? []).filter(
+    (e): e is Extract<Effet, { type: 'fluxVille' }> => e.type === 'fluxVille',
+  )
+  return flux.length > 0 && flux.every((e) => e.ete)
 }
 
 /** Bâtiment (ou aménagement) prérequis d'une construction, extrait du
@@ -244,20 +164,17 @@ export function prerequisConstruction(ref: Pick<ConstructionRef, 'cout'> | undef
   return m[1].trim().replace(/\s*$/,'') || null
 }
 
-/** Garnison statique accordée par une construction (valeur d'état, pas un flux). */
+/** Garnison statique accordée par une construction (valeur d'état, pas un
+ *  flux) — via la banque d'effets ; sans règle : 0. */
 export function garnisonConstructionRef(ref: ConstructionRef): number {
-  // BRANCHEMENT BANQUE (étape 2) : garnison via la banque d'effets.
-  const regle = reglePourConstruction(ref)
-  if (regle) {
-    return appliquerRegles([regle], contexteLectureSeule()).garnison
-  }
-  const m = ref.description.match(/Garnison\s*\+?\s*(\d+)/i)
-  return m ? parseInt(m[1], 10) : 0
+  const c = contributionBanque(ref)
+  return c ? c.garnison : 0
 }
 
 /** Résumé affichable des effets d'une construction (badges page Pays et
- *  wiki Référentiels) : « +2 Or / tour · été : +10 Nourriture · +5
- *  Tourisme (à la construction) · Garnison +40 ». */
+ *  wiki Référentiels) : « +2 Or / tour · été : +10 Nourriture ·
+ *  Garnison +40 ». Le Tourisme apparaît comme flux (« +16 Tourisme /
+ *  tour ») conformément à la sémantique stock = production. */
 export function resumeConstruction(ref: ConstructionRef | undefined): string {
   if (!ref) return ''
   const parts: string[] = []
@@ -270,7 +187,6 @@ export function resumeConstruction(ref: ConstructionRef | undefined): string {
     parts.push('été : ' + ete.map(([r, v]) => `${v > 0 ? '+' : ''}${v} ${r}`).join(', '))
   }
   const inst = instantanesConstructionRef(ref)
-  if (inst.Tourisme) parts.push(`+${inst.Tourisme} Tourisme (à la construction)`)
   if (inst.Garnison) parts.push(`Garnison +${inst.Garnison}`)
   return parts.join(' · ')
 }
