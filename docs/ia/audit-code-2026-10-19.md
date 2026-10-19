@@ -27,7 +27,7 @@ Actions et de l'Edge Function déployée. Aucune écriture sur la partie en lign
 | R3 | Retour de `saveLocal` jamais vérifié (quota localStorage) | ✅ résolu (arbitrage « bandeau d'alerte » + `dea1997`, 2026-10-19) |
 | R4 | Fusion multijoueur sans validation de forme | ✅ résolu (arbitrage « rejet + journal visible » + `3b964cf`, 2026-10-19) |
 | R5 | Mélange de protocoles v1/v2 possible dans un salon | ✅ résolu par brûlage du protocole v1 (`27a5173c` + `166a7ab`, 2026-10-19) |
-| M1-M7 | Problèmes moyens | ⬜ à arbitrer (P2) |
+| M1-M7 | Problèmes moyens | ✅ traités (arbitrages Thibaut 2026-10-19 : M1 « ids purs », M7 « retrait complet » ; `5576b25` + `4d13324` + `c41ac32` + `13a6520`) |
 
 Preuve en production après correctif : résolution serveur vérifiée bout-en-bout sur
 un salon de test (`{ok:true, tour:2}`), idempotence confirmée (2e appel =
@@ -227,13 +227,13 @@ navigateurs est silencieusement ignorée.
 
 | # | Où | Problème | Détail / suggestion |
 |---|---|---|---|
-| M1 | `engine/types.ts` (et `sante.ts`, `PopulationTable.tsx`, `naissances.ts`) | **Identité démographique par nom complet** : `mariage`, `mere`, `pere` sont des strings « Prénom Nom » | À 16 000 habitants, les collisions de noms complets sont probables (générateurs à listes finies) → mauvais conjoint veuvé, mauvaise filiation. Les `id` existent déjà : migration d'état (nouvelle version dans `migrations.ts`) vers `mariageId`/`mereId`/`pereId` avec repli nom. C'est le plus gros chantier de fond du moteur. |
-| M2 | `state/store.tsx` (`setGlobalCfg`) | **Branche morte** : `if (stateRef.current) return` en tête, puis `const s = stateRef.current; if (s) {...}` — jamais atteinte | Reste du refactor « config hors partie » ; à supprimer pour éviter toute confusion. |
-| M3 | `components/TurnBar.tsx` (bouton `✕`) | **Reset sans confirmation** | Un clic sur `✕` efface la sauvegarde locale + le salon persisté, sans `window.confirm` (les actions destructrices voisines en ont toutes un). En multijoueur, le salon distant survit (rejoignable), mais la partie locale est perdue. |
-| M4 | `engine/constructions.ts` (`constructionRef`) | **Fallback silencieux par nom** : `(groupe ? liste.find(groupe) : undefined) ?? liste[0]` | Avec les constructions doublées Ville/Château, un groupe erroné retourne la variante « Ville » sans signal. Acceptable par pragmatisme, mais logguer le repli en debug. |
-| M5 | `villes.ts` / `economie.ts` / `titres.ts` | **Associations par nom de ville** (gouverneur, `c.ville`, filtres de population) | Le renommage automatique des villes transférées est géré (`Capitale 2`), mais tout renommage manuel futur casserait gouverneurs + rattachements. À garder en tête pour toute évolution UI de renommage. |
-| M6 | `sante.ts` / fusion | `transfererVille` crédite un Tourisme « statique » à la réception (`tourismeStatiqueBatiment`), alors que la sémantique actuelle (retour 2026-10-16) est « stock = production courante » (resynchronisé au prochain tour) | Incohérence transitoire sans gravité (le resync du tour suivant répare), mais à unifier. |
-| M7 | `supabase/schema-v2.sql` + Edge Function | **Verrou consultatif sur connexions poolées** : `pg_try_advisory_lock` via PostgREST tient sur une connexion du pool ; l'`unlock` (autre requête, autre connexion probable) ne libère rien | En pratique sans conséquence (la vraie protection = `tour_publie` + index unique + déterminisme de `runTurn`), mais la promesse « un seul exécutant » n'est pas garantie. À documenter comme garde-fous réels : idempotence par `tour_publie`, index unique, déterminisme. |
+| M1 | `engine/types.ts` (et `sante.ts`, `PopulationTable.tsx`, `naissances.ts`) | **Identité démographique par nom complet** : `mariage`, `mere`, `pere` sont des strings « Prénom Nom » | À 16 000 habitants, les collisions de noms complets sont probables (générateurs à listes finies) → mauvais conjoint veuvé, mauvaise filiation. Les `id` existent déjà : migration d'état (nouvelle version dans `migrations.ts`) vers `mariageId`/`mereId`/`pereId` avec repli nom. C'est le plus gros chantier de fond du moteur. **→ RÉSOLU (`5576b25`, arbitrage Thibaut « ids purs ») : champs `mariageId`/`mereId`/`pereId`/`pereBioId` ajoutés à Character (noms conservés pour l'affichage, tenus en sync à chaque mutation) ; TOUTE résolution passe par les ids (veuvage sante/armees/UI, filiation et arbre généalogique, consanguinité, index de fecondité) ; SANS rattrapage des vieilles sauvegardes (elles n'ont plus lieu d'exister — leurs relations tombent à null) ; compaction : les ids null sont omis (DEFAUTS_PERSO) ; 3 tests M1 dans mutateurs.test.ts.** |
+| M2 | `state/store.tsx` (`setGlobalCfg`) | **Branche morte** : `if (stateRef.current) return` en tête, puis `const s = stateRef.current; if (s) {...}` — jamais atteinte | Reste du refactor « config hors partie » ; à supprimer pour éviter toute confusion. **→ RÉSOLU (`c41ac32`) : branche supprimée, commentaire RETRAIT posé.** |
+| M3 | `components/TurnBar.tsx` (bouton `✕`) | **Reset sans confirmation** | Un clic sur `✕` efface la sauvegarde locale + le salon persisté, sans `window.confirm` (les actions destructrices voisines en ont toutes un). En multijoueur, le salon distant survit (rejoignable), mais la partie locale est perdue. **→ RÉSOLU (`c41ac32`) : window.confirm AVANT l'effacement (comme les actions destructrices voisines).** |
+| M4 | `engine/constructions.ts` (`constructionRef`) | **Fallback silencieux par nom** : `(groupe ? liste.find(groupe) : undefined) ?? liste[0]` | Avec les constructions doublées Ville/Château, un groupe erroné retourne la variante « Ville » sans signal. Acceptable par pragmatisme, mais logguer le repli en debug. **→ RÉSOLU (`c41ac32`) : repli ASSUMÉ et documenté dans le docblock de constructionRef (moteur pur, zéro console — pas de log possible en chemin chaud d'affichage).** |
+| M5 | `villes.ts` / `economie.ts` / `titres.ts` | **Associations par nom de ville** (gouverneur, `c.ville`, filtres de population) | Le renommage automatique des villes transférées est géré (`Capitale 2`), mais tout renommage manuel futur casserait gouverneurs + rattachements. À garder en tête pour toute évolution UI de renommage. **→ DOCUMENTÉ (`4d13324`) : note M5 posée dans transfererVille (villes.ts) — le renommage MANUEL devra répercuter le nom sur gouverneurs + populations + rattachements.** |
+| M6 | `sante.ts` / fusion | `transfererVille` crédite un Tourisme « statique » à la réception (`tourismeStatiqueBatiment`), alors que la sémantique actuelle (retour 2026-10-16) est « stock = production courante » (resynchronisé au prochain tour) | Incohérence transitoire sans gravité (le resync du tour suivant répare), mais à unifier. **→ RÉSOLU (`4d13324`) : le receveur est resynchronisé APRÈS avoir reçu la ville (stock = production courante, canaux flux compris) ; le donneur resynchronisé après la perte ; le crédit « statique » manuel par bâtiment SUPPRIMÉ.** |
+| M7 | `supabase/schema-v2.sql` + Edge Function | **Verrou consultatif sur connexions poolées** : `pg_try_advisory_lock` via PostgREST tient sur une connexion du pool ; l'`unlock` (autre requête, autre connexion probable) ne libère rien | En pratique sans conséquence (la vraie protection = `tour_publie` + index unique + déterminisme de `runTurn`), mais la promesse « un seul exécutant » n'est pas garantie. À documenter comme garde-fous réels : idempotence par `tour_publie`, index unique, déterminisme. **→ RÉSOLU (`13a6520`, arbitrage Thibaut « retrait complet ») : les 2 appels RPC retirés du handler ; fonctions `cp_advisory_*` DROPPÉES du schéma (drop if exists pour les installations existantes) ; les vrais garde-fous (tour_publie, index unique, déterminisme de runTurn) documentés en tête du handler.** |
 
 ## 🟢 Dette mineure / cosmétique
 
@@ -307,12 +307,16 @@ navigateurs est silencieusement ignorée.
    SANS OBJET : le protocole v1 a été brûlé le 2026-10-19 (`27a5173c`).
 
 **P2 — chantiers de fond**
-7. Migration démographie vers des ids (`mariageId`/`mereId`/`pereId`, migration
-   versionnée) — M1.
+7. ✅ Migration démographie vers des ids — FAIT le 2026-10-19 (`5576b25`,
+   arbitrage Thibaut « ids purs » : `mariageId`/`mereId`/`pereId`/`pereBioId`,
+   PAS de migration de rattrapage des vieilles sauvegardes — elles n'ont
+   plus lieu d'exister).
 8. Réaligner les commentaires internes Tourisme de `constructions.ts` (AGENTS.md
-   est fait ; le reste de la dérive doc est couvert).
-9. IndexedDB pour la persistance locale ; unitaires démographie/commerce ;
-   reset avec confirmation (M3) ; branche morte `setGlobalCfg` (M2).
+   est fait ; le reste de la dérive doc est couvert) — **seul P2 restant**.
+9. IndexedDB pour la persistance locale (restant) ; unitaires
+   démographie/commerce (partiellement couvert : 3 tests M1 démographie dans
+   mutateurs.test.ts) ; ✅ reset avec confirmation (M3, `c41ac32`) ;
+   ✅ branche morte `setGlobalCfg` (M2, `c41ac32`).
 
 ---
 

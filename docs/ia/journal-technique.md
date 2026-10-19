@@ -435,6 +435,66 @@ R2/R3/R4 sont marqués dans
 plan d'action P1). Restent ouverts : M1-M7 (P2) et les chantiers de fond
 (IndexedDB, ids démographie, brûlage banque d'effets).
 
+## M1-M7 — les sept problèmes moyens traités (2026-10-19, fin de soirée)
+
+Les P2 de l'audit passés en revue un par un ; deux arbitrages Thibaut :
+M1 « ids purs — ignorer les vieilles sauvegardes, elles n'ont plus lieu
+d'exister » et M7 « retrait complet » (verrou ET fonctions SQL).
+
+- **M1 — identité démographique par ids (`5576b25`).** `mariage`, `mere`,
+  `pere`, `pereBio` étaient des noms complets : à 16 000 habitants les
+  collisions (générateurs à listes finies) donnaient un mauvais conjoint
+  veuvé et une mauvaise filiation. Quatre champs d'identité ajoutés à
+  Character (`mariageId`/`mereId`/`pereId`/`pereBioId`) ; les noms restent
+  pour l'AFFICHAGE, tenus en sync à chaque mutation ; TOUTE résolution
+  passe par les ids : veuvage (sante, armees, décès en cité libre),
+  index de fecondité (indexé par id désormais), filiation de l'arbre
+  généalogique, consanguinité, mariages (setup, titres, cour, UI).
+  Arbitrage : PAS de migration de rattrapage — une vieille sauvegarde
+  chargée voit ses relations à null (assumé). Compaction : les ids null
+  sont omis à l'écriture (DEFAUTS_PERSO). 3 tests de régression M1
+  (veuvage par id avec homonyme leurre, consanguinité par id, invariants
+  du setup — couples symétriques par id).
+- **M6 — Tourisme du transfert de ville unifié (`4d13324`).**
+  L'ancien code resynchronisait le receveur AVANT qu'il ait la ville
+  puis créditait « à la main » un Tourisme statique par bâtiment
+  (approximation sans les canaux flux banque/commerce, écrasée au
+  resync du tour suivant). Désormais : chaque côté resynchronisé APRÈS
+  le déplacement — stock = production courante, point (sémantique
+  arbitrée 2026-10-16). Crédit manuel supprimé.
+- **M5 — associations par nom de ville : documentées (`4d13324`).**
+  Note posée dans transfererVille : le renommage AUTOMATIQUE (collision)
+  met à jour habitants + ville ensemble ; toute UI future de renommage
+  MANUEL devra répercuter sur gouverneurs + populations + rattachements.
+- **M2 — branche morte de setGlobalCfg supprimée (`c41ac32`)** (RETRAIT
+  documenté) : le bloc « réinjection de la config dans la partie en
+  cours » était inatteignable depuis le garde `if (stateRef.current)
+  return`.
+- **M3 — reset avec confirmation (`c41ac32`)** : le ✕ de TurnBar
+  demande AVANT d'effacer (« la partie locale sera perdue, le salon
+  distant reste rejoignable ») — aligné sur les actions destructrices
+  voisines.
+- **M4 — repli de constructionRef assumé et documenté (`c41ac32`)** :
+  groupe introuvable → première variante ; docblock posé (pas de log :
+  lookup en chemin chaud d'affichage, moteur pur).
+- **M7 — verrou consultatif retiré (`13a6520`).** Arbitrage « retrait
+  complet » : les 2 appels RPC (cp_advisory_lock/unlock) retirés du
+  handler Deno (le verrou ne tenait pas sur le pool de connexions
+  PostgREST), fonctions SQL droppées du schéma (drop if exists pour les
+  installations existantes). Les VRAIS garde-fous, documentés en tête
+  du handler : idempotence par `tour_publie`, index unique
+  (salon, tour, joueur, type), DÉTERMINISME de runTurn.
+
+Vérifications : 55 tests verts en local avant push (35 moteur dont les
+3 tests M1 + 20 rules/state) ; CI verte sur les 4 commits — détail dans
+[Actions](https://github.com/losth230/quartz/actions). Byte-à-byte
+poussé/local vérifié sur les 19 fichiers. M1-M7 sont marqués dans
+[audit-code-2026-10-19.md](audit-code-2026-10-19.md) (tableau + lignes
+M1-M7 + plan d'action P2). Restent ouverts : point 8 du P2 (commentaires
+internes Tourisme de constructions.ts), IndexedDB, brûlage de la banque
+d'effets (décision déjà actée : ne pas brûler le contrat, structurer les
+32 entrées texte puis supprimer le repli).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
