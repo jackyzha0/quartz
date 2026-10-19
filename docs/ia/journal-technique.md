@@ -255,6 +255,39 @@ mineure, points forts, plan d'action) est versé dans
 2026-10-19) : toute documentation produite (audit, rapport, synthèse) doit être versée
 dans `docs/ia/` du dépôt, pas seulement dans les outils de suivi de session.
 
+## Retrait de l'attrait migratoire et des bonus de faction (2026-10-19, retour arbitre)
+
+Aucune partie en cours — décision de brûlage partiel prononcée par l'arbitre : deux
+systèmes jugés insatisfaisants sont retirés pour être refaits plus tard sur de
+meilleures bases. Commit `2c24bd3a` (32 fichiers, ≈400 lignes de moteur/UI en moins,
+référentiel de 109 → 90 constructions) :
+
+1. **Attrait migratoire supprimé** — migration spontanée par attrait Tourisme +
+   heatmap de la page Pays. Ne restent que les migrations scolarté (enfants sans
+   éducation…). Le bug B3 de l'audit (attrait double-compté) disparaît AVEC le
+   système ; B4 (commerce copie le Tourisme) reste valable.
+2. **Bonus de faction supprimés** — canal Production « Faction », règles d'âge,
+   table EFFETS des règles, statut FACTIONS, 19 constructions de faction (Église,
+   Puit de mana, Grande Cathédrale…), bonus codés en dur (NORLS, Basiléens,
+   PEAUX VERTES, Sylvains, Elfes d'Or), prérequis de faction, fiches mécaniques
+   des peuples, canal « Faction » du récap.
+3. **Conservé** : champ « Peuple » au setup (identité pure, sans effets),
+   utilitaires partagés de `factions.ts` (nbAmenagements, nbBatiments,
+   nbBatimentsVille, nbVassaux, rangPaysNiveau, capitaleDe, batimentsCapitale),
+   fiches peuplesLibres/peuplesAutres du référentiel (source documentaire pour la
+   refonte), migrations scolarté.
+4. **Conventions posées** : les docblocks d'arbitrage ne sont jamais supprimés —
+   remplacés par un commentaire « RETRAIT 2026-10-19 (retour arbitre — à refaire) » ;
+   `SCHEMA_VERSION_CONFIG` passe à 2 : la convergence filtre les constructions de
+   faction des configs existantes AVANT `migrerConstructions` (les 19 constructions
+   disparaissent automatiquement des parties sauvegardées, tampon re-posé) ;
+   `ConditionRegle.regleFaction` retiré du système de règles.
+5. **Validation avant push** : tsc strict au niveau baseline exact (3 erreurs stub
+   client Supabase), 48/48 tests moteur/règles/état, smoke runtime 3 joueurs +
+   runTurn (0 construction de faction, canaux Production sans « Faction »,
+   `migrationTourisme` absent des paramètres, origines garnison base/régime),
+   convergence v1→v2 vérifiée sur une config contenant des constructions de faction.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

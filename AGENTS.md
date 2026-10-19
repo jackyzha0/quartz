@@ -36,6 +36,12 @@ Le dépôt `losth230/quartz` contient aussi le site vitrine « Quartz » ; le je
   lieu de le cumuler. (Historique : le Tourisme a été « crédité UNE fois » jusqu'au
   retour du 2026-10-16 — d'où des commentaires internes encore contradictoires,
   dette documentée dans docs/ia/audit-code-2026-10-19.md.)
+- **Ni bonus de faction, ni attrait migratoire** (retrait 2026-10-19, retour arbitre —
+  systèmes à refaire) : le champ « Peuple » du setup est une identité SANS effets ; les
+  migrations spontanées n'existent plus (seules restent les migrations scolarté) ; les
+  docblocks d'arbitrage concernés ne sont pas supprimés mais remplacés par un
+  commentaire « RETRAIT 2026-10-19 (retour arbitre — à refaire) » ; les fiches
+  peuplesLibres/peuplesAutres restent dans le référentiel comme source pour la refonte.
 - **Toute évolution du référentiel devant atteindre des configs existantes** →
   incrémenter `SCHEMA_VERSION_CONFIG` (config/defaultConfig.ts). Les configs sont
   « convergées » une fois puis tamponnées : supprimer/renommer une ligne dans les
@@ -54,7 +60,8 @@ src/
 │                              economie.ts (impôts), villes.ts (supprimer/transférer une ville),
 │                              cour.ts (dons/mariages), commerce.ts (routes de marchands),
 │                              titres.ts, naissances.ts, sante.ts (démographie), ministeres.ts,
-│                              factions.ts (règles par peuple), regimes.ts, progresAuto.ts,
+│                              factions.ts (utilitaires peuples : nbAmenagements, nbVassaux,
+│                              rangPaysNiveau, capitaleDe — bonus RETIRÉS), regimes.ts, progresAuto.ts,
 │                              constructions.ts/batiments.ts/amenagements.ts (effets du référentiel),
 │                              fusion.ts (multijoueur par sections), migrations.ts (registre versionné),
 │                              victory.ts (Lauriers I à IV), validation.ts, types.ts

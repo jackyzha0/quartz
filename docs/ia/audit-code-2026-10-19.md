@@ -332,13 +332,18 @@ convention, pas par construction — et divergent :
   de la page Pays et la migration spontanée (`migrationTourisme`). Introduit par le
   retour 2026-10-16 (stock = production), pas par la banque — la banque reproduit
   fidèlement le moteur (le test d'équivalence l'encyclopedise).
+  **→ SANS OBJET depuis le retrait de l'attrait migratoire (2026-10-19, `2c24bd3a`) :
+  le système entier a été retiré sur retour arbitre (à refaire), B3 ne peut plus se
+  produire.**
 - **B4 — Le commerce copie le Tourisme** : `ressourcesCopiables` (commerce.ts) lit
   `effetsConstructionRef` ; son docblock affirme « les instantanés (Tourisme, Garnison)
   sont déjà exclus », mais depuis le mapping flux, le Tourisme EST dans le flux → un
   marchand peut copier le Tourisme d'un aménagement (ex. Foire +5/tour), affiché au
   canal Commerce… puis **écrasé à la fin de tour** par `resynchroniserTourisme`
   (`tourismeCourant` n'a pas de canal commerce) : affiché, jamais crédité au stock.
-  Contredit l'arbitrage (u) « instantanés jamais copiés ».
+  Contredit l'arbitrage (u) « instantanés jamais copiés ». **→ Toujours valable
+  après le retrait de 2026-10-19 (`2c24bd3a`) : la copie du Tourisme par le commerce
+  existe toujours, à corriger à l'occasion de la refonte Tourisme.**
 
 **Recommandation racine** : arbitrer UNE sémantique Tourisme (une seule voie de vérité)
 AVANT de migrer les autres sources vers la banque — sinon B3/B4 se propageront à chaque
@@ -346,7 +351,9 @@ nouvelle source branchée.
 
 ### Contournements autonomes (hors banque, à recenser pour le brûlage)
 
-Effets ministres (tous), règles de faction, lois de régimes, canal Progrès
+Effets ministres (tous), règles de faction **(RETIRÉES du code le 2026-10-19,
+`2c24bd3a` — les fiches peuples restent dans le référentiel comme source de refonte)**,
+lois de régimes, canal Progrès
 (`progresAuto.ts`, réintégré par la refonte), règles culturelles, `EFFETS_FORCES`
 (4 bâtiments hors référentiel : Ponton, Port de pêche, Port de commerce, Guilde des
 marchands), `reductionCampDeBatisseurs` (regex sur texte de description + défaut
@@ -358,10 +365,14 @@ engine/batiments → engine/constructions` (famille des 13 cycles différés).
 
 La banque est la **bonne base** (contrat sain, testée, unique point de vérité pour
 « une règle = une donnée »). Ne pas la brûler. Le brûlage pertinent :
-1. corriger B3/B4 + unifier la voie Tourisme (préalable) ;
+1. corriger B4 + unifier la voie Tourisme (préalable) — B3 est SANS OBJET depuis le
+   retrait de l'attrait migratoire (`2c24bd3a`, 2026-10-19) ;
 2. structurer les 32 entrées texte restantes, puis SUPPRIMER le repli texte
    (`parseProductionTexte`, `EFFETS_FORCES`, regex de descriptions) ;
-3. ensuite seulement migrer les autres sources (ministres, factions, régimes…) une
-   par une sur la banque, et supprimer leurs implémentations en dur.
+3. ensuite seulement migrer les autres sources (ministres, régimes…) une
+   par une sur la banque, et supprimer leurs implémentations en dur. Les règles de
+   faction ayant été retirées, leur éventuelle refonte devra naître DIRECTEMENT
+   sur la banque (ne pas recréer d'implémentation en dur).
 
-*Analyse du 19/10 au soir sur la tête `8476070e`.*
+*Mise à jour le 19/10 au soir après le retrait de l'attrait migratoire et des bonus
+de faction (commit `2c24bd3a`) ; analyse initiale sur la tête `8476070e`.*
