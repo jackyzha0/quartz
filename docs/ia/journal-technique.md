@@ -295,6 +295,48 @@ shas, tête de branche), `regles-et-arbitrages.md` pour les décisions de design
 des sessions d'agents IA ne sont PLUS maintenues comme référence : toute mise à jour de
 suivi se pousse au dépôt, à chaud (une entrée par événement ou par session).
 
+## Brûlage du protocole multijoueur v1 (2026-10-19, audit R5)
+
+Aucune partie en cours — l'arbitre a prononcé le brûlage du protocole multijoueur v1.
+Le risque R5 de l'audit ne pouvait PAS se corriger par des gardes : un salon où
+7 joueurs sont en v2 et 1 en v1 reste bloqué ; la seule protection fiable est
+l'IMPOSSIBILITÉ du mélange. Le protocole v2 (événements append-only + résolution
+serveur) est désormais l'UNIQUE flux de fin de tour.
+
+Commit `27a5173c` (4 fichiers) :
+
+1. **supabase/client.ts** : `pousserSection` et `lireBarriere` (barrière v1 par
+   colonne `sections`, lire-modifier-écrire) retirés, remplacés par des commentaires
+   RETRAIT ; `publierEtatFusionne` (résolution + garde anti-rollback) et tout le
+   flux v2 conservés.
+2. **state/store.tsx** : `proto2Actif()` (feature flag `cpe.proto2`), la branche v1
+   entière de `nextTurn` et les replis v1 `resoudreBarriere`/`pollerBarriere`
+   retirés ; `nextTurn` appelle TOUJOURS `nextTurnV2` ; gardes `proto2Actif() &&`
+   retirées de update (section vivante), resoudreSeul, forceNextTurn et realtime ;
+   docblock `nextTurnV2` réaligné (repli = résolution LOCALE v2, plus « retour au
+   flux v1 »).
+3. **components/TurnBar.tsx** : bouton de bascule v1/v2 et state `proto2` retirés
+   (5 boutons restants), import React devenu inutile retiré.
+4. **AGENTS.md** : section Multijoueur retitrée « protocole v2 UNIQUE » + phrase de
+   règle (plus aucun mélange possible dans un salon).
+
+Incident de coupe (commit `166a7ab`) : le splice scripté de la branche v1 de
+`nextTurn` a avalé les lignes de fermeture du `void (async () => {…})` et du
+`useCallback` → `'}' expected` en fin de store.tsx → **CI jeu #33 ROUGE** (diag et
+check Edge Function passaient — seuls tsc strict/build l'attrapent, comme prévu).
+Réparé dans la foulée (réinsertion des fermetures) ; CI jeu #34 verte, diag #190
+vert, **Deploy Pages #1204 vert** : bundle live republié (l'ancien
+`index-CGmShlKV.js` renvoie 404, la page live rend le jeu) ; le Deploy #1203 du
+commit cassé a bien échoué SANS rien publier. **Règle durable confirmée (cf. règle
+7 des règles d'ingénierie) : après une coupe scriptée entre marqueurs, vérifier
+l'équilibre des fermetures de la zone coupée avant de pousser.**
+
+Non modifiés : Edge Function (déjà v2-pure, non redéployée — run #15 toujours en
+vigueur), colonnes SQL v1 (`sections`, `turn_done`) laissées en base, inoffensives
+(`publierEtatFusionne` écrit `sections: {}`), tests (aucun ne référençait
+v1/proto2). R5 est marqué résolu dans
+[audit-code-2026-10-19.md](audit-code-2026-10-19.md).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

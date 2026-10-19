@@ -25,7 +25,7 @@ Actions et de l'Edge Function déployée. Aucune écriture sur la partie en lign
 | R2 | RLS ouverte à `anon`, y compris DELETE | ⬜ à arbitrer (P1) |
 | R3 | Retour de `saveLocal` jamais vérifié (quota localStorage) | ⬜ à arbitrer (P1) |
 | R4 | Fusion multijoueur sans validation de forme | ⬜ à arbitrer (P1) |
-| R5 | Mélange de protocoles v1/v2 possible dans un salon | ⬜ à arbitrer (P1) |
+| R5 | Mélange de protocoles v1/v2 possible dans un salon | ✅ résolu par brûlage du protocole v1 (`27a5173c` + `166a7ab`, 2026-10-19) |
 | M1-M7 | Problèmes moyens | ⬜ à arbitrer (P2) |
 
 Preuve en production après correctif : résolution serveur vérifiée bout-en-bout sur
@@ -190,6 +190,13 @@ revient en v1 « parce que ça marchait mieux » bloque tout le salon sans le sa
 salon (ex. colonne `proto` posée par le premier push v2) et forcer/refuser le
 downgrade ; ou à défaut, afficher un avertissement croisé (« J4 semble jouer en v1 »).
 
+**→ RÉSOLU (2026-10-19, brûlage)** : plutôt qu'une garde anti-mélange, l'arbitre a
+fait retirer le protocole v1 ENTIER (`27a5173c`, correctif CI `166a7ab`) —
+`pousserSection`/`lireBarriere`, `proto2Actif`, branche v1 de `nextTurn`,
+`resoudreBarriere`/`pollerBarriere`, bouton de bascule de la barre : le mélange
+est désormais IMPOSSIBLE. La clé localStorage `cpe.proto2` résiduelle dans les
+navigateurs est silencieusement ignorée.
+
 ## 🟡 Problèmes moyens
 
 | # | Où | Problème | Détail / suggestion |
@@ -224,7 +231,8 @@ downgrade ; ou à défaut, afficher un avertissement croisé (« J4 semble jouer
   `referentiels.json` — zone à typer un jour (le reste du code est any-free).
 - `pousserSection` (v1, colonne `sections`) fait un lire-modifier-écrire non
   atomique — reconnu en commentaire ; le protocole v2 (append-only) est la bonne
-  réponse, v1 ne mérite plus d'investissement.
+  réponse, v1 ne mérite plus d'investissement. **Retiré le 2026-10-19 (`27a5173c`) :
+  la fonction n'existe plus dans le code.**
 - Tests de rendu : assertions de type « fumée » (longueur HTML + présence de
   titres). Correct pour le coût, mais ils n'attraperaient pas un tableau rendu avec
   de mauvaises données.
@@ -266,7 +274,8 @@ downgrade ; ou à défaut, afficher un avertissement croisé (« J4 semble jouer
    dépasse le quota de nombreux navigateurs.
 5. Serrer la RLS : retirer DELETE à `anon` sur `cp_events`, réserver `state` à la
    `service_role` (R2) — nécessite de fiabiliser le repli du Forcer.
-6. `validerSection()` à la fusion (R4) + garde anti-mélange v1/v2 (R5).
+6. `validerSection()` à la fusion (R4) — la garde anti-mélange v1/v2 (R5) est
+   SANS OBJET : le protocole v1 a été brûlé le 2026-10-19 (`27a5173c`).
 
 **P2 — chantiers de fond**
 7. Migration démographie vers des ids (`mariageId`/`mereId`/`pereId`, migration
