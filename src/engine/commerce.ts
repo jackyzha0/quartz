@@ -17,6 +17,12 @@
 //  La route se ferme si le marchand perd son titre ou meurt.
 //  Canal « Commerce » du récap ressources (engine/production.ts),
 //  étape 3terdecies de FinDeTour.
+//  HYGIÈNE D'IMPORT (règle durable, incident CI #36 du 2026-10-19) : ce
+//  module est importé par regimes.ts (canal Tourisme du commerce) — ne
+//  JAMAIS importer amenagements.ts ici (effets de bord top-level :
+//  AMENAGEMENTS) : le cycle constructions→banque→regimes→commerce→
+//  amenagements fait planter l'initialisation du moteur (TDZ). Les
+//  recherches du référentiel passent par constructions.ts (constructionRef).
 // ══════════════════════════════════════════════════════════════════════
 
 import type {
@@ -25,8 +31,16 @@ import type {
 import type { GameConfig } from '../config/defaultConfig'
 import { cfgOf, type Cfg } from './gameData'
 import { fullName } from './shared'
-import { amenagementRef } from './amenagements'
-import { effetsConstructionRef, effetsEteConstructionRef } from './constructions'
+// RETRAIT 2026-10-19 (incident CI #36, suite B4) : `import { amenagementRef }
+// from './amenagements'` — amenagementRef est un alias PUR de constructionRef
+// (constructions.ts), mais cet import créait un cycle d'évaluation
+// constructions→banque→regimes→commerce→amenagements : l'initialisation
+// top-level AMENAGEMENTS (amenagements.ts) s'exécutait alors que
+// constructions.ts n'avait pas encore initialisé RESSOURCES_INSTANTANEES
+// (ReferenceError TDZ → crash de TOUS les tests, CI #36 + bundle Edge #16).
+// commerce.ts n'importe donc PLUS amenagements.ts : constructionRef fait
+// la même recherche (nom exact, même sémantique).
+import { constructionRef, effetsConstructionRef, effetsEteConstructionRef } from './constructions'
 import { nbBatiments } from './factions'
 import { aTech } from './progresAuto'
 
@@ -78,7 +92,10 @@ export interface RessourceCopiable {
  *  la production, il est recalculé pour l'égaler — stock = production »), les effets négatifs
  *  (coûts, ex. Charbon −1 du Moulin à vent) ne sont pas copiables. */
 export function ressourcesCopiables(nom: string, cfg?: GameConfig): RessourceCopiable[] {
-  const ref = amenagementRef(nom, cfg)
+  // 2026-10-19 (correctif cycle d'import, incident CI #36) : constructionRef
+  //  remplace amenagementRef (alias strict — amenagements.ts l'implémente
+  //  comme `return constructionRef(nom, cfg)`), même recherche par nom exact.
+  const ref = constructionRef(nom, cfg)
   if (!ref) return []
   const out: RessourceCopiable[] = []
   for (const [res, v] of Object.entries(effetsConstructionRef(ref))) {
@@ -109,7 +126,7 @@ export function effetsRouteProprietaire(
 ): Record<string, number> {
   const out: Record<string, number> = { Or: C.p.marchandOrTour }
   // Marqueur (u) : l'aménagement ENTIER est copié — toutes ses
-  // ressources copiables (flux positifs + été en été).
+  //  ressources copiables (flux positifs + été en été).
   for (const cop of ressourcesCopiables(route.amenagement, C.config)) {
     if (cop.ete && saison !== 'Été') continue
     out[cop.ressource] = (out[cop.ressource] ?? 0) + cop.valeur
