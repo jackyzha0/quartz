@@ -407,7 +407,9 @@ function buildInstalledPlugin(pluginDir: string, name: string, verbose?: boolean
     if (verbose) {
       console.log(styleText("cyan", `→`), `${name}: installing dependencies...`)
     }
-    execSync("npm install --ignore-scripts", {
+    // Quartz's .npmrc reaches a nested npm only when npm started Quartz; without it, npm installs
+    // the peers a dependency declares, and the plugin keeps its own Preact
+    execSync("npm install --ignore-scripts --legacy-peer-deps", {
       cwd: pluginDir,
       stdio: verbose ? "inherit" : "pipe",
       timeout: 120_000,
@@ -424,7 +426,7 @@ function buildInstalledPlugin(pluginDir: string, name: string, verbose?: boolean
       })
     }
 
-    execSync("npm prune --omit=dev", {
+    execSync("npm prune --omit=dev --legacy-peer-deps", {
       cwd: pluginDir,
       stdio: verbose ? "inherit" : "pipe",
       timeout: 60_000,

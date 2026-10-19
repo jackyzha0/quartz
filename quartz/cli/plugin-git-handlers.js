@@ -46,7 +46,8 @@ async function cloneWithSubdirAsync({ url, ref, subdir, pluginDir }) {
   }
 }
 
-async function buildPluginAsync(pluginDir, name) {
+/** @internal Exported for testing only. */
+export async function buildPluginAsync(pluginDir, name) {
   if (hasPrebuiltDist(pluginDir)) {
     console.log(styleText("green", `  ✓ ${name}: using pre-built dist/`))
     linkPeerPlugins(pluginDir)
@@ -56,12 +57,14 @@ async function buildPluginAsync(pluginDir, name) {
   try {
     const skipBuild = !needsBuild(pluginDir)
     console.log(styleText("cyan", `  → ${name}: installing dependencies...`))
-    await execAsync("npm install --ignore-scripts", { cwd: pluginDir })
+    // Quartz's .npmrc reaches a nested npm only when npm started Quartz; without it, npm installs
+    // the peers a dependency declares, and the plugin keeps its own Preact
+    await execAsync("npm install --ignore-scripts --legacy-peer-deps", { cwd: pluginDir })
     if (!skipBuild) {
       console.log(styleText("cyan", `  → ${name}: building...`))
       await execAsync("npm run build", { cwd: pluginDir })
     }
-    await execAsync("npm prune --omit=dev", { cwd: pluginDir })
+    await execAsync("npm prune --omit=dev --legacy-peer-deps", { cwd: pluginDir })
     linkPeerPlugins(pluginDir)
     return true
   } catch (error) {

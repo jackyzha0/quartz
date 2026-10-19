@@ -1,5 +1,6 @@
 import test, { after, before, describe } from "node:test"
 import assert from "node:assert"
+import { execSync } from "child_process"
 import fs from "fs"
 import os from "os"
 import path from "path"
@@ -30,6 +31,43 @@ function makeLocalPlugin(name: string) {
   const pkg = { name, peerDependencies: { preact: "^10.0.0" } }
   fs.writeFileSync(path.join(source, "package.json"), JSON.stringify(pkg))
   return { source, peer: path.join(source, "node_modules", "preact") }
+}
+
+// a tarball npm installs offline; npm resolves no peers for a linked directory
+function pack(pkg: { name: string; version: string; peerDependencies?: object }) {
+  const dir = path.join(root, "dev", pkg.name)
+  fs.mkdirSync(dir, { recursive: true })
+  fs.writeFileSync(path.join(dir, "package.json"), JSON.stringify(pkg))
+  execSync("npm pack --silent", { cwd: dir, stdio: "pipe" })
+  return path.join(dir, `${pkg.name}-${pkg.version}.tgz`)
+}
+
+// built from source, with a dev copy of preact and a dependency that peers on it, as
+// @quartz-community/utils does
+function makeGitPlugin(name: string) {
+  const installed = path.join(quartz, ".quartz", "plugins", name)
+  const spec = (tarball: string) =>
+    `file:${path.relative(installed, tarball).replaceAll(path.sep, "/")}`
+  const repo = path.join(root, "remote", name)
+  fs.mkdirSync(repo, { recursive: true })
+  const pkg = {
+    name,
+    scripts: { build: `node -e "require('fs').mkdirSync('dist')"` },
+    dependencies: {
+      utils: spec(
+        pack({ name: "utils", version: "1.0.0", peerDependencies: { preact: "^10.0.0" } }),
+      ),
+    },
+    peerDependencies: { preact: "^10.0.0" },
+    devDependencies: { preact: spec(pack({ name: "preact", version: "10.0.0" })) },
+  }
+  fs.writeFileSync(path.join(repo, "package.json"), JSON.stringify(pkg))
+  fs.writeFileSync(path.join(repo, ".gitignore"), "dist\n")
+  fs.writeFileSync(path.join(repo, ".npmrc"), "audit=false\nfund=false\nupdate-notifier=false\n")
+  execSync("git init -q && git add -A && git -c user.name=q -c user.email=q@q commit -q -m init", {
+    cwd: repo,
+  })
+  return { repo, peer: path.join(installed, "node_modules", "preact") }
 }
 
 function linkIntoQuartz(name: string, source: string) {
@@ -85,6 +123,19 @@ describe("installPlugin", () => {
     const plugin = makeLocalPlugin("already-linked")
     linkIntoQuartz("already-linked", plugin.source)
     await loader.installPlugin({ name: "already-linked", repo: plugin.source, local: true })
+    assert.strictEqual(fs.realpathSync(plugin.peer), hostPreact)
+  })
+
+  test("links a git plugin's peers when npm did not start Quartz", async () => {
+    const plugin = makeGitPlugin("git-source")
+    // npm passes Quartz's .npmrc on to the commands it runs; a plain `node` launch does not
+    const legacyPeerDeps = process.env.npm_config_legacy_peer_deps
+    delete process.env.npm_config_legacy_peer_deps
+    try {
+      await loader.installPlugin({ name: "git-source", repo: plugin.repo })
+    } finally {
+      if (legacyPeerDeps !== undefined) process.env.npm_config_legacy_peer_deps = legacyPeerDeps
+    }
     assert.strictEqual(fs.realpathSync(plugin.peer), hostPreact)
   })
 })
