@@ -288,6 +288,13 @@ référentiel de 109 → 90 constructions) :
    `migrationTourisme` absent des paramètres, origines garnison base/régime),
    convergence v1→v2 vérifiée sur une config contenant des constructions de faction.
 
+**RÈGLE (retour arbitre 2026-10-19, soir) : le SUIVI DE SESSION vit ICI.** `docs/ia/` est LA
+référence unique de l'état du projet — ce journal pour l'historique (évolutions, incidents,
+shas, tête de branche), `regles-et-arbitrages.md` pour les décisions de design,
+`audit-code-2026-10-19.md` pour l'audit et ses suites. Les bases de connaissances locales
+des sessions d'agents IA ne sont PLUS maintenues comme référence : toute mise à jour de
+suivi se pousse au dépôt, à chaud (une entrée par événement ou par session).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

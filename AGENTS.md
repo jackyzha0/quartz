@@ -144,5 +144,7 @@ déployé : la partie en ligne de l'arbitre tourne en continu.
 - Ne jamais supprimer ou « simplifier » un docblock qui archive un arbitrage de design :
   c'est la mémoire des règles.
 - Toute documentation produite sur le projet (audit, rapport, synthèse technique) est
-  VERSÉE dans `docs/ia/` : le dépôt est la source publiquement lisible des
-  connaissances, les outils de suivi ne sont que des brouillons de session.
+  VERSÉE dans `docs/ia/` — et le **SUIVI DE SESSION lui-même vit dans
+  docs/ia/journal-technique.md** (historique, incidents, shas, tête de branche), mis à
+  jour à CHAQUE session : le dépôt est LA référence unique de l'état du projet, aucune
+  base locale de session n'est maintenue en parallèle.
