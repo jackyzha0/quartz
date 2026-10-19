@@ -337,6 +337,55 @@ vigueur), colonnes SQL v1 (`sections`, `turn_done`) laissées en base, inoffensi
 v1/proto2). R5 est marqué résolu dans
 [audit-code-2026-10-19.md](audit-code-2026-10-19.md).
 
+## Arbitrage B4 — le Tourisme copié par le commerce compte dans le stock (2026-10-19)
+
+Arbitrage Thibaut (retour sur la phrase B4 de l'audit) : « le tourisme peut être
+copié puisque le stock de tourisme n'est jamais mis à jour avec la production.
+L'idée est que stock tourisme = production tourisme ». Le Tourisme EST donc
+copiable par une route commerciale ; le bug B4 n'était pas la copie elle-même
+mais le résidu : `tourismeCourant` (regimes.ts) n'avait pas de canal Commerce —
+la copie s'affichait au récap mais `resynchroniserTourisme` écrasait le stock
+sans elle (affiché, jamais crédité).
+
+Correctif `ee26eb80` « fix(jeu): le Tourisme copié par le commerce compte dans le
+stock (B4, arbitrage) » :
+- `regimes.ts` : canal 7 dans `tourismeCourant`
+  (`effetsCommerceJoueur(state, p, state.saison, C)['Tourisme']`), docblock
+  réaligné (commerce compris dans « stock = production ») ;
+- `commerce.ts` : docblocks d'entête et de `ressourcesCopiables` réalignés
+  (Garnison et effets négatifs exclus ; le Tourisme EST copiable — arbitrage
+  2026-10-19) ;
+- `commerce.test.ts` (nouveau) : test de régression « le Tourisme copié par une
+  route compte dans la production et le stock » — partie 2 joueurs, Foire sur la
+  ville cible, route ouverte par un roturier promu marchand, asserts copie > 0,
+  production ≥ copie, stock = max(0, production).
+
+**Incident CI #36 (cycle d'import, ReferenceError TDZ)** : le nouvel import
+`regimes → commerce` a refermé un cycle d'évaluation `constructions → banque →
+regimes → commerce → amenagements` : l'initialisation top-level `AMENAGEMENTS`
+(amenagements.ts) s'est exécutée avant que constructions.ts n'initialise
+`RESSOURCES_INSTANTANEES` → `ReferenceError: Cannot access
+'RESSOURCES_INSTANTANEES' before initialization` → crash à l'import de TOUS les
+fichiers de test (CI #36 rouge en 3 s) ET du bundle Edge (deploy-function #16
+rouge — la garde-fou a refusé le déploiement, l'Edge #15 est restée en service).
+Le typecheck strict passait (TDZ = erreur d'exécution) : Deploy Pages #1206 a
+publié un bundle moteur cassé pendant ~4 min avant #1207 (fenêtre fermée).
+
+Correctif `06422b9` « fix(jeu): correctif cycle d'import commerce→amenagements » :
+`amenagementRef` (amenagements.ts) est un alias PUR de `constructionRef`
+(constructions.ts) — `ressourcesCopiables` lit désormais `constructionRef`
+directement et commerce.ts n'importe PLUS amenagements.ts (commentaire RETRAIT +
+règle d'hygiène d'import dans l'entête du fichier). `1611312` : espace de
+commentaire rétablie (zéro changement de code). Incident reproduit et diagnostiqué
+en local (exécution des tests du tarball du commit, trace de l'ordre d'évaluation
+des modules) et correctif vérifié : 49 tests natifs verts avant le push.
+
+Vérifications : CI jeu #37 (06422b9) et #38 (1611312) vertes, diag #193/#194
+verts, Edge #17/#18 verts (**redéployée**), Deploy Pages #1207/#1208 verts.
+B4 est marqué résolu dans
+[audit-code-2026-10-19.md](audit-code-2026-10-19.md) ; les règles sont mises à
+jour dans [regles-et-arbitrages.md](regles-et-arbitrages.md).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
@@ -373,6 +422,13 @@ v1/proto2). R5 est marqué résolu dans
     puis bundle live `assets/index-*.js` : nouveau hash + grep des nouvelles chaînes.
     Le CDN de raw.githubusercontent.com peut servir un contenu périmé juste après un
     push ; vérifier l'intégrité via un contenu à sha inédit ou via l'API.
+11. **Cycles d'import moteur (incident CI #36 / Edge #16, 2026-10-19)** : la TDZ
+    (`Cannot access 'X' before initialization`) n'est attrapée NI par tsc strict
+    NI par le typecheck Edge — uniquement par l'EXÉCUTION. Après tout nouvel
+    import entre modules du moteur, lancer les tests AVANT de pousser ; un module
+    à effets de bord top-level (`AMENAGEMENTS` dans amenagements.ts) ne doit
+    jamais se retrouver dans un cycle (le canal Commerce de `tourismeCourant`,
+    regimes → commerce, l'a appris à nos dépens).
 
 ## Raccourci git
 

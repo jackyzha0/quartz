@@ -223,7 +223,10 @@ Remplace le prérequis « 1 serment par rang intermédiaire » du classeur, jug�
   (ville du marchand ↔ ville d'un autre joueur) ; +4 Or/tour aux DEUX joueurs ;
   le propriétaire **copie l'AMÉNAGEMENT ENTIER** de la ville ciblée (toutes ses
   ressources positives, modifiable à tout moment, saisonnier — une production
-  d'été n'est copiée qu'en été ; instantanés et effets négatifs exclus) ;
+  d'été n'est copiée qu'en été ; la Garnison (valeur d'état) et les effets
+  négatifs sont exclus ; **le Tourisme EST copiable** — arbitrage 2026-10-19 :
+  le stock de Tourisme n'est jamais cumulé, il est recalculé à chaque fin de tour
+  (stock = production) et le Tourisme copié compte dans ce calcul) ;
   fermeture automatique si le marchand meurt ou perd son titre.
 - **Taxes** : effet ±25 % (Faibles ×0,75, Fortes ×1,25 — arbitrage du ±50 % initial).
 - **Nombre de joueurs** : 2 à 8 à la création (le jeu est conçu pour 6-8, la borne
@@ -240,8 +243,10 @@ Remplace le prérequis « 1 serment par rang intermédiaire » du classeur, jug�
 
 - **Effets structurés** : les constructions (bâtiments + aménagements) portent
   `effets: {ressource, quantite, ete?}[]` ; le champ texte `production` reste en
-  repli d'affichage. `RESSOURCES_INSTANTANEES = {Tourisme, Garnison}` : jamais de
-  flux par tour pour ces deux ressources.
+  repli d'affichage. `RESSOURCES_INSTANTANEES = {Garnison}` (valeur
+  d'état) ; le Tourisme est un flux NORMAL dont le stock n'est jamais cumulé —
+  recalculé à chaque fin de tour (stock = production, retours arbitre 2026-10-16
+  et 2026-10-19 ; le Tourisme copié par une route commerciale compte).
 - Un gain instantané crédité (Tourisme, Garnison Connétable) n'est **pas retiré**
   ensuite (démolition ou mort ne rembourse pas) — à arbitrer si l'inverse est voulu.
 - Migrations de configuration : passer par `cfgOf`/`convergerConfig` et

@@ -21,6 +21,7 @@ Actions et de l'Edge Function déployée. Aucune écriture sur la partie en lign
 |-----|----------|--------|
 | B1 | Edge Function : `cfgMondiale` non défini → 500 à CHAQUE résolution serveur | ✅ corrigé (`362e1db4`) |
 | B2 | `pollerBarriereV2Ref` déclaré et appelé mais jamais assigné | ✅ corrigé (`362e1db4`) |
+| B4 | Le Tourisme copié par une route commerciale était affiché (canal Commerce) mais jamais crédité au stock | ✅ résolu (arbitrage Thibaut + `ee26eb80` + correctif cycle `06422b9`, 2026-10-19) |
 | R1 | La CI ne type-checkait pas le handler Deno (cause racine de B1) | ✅ corrigé (`ccfa04ef`) |
 | R2 | RLS ouverte à `anon`, y compris DELETE | ⬜ à arbitrer (P1) |
 | R3 | Retour de `saveLocal` jamais vérifié (quota localStorage) | ⬜ à arbitrer (P1) |
@@ -350,13 +351,20 @@ convention, pas par construction — et divergent :
   marchand peut copier le Tourisme d'un aménagement (ex. Foire +5/tour), affiché au
   canal Commerce… puis **écrasé à la fin de tour** par `resynchroniserTourisme`
   (`tourismeCourant` n'a pas de canal commerce) : affiché, jamais crédité au stock.
-  Contredit l'arbitrage (u) « instantanés jamais copiés ». **→ Toujours valable
-  après le retrait de 2026-10-19 (`2c24bd3a`) : la copie du Tourisme par le commerce
-  existe toujours, à corriger à l'occasion de la refonte Tourisme.**
+  Contredit l'arbitrage (u) « instantanés jamais copiés ». **→ RÉSOLU (2026-10-19,
+  arbitrage Thibaut + `ee26eb80` + correctif cycle d'import `06422b9`) : le Tourisme
+  EST copiable par design (« le stock n'est jamais mis à jour avec la production,
+  il est recalculé pour l'égaler — stock = production ») ; le résidu réel était
+  l'absence du canal Commerce dans `tourismeCourant` (affiché, jamais crédité) —
+  la copie compte désormais dans le stock ; docblocks périmés de commerce.ts
+  réalignés ; test de régression commerce.test.ts.**
 
 **Recommandation racine** : arbitrer UNE sémantique Tourisme (une seule voie de vérité)
 AVANT de migrer les autres sources vers la banque — sinon B3/B4 se propageront à chaque
-nouvelle source branchée.
+nouvelle source branchée. **Sémantique arbitrée le 2026-10-19 (retour Thibaut) : le
+Tourisme est un flux normal dont le stock n'est jamais cumulé — recalculé à chaque
+fin de tour (stock = production), la copie commerce comprise ; reste à unifier la
+voie de calcul à l'occasion de la migration banque.**
 
 ### Contournements autonomes (hors banque, à recenser pour le brûlage)
 
@@ -374,8 +382,10 @@ engine/batiments → engine/constructions` (famille des 13 cycles différés).
 
 La banque est la **bonne base** (contrat sain, testée, unique point de vérité pour
 « une règle = une donnée »). Ne pas la brûler. Le brûlage pertinent :
-1. corriger B4 + unifier la voie Tourisme (préalable) — B3 est SANS OBJET depuis le
-   retrait de l'attrait migratoire (`2c24bd3a`, 2026-10-19) ;
+1. ✅ corriger B4 — RÉSOLU (2026-10-19, arbitrage Thibaut : Tourisme copiable,
+   stock = production ; `ee26eb80` + correctif cycle `06422b9`) ; reste à unifier
+   la voie Tourisme (préalable banque) — B3 est SANS OBJET depuis le retrait de
+   l'attrait migratoire (`2c24bd3a`, 2026-10-19) ;
 2. structurer les 32 entrées texte restantes, puis SUPPRIMER le repli texte
    (`parseProductionTexte`, `EFFETS_FORCES`, regex de descriptions) ;
 3. ensuite seulement migrer les autres sources (ministres, régimes…) une
@@ -384,4 +394,5 @@ La banque est la **bonne base** (contrat sain, testée, unique point de vérité
    sur la banque (ne pas recréer d'implémentation en dur).
 
 *Mise à jour le 19/10 au soir après le retrait de l'attrait migratoire et des bonus
-de faction (commit `2c24bd3a`) ; analyse initiale sur la tête `8476070e`.*
+de faction (commit `2c24bd3a`) ; B4 résolu dans la foulée (arbitrage Thibaut,
+`ee26eb80` + `06422b9`) ; analyse initiale sur la tête `8476070e`.*
