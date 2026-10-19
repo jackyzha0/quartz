@@ -14,12 +14,11 @@
 //   · vassaux : prêt de serment à un autre joueur, tribut automatique
 //     (paramètre vassalPrelevement, appliqué en fin de tour par le moteur),
 //   · personnages importants : Dirigeant, Héritier, Professeurs,
-//     Commandants, famille royale,
-//   · faction du peuple : fiche complète (victoire désactivée,
-//     bâtiment de faction, 2 règles de base) et choix manuel de la
-//     règle d'Âge II puis d'Âge III (une seule parmi les trois —
-//     la montée d'âge n'est pas automatisée ; les parties chiffrées
-//     des règles actives sont appliquées automatiquement).
+//     Commandants, famille royale.
+//  (RETRAIT 2026-10-19, retour arbitre : le cadre « Faction » — fiche du
+//   peuple, choix des règles d'Âge II / III — a été retiré avec le
+//   système de bonus de faction ; le champ Peuple reste une identité
+//   sans effets mécaniques. Système à refaire.)
 //  L'arbre généalogique de la famille dirigeante est affiché sur la
 //  page « Population ». Les technologies (feuille « Progrès ») sont
 //  retirées de cette page — elles restent consultables dans
@@ -29,9 +28,7 @@
 import { useGame } from '../state/store'
 import type { Character, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
-import { detailsFaction } from '../engine/factions'
 import { resynchroniserTourisme } from '../engine/regimes'
-import { statutFaction, pastilleClass } from '../engine/statutAuto'
 import { rangParDefaut } from '../engine/setup'
 import { citesSuzerainesDe, sermentsPossedes, facteurSacre } from '../engine/engine'
 import { Card, Select, TextInput, Button, Badge, Field } from './ui'
@@ -146,7 +143,7 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
           <Field label="Nom du joueur">
             <TextInput value={p.nom} onChange={(v) => setPlayer((x) => { x.nom = v })} />
           </Field>
-          <Field label="Peuple (faction du classeur)">
+          <Field label="Peuple">
             <Select
               value={p.peuple}
               options={C.peuples.map((n) => ({ value: n, label: n }))}
@@ -308,9 +305,6 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
         </div>
       </Card>
 
-      {/* ═══ Faction : bonus du peuple choisi ═══ */}
-      <CardFaction joueur={joueur} />
-
       {/* ═══ Vassaux & serments ═══ */}
       <Card title="🤝 Vassalité">
         <div className="grid-2">
@@ -438,188 +432,3 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
 }
 
 
-// ══════════════════════════════════════════════════════════════════════
-//  Cadre « Faction » : fiche du peuple choisi par le joueur — victoire
-//  de faction (désactivée), bâtiment/aménagement de faction, 2 règles
-//  de base, puis les 3 règles d'Âge II et les 3 règles d'Âge III sur
-//  UNE LIGNE : le joueur clique sur celle qu'il prend à la montée
-//  d'âge (choix stocké sur le joueur ; la montée d'âge n'est pas
-//  automatisée). Les parties chiffrées des règles ACTIVES sont
-//  appliquées automatiquement à chaque fin de tour (engine/factions.ts,
-//  canal « Faction » du récap ressources) ; les règles qui dépendent
-//  du plateau (PM, émissaires, influence…) restent manuelles.
-// ══════════════════════════════════════════════════════════════════════
-
-function CardFaction({ joueur }: { joueur: number }) {
-  const { state, update } = useGame()
-  if (!state) return null
-  const C = cfgOf(state.config)
-  const p = state.players.find((x) => x.n === joueur)
-  if (!p) return null
-  const fiche = [...C.config.peuplesLibres, ...C.config.peuplesAutres].find((f) => f.nom === p.peuple)
-  if (!fiche) return null
-
-  // Détail des règles ACTIVES (base + âges choisis) : part automatisée
-  // (flux par tour / garnison, valeurs calculées) ou « manuel ».
-  const details = detailsFaction(state, p, C)
-  const autoDe = (source: 'Base' | 'Âge II' | 'Âge III', nom: string) =>
-    details.find((d) => d.source === source && d.nom === nom)
-  const fluxTotal: Record<string, number> = {}
-  for (const d of details) {
-    for (const [res, v] of Object.entries(d.flux)) fluxTotal[res] = (fluxTotal[res] ?? 0) + v
-  }
-  const fluxActifs = Object.entries(fluxTotal).filter(([, v]) => v !== 0)
-  const avecGarnison = details.some((d) => d.garnison)
-
-  const choisir = (age: 2 | 3, nom: string) =>
-    update((s) => {
-      const t = s.players.find((x) => x.n === joueur)
-      if (!t) return
-      const cur = age === 2 ? t.regleAge2 : t.regleAge3
-      if (age === 2) t.regleAge2 = cur === nom ? null : nom
-      else t.regleAge3 = cur === nom ? null : nom
-      // Basiléens « Suzeraineté » (Âge III, revue 2026-10-15) :
-      //  la capitale reçoit immédiatement 150 habitants à l'ACTIVATION
-      //  de la règle (+1 ministre : déjà dans le plafond, PopulationTable).
-      // Elfes d'Or « Savoir ancestral » (Âge II) : découvrir
-      //  immédiatement 2 progrès d'un même arbre (a1+a2 du 1er
-      //  arbre d'âge 1 encore disponible).
-      if (age === 2 && cur !== nom && nom === 'Savoir ancestral' && t.peuple === "ELFES D'OR") {
-        const arbres = cfgOf(s.config).config.progres
-        const set = new Set(t.progresDebloques ?? [])
-        const ai = arbres.findIndex((a, idx) =>
-          a.age === 1 && !set.has(`${idx}:a1`) && (a.brancheA?.[0]?.nom ?? '') !== '')
-        if (ai >= 0) {
-          ;(t.progresDebloques ?? (t.progresDebloques = [])).push(`${ai}:a1`, `${ai}:a2`)
-          s.log.push({
-            turn: s.turn, type: 'Système', joueur: t.n,
-            texte: `🔬 Savoir ancestral — ${t.nom} découvre « ${arbres[ai].brancheA[0].nom} » et « ${arbres[ai].brancheA[1]?.nom ?? '?'} ».`,
-          })
-        }
-      }
-      // Sylvains « Savoir ancestral » (Âge III) : +10 Science
-      //  immédiatement par apiculture déjà possédée.
-      if (age === 3 && cur !== nom && nom === 'Savoir ancestral' && t.peuple === 'Sylvains') {
-        let nbApi = 0
-        for (const v of t.villes) nbApi += (v.amenagements ?? []).filter((a) => a === 'Apiculture').length
-        const rs = t.resources['Science']
-        if (rs && nbApi > 0) rs.stock += 10 * nbApi
-        if (nbApi > 0) {
-          s.log.push({
-            turn: s.turn, type: 'Système', joueur: t.n,
-            texte: `🔬 Savoir ancestral — ${t.nom} gagne ${10 * nbApi} Science (${nbApi} apiculture(s)).`,
-          })
-        }
-      }
-      if (age === 3 && cur !== nom && nom === 'Suzeraineté' && t.peuple === 'Basiléens') {
-        const cap = t.villes[0]
-        if (cap) {
-          const rs = t.resources['Habitants']
-          if (rs) rs.stock += 150
-          s.log.push({
-            turn: s.turn, type: 'Système', joueur: t.n,
-            texte: `🏔 ${t.nom} active « Suzeraineté » — ${cap.nom} reçoit 150 habitants (+1 ministre).`,
-          })
-        }
-      }
-    })
-
-  // Badge « ✓ auto » / « manuel » d'une règle active.
-  // Retour Thibaut 2026-10-15 : pastille VERT (auto) / JAUNE (automatisable,
-  //  pas encore codé) / ROUGE (impossible — plateau) sur chaque règle.
-  const badgeAuto = (d: { auto: string | null } | undefined, nom: string) => {
-    if (!d) return null
-    const st = statutFaction(p.peuple, nom)
-    return (
-      <span className={pastilleClass(st)} title={
-        st === 'auto' ? 'Appliquée automatiquement par le moteur'
-        : st === 'possible' ? 'Automatisable — pas encore codée, à gérer au plateau'
-        : 'Impossible à automatiser (plateau / non modélisé)'
-      } />
-    )
-  }
-
-  const ligneAge = (label: string, regles: { nom: string; texte: string }[] | undefined, choisie: string | null | undefined, age: 2 | 3) => (
-    <div className="stack small-gap">
-      <div className="frule-age">
-        <strong>{label}</strong>
-        <span className="muted small">
-          — choisissez la règle prise à la montée d'âge (clic pour sélectionner / annuler)
-        </span>
-        {choisie && <span className="badge badge-good">choisie : {choisie}</span>}
-      </div>
-      <div className="frule-row">
-        {(regles ?? []).map((r) => {
-          const d = choisie === r.nom ? autoDe(age === 2 ? 'Âge II' : 'Âge III', r.nom) : undefined
-          return (
-            <button
-              key={r.nom}
-              className={`frule ${choisie === r.nom ? 'frule-selected' : ''}`}
-              onClick={() => choisir(age, r.nom)}
-              title={choisie === r.nom ? 'Règle choisie — cliquer pour annuler' : 'Choisir cette règle'}
-            >
-              <div className="frule-title">{r.nom} {badgeAuto(d, r.nom)}</div>
-              <div className="frule-text">{r.texte}</div>
-              {d?.auto && <div className="frule-auto">⚙️ {d.auto}</div>}
-            </button>
-          )
-        })}
-        {(!regles || regles.length === 0) && (
-          <div className="muted small">Aucune règle d'âge dans le référentiel pour ce peuple.</div>
-        )}
-      </div>
-    </div>
-  )
-
-  return (
-    <Card title={`⚔️ Faction — ${p.peuple}`}>
-      <div className="small muted" style={{ marginBottom: 8 }}>{fiche.description}</div>
-      <div className="frule-row">
-        {fiche.victoire ? (
-          <div className="frule frule-muted">
-            <div className="frule-title">Victoire de faction <span className="badge badge-neutral">désactivée</span></div>
-            <div className="frule-text">{fiche.victoire}</div>
-          </div>
-        ) : null}
-        {fiche.batiment ? (
-          <div className="frule frule-muted">
-            <div className="frule-title">Bâtiment / aménagement de faction</div>
-            <div className="frule-text">{fiche.batiment}</div>
-          </div>
-        ) : null}
-        {(fiche.reglesBase ?? []).map((r) => {
-          const d = autoDe('Base', r.nom)
-          return (
-            <div key={r.nom} className="frule frule-muted">
-              <div className="frule-title">{r.nom} {badgeAuto(d, r.nom)}</div>
-              <div className="frule-text">{r.texte}</div>
-              {d?.auto && <div className="frule-auto">⚙️ {d.auto}</div>}
-            </div>
-          )
-        })}
-      </div>
-      <div className="stack small-gap" style={{ marginTop: 12 }}>
-        {ligneAge('Âge II', fiche.ageII, p.regleAge2, 2)}
-        {ligneAge('Âge III', fiche.ageIII, p.regleAge3, 3)}
-      </div>
-      <div className="frule-appliques">
-        <strong>⚙️ Bonus appliqués automatiquement</strong> — chaque fin de tour, canal « Faction »
-        du récap ressources (page Pays) :{' '}
-        {fluxActifs.length > 0
-          ? fluxActifs.map(([res, v]) => (
-              <span key={res} className="badge badge-good">{v > 0 ? '+' : ''}{v} {res}</span>
-            ))
-          : 'aucun flux chiffré pour l\u2019instant'}
-        {avecGarnison && (
-          <span className="muted small"> · garnison des habitations ajustée (décompte détaillé sur la page Joueur)</span>
-        )}
-        <div className="muted small">
-          Les règles marquées « manuel » dépendent du plateau physique ou de systèmes non modélisés
-          (PM, cases, émissaires, influence, marchands, colonies…) : à gérer au jugé. Les bâtiments et
-          aménagements de faction chiffrés (Église, Apiculture, Puit de mana, Elevage, Brasseries…)
-          sont constructibles depuis la page Pays — production automatique.
-        </div>
-      </div>
-    </Card>
-  )
-}

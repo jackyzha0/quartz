@@ -14,11 +14,10 @@ import { Card, Select, Button } from '../ui'
 import { VilleCarte } from './VilleCarte'
 import type { ChoixSurintendant } from './pays-utils'
 
-export function VillesCarte({ joueur, p, C, maxAttraitMonde, setPlayer, setSurint, setSurintRes }: {
+export function VillesCarte({ joueur, p, C, setPlayer, setSurint, setSurintRes }: {
   joueur: number
   p: Player
   C: Cfg
-  maxAttraitMonde: number
   setPlayer: (fn: (p: Player, s: GameState) => void) => void
   setSurint: (v: ChoixSurintendant | null) => void
   setSurintRes: (v: string) => void
@@ -35,7 +34,7 @@ export function VillesCarte({ joueur, p, C, maxAttraitMonde, setPlayer, setSurin
         {p.villes.map((ville, idx) => (
           <VilleCarte
             key={idx} idx={idx} ville={ville} joueur={joueur} p={p} C={C}
-            maxAttraitMonde={maxAttraitMonde} setPlayer={setPlayer}
+            setPlayer={setPlayer}
             setSurint={setSurint} setSurintRes={setSurintRes}
           />
         ))}

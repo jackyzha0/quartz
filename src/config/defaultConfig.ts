@@ -147,10 +147,6 @@ export interface ConstructionRef {
    *  construire (1 = Hameau/Motte…, 2 = Cité/Donjon, 3 = Grande
    *  Cité/Forteresse). Champ optionnel. */
   rangMinHabitation?: number
-  /** Faction (peuple) propriétaire de la construction — champ optionnel :
-   *  un joueur ne peut construire les bâtiments de faction que de SON
-   *  peuple (catégorie « Bâtiment de faction » des cadres ville). */
-  faction?: string
   terrain?: string     // aménagements uniquement
   cout: string
   production: string
@@ -778,8 +774,8 @@ export function migrerSwapSylvains(f: PeupleRef): PeupleRef {
   }
 }
 
-/** Table des constructions (bâtiments / aménagements, y compris de
- *  faction) d'une configuration existante : les entrées du référentiel
+/** Table des constructions (bâtiments / aménagements) d'une
+ *  configuration existante : les entrées du référentiel
  *  par défaut absentes de la config (apparues depuis la sauvegarde)
  *  sont AJOUTÉES, sans toucher aux entrées déjà présentes. */
 export function migrerConstructions(
@@ -910,7 +906,11 @@ function migrerMinisteres(list: GameConfig['ministeres']): GameConfig['ministere
  *  entrées, renommages, nouveau format de table) doit être répercutée
  *  dans les configurations existantes : les configs tamponnées au
  *  numéro précédent repasseront alors une fois par les migrations. */
-export const SCHEMA_VERSION_CONFIG = 1
+// Version 2 (2026-10-19, retour arbitre) : retrait du système de faction
+//  — les constructions marquées `faction` (Église, Apiculture, Puit de
+//  mana, Colonies souterraines…, 19 au total) sont FILTRÉES des
+//  configurations existantes lors de la convergence.
+export const SCHEMA_VERSION_CONFIG = 2
 
 /** Garde-fous appliqués à TOUTES les configurations, même convergées :
  *  chaque table du référentiel migrée doit contenir au moins une entrée
@@ -1034,8 +1034,11 @@ export function cfgOf(config?: GameConfig): Cfg {
     //  + correctif Sylvains (Savoir ancestral ↔ Bibliothèque enfouie)
     merged.peuplesLibres = migrerFactions(merged.peuplesLibres, DEFAULT_CONFIG.peuplesLibres).map(migrerSwapSylvains)
     merged.peuplesAutres = migrerFactions(merged.peuplesAutres, DEFAULT_CONFIG.peuplesAutres)
-    // constructions de faction (Église, Apiculture, Puit de mana…) :
-    //  ajout des entrées du référentiel apparues depuis la sauvegarde
+    // retrait des constructions de faction (2026-10-19, retour arbitre) :
+    //  filtrées AVANT la complétion pour ne pas être ré-ajoutées.
+    merged.constructions = (merged.constructions ?? []).filter((c) => !(c as { faction?: string }).faction)
+    // constructions : ajout des entrées du référentiel apparues depuis
+    //  la sauvegarde
     merged.constructions = migrerConstructions(merged.constructions, DEFAULT_CONFIG.constructions)
     merged.schemaVersion = SCHEMA_VERSION_CONFIG
   }

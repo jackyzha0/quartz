@@ -162,7 +162,7 @@ export function SetupPanel() {
           <table className="tbl small">
             <thead>
               <tr>
-                <th>#</th><th>Nom</th><th>Peuple (faction)</th><th>Culture</th>
+                <th>#</th><th>Nom</th><th>Peuple</th><th>Culture</th>
                 <th>Régime</th><th>Capitale</th><th>Habitants / ville</th><th>% mariés</th><th>Villes (séparées par ,)</th>
               </tr>
             </thead>

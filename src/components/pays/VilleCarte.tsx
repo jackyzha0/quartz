@@ -3,7 +3,9 @@
 //  (transfert, suppression, cité libre), cultures présentes, garnison
 //  des habitations, rang & type, consommation, aménagements et
 //  bâtiments (choix à catégories — marqueur (y)), lignes « Autres »,
-//  production de la ville et heatmap d'attrait migratoire.
+//  production de la ville.
+//  (RETRAIT 2026-10-19, retour arbitre : la heatmap d'attrait migratoire
+//   a été retirée avec la migration spontanée par Tourisme — à refaire.)
 //  (Extrait de PlayerView.tsx — un fichier par UI.)
 // ══════════════════════════════════════════════════════════════════════
 
@@ -15,7 +17,7 @@ import {
   coutAmenagement, aCampDeBatisseurs, parseCoutTexte, garnisonHabitationVille,
   detailGarnisonVille, typeVille, habitationDef, rangsDisponibles,
   consommationsVille, resumeConstruction, productionVille,
-  attraitTouristiqueVille, effetsNourrEteAmenagementsVille,
+  effetsNourrEteAmenagementsVille,
   effetsNourrEteAutresVille, supprimerVille, transfererVille,
   debiterCoutHabitation,
 } from '../../engine/engine'
@@ -29,13 +31,12 @@ import {
   fmtEffets, fmtCout, fmtNum, type ChoixSurintendant,
 } from './pays-utils'
 
-export function VilleCarte({ idx, ville, joueur, p, C, maxAttraitMonde, setPlayer, setSurint, setSurintRes }: {
+export function VilleCarte({ idx, ville, joueur, p, C, setPlayer, setSurint, setSurintRes }: {
   idx: number
   ville: City
   joueur: number
   p: Player
   C: Cfg
-  maxAttraitMonde: number
   setPlayer: (fn: (p: Player, s: GameState) => void) => void
   setSurint: (v: ChoixSurintendant | null) => void
   setSurintRes: (v: string) => void
@@ -321,27 +322,15 @@ export function VilleCarte({ idx, ville, joueur, p, C, maxAttraitMonde, setPlaye
         })}
         <div className="add-bat">
           {/* Marqueur (y) : choix à CATÉGORIES + DESCRIPTIONS —
-              aménagements classiques et aménagements de FACTION
-              du peuple du joueur (les autres factions ne sont
-              plus constructibles, comme les bâtiments). */}
+              aménagements classiques. (RETRAIT 2026-10-19, retour
+              arbitre : les aménagements de faction ont été retirés
+              avec le système de faction.) */}
           <ChoicePicker
             bouton="+ Aménager une case…"
             categories={[
               {
                 label: 'Aménagements',
-                options: amRefs.filter((a) => !a.faction).map((a) => ({
-                  value: a.nom,
-                  titre: a.nom,
-                  droite: `${fmtCout(parseCoutTexte(a.cout))}${a.terrain ? ` · ${a.terrain}` : ''}`,
-                  description: [
-                    resumeConstruction(a) || a.production || '',
-                    a.description,
-                  ].filter(Boolean).join('\n'),
-                })),
-              },
-              {
-                label: `Aménagements de faction (${p.peuple})`,
-                options: amRefs.filter((a) => a.faction === p.peuple).map((a) => ({
+                options: amRefs.map((a) => ({
                   value: a.nom,
                   titre: a.nom,
                   droite: `${fmtCout(parseCoutTexte(a.cout))}${a.terrain ? ` · ${a.terrain}` : ''}`,
@@ -394,7 +383,7 @@ export function VilleCarte({ idx, ville, joueur, p, C, maxAttraitMonde, setPlaye
         })}
         <div className="add-bat">
           {/* Marqueur (y) : un BOUTON PAR TYPE de bâtiment
-              (militaire, économique, guilde, faction, capitale —
+              (militaire, économique, guilde, capitale —
               arbitrage Thibaut : les 5 familles existantes) +
               description de chaque bâtiment AVANT le choix. */}
           <ChoicePicker
@@ -610,36 +599,6 @@ export function VilleCarte({ idx, ville, joueur, p, C, maxAttraitMonde, setPlaye
           )
         })()}
 
-        {/* ── Heatmap : attrait migratoire de la ville (Tourisme /
-            tour), relatif à la ville la plus attractive du monde.
-            C'est la pondération de la migration spontanée
-            (2 % / tour — paramètre migrationTourisme). ── */}
-        {(() => {
-          const attrait = attraitTouristiqueVille(state, p, ville, C)
-          const part = maxAttraitMonde > 0 ? attrait / maxAttraitMonde : 0
-          const chaleur = Math.round(210 - 210 * part) // bleu (froid) → rouge (chaud)
-          return (
-            <div
-              className="heat-row"
-              title={`Attrait migratoire : ${fmt(attrait)} Tourisme (bâtiments + production par tour) — pondération des migrations spontanées (${Math.round(C.p.migrationTourisme * 100)} % / tour par habitant ; conjoint et enfants mineurs suivent).`}
-            >
-              <span className="muted small">Attrait migratoire</span>
-              <div className="heat-bar">
-                {attrait > 0 && (
-                  <div
-                    className="heat-fill"
-                    style={{ width: `${Math.max(4, part * 100)}%`, background: `hsl(${chaleur}, 85%, 48%)` }}
-                  />
-                )}
-              </div>
-              <span className="small">
-                {attrait > 0
-                  ? `+${fmt(attrait)} Tourisme · ${Math.round(part * 100)} %`
-                  : '— (aucun attrait)'}
-              </span>
-            </div>
-          )
-        })()}
       </div>
   )
 }

@@ -36,7 +36,7 @@ import { appliquerEffetsBatiments } from './batiments'
 import { appliquerEffetsAmenagements, effetsNourrEteAmenagementsVille } from './amenagements'
 import { appliquerEffetsAutres, effetsNourrEteAutresVille } from './autres'
 import { appliquerEffetsRegimesCultures, resynchroniserTourisme } from './regimes'
-import { appliquerEffetsFaction, nbVassaux } from './factions'
+import { nbVassaux } from './factions'
 import { appliquerEffetsMinisteres, effetsFinSaisonMinisteres } from './ministeres'
 import { appliquerEffetsCommerce, nettoyerRoutesCommerce, peuplerMarchands } from './commerce'
 import { appliquerTaxesCitesLibres, citesSuzerainesDe } from './citesLibres'
@@ -230,17 +230,11 @@ export function runTurn(state: GameState): GameState {
     habitationsParJoueur[p.n] = appliquerConsommationsHabitations(state, p, C)
   }
 
-  // 3nonies. Factions : bonus automatiques des règles de faction du
-  //  peuple de chaque joueur (2 règles de base + règle d'Âge II / III
-  //  choisie — engine/factions.ts). Les parties au plateau (PM,
-  //  émissaires, influence…) restent manuelles.
-  const factionsParJoueur: Record<number, Record<string, number>> = {}
+  // 3nonies. (RETRAIT 2026-10-19, retour arbitre : les bonus de faction
+  //  ont été retirés — système à refaire.) Tourisme : le stock n'est
+  //  JAMAIS cumulé (stock = production) — re-synchronisation de fin
+  //  de tour pour chaque joueur.
   for (const p of state.players) {
-    factionsParJoueur[p.n] = appliquerEffetsFaction(state, p, C)
-    // Tourisme : les flux de faction (vassal basiléen +15×rang,
-    //  champs +3…) ont été crédités au stock par
-    //  appliquerEffetsFaction — or le Tourisme n'est JAMAIS cumulé
-    //  (stock = production) : re-resynchronisation immédiate.
     resynchroniserTourisme(state, p, 'fin de tour')
   }
 
@@ -334,7 +328,6 @@ export function runTurn(state: GameState): GameState {
       autres: autresParJoueur[p.n] ?? {},
       regimesCultures: regimesCulturesParJoueur[p.n] ?? {},
       habitations: habitationsParJoueur[p.n] ?? {},
-      faction: factionsParJoueur[p.n] ?? {},
       citesLibres: citesLibresParJoueur[p.n] ?? {},
       ministeres: ministeresParJoueur[p.n] ?? {},
       commerce: commerceParJoueur[p.n] ?? {},
@@ -398,11 +391,8 @@ export {
   detailGarnisonVille, type LigneDetailGarnison,
 } from './regimes'
 export {
-  ficheFaction, reglesActives, regleActive, detailsFaction, effetsFaction,
-  garnisonFactionVille, appliquerEffetsFaction,
   nbAmenagements, nbBatiments, nbVassaux, rangPaysNiveau, capitaleDe,
-  batimentsFaction, batimentsCapitale,
-  type DetailFaction, type RegleActive, type SourceRegle,
+  batimentsCapitale,
 } from './factions'
 export { supprimerVille, transfererVille, rejouerTransfertVille, appliquerBonusProximite, bonusProximite, normaliserEtat } from './villes'
 export { fusionnerSections, rejouerEvenementsPartages, appliquerConfigMondiale, type SectionJoueurFusion, type EvenementPartage } from './fusion'
@@ -424,7 +414,6 @@ export {
 } from './habitations'
 export {
   productionDetaillee, productionVille, provenancesApports,
-  attraitTouristiqueVille, attraitMaxMonde,
   type ProductionDetail, type ProductionVilleDetail,
   type ProvenanceApport, type CanalApport,
 } from './production'

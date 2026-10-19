@@ -16,13 +16,12 @@
 // ══════════════════════════════════════════════════════════════════════
 
 import type { City, GameState, Player } from './types'
-import { cfgOf, type Cfg } from './gameData'
+import type { Cfg } from './gameData'
 import { calculerGainsPopulation, detailGainsVille } from './economie'
-import { effetsBatimentsVille, detailsBatimentsJoueur, tourismeStatiqueBatiment } from './batiments'
+import { effetsBatimentsVille, detailsBatimentsJoueur } from './batiments'
 import { effetsAmenagementsVille, effetsNourrEteAmenagementsVille, detailsAmenagementsJoueur } from './amenagements'
 import { effetsAutresVille, effetsNourrEteAutresVille, estNourrEte, detailsAutresJoueur } from './autres'
 import { effetsRegime, effetsCulturePays, detailCulturePays } from './regimes'
-import { effetsFaction } from './factions'
 import { citesLibresDe, detailCiteLibre } from './citesLibres'
 import { consommationsPays, consommationsVille, nomRang } from './habitations'
 import { bonusProximite } from './villes'
@@ -54,9 +53,6 @@ export interface ProductionDetail {
   /** consommations par tour des habitations (engine/habitations.ts) —
    *  négatives (ex. Cité : −10 Nourriture, −8 Or) */
   habitations: Record<string, number>
-  /** bonus automatiques des règles de faction du peuple du joueur
-   *  (engine/factions.ts — étape 3nonies) */
-  faction: Record<string, number>
   /** taxes reçues des cités libres sous suzeraineté du joueur
    *  (engine/citesLibres.ts — étape 3decies) */
   citesLibres: Record<string, number>
@@ -177,14 +173,6 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     if (v !== 0) habitations[res] = (habitations[res] ?? 0) + v
   }
 
-  // Factions : bonus automatiques des règles de faction du peuple du
-  //  joueur (2 règles de base + règle d'Âge II / III choisie) —
-  //  étape 3nonies du moteur.
-  const faction: Record<string, number> = {}
-  for (const [res, v] of Object.entries(effetsFaction(state, p, C))) {
-    if (v !== 0) faction[res] = v
-  }
-
   // Cités libres : taxes versées par les cités sous suzeraineté du
   //  joueur (production nette, Chasseurs ×1,1 Nourriture) — étape
   //  3decies du moteur.
@@ -233,12 +221,12 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
   const armees: Record<string, number> = {}
   // Total
   const total: Record<string, number> = {}
-  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, proximite, vassalite, ministeres, progres, armees]) {
+  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, citesLibres, commerce, proximite, vassalite, ministeres, progres, armees]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, proximite, vassalite, ministeres, progres, armees, total }
+  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, citesLibres, commerce, proximite, vassalite, ministeres, progres, armees, total }
 }
 
 // ══════════════════════════════════════════════════════════════════════
@@ -305,33 +293,9 @@ export function productionVille(
   return { batiments, amenagements, nourrEte, autres, habitants, consoVille, total }
 }
 
-/** Attrait migratoire d'une ville : Tourisme STATIQUE de ses bâtiments
- *  (ex. Chapelle +35, crédité à la construction — batiments.ts) PLUS le
- *  Tourisme produit par tour (tous canaux : Artistes de la ville…).
- *  C'est la pondération utilisée par la migration spontanée
- *  (paramètre migrationTourisme) et affichée en heatmap sous chaque
- *  ville (page « Pays »). */
-export function attraitTouristiqueVille(
-  state: GameState, p: Player, ville: City, C: Cfg = cfgOf(state.config),
-): number {
-  const statique = [...(ville.batiments ?? []), ...(ville.amenagements ?? [])].reduce(
-    (somme, b) => somme + tourismeStatiqueBatiment(b, C, ville.type), 0)
-  const flux = Math.max(0, productionVille(state, p, ville, C).total['Tourisme'] ?? 0)
-  return statique + flux
-}
-
-/** Attrait maximal parmi toutes les villes du monde — borne haute de la
- *  heatmap (une ville à 100 % est la plus attractive du monde). */
-export function attraitMaxMonde(state: GameState): number {
-  const C = cfgOf(state.config)
-  let max = 0
-  for (const q of state.players) {
-    for (const v of q.villes) {
-      max = Math.max(max, attraitTouristiqueVille(state, q, v, C))
-    }
-  }
-  return max
-}
+// (RETRAIT 2026-10-19, retour arbitre : attraitTouristiqueVille et
+//  attraitMaxMonde ont été retirés avec la migration spontanée par
+//  attrait touristique — système à refaire.)
 
 // ══════════════════════════════════════════════════════════════════════
 //  PROVENANCE DES APPORTS (encadré « Récap des ressources — origine de

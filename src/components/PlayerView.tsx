@@ -40,7 +40,7 @@ import { useGame } from '../state/store'
 import type { GameState, Player } from '../engine/types'
 import { cfgOf } from '../engine/gameData'
 import {
-  productionDetaillee, impotPopulation, impotsVassaux, attraitMaxMonde,
+  productionDetaillee, impotPopulation, impotsVassaux,
 } from '../engine/engine'
 import { Card } from './ui'
 import { RessourcesBar } from './pays/RessourcesBar'
@@ -98,10 +98,6 @@ export function PlayerView({ joueur }: { joueur: number }) {
   const impotsVassPrev = React.useMemo(
     () => impotsVassaux(state, p, C), [state, p, C])
 
-  // ── Attrait migratoire : borne haute = ville la plus attractive du
-  //    monde (pour la heatmap sous chaque ville). ─────────────────────────
-  const maxAttraitMonde = attraitMaxMonde(state)
-
   return (
     <div className="stack">
       {/* Barre Ressources — flottante en haut de la page, ouverte par
@@ -124,7 +120,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
 
       {/* Villes : aménagements, bâtiments, autres, cultures, taxes. */}
       <VillesCarte
-        joueur={joueur} p={p} C={C} maxAttraitMonde={maxAttraitMonde}
+        joueur={joueur} p={p} C={C}
         setPlayer={setPlayer} setSurint={setSurint} setSurintRes={setSurintRes}
       />
 

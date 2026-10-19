@@ -87,67 +87,8 @@ export function statutMerveille(nom: string): StatutAuto {
   }
 }
 
-/** Statut d'une R\u00c8GLE DE FACTION par peuple + nom. */
-const FACTIONS: Record<string, StatutAuto> = {
-  // Basil\u00e9ens
-  'Basil\u00e9ens|Paysans d\u00e9vou\u00e9s': 'auto',
-  'Basil\u00e9ens|Temps de paix': 'auto',
-  'Basil\u00e9ens|Distribution des richesses': 'auto',
-  'Basil\u00e9ens|Heure de la pri\u00e8re': 'auto',
-  'Basil\u00e9ens|\u00c9missaires efficaces': 'auto',
-  'Basil\u00e9ens|Suzerainet\u00e9': 'auto',
-  'Basil\u00e9ens|H\u00e9ritage familial': 'auto',
-  'Basil\u00e9ens|Abuser des serfs': 'auto',
-  // Peaux Vertes
-  'PEAUX VERTES|Barbares primitifs': 'auto',
-  'PEAUX VERTES|Union du klan !': 'impossible',
-  'PEAUX VERTES|Diriger par la peur': 'auto',
-  'PEAUX VERTES|Moa tap\u00e9 Toa': 'impossible',
-  'PEAUX VERTES|C\u00e9 partou \u00e0 nou !': 'auto',
-  'PEAUX VERTES|Tous avek moa !': 'auto',
-  'PEAUX VERTES|Donn\u00e9 \u00e0 mang\u00e9': 'auto',
-  'PEAUX VERTES|Multiculturalisme': 'impossible',
-  // Elfes d'Or
-  "ELFES D'OR|L\u00e0 avant les autres": 'auto',
-  "ELFES D'OR|Accros \u00e0 la magie": 'auto',
-  "ELFES D'OR|Savoir ancestral": 'auto',
-  "ELFES D'OR|Cit\u00e9 d'Or": 'auto',
-  "ELFES D'OR|\u00c9levage d'esclaves": 'impossible',
-  "ELFES D'OR|Puit d'Or": 'auto',
-  "ELFES D'OR|Palais des Dieux": 'auto',
-  "ELFES D'OR|Opulence": 'impossible',
-  // Sylvains
-  'Sylvains|Sentiers stables': 'impossible',
-  'Sylvains|Amis de la for\u00eat': 'impossible',
-  'Sylvains|Don de miel': 'auto',
-  'Sylvains|Vengeance de la terre': 'auto',
-  'Sylvains|Biblioth\u00e8que enfouie': 'auto',
-  "Sylvains|Enclave d'\u00e9meraude": 'auto',
-  'Sylvains|Racines du monde': 'impossible',
-  'Sylvains|Savoir ancestral': 'auto',
-  // Norls
-  'NORLS|Vivre de la terre': 'impossible',
-  'NORLS|Nomades': 'auto',
-  'NORLS|Savoir chamanique': 'auto',
-  "NORLS|L'art du viking": 'auto',
-  'NORLS|La course \u00e0 la mer': 'auto',
-  'NORLS|Conqu\u00eate territoriale': 'auto',
-  'NORLS|Arm\u00e9es des traditions': 'auto',
-  'NORLS|Grands explorateurs': 'impossible',
-  // Vermines de Kaoss
-  'VERMINES DE KAOSS|Un chef plus intelligent': 'auto',
-  'VERMINES DE KAOSS|Colonies souterraines': 'impossible',
-  'VERMINES DE KAOSS|March\u00e9 noir': 'impossible',
-  'VERMINES DE KAOSS|Infestation': 'impossible',
-  'VERMINES DE KAOSS|Colonies d\'esclaves': 'impossible',
-  'VERMINES DE KAOSS|Grouiller partout': 'impossible',
-  'VERMINES DE KAOSS|Murmurer \u00e0 leurs oreilles': 'impossible',
-  'VERMINES DE KAOSS|\u00c9tudier leur mani\u00e8re de faire': 'impossible',
-}
-
-export function statutFaction(peuple: string, regle: string): StatutAuto {
-  return FACTIONS[`${peuple}|${regle}`] ?? 'possible'
-}
+// (RETRAIT 2026-10-19, retour arbitre : la table FACTIONS et statutFaction
+//  ont été retirées avec le système de bonus de faction — à refaire.)
 
 /** Classe CSS d'un statut. */
 export function pastilleClass(st: StatutAuto): string {

@@ -24,7 +24,7 @@ import { detailGainsVille } from './economie'
 import { cfgOf, cultureDef, type Cfg } from './gameData'
 import { aMinistre, portefeuillesDuJoueur } from './ministeres'
 import { garnisonBatiment, tourismeStatiqueBatiment } from './batiments'
-import { garnisonFactionVille, rangPaysNiveau, effetsFaction } from './factions'
+import { rangPaysNiveau } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
 import { garnisonProgresVille, lignesGarnisonProgresVille, garnisonMinimaleProgres, fluxProgresJoueur } from './progresAuto'
 
@@ -74,7 +74,6 @@ export function garnisonHabitationVille(p: Player, ville: City, C: Cfg, state?: 
   const regime = C.regimes.find((r) => r.nom === p.regime)
   const bonus = regime?.garnisonParRang ?? 0
   if (bonus) g += bonus * rangNiveau(ville, C)
-  if (state) g += garnisonFactionVille(state, p, ville, C)
   // Plancher « Combler les lacunes » (engine/progresAuto.ts) : les
   //  habitations ne descendent pas sous 30 si la tech est débloquée.
   return Math.max(g, garnisonMinimaleProgres(p, C))
@@ -87,8 +86,8 @@ export interface LigneDetailGarnison {
   label: string
   valeur: number
   /** catégorie affichable : base / bâtiment / technologie /
-   *  régime / ministre / faction */
-  origine: 'base' | 'bâtiment' | 'technologie' | 'régime' | 'ministre' | 'faction'
+   *  régime / ministre */
+  origine: 'base' | 'bâtiment' | 'technologie' | 'régime' | 'ministre'
 }
 
 export function detailGarnisonVille(
@@ -115,8 +114,6 @@ export function detailGarnisonVille(
   if (state && aMinistre(state, p, 'Grand prévôt')) {
     push('ministre', 'Grand prévôt : 10 × rang de pays', 10 * rangPaysNiveau(p, C))
   }
-  // 6. Règles de faction (Puit de mana +40, vassaux +20…)
-  if (state) push('faction', 'règles de faction', garnisonFactionVille(state, p, ville, C))
   return out
 }
 
@@ -243,14 +240,12 @@ export function tourismeCourant(state: GameState, p: Player, C: Cfg): number {
   total += effetsCulturePays(state, p, C)['Tourisme'] ?? 0
   // 4. technologies (Surconsommation, Stands de goodies)
   total += fluxProgresJoueur(state, p, C)['Tourisme'] ?? 0
-  // 5. règles de faction (vassalité, champs basiléens)
-  total += effetsFaction(state, p, C)['Tourisme'] ?? 0
-  // 6. ministres (Maître de cour +2, Légat +20) — fin de saison :
+  // 5. ministres (Maître de cour +2, Légat +20) — fin de saison :
   //  production équivalente par tour
   const portefeuilles = portefeuillesDuJoueur(state, p)
   total += 2 * portefeuilles.filter((m) => m === 'Maître de cour').length
   total += 20 * portefeuilles.filter((m) => m === 'Légat du pontificat').length
-  // 7. constructions statiques (Chapelle +35…) : tourisme statique
+  // 6. constructions statiques (Chapelle +35…) : tourisme statique
   //  des bâtiments/aménagements — valeur d'état, partie intégrante
   //  de la « production » de Tourisme du joueur.
   for (const v of p.villes) {

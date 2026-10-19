@@ -42,7 +42,6 @@ export function RecapParTour({ joueur, p, C, prodDetail, impotPopPrev, impotsVas
           ['Aménagements', prodDetail.amenagements],
           ['Autres', prodDetail.autres],
           ['Régimes & cultures', prodDetail.regimesCultures],
-          ['Faction', prodDetail.faction],
           ['Cités libres', prodDetail.citesLibres],
           ['Commerce', prodDetail.commerce],
           ['Proximité', prodDetail.proximite],

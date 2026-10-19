@@ -77,13 +77,12 @@ export function BatimentsParams({ config, setCfg }: TableProps) {
     <Card title={`Constructions — bâtiments (${(config.constructions ?? []).filter((c) => c.categorie === 'Bâtiment').length})`}>
       <p className="muted small">
         Le <strong>groupe</strong> détermine où le bâtiment est constructible (Ville / Château /
-        Capitale), la <strong>faction</strong> le réserve au peuple correspondant (un par ville,
-        remplaçable). Le moteur lit les <strong>effets</strong> structurés (case ressource + case
+        Capitale). Le moteur lit les <strong>effets</strong> structurés (case ressource + case
         quantité) ; le texte « Production » reste affiché dans le wiki des Référentiels.
       </p>
       <div className="table-wrap">
         <table className="tbl small">
-          <thead><tr><th>Groupe</th><th>Bâtiment</th><th>Faction</th><th>Coût</th><th>Effets (moteur)</th><th>Production (texte)</th><th>Description</th><th></th></tr></thead>
+          <thead><tr><th>Groupe</th><th>Bâtiment</th><th>Coût</th><th>Effets (moteur)</th><th>Production (texte)</th><th>Description</th><th></th></tr></thead>
           <tbody>
             {(config.constructions ?? []).map((c, i) => ({ c, i })).filter(({ c }) => c.categorie === 'Bâtiment').map(({ c, i }) => (
               <tr key={i}>
@@ -95,19 +94,6 @@ export function BatimentsParams({ config, setCfg }: TableProps) {
                   />
                 </td>
                 <td><TextInput value={c.nom} onChange={(v) => setCfg((cf) => { cf.constructions[i].nom = v })} /></td>
-                <td>
-                  <Select
-                    value={c.faction ?? ''}
-                    options={[
-                      { value: '', label: '(aucune)' },
-                      ...[...config.peuplesLibres, ...config.peuplesAutres].map((f) => f.nom).map((n) => ({ value: n, label: n })),
-                    ]}
-                    onChange={(v) => setCfg((cf) => {
-                      if (v) cf.constructions[i].faction = v
-                      else delete cf.constructions[i].faction
-                    })}
-                  />
-                </td>
                 <td><TextInput value={c.cout} onChange={(v) => setCfg((cf) => { cf.constructions[i].cout = v })} /></td>
                 <td>
                   <EffetsConstructionEditor

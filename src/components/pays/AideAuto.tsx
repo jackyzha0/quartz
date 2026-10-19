@@ -19,13 +19,13 @@ export function AideAuto({ C }: { C: Cfg }) {
             <li><strong>Impôts des habitants</strong> : titres × taxes de chaque ville, sur toutes les ressources, moins leur consommation.</li>
             <li><strong>Production</strong> des bâtiments, aménagements et lignes « Autres » — la « Nourr - été » n'est créditée qu'en été.</li>
             <li><strong>Consommation des habitations</strong> (rang de chaque ville) et <strong>bonus de proximité</strong> (Rivière / Mer).</li>
-            <li><strong>Règles de pays & culture</strong> (ex. +N par ville de ta culture dans le monde) et <strong>bonus de faction / régime</strong>.</li>
+            <li><strong>Règles de pays & culture</strong> (ex. +N par ville de ta culture dans le monde) et <strong>lois de régime</strong>.</li>
             <li><strong>Tribut des vassaux</strong> et <strong>taxes des cités libres</strong> sous ta suzeraineté.</li>
             <li><strong>Routes commerciales</strong> : +{fmt(C.p.marchandOrTour)} Or aux DEUX joueurs + copie de l'aménagement (une production d'été n'est copiée qu'en été).</li>
             <li><strong>Ministres « Auto »</strong> (badge page 👥 Population) : Trésorier +5 Or/tour, Grand Précepteur +1 Science/tour, Grand prévôt +1 Fer/tour, Grand veneur −5 Nourriture × rang par habitation, Grand Chambellan +10 % taxes reçues, Sénéchal +15 Nourriture fin d'été, Maître de cour et Légat +Tourisme fin de saison, Connétable +15 Garnison à la nomination, Grand bailli (fondations), Surintendant des finances (après construction), Grand bibliothécaire (après technologie), Grand écuyer (prix de levée d'armée −10 Or par rang de pays), Chanceliers (sacres réduits).</li>
             <li><strong>Gouverneur</strong> : le noble le plus âgé est nommé automatiquement, +10 % d'impôts sur sa ville.</li>
             <li><strong>Tourisme = comme le Bois, sauf qu'il ne s'accumule pas</strong> : sa production est affichée et comptée partout (récaps de ville et de tour, canaux, tableaux) — bâtiments (Chapelle +35), Artistes, lois de culture, techs, vassalité, ministres — mais à chaque fin de tour le stock est RECALCULÉ pour égaler la production courante (stock = prod, jamais cumulé). Garnison : valeur d'état.</li>
-            <li><strong>Démographie des joueurs</strong> : naissances (modulées par les taxes), vieillissement, décès, migrations (attrait Tourisme).</li>
+            <li><strong>Démographie des joueurs</strong> : naissances (modulées par les taxes), vieillissement, décès, migrations scolaires (vers un Professeur).</li>
             <li><strong>Coûts débités automatiquement</strong> : constructions, habitations (fondation / changement de rang), technologies (Science déduite au déblocage, remboursée à la reprise), sacre d'avènement (moitié du prix — gratuit avec la loi Démocratie).</li>
           </ul>
         </div>

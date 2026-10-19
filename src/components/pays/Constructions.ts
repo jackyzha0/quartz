@@ -19,7 +19,7 @@ import {
   effetsTourBatiment, coutBatiment,
   coutAmenagement, constructionRef, prerequisConstruction, detailGainsVille,
   parseCoutTexte, resumeConstruction,
-  rangNiveau, batimentsConstructionsRefs, batimentsFaction, batimentsCapitale,
+  rangNiveau, batimentsConstructionsRefs, batimentsCapitale,
   capitaleDe, aMinistre,
 } from '../../engine/engine'
 import { cultureDef, type Cfg } from '../../engine/gameData'
@@ -27,7 +27,6 @@ import { statutMerveille, pastilleClass } from '../../engine/statutAuto'
 import { effetImmediatMerveille } from '../../engine/merveilles'
 import { reductionAmenagement, reductionBatiment, aTech } from '../../engine/progresAuto'
 import { resynchroniserTourisme } from '../../engine/regimes'
-import { regleActive } from '../../engine/factions'
 import { fmt } from '../ui'
 import type { PickerCategorie } from '../Picker'
 import { FAM_BADGES, fmtCout, type ChoixSurintendant } from './pays-utils'
@@ -55,15 +54,6 @@ export function faireConstruire(o: {
       // · bâtiment de capitale (groupe « Capitale ») : capitale uniquement.
       const ref = type === 'batiment' ? constructionRef(nom, C.config) : undefined
       const estCapitale = capitaleDe(t)?.nom === ville.nom
-      // Aménagement de faction (marqueur (y)) : comme les bâtiments de
-      //  faction, seuls ceux du PEUPLE du joueur sont constructibles.
-      const aref = type === 'amenagement' ? constructionRef(nom, C.config) : undefined
-      if (aref?.faction && aref.faction !== t.peuple) {
-        s.log.push({
-          turn: s.turn, type: 'Système', joueur: t.n,
-          texte: `⚠ ${nom} est un aménagement de faction des ${aref.faction} — seuls ceux de ${t.peuple} sont prévus (construction quand même enregistrée).`,
-        })
-      }
       if (ref && ref.groupe === 'Capitale' && !estCapitale) {
         s.log.push({
           turn: s.turn, type: 'Système', joueur: t.n,
@@ -90,19 +80,16 @@ export function faireConstruire(o: {
       //  · Militaire : aucune limite ;
       //  · Économique : 1 par RANG de la ville ;
       //  · Guilde : 1 par ville ;
-      //  · Faction : 1 par ville (remplacement déjà géré) ;
       //  · Capitale : uniquement dans la capitale (géré ci-dessus) ;
       //  · MERVEILLE : rang d'habitation minimum requis + UNE seule
       //    par ville.
       const fam = ref?.famille ?? ''
       if (fam === 'Economique') {
-        // « Urbanisme », Elfes d'Or « Cité d'Or » / « Palais des Dieux » :
-        //  la capitale accueille un bâtiment supplémentaire (+1 slot
-        //  économique de la capitale).
-        const bonusCapitale =
-          (aTech(t, 'Urbanisme', C) ? 1 : 0)
-          + (t.peuple === "ELFES D'OR" && t.regleAge2 === "Cité d'Or" ? 1 : 0)
-          + (t.peuple === "ELFES D'OR" && t.regleAge3 === 'Palais des Dieux' ? 1 : 0)
+        // « Urbanisme » : la capitale accueille un bâtiment
+        //  supplémentaire (+1 slot économique de la capitale).
+        //  (RETRAIT 2026-10-19 : bonus Elfes d'Or « Cité d'Or » /
+        //  « Palais des Dieux » retirés avec les factions.)
+        const bonusCapitale = (aTech(t, 'Urbanisme', C) ? 1 : 0)
         const maxEco = rangNiveau(ville, C) + (estCapitale ? bonusCapitale : 0)
         const nbEco = ville.batiments.filter((b) => (constructionRef(b, C.config)?.famille ?? '') === 'Economique').length
         if (nbEco >= maxEco) {
@@ -163,12 +150,6 @@ export function faireConstruire(o: {
           })
         }
       }
-      if (ref?.faction && ref.faction !== t.peuple) {
-        s.log.push({
-          turn: s.turn, type: 'Système', joueur: t.n,
-          texte: `⚠ ${nom} est un bâtiment de faction des ${ref.faction} — seuls ceux de ${t.peuple} sont prévus. Construction quand même enregistrée.`,
-        })
-      }
       const cout = type === 'batiment'
         ? coutBatiment(nom, C, groupe)
         : coutAmenagement(t, C.config, type === 'amenagement' ? nom : undefined)
@@ -184,20 +165,6 @@ export function faireConstruire(o: {
       if (type === 'batiment') {
         for (const [r, v] of Object.entries(reductionBatiment(t, C))) {
           if (cout[r] !== undefined) cout[r] = Math.max(0, cout[r] - v)
-        }
-      }
-      // Basiléens « Heure de la prière » (Âge II, revue 2026-10-15) :
-      //  bâtiments −3 Pierres à la construction (toutes familles).
-      if (t.peuple === 'Basiléens' && t.regleAge2 === 'Heure de la prière' && type === 'batiment') {
-        if (cout['Pierre'] !== undefined) cout['Pierre'] = Math.max(0, cout['Pierre'] - 3)
-      }
-      // SYLVAINS « Amis de la forêt » (revue 2026-10-16) : aucun coût en
-      //  Bois — tous les coûts en Bois sont TRANSFORMÉS en Nourriture
-      //  (et la Scierie n'est pas constructible chez eux).
-      if (t.peuple === 'Sylvains' && regleActive(t, C, 'Amis de la for\u00eat')) {
-        if (cout['Bois'] !== undefined) {
-          cout['Nourriture'] = (cout['Nourriture'] ?? 0) + cout['Bois']
-          delete cout['Bois']
         }
       }
       // Merveilles & progrès « Tourisme » (retour Thibaut 2026-10-15) :
@@ -247,19 +214,9 @@ export function faireConstruire(o: {
           texte: `⚠ ${nom} figure déjà à ${ville.nom} (le référentiel prévoit un seul exemplaire par ville). Construction quand même enregistrée.`,
         })
       }
-      // Bâtiment de faction : UN par ville — le nouveau remplace l'ancien
-      // (ex. Église → Grande Cathédrale → Palais du Palatinat).
-      let remplace = ''
-      if (type === 'batiment' && ref?.faction) {
-        for (let i = ville.batiments.length - 1; i >= 0; i--) {
-          const b = ville.batiments[i]
-          if (b !== nom && constructionRef(b, C.config)?.faction) {
-            remplace = b
-
-            ville.batiments.splice(i, 1)
-          }
-        }
-      }
+      // (RETRAIT 2026-10-19 : le remplacement des bâtiments de faction —
+      //  Église → Grande Cathédrale → Palais du Palatinat — a été retiré
+      //  avec le système de faction.)
       cible.push(nom)
       const parts: string[] = []
       for (const [res, v] of Object.entries(cout)) {
@@ -286,7 +243,7 @@ export function faireConstruire(o: {
         ? effetImmediatMerveille(s, t, nom) : ''
       s.log.push({
         turn: s.turn, type: 'Système', joueur: t.n,
-        texte: `🏗 ${nom} construit(e) à ${ville.nom} — coût déduit du stock : ${parts.length ? parts.join(' + ') : 'gratuit'}${sci > 0 ? ` — règle de culture : +${fmt(sci)} Science` : ''}${remplace ? ` — remplace ${remplace} (bâtiment de faction de la ville)` : ''}${mervTxt}.`,
+        texte: `🏗 ${nom} construit(e) à ${ville.nom} — coût déduit du stock : ${parts.length ? parts.join(' + ') : 'gratuit'}${sci > 0 ? ` — règle de culture : +${fmt(sci)} Science` : ''}${mervTxt}.`,
       })
       // Surintendant des finances (marqueur (y)) : « Après avoir
       //  construit un bâtiment, générez 1 Ressource de votre choix
@@ -313,15 +270,15 @@ export function faireConstruire(o: {
 export function faireBatParFamille(o: { state: GameState; p: Player; C: Cfg }): (ville: City) => PickerCategorie[] {
   const { state, p, C } = o
   const batRefs = batimentsConstructionsRefs(C)
-  // Bâtiments de faction du peuple du joueur + bâtiments de capitale
-  // du référentiel (2 nouvelles catégories des cadres ville).
-  const refsBatFaction = batimentsFaction(p, C)
+  // Bâtiments de capitale du référentiel (catégorie « Capitale » des
+  //  cadres ville). (RETRAIT 2026-10-19, retour arbitre : les bâtiments
+  //  de faction ont été retirés avec le système de faction.)
   const refsBatCapitale = batimentsCapitale(C)
   const nomCapitale = capitaleDe(p)?.nom ?? ''
   /** Catégories de construction d'UNE ville par TYPE de bâtiment
    *  (marqueur (y), retour Thibaut : « peut-être même un bouton par
-   *  type de bâtiment ») — arbitrage : les 5 FAMILLES du référentiel
-   *  (Militaire, Economique, Guilde, Faction, Capitale). Contenu :
+   *  type de bâtiment ») — arbitrage : les 4 FAMILLES du référentiel
+   *  (Militaire, Economique, Guilde, Capitale). Contenu :
    *  bâtiments de ville / château hors faction, bâtiments de FACTION
    *  du peuple du joueur (ceux de capitale uniquement dans la
    *  capitale), bâtiments de CAPITALE pour la capitale uniquement.
@@ -337,21 +294,15 @@ export function faireBatParFamille(o: { state: GameState; p: Player; C: Cfg }): 
     const rang = rangNiveau(ville, C)
     // Alerte rouge d'une construction (revue 2026-10-16 : les limites
     //  s'INDIQUENT en rouge dans le picker, elles ne bloquent jamais).
-    const alertePour = (b: { nom: string; famille?: string; cout: string; faction?: string }): string => {
+    const alertePour = (b: { nom: string; famille?: string; cout: string }): string => {
       const warns: string[] = []
-      // Bâtiment de faction : la règle du classeur exige « une
-      //  habitation de votre culture » — alerte si la ville est
-      //  d'une autre culture (indicatif, jamais bloquant).
-      if (b.faction && ville.culture && ville.culture !== p.culture) {
-        warns.push(`Habitation de culture ${ville.culture} — la règle prévoit une habitation de votre culture (${p.culture}).`)
-      }
       if (ville.batiments.includes(b.nom)) warns.push('Déjà construit dans cette ville (le référentiel prévoit un seul exemplaire).')
       const pre = prerequisConstruction(b)
       if (pre && !ville.batiments.includes(pre)) warns.push(`Prérequis manquant : ${pre}.`)
       const fam = b.famille ?? ''
       if (fam === 'Economique') {
         const nbEco = ville.batiments.filter((x) => (constructionRef(x, C.config)?.famille ?? '') === 'Economique').length
-        const bonusCap = (aTech(p, 'Urbanisme', C) ? 1 : 0) + (estCapitale && p.peuple === "ELFES D'OR" && (p.regleAge2 === "Cité d'Or" || p.regleAge3 === 'Palais des Dieux') ? 1 : 0)
+        const bonusCap = (aTech(p, 'Urbanisme', C) ? 1 : 0)
         const maxEco = rang + (estCapitale ? bonusCap : 0)
         if (nbEco >= maxEco) warns.push(`Limite Économique atteinte (${nbEco}/${maxEco} — un par rang).`)
       }
@@ -376,19 +327,7 @@ export function faireBatParFamille(o: { state: GameState; p: Player; C: Cfg }): 
       : (b.famille ?? '') === 'Merveille' ? true
       : b.groupe.toLowerCase() === type
     const eligibles = [
-      ...batRefs.filter((b) => okGroupe(b) && !b.faction).map((b) => ({ b, groupe: b.groupe })),
-      // Bâtiments de FACTION (bug 2026-10-17 : « toutes les villes ne
-      //  peuvent pas les construire ») : le filtre de TYPE okGroupe
-      //  (« Ville » seulement dans les villes de type Ville) leur
-      //  était appliqué — or la règle du référentiel est « peut
-      //  uniquement être construit dans une habitation de votre
-      //  culture », SANS distinction Ville/Château. Ils sont donc
-      //  proposés dans TOUTES les habitations du joueur ; l'alerte
-      //  rouge signale une ville de culture différente (jamais
-      //  bloquant, convention du jeu).
-      ...refsBatFaction
-        .filter((b) => b.groupe !== 'Capitale' || estCapitale)
-        .map((b) => ({ b, groupe: 'Faction' })),
+      ...batRefs.filter((b) => okGroupe(b)).map((b) => ({ b, groupe: b.groupe })),
       ...(estCapitale ? refsBatCapitale.map((b) => ({ b, groupe: 'Capitale' })) : []),
     ]
     // Merveilles du groupe de la ville, triées par rang croissant —
@@ -407,7 +346,7 @@ export function faireBatParFamille(o: { state: GameState; p: Player; C: Cfg }): 
     // Retour Thibaut 2026-10-15 : séparation par RANG D'HABITATION pour
     //  Militaire / Économique / Guilde — une catégorie par famille et
     //  par rang DISPONIBLE (les bâtiments de rang supérieur au rang de
-    //  la ville sont masqués). Faction et Capitale restent par famille.
+    //  la ville sont masqués). Capitale reste par famille.
     const out: PickerCategorie[] = []
     const famillesRangees: Array<[string, string]> = [
       ['Militaire', 'Militaire'],
@@ -442,8 +381,8 @@ export function faireBatParFamille(o: { state: GameState; p: Player; C: Cfg }): 
         })
       }
     }
-    // Faction et Capitale : une catégorie par famille (sans rang)
-    for (const [fam, label] of [['Faction', `Faction (${p.peuple})`], ['Capitale', 'Capitale']] as const) {
+    // Capitale : une catégorie par famille (sans rang)
+    for (const [fam, label] of [['Capitale', 'Capitale']] as const) {
       const options = eligibles
         .filter(({ b }) => (b.famille ?? '') === fam)
         .map(({ b, groupe }) => ({

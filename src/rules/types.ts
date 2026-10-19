@@ -190,8 +190,6 @@ export type Effet =
 export interface ConditionRegle {
   /** Peuple requis (ex. 'NORLS' pour « L'art du viking »). */
   peuple?: string
-  /** Règle de faction active requise (nom EXACT du référentiel). */
-  regleFaction?: string
   /** Rang de Pontificat minimum requis. */
   pontificatMin?: number
   /** Âge minimum du joueur. */

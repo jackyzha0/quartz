@@ -9,7 +9,6 @@ import type { Character, City, GameState, Player } from './types'
 import type { Rng } from './rng'
 import { cfgOf } from './gameData'
 import { emptyRecap, fullName } from './shared'
-import { attraitTouristiqueVille } from './production'
 import { maybeAssignProfesseurs, gestionMariages, tryEducateMinor, assignAdultTitle } from './titres'
 import { computeAgeMax, tryResurrection, killCharacter, maladieStep } from './sante'
 import { computeFecondite, conceptionEtNaissances } from './naissances'
@@ -67,7 +66,7 @@ export function populationTurn(state: GameState, p: Player, rng: Rng) {
   applyCultureInfluence(state, p, rng, recap)
   updateCityCultures(state, p)
 
-  // 3.6bis Migration (scolarité + attrait touristique)
+  // 3.6bis Migration (scolarité)
   migrerPopulation(state, p, rng)
 
   // Récap dans le journal
@@ -84,10 +83,8 @@ export function populationTurn(state: GameState, p: Player, rng: Rng) {
 //         · 1 % : ville avec Professeur de n'importe quel joueur.
 //       Les « Obstinés » ne migrent jamais (l'éducation ne les tentera
 //       jamais — VBA).
-//    2. ATTRACTION — 2 % par habitant vivant et par tour de déménager
-//       vers une autre ville du monde, tirée pondérément par son attrait
-//       touristique (Tourisme / tour de la ville) ; le conjoint et les
-//       enfants mineurs suivent. Les soldats (armée) ne migrent pas.
+//  (RETRAIT 2026-10-19, retour arbitre : la migration spontanée par attrait
+//   touristique a été retirée avec le système d'attrait — à refaire.)
 //  Un personnage qui change de joueur est physiquement déplacé dans le
 //  tableau de population de son nouveau joueur.
 // ══════════════════════════════════════════════════════════════════════
@@ -184,66 +181,6 @@ export function migrerPopulation(state: GameState, p: Player, rng: Rng) {
     }
   }
 
-  // ── 2. Migration par attrait touristique (tous les habitants) ────────
-  const cibles: { cible: CibleVille; attrait: number }[] = []
-  for (const q of state.players) {
-    for (const v of q.villes) {
-      const a = attraitTouristiqueVille(state, q, v, C)
-      if (a > 0) cibles.push({ cible: { joueur: q, ville: v }, attrait: a })
-    }
-  }
-  if (cibles.length === 0) return
-
-  /** OPTIMISATION 2026-10-16 : index id→joueur et nom→personnages
-   *  construits UNE fois (la famille d'un migrant était recherchée
-   *  dans toutes les populations du monde à CHAQUE migrant : O(N²)
-   *  à 16 000 personnages). */
-  const proprietaireParId = new Map<string, number>()
-  const vivantsParNom = new Map<string, Character[]>()
-  const mineursParParent = new Map<string, Character[]>()
-  for (const q of state.players) {
-    for (const x of state.population[q.n] ?? []) {
-      proprietaireParId.set(x.id, q.n)
-      if (x.statut === 'Décédé') continue
-      const nom = fullName(x)
-      const lst = vivantsParNom.get(nom)
-      if (lst) lst.push(x)
-      else vivantsParNom.set(nom, [x])
-      if (x.age < C.p.adultAge && !x.armee) {
-        for (const parent of [x.mere, x.pere]) {
-          if (!parent) continue
-          const l2 = mineursParParent.get(parent)
-          if (l2) l2.push(x)
-          else mineursParParent.set(parent, [x])
-        }
-      }
-    }
-  }
-  for (const c of [...pop]) {
-    if (c.statut === 'Décédé' || deplaces.has(c.id)) continue
-    if (c.armee) continue // les soldats ne déménagent pas
-    if (!rng.chance(C.p.migrationTourisme)) continue
-    const dispo = cibles.filter((t) => !(t.cible.joueur.n === p.n && t.cible.ville.nom === c.ville))
-    if (dispo.length === 0) continue
-    const dest = rng.pickWeighted(dispo, (t) => t.attrait)
-    migrer(c, p.n, dest.cible, 'attrait touristique')
-    // le conjoint et les enfants mineurs suivent (via index)
-    const nomComplet = fullName(c)
-    const famille: Character[] = []
-    if (c.mariage) {
-      for (const x of vivantsParNom.get(c.mariage) ?? []) {
-        if (deplaces.has(x.id) || x.id === c.id || x.armee) continue
-        famille.push(x)
-      }
-    }
-    for (const x of mineursParParent.get(nomComplet) ?? []) {
-      if (deplaces.has(x.id) || x.id === c.id || famille.includes(x)) continue
-      famille.push(x)
-    }
-    for (const x of famille) {
-      const srcN = proprietaireParId.get(x.id)
-      if (srcN == null) continue
-      migrer(x, srcN, dest.cible, `accompagne ${nomComplet} — attrait touristique`)
-    }
-  }
+  // (RETRAIT 2026-10-19, retour arbitre : la migration spontanée par
+  //  attrait touristique a été retirée — système à refaire.)
 }

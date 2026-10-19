@@ -20,7 +20,7 @@ export interface ChoixSurintendant {
 
 export const ORIGINE_LABEL: Record<string, string> = {
   base: 'rang', 'bâtiment': 'bâtiment', technologie: 'techno', régime: 'régime',
-  ministre: 'ministre', faction: 'faction',
+  ministre: 'ministre',
 }
 
 export const RESSOURCES_ETAT = ['Garnison']
@@ -33,14 +33,14 @@ export const RESSOURCES_ETAT = ['Garnison']
 export const RESSOURCES_FLUX = (C: Cfg): string[] => C.ressources.filter((r) => r !== 'Habitants' && r !== 'Garnison')
 
 /** Classe de pastille par FAMILLE de bâtiment (retour Thibaut, marqueur
- *  (r)) : rouge Militaire, jaune Economique, bleu Capitale, blanc
- *  Faction, violet Guilde (couleur de Guilde arbitrée par Vibe —
- *  à modifier dans styles.css si Thibaut préfère autre chose). */
+ *  (r)) : rouge Militaire, jaune Economique, bleu Capitale, violet
+ *  Guilde (couleur de Guilde arbitrée par Vibe — à modifier dans
+ *  styles.css si Thibaut préfère autre chose). La famille « Faction »
+ *  a été retirée le 2026-10-19 avec le système de faction. */
 export const FAM_BADGES: Record<string, string> = {
   Militaire: 'badge-fam-mil',
   Economique: 'badge-fam-eco',
   Capitale: 'badge-fam-cap',
-  Faction: 'badge-fam-fac',
   Guilde: 'badge-fam-gui',
   Merveille: 'badge-fam-merv',
 }

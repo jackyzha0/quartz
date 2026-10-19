@@ -118,27 +118,16 @@ export function ReferenceDataPanel() {
           ] as const).map(([titre, liste]) => (
             <Card key={titre} title={titre}>
               <p className="muted small">
-                Le joueur choisit une règle par âge à la montée d'âge (page Royaume).
+                Fiches du classeur conservées à titre documentaire (système de
+                faction retiré du jeu le 2026-10-19, retour arbitre — à refaire).
               </p>
               {liste.map((p) => (
                 <div key={p.nom} className="fiche-peuple">
                   <div className="fiche-peuple-title">{p.nom}</div>
                   <div className="small muted">{p.description}</div>
-                  {(p.victoire || p.batiment || p.reglesBase || p.ageII || p.ageIII) ? (
+                  {(p.reglesBase || p.ageII || p.ageIII) ? (
                     <>
                       <div className="frule-row">
-                        {p.victoire ? (
-                          <div className="frule frule-muted">
-                            <div className="frule-title">Victoire de faction <span className="badge badge-neutral">désactivée</span></div>
-                            <div className="frule-text">{p.victoire}</div>
-                          </div>
-                        ) : null}
-                        {p.batiment ? (
-                          <div className="frule frule-muted">
-                            <div className="frule-title">Bâtiment / aménagement de faction</div>
-                            <div className="frule-text">{p.batiment}</div>
-                          </div>
-                        ) : null}
                         {(p.reglesBase ?? []).map((r) => (
                           <div key={r.nom} className="frule frule-muted">
                             <div className="frule-title">{r.nom}</div>
@@ -185,7 +174,7 @@ export function ReferenceDataPanel() {
               « Nourr - été »), Tourisme crédité UNE fois à la construction, Garnison
               (valeur d'état). Retour Thibaut 2026-10-15 : deux colonnes — VILLE et
               CHÂTEAU ; tri par RANG d'habitation puis par FAMILLE (Militaire,
-              Économique, Guilde, Faction, Merveille, Capitale).
+              Économique, Guilde, Merveille, Capitale).
             </p>
             <div className="refbat-grid">
               {[['Ville', 'VILLES'], ['Château', 'CHÂTEAUX']].map(([groupe, label]) => (
@@ -200,7 +189,7 @@ export function ReferenceDataPanel() {
                         || a.nom.localeCompare(z.nom))
                     const familles: Array<[string, string]> = [
                       ['Militaire', 'Militaire'], ['Economique', 'Économique'],
-                      ['Guilde', 'Guilde'], ['Faction', 'Faction'],
+                      ['Guilde', 'Guilde'],
                       ['Merveille', 'Merveille'], ['Capitale', 'Capitale'],
                     ]
                     return [1, 2, 3].map((rang) => {

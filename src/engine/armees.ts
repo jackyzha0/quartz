@@ -9,7 +9,7 @@ import type { GameState, Player } from './types'
 import type { Rng } from './rng'
 import { cfgOf, cultureDef } from './gameData'
 import { aMinistre } from './ministeres'
-import { rangPaysNiveau, nbAmenagements, regleActive } from './factions'
+import { rangPaysNiveau } from './factions'
 import { emptyRecap, fullName } from './shared'
 import { reductionLeveeArmeesMerveilles } from './merveilles'
 import { reductionLevee } from './progresAuto'
@@ -188,17 +188,11 @@ export function prixArmee(
   const tranche = Math.max(1, C.p.armeePriXPuissance)
   if (puissanceCible <= 0) return 0
   let prix = (puissanceCible / tranche) * C.p.armeePrixOr
-  // Réductions automatiques (revue 2026-10-15, retour Thibaut
-  //  « tous les ministres et règles de faction automatiques ») :
-  //  · Grand écuyer (ministre) : −10 Or par rang de pays du joueur ;
-  //  · Sylvains « Vengeance de la terre » (Âge II) : −10 Or
-  //    par apiculture possédée. Plancher 0.
+  // Réductions automatiques (revue 2026-10-15) :
+  //  · Grand écuyer (ministre) : −10 Or par rang de pays du joueur.
   if (p && state) {
     const cfg = cfgOf(state.config)
     if (aMinistre(state, p, 'Grand écuyer')) prix -= 10 * rangPaysNiveau(p, cfg)
-    if (p.peuple === 'Sylvains' && regleActive(p, cfg, 'Vengeance de la terre')) {
-      prix -= 10 * nbAmenagements(p, 'Apiculture')
-    }
     // Merveilles (retour Thibaut 2026-10-15) : Temple de Bahamutt et
     //  Ordre des chevaliers de Notan : -20/-25 Or sur les levées.
     prix -= reductionLeveeArmeesMerveilles(p)
@@ -213,23 +207,12 @@ export function prixArmee(
     //  · Terrain d'entrainement (Château) : −10 Or ;
     //  · Ecole militaire (Château) : −25 Or ;
     //  · Grande caserne (Capitale) : −8 Or ;
-    //  · Guilde des explorateurs : −20 Or ;
-    //  · Autel eud Guer' (faction Peaux Vertes) : −20 Or.
-    // Peaux Vertes « Diriger par la peur » (Âge II, revue 2026-10-15) :
-    //  le coût de levée des VASSAUX d'un suzerain Peaux Vertes est
-    //  augmenté de 10 Or par rang de pays du suzerain.
-    if (state) {
-      const suz = state.players.find((q) => q.n === p.vassalDe)
-      if (suz && suz.peuple === 'PEAUX VERTES' && regleActive(suz, cfg, 'Diriger par la peur')) {
-        prix += 10 * rangPaysNiveau(suz, cfg)
-      }
-    }
+    //  · Guilde des explorateurs : −20 Or.
     if (ville?.batiments) {
       if (ville.batiments.includes("Terrain d'entrainement")) prix -= 10
       if (ville.batiments.includes('Ecole militaire')) prix -= 25
       if (ville.batiments.includes('Grande caserne')) prix -= 8
       if (ville.batiments.includes('Guilde des explorateurs')) prix -= 20
-      if (ville.batiments.includes("Autel eud Guer'")) prix -= 20
     }
   }
   return Math.max(0, Math.round(prix))

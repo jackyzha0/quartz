@@ -262,8 +262,7 @@ export function peuplerMarchands(state: GameState, p: Player): void {
  *  sinon le motif d'erreur (affiché en rouge, jamais bloquant —
  *  convention « dons et mariages », marqueur (r)). */
 /** Nombre maximal de marchands d'un joueur (revue 2026-10-15) :
- *  paramètre maxMarchands (0 par défaut) + 1 par règle de faction qui
- *  accorde un marchand supplémentaire, +1 par technologie « marchand
+ *  paramètre maxMarchands (0 par défaut), +1 par technologie « marchand
  *  supplémentaire » (Commerce, Collecte d'impôts), +1 par Plateforme
  *  commerciale ou Guilde des marchands (qui la remplace), +1 par Echoppe
  *  (« permet d'entretenir 1 route commerciale supplémentaire »). */

@@ -15,7 +15,7 @@ import type {
   ContexteEffet, ContributionEffets, ConditionRegle, Effet, RegleBanque,
 } from '../types'
 import { cfgOf } from '../../engine/gameData'
-import { regleActive, capitaleDe } from '../../engine/factions'
+import { capitaleDe } from '../../engine/factions'
 import { rangNiveau } from '../../engine/regimes'
 import { aMinistre } from '../../engine/ministeres'
 
@@ -27,7 +27,6 @@ export function conditionsRemplies(cond: ConditionRegle | undefined, ctx: Contex
   if (!cond) return true
   const { joueur } = ctx
   if (cond.peuple && joueur.peuple !== cond.peuple) return false
-  if (cond.regleFaction && !regleActive(joueur, cfgOf(ctx.state.config), cond.regleFaction)) return false
   if (cond.saison && ctx.saison !== cond.saison) return false
   if (cond.vassal === true && joueur.vassalDe == null) return false
   if (cond.vassal === false && joueur.vassalDe != null) return false

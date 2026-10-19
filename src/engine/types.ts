@@ -304,12 +304,6 @@ export interface Player {
    *  d'une même branche, un arbre est terminé à EXACTEMENT 3 techs,
    *  et l'âge N exige 3 arbres complétés de l'âge N-1. */
   progresDebloques?: string[]
-  /** Règle de faction choisie pour l'Âge II / l'Âge III : le joueur
-   *  choisit UNE règle parmi les trois de son peuple à chaque montée
-   *  d'âge (la montée d'âge elle-même n'est PAS automatisée — choix
-   *  manuel, effet non appliqué automatiquement). */
-  regleAge2?: string | null
-  regleAge3?: string | null
   /** Bonus de garnison des ministères (refonte 2026-10-14) : crédité
    *  une fois à la prise de fonction d'un Connétable (+5 par ville,
    *  engine/ministeres.ts) et ajouté à la garnison calculée de chaque
@@ -365,10 +359,6 @@ export interface ApportsTour {
    *  négatives (ex. Cité : −10 Nourriture, −8 Or). Champ optionnel :
    *  absent des historiques d'avant l'ajout du canal. */
   habitations?: Record<string, number>
-  /** bonus automatiques des règles de faction du peuple du joueur
-   *  (engine/factions.ts — étape 3nonies). Champ optionnel : absent
-   *  des historiques d'avant l'ajout du canal. */
-  faction?: Record<string, number>
   /** effets par tour des technologies de progrès débloquées
    *  (engine/progres.ts — étape 3undecies). Champ optionnel : absent
    *  des historiques d'avant l'ajout du canal. */
