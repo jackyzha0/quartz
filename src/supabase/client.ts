@@ -12,6 +12,7 @@
 
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import type { GameState } from '../engine/types'
+import type { GameConfig } from '../config/defaultConfig'
 import { compacterEtat, elargirEtat } from '../state/storage'
 
 const LS_URL = 'cpe.supabase.url'
@@ -91,6 +92,39 @@ export async function testSupabase(): Promise<{ ok: boolean; message: string }> 
 // Table PROPRE au jeu : ce même projet Supabase héberge déjà la table `parties`
 // du wargame (colonnes incompatibles, id uuid) — le jeu ne doit PAS y toucher.
 const TABLE = 'parties_chasse_peche'
+/** Ligne réservée qui porte la configuration mondiale unique. */
+const CONFIG_MONDIALE_ID = '__config__'
+
+// ── CONFIG MONDIALE UNIQUE (règle 2026-10-19) ─────────────────────────────
+// Une seule et unique configuration, INDÉPENDANTE des parties : stockée
+// dans la ligne réservée '__config__' de la même table. Toutes les
+// parties de tous les salons l'utilisent ; seul le créateur (garde du
+// store) l'édite en multijoueur ; chaque client l'adopte au chargement
+// et périodiquement. Les parties n'embarquent plus leur propre source
+// de vérité de config.
+
+/** Charge la configuration mondiale (null si jamais publiée). */
+export async function chargerConfigMondiale(): Promise<GameConfig | null> {
+  const sb = getSupabase()
+  if (!sb) return null
+  const { data, error } = await sb
+    .from(TABLE).select('state').eq('id', CONFIG_MONDIALE_ID).maybeSingle()
+  if (error || !data) return null
+  return (data.state as { config?: GameConfig })?.config ?? null
+}
+
+/** Publie la configuration mondiale (upsert de la ligne '__config__'). */
+export async function sauverConfigMondiale(config: GameConfig): Promise<boolean> {
+  const sb = getSupabase()
+  if (!sb) return false
+  const { error } = await sb.from(TABLE).upsert({
+    id: CONFIG_MONDIALE_ID,
+    state: { config } as unknown as GameState,
+    updated_by: CLIENT_ID,
+    updated_at: new Date().toISOString(),
+  })
+  return !error
+}
 
 /** Charge une partie depuis Supabase (id = code de salon). */
 export async function loadRemote(id: string): Promise<GameState | null> {

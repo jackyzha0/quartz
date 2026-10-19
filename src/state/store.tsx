@@ -106,6 +106,18 @@ function initialGlobalConfig(): GameConfig {
 export function GameProvider({ children }: { children: React.ReactNode }) {
   // ── Configuration commune (localStorage dédié, indépendant des parties) ──
   const [globalConfig, setGlobalConfig] = useState<GameConfig>(initialGlobalConfig)
+  // CONFIG MONDIALE (règle 2026-10-19) : adoption au démarrage — une
+  //  seule et unique config, indépendante des parties ; le localStorage
+  //  local sert d'amorçe (mode hors-ligne) puis est remplacé par la
+  //  config mondiale dès qu'elle est joignable.
+  useEffect(() => {
+    void (async () => {
+      const cfg = await remote.chargerConfigMondiale()
+      if (cfg) syncGlobalCfg(cfg)
+    })()
+    // une seule fois au montage ; syncGlobalCfg est stable
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // ── État de jeu : une partie reprend TOUJOURS la configuration commune ──
   const [state, setState] = useState<GameState | null>(() => {
@@ -271,13 +283,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       lastLocalEdit.current = Date.now()
       persist(s2, mode, salon)
     }
-    // PUBLICATION AU SALON (config commune à tout le monde) : la config
-    //  ne voyage PAS dans l'état 5 Mo ni dans les sections — un event
-    //  dédié, léger, que chaque client adopte à la réception.
-    if (mode === 'supabase' && salon) {
-      void remote.pousserEvenementPartage(salon, stateRef.current?.turn ?? 0, monNumeroRef.current, 'config', {
-        config: draft as unknown as Record<string, unknown>,
-      })
+    // CONFIG MONDIALE UNIQUE (règle 2026-10-19) : la config n'appartient
+    //  à AUCUNE partie — elle est publiée dans la ligne mondiale '__config__'
+    //  et s'applique à TOUTES les parties de tous les salons. Le garde du
+    //  haut (créateur en multijoueur) reste l'unique autorisation d'écriture.
+    if (mode === 'supabase') {
+      void remote.sauverConfigMondiale(draft)
     }
   }, [mode, salon, persist])
 
@@ -711,11 +722,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const joinGame = useCallback(async (salonId: string): Promise<boolean> => {
     const s = await remote.loadRemote(salonId)
     if (!s) return false
-    // Paramètres communs : on adopte la configuration de la partie rejointe.
-    if (s.config) syncGlobalCfg(s.config)
-    // Marqueur (x) : la config de la partie rejointe est convergée
-    // (migrations + tampon) — plus jamais re-migrée ensuite.
-    s.config = JSON.parse(JSON.stringify(convergerConfig(s.config))) as GameConfig
+    // CONFIG MONDIALE (règle 2026-10-19) : la partie rejointe n'impose
+    //  PLUS sa config — la config mondiale prime sur tout état embarqué.
+    const cfgMondiale = await remote.chargerConfigMondiale()
+    if (cfgMondiale) {
+      syncGlobalCfg(cfgMondiale)
+      s.config = JSON.parse(JSON.stringify(convergerConfig(cfgMondiale))) as GameConfig
+    }
     migrerEtat(s)
     setMode('supabase')
     setSalon(salonId)
@@ -750,14 +763,22 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     void (async () => {
       const distant = await remote.loadRemote(salonId)
       if (!distant) { persistSalon(''); return }
+      const cfgMondiale = await remote.chargerConfigMondiale()
       const local = stateRef.current
       const garderLocal = !!local && typeof distant.turn === 'number'
         && local.turn >= distant.turn
       setMode('supabase')
       setSalon(salonId)
-      if (garderLocal) return
-      if (distant.config) syncGlobalCfg(distant.config)
-      distant.config = JSON.parse(JSON.stringify(convergerConfig(distant.config))) as GameConfig
+      if (garderLocal) {
+        // la config mondiale s'applique quand même (elle est indépendante
+        //  de l'état de partie).
+        if (cfgMondiale) syncGlobalCfg(cfgMondiale)
+        return
+      }
+      if (cfgMondiale) {
+        syncGlobalCfg(cfgMondiale)
+        distant.config = JSON.parse(JSON.stringify(convergerConfig(cfgMondiale))) as GameConfig
+      }
       migrerEtat(distant)
       setConflit(false)
       lastLocalEdit.current = 0
@@ -842,21 +863,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   // Abonnement realtime (mode supabase)
   useEffect(() => {
     if (mode !== 'supabase' || !salon) return
-    // CONFIG COMMUNE (règle créateur) : adoption temps réel — les events
-    //  'config' publiés par le créateur sont adoptés par CE client dès
-    //  leur parution (poll léger : payload des events, pas l'état 5 Mo).
+    // CONFIG MONDIALE (règle 2026-10-19) : adoption périodique — la
+    //  config mondiale (ligne '__config__') prime sur toute config
+    //  embarquée dans une partie, quelle que soit la partie rejointe.
     const pollConfig = setInterval(async () => {
       try {
-        const tour = stateRef.current?.turn ?? 0
-        if (!tour) return
-        const evts = await remote.lireEvenementsPartages(salon, tour)
-        const evConfig = [...evts].reverse().find((e) => e.type === 'config')
-        if (evConfig?.payload?.config) {
-          const cfg = evConfig.payload.config as unknown as GameConfig
-          const actuelle = globalConfigRef.current
-          if (JSON.stringify(cfg) !== JSON.stringify(actuelle)) {
-            syncGlobalCfg(cfg)
-          }
+        const cfg = await remote.chargerConfigMondiale()
+        if (cfg && JSON.stringify(cfg) !== JSON.stringify(globalConfigRef.current)) {
+          syncGlobalCfg(cfg)
         }
       } catch { /* réseau indisponible — le prochain tick réessaiera */ }
     }, 5000)
@@ -895,7 +909,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       stateRef.current = remoteState
       setState(remoteState)
       // Paramètres communs : on suit la configuration arrivée avec la partie.
-      if (remoteState.config) syncGlobalCfg(remoteState.config)
+      // CONFIG MONDIALE (règle 2026-10-19) : une config embarquée dans un
+      //  état distant ne PRIME PLUS — seule la config mondiale '__config__'
+      //  fait foi (adoptée au montage + poll). On ne sync plus depuis
+      //  remoteState.config : la partie n'impose jamais sa config.
     })
     return () => {
       clearInterval(pollConfig)
