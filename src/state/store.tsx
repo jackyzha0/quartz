@@ -23,16 +23,10 @@ import * as storage from './storage'
 import { adopterConfig } from './configPriorite'
 import * as remote from '../supabase/client'
 
-/** PROTOCOLE v2 (étape 2, 2026-10-17) — feature flag localStorage
- *  « cpe.proto2 » = "1" : Fin de tour par événements append-only +
- *  résolution SERVEUR (Edge Function resoudre-tour). Défaut : v1
- *  (l'ancien flux). Bascule par joueur, dans la barre de jeu. */
-function proto2Actif(): boolean {
-  // Étape 3 : v2 est le PROTOCOLE PAR DÉFAUT. Le flag ne sert plus
-  //  qu'au DOWNGRADE volontaire (« cpe.proto2 » = "0") pour revenir
-  //  à l'ancien flux (dépannage).
-  try { return window.localStorage.getItem('cpe.proto2') !== '0' } catch { return true }
-}
+// (RETRAIT 2026-10-19, brûlage audit R5) : le protocole v1 et son
+//  feature flag « cpe.proto2 » ont été retirés — le protocole v2
+//  (événements append-only + résolution serveur) est l'UNIQUE flux
+//  de fin de tour, plus aucune bascule par joueur.
 
 export type Mode = 'local' | 'supabase'
 
@@ -329,7 +323,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       //  mutation RAFRAÎCHIT la section (upsert idempotent par
       //  (salon, tour, joueur, 'section')) : elle reste exacte
       //  jusqu'à la résolution, quel que soit le moment du clic.
-      if (mode === 'supabase' && salon && proto2Actif() && barriereRef.current.monTourPousse) {
+      if (mode === 'supabase' && salon && barriereRef.current.monTourPousse) {
         const moi = monNumeroRef.current
         void remote.pousserSectionV2(salon, moi, {
           player: structuredClone(draft.players.find((q) => q.n === moi) ?? null),
@@ -381,51 +375,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       const st = stateRef.current
       if (!st) return
       const moi = monNumeroRef.current
-      // ── PROTOCOLE v2 (flag cpe.proto2) : événements + serveur ──
-      if (proto2Actif()) {
-        await nextTurnV2(st, moi)
-        return
-      }
-      // ── PROTOCOLE v1 (défaut) : barrière par colonne sections ──
-      // 1. extraire MA section (ce que j'ai modifié ce tour-ci)
-      const maSection: remote.SectionJoueur = {
-        player: structuredClone(st.players.find((q) => q.n === moi) ?? null),
-        population: structuredClone(st.population[moi] ?? []),
-        // SEULEMENT mes routes (bug duplication 2026-10-17 : la
-      //  section embarquait toutes les routes du monde).
-      routes: structuredClone(st.routesCommerce ?? []).filter((r) => r.joueur === moi),
-        citesLibres: structuredClone(st.citesLibres ?? []),
-        log: structuredClone(st.log.slice(-50)),
-        tour: st.turn,
-      }
-      setBarriere({ prets: new Set([moi]), monTourPousse: true })
-      // 2. pousser ma section
-      const apres = await remote.pousserSection(salon, moi, maSection)
-      if (!apres) {
-        // REPLI (2026-10-16) : la barrière a échoué — schéma Supabase
-        //  non migré (colonnes sections/turn_done absentes : exécutez
-        //  supabase/schema.sql), erreur réseau, ou salon en test solo.
-        //  On ne bloque JAMAIS le tour : retour à la résolution
-        //  immédiate (runTurn local + publication directe).
-        setBarriere({ prets: new Set(), monTourPousse: false })
-        await resoudreSeul()
-        return
-      }
-      // 3. observer la barrière (poll léger) jusqu'à ce que tous
-      //    les joueurs de la partie aient poussé
-      const attendus = st.players.map((q) => q.n)
-      const prets = new Set(Object.keys(apres.sections ?? {}).map(Number))
-      setBarriere({ prets, monTourPousse: true })
-      if (prets.size >= attendus.length) {
-        // je suis le dernier : résoudre la barrière
-        await resoudreBarriere(apres.sections, attendus)
-      } else {
-        // attendre : poll toutes les 2 s (le realtime nous préviendra
-        //  aussi, le poll est le filet de sécurité)
-        void pollerBarriere(attendus)
-      }
-    })()
-  }, [mode, salon, persist])
+      // ── PROTOCOLE v2 UNIQUE (RETRAIT v1 2026-10-19, brûlage audit
+      //  R5) : fin de tour TOUJOURS par événements append-only +
+      //  résolution serveur — plus de bascule par feature flag. ──
+      await nextTurnV2(st, moi)
 
   /** REPLI : résolution IMMÉDIATE sans barrière — runTurn sur l'état
    *  local courant puis publication directe (l'ancien flux, utilisé
@@ -456,7 +409,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     // v2 : persist ne pousse PLUS l'état pendant le tour — une
     //  résolution locale doit TOUJOURS publier, sinon le salon
     //  reste à l'ancien tour (tour fantôme local, bug 2026-10-17).
-    if (mode === 'supabase' && salon && proto2Actif()) {
+    if (mode === 'supabase' && salon) {
       await remote.publierEtatFusionne(salon, draft)
     }
   }, [mode, salon, persist])
@@ -470,7 +423,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     //  sont ignorés — leurs sections non poussées ne seront pas
     //  dans la fusion, c'est la sémantique du Forcer). On garde le
     //  repli local si le serveur est indisponible.
-    if (proto2Actif() && mode === 'supabase' && salon) {
+    if (mode === 'supabase' && salon) {
       void (async () => {
         const st = stateRef.current
         if (!st) return
@@ -517,7 +470,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    *  côté SERVEUR (idempotent, verrouillé). Le client ne pousse
    *  JAMAIS l'état global. Repli : si l'événement ne passe pas
    *  (table absente — SQL v2 non exécuté) ou si la fonction serveur
-   *  n'est pas déployée, retour au flux v1 puis à resoudreSeul. */
+   *  n'est pas déployée, résolution LOCALE avec publication
+   *  (resoudreBarriereLocaleV2, puis resoudreSeul en dernier recours). */
   /** Indirections pour les déclarations anticipées (ordre de
    *  déclaration : nextTurnV2 est défini avant les deux fonctions
    *  de repli qu'il appelle). */
@@ -668,55 +622,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   pollerBarriereV2Ref.current = pollerBarriereV2
 
 
-  /** Résoudre la barrière : fusionner les sections dans l'état de
-   *  référence (téléchargé frais), exécuter runTurn, publier. */
-  const resoudreBarriere = useCallback(async (
-    sections: Record<string, remote.SectionJoueur>,
-    attendus: number[],
-  ) => {
-    // état de référence FRAIS (pas notre état local)
-    const ref = await remote.loadRemote(salon)
-    if (!ref) return
-    // FUSION : même implémentation partagée que la Edge Function
-    //  (src/engine/fusion.ts). Le protocole v1 n'a pas d'événements
-    //  partagés — fusion seule.
-    const draft = fusionnerSections(ref, sections)
-    void attendus
-    // CONFIG MONDIALE : effet en fin de tour, comme tout le reste.
-    appliquerConfigMondiale(draft, await remote.chargerConfigMondiale())
-    // exécuter le tour
-    runTurn(draft)
-    // publier le nouvel état de référence
-    const ok = await remote.publierEtatFusionne(salon, draft)
-    if (ok) {
-      stateRef.current = draft
-      setState(draft)
-      lastLocalEdit.current = 0
-      setBarriere({ prets: new Set(), monTourPousse: false })
-      setConflit(false)
-    }
-  }, [salon])
-
-  /** Poller la barrière jusqu'à résolution (filet de sécurité du
-   *  realtime ; s'arrête dès que la barrière est complète ou que le
-   *  tour a changé). */
-  const pollerBarriere = useCallback(async (attendus: number[]) => {
-    const tourDebut = stateRef.current?.turn ?? 0
-    for (let i = 0; i < 60; i++) {  // max 2 minutes
-      await new Promise((r) => setTimeout(r, 2000))
-      const b = await remote.lireBarriere(salon)
-      if (!b) continue
-      // le tour a été résolu par quelqu'un d'autre : le realtime
-      //  nous amènera l'état ; on arrête le poll
-      if (b.turn_done !== tourDebut) { setBarriere({ prets: new Set(), monTourPousse: false }); return }
-      const prets = new Set(Object.keys(b.sections ?? {}).map(Number))
-      setBarriere({ prets, monTourPousse: true })
-      if (prets.size >= attendus.length) {
-        await resoudreBarriere(b.sections ?? {}, attendus)
-        return
-      }
-    }
-  }, [salon, resoudreBarriere])
+  // (RETRAIT 2026-10-19, brûlage audit R5) : resoudreBarriere et
+  //  pollerBarriere — la barrière v1 par colonne « sections »
+  //  (lire-modifier-écrire) — ont été retirés avec le protocole v1.
+  //  La résolution passe par la Edge Function « resoudre-tour » (v2)
+  //  ou son repli local v2 (resoudreBarriereLocaleV2).
 
   const newGame = useCallback((setups: SetupLine[], seed: number, m: Mode, salonId?: string) => {
     // La nouvelle part démarre avec la configuration commune actuelle,
@@ -858,7 +768,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       //  Accepter un état de même tour écraserait les actions locales
       //  en cours des autres joueurs. En v2, on n'accepte donc
       //  qu'un tour STRICTEMENT plus récent (la résolution serveur).
-      if (proto2Actif() && typeof remoteState.turn === 'number'
+      if (typeof remoteState.turn === 'number'
         && remoteState.turn === tourLocal) {
         return
       }

@@ -171,33 +171,10 @@ export interface SectionJoueur {
   tour: number
 }
 
-/** Pousser MA section de fin de tour. Retourne l'état de la barrière
- *  après écriture : { sections, turn_done } — null si erreur réseau. */
-export async function pousserSection(
-  id: string, n: number, section: SectionJoueur,
-): Promise<{ sections: Record<string, SectionJoueur>; turn_done: number } | null> {
-  const sb = getSupabase()
-  if (!sb) return null
-  // upsert de la clé sections."<n>" — Supabase (jsonb) : lire-modifier-écrire
-  //  via une requête unique avec jsonb_set serait idéale mais l'API REST
-  //  ne la propose pas : on lit, fusionne, écrit. Le risque de collision
-  //  est borné par la barrière : chaque n° écrit une clé distincte.
-  const { data: row, error: errLecture } = await sb
-    .from(TABLE).select('sections, turn_done').eq('id', id).maybeSingle()
-  if (errLecture || !row) return null
-  const sections = { ...((row.sections as Record<string, SectionJoueur>) ?? {}) }
-  // barrière incompatible (nouveau tour lancé entre-temps) : abandon
-  if ((row.turn_done ?? 0) !== section.tour) return null
-  sections[String(n)] = section
-  const { error: errEcriture } = await sb
-    .from(TABLE).update({
-      sections,
-      updated_by: CLIENT_ID,
-      updated_at: new Date().toISOString(),
-    }).eq('id', id)
-  if (errEcriture) return null
-  return { sections, turn_done: row.turn_done ?? 0 }
-}
+// (RETRAIT 2026-10-19, brûlage audit R5) : pousserSection — la barrière
+//  v1 par colonne « sections » (lire-modifier-écrire) — a été retiré
+//  avec le protocole v1 : les sections passent désormais par des
+//  ÉVÉNEMENTS append-only (pousserSectionV2, table cp_events).
 
 /** Publier l'état de référence du NOUVEAU tour (résolution de la
  *  barrière) et réinitialiser les sections. */
@@ -219,17 +196,9 @@ export async function publierEtatFusionne(
   return !error
 }
 
-/** Lire l'état de la barrière (sections poussées, tour couvert). */
-export async function lireBarriere(
-  id: string,
-): Promise<{ sections: Record<string, SectionJoueur> | null; turn_done: number } | null> {
-  const sb = getSupabase()
-  if (!sb) return null
-  const { data, error } = await sb
-    .from(TABLE).select('sections, turn_done').eq('id', id).maybeSingle()
-  if (error || !data) return null
-  return { sections: data.sections ?? null, turn_done: data.turn_done ?? 0 }
-}
+// (RETRAIT 2026-10-19, brûlage audit R5) : lireBarriere (v1) a été
+//  retiré avec le protocole v1 — la barrière se lit sur les événements
+//  du tour (lireBarriereV2).
 
 /** S'abonne aux changements du salon. Retourne la fonction de désabonnement.
  *
@@ -288,9 +257,9 @@ export function subscribeRemote(
 }
 
 // ══════════════════════════════════════════════════════════════════
-//  PROTOCOLE v2 (serveur autoritaire + events append-only)
-//  Étape 2 (2026-10-17) — utilisé derrière le feature flag
-//  localStorage « cpe.proto2 » = "1". L'ancien flux reste le défaut.
+//  PROTOCOLE v2 UNIQUE (serveur autoritaire + events append-only)
+//  (RETRAIT v1 2026-10-19, brûlage audit R5 : le flux v1 — colonne
+//  « sections » + feature flag « cpe.proto2 » — a été brûlé.)
 // ══════════════════════════════════════════════════════════════════
 
 /** Pousser MA section de fin de tour en ÉVÉNEMENT append-only :

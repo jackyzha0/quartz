@@ -79,7 +79,7 @@ src/
                              — tests natifs node:test (48) + tests de rendu (12)
 ```
 
-## Multijoueur (protocole v2 — à ne pas casser)
+## Multijoueur (protocole v2 UNIQUE — à ne pas casser)
 
 Chaque joueur joue en LOCAL pendant le tour (zéro réseau par clic). Au « Fin de tour »,
 il pousse SA SECTION ; quand tous les joueurs attendus ont poussé, la résolution
@@ -88,6 +88,10 @@ repli client documenté. Les mutations INTER-JOUEURS (ex. transfert de ville) so
 **événements partagés** rejoués APRÈS la fusion (`rejouerTransfertVille` — idempotent).
 La SEULE écriture réseau est la fin de tour : ne jamais réintroduire de sauvegarde
 automatique de l'état global (un client périmé écraserait le salon).
+
+Le protocole v1 (colonne `sections`, feature flag `cpe.proto2`) a été
+BRÛLÉ le 2026-10-19 (brûlage audit R5) : plus aucun mélange de
+protocoles possible dans un salon.
 
 ## Validation avant tout push
 
