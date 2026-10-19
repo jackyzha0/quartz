@@ -159,3 +159,45 @@ test('CONFIG MONDIALE : injection à la résolution — le tour est calculé ave
   appliquerConfigMondiale(out2, null)
   assert.equal(out2.config, avant, 'sans config mondiale, l embarquée fait foi')
 })
+
+// ═════════════════════════════════════════════════════════════════════
+//  R4 (arbitrage Thibaut 2026-10-19 : rejet + journal visible) — les
+//  sections viennent du réseau (cp_events, JSON non contrôlé) : une
+//  section malformée ne doit JAMAIS atteindre Object.assign / runTurn.
+// ═════════════════════════════════════════════════════════════════════
+
+test('R4 : section malformée (population non tableau) rejetée ENTIÈRE + journal visible', () => {
+  const ref = base()
+  ref.players[0].nom = 'Originel'
+  const sections: Record<string, SectionJoueurFusion> = {
+    '1': { player: { ...ref.players[0], nom: 'Falsifié' }, population: 'pas un tableau', routes: [], citesLibres: [], log: [], tour: ref.turn },
+  }
+  const out = fusionnerSections(ref, sections)
+  assert.equal(out.players[0].nom, 'Originel', 'RIEN de la section invalide ne doit être appliqué')
+  assert.ok(out.log.some((l) => l.type === 'Système' && l.texte.includes('Section invalide ignorée')),
+    'le rejet doit être visible dans le journal (arbitrage : journal visible)')
+})
+
+test('R4 : tour non numérique → rejet ; clé non numérique → ignorée sans trace', () => {
+  const ref = base()
+  const sections: Record<string, SectionJoueurFusion> = {
+    '1': { player: ref.players[0], routes: [], log: [], tour: 'abc' as unknown as number },
+    'xyz': { player: ref.players[1], routes: [], log: [], tour: ref.turn },
+  }
+  const out = fusionnerSections(ref, sections)
+  const rejets = out.log.filter((l) => l.texte.includes('Section invalide ignorée'))
+  assert.equal(rejets.length, 1, 'seule la section à tour non numérique est rejetée-annoncée')
+  assert.equal(rejets[0].joueur, 1)
+  assert.equal(Object.keys(out.population).length, Object.keys(ref.population).length,
+    'aucune clé parasite (NaN) ne doit apparaître dans la population')
+})
+
+test('R4 : une section conforme passe toujours (non-régression des tests ci-dessus)', () => {
+  const ref = base()
+  const sections: Record<string, SectionJoueurFusion> = {
+    '1': { player: { ...ref.players[0], nom: 'Fusionné' }, population: [], routes: [], citesLibres: [], log: [], tour: ref.turn },
+  }
+  const out = fusionnerSections(ref, sections)
+  assert.equal(out.players[0].nom, 'Fusionné', 'une section valide fusionne comme avant')
+  assert.ok(!out.log.some((l) => l.texte.includes('Section invalide ignorée')), 'aucun faux rejet')
+})

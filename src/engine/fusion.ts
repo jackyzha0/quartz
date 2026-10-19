@@ -46,6 +46,26 @@ export interface EvenementPartage {
   payload: Record<string, unknown>
 }
 
+/** (R4 — arbitrage Thibaut 2026-10-19 : rejet + journal visible)
+ *  Valide la FORME d'une section avant fusion : les payloads viennent
+ *  du réseau (cp_events — JSON non contrôlé) ; un client bogué peut
+ *  y déposer n'importe quoi. Contrat minimal (audit R4) : `tour` nombre
+ *  fini ; `player` objet s'il est présent ; population / routes /
+ *  citesLibres / log sont des TABLEAUX s'ils sont présents. Une
+ *  section invalide est rejetée ENTIÈRE — pas de demi-fusion (une
+ *  moitié de section pourrait casser runTurn à la publication).
+ *  Partagée client/Edge Function comme fusionnerSections. */
+export function sectionValide(sec: SectionJoueurFusion): boolean {
+  if (!sec || typeof sec !== 'object') return false
+  if (typeof sec.tour !== 'number' || !Number.isFinite(sec.tour)) return false
+  if (sec.player !== undefined && (typeof sec.player !== 'object' || sec.player === null)) return false
+  if (sec.population !== undefined && !Array.isArray(sec.population)) return false
+  if (sec.routes !== undefined && !Array.isArray(sec.routes)) return false
+  if (sec.citesLibres !== undefined && !Array.isArray(sec.citesLibres)) return false
+  if (sec.log !== undefined && !Array.isArray(sec.log)) return false
+  return true
+}
+
 /** Fusionne les sections du tour dans un ÉTAT DE RÉFÉRENCE cloné.
  *
  *  CONTRAT : la fonction ne mute PAS `ref` — elle travaille sur un
@@ -82,8 +102,22 @@ export function fusionnerSections(
 
   for (const nStr of Object.keys(sections)) {
     const n = Number(nStr)
+    // Clé non numérique (payload réseau non contrôlé) : aucun joueur
+    //  à fusionner — ignorée sans log (rien n'a été tenté).
+    if (!Number.isInteger(n) || n < 0) continue
     const sec = sections[nStr]
     if (!sec) continue
+    // R4 (arbitrage Thibaut 2026-10-19) : validation de FORME avant
+    //  toute application — une section malformée ne doit jamais
+    //  atteindre Object.assign / runTurn (crash à la publication).
+    //  Rejet ENTIÈR + entrée visible dans le journal du tour.
+    if (!sectionValide(sec)) {
+      newLogs.push({
+        turn: ref.turn + 1, type: 'Système', joueur: n,
+        texte: `⚠ Section invalide ignorée (données malformées reçues) — les actions de J${n} ne comptent pas pour ce tour.`,
+      })
+      continue
+    }
     const pj = draft.players.find((q) => q.n === n)
     if (pj && sec.player) Object.assign(pj, sec.player)
     if (sec.population) draft.population[n] = sec.population as typeof draft.population[number]
