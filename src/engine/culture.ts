@@ -21,8 +21,8 @@ import { detailGainsVille } from './economie'
 function tourismeVilleDe(state: GameState, p: Player, ville: import('./types').City): number {
   const C = cfgOf(state.config)
   let t = 0
-  for (const b of ville.batiments ?? []) t += tourismeStatiqueBatiment(b, C)
-  for (const a of ville.amenagements ?? []) t += tourismeStatiqueBatiment(a, C)
+  for (const b of ville.batiments ?? []) t += tourismeStatiqueBatiment(b, C, ville.type)
+  for (const a of ville.amenagements ?? []) t += tourismeStatiqueBatiment(a, C, ville.type)
   const d = detailGainsVille(state, p, ville, C)
   t += Math.max(0, (d.taxes['Tourisme'] ?? 0) * C.p.gainsCrediteStock)
   return t

@@ -19,7 +19,7 @@
 // Payload : { salon: string, tour: number, attendus: number[] }
 // ═══════════════════════════════════════════════════════════════════════════
 import { createClient } from 'jsr:@supabase/supabase-js@2'
-import { runTurn, fusionnerSections, rejouerEvenementsPartages } from './_engine.mjs'
+import { runTurn, fusionnerSections, rejouerEvenementsPartages, migrerEtat } from './_engine.mjs'
 
 const cors = {
   'Access-Control-Allow-Origin': '*',
@@ -75,6 +75,14 @@ Deno.serve(async (req) => {
       if (manquants.length) {
         return json({ ok: false, error: `barriere incomplete : ${manquants.join(', ')}` }, 409)
       }
+
+      // 3bis. MIGRATIONS DE SCHÉMA (critique 2026-10-18) : l'état de
+      //  référence peut avoir été publié par une version antérieure —
+      //  le serveur le migre AVANT la fusion, sinon il publierait des
+      //  états non migrés à tous les clients (le tampon schema des
+      //  clients serait écrasé à chaque résolution en multijoueur).
+      //  Mêmes migrations versionnées que le client (engine/migrations.ts).
+      migrerEtat(row.state)
 
       // 4. Fusion — IMPLÉMENTATION PARTAGÉE avec le client
       //    (src/engine/fusion.ts, verrouillée par fusion.test.ts).

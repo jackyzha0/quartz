@@ -89,7 +89,7 @@ export function transfererVille(
   p.villes.splice(idx, 1)
   cible.villes.push(ville)
   for (const b of [...(ville.batiments ?? []), ...(ville.amenagements ?? [])]) {
-    const tour = tourismeStatiqueBatiment(b, C)
+    const tour = tourismeStatiqueBatiment(b, C, ville.type)
     const rs = cible.resources['Tourisme']
     if (tour > 0 && rs) rs.stock += tour
   }

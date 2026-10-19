@@ -119,11 +119,16 @@ const REMPLACE: Record<string, string[]> = {
 const CACHE = new Map<string, Record<string, number>>()
 
 /** Effets par tour d'un bâtiment : production EXACTE du référentiel
- *  (table `constructions`), repli sur l'analyse du texte d'effet sinon. */
-export function effetsTourBatiment(nom: string, C: Cfg): Record<string, number> {
-  const ref = constructionRef(nom, C.config)
+ *  (table `constructions`), repli sur l'analyse du texte d'effet sinon.
+ *  GROUPE (correctif 2026-10-18) : 4 bâtiments existent en versions
+ *  Ville ET Château aux effets/coûts DIFFÉRENTS (Herses, Echoppe,
+ *  Herboristerie, Observatoire) — l'appelant passe le type
+ *  d'habitation de SA ville, sinon la version Ville écraserait les
+ *  effets des châteaux. */
+export function effetsTourBatiment(nom: string, C: Cfg, groupe?: string): Record<string, number> {
+  const ref = constructionRef(nom, C.config, groupe)
   const bd = buildingDef(nom, C.config)
-  const cle = `${nom}|${ref?.production ?? ''}|${bd?.effet ?? ''}|${JSON.stringify(ref?.effets ?? null)}`
+  const cle = `${nom}|${groupe ?? ''}|${ref?.production ?? ''}|${bd?.effet ?? ''}|${JSON.stringify(ref?.effets ?? null)}`
   const cache = CACHE.get(cle)
   if (cache) return cache
   let out: Record<string, number>
@@ -148,9 +153,10 @@ export function effetsTourBatiment(nom: string, C: Cfg): Record<string, number> 
   return out
 }
 
-/** Garnison statique accordée par un bâtiment (valeur d'état, pas un flux). */
-export function garnisonBatiment(nom: string, C: Cfg): number {
-  const ref = constructionRef(nom, C.config)
+/** Garnison statique accordée par un bâtiment (valeur d'état, pas un
+ *  flux). Groupe : cf. effetsTourBatiment (doublons Ville/Château). */
+export function garnisonBatiment(nom: string, C: Cfg, groupe?: string): number {
+  const ref = constructionRef(nom, C.config, groupe)
   if (ref) return garnisonConstructionRef(ref)
   const bd = buildingDef(nom, C.config)
   const m = bd?.effet?.match(/Garnison\s*\+?\s*(\d+)/i)
@@ -160,8 +166,8 @@ export function garnisonBatiment(nom: string, C: Cfg): number {
 /** Tourisme statique accordé par un bâtiment — valeur d'état acquise
  *  UNE FOIS à la construction (« Tourisme +15 », « Chapelle : Tourisme
  *  +35 »…), pas un flux par tour. Utilisé par construire() (page Pays). */
-export function tourismeStatiqueBatiment(nom: string, C: Cfg): number {
-  const ref = constructionRef(nom, C.config)
+export function tourismeStatiqueBatiment(nom: string, C: Cfg, groupe?: string): number {
+  const ref = constructionRef(nom, C.config, groupe)
   // Effets STRUCTURÉS (marqueur (s)) : le Tourisme est une case à part
   // entière, créditée UNE FOIS à la construction — jamais un flux / tour.
   if (ref?.effets) {
@@ -204,13 +210,17 @@ function batimentsRemplaces(ville: City): Set<string> {
   return ignores
 }
 
-/** Effets par tour cumulés des bâtiments d'une ville (remplacements gérés). */
+/** Effets par tour cumulés des bâtiments d'une ville (remplacements gérés).
+ *  Le GROUPE est le type d'habitation de la ville (Ville / Château) :
+ *  les bâtiments doublés du référentiel rendent leurs effets de la
+ *  bonne version (cf. effetsTourBatiment). */
 export function effetsBatimentsVille(ville: City, C: Cfg): Record<string, number> {
   const ignores = batimentsRemplaces(ville)
+  const groupe = ville.type
   const out: Record<string, number> = {}
   for (const nom of ville.batiments) {
     if (ignores.has(nom)) continue
-    for (const [res, v] of Object.entries(effetsTourBatiment(nom, C))) {
+    for (const [res, v] of Object.entries(effetsTourBatiment(nom, C, groupe))) {
       out[res] = (out[res] ?? 0) + v
     }
   }

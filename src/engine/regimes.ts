@@ -68,7 +68,7 @@ export function garnisonHabitationVille(p: Player, ville: City, C: Cfg, state?: 
   if (state && aMinistre(state, p, 'Grand prévôt')) {
     g += 10 * rangPaysNiveau(p, C)
   }
-  for (const b of ville.batiments) g += garnisonBatiment(b, C)
+  for (const b of ville.batiments) g += garnisonBatiment(b, C, ville.type)
   // Technologies (revue 2026-10-15) : Milices civiles I/III/V, Fortifications,
   //  Pr\u00e9 carr\u00e9, Vasselit\u00e9 \u2014 le commentaire le promettait, c'est r\u00e9el.
   g += garnisonProgresVille(p, ville, C)
@@ -103,7 +103,7 @@ export function detailGarnisonVille(
   const base = garnisonBaseVille(ville, C)
   push('base', `base du rang ${nomRang(ville.rang ?? '') || ville.rang || 'Hameau'}`, base)
   // 2. Bâtiments de la ville (Poste de garde +40, Caserne +40…)
-  for (const b of ville.batiments) push('bâtiment', b, garnisonBatiment(b, C))
+  for (const b of ville.batiments) push('bâtiment', b, garnisonBatiment(b, C, ville.type))
   // 3. Technologies (Milices civiles, Fortifications, Pré carré…)
   for (const l of lignesGarnisonProgresVille(p, ville, C)) push('technologie', l.label, l.valeur)
   // 4. Loi du régime (ex. Autoritarisme : +15 par rang d'habitation)
@@ -255,8 +255,8 @@ export function tourismeCourant(state: GameState, p: Player, C: Cfg): number {
   //  des bâtiments/aménagements — valeur d'état, partie intégrante
   //  de la « production » de Tourisme du joueur.
   for (const v of p.villes) {
-    for (const b of v.batiments) total += tourismeStatiqueBatiment(b, C)
-    for (const a of v.amenagements ?? []) total += tourismeStatiqueBatiment(a, C)
+    for (const b of v.batiments) total += tourismeStatiqueBatiment(b, C, v.type)
+    for (const a of v.amenagements ?? []) total += tourismeStatiqueBatiment(a, C, v.type)
   }
   // VASSALITÉ — CORRECTIF (retour utilisateur 2026-10-17) : le
   //  « +15 Tourisme × rang du suzerain » est une règle de FACTION

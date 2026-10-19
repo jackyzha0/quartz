@@ -47,6 +47,29 @@ test('migrations : état neuf né à la version courante (aucune migration joué
   assert.equal(appliquees.length, 0, 'aucune migration sur un état neuf')
 })
 
+test('migrations : le tampon survit au VRAI cycle de persistance (compacterEtat → saveLocal → loadLocal → elargirEtat)', async () => {
+  // localStorage n'existe pas sous Node : mock minimal de l'API (le
+  //  chemin compactage/sérialisation/expansion reste le VRAI code).
+  const store = new Map<string, string>()
+  ;(globalThis as Record<string, unknown>).localStorage = {
+    getItem: (k: string) => store.get(k) ?? null,
+    setItem: (k: string, v: string) => void store.set(k, v),
+    removeItem: (k: string) => void store.delete(k),
+  }
+  const { saveLocal, loadLocal } = await import('../state/storage')
+  const state = createGame(SETUP, 42, 'local')
+  delete (state as { schema?: number }).schema
+  migrerEtat(state)
+  // Chemin réel du store : compactage pour l'écriture, expansion à la lecture.
+  saveLocal(state)
+  const relu = loadLocal()
+  assert.ok(relu, 'la sauvegarde locale doit relire l état')
+  assert.equal(relu.schema, SCHEMA_VERSION_ETAT,
+    'le tampon schema doit survivre au compactage localStorage (sinon les migrations rejouent à chaque chargement)')
+  const appliquees = migrerEtat(relu)
+  assert.equal(appliquees.length, 0, 'après le vrai cycle de persistance, aucune migration ne doit rejouer')
+})
+
 test('migrations : le tampon survit au cycle JSON (sauvegarde → rechargement)', () => {
   const state = createGame(SETUP, 42, 'local')
   delete (state as { schema?: number }).schema

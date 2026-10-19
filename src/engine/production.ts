@@ -316,7 +316,7 @@ export function attraitTouristiqueVille(
   state: GameState, p: Player, ville: City, C: Cfg = cfgOf(state.config),
 ): number {
   const statique = [...(ville.batiments ?? []), ...(ville.amenagements ?? [])].reduce(
-    (somme, b) => somme + tourismeStatiqueBatiment(b, C), 0)
+    (somme, b) => somme + tourismeStatiqueBatiment(b, C, ville.type), 0)
   const flux = Math.max(0, productionVille(state, p, ville, C).total['Tourisme'] ?? 0)
   return statique + flux
 }

@@ -110,3 +110,25 @@ test('registre : le chemin moteur consomme la banque (égalité avec le calcul h
   }
   assert.ok(verifiees > 20, `trop peu de règles vérifiées contre le moteur (${verifiees})`)
 })
+
+test('doublons Ville/Château : le moteur rend les effets de la BONNE version (bug réel)', () => {
+  // 4 constructions existent en versions Ville ET Château aux effets
+  //  DIFFÉRENTS (ex. Echoppe). Le moteur historique lisait toujours
+  //  la première (Ville) — un château recevait les effets/coûts de la
+  //  version Ville. Le correctif : constructionRef(nom, cfg, groupe).
+  const refs = cfgOf(undefined).config.constructions ?? []
+  const doublons = new Map<string, Set<string>>()
+  for (const ref of refs) {
+    if (!doublons.has(ref.nom)) doublons.set(ref.nom, new Set())
+    doublons.get(ref.nom)!.add(ref.groupe)
+  }
+  const avecDeuxGroupes = [...doublons.entries()]
+    .filter(([, g]) => g.size > 1).map(([nom]) => nom)
+  assert.ok(avecDeuxGroupes.includes('Echoppe'), 'Echoppe doit exister en Ville et Château')
+  // Echoppe Ville = +2 Or, Château = +2 Or mais coût différent :
+  //  la résolution PAR GROUPE doit donner des refs distinctes.
+  const ville = cfgOf(undefined).config.constructions.find((c) => c.nom === 'Echoppe' && c.groupe === 'Ville')
+  const chateau = cfgOf(undefined).config.constructions.find((c) => c.nom === 'Echoppe' && c.groupe === 'Château')
+  assert.ok(ville && chateau, 'les deux versions Echoppe existent')
+  assert.notEqual(ville.cout, chateau.cout, 'les coûts des deux versions diffèrent (donc le groupe compte)')
+})

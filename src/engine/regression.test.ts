@@ -92,6 +92,31 @@ test('moteur : 20 tours complets à 8 joueurs sans crash ni incohérence', () =>
     assert.ok(state.log.length > 0, 'le journal ne doit jamais être vide')
     assert.ok(Array.isArray(state.history), 'history doit être un tableau')
 
+    // ROUTES COMMERCIALES (bugs réels de production : duplication,
+    //  écrasement) : unicité des ids, un propriétaire valide.
+    const routes = state.routesCommerce ?? []
+    const idsRoutes = new Set<string>()
+    for (const r of routes) {
+      assert.ok(!idsRoutes.has(r.id), `route dupliquée : ${r.id} (bug réel d'octobre)`)
+      idsRoutes.add(r.id)
+      assert.ok(state.players.some((q) => q.n === r.joueur), `route ${r.id} sans propriétaire valide (J${r.joueur})`)
+    }
+
+    // CITÉS LIBRES (bug réel : écrasement par la fusion) : noms uniques,
+    //  suzerain et émissaires cohérents, population saine.
+    const cites = state.citesLibres ?? []
+    const nomsCites = new Set<string>()
+    for (const c of cites) {
+      assert.ok(!nomsCites.has(c.nom), `cité dupliquée : ${c.nom}`)
+      nomsCites.add(c.nom)
+      assert.ok(c.suzerain == null || state.players.some((q) => q.n === c.suzerain),
+        `cité ${c.nom} avec suzerain invalide (J${c.suzerain})`)
+      for (const pers of c.population ?? []) persoSain(pers)
+    }
+    // createGame crée une cité libre par joueur : elles ne disparaissent pas.
+    assert.ok(cites.length >= state.players.length,
+      `les cités libres ne doivent pas disparaître (${cites.length} pour ${state.players.length} joueurs)`)
+
     // La graine ne change jamais (identité de la partie).
     assert.equal(state.seed, seedInitial)
   }
