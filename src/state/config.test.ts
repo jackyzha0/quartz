@@ -60,28 +60,31 @@ test('config : joinGame — la MONDIALE prime sur l EMBARQUÉE du salon (éditio
   const etat = partie()
   etat.config = configAvec(16)
   const mondiale = configAvec(18)
-  const choisie = adopterConfig(etat, { mondiale, embarquee: etat.config, locale: configAvec(16) })
+  const choisie = adopterConfig(etat, { mondiale, locale: configAvec(16) })
   assert.ok(choisie, 'une config doit être adoptée')
-  assert.equal(cfgOf(choisie).config.params?.adultAge, 18, 'la mondiale (18) doit gagner sur l embarquée (16)')
+  assert.equal(cfgOf(choisie).config.params?.adultAge, 18, 'la mondiale (18) doit gagner sur la locale (16)')
   // et elle est INJECTÉE dans l'état : l'UI de jeu lit state.config
   assert.equal(cfgOf(etat.config!).config.params?.adultAge, 18,
     'la config doit être injectée dans l état — sinon le jeu affiche l ancienne valeur (bug réel)')
 })
 
-test('config : sans mondiale, l EMBARQUÉE du salon est adoptée (comportement salon classique)', () => {
+test('config : sans mondiale, l EMBARQUÉE du salon n est PLUS une source — la LOCALE fait foi', () => {
+  // Règle 2026-10-19 : seule la mondiale fait loi ; la config embarquée
+  //  d'un état de partie est un cache, jamais une source.
   const etat = partie()
-  const embarquee = configAvec(17)
-  etat.config = embarquee
-  const choisie = adopterConfig(etat, { mondiale: null, embarquee, locale: configAvec(16) })
+  etat.config = configAvec(17) // cache périmé embarqué
+  const choisie = adopterConfig(etat, { mondiale: null, locale: configAvec(16) })
   assert.ok(choisie)
-  assert.equal(cfgOf(choisie).config.params?.adultAge, 17)
-  assert.equal(cfgOf(etat.config!).config.params?.adultAge, 17)
+  assert.equal(cfgOf(choisie).config.params?.adultAge, 16,
+    'sans mondiale, la locale (16) doit être adoptée, PAS l embarquée (17)')
+  assert.equal(cfgOf(etat.config!).config.params?.adultAge, 16,
+    'l état doit être réinjecté avec la locale, pas garder son cache périmé')
 })
 
 test('config : aucune source → rien ne change (pas d écrasement par null)', () => {
   const etat = partie()
   const avant = etat.config
-  const choisie = adopterConfig(etat, { mondiale: null, embarquee: null, locale: null })
+  const choisie = adopterConfig(etat, { mondiale: null, locale: null })
   assert.equal(choisie, null, 'aucune source → null, l appelant ne change rien')
   assert.equal(etat.config, avant, 'l état ne doit pas être muté sans source')
 })

@@ -9,8 +9,11 @@
 //
 //  Cette fonction pure encode LA règle de priorité, une fois pour toutes :
 //   1. la config MONDIALE ('__config__') prime sur tout ;
-//   2. à défaut, la config embarquée dans l'état du salon fait foi ;
-//   3. à défaut, la config locale (localStorage) reste en place ;
+//   2. à défaut (jamais publiée / hors-ligne), la config locale
+//      (localStorage, amorce) fait foi ;
+//   3. la config EMBARQUÉE dans un état de partie n'est PLUS JAMAIS une
+//      source (règle 2026-10-19 : seule la mondiale fait loi) — le
+//      champ state.config devient un CACHE du moteur, injecté ;
 //   4. une fois la config choisie, elle est INJECTÉE dans l'état (l'UI de
 //      jeu lit state.config — sans injection, l'onglet Paramètres
 //      montrerait la nouvelle valeur pendant que le jeu roulerait sur
@@ -28,11 +31,10 @@ export function adopterConfig(
   etat: GameState,
   sources: {
     mondiale?: GameConfig | null
-    embarquee?: GameConfig | null
     locale?: GameConfig | null
   },
 ): GameConfig | null {
-  const choisie = sources.mondiale ?? sources.embarquee ?? null
+  const choisie = sources.mondiale ?? sources.locale ?? null
   if (!choisie) return null
   etat.config = choisie
   return choisie

@@ -69,18 +69,11 @@ create trigger garde_tour_publie
   before update on public.parties_chasse_peche
   for each row execute function public.garde_tour_publie();
 
--- 4. Nettoyage automatique : les événements d'un tour résolu sont
---    supprimés une fois le tour publié (la résolution vide sa file).
---    (La fonction resoudre-tour fait le DELETE dans sa transaction ;
---     ce job est un filet de sécurité pour les salons abandonnés.)
-create or replace function public.cp_nettoie_events()
-returns void language plpgsql security definer as $$
-begin
-  delete from public.cp_events e
-    using public.parties_chasse_peche p
-    where e.salon = p.id
-      and e.tour < p.tour_publie;
-end $$;
+-- 4. (supprimé 2026-10-19) l'ancien filet cp_nettoie_events n'était
+--    appelé par RIEN (ni cron ni client). La purge se fait À LA MAIN :
+--      delete from cp_events where salon = '<salon>';
+--    (les events d'un tour RÉSOLU sont déjà purgés par resoudre-tour
+--     dans sa transaction — cf. supabase/functions/resoudre-tour.)
 
 -- 5. Verrous consultatifs pour resoudre-tour (pg_try_advisory_lock sur
 --    une clé dérivée du salon). Un seul exécutant par salon à la fois.
@@ -100,7 +93,6 @@ end $$;
 
 grant execute on function public.cp_advisory_lock(text) to anon, service_role;
 grant execute on function public.cp_advisory_unlock(text) to anon, service_role;
-grant execute on function public.cp_nettoie_events() to anon, service_role;
 
 -- 6. Idempotence de pousserSectionV2 : un seul événement 'section'
 --    par (salon, tour, joueur) — un double-clic REMPLACE la ligne au

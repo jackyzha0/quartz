@@ -7,7 +7,7 @@ import { useGame } from '../state/store'
 import { Button } from './ui'
 
 export function TurnBar() {
-  const { state, mode, salon, saving, conflit, nextTurn, saveNow, exportState, importState, reset, barriere, monNumero, forceNextTurn } = useGame()
+  const { state, mode, salon, saving, conflit, nextTurn, exportState, importState, reset, barriere, monNumero, forceNextTurn } = useGame()
   const fileRef = useRef<HTMLInputElement>(null)
   // PROTOCOLE v2 (étape 2) : bascule par joueur, mémorisée localement.
   //  v2 = Fin de tour par événements + résolution SERVEUR (Edge
@@ -80,7 +80,6 @@ export function TurnBar() {
             {proto2 ? 'v2 🜲' : 'v1'}
           </Button>
         )}
-        <Button onClick={saveNow} title="Sauvegarder maintenant">💾</Button>
         <Button onClick={download} title="Exporter la partie en JSON">⬇ Export</Button>
         <Button onClick={() => fileRef.current?.click()} title="Importer une partie JSON">⬆ Import</Button>
         <Button tone="danger" onClick={reset} title="Effacer la sauvegarde locale">✕</Button>

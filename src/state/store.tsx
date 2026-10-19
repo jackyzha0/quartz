@@ -90,7 +90,6 @@ interface GameContextValue {
   nextTurn: () => void
   update: (mutator: (s: GameState) => void) => void
   replaceState: (s: GameState) => void
-  saveNow: () => void
   reset: () => void
   importState: (json: string) => boolean
   exportState: () => string
@@ -124,6 +123,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<GameState | null>(() => {
     const loaded = storage.loadLocal()
     if (!loaded) return null
+    // CONFIG MONDIALE : la partie chargée reçoit la config mondiale
+    //  (globalConfig = mondiale adoptée au chargement) — la config
+    //  embarquée de la sauvegarde n'est plus une source.
     loaded.config = JSON.parse(JSON.stringify(convergerConfig(globalConfig))) as GameConfig
     // MIGRATIONS VERSIONNÉES (étape 3) : normalisation + renommages
     //  portefeuilles exécutés UNE FOIS par état (tampon state.schema),
@@ -197,14 +199,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
    * déclenche AUCUNE écriture — la version finale part après
    * 400 ms d'inactivité (la plus récente gagne, sémantique du
    * salon inchangée). Anti-perte GARANTI :
-   *  · beforeunload → flush immédiat (fermeture d'onglet) ;
-   *  · visibilitychange (hidden) → flush (changement d'onglet /
-   *    mise en veille, notamment mobile) ;
-   *  · bouton Sauvegarder → flush ;
    *  · REJOIGNE un salon / OUVRE une ancienne partie : le dernier
    *    état flushé y est déjà.
    */
-  const persist = useCallback((s: GameState, m: Mode, salonId: string, forcer = false) => {
+  const persist = useCallback((s: GameState, m: Mode, salonId: string) => {
     persistPending.current = s
     if (persistDebounce.current) clearTimeout(persistDebounce.current)
     persistDebounce.current = setTimeout(async () => {
@@ -216,22 +214,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         // Local TOUJOURS (anti-perte perso : chaque mutation est
         //  dans le localStorage de la machine).
         storage.saveLocal(toSave)
-        // Réseau — PROTOCOLE v2 (étape 3, 2026-10-17) : pendant le
-        //  tour, PLUS AUCUN upsert d'état complet par mutation. À
-        //  16 000 habitants, chaque action poussait ~5 Mo qui
-        //  déclenchait chez les 7 autres joueurs un événement
-        //  realtime → re-téléchargement complet → lag en simultané.
-        //  L'état du salon n'est plus écrit qu'à la RÉSOLUTION du
-        //  tour par la Edge Function (fusion des sections par
-        //  joueur — rien ne peut être perdu : chaque joueur est
-        //  entièrement reconstruit depuis SA section). Anti-panne :
-        //  bouton 💾 (forcer=true) et flush beforeunload/onglet
-        //  caché poussent toujours l'état complet (reprise depuis
-        //  n'importe quelle machine après un crash).
-        if (m === 'supabase' && salonId && (!proto2Actif() || forcer)) {
-          const ok = await remote.saveRemote(salonId, toSave)
-          if (!ok) storage.saveLocal(toSave)
-        }
+        // Réseau — RÈGLE (2026-10-19) : PLUS AUCUN upsert d'état par
+        //  mutation, même en protocole v1 — la SEULE synchronisation
+        //  est la fin de tour (résolution : Edge Function ou repli
+        //  local). L'ancien flush fermeture d'onglet et l'ancien
+        //  bouton 💾 écrasaient l'état du salon avec l'état local
+        //  incomplet du joueur (pollution de la référence de fusion).
+        void m; void salonId
         setLastSavedAt(Date.now())
       } finally {
         setSaving(false)
@@ -741,8 +730,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     //  (state/configPriorite.ts — config.test.ts) : la mondiale PRIME
     //  sur l'embarquée du salon (édition depuis l'accueil entre deux
     //  tours), puis injection dans l'état (l'UI lit state.config).
+    // CONFIG MONDIALE (règle 2026-10-19) : SEULE la mondiale fait loi —
+    //  la config embarquée du salon n'est plus une source (elle n'est
+    //  qu'un cache d'époque). Sans mondiale (jamais publiée), la
+    //  config LOCALE (amorce du navigateur) reste.
     const cfgMondiale = await remote.chargerConfigMondiale()
-    const choisie = adopterConfig(s, { mondiale: cfgMondiale, embarquee: s.config ?? null })
+    const choisie = adopterConfig(s, { mondiale: cfgMondiale, locale: globalConfigRef.current })
     if (choisie) syncGlobalCfg(choisie)
     migrerEtat(s)
     setMode('supabase')
@@ -786,7 +779,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       if (garderLocal) return
       // CONFIG MONDIALE : contrat de priorité testé (configPriorite.ts).
       const cfgMondiale2 = await remote.chargerConfigMondiale()
-      const choisie2 = adopterConfig(distant, { mondiale: cfgMondiale2, embarquee: distant.config ?? null })
+      const choisie2 = adopterConfig(distant, { mondiale: cfgMondiale2, locale: globalConfigRef.current })
       if (choisie2) syncGlobalCfg(choisie2)
       migrerEtat(distant)
       setConflit(false)
@@ -803,14 +796,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     persist(s, mode, salon)
   }, [mode, salon, persist])
 
-  const saveNow = useCallback(() => {
-    // FLUSH : annule le debounce et envoie immédiatement la version
-    //  la plus récente (bouton « Sauvegarder » = intention explicite).
-    if (persistDebounce.current) clearTimeout(persistDebounce.current)
-    const toSave = persistPending.current ?? state
-    persistPending.current = null
-    if (toSave) persist(toSave, mode, salon, true)
-  }, [state, mode, salon, persist])
+  // SAVE NOW SUPPRIMÉ (règle 2026-10-19) : la SEULE synchronisation est
+  //  la fin de tour — la sauvegarde auto à la fermeture d'onglet et le
+  //  bouton 💾 écrasaient l'état du salon avec l'état local incomplet
+  //  du joueur (pollution de la référence de fusion). Le localStorage
+  //  reste écrit à chaque mutation (reprise hors-ligne du joueur).
 
   const reset = useCallback(() => {
     storage.clearLocal()
@@ -825,11 +815,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const importState = useCallback((json: string) => {
     const s = storage.importJson(json)
     if (s) {
-      // Paramètres communs : la partie importée impose sa configuration.
-      if (s.config) syncGlobalCfg(s.config)
-      // Marqueur (x) : la config importée est convergée (migrations +
-      // tampon) — plus jamais re-migrée ensuite.
-      s.config = JSON.parse(JSON.stringify(convergerConfig(s.config))) as GameConfig
+      // CONFIG MONDIALE (règle 2026-10-19) : la partie importée
+      //  n'impose PLUS sa config — SEULE la mondiale fait loi. La
+      //  config embarquée de l'import est IGNORÉE, la mondiale
+      //  (globalConfig, adoptée au chargement) est injectée.
+      s.config = JSON.parse(JSON.stringify(convergerConfig(globalConfigRef.current))) as GameConfig
       migrerEtat(s)
       stateRef.current = s
       setState(s)
@@ -841,33 +831,6 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, [mode, salon, persist, syncGlobalCfg])
 
   const exportState = useCallback(() => (state ? storage.exportJson(state) : ''), [state])
-
-  // FLUSH avant fermeture/rafraîchissement de l'onglet (anti-perte,
-  //  optimisation multijoueur 2026-10-16) : le debounce de 800 ms
-  //  peut encore tenir la dernière action du joueur — on l'envoie
-  //  immédiatement (sendBeacon n'accepte pas l'API Supabase, on
-  //  déclenche la requête fetch directement via saveRemote).
-  useEffect(() => {
-    const flush = () => {
-      if (persistDebounce.current) clearTimeout(persistDebounce.current)
-      const toSave = persistPending.current
-      if (!toSave) return
-      persistPending.current = null
-      // anti-perte : TOUJOURS le localStorage, réseau si salon —
-      //  y compris en v2 (fermeture d'onglet / mise en veille :
-      //  l'état complet part pour la reprise multi-machines).
-      storage.saveLocal(toSave)
-      if (mode === 'supabase' && salon) void remote.saveRemote(salon, toSave)
-    }
-    const onHidden = () => { if (document.hidden) flush() }
-    window.addEventListener('beforeunload', flush)
-    // changement d'onglet / mise en veille : flush aussi (mobile !)
-    document.addEventListener('visibilitychange', onHidden)
-    return () => {
-      window.removeEventListener('beforeunload', flush)
-      document.removeEventListener('visibilitychange', onHidden)
-    }
-  }, [mode, salon])
 
   // Abonnement realtime (mode supabase)
   useEffect(() => {
@@ -923,10 +886,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const value = useMemo<GameContextValue>(() => ({
     state, mode, salon, saving, conflit, lastSavedAt,
     globalConfig, peutEditerConfig, setGlobalCfg,
-    newGame, joinGame, nextTurn, update, replaceState, saveNow, reset, importState, exportState,
+    newGame, joinGame, nextTurn, update, replaceState, reset, importState, exportState,
     monNumero, setMonNumero: setMonNumeroPersist, barriere, forceNextTurn,
   }), [state, mode, salon, saving, conflit, lastSavedAt, globalConfig, peutEditerConfig, setGlobalCfg,
-    newGame, joinGame, nextTurn, update, replaceState, saveNow, reset, importState, exportState,
+    newGame, joinGame, nextTurn, update, replaceState, reset, importState, exportState,
     monNumero, setMonNumeroPersist, barriere, forceNextTurn])
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>
