@@ -106,6 +106,18 @@ function initialGlobalConfig(): GameConfig {
 export function GameProvider({ children }: { children: React.ReactNode }) {
   // ── Configuration commune (localStorage dédié, indépendant des parties) ──
   const [globalConfig, setGlobalConfig] = useState<GameConfig>(initialGlobalConfig)
+  // CONFIG MONDIALE (règle 2026-10-19) : adoption au CHARGEMENT de la
+  //  page — « les joueurs actualisent pour obtenir la modification ».
+  //  Le localStorage local sert d'amorçe (hors-ligne) puis est remplacé
+  //  par la config mondiale '__config__' dès qu'elle est joignable.
+  useEffect(() => {
+    void (async () => {
+      const cfg = await remote.chargerConfigMondiale()
+      if (cfg) syncGlobalCfg(cfg)
+    })()
+    // une seule fois au montage
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // ── État de jeu : une partie reprend TOUJOURS la configuration commune ──
   const [state, setState] = useState<GameState | null>(() => {
@@ -724,11 +736,17 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const joinGame = useCallback(async (salonId: string): Promise<boolean> => {
     const s = await remote.loadRemote(salonId)
     if (!s) return false
-    // CONFIG MONDIALE (règle 2026-10-19) : l'état du salon publié
-    //  contient DÉJÀ la config mondiale — elle y a été injectée à la
-    //  résolution (Edge Function ou repli local, appliquerConfigMondiale).
-    //  On l'adopte depuis l'état : une seule source, aucune divergence.
-    if (s.config) syncGlobalCfg(s.config)
+    // CONFIG MONDIALE (règle 2026-10-19) : la mondiale PRIME — l'état du
+    //  salon porte une config injectée à la dernière résolution, qui peut
+    //  être PLUS ANCIENNE que la mondiale (édition depuis l'accueil entre
+    //  deux tours). On adopte la mondiale et on l'injecte dans l'état.
+    const cfgMondiale = await remote.chargerConfigMondiale()
+    if (cfgMondiale) {
+      syncGlobalCfg(cfgMondiale)
+      s.config = cfgMondiale
+    } else if (s.config) {
+      syncGlobalCfg(s.config)
+    }
     migrerEtat(s)
     setMode('supabase')
     setSalon(salonId)
@@ -769,8 +787,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       setMode('supabase')
       setSalon(salonId)
       if (garderLocal) return
-      // L'état distant porte la config injectée à la dernière résolution.
-      if (distant.config) syncGlobalCfg(distant.config)
+      // CONFIG MONDIALE : la mondiale PRIME sur l'embarquée du salon.
+      const cfgMondiale2 = await remote.chargerConfigMondiale()
+      if (cfgMondiale2) {
+        syncGlobalCfg(cfgMondiale2)
+        distant.config = cfgMondiale2
+      } else if (distant.config) {
+        syncGlobalCfg(distant.config)
+      }
       migrerEtat(distant)
       setConflit(false)
       lastLocalEdit.current = 0
