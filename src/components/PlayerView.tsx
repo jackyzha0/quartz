@@ -38,10 +38,9 @@
 import React, { useState } from 'react'
 import { useGame } from '../state/store'
 import type { GameState, Player } from '../engine/types'
-import { cfgOf, type Cfg } from '../engine/gameData'
+import { cfgOf } from '../engine/gameData'
 import {
   productionDetaillee, impotPopulation, impotsVassaux, attraitMaxMonde,
-  type ProductionDetail,
 } from '../engine/engine'
 import { Card } from './ui'
 import { RessourcesBar } from './pays/RessourcesBar'

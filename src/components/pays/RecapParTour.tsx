@@ -15,7 +15,7 @@ import {
 } from '../../engine/engine'
 import { fondRessource, couleurRessource, type Cfg } from '../../engine/gameData'
 import { Card, NumberInput, Button, fmt } from '../ui'
-import { RESSOURCES_FLUX, Field, fmtNum } from './pays-utils'
+import { RESSOURCES_FLUX, fmtNum } from './pays-utils'
 
 export function RecapParTour({ joueur, p, C, prodDetail, impotPopPrev, impotsVassPrev }: {
   joueur: number

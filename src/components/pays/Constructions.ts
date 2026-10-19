@@ -16,7 +16,7 @@
 
 import type { City, GameState, Player } from '../../engine/types'
 import {
-  effetsTourBatiment, coutBatiment, constructionsRefs, aCampDeBatisseurs,
+  effetsTourBatiment, coutBatiment,
   coutAmenagement, constructionRef, prerequisConstruction, detailGainsVille,
   parseCoutTexte, resumeConstruction,
   rangNiveau, batimentsConstructionsRefs, batimentsFaction, batimentsCapitale,
@@ -211,7 +211,6 @@ export function faireConstruire(o: {
           cout['Or'] = Math.max(0, cout['Or'] - 30)
         }
         const debloquees = new Set(t.progresDebloques ?? [])
-        const arbresT = C.config.progres.filter((a) => a.nom === 'Progrès du Tourisme')
         const possede = (nomTech: string) => {
           for (let ai = 0; ai < C.config.progres.length; ai++) {
             const a = C.config.progres[ai]
@@ -313,8 +312,6 @@ export function faireConstruire(o: {
  *  (marqueur (y) : un bouton par famille, une catégorie par rang). */
 export function faireBatParFamille(o: { state: GameState; p: Player; C: Cfg }): (ville: City) => PickerCategorie[] {
   const { state, p, C } = o
-  const refs = constructionsRefs(C.config)
-  const amRefs = refs.filter((r) => r.categorie === 'Aménagement')
   const batRefs = batimentsConstructionsRefs(C)
   // Bâtiments de faction du peuple du joueur + bâtiments de capitale
   // du référentiel (2 nouvelles catégories des cadres ville).

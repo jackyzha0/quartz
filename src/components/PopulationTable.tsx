@@ -21,9 +21,9 @@
 //  (les cités libres ne passent pas au moteur démographique).
 // ══════════════════════════════════════════════════════════════════════
 
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useGame } from '../state/store'
-import type { Character, CiteLibre, GameState, Player } from '../engine/types'
+import type { Character, CiteLibre, GameState } from '../engine/types'
 import { cfgOf } from '../engine/gameData'
 import { validateTitleAssignment } from '../engine/validation'
 import { ajouterHabitant } from '../engine/setup'

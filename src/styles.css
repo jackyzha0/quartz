@@ -454,9 +454,6 @@ select.input option, select.input optgroup { background: var(--card); color: var
 .autre-ligne .input.num { max-width: 72px; }
 .autre-ligne .input[type="text"] { max-width: 130px; }
 
-/* Tableau « Taxes — production des villageois » */
-.taxes-tbl th, .taxes-tbl td { text-align: right; }
-.taxes-tbl th:first-child, .taxes-tbl td:first-child { text-align: left; }
 
 @media (max-width: 700px) {
   .res-chip input.num { max-width: 58px; }
@@ -570,7 +567,6 @@ select.input option, select.input optgroup { background: var(--card); color: var
 .frule-age2 .frule-title::before { content: 'II · '; color: var(--accent); }
 .frule-age3 .frule-title::before { content: 'III · '; color: var(--accent); }
 .frule-auto { margin-top: 6px; font-size: 0.78em; color: var(--good, #2e7d32); line-height: 1.35; }
-.frule-manuel { font-size: 0.78em; color: var(--muted); line-height: 1.35; }
 .frule-appliques {
   margin-top: 10px; padding: 8px 10px; border-radius: 8px;
   background: var(--card2); font-size: 0.85em; line-height: 1.5;
@@ -586,20 +582,6 @@ select.input option, select.input optgroup { background: var(--card); color: var
   flex-wrap: wrap;
 }
 .cl-emiss .player-chip { cursor: default; }
-/* Réserves d'émissaires : tous les joueurs SUR UNE LIGNE (wrap) —
-   retour Thibaut 2026-10-15, économie de place. */
-.cl-reserves {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 18px;
-  align-items: center;
-}
-.cl-reserves .cl-emiss {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin: 0;
-}
 /* Cités libres : 2 PAR LIGNE (retour Thibaut 2026-10-15). */
 .cl-grid {
   display: grid;

@@ -6,7 +6,6 @@
 // ══════════════════════════════════════════════════════════════════════
 
 import type { GameState, Player } from '../../engine/types'
-import type { Cfg } from '../../engine/gameData'
 import { Card, Select, Button } from '../ui'
 import type { ChoixSurintendant } from './pays-utils'
 

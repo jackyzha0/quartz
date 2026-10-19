@@ -10,7 +10,7 @@
 //  choisit et referme. Les catégories vides sont masquées.
 // ══════════════════════════════════════════════════════════════════════
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from './ui'
 
 export interface PickerOption {

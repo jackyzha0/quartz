@@ -6,7 +6,7 @@
 // ══════════════════════════════════════════════════════════════════════
 
 import { useState } from 'react'
-import type { City, GameState, Player } from '../../engine/types'
+import type { GameState, Player } from '../../engine/types'
 import { rangsDisponibles, debiterCoutHabitation } from '../../engine/engine'
 import { peuplerNouvelleVille } from '../../engine/setup'
 import type { Cfg } from '../../engine/gameData'

@@ -7,7 +7,7 @@ import { useGame } from '../state/store'
 import { Button } from './ui'
 
 export function TurnBar() {
-  const { state, mode, salon, saving, conflit, nextTurn, exportState, importState, reset, barriere, monNumero, forceNextTurn } = useGame()
+  const { state, mode, salon, saving, conflit, nextTurn, exportState, importState, reset, barriere, forceNextTurn } = useGame()
   const fileRef = useRef<HTMLInputElement>(null)
   // PROTOCOLE v2 (étape 2) : bascule par joueur, mémorisée localement.
   //  v2 = Fin de tour par événements + résolution SERVEUR (Edge

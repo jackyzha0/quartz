@@ -14,7 +14,6 @@
 //  tech est reprise (engine/progres.ts — debiterScienceTech).
 // ══════════════════════════════════════════════════════════════════════
 
-import React from 'react'
 import { useGame } from '../state/store'
 import { cfgOf } from '../engine/gameData'
 import type { GameState } from '../engine/types'

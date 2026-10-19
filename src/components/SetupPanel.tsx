@@ -6,7 +6,7 @@
 //  aucun .env, aucune ligne de commande.
 // ══════════════════════════════════════════════════════════════════════
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useGame, type Mode } from '../state/store'
 import type { SetupLine } from '../engine/setup'
 import { defaultSetups } from '../engine/setup'

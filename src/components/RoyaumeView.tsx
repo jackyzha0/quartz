@@ -26,11 +26,10 @@
 //  « 📚 Référentiels » → « Progrès ».
 // ══════════════════════════════════════════════════════════════════════
 
-import React from 'react'
 import { useGame } from '../state/store'
 import type { Character, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
-import { detailsFaction, rangPaysNiveau } from '../engine/factions'
+import { detailsFaction } from '../engine/factions'
 import { resynchroniserTourisme } from '../engine/regimes'
 import { statutFaction, pastilleClass } from '../engine/statutAuto'
 import { rangParDefaut } from '../engine/setup'
