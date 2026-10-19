@@ -249,6 +249,12 @@ collisions possibles à 16 000 habitants) ; doc drift Tourisme (AGENTS.md dit
 stock = production) ; mélange de protocoles v1/v2 possible dans un même salon ;
 bouton reset (✕) sans confirmation.
 
+Le rapport complet de l'audit (bugs, risques R2-R5, problèmes moyens M1-M7, dette
+mineure, points forts, plan d'action) est versé dans
+[audit-code-2026-10-19.md](audit-code-2026-10-19.md). RÈGLE DURABLE (retour arbitre
+2026-10-19) : toute documentation produite (audit, rapport, synthèse) doit être versée
+dans `docs/ia/` du dépôt, pas seulement dans les outils de suivi de session.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

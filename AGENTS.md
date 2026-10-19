@@ -29,9 +29,13 @@ Le dépôt `losth230/quartz` contient aussi le site vitrine « Quartz » ; le je
   l'application compte automatiquement ? » (page Pays) fait foi.
 - **L'Influence n'existe plus** : remplacée par les **émissaires**. Toute référence
   restante à l'Influence dans les textes est une dette à convertir.
-- **Tourisme et Garnison sont des valeurs d'état instantanées** : jamais des flux par
-  tour (`RESSOURCES_INSTANTANEES`, engine/constructions.ts). Le Tourisme est crédité
-  UNE fois à la construction.
+- **La Garnison est une valeur d'état instantanée** (`RESSOURCES_INSTANTANEES`,
+  engine/constructions.ts) : jamais un flux par tour. **Le Tourisme est un FLUX
+  normal** (retour arbitre 2026-10-16) : affiché dans les récaps comme les autres
+  ressources ; seule différence, le moteur recalcule le stock (= production) au
+  lieu de le cumuler. (Historique : le Tourisme a été « crédité UNE fois » jusqu'au
+  retour du 2026-10-16 — d'où des commentaires internes encore contradictoires,
+  dette documentée dans docs/ia/audit-code-2026-10-19.md.)
 - **Toute évolution du référentiel devant atteindre des configs existantes** →
   incrémenter `SCHEMA_VERSION_CONFIG` (config/defaultConfig.ts). Les configs sont
   « convergées » une fois puis tamponnées : supprimer/renommer une ligne dans les
@@ -118,6 +122,9 @@ déployé : la partie en ligne de l'arbitre tourne en continu.
 - **[docs/ia/journal-technique.md](docs/ia/journal-technique.md)** — historique des
   évolutions (marqueurs (g)→(z), (a), refontes, purge qualité), conventions de
   déploiement et incidents.
+- **[docs/ia/audit-code-2026-10-19.md](docs/ia/audit-code-2026-10-19.md)** —
+  rapport d'audit complet du 19/10/2026 : bugs corrigés (B1/B2), risques et dettes
+  priorisés (R2-R5, M1-M7), plan d'action.
 - **`Règles.md`** (racine) — règles du jeu rédigées pour les joueurs.
 - **`README.md`** (section jeu) — manuel utilisateur de l'application.
 
@@ -129,3 +136,6 @@ déployé : la partie en ligne de l'arbitre tourne en continu.
   documentent les arbitrages et les retours de l'arbitre avec leur date).
 - Ne jamais supprimer ou « simplifier » un docblock qui archive un arbitrage de design :
   c'est la mémoire des règles.
+- Toute documentation produite sur le projet (audit, rapport, synthèse technique) est
+  VERSÉE dans `docs/ia/` : le dépôt est la source publiquement lisible des
+  connaissances, les outils de suivi ne sont que des brouillons de session.
