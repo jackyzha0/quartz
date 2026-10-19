@@ -140,7 +140,7 @@ test('CONFIG COMMUNE : l event config du créateur remplace la config de l état
   rejouerEvenementsPartages(out, [
     { joueur: 1, type: 'config', payload: { config: nouvelleCfg } },
   ])
-  assert.equal((out.config?.params as Record<string, unknown>)?.armeePrixOr, 99,
+  assert.equal(((out.config?.params as unknown as Record<string, unknown>)?.armeePrixOr), 99,
     'la config publiée par le créateur doit être adoptée par la fusion')
 })
 
