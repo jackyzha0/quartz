@@ -40,6 +40,14 @@ jobs:
         run: npm ci
       - name: Bundle du moteur (esbuild)
         run: npm run build:function
+      - name: Typecheck Edge Function (deno check)
+        # un handler avec un identifiant non défini ne part JAMAIS en
+        #   prod (bug 2026-10-19 : cfgMondiale — ReferenceError à
+        #   chaque résolution serveur, déployé vert par tous les tests).
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - run: deno check supabase/functions/resoudre-tour/index.ts
       - name: Test d'exécution du bundle (refuse de déployer un bundle cassé)
         run: npm run test:function
       - name: Deploy Supabase

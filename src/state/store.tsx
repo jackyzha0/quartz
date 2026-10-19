@@ -622,6 +622,51 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, [salon, resoudreSeul])
   resoudreBarriereLocaleV2Ref.current = resoudreBarriereLocaleV2
 
+  /** PROTOCOLE v2 — POLLER LA BARRIÈRE en attente (bug 2026-10-19 :
+   *  pollerBarriereV2Ref était APPELÉ mais jamais ASSIGNÉ — les
+   *  clients en attente ne pollaient rien ; si le dernier joueur à
+   *  pousser fermait son onglet avant la résolution, le salon se
+   *  bloquait pour tous jusqu'à un « Forcer » ou un rechargement).
+   *  Filet de sécurité du realtime : toutes les 2 s (max 2 minutes),
+   *  on relit la barrière v2 ; quand elle est complète, N'IMPORTE
+   *  QUI peut invoquer le serveur — la résolution est idempotente
+   *  (verrou + garde tour_publie), un double appel est sans effet. */
+  const pollerBarriereV2 = useCallback(async (attendus: number[], tour: number) => {
+    for (let i = 0; i < 60; i++) {  // max 2 minutes
+      await new Promise((r) => setTimeout(r, 2000))
+      // le tour a été résolu et publié par quelqu'un d'autre : le
+      //  realtime nous a déjà amené l'état — arrêter le poll.
+      if ((stateRef.current?.turn ?? 0) > tour) {
+        setBarriere({ prets: new Set(), monTourPousse: false })
+        return
+      }
+      const prets = await remote.lireBarriereV2(salon, tour)
+      if (!prets) continue  // erreur réseau ponctuelle : tick suivant
+      setBarriere({ prets, monTourPousse: true })
+      if (prets.size >= attendus.length) {
+        const res = await remote.resoudreTourServeur(salon, tour, attendus)
+        if (res.ok) {
+          // le serveur a publié : récupérer l'état du tour suivant
+          const nouveau = await remote.loadRemote(salon)
+          if (nouveau) {
+            migrerEtat(nouveau)
+            stateRef.current = nouveau
+            setState(nouveau)
+            setBarriere({ prets: new Set(), monTourPousse: false })
+            setConflit(false)
+          }
+        } else if (!res.dejaPublie) {
+          // FONCTION SERVEUR INDISPONIBLE — même repli que le dernier
+          //  pousseur : résolution LOCALE AVEC PUBLICATION.
+          setBarriere({ prets: new Set(), monTourPousse: false })
+          await resoudreBarriereLocaleV2Ref.current(attendus, tour)
+        }
+        return
+      }
+    }
+  }, [salon])
+  pollerBarriereV2Ref.current = pollerBarriereV2
+
 
   /** Résoudre la barrière : fusionner les sections dans l'état de
    *  référence (téléchargé frais), exécuter runTurn, publier. */

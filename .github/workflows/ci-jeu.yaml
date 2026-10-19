@@ -34,6 +34,17 @@ jobs:
         run: npm test
       - name: Bundle Edge Function (esbuild — résout extensions + JSON)
         run: npm run build:function
+      - name: Typecheck Edge Function (deno check)
+        # BUG 2026-10-19 : `cfgMondiale` utilisé sans être défini dans
+        #   resoudre-tour/index.ts est parti en PRODUCTION vert — les
+        #   tests couvrent le bundle moteur (_engine.mjs), jamais le
+        #   handler lui-même, et tsc n'inclut pas supabase/functions/.
+        #   deno check type-résout le handler (et attrape les noms
+        #   non définis) sur le bundle FRAÎCHEMENT construit.
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - run: deno check supabase/functions/resoudre-tour/index.ts
       - name: Test d'exécution du bundle (comme Deno le chargera)
         run: npm run test:function
       - name: Build du jeu (tsc + vite)

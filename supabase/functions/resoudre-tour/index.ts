@@ -104,6 +104,21 @@ Deno.serve(async (req) => {
 
       // CONFIG MONDIALE : injection avant l'exécution du tour — le
       //  tour N+1 est calculé avec les règles publiées par le créateur.
+      //  ⚠ BUG 2026-10-19 corrigé : `cfgMondiale` était UTILISÉ sans
+      //  jamais être lu ni défini → ReferenceError à CHAQUE résolution
+      //  serveur (500) → repli local systématique depuis le 19/10
+      //  matin. La config mondiale vit dans la ligne réservée
+      //  '__config__' de la même table (cf. src/supabase/client.ts) :
+      //  on la lit ICI, avant l'injection. Ligne absente (jamais
+      //  publiée) → null → l'état garde sa config embarquée
+      //  (comportement historique, même sémantique que le repli
+      //  client resoudreBarriereLocaleV2).
+      const { data: cfgRow } = await sb
+        .from('parties_chasse_peche')
+        .select('state')
+        .eq('id', '__config__')
+        .maybeSingle()
+      const cfgMondiale = (cfgRow?.state as { config?: unknown } | null)?.config ?? null
       appliquerConfigMondiale(draft, cfgMondiale)
 
       // 5. Exécution du tour par le moteur pur (bundle local testé).
