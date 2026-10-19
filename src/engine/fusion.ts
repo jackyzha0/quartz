@@ -8,6 +8,10 @@
 //     bundle esbuild _engine.mjs construit par scripts/build-function.mjs
 //     et testé par scripts/test-function.mjs avant tout déploiement).
 //
+//  DÉPLOIEMENT (2026-10-19) : la branche chasse-et-peche-web est
+//  autorisée par l'environnement github-pages — un push = CI + Edge
+//  Function + publication site/jeu, sans sync v4.
+//
 //  Historique (bugs corrigés ici, ne pas régresser — tests fusion.test.ts) :
 //   · 2026-10-17 : routes et cités libres sont PARTAGÉES — remplacer tout
 //     le tableau par la section du dernier joueur perdait les actions des
