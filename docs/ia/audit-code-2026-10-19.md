@@ -281,3 +281,87 @@ downgrade ; ou à défaut, afficher un avertissement croisé (« J4 semble jouer
 *Audit du 19/10/2026 sur `66282293` ; correctifs P0 appliqués le soir même
 (`362e1db4` = B1+B2, `ccfa04ef` = check CI handler, `857e1b2d` = documentation).
 Mise à jour de ce rapport : même date, au push de ce fichier.*
+
+## Annexe (19/10, soir) — État de la banque d'effets (`src/rules/`), analyse pré-brûlage
+
+Analyse demandée avant d'engager les « brûlages » (aucune partie en cours). Concerne la
+couche banque d'effets / registre de règles (refactor 2026-10-18).
+
+### Le contrat est sain — à GARDER, pas à brûler
+
+Trois couches propres (`rules/types.ts` types stables, `rules/effects/banque.ts`
+implémentation unique, `rules/registry.ts` registre-données), immuabilité (un effet
+renvoie sa contribution, ne mute jamais l'état), contexte lecture-seule, et surtout un
+**test d'ÉQUIVALENCE** : « la banque redonne exactement le moteur historique sur toutes
+les constructions » (77/77) + « toute construction à effets a SA règle » + ids
+stables/uniques (aucune collision `(nom, groupe)` — les 15 doublons Ville/Château sont
+correctement distingués par `@groupe`).
+
+### Complétude : NON — 1 source migrée sur ~10, et 70 % des constructions
+
+- `registreComplet()` ne produit QUE `reglesConstructions()`. Sources prévues dans
+  `SourceRegle` mais **sans aucun producteur** : dogme, faction, régime, culture, tech,
+  ministre, événement, laurier — leurs effets restent codés en dur dans le moteur
+  (`ministeres.ts`, `factions.ts`, `regimes.ts`, `progresAuto.ts`, `culture.ts`).
+- 77/109 constructions du référentiel ont des effets structurés (migrées vers la
+  banque) ; **32 restent en texte seul** (dont Tour de sorcier, Camp de bâtisseurs,
+  Hôpital, Clinique, Temple du soleil, bâtiments de faction) → repli parser texte.
+- 14 des 16 types d'effets de la banque n'ont **aucun producteur**. `tourismeInstantane`
+  est mort depuis le retour arbitre 2026-10-16 (le registre mappe Tourisme → `fluxVille`).
+
+### Usage : 2 sites de consommation, et 3 interprétations parallèles
+
+La banque n'est branchée que sur `effetsConstructionRef` (flux récap) et
+`garnisonConstructionRef` (garnison). Les accesseurs `effetsEteConstructionRef`,
+`instantanesConstructionRef`, `eteSeulementRef` **dupliquent l'interprétation des
+effets localement** au lieu de passer par la banque (même sémantique en 2 exemplaires —
+les canaux `fluxEte`/`instantanes` de `ContributionEffets` existent mais ne servent pas).
+
+### 🟥 2 nouveaux bugs trouvés (sémantique Tourisme à double voie)
+
+Le Tourisme vit en effet sur **deux voies** : `tourismeStatiqueBatiment` (stock =
+production, attrait, conversion culturelle, canal 7 de `tourismeCourant`) ET le flux
+banque (`fluxVille`, récap, été, copie de commerce). Elles doivent s'accorder par
+convention, pas par construction — et divergent :
+
+- **B3 — Attrait migratoire double-compté** : `attraitTouristiqueVille`
+  (production.ts) additionne le Tourisme STATIQUE et `productionVille().total`
+  (qui contient le flux banque) → pour les 15 constructions structurées portant du
+  Tourisme (Chapelle +35, Église +8, Foire +5, Grands bains…), le Tourisme compte
+  DEUX FOIS dans l'attrait (une Chapelle = +70 au lieu de +35). Impacte la heatmap
+  de la page Pays et la migration spontanée (`migrationTourisme`). Introduit par le
+  retour 2026-10-16 (stock = production), pas par la banque — la banque reproduit
+  fidèlement le moteur (le test d'équivalence l'encyclopedise).
+- **B4 — Le commerce copie le Tourisme** : `ressourcesCopiables` (commerce.ts) lit
+  `effetsConstructionRef` ; son docblock affirme « les instantanés (Tourisme, Garnison)
+  sont déjà exclus », mais depuis le mapping flux, le Tourisme EST dans le flux → un
+  marchand peut copier le Tourisme d'un aménagement (ex. Foire +5/tour), affiché au
+  canal Commerce… puis **écrasé à la fin de tour** par `resynchroniserTourisme`
+  (`tourismeCourant` n'a pas de canal commerce) : affiché, jamais crédité au stock.
+  Contredit l'arbitrage (u) « instantanés jamais copiés ».
+
+**Recommandation racine** : arbitrer UNE sémantique Tourisme (une seule voie de vérité)
+AVANT de migrer les autres sources vers la banque — sinon B3/B4 se propageront à chaque
+nouvelle source branchée.
+
+### Contournements autonomes (hors banque, à recenser pour le brûlage)
+
+Effets ministres (tous), règles de faction, lois de régimes, canal Progrès
+(`progresAuto.ts`, réintégré par la refonte), règles culturelles, `EFFETS_FORCES`
+(4 bâtiments hors référentiel : Ponton, Port de pêche, Port de commerce, Guilde des
+marchands), `reductionCampDeBatisseurs` (regex sur texte de description + défaut
+codé en dur), `prerequisConstruction` (regex sur texte de coût). Plus un cycle
+d'imports constaté : `engine/constructions → rules/effects/banque → engine/factions →
+engine/batiments → engine/constructions` (famille des 13 cycles différés).
+
+### Décision de brûlage qui en découle
+
+La banque est la **bonne base** (contrat sain, testée, unique point de vérité pour
+« une règle = une donnée »). Ne pas la brûler. Le brûlage pertinent :
+1. corriger B3/B4 + unifier la voie Tourisme (préalable) ;
+2. structurer les 32 entrées texte restantes, puis SUPPRIMER le repli texte
+   (`parseProductionTexte`, `EFFETS_FORCES`, regex de descriptions) ;
+3. ensuite seulement migrer les autres sources (ministres, factions, régimes…) une
+   par une sur la banque, et supprimer leurs implémentations en dur.
+
+*Analyse du 19/10 au soir sur la tête `8476070e`.*
