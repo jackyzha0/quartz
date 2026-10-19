@@ -1,0 +1,18 @@
+{
+  "//": "Typecheck DÉDIÉ à l'Edge Function resoudre-tour — CI : npx tsc -p supabase/functions/resoudre-tour/tsconfig.check.json. Le handler Deno n'est couvert par AUCUN autre contrôle (tsconfig du jeu = include src/, tests = bundle moteur uniquement). Les modules jsr:/_engine.mjs sont remplacés par les stubs de types/stubs.d.ts.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": [],
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["index.ts", "types/*.d.ts"]
+}

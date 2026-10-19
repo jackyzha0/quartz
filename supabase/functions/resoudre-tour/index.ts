@@ -26,7 +26,7 @@ const cors = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
-function json(body, status = 200) {
+function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {
     status, headers: { ...cors, 'Content-Type': 'application/json' },
   })
@@ -70,7 +70,7 @@ Deno.serve(async (req) => {
         .eq('type', 'section')
       if (errEvents) return json({ ok: false, error: 'lecture evenements impossible' }, 500)
 
-      const pousses = new Set((events ?? []).map((e) => e.joueur))
+      const pousses = new Set((events ?? []).map((e: { joueur: number }) => e.joueur))
       const manquants = attendus.filter((n) => !pousses.has(n))
       if (manquants.length) {
         return json({ ok: false, error: `barriere incomplete : ${manquants.join(', ')}` }, 409)
