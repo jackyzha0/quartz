@@ -89,3 +89,54 @@ test('migrations : un état migré reste jouable (runTurn s exécute)', async ()
   runTurn(state)
   assert.equal(state.turn, avant + 1, 'l état migré doit rester jouable')
 })
+
+test('compactage : le nouveau saveLocal (replacer, zéro clone) produit le MÊME format que l ancien (compacterEtat + clone)', async () => {
+  const { compacterEtat } = await import('../state/storage')
+  const store = new Map<string, string>()
+  ;(globalThis as Record<string, unknown>).localStorage = {
+    getItem: (k: string) => store.get(k) ?? null,
+    setItem: (k: string, v: string) => void store.set(k, v),
+    removeItem: (k: string) => void store.delete(k),
+  }
+  const { saveLocal, loadLocal } = await import('../state/storage')
+  const state = createGame(SETUP, 7, 'local')
+  migrerEtat(state)
+  // référence : ancien chemin = clone + compacterEtat + stringify
+  const ancien = JSON.stringify(compacterEtat(structuredClone(state)))
+  // nouveau chemin : saveLocal (replacer) → disque
+  saveLocal(state)
+  const nouveau = store.get('chasse-et-peche:save')!
+  assert.equal(nouveau, ancien.replace(/\\"_compact\\":true,?/g, ''),
+    'les deux formats doivent être équivalents (à la casse près du marqueur)'
+  )
+  // et le cycle de relecture reconstruit un état identique — à l'ORDRE
+  //  des clés près (elargirEtat ajoute les champs omis en fin d'objet,
+  //  le contenu est identique) : comparaison par clés TRIÉES.
+  const relu = loadLocal()
+  assert.ok(relu)
+  // elargirEtat AJOUTE les champs par défaut (contrat du format compact :
+  //  ex. ministere:null ajouté aux habitants des cités libres qui ne le
+  //  portaient pas) — la comparaison ignore donc les champs à valeur de
+  //  défaut présents d'un seul côté : le contenu SIGNIFIANT est identique.
+  const DEFAUTS: Record<string, unknown> = {
+    mariage: null, mere: null, pere: null, pereBio: null, armee: null,
+    titre: null, education: null, enfantBatard: false, fecondite: 0, ministere: null,
+  }
+  const tri = (x: unknown): unknown => {
+    if (Array.isArray(x)) return x.map(tri)
+    if (x && typeof x === 'object') {
+      const o: Record<string, unknown> = {}
+      for (const k of Object.keys(x as Record<string, unknown>).sort()) {
+        const v = (x as Record<string, unknown>)[k]
+        if (k in DEFAUTS && v === DEFAUTS[k]) continue
+        o[k] = tri(v)
+      }
+      return o
+    }
+    return x
+  }
+  const { config: _c1, ...a } = state
+  const { config: _c2, ...b } = relu
+  assert.deepEqual(tri(b), tri(a),
+    'l état relu doit être identique à l original (champs omis reconstruits, défauts ajoutés tolérés, ordre indifférent)')
+})

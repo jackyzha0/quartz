@@ -71,9 +71,39 @@ export function elargirEtat(state: GameState): GameState {
 
 export function saveLocal(state: GameState): boolean {
   try {
-    // compacter une COPIE : l'état reçu est souvent l'état React VIVANT
-    // (compacterEtat mute son argument).
-    localStorage.setItem(KEY, JSON.stringify(compacterEtat(structuredClone(state))))
+    // OPTIMISATION (2026-10-19) : plus AUCUN structuredClone ici —
+    //  l'ancien chemin clonait l'état COMPLET (~5 Mo en fin de partie)
+    //  juste pour protéger compacterEtat (qui mute), alors qu'update()
+    //  avait déjà cloné. Sérialisation par REPLACER : les champs par
+    //  défaut (DEFAUTS_PERSO) sont OMIS au stringify — zéro clone,
+    //  zéro mutation de l'état React vivant, même format compact sur
+    //  disque (elargirEtat reconstruit les champs omis au chargement).
+    const dejasCompacts = new WeakSet<object>()
+    const json = JSON.stringify(state, (_cle, valeur) => {
+      if (!valeur || typeof valeur !== 'object' || Array.isArray(valeur)) return valeur
+      if (dejasCompacts.has(valeur)) return valeur
+      const obj = valeur as Record<string, unknown>
+      // Un personnage est compacté s'il porte un champ par défaut OU
+      //  des traits tous vides : on renvoie une COPIE superficielle
+      //  sans ces champs (l'original vivant n'est jamais muté).
+      let aCompacter = false
+      for (const [k, def] of Object.entries(DEFAUTS_PERSO)) {
+        if (k in obj && obj[k] === def) { aCompacter = true; break }
+      }
+      if (!aCompacter && Array.isArray(obj.traits) && (obj.traits as string[]).every((t) => !t)) {
+        aCompacter = true
+      }
+      if (!aCompacter) return valeur
+      const copie: Record<string, unknown> = {}
+      for (const [k, v] of Object.entries(obj)) {
+        if (DEFAUTS_PERSO[k] !== undefined && v === DEFAUTS_PERSO[k]) continue
+        if (k === 'traits' && Array.isArray(v) && (v as string[]).every((t) => !t)) continue
+        copie[k] = v
+      }
+      dejasCompacts.add(copie)
+      return copie
+    })
+    localStorage.setItem(KEY, json)
     return true
   } catch {
     return false
