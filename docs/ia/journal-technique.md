@@ -490,10 +490,68 @@ Vérifications : 55 tests verts en local avant push (35 moteur dont les
 [Actions](https://github.com/losth230/quartz/actions). Byte-à-byte
 poussé/local vérifié sur les 19 fichiers. M1-M7 sont marqués dans
 [audit-code-2026-10-19.md](audit-code-2026-10-19.md) (tableau + lignes
-M1-M7 + plan d'action P2). Restent ouverts : point 8 du P2 (commentaires
-internes Tourisme de constructions.ts), IndexedDB, brûlage de la banque
-d'effets (décision déjà actée : ne pas brûler le contrat, structurer les
-32 entrées texte puis supprimer le repli).
+M1-M7 + plan d'action P2). Restaient ouverts à ce stade : point 8 du P2
+(commentaires internes Tourisme), IndexedDB, brûlage de la banque d'effets —
+traités dans la section suivante.
+
+## P2 achevé + banque d'effets : TOUTE production passe par la banque (2026-10-19, nuit)
+
+Deux décisions Thibaut enchaînées : « pas d'IndexedDB » (la persistance
+localStorage suffit — point 9 du P2 abandonné) et « pour la banque, il
+faut que TOUT ce qui a rapport à une production passe par la banque »
+(principe désormais gouvernant toute migration de source sur la banque).
+
+- **Point 8 du P2 — commentaires Tourisme réalignés (`ebb5d1e`).** Les
+  commentaires périmés (« Tourisme crédité UNE FOIS à la
+  construction », « ressources instantanées Tourisme/Garnison ») sont
+  réalignés sur la sémantique arbitrée (Tourisme = flux, stock =
+  production) dans constructions.ts, batiments.ts, commerce.ts,
+  rules/types.ts et villes.ts. Le résumé affichable ne dit plus
+  « +X Tourisme (à la construction) » : le Tourisme s'affiche comme
+  flux.
+- **Brûlage #2 de la banque — voie UNIQUE de production (`ebb5d1e`).**
+  Tout ce qui a rapport à une production se lit EXCLUSIVEMENT sur la
+  règle de banque (rules/registry → rules/effects) :
+  `effetsConstructionRef` (flux), `effetsEteConstructionRef` (canal été),
+  `garnisonConstructionRef` / `instantanesConstructionRef` (valeur
+  d'état), `eteSeulementRef` (lu sur la règle) — les anciennes
+  duplications d'interprétation locale de `ref.effets` sont supprimées.
+  RETRAITS : `parseProductionTexte` et son analyseur (constructions.ts),
+  l'analyseur local + `EFFETS_FORCES` + cache (batiments.ts — les 4
+  « bâtiments hors référentiel » étaient en fait tous dans la table
+  constructions), les regex Tourisme/Garnison des replis,
+  `effetsConstructionEntries`. Invariant : une construction SANS règle
+  de banque ne produit RIEN (test dédié).
+- **Voie Tourisme unifiée (`ebb5d1e`).** `tourismeStatiqueBatiment`
+  (l'ancienne double voie : regex sur les textes) devient
+  `productionTourismeBatiment` qui lit le flux Tourisme de la règle de
+  banque — la même valeur que le canal Bâtiments du récap alimente
+  désormais tourismeCourant (stock = production) et la conversion
+  culturelle. Plus aucune lecture Tourisme hors banque.
+- **Falheim / Notan et les 24 constructions sans production.** Leurs
+  textes décrivent des mécaniques de plateau non modélisées ou des
+  effets de merveille codés (doublement Science, −25 Or de levée) : via
+  la banque leur production par tour est nulle, ce qui est le
+  comportement historique. Rien à structurer — la « structuration des
+  32 » de l'audit s'est résolue en : production nulle par défaut,
+  repli supprimé.
+- Hors périmètre production (inchangés, textes canoniques du classeur) :
+  `parseCoutTexte`, `reductionCampDeBatisseurs`, `prerequisConstruction`
+  (coûts/prérequis, pas des productions).
+
+Vérifications : 57 tests verts en local avant push (baseline 55
+rejouée au harnais maison, +2 nouveaux : Tourisme = flux via la banque
+[Chapelle +35, plus aucun instantané], Champ/Rizière production d'été
+sur la règle) ; invariant « sans règle = production nulle » testé sur
+les 26 constructions sans effets ; smoke valeurs historiques (Bahamutt
++16, Chapelle +35, garnison Poste de garde 40, Guilde des marchands
+−1 Charbon, Ponton 0) ; CI VERTE sur `ebb5d1e` (jeu, build, diag,
+deploy Pages + Edge — détail dans
+[Actions](https://github.com/losth230/quartz/actions)) ; byte-à-byte
+poussé/local 10/10. Prochaine
+étape banque (brûlage #3) : migrer une par une les sources restantes
+(ministres, lois de régime/culture, techs) en appliquant partout le
+principe « toute production passe par la banque ».
 
 ## Règles d'ingénierie durables (issues d'incidents réels)
 

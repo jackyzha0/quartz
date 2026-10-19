@@ -311,12 +311,20 @@ navigateurs est silencieusement ignorée.
    arbitrage Thibaut « ids purs » : `mariageId`/`mereId`/`pereId`/`pereBioId`,
    PAS de migration de rattrapage des vieilles sauvegardes — elles n'ont
    plus lieu d'exister).
-8. Réaligner les commentaires internes Tourisme de `constructions.ts` (AGENTS.md
-   est fait ; le reste de la dérive doc est couvert) — **seul P2 restant**.
-9. IndexedDB pour la persistance locale (restant) ; unitaires
+8. ✅ Réaligner les commentaires internes Tourisme de `constructions.ts` —
+   FAIT le 2026-10-19 (`ebb5d1e`) : commentaires réalignés sur la sémantique
+   arbitrée (Tourisme = flux, stock = production) dans constructions.ts,
+   batiments.ts, commerce.ts, types.ts et villes.ts ; et la voie de calcul
+   Tourisme est UNIFIÉE sur la banque (productionTourismeBatiment lit la
+   règle — plus de regex sur les textes).
+9. IndexedDB pour la persistance locale — **ABANDONNÉ le 2026-10-19
+   (décision Thibaut : « pas d'IndexedDB », la persistance localStorage
+   suffit)** ; unitaires
    démographie/commerce (partiellement couvert : 3 tests M1 démographie dans
    mutateurs.test.ts) ; ✅ reset avec confirmation (M3, `c41ac32`) ;
    ✅ branche morte `setGlobalCfg` (M2, `c41ac32`).
+
+Le P2 est désormais INTÉGRALEMENT traité (points 7-9 ci-dessus).
 
 ---
 
@@ -395,8 +403,8 @@ convention, pas par construction — et divergent :
 AVANT de migrer les autres sources vers la banque — sinon B3/B4 se propageront à chaque
 nouvelle source branchée. **Sémantique arbitrée le 2026-10-19 (retour Thibaut) : le
 Tourisme est un flux normal dont le stock n'est jamais cumulé — recalculé à chaque
-fin de tour (stock = production), la copie commerce comprise ; reste à unifier la
-voie de calcul à l'occasion de la migration banque.**
+fin de tour (stock = production), la copie commerce comprise ; la voie de calcul
+est UNIFIÉE sur la banque depuis le 2026-10-19 (`ebb5d1e`).**
 
 ### Contournements autonomes (hors banque, à recenser pour le brûlage)
 
@@ -415,13 +423,28 @@ engine/batiments → engine/constructions` (famille des 13 cycles différés).
 La banque est la **bonne base** (contrat sain, testée, unique point de vérité pour
 « une règle = une donnée »). Ne pas la brûler. Le brûlage pertinent :
 1. ✅ corriger B4 — RÉSOLU (2026-10-19, arbitrage Thibaut : Tourisme copiable,
-   stock = production ; `ee26eb80` + correctif cycle `06422b9`) ; reste à unifier
-   la voie Tourisme (préalable banque) — B3 est SANS OBJET depuis le retrait de
-   l'attrait migratoire (`2c24bd3a`, 2026-10-19) ;
-2. structurer les 32 entrées texte restantes, puis SUPPRIMER le repli texte
-   (`parseProductionTexte`, `EFFETS_FORCES`, regex de descriptions) ;
+   stock = production ; `ee26eb80` + correctif cycle `06422b9`) ; B3 est SANS
+   OBJET depuis le retrait de l'attrait migratoire (`2c24bd3a`, 2026-10-19) ;
+2. ✅ RÉSOLU (2026-10-19, retour Thibaut « tout ce qui a rapport à une
+   production passe par la banque », `ebb5d1e`) — la voie Tourisme est
+   UNIFIÉE (productionTourismeBatiment lit la règle de banque, plus aucune
+   regex sur les textes) et le repli texte est SUPPRIMÉ : `parseProductionTexte`,
+   l'analyseur local de batiments.ts, `EFFETS_FORCES` (les 4 bâtiments étaient
+   en fait tous dans la table constructions) et les regex
+   Tourisme/Garnison ont été retirés. Les accès moteur (flux, été, garnison,
+   instantanés, eteSeulement) lisent EXCLUSIVEMENT la règle de banque ; une
+   construction sans règle ne produit RIEN (invariant testé). Les « 32 entrées
+   texte » de l'analyse initiale s'étaient réduites à 26 (retrait des
+   constructions de faction `2c24bd3a`) : 24 décrivent des mécaniques de
+   plateau non modélisées (production nulle — rien à structurer), Falheim et
+   Notan portent des effets de MERVEILLE codés (doublement Science / réduction
+   de levée), hors production par tour. Restent hors périmètre production
+   (coûts/prérequis, toujours lus sur les textes canoniques du classeur) :
+   `reductionCampDeBatisseurs` et `prerequisConstruction` ;
 3. ensuite seulement migrer les autres sources (ministres, régimes…) une
-   par une sur la banque, et supprimer leurs implémentations en dur. Les règles de
+   par une sur la banque, et supprimer leurs implémentations en dur — en
+   appliquant PARTOUT le principe arbitré le 2026-10-19 : TOUT ce qui a
+   rapport à une production passe par la banque. Les règles de
    faction ayant été retirées, leur éventuelle refonte devra naître DIRECTEMENT
    sur la banque (ne pas recréer d'implémentation en dur).
 
