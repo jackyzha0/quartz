@@ -126,7 +126,7 @@ export function effetsRouteProprietaire(
 ): Record<string, number> {
   const out: Record<string, number> = { Or: C.p.marchandOrTour }
   // Marqueur (u) : l'aménagement ENTIER est copié — toutes ses
-  //  ressources copiables (flux positifs + été en été).
+  // ressources copiables (flux positifs + été en été).
   for (const cop of ressourcesCopiables(route.amenagement, C.config)) {
     if (cop.ete && saison !== 'Été') continue
     out[cop.ressource] = (out[cop.ressource] ?? 0) + cop.valeur
