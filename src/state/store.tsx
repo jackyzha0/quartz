@@ -18,7 +18,7 @@ import { migrerEtat } from '../engine/migrations'
 import { fusionnerSections, rejouerEvenementsPartages, appliquerConfigMondiale } from '../engine/fusion'
 import type { SetupLine } from '../engine/setup'
 import { createGame } from '../engine/setup'
-import { cfgOf, convergerConfig, cloneDefaultConfig, type GameConfig } from '../config/defaultConfig'
+import { cfgOf, convergerConfig, type GameConfig } from '../config/defaultConfig'
 import * as storage from './storage'
 import { adopterConfig } from './configPriorite'
 import * as remote from '../supabase/client'
@@ -621,42 +621,6 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     void attendus
   }, [salon, resoudreSeul])
   resoudreBarriereLocaleV2Ref.current = resoudreBarriereLocaleV2
-
-  /** Poll v2 : barrière sur cp_events, résolution serveur dès
-   *  complète. S'arrête dès que le tour publié a changé (le realtime
-   *  apporte le nouvel état au handler subscribeRemote). */
-  const pollerBarriereV2 = useCallback(async (attendus: number[], tour: number) => {
-    for (let i = 0; i < 60; i++) {  // max 2 minutes
-      await new Promise((r) => setTimeout(r, 2000))
-      const prets = await remote.lireBarriereV2(salon, tour)
-      if (!prets) continue
-      if (stateRef.current?.turn !== tour) {
-        setBarriere({ prets: new Set(), monTourPousse: false })
-        return
-      }
-      setBarriere({ prets, monTourPousse: true })
-      if (prets.size >= attendus.length) {
-        const res = await remote.resoudreTourServeur(salon, tour, attendus)
-        if (res.ok) {
-          const nouveau = await remote.loadRemote(salon)
-          if (nouveau) {
-            migrerEtat(nouveau)
-            stateRef.current = nouveau
-            setState(nouveau)
-            setBarriere({ prets: new Set(), monTourPousse: false })
-            setConflit(false)
-          }
-          return
-        }
-        if (res.dejaPublie) return
-        // repli avec publication (cf. nextTurnV2)
-        setBarriere({ prets: new Set(), monTourPousse: false })
-        await resoudreBarriereLocaleV2(attendus, tour)
-        return
-      }
-    }
-  }, [salon])
-
 
 
   /** Résoudre la barrière : fusionner les sections dans l'état de

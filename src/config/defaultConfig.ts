@@ -704,10 +704,6 @@ export function migrateTraits(t: TraitDef[] | undefined): TraitDef[] {
   return DEFAULT_CONFIG.traits
 }
 
-/** Applique la migration des traits à une config complète (chargement). */
-export function migrateGameConfig(cfg: GameConfig): GameConfig {
-  return { ...cfg, traits: migrateTraits(cfg.traits) }
-}
 
 /** Complète les cultures d'une configuration existante avec les champs
  *  chiffrés ajoutés après coup (par nom — les valeurs éditées par

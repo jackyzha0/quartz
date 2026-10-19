@@ -13,7 +13,7 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import type { GameState } from '../engine/types'
 import type { GameConfig } from '../config/defaultConfig'
-import { compacterEtat, elargirEtat } from '../state/storage'
+import { elargirEtat } from '../state/storage'
 
 const LS_URL = 'cpe.supabase.url'
 const LS_KEY = 'cpe.supabase.anon'
@@ -69,7 +69,7 @@ export function clearSupabaseCredentials(): void {
   client = null
 }
 
-export function getSupabase(): SupabaseClient | null {
+function getSupabase(): SupabaseClient | null {
   if (client) return client
   const { url, key } = readCreds()
   if (!url || !key) return null
@@ -149,46 +149,6 @@ export async function loadRemote(id: string): Promise<GameState | null> {
  *  échos realtime (la boucle update → événement → setState était
  *  inutile et creusait la fenêtre de conflit). */
 const CLIENT_ID = 'c' + Math.random().toString(36).slice(2, 10)
-export function clientId(): string { return CLIENT_ID }
-
-/** Sauvegarde une partie (création ou mise à jour) — upsert avec
- *  identité du writers (updated_by) : la dernière écriture gagne
- *  (garanti par le serveur), le rebase client fusionne les éditions
- *  simultanées de feuilles différentes. */
-/**
- * Sauvegarde AVEC GARDE DE TOUR (correctif rollback aléatoire
- *  2026-10-17) : un client PÉRIMÉ (onglet arrière-plan, navigateur
- *  sorti de veille, appareil resté sur l'ancien tour) pouvait
- *  écraser l'état partagé avec sa vieille version — « dernière
- *  écriture gagne » sans aucune vérification. Désormais : on lit
- *  d'abord le tour publié ; si le serveur est PLUS RÉCENT que ce
- *  qu'on veut écrire, l'écriture est REFUSÉE (le client local
- *  est hors date, il récupèrera l'état courant par le realtime).
- *  Coût : un SELECT léger avant chaque upsert (colonnes tour de
- *  l'en-tête JSON, pas le payload).
- */
-export async function saveRemote(id: string, state: GameState): Promise<boolean> {
-  const sb = getSupabase()
-  if (!sb) return false
-  // Garde de tour : ne JAMAIS écraser un état plus récent.
-  //  turn_done = numéro du tour publié (colonne légère, pas le
-  //  payload ~5 Mo) — mise à jour à chaque résolution de barrière.
-  const { data: entete, error: errEntete } = await sb
-    .from(TABLE).select('turn_done').eq('id', id).maybeSingle()
-  if (!errEntete && entete) {
-    const tourServeur = entete.turn_done ?? 0
-    if (typeof tourServeur === 'number' && tourServeur > state.turn) {
-      return false  // serveur plus récent : refus (client périmé)
-    }
-  }
-  const { error } = await sb.from(TABLE).upsert({
-    id,
-    state: compacterEtat(structuredClone(state)),
-    updated_by: CLIENT_ID,
-    updated_at: new Date().toISOString(),
-  })
-  return !error
-}
 
 
 // ═══════════════════════════════════════════════════════════════════════
