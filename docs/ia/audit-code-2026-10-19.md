@@ -23,9 +23,9 @@ Actions et de l'Edge Function déployée. Aucune écriture sur la partie en lign
 | B2 | `pollerBarriereV2Ref` déclaré et appelé mais jamais assigné | ✅ corrigé (`362e1db4`) |
 | B4 | Le Tourisme copié par une route commerciale était affiché (canal Commerce) mais jamais crédité au stock | ✅ résolu (arbitrage Thibaut + `ee26eb80` + correctif cycle `06422b9`, 2026-10-19) |
 | R1 | La CI ne type-checkait pas le handler Deno (cause racine de B1) | ✅ corrigé (`ccfa04ef`) |
-| R2 | RLS ouverte à `anon`, y compris DELETE | ⬜ à arbitrer (P1) |
-| R3 | Retour de `saveLocal` jamais vérifié (quota localStorage) | ⬜ à arbitrer (P1) |
-| R4 | Fusion multijoueur sans validation de forme | ⬜ à arbitrer (P1) |
+| R2 | RLS ouverte à `anon`, y compris DELETE | ⚖️ arbitré : assumé, modèle « amis de confiance » (Thibaut, 2026-10-19) — risque documenté, aucun changement SQL |
+| R3 | Retour de `saveLocal` jamais vérifié (quota localStorage) | ✅ résolu (arbitrage « bandeau d'alerte » + `dea1997`, 2026-10-19) |
+| R4 | Fusion multijoueur sans validation de forme | ✅ résolu (arbitrage « rejet + journal visible » + `3b964cf`, 2026-10-19) |
 | R5 | Mélange de protocoles v1/v2 possible dans un salon | ✅ résolu par brûlage du protocole v1 (`27a5173c` + `166a7ab`, 2026-10-19) |
 | M1-M7 | Problèmes moyens | ⬜ à arbitrer (P2) |
 
@@ -150,6 +150,12 @@ amis de confiance) et documenté, mais :
    passe en service-only, le Forcer doit invoquer l'Edge Function (déjà le cas en
    v2) et son repli local doit être repensé (voir R5).
 
+**→ Arbitré (Thibaut, 2026-10-19) : NE RIEN TOUCHER — modèle « salon par code,
+amis de confiance » ASSUMÉ.** Le risque est documenté et accepté tel quel :
+aucune policy SQL modifiée, aucun changement client. Les recommandations
+ci-dessus restent en réserve (P2-documentation) si le contexte change
+(parties publiques, salon ouvert à des inconnus).
+
 ### R3 — localStorage : quota dépassable en fin de partie, échec silencieux
 
 L'état atteint ~5 Mo (et jusqu'à ~12 Mo de JSON non compacté à 16 000 habitants
@@ -164,6 +170,13 @@ perd les actions non poussées.
 (pas de quota en Mo) — d'autant que le repli « fermeture d'onglet » a été supprimé :
 localStorage est la SEULE protection anti-perte du tour en cours.
 
+**→ RÉSOLU (2026-10-19, arbitrage Thibaut « bandeau d'alerte » + correctif
+`dea1997`) : `persist` vérifie désormais le retour de `storage.saveLocal` et arme
+`saveLocaleEchec` (exposé par le contexte de jeu) ; TurnBar affiche un bandeau
+⚠ « Sauvegarde locale impossible (quota du navigateur dépassé) » avec un bouton
+d'export JSON immédiat — la partie ne vit alors plus qu'en mémoire, l'export est
+la copie de secours. IndexedDB reste une piste de fond (P2, point 9).**
+
 ### R4 — Fusion multijoueur sans validation de forme
 
 `fusionnerSections` applique au mot : `Object.assign(pj, sec.player)`,
@@ -177,6 +190,18 @@ sa frontière réseau ne l'est pas.
 **Recommandation** : une fonction `validerSection(payload)` minimaliste (types des
 5 champs, `tour` nombre, `player.n` nombre), rejet silencieux + log, partagée
 client/serveur comme `fusionnerSections`.
+
+**→ RÉSOLU (2026-10-19, arbitrage Thibaut « rejeter + journal visible » +
+correctif `3b964cf`) : `sectionValide()` est exportée de fusion.ts (contrat
+minimal : `tour` nombre fini ; `player` objet, `population`/`routes`/
+`citesLibres`/`log` tableaux, s'ils sont présents) et appelée dans la boucle de
+`fusionnerSections` — une section invalide est rejetée ENTIÈRE (jamais de
+demi-fusion qui casserait `runTurn` à la publication) avec une entrée VISIBLE
+dans le journal du tour (type Système : « ⚠ Section invalide ignorée… — les
+actions de Jn ne comptent pas pour ce tour ») ; les clés non numériques sont
+ignorées sans trace. Partagée client + Edge Function (le bundle `_engine.mjs`
+embarque la validation → la résolution serveur est protégée aussi). Tests de
+régression dans fusion.test.ts (13 tests au total).**
 
 ### R5 — Mélange de protocoles v1/v2 possible dans un même salon
 
@@ -271,11 +296,14 @@ navigateurs est silencieusement ignorée.
    positif et négatif (le bug rejoué fait échouer la CI).
 
 **P1 — prochaine vague qualité**
-4. Vérifier le retour de `saveLocal` + bandeau quota (R3) — l'état de fin de partie
-   dépasse le quota de nombreux navigateurs.
-5. Serrer la RLS : retirer DELETE à `anon` sur `cp_events`, réserver `state` à la
-   `service_role` (R2) — nécessite de fiabiliser le repli du Forcer.
-6. `validerSection()` à la fusion (R4) — la garde anti-mélange v1/v2 (R5) est
+4. ✅ Vérifier le retour de `saveLocal` + bandeau quota (R3) — FAIT le
+   2026-10-19 (`dea1997`) : `persist` arme `saveLocaleEchec`, TurnBar affiche
+   le bandeau avec export JSON de secours.
+5. ⚖️ Serrer la RLS (R2) — ARBITRÉ le 2026-10-19 (Thibaut) : modèle « amis de
+   confiance » ASSUMÉ, on ne touche à rien — le risque reste documenté
+   (section R2).
+6. ✅ `sectionValide()` à la fusion (R4) — FAIT le 2026-10-19 (`3b964cf`) :
+   rejet ENTIÈR + journal visible ; la garde anti-mélange v1/v2 (R5) est
    SANS OBJET : le protocole v1 a été brûlé le 2026-10-19 (`27a5173c`).
 
 **P2 — chantiers de fond**

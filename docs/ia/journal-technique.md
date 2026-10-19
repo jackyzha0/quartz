@@ -386,6 +386,55 @@ B4 est marqué résolu dans
 [audit-code-2026-10-19.md](audit-code-2026-10-19.md) ; les règles sont mises à
 jour dans [regles-et-arbitrages.md](regles-et-arbitrages.md).
 
+## R2/R3/R4 — arbitrages et correctifs (2026-10-19, au soir)
+
+Les trois risques P1 de l'audit arbitrés par Thibaut, puis implémentés :
+
+- **R2 (RLS ouverte à `anon`, DELETE inclus) — ASSUMÉ, rien à coder.**
+  Arbitrage : « ne rien toucher — documenter le risque, modèle amis de
+  confiance assumé ». Le modèle « salon par code » sans auth reste tel quel :
+  aucune policy SQL modifiée. Le risque (sabotage possible par quiconque
+  connaît l'URL pendant la barrière) est documenté dans
+  [audit-code-2026-10-19.md](audit-code-2026-10-19.md) (section R2, statut
+  « arbitré : assumé ») ; les recommandations de durcissement restent en
+  réserve si le contexte change (parties publiques).
+- **R3 (quota localStorage, échec silencieux) — bandeau d'alerte (`dea1997`).**
+  `storage.saveLocal` retourne `false` en cas d'échec (QuotaExceeded, mode
+  privé) mais personne ne le lisait : en fin de partie (~5 Mo d'état) la
+  sauvegarde locale pouvait échouer à CHAQUE mutation sans aucun signe, et
+  un rechargement perdait le tour en cours. Correctif : `persist` arme
+  `saveLocaleEchec` (miroir du retour de saveLocal, exposé par le contexte
+  de jeu) ; TurnBar affiche un bandeau ⚠ « Sauvegarde locale impossible
+  (quota du navigateur dépassé) — un rechargement perdrait le tour en
+  cours » avec bouton d'export JSON immédiat : la partie ne vit alors plus
+  qu'en mémoire, l'export est la copie de secours.
+- **R4 (fusion sans validation de forme) — rejet ENTIÈR + journal visible
+  (`3b964cf`).** Les sections viennent du réseau (cp_events.payload, JSON
+  non contrôlé) : un client bogué pouvait déposer `"tour": "abc"` ou une
+  population non tableau qui crashaient `runTurn` à la publication (serveur
+  ou repli local). Correctif : `sectionValide()` exportée de fusion.ts
+  (contrat minimal : tour nombre fini ; player objet ; population / routes
+  / citesLibres / log tableaux si présents), appelée dans la boucle de
+  `fusionnerSections` — une section invalide est ignorée EN ENTIER (jamais
+  de demi-fusion qui casserait runTurn) avec une entrée « ⚠ Section invalide
+  ignorée » dans le journal du tour (arbitrage Thibaut : le rejet doit être
+  VISIBLE pour que l'arbitre voie la triche/le bug, pas silencieux) ; les
+  clés non numériques sont ignorées sans trace (aucun joueur à fusionner).
+  Partagée client + Edge Function : le bundle `_engine.mjs` embarque la
+  validation — la résolution serveur est protégée aussi. 3 tests de
+  régression dans fusion.test.ts (13 au total).
+
+Vérifications : CI jeu #40 (`3b964cf`) et #41 (`dea1997`) vertes, diag #196/#197
+verts, Deploy Edge Function #19 vert (le bundle `_engine.mjs` embarque
+`sectionValide` — la résolution serveur est protégée ; pas de redéploiement
+pour `dea1997`, aucun fichier moteur touché), Deploy Pages #1211 vert — le
+site live sert déjà les deux correctifs (bandeau R3 + validation R4
+vérifiés dans le bundle publié).
+R2/R3/R4 sont marqués dans
+[audit-code-2026-10-19.md](audit-code-2026-10-19.md) (tableau + sections +
+plan d'action P1). Restent ouverts : M1-M7 (P2) et les chantiers de fond
+(IndexedDB, ids démographie, brûlage banque d'effets).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
