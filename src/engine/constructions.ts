@@ -47,7 +47,7 @@ export function batimentsRefs(cfg?: GameConfig): ConstructionRef[] {
 
 const NOMBRE = String.raw`\d+(?:[.,]\d+)?`
 /** Ressources de flux (Garnison et Habitants exclus : valeurs d'état). */
-const RESSOURCES_FLUX = 'Or|Bois|Pierre|Fer|Charbon|Bétail|Soie|Nourritures?|Science'
+export const RESSOURCES_FLUX = 'Or|Bois|Pierre|Fer|Charbon|Bétail|Soie|Nourritures?|Science'
 /** Ressources telles qu'elles apparaissent dans les textes de coût du classeur. */
 const RESSOURCES_COUT = 'Or|Bois|Pierres?|Fer|Charbon|Bétails?|Soie|Nourritures?|Science|Tourisme'
 

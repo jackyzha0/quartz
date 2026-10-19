@@ -103,7 +103,7 @@ export function effetsTourAmenagement(nom: string, saison: Saison, cfg?: GameCon
  *  SÉPARÉE, créditée uniquement en été (fonction
  *  effetsNourrEteAmenagementsVille ci-dessous) — jamais doublée ni
  *  mélangée avec la nourriture générale. */
-export function effetsAmenagementsVille(ville: City, saison: Saison, cfg?: GameConfig): Record<string, number> {
+export function effetsAmenagementsVille(ville: City, cfg?: GameConfig): Record<string, number> {
   const out: Record<string, number> = {}
   for (const nom of ville.amenagements ?? []) {
     const ref = amenagementRef(nom, cfg)
@@ -133,10 +133,10 @@ export function effetsNourrEteAmenagementsVille(ville: City, cfg?: GameConfig): 
 
 /** Crédite au stock les effets par tour de TOUS les aménagements du joueur
  *  (étape moteur, après les bâtiments) et renvoie les effets appliqués. */
-export function appliquerEffetsAmenagements(p: Player, saison: Saison, cfg?: GameConfig): Record<string, number> {
+export function appliquerEffetsAmenagements(p: Player, cfg?: GameConfig): Record<string, number> {
   const out: Record<string, number> = {}
   for (const ville of p.villes) {
-    for (const [res, v] of Object.entries(effetsAmenagementsVille(ville, saison, cfg))) {
+    for (const [res, v] of Object.entries(effetsAmenagementsVille(ville, cfg))) {
       out[res] = (out[res] ?? 0) + v
     }
   }

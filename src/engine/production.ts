@@ -17,7 +17,6 @@
 
 import type { City, GameState, Player } from './types'
 import { cfgOf, type Cfg } from './gameData'
-import { makeRng } from './rng'
 import { calculerGainsPopulation, detailGainsVille } from './economie'
 import { effetsBatimentsVille, detailsBatimentsJoueur, tourismeStatiqueBatiment } from './batiments'
 import { effetsAmenagementsVille, effetsNourrEteAmenagementsVille, detailsAmenagementsJoueur } from './amenagements'
@@ -86,7 +85,7 @@ export interface ProductionDetail {
 /** Gains bruts d'habitants d'un joueur, AVANT tribut de vassalité.
  *  calculerGainsPopulation est déterministe (le rng n'est pas consommé). */
 function gainsBruts(state: GameState, p: Player): Record<string, number> {
-  return calculerGainsPopulation(state, p, makeRng(1))
+  return calculerGainsPopulation(state, p)
 }
 
 /** Production par tour détaillée d'un joueur, canal par canal.
@@ -120,7 +119,7 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     for (const [res, v] of Object.entries(effetsBatimentsVille(ville, C))) {
       batiments[res] = (batiments[res] ?? 0) + v
     }
-    for (const [res, v] of Object.entries(effetsAmenagementsVille(ville, saison, C.config))) {
+    for (const [res, v] of Object.entries(effetsAmenagementsVille(ville, C.config))) {
       amenagements[res] = (amenagements[res] ?? 0) + v
     }
     for (const [res, v] of Object.entries(effetsAutresVille(ville))) {
@@ -280,7 +279,7 @@ export function productionVille(
   const saison: GameState['saison'] = state.saison
   const coef = C.p.gainsCrediteStock
   const batiments = effetsBatimentsVille(ville, C)
-  const amenagements = effetsAmenagementsVille(ville, saison, C.config)
+  const amenagements = effetsAmenagementsVille(ville, C.config)
   // Nourr - été de la ville : production d'été (Champ, Rizière…) +
   // lignes « Autres » « Nourr - été » — créditée uniquement en été.
   const nourrEte: Record<string, number> = {}

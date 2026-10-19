@@ -133,7 +133,7 @@ const EFFETS: Record<string, EffetRegle> = {
   'Basiléens|Paysans dévoués': {
     auto: (c) => `champs : +5 Nourriture/tour chacun (${nbChamps(c.p)} champ(s)) ; garnison des cités −20`,
     flux: (c) => ({ Nourriture: 5 * nbChamps(c.p) }),
-    garnisonVille: (c, v) =>
+    garnisonVille: (_c, v) =>
       (v.type ?? 'Ville') === 'Ville' && /cité/i.test(v.rang ?? '') ? -20 : 0,
   },
   'Basiléens|Temps de paix': {
@@ -188,7 +188,7 @@ const EFFETS: Record<string, EffetRegle> = {
   "ELFES D'OR|Puit d'Or": {
     auto: (c) => `+1 Science/tour et garnison +40 par « Puit de mana » (${nbBatiments(c.p, 'Puit de mana')} bâtiment(s))`,
     flux: (c) => ({ Science: 1 * nbBatiments(c.p, 'Puit de mana') }),
-    garnisonVille: (c, v) => 40 * nbBatimentsVille(v, 'Puit de mana'),
+    garnisonVille: (_c, v) => 40 * nbBatimentsVille(v, 'Puit de mana'),
   },
 
   // ── Sylvains ────────────────────────────────────────────────────────
@@ -279,9 +279,9 @@ const EFFETS: Record<string, EffetRegle> = {
     // Elfes d'Or « Accros à la magie » (Base) : si la réserve de Science
   //  passe sous la production de Science, remise à niveau automatique.
   "ELFES D'OR|Accros à la magie": {
-    auto: (c) => `Science maintenue au niveau de la production (crédité automatiquement)`,
+    auto: () => `Science maintenue au niveau de la production (crédité automatiquement)`,
     flux: (c) => {
-      const prod = prodScience(c.state, c.p, c.C)
+      const prod = prodScience(c.p)
       const stock = c.p.resources['Science']?.stock ?? 0
       const out: Record<string, number> = {}
       if (stock < prod) out['Science'] = prod - stock
@@ -290,25 +290,13 @@ const EFFETS: Record<string, EffetRegle> = {
   },
 }
 
-/** Marchands vivants d'un joueur (titre « Marchand », engine/commerce). */
-function marchandsVivants(state: GameState, p: Player): number {
-  return (state.population[p.n] ?? []).filter(
-    (c) => c.statut !== 'Décédé' && c.titre === 'Marchand',
-  ).length
-}
 
-/** Bâtiments de faction construits par un joueur (tous types confondus). */
-function nbBatimentsFaction(p: Player, C: Cfg): number {
-  let n = 0
-  for (const b of batimentsFaction(p, C)) n += nbBatiments(p, b.nom)
-  return n
-}
 
 /** Production de Science de BASE d'un joueur (ligne « base » du
  *  récap : stock.prod). La règle elfe compare la RÉSERVE à cette
  *  production — les autres canaux (habitants, ministres…) créditent
  *  par-dessus et sont déjà comptés dans le stock. */
-function prodScience(state: GameState, p: Player, C: Cfg): number {
+function prodScience(p: Player): number {
   return p.resources['Science']?.prod ?? 0
 }
 
@@ -386,16 +374,6 @@ export function garnisonFactionVille(
 
 // ── Fête de la Bière (Nains, Âge III) : transfert réel entre joueurs ──
 
-/** Total qu'apporteront les autres joueurs à la fin de cet été
- *  (10 Or × leur rang de pays, plafonné par leur stock d'Or). */
-function totalFeteDeLaBiere(state: GameState, p: Player, C: Cfg): number {
-  let total = 0
-  for (const q of state.players) {
-    if (q.n === p.n) continue
-    total += Math.min(10 * rangPaysNiveau(q, C), q.resources['Or']?.stock ?? 0)
-  }
-  return total
-}
 
 // ── Étape moteur (FinDeTour, étape 3nonies) ───────────────────────────
 
@@ -407,7 +385,6 @@ export function appliquerEffetsFaction(
   state: GameState, p: Player, C: Cfg = cfgOf(state.config),
 ): Record<string, number> {
   const out = effetsFaction(state, p, C)
-  const ctx: CtxFaction = { state, p, C }
 
   // Fête de la Bière : remplacer l'estimation par le transfert réel
   // (débit des autres joueurs, plafonné par leur stock).

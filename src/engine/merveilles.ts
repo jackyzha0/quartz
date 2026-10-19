@@ -19,7 +19,7 @@
 
 import type { GameState, Player } from './types'
 import type { Rng as RngType } from './rng'
-import { cfgOf, type Cfg } from './gameData'
+import { cfgOf } from './gameData'
 import { nbBatiments } from './factions'
 
 /** Effet ONE-SHOT d'une merveille à sa construction (crédité et

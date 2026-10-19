@@ -2,15 +2,11 @@
 //  Bâtiments, événements, cartes dynastie — accès via la config.
 // ══════════════════════════════════════════════════════════════════════
 
-import { DEFAULT_CONFIG, type GameConfig, type BuildingDef, type EventDef, type DynastieDef } from '../config/defaultConfig'
+import { DEFAULT_CONFIG, type GameConfig, type BuildingDef } from '../config/defaultConfig'
 
-export type { BuildingDef, EventDef, DynastieDef }
 import type { Cfg } from '../config/defaultConfig'
 export type { Cfg }
 
-export const BUILDINGS: BuildingDef[] = DEFAULT_CONFIG.batiments
-export const EVENTS: EventDef[] = DEFAULT_CONFIG.events
-export const DYNASTIES: DynastieDef[] = DEFAULT_CONFIG.dynasties
 
 export function buildingDef(nom: string, cfg?: GameConfig): BuildingDef | undefined {
   return (cfg ?? DEFAULT_CONFIG).batiments.find((b) => b.nom === nom)

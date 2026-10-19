@@ -9,7 +9,6 @@
 // ══════════════════════════════════════════════════════════════════════
 
 import type { City, GameState, Player } from './types'
-import type { Rng } from './rng'
 import { cfgOf, titreDef, type Cfg } from './gameData'
 import { aMinistre } from './ministeres'
 import { gouverneurDeVille } from './titres'
@@ -29,7 +28,7 @@ export function facteurTaxes(ville: City, C: Cfg): number {
   return 1
 }
 
-export function calculerGainsPopulation(state: GameState, p: Player, rng: Rng): Record<string, number> {
+export function calculerGainsPopulation(state: GameState, p: Player): Record<string, number> {
   return gainsPopulationJoueur(state, p, cfgOf(state.config))
 }
 

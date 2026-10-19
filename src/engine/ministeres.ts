@@ -16,9 +16,7 @@
 // ══════════════════════════════════════════════════════════════════════
 
 import type { GameState, Player, Character } from './types'
-import { cfgOf } from './gameData'
 import { RENOMMAGES_MINISTERES } from '../config/defaultConfig'
-import type { Cfg } from './gameData'
 import { fullName } from './shared'
 
 /** Portefeuilles ministériels actifs d'un joueur : personnages VIVANTS
@@ -59,7 +57,7 @@ export function facteurAvencement(state: GameState, p: Player): number {
  *  apports par joueur (canal « Ministères » du récap ressources ;
  *  pas de log par tour pour ne pas noyer le journal). */
 export function appliquerEffetsMinisteres(
-  state: GameState, C: Cfg = cfgOf(state.config),
+  state: GameState,
 ): Record<number, Record<string, number>> {
   const out: Record<number, Record<string, number>> = {}
   for (const p of state.players) {

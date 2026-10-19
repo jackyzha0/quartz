@@ -43,7 +43,7 @@ export function populationTurn(state: GameState, p: Player, rng: Rng) {
     // vieillissement : +2 ans par tour
     c.age += 2
     // éducation des mineurs
-    if (c.age < C.p.adultAge) tryEducateMinor(state, p, c, rng, recap)
+    if (c.age < C.p.adultAge) tryEducateMinor(state, p, c, rng)
     // fécondité affichée
     c.fecondite = computeFecondite(state, p, c)
     // mort de vieillesse
@@ -55,7 +55,7 @@ export function populationTurn(state: GameState, p: Player, rng: Rng) {
       }
     }
     // titre automatique à l'âge adulte
-    if (c.age >= C.p.adultAge && !c.titre) assignAdultTitle(state, p, c, rng, recap)
+    if (c.age >= C.p.adultAge && !c.titre) assignAdultTitle(state, p, c, recap)
     // maladie
     maladieStep(state, p, c, rng, recap)
   }

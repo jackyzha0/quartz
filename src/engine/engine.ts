@@ -127,7 +127,7 @@ export function runTurn(state: GameState): GameState {
   //    Les apports sont tracés pour le récap ressources (history.apports).
   const gainsParJoueur: Record<number, Record<string, number>> = {}
   for (const p of state.players) {
-    gainsParJoueur[p.n] = calculerGainsPopulation(state, p, rng)
+    gainsParJoueur[p.n] = calculerGainsPopulation(state, p)
   }
   const prodParJoueur: Record<number, Record<string, number>> = {}
   for (const p of state.players) {
@@ -174,7 +174,7 @@ export function runTurn(state: GameState): GameState {
   // produisent qu'en été — étape suivante).
   const amenagementsParJoueur: Record<number, Record<string, number>> = {}
   for (const p of state.players) {
-    amenagementsParJoueur[p.n] = appliquerEffetsAmenagements(p, state.saison, C.config)
+    amenagementsParJoueur[p.n] = appliquerEffetsAmenagements(p, C.config)
   }
 
   // 3quinquies-bis. Nourr - été : production de NOURRITURE D'ÉTÉ —
@@ -255,7 +255,7 @@ export function runTurn(state: GameState): GameState {
   //  +1 Science — engine/ministeres.ts, cumulables), canal
   //  « Ministères » du récap ressources.
   const ministeresParJoueur: Record<number, Record<string, number>> =
-    appliquerEffetsMinisteres(state, C)
+    appliquerEffetsMinisteres(state)
 
   // 3quaterdecies. Proximité des villes (marqueur (y), retour Thibaut
   //  2026-10-15) : bonus automatique de Nourriture par tour de chaque

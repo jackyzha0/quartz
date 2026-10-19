@@ -13,13 +13,13 @@
 // ══════════════════════════════════════════════════════════════════════
 
 import type { City, Player } from './types'
-import { cfgOf, type Cfg } from './gameData'
+import type { Cfg } from './gameData'
 import { buildingDef } from './gameData2'
 import { aLaboratoireFalheim } from './merveilles'
 import { capitaleDe } from './factions'
 import {
   constructionRef, coutBatimentRef, effetsConstructionRef, garnisonConstructionRef,
-  parseCoutTexte, batimentsRefs, type ConstructionRef,
+  parseCoutTexte, batimentsRefs, RESSOURCES_FLUX, type ConstructionRef,
 } from './constructions'
 
 /** Référence du référentiel pour un bâtiment (coût / production / description
@@ -41,7 +41,6 @@ export function batimentsConstructionsRefs(C?: Cfg): ConstructionRef[] {
 // « Garnison +40 » est une valeur statique tant que le bâtiment tient
 // (voir garnisonBatiment) et « Tourisme +15 » est un bonus acquis UNE
 // FOIS à la construction (voir tourismeStatiqueBatiment).
-const RESSOURCES_FLUX = 'Or|Bois|Pierre|Fer|Charbon|Bétail|Soie|Nourritures?|Science'
 const NOMBRE = String.raw`\d+(?:[.,]\d+)?`
 
 /** Découpe un texte d'effet en phrases exploitables. */

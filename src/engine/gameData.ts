@@ -13,18 +13,12 @@ import {
   type CouleursConfig,
 } from '../config/defaultConfig'
 
-export type { GameConfig, TitreDef, TraitDef, CultureDef, Cfg, CouleursConfig }
+export type { GameConfig, CultureDef, Cfg, CouleursConfig }
 export { couleurJoueur, couleurRessource, fondRessource, migrerCouleurs, COULEURS_JOUEURS_DEFAUT, COULEURS_RESSOURCES_DEFAUT, TRANSPARENCE_LIGNES_DEFAUT }
 
 export const RESOURCES: string[] = DEFAULT_CONFIG.ressources
-export const TITRES: TitreDef[] = DEFAULT_CONFIG.titres
-export const TRAITS: TraitDef[] = DEFAULT_CONFIG.traits
 export const CULTURES: CultureDef[] = DEFAULT_CONFIG.cultures
 export const REGIMES = DEFAULT_CONFIG.regimes
-export const ORIENTATIONS = DEFAULT_CONFIG.orientations
-export const GENRES = DEFAULT_CONFIG.genres
-export const EDUCATIONS = DEFAULT_CONFIG.educations
-export const BANQUES = DEFAULT_CONFIG.banquesNoms
 export { DEFAULT_CONFIG, cfgOf, cloneDefaultConfig }
 
 // Peuples (référence : nom + banque de noms associée)
@@ -53,7 +47,4 @@ export function peupleDef(nom: string, cfg?: GameConfig): PeupleDef | undefined 
   const b = c.banquesNoms[c.peupleBanque[nom] ?? 0] ?? c.banquesNoms[0]
   if (!b) return undefined
   return { nom, noms: b.noms, prenomsM: b.prenomsM, prenomsF: b.prenomsF }
-}
-export function ressourcesOf(cfg?: GameConfig): string[] {
-  return (cfg ?? DEFAULT_CONFIG).ressources
 }
