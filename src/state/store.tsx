@@ -379,6 +379,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       //  R5) : fin de tour TOUJOURS par événements append-only +
       //  résolution serveur — plus de bascule par feature flag. ──
       await nextTurnV2(st, moi)
+    })()
+  }, [mode, salon, persist])
 
   /** REPLI : résolution IMMÉDIATE sans barrière — runTurn sur l'état
    *  local courant puis publication directe (l'ancien flux, utilisé
