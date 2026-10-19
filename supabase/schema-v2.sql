@@ -75,24 +75,16 @@ create trigger garde_tour_publie
 --    (les events d'un tour RÉSOLU sont déjà purgés par resoudre-tour
 --     dans sa transaction — cf. supabase/functions/resoudre-tour.)
 
--- 5. Verrous consultatifs pour resoudre-tour (pg_try_advisory_lock sur
---    une clé dérivée du salon). Un seul exécutant par salon à la fois.
-create or replace function public.cp_advisory_lock(p_salon text)
-returns boolean language plpgsql security definer as $$
-declare v_ok boolean;
-begin
-  select pg_try_advisory_lock(hashtext('cp:' || p_salon)) into v_ok;
-  return v_ok;
-end $$;
-
-create or replace function public.cp_advisory_unlock(p_salon text)
-returns void language plpgsql security definer as $$
-begin
-  perform pg_advisory_unlock(hashtext('cp:' || p_salon));
-end $$;
-
-grant execute on function public.cp_advisory_lock(text) to anon, service_role;
-grant execute on function public.cp_advisory_unlock(text) to anon, service_role;
+-- 5. (RETRAIT 2026-10-19, audit M7 — arbitrage Thibaut « retrait
+--    complet ») : les verrous consultatifs cp_advisory_lock/_unlock
+--    étaient INOPÉRANTS — chaque RPC PostgREST roule sur une connexion
+--    du pool, l'unlock libérait (au mieux) le verrou d'une AUTRE
+--    connexion : la promesse « un seul exécutant » n'était jamais tenue.
+--    Les VRAIS garde-fous : idempotence par tour_publie, index unique
+--    (salon, tour, joueur, type) ci-dessous, DÉTERMINISME de runTurn.
+--    On DROPE les fonctions des installations existantes :
+drop function if exists public.cp_advisory_lock(text);
+drop function if exists public.cp_advisory_unlock(text);
 
 -- 6. Idempotence de pousserSectionV2 : un seul événement 'section'
 --    par (salon, tour, joueur) — un double-clic REMPLACE la ligne au
