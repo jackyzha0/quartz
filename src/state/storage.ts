@@ -19,7 +19,10 @@ const CONFIG_KEY = 'chasse-et-peche:config'
  * Gain mesuré : ~40 % de la taille de l'état.
  */
 const DEFAUTS_PERSO: Record<string, unknown> = {
+  // M1 (2026-10-19) : les ids démographiques sont à null par défaut —
+  //  omis à l'écriture (compaction), reconstruits par elargirEtat.
   mariage: null, mere: null, pere: null, pereBio: null, armee: null,
+  mariageId: null, mereId: null, pereId: null, pereBioId: null,
   titre: null, education: null, enfantBatard: false, fecondite: 0,
   ministere: null,
 }

@@ -100,10 +100,12 @@ export function infligerPertes(
   const tombes: string[] = []
   const tuer = (c: import('./types').Character) => {
     c.statut = 'Décédé'
-    if (c.mariage) {
+    // M1 (2026-10-19) : veuvage par ID (les noms complets ne sont plus
+    //  une identité fiable à 16 000 habitants).
+    if (c.mariageId) {
       for (const liste of Object.values(state.population ?? {})) {
         for (const x of liste ?? []) {
-          if (x.mariage === fullName(c)) x.mariage = null
+          if (x.mariageId === c.id) { x.mariage = null; x.mariageId = null }
         }
       }
     }

@@ -291,6 +291,7 @@ function ajouterCiteLibre(
       traits,
       statut: 'Sain',
       mariage: null,
+      mariageId: null, mereId: null, pereId: null, pereBioId: null,
       mere: null,
       pere: null,
       pereBio: null,

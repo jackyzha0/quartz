@@ -99,9 +99,11 @@ export function killCharacter(state: GameState, p: Player, c: Character, cause: 
   //  les mariages manuels entre cours (engine/cour.ts, 2026-10-14) :
   //  on parcourt donc TOUTES les populations du monde, joueurs ET
   //  cités libres (retour Thibaut 2026-10-14).
-  if (c.mariage) {
-    const conjoint = toutesLesPopulations(state).find((x) => x.mariage === fullName(c))
-    if (conjoint) conjoint.mariage = null
+  //  M1 (2026-10-19) : résolution par ID — le veuvage ne doit plus
+  //  dépendre de l'unicité des noms complets.
+  if (c.mariageId) {
+    const conjoint = toutesLesPopulations(state).find((x) => x.mariageId === c.id)
+    if (conjoint) { conjoint.mariage = null; conjoint.mariageId = null }
   }
   bump(recap.deces, c.dynastie)
   if (cause === 'maladie') recap.decesMaladie++

@@ -27,6 +27,9 @@ import { createGame, type SetupLine } from './setup'
 import type { Character, GameState } from './types'
 import { supprimerVille, transfererVille, rejouerTransfertVille } from './villes'
 import { marierPersonnages } from './cour'
+import { killCharacter } from './sante'
+import { isConsanguineous } from './naissances'
+import { emptyRecap } from './shared'
 
 const PEUPLES = ['Basiléens', 'PEAUX VERTES', "ELFES D'OR", 'Sylvains', 'NORLS', 'VERMINES DE KAOSS']
 const CULTURES = ['Communautarisme', 'Déisme', 'Lunisme', 'Naturalisme', 'Sethisme', 'Zélotisme']
@@ -56,7 +59,7 @@ function partieHuitJoueurs(): GameState {
  *  « Roturier » (isNobleDyn, shared.ts). */
 function perso(
   id: string, dynastie: string, ville: string,
-  o: { age?: number; statut?: Character['statut']; mariage?: string | null; sexe?: 'M' | 'F' } = {},
+  o: { age?: number; statut?: Character['statut']; mariage?: string | null; mariageId?: string | null; sexe?: 'M' | 'F' } = {},
 ): Character {
   return {
     id,
@@ -71,9 +74,13 @@ function perso(
     traits: ['Doux', 'Sérieux', 'Prudent'],
     statut: o.statut ?? 'Sain',
     mariage: o.mariage ?? null,
+    mariageId: o.mariageId ?? null,
     mere: null,
+    mereId: null,
     pere: null,
+    pereId: null,
     pereBio: null,
+    pereBioId: null,
     enfantBatard: false,
     titre: null,
     education: null,
@@ -186,6 +193,9 @@ test('marierPersonnages inter-joueurs : la mariée déménage chez le porteur de
   assert.equal(marierPersonnages(state, ada, bob), null, 'mariage accepté')
   assert.equal(ada.mariage, 'Test-m-bob Montclair', 'a porte le nom de b')
   assert.equal(bob.mariage, 'Test-m-ada Valois', 'b porte le nom de a')
+  // M1 (2026-10-19) : l'identité du conjoint vit dans l'id.
+  assert.equal(ada.mariageId, 'm-bob')
+  assert.equal(bob.mariageId, 'm-ada')
   // Marqueur (o) — la personne mariée DÉMÉNAGE : elle quitte la
   // population de son porteur et rejoint celle du conjoint.
   assert.ok((state.population[2] ?? []).some((c) => c.id === 'm-ada'), 'ada a rejoint J2')
@@ -203,7 +213,7 @@ test('marierPersonnages : gardes-fous (même personnage, mineur, déjà marié, 
   assert.match(marierPersonnages(state, a, a) ?? "", /lui-même/)
   const mineur = perso('g-m', 'Valois', 'Capitale 1', { age: 15 })
   assert.match(marierPersonnages(state, a, mineur) ?? "", /majeurs/)
-  const marie = perso('g-c', 'Valois', 'Capitale 1', { mariage: 'Quelqu un Autre' })
+  const marie = perso('g-c', 'Valois', 'Capitale 1', { mariage: 'Quelqu un Autre', mariageId: 'x-inconnu' })
   assert.match(marierPersonnages(state, a, marie) ?? "", /déjà marié/)
   const roturier = perso('g-r', 'Roturier', 'Capitale 1')
   assert.match(marierPersonnages(state, a, roturier) ?? "", /NOBLES/)
@@ -212,4 +222,52 @@ test('marierPersonnages : gardes-fous (même personnage, mineur, déjà marié, 
   // Aucun garde-fou franchi : a et b restent non mariés, rien n a bougé.
   assert.equal(a.mariage, null)
   assert.equal(b.mariage, null)
+})
+
+// ── M1 : identité démographique par IDS (audit 2026-10-19, arbitrage
+//    Thibaut « ids purs ») — le nom complet n'est plus une identité. ────────
+
+test('M1 : veuvage par id — un homonyme du défunt ne libère PAS son conjoint', () => {
+  const state = partieHuitJoueurs()
+  const p1 = state.players[0]
+  const mari = perso('v-mari', 'Montclair', 'Capitale 1', { sexe: 'M', mariage: 'Test-v-ep Valois', mariageId: 'v-ep' })
+  const epouse = perso('v-ep', 'Valois', 'Capitale 1', { sexe: 'F', mariage: 'Test-v-mari Montclair', mariageId: 'v-mari' })
+  // Leurre : son conjoint AFFICHE porte le même nom complet que le mari
+  //  (collision de noms à 16 000 habitants) — mais l'id ne ment pas.
+  const leurre = perso('v-leurre', 'Valois', 'Capitale 1', { sexe: 'F', mariage: 'Test-v-mari Montclair', mariageId: 'v-autre' })
+  state.population[1] = [mari, epouse, leurre]
+
+  killCharacter(state, p1, mari, 'vieillesse', emptyRecap())
+  assert.equal(epouse.mariage, null, 'la vraie épouse est libérée (affichage)')
+  assert.equal(epouse.mariageId, null, 'la vraie épouse est libérée (id)')
+  assert.equal(leurre.mariage, 'Test-v-mari Montclair', 'l homonyme garde son conjoint AFFICHÉ')
+  assert.equal(leurre.mariageId, 'v-autre', 'l homonyme garde son conjoint par id — pas de veuvage parasite')
+})
+
+test('M1 : consanguinité par ids — les noms complets ne comptent plus', () => {
+  const a = perso('c-a', 'Valois', 'Capitale 1')
+  const b = perso('c-b', 'Valois', 'Capitale 1')
+  a.mereId = 'gm-commune'
+  b.mereId = 'gm-commune'
+  assert.ok(isConsanguineous(a, b), 'même mère par ID → consanguin')
+  const c = perso('c-c', 'Valois', 'Capitale 1')
+  const d = perso('c-d', 'Valois', 'Capitale 1')
+  c.mere = 'Grand-mère Commune'
+  d.mere = 'Grand-mère Commune'
+  assert.ok(!isConsanguineous(c, d), 'même nom de mère SANS id → NON consanguin (l identité passe par les ids)')
+})
+
+test('M1 : setup — champs ids posés partout et couples symétriques par id', () => {
+  const state = partieHuitJoueurs()
+  for (const liste of Object.values(state.population)) {
+    for (const c of liste ?? []) {
+      assert.ok(c.mariageId !== undefined && c.mereId !== undefined && c.pereId !== undefined && c.pereBioId !== undefined,
+        `champs M1 présents sur ${c.id}`)
+      if (c.mariageId) {
+        const conjoint = Object.values(state.population).flat().find((x) => x.id === c.mariageId)
+        assert.ok(conjoint, `le conjoint par id de ${c.id} existe`)
+        assert.equal(conjoint.mariageId, c.id, `lien conjugal symétrique par id pour ${c.id}`)
+      }
+    }
+  }
 })

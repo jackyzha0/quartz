@@ -55,12 +55,16 @@ export function marierPersonnages(state: GameState, a: Character, b: Character):
   if (a.id === b.id) return 'Un personnage ne peut pas se marier avec lui-même.'
   if (a.statut === 'Décédé' || b.statut === 'Décédé') return 'Un des deux personnages est décédé.'
   if (a.age < C.p.adultAge || b.age < C.p.adultAge) return 'Les deux doivent être majeurs pour se marier.'
-  if (a.mariage || b.mariage) return 'Un des deux personnages est déjà marié.'
+  if (a.mariageId || b.mariageId) return 'Un des deux personnages est déjà marié.'
   if (!isNobleDyn(a.dynastie, C) || !isNobleDyn(b.dynastie, C)) {
     return 'Le mariage manuel unit deux NOBLES (la population se marie au fil des tours).'
   }
   a.mariage = fullName(b)
   b.mariage = fullName(a)
+  // M1 (2026-10-19) : identité du conjoint par id (le nom complet reste
+  //  pour l'affichage).
+  a.mariageId = b.id
+  b.mariageId = a.id
   // Porteurs des époux (joueurs OU cités libres — retour Thibaut
   //  2026-10-14 : on peut marier un noble d'un joueur à un noble
   //  d'une cité libre) : le log nomme chacun.

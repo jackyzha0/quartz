@@ -209,6 +209,7 @@ export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): 
       traits: randomTraits(),
       statut: 'Sain',
       mariage: null,
+      mariageId: null, mereId: null, pereId: null, pereBioId: null,
       mere: null,
       pere: null,
       pereBio: null,
@@ -233,6 +234,7 @@ export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): 
     sexe: 'M', age: 20, culture: player.culture, ville: player.villes[0].nom,
     orientation: (C.orientations[0]?.nom ?? 'Hétérosexuelle') as Character['orientation'],
     traits: randomTraits(), statut: 'Sain', mariage: null, mere: null, pere: null,
+    mariageId: null, mereId: null, pereId: null, pereBioId: null,
     pereBio: null, enfantBatard: false, titre: null, education: null,
     fecondite: 0, ageMax: 0, armee: null,
   }
@@ -241,11 +243,14 @@ export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): 
     sexe: 'F', age: 20, culture: player.culture, ville: player.villes[0].nom,
     orientation: (C.orientations[0]?.nom ?? 'Hétérosexuelle') as Character['orientation'],
     traits: randomTraits(), statut: 'Sain', mariage: null, mere: null, pere: null,
+    mariageId: null, mereId: null, pereId: null, pereBioId: null,
     pereBio: null, enfantBatard: false, titre: null, education: null,
     fecondite: 0, ageMax: 0, armee: null,
   }
   roi.mariage = `${reine.prenom} ${reine.nom}`
   reine.mariage = `${roi.prenom} ${roi.nom}`
+  roi.mariageId = reine.id
+  reine.mariageId = roi.id
   roi.ageMax = computeAgeMax(roi, rng, C)
   reine.ageMax = computeAgeMax(reine, rng, C)
   // Le Dirigeant est le roi si l'hérédité est masculine ou paritaire, sinon la reine
@@ -265,6 +270,7 @@ export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): 
         ville: player.villes[0].nom,
         orientation: randomOrientation(), traits: randomTraits(), statut: 'Sain',
         mariage: null, mere: null, pere: null, pereBio: null, enfantBatard: false,
+        mariageId: null, mereId: null, pereId: null, pereBioId: null,
         titre: C.p.titreChasseur, education: null, fecondite: 0, ageMax: 0, armee: null,
       }
       frere.ageMax = computeAgeMax(frere, rng, C)
@@ -288,6 +294,7 @@ export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): 
       ville: player.villes[0].nom,
       orientation: randomOrientation(), traits: randomTraits(), statut: 'Sain',
       mariage: null, mere: fullName(reine), pere: fullName(roi), pereBio: null,
+      mariageId: null, mereId: reine.id, pereId: roi.id, pereBioId: null,
       enfantBatard: false, titre: null, education: null, fecondite: 0, ageMax: 0, armee: null,
     }
     enfant.ageMax = computeAgeMax(enfant, rng, C)
@@ -303,7 +310,7 @@ export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): 
     if (!c.titre) c.titre = C.p.titreChasseur
   }
   // ~le % demandé d'adultes roturiers se marient entre eux
-  const celibataires = adultes.filter((c) => !c.mariage && !isNobleDyn(c.dynastie, C))
+  const celibataires = adultes.filter((c) => !c.mariageId && !isNobleDyn(c.dynastie, C))
   const nbMariages = Math.floor((celibataires.length * pourcentMariages) / 100)
   const celibM = rng.shuffle(celibataires.filter((c) => c.sexe === 'M'))
   const celibF = rng.shuffle(celibataires.filter((c) => c.sexe === 'F'))
@@ -312,6 +319,8 @@ export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): 
     const f = celibF[i]
     h.mariage = `${f.prenom} ${f.nom}`
     f.mariage = `${h.prenom} ${h.nom}`
+    h.mariageId = f.id
+    f.mariageId = h.id
   }
 
   // 5. Fécondités calculées pour les adultes
@@ -406,6 +415,7 @@ export function ajouterHabitant(
       traits,
       statut: 'Sain',
       mariage: null,
+      mariageId: null, mereId: null, pereId: null, pereBioId: null,
       mere: null,
       pere: null,
       pereBio: null,
@@ -475,6 +485,7 @@ export function peuplerNouvelleVille(
       traits,
       statut: 'Sain',
       mariage: null,
+      mariageId: null, mereId: null, pereId: null, pereBioId: null,
       mere: null,
       pere: null,
       pereBio: null,
@@ -494,7 +505,7 @@ export function peuplerNouvelleVille(
   // ~pourcentageMariages % (défaut du setup : 40) d'ADULTES se marient
   // entre eux (comme la génération initiale — jamais les mineurs)
   const pourcentMariages = Math.min(100, Math.max(0, 40))
-  const celibataires = ajoutes.filter((c) => c.age >= C.p.adultAge && !c.mariage)
+  const celibataires = ajoutes.filter((c) => c.age >= C.p.adultAge && !c.mariageId)
   const nbMariages = Math.floor((celibataires.length * pourcentMariages) / 100)
   const celibM = rng.shuffle(celibataires.filter((c) => c.sexe === 'M'))
   const celibF = rng.shuffle(celibataires.filter((c) => c.sexe === 'F'))
@@ -503,6 +514,8 @@ export function peuplerNouvelleVille(
     const f = celibF[i]
     h.mariage = `${f.prenom} ${f.nom}`
     f.mariage = `${h.prenom} ${h.nom}`
+    h.mariageId = f.id
+    f.mariageId = h.id
   }
 
   for (const c of ajoutes) c.fecondite = computeFecondite(state, p, c)

@@ -2,14 +2,14 @@
 //  Arbre généalogique de la famille dirigeante d'un joueur :
 //   · dynastie du Dirigeant vivant (à défaut, carte dynastie du joueur),
 //   · racines = membres dont les parents ne sont pas dans la famille,
-//   · enfants reliés par mere/pere (nom complet), conjoint affiché ⚭,
+//   · enfants reliés par mereId/pereId (ids — M1 2026-10-19), conjoint affiché ⚭,
 //   · défunts grisés et barrés, âge au décès conservé.
 // ══════════════════════════════════════════════════════════════════════
 
 import React from 'react'
 import { useGame } from '../state/store'
 import type { Character } from '../engine/types'
-import { fullName } from '../engine/shared'
+
 import { cfgOf } from '../engine/gameData'
 import { Card } from './ui'
 
@@ -37,20 +37,22 @@ export function GenealogyTree({ joueur }: { joueur: number }) {
   // Tous les membres de la famille, vivants et défunts (l'arbre montre
   // aussi l'histoire : morts grisés).
   const famille = pop.filter((c) => c.dynastie === dyn)
-  const byName = new Map<string, Character>()
-  for (const c of famille) byName.set(fullName(c), c)
+  // M1 (2026-10-19) : filiation résolue par IDS (mereId/pereId) — les
+  //  noms complets restent pour l'affichage uniquement.
+  const byId = new Map<string, Character>()
+  for (const c of famille) byId.set(c.id, c)
 
   // Racines : membres dont aucun parent n'est lui-même membre de la
   // famille (les conjoints extérieurs ne comptent pas comme parents
   // ici — seul le lien mere/pere vers un MÉMBER est remonté).
   const parentDansFamille = (c: Character) =>
-    (c.mere && byName.has(c.mere)) || (c.pere && byName.has(c.pere))
+    (c.mereId && byId.has(c.mereId)) || (c.pereId && byId.has(c.pereId))
   const racines = famille.filter((c) => !parentDansFamille(c))
 
   const enfantsDe = (c: Character, vus: Set<string>): Character[] =>
     famille.filter((k) => {
       if (vus.has(k.id)) return false
-      return k.mere === fullName(c) || k.pere === fullName(c)
+      return k.mereId === c.id || k.pereId === c.id
     })
 
   // Rendu récursif d'un membre (vus évite les doublons lorsque les

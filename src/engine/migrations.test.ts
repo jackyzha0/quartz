@@ -120,6 +120,7 @@ test('compactage : le nouveau saveLocal (replacer, zéro clone) produit le MÊME
   //  défaut présents d'un seul côté : le contenu SIGNIFIANT est identique.
   const DEFAUTS: Record<string, unknown> = {
     mariage: null, mere: null, pere: null, pereBio: null, armee: null,
+    mariageId: null, mereId: null, pereId: null, pereBioId: null,
     titre: null, education: null, enfantBatard: false, fecondite: 0, ministere: null,
   }
   const tri = (x: unknown): unknown => {

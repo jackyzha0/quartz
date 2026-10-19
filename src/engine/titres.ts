@@ -55,13 +55,16 @@ export function gestionMariages(state: GameState, p: Player, rng: Rng, recap: Pl
   const C = cfgOf(state.config)
   const pop = state.population[p.n] ?? []
   const celib = pop.filter(
-    (c) => c.statut !== 'Décédé' && !c.mariage && c.age >= C.p.adultAge,
+    (c) => c.statut !== 'Décédé' && !c.mariageId && c.age >= C.p.adultAge,
   )
   const mariesIds = new Set<string>()
   const marier = (a: Character, b: Character) => {
     invaliderIndexPopulation()
     a.mariage = fullName(b)
     b.mariage = fullName(a)
+    // M1 (2026-10-19) : identité du conjoint par id (nom = affichage).
+    a.mariageId = b.id
+    b.mariageId = a.id
     mariesIds.add(b.id)
     const noble = isNobleDyn(a.dynastie, C) && isNobleDyn(b.dynastie, C)
     if (noble) bump(recap.mariagesNobles, formatDynastyPair(a.dynastie, b.dynastie))
@@ -74,7 +77,7 @@ export function gestionMariages(state: GameState, p: Player, rng: Rng, recap: Pl
   }
   /** Tente de marier `a` avec un candidat libre. false = plus de candidats. */
   const tenter = (a: Character, candidats: Character[]): boolean => {
-    const dispo = candidats.filter((x) => !x.mariage && !mariesIds.has(x.id))
+    const dispo = candidats.filter((x) => !x.mariageId && !mariesIds.has(x.id))
     if (dispo.length === 0) return false
     const b = rng.pick(dispo)
     if (rng.chance(computeMarriageProbability(a, b, C))) marier(a, b)
@@ -84,7 +87,7 @@ export function gestionMariages(state: GameState, p: Player, rng: Rng, recap: Pl
   const femmes = rng.shuffle(celib.filter((c) => c.sexe === 'F'))
   const hommes = celib.filter((c) => c.sexe === 'M')
   for (const f of femmes) {
-    if (f.mariage) continue
+    if (f.mariageId) continue
     if (!tenter(f, hommes)) break
   }
   // Passes homosexuelles — si la culture du pays les autorise (champ
@@ -96,7 +99,7 @@ export function gestionMariages(state: GameState, p: Player, rng: Rng, recap: Pl
       const premiers = rng.shuffle(celib.filter((c) => c.sexe === sexeA))
       const seconds = celib.filter((c) => c.sexe === sexeB)
       for (const a of premiers) {
-        if (a.mariage) continue
+        if (a.mariageId) continue
         if (!tenter(a, seconds)) break
       }
     }

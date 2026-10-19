@@ -96,10 +96,23 @@ export interface Character {
   orientation: Orientation
   traits: [string, string, string]
   statut: Statut
-  mariage: string | null      // nom complet du conjoint
-  mere: string | null         // nom complet
+  mariage: string | null      // nom complet du conjoint (AFFICHAGE)
+  mere: string | null         // nom complet (AFFICHAGE)
   pere: string | null
-  pereBio: string | null      // père biologique en cas d'adultère
+  pereBio: string | null      // père biologique en cas d'adultère (AFFICHAGE)
+  // M1 (audit 2026-10-19, arbitrage Thibaut « ids purs ») : l'IDENTITÉ
+  //  démographique passe aux ids — à 16 000 habitants, les collisions de
+  //  noms complets (générateurs à listes finies) donnaient un mauvais
+  //  conjoint au veuvage et une mauvaise filiation. Les champs nommés
+  //  ci-dessus restent pour l'AFFICHAGE ; chaque site de mutation tient
+  //  les DEUX ; toute résolution (veuvage, filiation, consanguinité,
+  //  arbre généalogique) passe par les ids. Arbitrage explicite : les
+  //  vieilles sauvegardes sans ids ne sont PAS rattrapées (elles n'ont
+  //  plus lieu d'exister) — leurs relations tombent à null au chargement.
+  mariageId: string | null
+  mereId: string | null
+  pereId: string | null
+  pereBioId: string | null
   enfantBatard: boolean
   /** femme enceinte ayant contracté la maladie : elle accouchera,
    *  puis mourra de la maladie (règle simplifiée « malade ou sain »). */

@@ -24,15 +24,17 @@ import { computeAgeMax, killCharacter } from './sante'
 let cacheIndexPop: { state: object; index: Map<string, Character> } | null = null
 function indexPopulationMonde(state: GameState): Map<string, Character> {
   if (cacheIndexPop && cacheIndexPop.state === state) return cacheIndexPop.index
+  // M1 (2026-10-19) : index par ID (l'identité démographique n'est plus
+  //  le nom complet — collisions possibles à 16 000 habitants).
   const index = new Map<string, Character>()
   for (const liste of Object.values(state.population ?? {})) {
     for (const c of liste ?? []) {
-      if (c.statut !== 'Décédé') index.set(fullName(c), c)
+      if (c.statut !== 'Décédé') index.set(c.id, c)
     }
   }
   for (const cite of state.citesLibres ?? []) {
     for (const c of cite.population ?? []) {
-      if (c.statut !== 'Décédé') index.set(fullName(c), c)
+      if (c.statut !== 'Décédé') index.set(c.id, c)
     }
   }
   cacheIndexPop = { state, index }
@@ -54,7 +56,7 @@ export function computeFecondite(state: GameState, p: Player, c: Character): num
   if (c.statut === 'Décédé' || c.age < C.p.adultAge) return 0
   if (c.sexe !== 'F') return maleAgeFactor(c.age) * orientationFertFactor(c.orientation)
   const ville = p.villes.find((v) => v.nom === c.ville)
-  const mari = c.mariage ? indexPopulationMonde(state).get(c.mariage) : undefined
+  const mari = c.mariageId ? indexPopulationMonde(state).get(c.mariageId) : undefined
   if (mari && mari.sexe !== 'M') return 0
   const factorMari = mari ? maleAgeFactor(mari.age) * orientationFertFactor(mari.orientation) : C.p.fertSingleFactor
   let proba = C.p.fertBaseRate
@@ -118,11 +120,11 @@ export function conceptionEtNaissances(state: GameState, p: Player, rng: Rng, re
   // 1. Naissances des femmes enceintes depuis le tour précédent
   for (const mere of pop) {
     if (mere.statut !== 'Enceinte') continue
-    const pereBioName = mere.pereBio
-    const pere = pereBioName ? pop.find((x) => fullName(x) === pereBioName) : undefined
+    const pere = mere.pereBioId ? pop.find((x) => x.id === mere.pereBioId) : undefined
     accoucher(state, p, mere, pere, rng, recap)
     mere.statut = 'Sain'
     mere.pereBio = null
+    mere.pereBioId = null
     // Règle simplifiée : une femme tombée malade pendant sa grossesse
     // accouche, puis meurt de la maladie.
     if (mere.enceinteMalade) {
@@ -143,7 +145,7 @@ export function conceptionEtNaissances(state: GameState, p: Player, rng: Rng, re
     if (mere.sexe !== 'F' || (mere.statut !== 'Sain' && mere.statut !== 'Malade')) continue
     if (mere.age < C.p.adultAge) continue
     const ville = villesParNom.get(mere.ville)
-    const mari = mere.mariage ? indexMonde.get(mere.mariage) : undefined
+    const mari = mere.mariageId ? indexMonde.get(mere.mariageId) : undefined
     // Mariage homosexuel (culture l'autorisant — mariages dans titres.ts) :
     // pas de conception entre épouses de même sexe.
     if (mari && mari.sexe !== 'M') continue
@@ -181,6 +183,7 @@ export function conceptionEtNaissances(state: GameState, p: Player, rng: Rng, re
       const etaitMalade = mere.statut === 'Malade'
       mere.statut = 'Enceinte'
       mere.pereBio = pereBio ? fullName(pereBio) : null
+      mere.pereBioId = pereBio ? pereBio.id : null
       mere.enfantBatard = batard
       bump(recap.conceptions, mere.dynastie)
       state.log.push({
@@ -213,9 +216,13 @@ function accoucher(state: GameState, p: Player, mere: Character, pere: Character
       traits: ['', '', ''],
       statut: 'Sain',
       mariage: null,
+      mariageId: null,
       mere: fullName(mere),
+      mereId: mere.id,
       pere: pere ? fullName(pere) : null,
+      pereId: pere ? pere.id : null,
       pereBio: null,
+      pereBioId: null,
       enfantBatard: batard,
       titre: null,
       education: null,
@@ -248,11 +255,13 @@ export function pickName(state: GameState, p: Player, rng: Rng, sexe: 'M' | 'F' 
   return rng.pick([...peup.prenomsM, ...peup.prenomsF])
 }
 
-/** Consanguinité simple (1 degré) : la mère et le père biologique partagent un parent. */
+/** Consanguinité simple (1 degré) : la mère et le père biologique partagent un parent.
+ *  M1 (2026-10-19) : comparaison par IDS (mère du père = grand-mère) —
+ *  les noms complets ne sont plus une identité fiable. */
 export function isConsanguineous(mere: Character, pere: Character | undefined): boolean {
   if (!pere) return false
-  if (mere.mere && mere.mere === pere.mere) return true
-  if (mere.pere && mere.pere === pere.pere) return true
+  if (mere.mereId && mere.mereId === pere.mereId) return true
+  if (mere.pereId && mere.pereId === pere.pereId) return true
   return false
 }
 
