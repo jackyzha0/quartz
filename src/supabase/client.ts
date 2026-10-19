@@ -32,8 +32,13 @@ function readCreds(): { url: string; key: string } {
     url = window.localStorage.getItem(LS_URL) ?? ''
     key = window.localStorage.getItem(LS_KEY) ?? ''
   } catch { /* localStorage indisponible (mode privé etc.) */ }
-  if (!url) url = (import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? ''
-  if (!key) key = (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined) ?? ''
+  // DURCISSEMENT (2026-10-19, tests de rendu Node) : `import.meta.env`
+  //  n'existe QUE dans un bundle Vite — hors navigateur (tsx/CI, tests
+  //  de rendu serveur) il vaut undefined et l'accès direct plantait
+  //  le RENDU de SetupPanel (supabaseCreds → readCreds au rendu).
+  const env = (import.meta as unknown as { env?: Record<string, string | undefined> }).env
+  if (!url) url = env?.VITE_SUPABASE_URL ?? ''
+  if (!key) key = env?.VITE_SUPABASE_ANON_KEY ?? ''
   // Défaut : projet du site quartz — le jeu est prêt à l'emploi.
   if (!url) url = DEFAULT_URL
   if (!key) key = DEFAULT_KEY
