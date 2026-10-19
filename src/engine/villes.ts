@@ -25,7 +25,9 @@
 import type { Character, City, GameState, Player } from './types'
 import { cfgOf, type Cfg } from './gameData'
 import { isNobleDyn } from './shared'
-import { tourismeStatiqueBatiment } from './batiments'
+// (M6 2026-10-19) : tourismeStatiqueBatiment n'est plus importé ici —
+//  le transfert de ville passe par resynchroniserTourisme (stock =
+//  production courante), plus de crédit « statique » manuel.
 import { resynchroniserTourisme } from './regimes'
 
 /** MARQUEUR (a) — garde-fou ANCIENNES SAUVEGARDES / états distants : complète
@@ -82,17 +84,18 @@ export function transfererVille(
   const C = cfgOf(state.config)
   const ville = p.villes[idx]
   if (!ville || cible.n === p.n) return false
-  // Tourisme (retour Thibaut 2026-10-16) : recalculé des deux côtés
-  //  — la production suit la ville.
-  resynchroniserTourisme(state, p, `ville « ${ville.nom} » transférée à ${cible.nom}`)
-  resynchroniserTourisme(state, cible, `ville « ${ville.nom} » reçue de ${p.nom}`)
+  // M6 (audit 2026-10-19, unification) : Tourisme = stock recalculé sur
+  //  la production courante (retour Thibaut 2026-10-16) — CHAQUE côté est
+  //  resynchronisé APRÈS le déplacement (le donneur sans la ville, le
+  //  receveur avec). L'ancien crédit « statique » manuel
+  //  (tourismeStatiqueBatiment par bâtiment, posé AVANT le push de la
+  //  ville) approximait la production sans les canaux flux
+  //  (banque/commerce) et était écrasé au resync du tour suivant —
+  //  incohérence transitoire supprimée.
   p.villes.splice(idx, 1)
+  resynchroniserTourisme(state, p, `ville « ${ville.nom} » transférée à ${cible.nom}`)
   cible.villes.push(ville)
-  for (const b of [...(ville.batiments ?? []), ...(ville.amenagements ?? [])]) {
-    const tour = tourismeStatiqueBatiment(b, C, ville.type)
-    const rs = cible.resources['Tourisme']
-    if (tour > 0 && rs) rs.stock += tour
-  }
+  resynchroniserTourisme(state, cible, `ville « ${ville.nom} » reçue de ${p.nom}`)
   // Les habitants « classiques » de la ville suivent (vivants ET
   //  décédés, pour l'arbre généalogique) ; la cour (nobles) reste
   //  auprès de son joueur — on ne déplace un noble que sur DON
@@ -113,6 +116,13 @@ export function transfererVille(
   // Collision de nom chez le nouveau propriétaire (ex. deux « Capitale ») :
   //  la ville transférée est renommée pour que ses habitants restent
   //  rattachables sans ambiguïté (filtre « ville », gains par ville…).
+  //  M5 (audit 2026-10-19, à garder en tête) : les associations par NOM
+  //  de ville (gouverneur, c.ville, filtres de population —
+  //  economie.ts/titres.ts/villes.ts) tiennent parce que ce renommage
+  //  AUTOMATIQUE met à jour les habitants en même temps que la ville.
+  //  Toute future UI de renommage MANUEL doit répercuter le nom sur
+  //  gouverneurs + populations + rattachements, sinon elle casse
+  //  gouverneurs et filtres.
   let renommee = ''
   if (cible.villes.some((v) => v !== ville && v.nom === ancienNom)) {
     let i = 2
