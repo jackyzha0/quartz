@@ -239,11 +239,11 @@ Remplace le prérequis « 1 serment par rang intermédiaire » du classeur, jug�
 - **Production des villes** : capital par défaut VIDE (aucun bâtiment initial) ;
   toutes les ressources affichées même à production 0.
 
-## Rework des habitants (design arbitré 2026-10-20 — VAGUE 1 IMPLÉMENTÉE)
+## Rework des habitants (design arbitré 2026-10-20 — VAGUES 1 & 2 IMPLÉMENTÉES)
 
 Refonte complète du système d'habitants demandée par l'arbitre le 2026-10-20.
-Les arbitrages ci-dessous sont ACTÉS et la **VAGUE 1 EST IMPLÉMENTÉE**
-(2026-10-20, voir journal-technique.md). Cette section reste la référence de
+Les arbitrages ci-dessous sont ACTÉS et les **VAGUES 1 & 2 SONT
+IMPLÉMENTÉES** (2026-10-20, voir journal-technique.md). Cette section reste la référence de
 l'implémentation (le code devra y revenir avant chaque vague).
 
 ### Modèle d'habitant (arbitré)
@@ -316,8 +316,11 @@ l'implémentation (le code devra y revenir avant chaque vague).
    (~60 fichiers UI+moteur), champ domicile, fin d'ageMax + courbe calibrée,
    caps Chasseur (Ville 50 / Château 25), réaffectation chaque tour par
    ville (étape 2ter), migrations état v3 + config v3, harnais 112/112.
-2. **V2 UI** : PopulationTable (colonnes Métier/Domicile), écran métiers et
-   places par ville.
+2. **V2 UI — FAIT (2026-10-20)** : PopulationTable — colonne Domicile
+   (null = « — », logements en vague 3) et écran « Métiers et places
+   par ville » (en poste / cap / places libres par ville et métier,
+   Chasseur Ville 50 / Château 25, ligne Sans-emploi toujours présente,
+   helper moteur occupationsMetierVille).
 3. **V3 (ultérieure)** : métiers créés par les bâtiments/aménagements,
    production taxable étendue, bâtiments de logement → domicile.
 

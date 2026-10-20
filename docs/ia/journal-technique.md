@@ -917,6 +917,47 @@ byte-identiques).
   NB : un doublon du commit docs (`9e5927e`) est parti sur un 503
   fantôme du push API (contenu identique, sans effet).
 
+## Rework des habitants — VAGUE 2 IMPLÉMENTÉE (2026-10-20, nuit)
+
+Vague 2 UI du rework des habitants (PopulationTable) : **commits
+`397262a` (jeu) + `fc512882` (miroir v4)**, CI verte sur les deux
+branches (jeu, build, diag, deploy Pages + Edge), bundle live
+`index-CzrT4pJ1.js` vérifié. Contenu :
+
+- **Colonne « Domicile »** dans les deux tableaux (la cour + population),
+  entre Métier et Éducation — `c.domicile ?? '—'` (null = sans domicile ;
+  les bâtiments de logement arrivent en vague 3, infobulle explicite).
+- **Écran « 🏘️ Métiers et places par ville »** : la carte « Occupations
+  par ville » (badges de comptage, sans caps) devient une table par
+  ville × métier — **En poste / Places max / Places libres / Vivants**.
+  Seuls les métiers occupés ou plafonnés sont listés (ordre du
+  référentiel), la ligne **Sans-emploi** (rôle neutre : impôt nul) est
+  TOUJOURS présente en dernière position ; cap Chasseur Ville 50 /
+  Château 25 affichée selon le type de la ville, ∞ = illimité, cités
+  libres hors champ des caps (note explicative sous la table).
+- **Helper moteur pur `occupationsMetierVille(habitants, ville, C)`**
+  (metiers.ts, ré-exporté engine.ts) : comptage des vivants, caps via
+  `capMetierVille`, métiers hors référentiel conservés (anciennes
+  sauvegardes). 2 tests moteur : places par type de ville + Sans-emploi
+  toujours présent + caps infinies en cité libre ; conservation hors
+  référentiel.
+- **Test de rendu PopulationTable mis à jour** : titre de la carte,
+  colonnes Domicile / Places libres, ligne Sans-emploi, « Métiers
+  attribués ».
+- **Correctif UI** : « Metiers attribués » → « Métiers attribués »
+  (accent manquant, carte Récap du dernier tour).
+
+Outillage de la séance : après reset du bac, l'environnement local a
+été reconstruit à **parité CI complète** — `tsx 4.23.15` + esbuild
+0.28.2 (tarballs npm extraits à la main, npm ci toujours interdit)
+pour rejouer `tsx --test src/**/*.test.ts` **y compris les 12 tests
+de rendu** (le harnais strip-types ne couvrait que le moteur), et
+**stub local `@supabase/supabase-js` typé** (index.d.ts approximatif,
+jamais poussé) → le tsc strict local est désormais PROPRE à 100 %
+(zéro artefact supabase résiduel). Validation d'avant-push : 126/126
+tests + tsc vide. Le check d'équilibre JSX (règle 2) est couvert par
+le tsc strict lui-même (une balise non refermée = erreur de syntaxe).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
