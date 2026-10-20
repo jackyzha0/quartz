@@ -82,9 +82,66 @@ export function reglesConstructions(config?: GameConfig): RegleBanque[] {
 /** Registre complet : toutes les règles migrées. Appelé par le moteur
  *  aux sites d'application (une fois par tour, cacheable). */
 export function registreComplet(config?: GameConfig): RegleBanque[] {
-  return [...reglesConstructions(config)]
-  // Les sources suivantes migrent une par une (dogmes, factions…) :
-  //  [...reglesConstructions(config), ...reglesDogmes(config), …]
+  return [...reglesConstructions(config), ...reglesMinistres()]
+  // Les sources suivantes migrent une par une (régimes, cultures, techs…) :
+  //  [...reglesConstructions(config), ...reglesMinistres(), …]
+}
+
+// ── Ministères (source 'ministre' — portefeuilles automatiques) ──────────
+
+/** Portefeuilles ministériels à effets AUTOMATIQUES de PRODUCTION.
+ *  LA couche d'édition d'une règle ministérielle (retour Thibaut
+ *  2026-10-19 : toute production passe par la banque — les montants
+ *  sont des DONNÉES ici, plus aucun codage en dur du côté moteur).
+ *  Cumulables : la valeur s'applique PAR MINISTRE porteur vivant
+ *  (effet fluxJoueurParMinistre).
+ *  · declencheur 'tour' : crédité à chaque fin de tour (canal
+ *    « Ministères » du récap, étape 3duodecies) ;
+ *  · declencheur 'finSaison' : crédité au changement de saison —
+ *    production ÉQUIVALENTE PAR TOUR, comptée comme telle dans
+ *    tourismeCourant (canal « Ministères ») ;
+ *  · le Chancelier des émissaires (+1 émissaire en réserve par fin de
+ *    saison) reste appliqué au site de fin de saison : instantané hors
+ *    calcul de production, pas un flux. */
+const MINISTERES_AUTO: RegleBanque[] = [
+  {
+    id: 'ministre.tresorier', source: 'ministre', nom: 'Trésorier',
+    effets: [{ type: 'fluxJoueurParMinistre', portefeuille: 'Trésorier', ressource: 'Or', valeur: 5 }],
+  },
+  {
+    id: 'ministre.grand-precepteur', source: 'ministre', nom: 'Grand Précepteur',
+    effets: [{ type: 'fluxJoueurParMinistre', portefeuille: 'Grand Précepteur', ressource: 'Science', valeur: 1 }],
+  },
+  {
+    id: 'ministre.grand-prevot', source: 'ministre', nom: 'Grand prévôt',
+    // « Votre capitale produit +1 Fer par tour » (le 2e effet, +10
+    // Garnison par rang, est une valeur d'état : garnisonHabitationVille).
+    effets: [{ type: 'fluxJoueurParMinistre', portefeuille: 'Grand prévôt', ressource: 'Fer', valeur: 1 }],
+  },
+  {
+    id: 'ministre.senechal', source: 'ministre', nom: 'Sénéchal', declencheur: 'finSaison',
+    // +15 Nourriture à la fin de l'ÉTÉ, par Sénéchal.
+    conditions: { saison: 'Été' },
+    effets: [{ type: 'fluxJoueurParMinistre', portefeuille: 'Sénéchal', ressource: 'Nourriture', valeur: 15 }],
+  },
+  {
+    id: 'ministre.maitre-de-cour', source: 'ministre', nom: 'Maître de cour', declencheur: 'finSaison',
+    // +2 Tourisme à la fin de CHAQUE saison, par Maître de cour.
+    effets: [{ type: 'fluxJoueurParMinistre', portefeuille: 'Maître de cour', ressource: 'Tourisme', valeur: 2 }],
+  },
+  {
+    id: 'ministre.legat-du-pontificat', source: 'ministre', nom: 'Légat du pontificat', declencheur: 'finSaison',
+    // +20 Tourisme à la fin de CHAQUE saison, par Légat (interprétation
+    //  retenue : récurrent — marqueur (y)).
+    effets: [{ type: 'fluxJoueurParMinistre', portefeuille: 'Légat du pontificat', ressource: 'Tourisme', valeur: 20 }],
+  },
+]
+
+/** Règles de banque des portefeuilles ministériels automatiques (les
+ *  montants ne dépendent pas du référentiel : données éditoriales du
+ *  registre, cf. MINISTERES_AUTO). */
+export function reglesMinistres(): RegleBanque[] {
+  return MINISTERES_AUTO.map((r) => ({ ...r, effets: [...r.effets] }))
 }
 
 /** Cache du registre par référence de config (les règles ne dépendent

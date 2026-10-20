@@ -22,7 +22,7 @@
 import type { City, GameState, Player, Saison } from './types'
 import { detailGainsVille } from './economie'
 import { cfgOf, cultureDef, type Cfg } from './gameData'
-import { aMinistre, portefeuillesDuJoueur } from './ministeres'
+import { aMinistre, fluxFinSaisonMinisteres } from './ministeres'
 import { garnisonBatiment, productionTourismeBatiment } from './batiments'
 import { rangPaysNiveau } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
@@ -247,10 +247,10 @@ export function tourismeCourant(state: GameState, p: Player, C: Cfg): number {
   // 4. technologies (Surconsommation, Stands de goodies)
   total += fluxProgresJoueur(state, p, C)['Tourisme'] ?? 0
   // 5. ministres (Maître de cour +2, Légat +20) — fin de saison :
-  //  production équivalente par tour
-  const portefeuilles = portefeuillesDuJoueur(state, p)
-  total += 2 * portefeuilles.filter((m) => m === 'Maître de cour').length
-  total += 20 * portefeuilles.filter((m) => m === 'Légat du pontificat').length
+  //  production équivalente par tour, LUE SUR LA RÈGLE DE BANQUE
+  //  (voie unique ministres → fluxJoueurParMinistre, montants dans le
+  //  registre MINISTERES_AUTO — plus aucun chiffre codé ici).
+  total += fluxFinSaisonMinisteres(state, p)['Tourisme'] ?? 0
   // 6. CONSTRUCTIONS (Chapelle +35, Bahamutt +16…) : production Tourisme
   //  des bâtiments/aménagements, lue sur la règle de BANQUE (voie unique
   //  depuis le 2026-10-19 — même valeur que le canal Bâtiments du récap).

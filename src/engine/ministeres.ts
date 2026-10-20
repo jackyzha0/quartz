@@ -18,6 +18,8 @@
 import type { GameState, Player, Character } from './types'
 import { RENOMMAGES_MINISTERES } from '../config/defaultConfig'
 import { fullName } from './shared'
+import { reglesMinistres } from '../rules/registry'
+import { appliquerRegles } from '../rules/effects/banque'
 
 /** Portefeuilles ministériels actifs d'un joueur : personnages VIVANTS
  *  portant le titre « Ministre » et un portefeuille. Les doublons sont
@@ -55,22 +57,18 @@ export function facteurAvencement(state: GameState, p: Player): number {
  *  portefeuilles — Trésorier +5 Or, Grand Précepteur +1 Science,
  *  Grand prévôt +1 Fer (marqueur (y)) — PAR MINISTRE (cumulables). Crédite les stocks et retourne les
  *  apports par joueur (canal « Ministères » du récap ressources ;
- *  pas de log par tour pour ne pas noyer le journal). */
+ *  pas de log par tour pour ne pas noyer le journal).
+ *  VOIE UNIQUE (retour Thibaut 2026-10-19 : toute production passe
+ *  par la banque) : les montants vivent dans le REGISTRE
+ *  (MINISTERES_AUTO, règles declencheur 'tour') — ce site ne fait que
+ *  LIRE la banque, plus aucun chiffre codé ici. */
 export function appliquerEffetsMinisteres(
   state: GameState,
 ): Record<number, Record<string, number>> {
   const out: Record<number, Record<string, number>> = {}
+  const reglesTour = reglesMinistres().filter((r) => r.declencheur !== 'finSaison')
   for (const p of state.players) {
-    const gains: Record<string, number> = {}
-    for (const m of portefeuillesDuJoueur(state, p)) {
-      if (m === 'Trésorier') gains['Or'] = (gains['Or'] ?? 0) + 5
-      else if (m === 'Grand Précepteur') gains['Science'] = (gains['Science'] ?? 0) + 1
-      // Grand prévôt (marqueur (y), arbitrage Thibaut) : « Votre
-      //  capitale produit +1 Fer par tour » (le 2e effet — +10
-      //  Garnison par rang de pays dans chaque habitation — est une
-      //  valeur d'état calculée dans garnisonHabitationVille).
-      else if (m === 'Grand prévôt') gains['Fer'] = (gains['Fer'] ?? 0) + 1
-    }
+    const gains = appliquerRegles(reglesTour, { state, joueur: p, saison: state.saison }).flux
     for (const [res, v] of Object.entries(gains)) {
       const rs = p.resources[res]
       if (rs) rs.stock += v
@@ -80,14 +78,45 @@ export function appliquerEffetsMinisteres(
   return out
 }
 
+/** Pluriel d'affichage d'un portefeuille pour les logs de fin de
+ *  saison (présentation uniquement — les MONTANTS, eux, vivent dans
+ *  le registre de la banque). */
+const PLURIELS_MINISTERES: Record<string, string> = {
+  'Sénéchal': 'Sénéchals',
+  'Maître de cour': 'Maîtres de cour',
+  'Légat du pontificat': 'Légats du pontificat',
+}
+
+function libellePortefeuille(nom: string, nb: number): string {
+  if (nb <= 1) return nom
+  return PLURIELS_MINISTERES[nom] ?? `${nom}s`
+}
+
+/** Contribution BANQUE (lecture seule, SANS crédit) des portefeuilles
+ *  de fin de saison d'un joueur, agrégée par ressource. Sert au
+ *  calcul de production par tour (tourismeCourant, canal
+ *  « Ministères ») : les portefeuilles de fin de saison sont une
+ *  production ÉQUIVALENTE PAR TOUR. La saison du contexte est la
+ *  saison EN COURS (les règles conditionnelles — Sénéchal été —
+ *  s'évaluent sur elle). */
+export function fluxFinSaisonMinisteres(state: GameState, p: Player): Record<string, number> {
+  const regles = reglesMinistres().filter((r) => r.declencheur === 'finSaison')
+  return appliquerRegles(regles, { state, joueur: p, saison: state.saison }).flux
+}
+
 /** Fin de saison (appelé par runTurn au changement de saison) :
  *  effets automatiques de fin de saison — Sénéchal : +15 Nourriture à
  *  la fin de l'ÉTÉ (par Sénéchal) ; Maître de cour : +2 Tourisme à la
  *  fin de CHAQUE saison (par Maître de cour). Journalise un message
- *  Système par joueur concerné (une fois par saison seulement). */
+ *  Système par joueur concerné (une fois par saison seulement).
+ *  VOIE UNIQUE (retour Thibaut 2026-10-19) : les MONTANTS et les
+ *  CONDITIONS de saison sont lus sur les règles de BANQUE
+ *  declencheur 'finSaison' (MINISTERES_AUTO) — appliquées règle par
+ *  règle pour tenir le format des logs (une part par portefeuille). */
 export function effetsFinSaisonMinisteres(
   state: GameState, saisonQuiTermine: 'Été' | 'Hiver',
 ): void {
+  const reglesFinSaison = reglesMinistres().filter((r) => r.declencheur === 'finSaison')
   for (const p of state.players) {
     const portefeuilles = portefeuillesDuJoueur(state, p)
     const parts: string[] = []
@@ -97,35 +126,29 @@ export function effetsFinSaisonMinisteres(
     //  (visibles dans Référentiels → Tourisme).
     // Chancelier des émissaires (revue 2026-10-15, ressource d'émissaires) :
     //  +1 émissaire en RÉSERVE à chaque fin de saison (cumulable).
+    //  Reste appliqué ICI (pas dans la banque) : instantané hors
+    //  calcul de production, pas un flux.
     const nbChancEmiss = portefeuilles.filter((m) => m === 'Chancelier des émissaires').length
     if (nbChancEmiss > 0) {
       p.emissaires = (p.emissaires ?? 0) + nbChancEmiss
       parts.push(`+${nbChancEmiss} émissaire(s) en réserve (Chancelier des émissaires)`)
     }
-    const nbSenechal = portefeuilles.filter((m) => m === 'Sénéchal').length
-    if (saisonQuiTermine === 'Été' && nbSenechal > 0) {
-      const v = 15 * nbSenechal
-      const rs = p.resources['Nourriture']
-      if (rs) rs.stock += v
-      parts.push(`+${v} Nourriture (${nbSenechal} Sénéchal${nbSenechal > 1 ? 's' : ''})`)
-    }
-    const nbCour = portefeuilles.filter((m) => m === 'Maître de cour').length
-    if (nbCour > 0) {
-      const v = 2 * nbCour
-      const rs = p.resources['Tourisme']
-      if (rs) rs.stock += v
-      parts.push(`+${v} Tourisme (${nbCour} Maître${nbCour > 1 ? 's' : ''} de cour)`)
-    }
-    // Légat du pontificat (marqueur (y)) : « +20 Tourisme » — crédité
-    //  à la fin de CHAQUE saison, comme le Maître de cour (inter-
-    //  prétation retenue : récurrent ; ajustable dans Paramètres en
-    //  renommant l'effet si Thibaut préfère un one-shot).
-    const nbLegat = portefeuilles.filter((m) => m === 'Légat du pontificat').length
-    if (nbLegat > 0) {
-      const v = 20 * nbLegat
-      const rs = p.resources['Tourisme']
-      if (rs) rs.stock += v
-      parts.push(`+${v} Tourisme (${nbLegat} Légat${nbLegat > 1 ? 's' : ''} du pontificat)`)
+    // Production de fin de saison : règle par règle sur la banque
+    //  (conditions de saison évaluées par la banque sur la saison
+    //  qui TERMINE ; cumul par portefeuille dans l'effet).
+    const ctx = { state, joueur: p, saison: saisonQuiTermine }
+    for (const regle of reglesFinSaison) {
+      const contribution = appliquerRegles([regle], ctx)
+      for (const e of regle.effets) {
+        if (e.type !== 'fluxJoueurParMinistre') continue
+        const nb = portefeuilles.filter((m) => m === e.portefeuille).length
+        const v = contribution.flux[e.ressource] ?? 0
+        if (nb > 0 && v !== 0) {
+          const rs = p.resources[e.ressource]
+          if (rs) rs.stock += v
+          parts.push(`+${v} ${e.ressource} (${nb} ${libellePortefeuille(e.portefeuille, nb)})`)
+        }
+      }
     }
     if (parts.length > 0) {
       state.log.push({

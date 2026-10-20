@@ -17,7 +17,7 @@ import type {
 import { cfgOf } from '../../engine/gameData'
 import { capitaleDe } from '../../engine/factions'
 import { rangNiveau } from '../../engine/regimes'
-import { aMinistre } from '../../engine/ministeres'
+import { aMinistre, portefeuillesDuJoueur } from '../../engine/ministeres'
 
 // ── Conditions ─────────────────────────────────────────────────────────────
 
@@ -59,6 +59,15 @@ function appliquerEffet(e: Effet, ctx: ContexteEffet, out: ContributionEffets): 
       } else {
         out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur
       }
+      break
+    }
+    case 'fluxJoueurParMinistre': {
+      // Production CUMULABLE : valeur × nombre de ministres VIVANTS
+      //  portant le portefeuille (arbitrage Thibaut : deux fois le
+      //  même portefeuille = effet doublé).
+      const nb = portefeuillesDuJoueur(ctx.state, ctx.joueur)
+        .filter((m) => m === e.portefeuille).length
+      if (nb > 0) out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur * nb
       break
     }
     case 'fluxCapitale': {

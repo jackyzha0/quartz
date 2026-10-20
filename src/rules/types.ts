@@ -57,6 +57,17 @@ export interface EffetFluxJoueur {
   ete?: boolean
 }
 
+/** Production par tour du portefeuille ministériel donné — CUMULABLE :
+ *  la valeur s'applique PAR MINISTRE porteur vivant (deux Trésoriers =
+ *  +10 Or). Retour Thibaut (arbitrage portefeuilles cumulables). */
+export interface EffetFluxJoueurParMinistre {
+  type: 'fluxJoueurParMinistre'
+  /** Portefeuille concerné (nom exact de la table `ministeres`). */
+  portefeuille: string
+  ressource: string
+  valeur: number
+}
+
 /** Production par tour de la CAPITALE du joueur. */
 export interface EffetFluxCapitale {
   type: 'fluxCapitale'
@@ -170,6 +181,7 @@ export interface EffetDemographieVille {
 export type Effet =
   | EffetFluxVille
   | EffetFluxJoueur
+  | EffetFluxJoueurParMinistre
   | EffetFluxCapitale
   | EffetGarnisonVille
   | EffetGarnisonParRang
@@ -243,6 +255,10 @@ export interface RegleBanque {
   /** Conditions d'activation (toutes en ET). Vide = toujours actif
    *  quand la source est possédée. */
   conditions?: ConditionRegle
+  /** QUAND la règle se déclenche : 'tour' (chaque fin de tour —
+   *  défaut) ou 'finSaison' (au changement de saison, production
+   *  équivalente par tour : Sénéchal, Maître de cour, Légat…). */
+  declencheur?: 'tour' | 'finSaison'
   /** Les effets — TOUJOURS piochés dans la banque. */
   effets: Effet[]
 }
