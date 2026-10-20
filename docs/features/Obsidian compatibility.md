@@ -123,7 +123,7 @@ Each custom character is preserved as a `data-task` attribute on the rendered el
 
 ### Mermaid Diagrams
 
-[[Mermaid diagrams|Mermaid]] code blocks are rendered as diagrams with [Pele](https://pele.run):
+[[Mermaid diagrams|Mermaid]] code blocks are rendered as diagrams (Mermaid.js by default; opt into [Pele](https://pele.run) with `diagramRenderer: pele`):
 
 ````markdown
 ```mermaid

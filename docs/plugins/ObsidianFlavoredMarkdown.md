@@ -20,7 +20,8 @@ This plugin accepts the following configuration options:
 - `highlight`: If `true` (default), enables parsing of `==` style highlights within content.
 - `wikilinks`:If `true` (default), turns [[wikilinks]] into regular links.
 - `callouts`: If `true` (default), adds support for [[callouts|callout]] blocks for emphasizing content.
-- `mermaid`: If `true` (default), enables [[Mermaid diagrams|Mermaid diagram]] rendering within Markdown files (via [Pele](https://pele.run)).
+- `mermaid`: If `true` (default), enables [[Mermaid diagrams|Mermaid diagram]] parsing within Markdown files.
+- `diagramRenderer`: `"mermaid"` (default) or `"pele"`. Selects the engine that draws Mermaid fences. Mermaid.js remains the default; [Pele](https://pele.run) is opt-in while Mermaid.js is deprecated toward Pele.
 - `parseTags`: If `true` (default), parses and links tags within the content.
 - `parseBlockReferences`: If `true` (default), handles block references, linking to specific content blocks.
 - `enableInHtmlEmbed`: If `true`, allows embedding of content directly within HTML. Defaults to `false`.
