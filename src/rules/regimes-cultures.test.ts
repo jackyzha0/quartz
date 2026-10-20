@@ -74,6 +74,7 @@ test('registreComplet : ids uniques, les 4 nouvelles règles intégrées', () =>
 test('Socialisme : +5 Nourriture × 3 Champ/Rizière en été, RIEN en hiver', () => {
   const ctx = partieMock({ saison: 'Été' })
   const { state, joueur, ville } = ctx
+  assert.ok(ville, 'le mock fournit toujours une ville (rétrécissement pour tsc strict)')
   const C = cfgOf(state.config)
   joueur.regime = 'Socialisme'
   ville.amenagements = ['Champ', 'Champ', 'Rizière']
@@ -84,6 +85,7 @@ test('Socialisme : +5 Nourriture × 3 Champ/Rizière en été, RIEN en hiver', (
 test('autre régime que Socialisme : la règle ne s’applique pas (condition regime)', () => {
   const ctx = partieMock({ saison: 'Été' })
   const { state, joueur, ville } = ctx
+  assert.ok(ville, 'le mock fournit toujours une ville (rétrécissement pour tsc strict)')
   joueur.regime = 'Monarchie'
   ville.amenagements = ['Champ']
   assert.deepEqual(effetsRegime(state, joueur, 'Été', cfgOf(state.config)), {})
@@ -94,6 +96,7 @@ test('autre régime que Socialisme : la règle ne s’applique pas (condition re
 test('Lunisme : +4 Tourisme par ville lunisme du MONDE (ville d’un autre joueur incluse)', () => {
   const ctx = partieMock()
   const { state, joueur, ville } = ctx
+  assert.ok(ville, 'le mock fournit toujours une ville (rétrécissement pour tsc strict)')
   const C = cfgOf(state.config)
   joueur.culture = 'Lunisme'
   ville.culture = 'Lunisme'
@@ -116,6 +119,7 @@ test('joueur sans ville : effetsCulturePays vide (garde conservée)', () => {
 test('Déisme : aucun flux de règle de pays (science = instantané de construction)', () => {
   const ctx = partieMock()
   const { state, joueur, ville } = ctx
+  assert.ok(ville, 'le mock fournit toujours une ville (rétrécissement pour tsc strict)')
   const C = cfgOf(state.config)
   joueur.culture = 'Déisme'
   ville.culture = 'Déisme'
@@ -128,6 +132,7 @@ test('Déisme : aucun flux de règle de pays (science = instantané de construct
 test('appliquerEffetsRegimesCultures : Socialisme + Lunisme crédités au stock', () => {
   const ctx = partieMock({ saison: 'Été' })
   const { state, joueur, ville } = ctx
+  assert.ok(ville, 'le mock fournit toujours une ville (rétrécissement pour tsc strict)')
   joueur.regime = 'Socialisme'
   joueur.culture = 'Lunisme'
   ville.culture = 'Lunisme'
@@ -146,6 +151,7 @@ test('appliquerEffetsRegimesCultures : Socialisme + Lunisme crédités au stock'
 test('detailCulturePays : Lunisme parVille 4 / Zélotisme Or parVille 2 (lu sur la banque)', () => {
   const ctx = partieMock()
   const { state, joueur, ville } = ctx
+  assert.ok(ville, 'le mock fournit toujours une ville (rétrécissement pour tsc strict)')
   const C = cfgOf(state.config)
   joueur.culture = 'Lunisme'
   ville.culture = 'Lunisme'
