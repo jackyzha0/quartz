@@ -144,7 +144,7 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
   // culture (ex. Communautarisme : +N Nourriture par habitation de
   // cette culture dans le monde) — étape 3septies du moteur.
   const regimesCultures: Record<string, number> = {}
-  for (const [res, v] of Object.entries(effetsRegime(p, saison, C))) {
+  for (const [res, v] of Object.entries(effetsRegime(state, p, saison, C))) {
     regimesCultures[res] = (regimesCultures[res] ?? 0) + v
   }
   for (const [res, v] of Object.entries(effetsCulturePays(state, p, C))) {
@@ -393,7 +393,7 @@ export function provenancesApports(
   }
 
   // Régimes & cultures : loi du régime + règle de pays de la culture
-  for (const [res, v] of Object.entries(effetsRegime(p, saison, C))) {
+  for (const [res, v] of Object.entries(effetsRegime(state, p, saison, C))) {
     push(res, 'Régimes & cultures', `loi du régime « ${p.regime} »`, v)
   }
   for (const d of detailCulturePays(state, p, C)) {

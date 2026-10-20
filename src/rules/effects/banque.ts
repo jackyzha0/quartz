@@ -32,6 +32,8 @@ export function conditionsRemplies(cond: ConditionRegle | undefined, ctx: Contex
   if (cond.vassal === false && joueur.vassalDe != null) return false
   if (cond.ministre && !aMinistre(ctx.state, joueur, cond.ministre)) return false
   if (cond.tech && !(joueur.progresDebloques ?? []).includes(cond.tech)) return false
+  if (cond.regime && joueur.regime !== cond.regime) return false
+  if (cond.culture && joueur.culture !== cond.culture) return false
   // cond.ageMin : suivi manuel au plateau (arbitre) — documentaire
   //  tant que l'âge n'est pas suivi dans Player.
   // cond.pontificatMin : suivi manuel au plateau — documentaire.
@@ -67,6 +69,33 @@ function appliquerEffet(e: Effet, ctx: ContexteEffet, out: ContributionEffets): 
       //  même portefeuille = effet doublé).
       const nb = portefeuillesDuJoueur(ctx.state, ctx.joueur)
         .filter((m) => m === e.portefeuille).length
+      if (nb > 0) out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur * nb
+      break
+    }
+    case 'fluxParAmenagement': {
+      // Production CUMULABLE : valeur × nombre d'aménagements portant
+      //  l'un des noms listés dans TOUTES les villes du joueur (ex.
+      //  Socialisme : +5 Nourriture d'été par Champ/Rizière — la
+      //  saison est une CONDITION de la règle, pas un if ici).
+      let nb = 0
+      for (const v of ctx.joueur.villes) {
+        for (const a of v.amenagements ?? []) {
+          if (e.noms.includes(a)) nb++
+        }
+      }
+      if (nb > 0) out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur * nb
+      break
+    }
+    case 'fluxParVilleCultureMonde': {
+      // Production par VILLE de la culture du joueur dans le MONDE
+      //  entier, tous joueurs confondus (ex. Lunisme : +4 Tourisme
+      //  par ville de culture Lunisme).
+      let nb = 0
+      for (const q of ctx.state.players) {
+        for (const v of q.villes) {
+          if (v.culture === ctx.joueur.culture) nb++
+        }
+      }
       if (nb > 0) out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur * nb
       break
     }

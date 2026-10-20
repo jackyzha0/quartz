@@ -68,6 +68,28 @@ export interface EffetFluxJoueurParMinistre {
   valeur: number
 }
 
+/** Production par tour, par AMÉNAGEMENT portant l'un des noms listés,
+ *  dans TOUTES les villes du joueur (ex. Socialisme : +N Nourriture
+ *  d'été par Champ et Rizière — champ nourrEteChampRiziere du
+ *  référentiel, brûlage #3 source 2/3). */
+export interface EffetFluxParAmenagement {
+  type: 'fluxParAmenagement'
+  ressource: string
+  valeur: number
+  /** noms d'aménagements comptés (ex. ['Champ', 'Rizière']) */
+  noms: string[]
+}
+
+/** Production par tour, par VILLE de la culture du joueur dans le
+ *  MONDE entier, tous joueurs confondus (ex. Lunisme : +N Tourisme
+ *  par ville de culture Lunisme — règle de pays du classeur, champs
+ *  capitalNourr/Tourisme/OrParHabMonde). */
+export interface EffetFluxParVilleCultureMonde {
+  type: 'fluxParVilleCultureMonde'
+  ressource: string
+  valeur: number
+}
+
 /** Production par tour de la CAPITALE du joueur. */
 export interface EffetFluxCapitale {
   type: 'fluxCapitale'
@@ -182,6 +204,8 @@ export type Effet =
   | EffetFluxVille
   | EffetFluxJoueur
   | EffetFluxJoueurParMinistre
+  | EffetFluxParAmenagement
+  | EffetFluxParVilleCultureMonde
   | EffetFluxCapitale
   | EffetGarnisonVille
   | EffetGarnisonParRang
@@ -216,6 +240,10 @@ export interface ConditionRegle {
   ministre?: string
   /** Technologie débloquée requise (clé `<arbre>:<slot>`). */
   tech?: string
+  /** Régime politique du joueur requis (ex. Socialisme). */
+  regime?: string
+  /** Culture du joueur requise (ex. Lunisme — règle de pays). */
+  culture?: string
 }
 
 // ── Règle de la banque ─────────────────────────────────────────────────────

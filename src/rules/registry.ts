@@ -7,12 +7,14 @@
 //  référentiel restent de l'AFFICHAGE ; les effets deviennent des
 //  DONNÉES interprétées par la banque.
 //
-//  Migration progressive (strangle pattern) : aujourd'hui seules les
-//  CONSTRUCTIONS (bâtiments + aménagements, table `constructions`)
-//  sont traduites — leur format `effets` existant (marqueur (s)) se
-//  mappe 1:1 sur la banque. Les autres sources (dogmes, factions…)
-//  migrent ensuite une par une ; le moteur continue d'utiliser ses
-//  fonctions historiques pour tout ce qui n'est pas encore migré.
+//  Migration progressive (strangle pattern) : les CONSTRUCTIONS
+//  (bâtiments + aménagements, table constructions — format `effets`
+//  marqueur (s) mappé 1:1), puis les MINISTÈRES (source 1/3,
+//  2026-10-19) et les RÉGIMES & CULTURES (source 2/3, 2026-10-20 —
+//  retour Thibaut « toute production passe par la banque ») sont
+//  traduits. Les autres sources (dogmes, factions, techs…) migrent
+//  ensuite une par une ; le moteur continue d'utiliser ses fonctions
+//  historiques pour tout ce qui n'est pas encore migré.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import type { ContexteEffet, Effet, RegleBanque, SourceRegle } from './types'
@@ -82,9 +84,9 @@ export function reglesConstructions(config?: GameConfig): RegleBanque[] {
 /** Registre complet : toutes les règles migrées. Appelé par le moteur
  *  aux sites d'application (une fois par tour, cacheable). */
 export function registreComplet(config?: GameConfig): RegleBanque[] {
-  return [...reglesConstructions(config), ...reglesMinistres()]
-  // Les sources suivantes migrent une par une (régimes, cultures, techs…) :
-  //  [...reglesConstructions(config), ...reglesMinistres(), …]
+  return [...reglesConstructions(config), ...reglesMinistres(), ...reglesRegimes(config), ...reglesCultures(config)]
+  // Les sources suivantes migrent une par une (techs, dogmes, factions…) :
+  //  […, ...reglesRegimes(config), ...reglesCultures(config), …]
 }
 
 // ── Ministères (source 'ministre' — portefeuilles automatiques) ──────────
@@ -142,6 +144,66 @@ const MINISTERES_AUTO: RegleBanque[] = [
  *  registre, cf. MINISTERES_AUTO). */
 export function reglesMinistres(): RegleBanque[] {
   return MINISTERES_AUTO.map((r) => ({ ...r, effets: [...r.effets] }))
+}
+
+// ── Régimes & cultures (sources 'regime' / 'culture' — brûlage #3 source 2/3) ──
+
+/** Règles de banque des LOIS DE PRODUCTION des régimes politiques
+ *  (retour Thibaut « toute production passe par la banque », source
+ *  2/3 du brûlage #3, 2026-10-20) : générées depuis le référentiel,
+ *  montants = DONNÉES. Aujourd'hui seule la loi nourrEteChampRiziere
+ *  est un FLUX (Socialisme : +N Nourriture d'été par Champ/Rizière)
+ *  — l'été est une CONDITION de la règle, plus un if du moteur. La
+ *  garnison de l'Autoritarisme (garnisonParRang) reste une VALEUR
+ *  D'ÉTAT (garnisonHabitationVille), pas une production : hors
+ *  banque. */
+export function reglesRegimes(config?: GameConfig): RegleBanque[] {
+  const C = cfgOf(config)
+  const out: RegleBanque[] = []
+  for (const regime of C.regimes) {
+    const n = regime.nourrEteChampRiziere ?? 0
+    if (!n) continue
+    out.push({
+      id: 'regime.' + slug(regime.nom),
+      source: 'regime',
+      nom: regime.nom,
+      conditions: { regime: regime.nom, saison: 'Été' },
+      effets: [{ type: 'fluxParAmenagement', ressource: 'Nourriture', valeur: n, noms: ['Champ', 'Rizière'] }],
+    })
+  }
+  return out
+}
+
+/** Règles de banque des RÈGLES DE PAYS des cultures (source 2/3 du
+ *  brûlage #3, 2026-10-20) : +N d'une ressource PAR VILLE de cette
+ *  culture dans le MONDE (tous joueurs confondus — ex. Lunisme :
+ *  +4 Tourisme par ville lunisme). Les cultures sans loi chiffrée
+ *  (ex. Déisme : scienceParConstruction est un instantané de
+ *  construction) ne génèrent PAS de règle. */
+export function reglesCultures(config?: GameConfig): RegleBanque[] {
+  const C = cfgOf(config)
+  const LOIS: Array<[string, 'capitalNourrParHabMonde' | 'capitalTourismeParHabMonde' | 'capitalOrParHabMonde']> = [
+    ['Nourriture', 'capitalNourrParHabMonde'],
+    ['Tourisme', 'capitalTourismeParHabMonde'],
+    ['Or', 'capitalOrParHabMonde'],
+  ]
+  const out: RegleBanque[] = []
+  for (const cult of C.config.cultures) {
+    const effets: Effet[] = []
+    for (const [res, champ] of LOIS) {
+      const v = cult[champ] ?? 0
+      if (v) effets.push({ type: 'fluxParVilleCultureMonde', ressource: res, valeur: v })
+    }
+    if (effets.length === 0) continue
+    out.push({
+      id: 'culture.' + slug(cult.nom),
+      source: 'culture',
+      nom: cult.nom,
+      conditions: { culture: cult.nom },
+      effets,
+    })
+  }
+  return out
 }
 
 /** Cache du registre par référence de config (les règles ne dépendent

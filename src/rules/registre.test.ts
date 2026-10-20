@@ -27,6 +27,7 @@ import { effetsConstructionRef, garnisonConstructionRef, instantanesConstruction
 /** Types d'effets que la banque sait appliquer (contrat de types.ts). */
 const TYPES_CONNUSS = new Set([
   'fluxVille', 'fluxJoueur', 'fluxCapitale', 'fluxJoueurParMinistre',
+  'fluxParAmenagement', 'fluxParVilleCultureMonde',
   'garnisonVille', 'garnisonParRang', 'garnisonJoueur',
   'tourismeInstantane', 'habitantsVille', 'conversionPoids', 'migrationPoids',
   'reductionCout', 'reductionLeveeArmee', 'emissaires',
