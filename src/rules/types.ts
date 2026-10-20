@@ -155,15 +155,15 @@ export interface EffetFluxParGarnisonHabitation {
   valeur: number
 }
 
-/** Production par tour, PAR TITULAIRE VIVANT du titre donné dans la
- *  population du joueur (générique des techs `prodParTitre` du
+/** Production par tour, PAR TITULAIRE VIVANT du metier donné dans la
+ *  population du joueur (générique des techs `prodParMetier` du
  *  référentiel — ex. Commerce lointain : +3 Or par Marchand). */
-export interface EffetFluxParTitre {
-  type: 'fluxParTitre'
+export interface EffetFluxParMetier {
+  type: 'fluxParMetier'
   ressource: string
   valeur: number
-  /** titre exact (ex. 'Marchand', 'Ministre') */
-  titre: string
+  /** metier exact (ex. 'Marchand', 'Ministre') */
+  metier: string
 }
 
 /** Production par tour de la CAPITALE du joueur. */
@@ -288,7 +288,7 @@ export type Effet =
   | EffetFluxParRangHabitation
   | EffetFluxParBatiment
   | EffetFluxParGarnisonHabitation
-  | EffetFluxParTitre
+  | EffetFluxParMetier
   | EffetFluxCapitale
   | EffetGarnisonVille
   | EffetGarnisonParRang

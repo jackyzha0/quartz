@@ -12,7 +12,7 @@ const CONFIG_KEY = 'chasse-et-peche:config'
 /**
  * FORMAT COMPACT (optimisation 2026-10-16) : à 16 000+ habitants, la
  * population fait ~12 Mo de JSON — la majorité des champs de chaque
- * personnage sont à leur valeur PAR DÉFAUT (mariage null, titre null,
+ * personnage sont à leur valeur PAR DÉFAUT (mariage null, metier null,
  * traits ['', '', ''], armee null, fecondite 0…). Le compactage omet
  * ces champs ; l'EXPANSION au chargement les reconstruit — aucune
  * donnée n'est perdue (un champ omis = sa valeur par défaut).
@@ -23,8 +23,11 @@ const DEFAUTS_PERSO: Record<string, unknown> = {
   //  omis à l'écriture (compaction), reconstruits par elargirEtat.
   mariage: null, mere: null, pere: null, pereBio: null, armee: null,
   mariageId: null, mereId: null, pereId: null, pereBioId: null,
-  titre: null, education: null, enfantBatard: false, fecondite: 0,
+  metier: null, education: null, enfantBatard: false, fecondite: 0,
   ministere: null,
+  // Rework habitants (2026-10-20) : domicile null = sans domicile —
+  //  AUCUN effet en vague 1 ; omis à l'écriture, ajouté par elargirEtat.
+  domicile: null,
 }
 
 /**
@@ -153,7 +156,7 @@ export function loadGlobalConfig(): GameConfig | null {
     const raw = localStorage.getItem(CONFIG_KEY)
     if (!raw) return null
     const config = JSON.parse(raw) as GameConfig
-    if (!config || !Array.isArray(config.titres) || !config.params) return null
+    if (!config || !Array.isArray(config.metiers) || !config.params) return null
     return config
   } catch {
     return null

@@ -448,8 +448,8 @@ function normaliserTraits(): TraitDef[] {
 }
 
 function normaliserTitres(): TitreDef[] {
-  return ref.titres.map((t: any) => ({
-    titre: t.titre,
+  return (ref.metiers ?? ref.titres).map((t: any) => ({
+    titre: t.metier ?? t.titre,
     education: t.education || '',
     valeur1: Number(t.valeur1) || 0,
     ressource1: t.ressource1 || '',
@@ -594,7 +594,7 @@ export const DEFAULT_CONFIG: GameConfig = {
   init: ref.init,
   traitsGenetiques: ref.traitsGenetiques,
   ministeres: ref.ministeres,
-  titresEffets: ref.titresEffets,
+  titresEffets: (ref.metiersEffets ?? ref.titresEffets),
   peuplesLibres: ref.peuplesLibres,
   peuplesAutres: ref.peuplesAutres,
   batimentsVille: ref.batimentsVille,

@@ -360,7 +360,7 @@ select.input option, select.input optgroup { background: var(--card); color: var
   line-height: 1.35;
 }
 .picker-card:hover { border-color: var(--accent); background: var(--card2); }
-.picker-titre { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.picker-metier { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
 .picker-droite { color: var(--good); font-size: 12px; white-space: nowrap; }
 .picker-desc {
   color: var(--muted);
@@ -804,7 +804,7 @@ input[type='range'] {
 @media (max-width: 1100px) {
   .refbat-grid { grid-template-columns: 1fr; }
 }
-.refbat-titre {
+.refbat-metier {
   margin: 0 0 8px;
   font-size: 1.05rem;
   letter-spacing: 0.06em;
@@ -814,7 +814,7 @@ input[type='range'] {
   padding-bottom: 4px;
 }
 .refbat-rang { margin-bottom: 12px; }
-.refbat-rang-titre {
+.refbat-rang-metier {
   font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.05em;
@@ -823,7 +823,7 @@ input[type='range'] {
   margin: 0 0 6px;
 }
 .refbat-famille { margin-bottom: 8px; }
-.refbat-famille-titre {
+.refbat-famille-metier {
   display: inline-block;
   font-weight: 700;
   font-size: 0.72rem;
