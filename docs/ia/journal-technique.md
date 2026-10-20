@@ -774,6 +774,47 @@ NB : v4 conserve 4 correctifs NON portés sur chasse-et-peche-web
 conflits de cités journalisés, journal du Forcer, doc dette
 déterminisme rng/newId) — à synchroniser à l'arbitrage de l'arbitre.
 
+## Synchronisation v4 → production : les 4 correctifs portés (2026-10-20)
+
+Arbitrage de l'arbitre : porter sur `chasse-et-peche-web` les 4
+correctifs qui vivaient uniquement sur v4 (cf. section egress
+ci-dessus). Périmètre établi par diff complet des deux têtes :
+6 fichiers divergents, tous rattachés aux 4 correctifs (aucune
+divergence résiduelle — les arbres jeu `src/`, `supabase/`,
+`scripts/` sont à présent BYTE-IDENTIQUES entre les deux branches).
+
+1. **Publication CONDITIONNÉE** (Edge Function `resoudre-tour`,
+   v4 `c2b49c5c`) : l'UPDATE ne porte que si `tour_publie` n'a pas
+   changé depuis la lecture (comparaison-et-échange atomique côté
+   serveur) — deux exécutants simultanés du même tour ne peuvent plus
+   ni s'écraser, ni purger la file de l'autre (le perdant voit
+   `dejaPublie` sans purge). Complète l'idempotence existante.
+2. **Fusion DÉTERMINISTE + conflits journalisés** (engine/fusion.ts +
+   `type: 'Conflit'` dans types.ts, v4 `b6671187`) : les numéros de
+   joueurs sont TRIÉS (l'ordre d'insertion de `Object.keys` rendait
+   « le dernier gagne » des cités libres non reproductible entre
+   clients et serveur) ; deux joueurs qui modifient la MÊME cité libre
+   → version du plus petit numéro + événement Conflit visible pour
+   l'arbitre (plus de last-write-wins silencieux).
+3. **Journal du Forcer** (state/store.tsx) : les absents d'un tour
+   forcé sont listés dans le salon via l'événement partagé
+   `forcer_absents` (rejoué par la résolution) — un tour forcé sans
+   les actions de certains joueurs ne peut plus passer pour normal.
+4. **Doc dette déterminisme** (rng.ts + shared.ts) : périmètre
+   documenté — les TIRAGES sont seuls reproductibles par graine ;
+   les ids `newId` (Date.now + compteur) ne le sont pas (jamais utilisés
+   dans le calcul).
+
+Vérifications : harnais 97/97 sur le staging avant push ; intégrité
+byte-à-byte 6/6 au sha ; CI VERTE au premier coup — CI jeu #59,
+diag #215, Deploy Pages #1234, **Deploy Edge Function #31** (la
+publication conditionnée est en prod côté serveur). LIVE vérifié :
+bundle `index-COwg77pQ.js` (nouveau hash) contient
+`forcer_absents` ×2 et « Tour forcé : sections de » — pensez à
+Ctrl+F5. Shas : `chasse-et-peche-web` = `0fd913d7` (tête), v4 =
+`e7d5fcf9` (inchangée — les deux branches portent désormais le même
+code jeu).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
