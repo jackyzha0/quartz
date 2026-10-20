@@ -1,34 +1,3 @@
-## Rework des habitants — design arbitré et consigné (2026-10-20)
-
-Après le correctif egress et la synchronisation v4 → production
-(ci-dessus), l'arbitre a demandé une refonte complète du système
-d'habitants. Analyse préalable du code : la plupart des champs
-demandés (identité, dynastie, sexe, orientation, culture, ville,
-statut, traits, mariage) EXISTENT déjà dans `Character` ; le rework
-porte donc sur `titre` → `métier`, un nouveau champ `domicile`, la
-suppression d'`ageMax` au profit d'une probabilité croissante de
-maladie avec l'âge, et un système de caps de métiers par ville.
-
-Quatre arbitrages tranchés par l'arbitre : (1) les rôles de cour
-(Dirigeant, Héritier, Gouverneur, Ministre, Marchand, Professeur,
-Maréchal) migrent DANS le champ métier ; (2) la capacité Chasseur
-est paramétrable DIFFÉRENTE selon le type d'habitation (Ville vs
-Château) ; (3) en cas de surnombre, les PLUS ÂGÉS perdent leur
-métier en premier ; (4) Sans-emploi = aucun effet au plateau
-(neutre, impôt nul). Santé : courbe de Gompertz calibrée
-Monte-Carlo pour une espérance de vie ~60 ans, maladie = seule
-cause de mort (un malade qui re-contracte meurt, règle existante).
-Migration d'état versionnée (`SCHEMA_VERSION_ETAT`++) : titre→métier
-(mapping 1:1), retrait ageMax, domicile→null.
-
-Design détaillé consigné dans regles-et-arbitrages.md, section
-« Rework des habitants » — c'est la référence de l'implémentation.
-Découpage acté en 3 vagues (V1 moteur complet, V2 UI population/
-métiers, V3 métiers par bâtiments + logements) ; AUCUN code de
-ce rework n'est poussé à ce jour. Ce commit ne touche QUE la
-documentation (docs/ia/) — la partie multijoueur n'est pas
-impactée.
-
 # Journal technique — historique des évolutions et conventions
 
 Ce document complète [AGENTS.md](../AGENTS.md) et
@@ -845,6 +814,37 @@ bundle `index-COwg77pQ.js` (nouveau hash) contient
 Ctrl+F5. Shas : `chasse-et-peche-web` = `0fd913d7` (tête), v4 =
 `e7d5fcf9` (inchangée — les deux branches portent désormais le même
 code jeu).
+
+## Rework des habitants — design arbitré et consigné (2026-10-20)
+
+Après le correctif egress et la synchronisation v4 → production
+(ci-dessus), l'arbitre a demandé une refonte complète du système
+d'habitants. Analyse préalable du code : la plupart des champs
+demandés (identité, dynastie, sexe, orientation, culture, ville,
+statut, traits, mariage) EXISTENT déjà dans `Character` ; le rework
+porte donc sur `titre` → `métier`, un nouveau champ `domicile`, la
+suppression d'`ageMax` au profit d'une probabilité croissante de
+maladie avec l'âge, et un système de caps de métiers par ville.
+
+Quatre arbitrages tranchés par l'arbitre : (1) les rôles de cour
+(Dirigeant, Héritier, Gouverneur, Ministre, Marchand, Professeur,
+Maréchal) migrent DANS le champ métier ; (2) la capacité Chasseur
+est paramétrable DIFFÉRENTE selon le type d'habitation (Ville vs
+Château) ; (3) en cas de surnombre, les PLUS ÂGÉS perdent leur
+métier en premier ; (4) Sans-emploi = aucun effet au plateau
+(neutre, impôt nul). Santé : courbe de Gompertz calibrée
+Monte-Carlo pour une espérance de vie ~60 ans, maladie = seule
+cause de mort (un malade qui re-contracte meurt, règle existante).
+Migration d'état versionnée (`SCHEMA_VERSION_ETAT`++) : titre→métier
+(mapping 1:1), retrait ageMax, domicile→null.
+
+Design détaillé consigné dans regles-et-arbitrages.md, section
+« Rework des habitants » — c'est la référence de l'implémentation.
+Découpage acté en 3 vagues (V1 moteur complet, V2 UI population/
+métiers, V3 métiers par bâtiments + logements) ; AUCUN code de
+ce rework n'est poussé à ce jour. Ce commit ne touche QUE la
+documentation (docs/ia/) — la partie multijoueur n'est pas
+impactée.
 
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
