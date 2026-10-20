@@ -322,6 +322,50 @@ export function capMetierVille(metier: string | null, ville: City, C: Cfg = cfgO
   return metierDef(metier, C.config)?.capParVille ?? Number.POSITIVE_INFINITY
 }
 
+export interface OccupationMetier {
+  /** Métier concerné — null = ligne « Sans-emploi ». */
+  metier: string | null
+  /** Occupants VIVANTS en poste (les Décédés ne comptent pas). */
+  enPoste: number
+  /** Capacité de la ville pour ce métier (capMetierVille) —
+   *  Infinity = illimité (ou cité libre : hors champ des caps). */
+  cap: number
+}
+
+/** Vue « métiers et places par ville » (vague 2 UI, rework habitants
+ *  2026-10-20) : pour les habitants d'une ville, une ligne par métier
+ *  OCCUPÉ ou PLAFONNÉ (cap finie — ex. Chasseur), dans l'ordre du
+ *  référentiel ; les métiers personnalisés hors référentiel
+ *  (anciennes sauvegardes) sont conservés en fin de liste ; la ligne
+ *  « Sans-emploi » (neutre : impôt nul, aucun effet) est TOUJOURS
+ *  présente, en dernière position. ville = null (cité libre) →
+ *  toutes les caps sont infinies. */
+export function occupationsMetierVille(
+  habitants: Character[], ville: City | null, C: Cfg = cfgOf(),
+): OccupationMetier[] {
+  const vivants = habitants.filter((c) => c.statut !== 'Décédé')
+  const par: Record<string, number> = {}
+  let sans = 0
+  for (const c of vivants) {
+    if (c.metier) par[c.metier] = (par[c.metier] ?? 0) + 1
+    else sans++
+  }
+  const lignes: OccupationMetier[] = []
+  const ajoute = (m: string) => lignes.push({
+    metier: m, enPoste: par[m] ?? 0,
+    cap: ville ? capMetierVille(m, ville, C) : Number.POSITIVE_INFINITY,
+  })
+  for (const m of C.metiers) {
+    const cap = ville ? capMetierVille(m.metier, ville, C) : Number.POSITIVE_INFINITY
+    if ((par[m.metier] ?? 0) > 0 || Number.isFinite(cap)) ajoute(m.metier)
+  }
+  for (const m of Object.keys(par)) {
+    if (!C.metiers.some((x) => x.metier === m)) ajoute(m)
+  }
+  lignes.push({ metier: null, enPoste: sans, cap: Number.POSITIVE_INFINITY })
+  return lignes
+}
+
 /** Réaffectation des métiers plafonnés, par joueur et par ville :
  *  · surnombre : les Chasseurs les PLUS ÂGÉS perdent leur métier
  *    (passage Sans-emploi — rôle neutre : impôt nul, aucun effet) ;

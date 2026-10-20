@@ -17,7 +17,7 @@ import assert from 'node:assert/strict'
 import { createGame, type SetupLine } from './setup'
 import type { Character, City, GameState } from './types'
 import { cfgOf } from './gameData'
-import { capMetierVille, reaffecterMetiers } from './metiers'
+import { capMetierVille, reaffecterMetiers, occupationsMetierVille } from './metiers'
 import { invaliderIndexPopulation } from './naissances'
 import { detailGainsVille } from './economie'
 
@@ -131,4 +131,58 @@ test('Sans-emploi : rôle NEUTRE — aucun gain, aucun impôt (canal métiers vi
   assert.equal(Object.keys(d.metiers).length, 0, 'aucune production brute (canal metiers vide)')
   assert.equal(Object.keys(d.taxes).length, 0, 'aucun impôt (canal taxes vide)')
   assert.equal(d.habitants, 2)
+})
+
+// ── Vague 2 UI : helper « métiers et places par ville » ──────────────────
+
+test('occupationsMetierVille : places Chasseur par type de ville + Sans-emploi toujours présent', () => {
+  const state = partie()
+  const C = cfgOf(state.config)
+  const p = state.players[0]
+  const habitants = [
+    perso('o1', 30, { metier: C.p.metierChasseur }),
+    perso('o2', 40, { metier: C.p.metierChasseur }),
+    perso('o3', 50, { metier: C.p.metierChasseur }),
+    perso('m1', 35, { metier: 'Marchand' }),
+    perso('s1', 20, {}),
+    perso('s2', 25, {}),
+    perso('d1', 80, { metier: 'Marchand', statut: 'Décédé' }),
+  ]
+  const ville: City = { ...p.villes[0], type: 'Ville' }
+  const lignes = occupationsMetierVille(habitants, ville, C)
+  const chasseur = lignes.find((l) => l.metier === C.p.metierChasseur)
+  assert.ok(chasseur, 'Chasseur listé (plafonné → toujours affiché, même à 0)')
+  assert.equal(chasseur!.enPoste, 3, '3 Chasseurs en poste')
+  assert.equal(chasseur!.cap, 50, 'cap Ville 50 (arbitrage « très généreux »)')
+  const marchand = lignes.find((l) => l.metier === 'Marchand')
+  assert.ok(marchand, 'Marchand listé (occupé)')
+  assert.equal(marchand!.enPoste, 1, 'le Marchand décédé ne compte pas')
+  assert.equal(marchand!.cap, Number.POSITIVE_INFINITY, 'Marchand illimité en vague 1')
+  assert.equal(lignes.filter((l) => Number.isFinite(l.cap)).length, 1,
+    'seul le Chasseur a une cap finie en vague 1 (aucun capParVille au référentiel)')
+  // les métiers du référentiel sans occupant et sans cap n'apparaissent pas
+  assert.equal(lignes.filter((l) => l.metier === 'Artiste').length, 0, 'Artiste à 0 occupant non listé')
+  const sans = lignes.find((l) => l.metier === null)
+  assert.ok(sans, 'ligne Sans-emploi toujours présente')
+  assert.equal(sans!.enPoste, 2, '2 sans-emploi vivants')
+  assert.equal(lignes[lignes.length - 1].metier, null, 'Sans-emploi en dernière ligne')
+  // Château : cap 25
+  const chateau: City = { ...p.villes[0], type: 'Château' }
+  const lch = occupationsMetierVille(habitants, chateau, C).find((l) => l.metier === C.p.metierChasseur)
+  assert.equal(lch!.cap, 25, 'cap Château 25')
+  // ville = null (cité libre) : aucune cap, métier à 0 occupant non listé
+  const cite = occupationsMetierVille([], null, C)
+  assert.ok(cite.every((l) => !Number.isFinite(l.cap)), 'cité libre : caps toutes infinies')
+  assert.equal(cite.length, 1, 'seule la ligne Sans-emploi (aucun occupant, aucune cap finie)')
+  assert.ok(cite[0].metier === null && cite[0].enPoste === 0, 'Sans-emploi 0 en poste')
+})
+
+test('occupationsMetierVille : métiers hors référentiel conservés (anciennes sauvegardes)', () => {
+  const state = partie()
+  const C = cfgOf(state.config)
+  const lignes = occupationsMetierVille([perso('p1', 30, { metier: 'Pêcheur' })], null, C)
+  const pecheur = lignes.find((l) => l.metier === 'Pêcheur')
+  assert.ok(pecheur, 'métier personnalisé hors référentiel conservé')
+  assert.equal(pecheur!.enPoste, 1)
+  assert.equal(pecheur!.cap, Number.POSITIVE_INFINITY, 'hors référentiel = illimité')
 })

@@ -450,6 +450,7 @@ export {
   computeMarriageProbability, tryEducateMinor, assignAdultMetier,
   metierAllowedForCharacter, metiersAccessibles,
   gouverneurDeVille, designerGouverneurs, capMetierVille, reaffecterMetiers,
+  occupationsMetierVille, type OccupationMetier,
 } from './metiers'
 export {
   killCharacter, handleDirigeantSuccession, probaContracterMaladie,

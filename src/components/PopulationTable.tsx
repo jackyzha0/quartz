@@ -2,7 +2,11 @@
 //  Table de population : récapitulatif des métiers (royaume puis par
 //  ville), ajout manuel d'habitants (roturiers ou nouvelle famille
 //  noble, culture pondérée par celles présentes dans la ville),
-//  filtres, tri, édition des métiers — seuls les métiers accessibles
+//  filtres, tri, édition des métiers — seuls les métiers accessibles.
+//  Vague 2 UI (rework habitants 2026-10-20) : colonne Domicile (vague 3 :
+//  bâtiments de logement — null = « — » pour l'instant) et écran
+//  « Métiers et places par ville » (en poste / cap / places libres,
+//  helper moteur occupationsMetierVille).
 //  sont proposés (Chasseur, Gouverneur, métiers Education enseignés
 //  par un Professeur vivant) — et arbre généalogique de la famille
 //  dirigeante (déplacé ici depuis la page Royaume).
@@ -30,7 +34,7 @@ import { ajouterHabitant } from '../engine/setup'
 import {
   metiersAccessibles, changerPortefeuille, isNobleDyn, fullName,
   marierPersonnages, deplacerPersonnage, toutesLesPopulations,
-  metiersAccessiblesCite, pseudoJoueurDeCite,
+  metiersAccessiblesCite, pseudoJoueurDeCite, occupationsMetierVille,
   ajouterHabitantsCiteLibre, ajouterFamilleNobleCiteLibre,
   type Detenteur,
 } from '../engine/engine'
@@ -339,17 +343,6 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   const accessibles = p
     ? metiersAccessibles(state, p)
     : (cite ? metiersAccessiblesCite(state, cite) : [])
-  const compteMetiers = (liste: Character[]): [string, number][] => {
-    const parMetier: Record<string, number> = {}
-    let sansMetier = 0
-    for (const c of liste) {
-      if (c.metier) parMetier[c.metier] = (parMetier[c.metier] ?? 0) + 1
-      else sansMetier++
-    }
-    const lignes = Object.entries(parMetier).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'fr'))
-    return sansMetier > 0 ? [...lignes, ['(sans métier)', sansMetier]] : lignes
-  }
-
   // ── Ajout manuel d'habitants ────────────────────────────────────────
   const villesAjout = cite ? [cite.nom] : (p?.villes.map((v) => v.nom) ?? [])
   const addVilleEff = addVille || villesAjout[0] || ''
@@ -424,6 +417,9 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           )}
         </div>
         {errors[c.id] && <div className="neg small">⚠ {errors[c.id]}</div>}
+      </td>
+      <td className="small" title={c.domicile ? `Logement : ${c.domicile}` : 'Sans domicile — les bâtiments de logement arrivent (vague 3)'}>
+        {c.domicile ?? '—'}
       </td>
       <td>
         {c.metier === C.p.metierProfesseur && c.statut !== 'Décédé' ? (
@@ -519,7 +515,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
     <thead>
       <tr>
         <th>Nom</th><th>Dynastie</th><th>Sx</th><th>Âge</th><th>Ville</th>
-        <th>Culture</th><th>Métier</th><th>Éducation</th><th>Traits</th>
+        <th>Culture</th><th>Métier</th><th>Domicile</th><th>Éducation</th><th>Traits</th>
         <th>Statut</th><th>Mariage</th><th>Fécondité</th><th>Actions</th>
       </tr>
     </thead>
@@ -542,7 +538,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
               <div>Décès : {dictToString(p.recap.deces)} (dont maladie : {p.recap.decesMaladie})</div>
               <div>Mariages nobles : {dictToString(p.recap.mariagesNobles)}</div>
               <div>Conversions : {dictToString(p.recap.conversions)}</div>
-              <div>Metiers attribués : {dictToString(p.recap.metiersAttribues)}</div>
+              <div>Métiers attribués : {dictToString(p.recap.metiersAttribues)}</div>
               {(p.recap.crises.length > 0 || p.recap.commandantTombe) && (
                 <div className="neg">⚠ {p.recap.crises.join(' ; ')}{p.recap.commandantTombe ? ` Commandant tombé : ${p.recap.commandantTombe}` : ''}</div>
               )}
@@ -674,33 +670,56 @@ export function PopulationTable({ joueur }: { joueur: number }) {
         </Card>
       )}
 
-      <Card title="🏘️ Occupations par ville">
+      {/* Écran « métiers et places par ville » (vague 2 UI, rework
+          habitants 2026-10-20) : par ville, une ligne par métier occupé
+          ou plafonné — en poste, capacité, places libres — la ligne
+          Sans-emploi (rôle neutre : impôt nul, aucun effet) est toujours
+          présente. Helper moteur occupationsMetierVille (testé). */}
+      <Card title="🏘️ Métiers et places par ville">
         <div className="table-wrap">
           <table className="tbl small">
-            <thead><tr><th>Ville</th><th>Occupations (vivants)</th><th>Vivants</th></tr></thead>
+            <thead><tr><th>Ville</th><th>Métier</th><th>En poste</th><th>Places max</th><th>Places libres</th><th>Vivants</th></tr></thead>
             <tbody>
               {villesOcc.map((v) => {
                 const habitants = vivants.filter((c) => c.ville === v.nom)
-                const detail = compteMetiers(habitants)
-                return (
-                  <tr key={v.nom}>
-                    <td><strong>{v.nom}</strong></td>
+                const villeObj = p?.villes.find((vv) => vv.nom === v.nom) ?? null
+                const lignes = occupationsMetierVille(habitants, villeObj, C)
+                return lignes.map((l, i) => (
+                  <tr key={`${v.nom}-${l.metier ?? 'sans'}`}>
                     <td>
-                      {detail.length
-                        ? detail.map(([t, n]) => (
-                          <span key={t} className={`badge ${t === '(sans métier)' ? 'badge-neutral' : 'badge-info'}`} style={{ marginRight: 4 }}>
-                            {t} ×{n}
-                          </span>
-                        ))
-                        : <span className="muted">aucun habitant</span>}
+                      {i === 0
+                        ? <strong>{v.nom}{villeObj?.type ? ` (${villeObj.type})` : cite ? ' (cité libre)' : ''}</strong>
+                        : <span className="muted">〃</span>}
                     </td>
-                    <td>{habitants.length}</td>
+                    <td>
+                      <span
+                        className={`badge ${l.metier ? 'badge-info' : 'badge-neutral'}`}
+                        title={l.metier ? (descMetier(l.metier) || undefined) : 'Sans-emploi : rôle neutre — impôt nul, aucun effet'}
+                      >
+                        {l.metier ?? 'Sans-emploi'}
+                      </span>
+                    </td>
+                    <td>{l.enPoste}</td>
+                    <td>{Number.isFinite(l.cap) ? l.cap : '∞'}</td>
+                    <td>
+                      {Number.isFinite(l.cap)
+                        ? <span className={l.cap - l.enPoste < 0 ? 'neg' : ''}>{l.cap - l.enPoste}</span>
+                        : <span className="muted">—</span>}
+                    </td>
+                    <td>{i === 0 ? habitants.length : ''}</td>
                   </tr>
-                )
+                ))
               })}
             </tbody>
           </table>
         </div>
+        <p className="muted small">
+          Seuls le Chasseur (cap Ville {C.p.capMetierChasseurVille} / Château {C.p.capMetierChasseurChateau})
+          et les métiers déclarant une capacité au référentiel sont plafonnés — ∞ = illimité.
+          La réaffectation automatique tourne à chaque fin de tour : surnombre → les plus âgés
+          passent Sans-emploi ; places libres → les Sans-emploi adultes deviennent Chasseurs.
+          Les cités libres ne sont pas concernées par les caps.
+        </p>
       </Card>
 
       <Card title="➕ Ajouter des habitants">
