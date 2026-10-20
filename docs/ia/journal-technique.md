@@ -899,10 +899,23 @@ byte-identiques).
   INCIDENT de la séance : le sandbox local a été RÉINITIALISÉ en
   cours de mise en œuvre — tout le travail a été reconstruit depuis
   le tarball `0d017a58` (aucune perte, harnais rejoué intégralement).
-  Le `tsc --noEmit` strict n'est PAS vérifiable localement (pas de
-  `npm ci` dans le bac) : la CI GitHub est le filet (la convention
-  « jamais de push sans validation locale » est respectée au
-  harnais près — la CI fait foi).
+  INCIDENT CI (jeu ROUGE sur `8258fac`) : le `tsc --noEmit` strict
+  de la CI a refusé 3 fichiers que le harnais local (Node 22
+  strip-types, SANS type-check) exécutait très bien (112/112) :
+  fixtures `traits: []` des nouveaux tests (Character.traits est un
+  TUPLE `[string, string, string]`) et `Object.keys` sur un
+  `recap.metiersAttribues` potentiellement null dans la migration v3
+  (crash latent en plus du défaut de type). Correctif `e912455`
+  (miroir v4 `60f9cba`) : fixtures à 3 traits `life_delta = 0`
+  (Obstiné/Stérile/Fécond — pente Gompertz non modulée, tests
+  formule et Monte-Carlo inchangés) + garde `existants == null`.
+  CI VERTE sur les DEUX branches (jeu, build, diag, deploy Pages +
+  Edge Function) ; LIVE vérifié : bundle `index-vkyhOHr1.js` (nouveau
+  hash) contient « Métiers accessibles », « Tous les métiers »,
+  « quitte le métier », la réaffectation (« places disponibles »)
+  et la Gompertz ; plus AUCUN `ageMax` hors du `delete` de migration.
+  NB : un doublon du commit docs (`9e5927e`) est parti sur un 503
+  fantôme du push API (contenu identique, sans effet).
 
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
@@ -954,6 +967,18 @@ byte-identiques).
     les exécute très bien. Ne pas utiliser d'API post-ES2020 dans
     `src/` (ou passer la lib en ES2022 — à arbitrer à l'occasion d'un
     vrai besoin).
+13. **`tsc --noEmit` strict REPRODUCTIBLE EN LOCAL, sans `npm ci`**
+    (incident `8258fac`, 2026-10-20) : le harnais strip-types ne
+    type-check RIEN — les 3 erreurs du commit passaient 112/112. Le
+    tsc de la CI se reconstruit dans le bac : télécharger le tarball
+    TypeScript de la version exacte du package-lock
+    (registry.npmjs.org/typescript/-/typescript-5.9.3.tgz),
+    l'extraire (plus les tarballs react/@types si absents), puis
+    lancer `node <tsc>/bin/tsc --noEmit`. Artefacts locaux attendus :
+    les erreurs de stub `src/supabase/client.ts` (paquet
+    @supabase/supabase-js absent du bac, présent en CI — le fichier
+    n'a pas changé) ; toute AUTRE erreur est réelle. À lancer avant
+    tout push de .ts/.tsx (seul filet sur les .tsx, cf. règle 2).
 
 ## Raccourci git
 
