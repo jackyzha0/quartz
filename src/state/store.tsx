@@ -455,6 +455,22 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         const prets = await remote.lireBarriereV2(salon, st.turn)
         const attendus = [...(prets ?? new Set([moi]))]
         if (attendus.length === 0) attendus.push(moi)
+        // JOURNAL du Forcer : les actions des absents sont ignorées —
+        //  il faut que ce soit VISIBLE dans le salon (sinon le tour
+        //  forcé semble « normal » alors que des joueurs ont perdu
+        //  leurs actions du tour).
+        const tous = st.players.map((q) => q.n)
+        const absents = tous.filter((n) => !attendus.includes(n))
+        if (absents.length > 0) {
+          const nomsAbsents = st.players
+            .filter((q) => absents.includes(q.n))
+            .map((q) => `${q.nom} (J${q.n})`)
+            .join(', ')
+          await remote.pousserEvenementPartage(salon, st.turn, moi, 'forcer_absents', {
+            absents,
+            message: `⏭ Tour forcé : sections de ${absents.length} joueur(s) ignorées — ${nomsAbsents}.`,
+          })
+        }
         const res = await remote.resoudreTourServeur(salon, st.turn, attendus)
         if (res.ok) {
           const nouveau = await remote.loadRemote(salon)

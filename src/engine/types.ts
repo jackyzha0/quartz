@@ -335,7 +335,7 @@ export interface Player {
 
 export interface LogEntry {
   turn: number
-  type: 'Événement' | 'Dynastie' | 'Crise' | 'Naissance' | 'Décès' | 'Mariage' | 'Titre' | 'Armée' | 'Culture' | 'Commerce' | 'Système'
+  type: 'Événement' | 'Dynastie' | 'Crise' | 'Naissance' | 'Décès' | 'Mariage' | 'Titre' | 'Armée' | 'Culture' | 'Commerce' | 'Système' | 'Conflit'
   joueur: number | null
   texte: string
 }

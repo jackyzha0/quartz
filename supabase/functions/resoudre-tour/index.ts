@@ -2,12 +2,12 @@
 // CHASSE & PÊCHE — Edge Function « resoudre-tour » (protocole v2)
 //
 // Résolution du tour CÔTÉ SERVEUR :
-//   1. verrou consultatif (un seul exécutant par salon) ;
-//   2. idempotence par tour_publie (double appel = sans effet) ;
-//   3. fusion des sections — IMPLÉMENTATION PARTAGÉE avec le client
+//   1. idempotence par tour_publie (double appel = sans effet) ;
+//   2. fusion des sections — IMPLÉMENTATION PARTAGÉE avec le client
 //      (src/engine/fusion.ts, mêmes tests fusion.test.ts) ;
-//   4. runTurn par le moteur pur ;
-//   5. publication + purge de la file.
+//   3. runTurn par le moteur pur ;
+//   4. publication CONDITIONNÉE par tour_publie (comparaison-et-
+//      échange atomique, cf. étape 6) + purge de la file.
 //
 // MOTEUR : bundle local _engine.mjs, construit par esbuild —
 //   node scripts/build-function.mjs && node scripts/test-function.mjs
@@ -130,7 +130,18 @@ Deno.serve(async (req) => {
     // 5. Exécution du tour par le moteur pur (bundle local testé).
     runTurn(draft)
 
-    // 6. Publication + purge (transaction logique : update puis delete).
+    // 6. Publication CONDITIONNÉE + purge (atomicité sans verrou,
+    //    correctif audit 2026-10-20) : l'UPDATE ne porte QUE si
+    //    tour_publie n'a pas changé depuis notre lecture (étape 2).
+    //    Sans cette garde, deux exécutants simultanés du même tour
+    //    (le verrou consultatif a été retiré, cf. M7) passaient tous
+    //    deux l'idempotence initiale : le dernier écrasait l'état du
+    //    premier — et l'un pouvait purger les cp_events pendant que
+    //    l'autre les lisait encore, publiant un tour SANS les
+    //    événements partagés. La garde tour_publie (= valeur lue)
+    //    fait de la publication une comparaison-et-échange atomique
+    //    côté serveur : un seul exécutant gagne, l'autre voit
+    //    dejaPublie et ne purge RIEN (la file appartient au gagnant).
     // CORRECTIF EGRESS (2026-10-20) : la publication passe par
     //  etatReseau — le payload réseau n'embarque PLUS le cache config
     //  (~181 Ko publiés + relus par chaque joueur à chaque tour :
@@ -138,7 +149,8 @@ Deno.serve(async (req) => {
     //  config en mémoire (runTurn l'a déjà consommée ci-dessus) ;
     //  les clients réinjectent la leur à l'ingestion (adopterConfig,
     //  mondiale '__config__' adoptée au chargement).
-    const { error: errPub } = await sb
+    const tourPublieLu = row.tour_publie ?? 0
+    const { data: pub, error: errPub } = await sb
       .from('parties_chasse_peche')
       .update({
         state: etatReseau(draft),
@@ -149,9 +161,14 @@ Deno.serve(async (req) => {
         updated_at: new Date().toISOString(),
       })
       .eq('id', salon)
+      .eq('tour_publie', tourPublieLu)
+      .select('id')
+      .maybeSingle()
     if (errPub) return json({ ok: false, error: `publication impossible : ${errPub.message}` }, 500)
+    if (!pub) {
+      return json({ ok: true, dejaPublie: true, tour: draft.turn })
+    }
     await sb.from('cp_events').delete().eq('salon', salon).eq('tour', tour)
-
     return json({ ok: true, tour: draft.turn })
   } catch (e) {
     return json({ ok: false, error: String(e) }, 500)

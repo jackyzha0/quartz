@@ -2,6 +2,10 @@
 //  Générateur pseudo-aléatoire déterministe (mulberry32)
 //  Remplace Rnd() du VBA : la graine est stockée dans GameState.rngState,
 //  ce qui rend chaque partie reproductible et rejouable.
+//  ⚠ Périmètre du déterminisme : les TIRAGES uniquement. Les ids de
+//  personnages (newId, shared.ts) mêlent Date.now() + compteur module
+//  et ne sont PAS reproductibles — rejouer la même graine redonne les
+//  mêmes événements avec des ids différents (documenté en dette).
 // ══════════════════════════════════════════════════════════════════════
 
 export interface Rng {

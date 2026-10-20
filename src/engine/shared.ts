@@ -11,6 +11,11 @@ import { cfgOf, type Cfg } from './gameData'
 
 // ── Utilitaires ─────────────────────────────────────────────────────────
 let idCounter = 0
+/** Id unique de personnage. ⚠ NON déterministe : Date.now() + compteur
+ *  module (les tirages rng restent seuls reproductibles par graine —
+ *  cf. rng.ts). Les ids ne servent qu'à l'IDENTITÉ (M1 : mariages,
+ *  filiation), jamais au calcul : un rejeu de la même graine produit
+ *  les mêmes événements avec des ids différents. */
 export function newId(rng: Rng): string {
   return `c${Date.now().toString(36)}${(idCounter++).toString(36)}${rng.int(100, 999)}`
 }
