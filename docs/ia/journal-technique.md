@@ -846,6 +846,64 @@ ce rework n'est poussé à ce jour. Ce commit ne touche QUE la
 documentation (docs/ia/) — la partie multijoueur n'est pas
 impactée.
 
+## Rework des habitants — VAGUE 1 IMPLÉMENTÉE (2026-10-20, soir)
+
+La vague 1 (moteur complet) est poussée sur `chasse-et-peche-web`
+(4 commits fractionnés — limite de taille d'outil de push — puis
+suppression du tombstone : `src/engine/titres.ts` renommé
+`src/engine/metiers.ts`) et en miroir sur `v4` (arbres src/
+byte-identiques).
+
+- **Renommage intégral** `titre` → `metier` (~60 fichiers) : moteur,
+  UI, règles, état. `null` = Sans-emploi, rôle NEUTRE (impôt nul,
+  aucun effet — verrouillé par test via `detailGainsVille`). Union
+  des logs : `'Métier'` (nouvelles émissions) + `'Titre'` (legacy).
+  Référentiel converti : `.metiers` (15), `.metiersEffets` (9),
+  effets de techs `prodParTitre` → `prodParMetier`.
+- **Champ `domicile`** (optionnel, null en vague 1, AUCUN effet) :
+  compressé par `DEFAUTS_PERSO` (omis à l'écriture, ajouté par
+  `elargirEtat`).
+- **Mortalité Gompertz** : `ageMax`/`computeAgeMax`/`tryResurrection`
+  retirés — `probaContracterMaladie(c, C) = min(maladieCap,
+  maladieBase × exp(maladiePente × âge))`, `life_delta` module la
+  pente (borné ±50 %). Calibration Monte-Carlo (N=200 000, mécanique
+  exacte de `maladieStep` : contraction / re-contraction mortelle /
+  guérison dégressive) : **0.0025 / 0.08 / 0.9** → E[décès] = 59,5,
+  médiane 60, p10 48, p90 70.
+- **Caps Chasseur** (seul métier plafonné en vague 1) : Ville 50 /
+  Château 25 (« très généreux »), paramétrables. `capMetierVille` +
+  `reaffecterMetiers` (nouvelle étape **2ter** dans `runTurn`, après
+  `designerGouverneurs`, AVANT le calcul des gains) : surnombre → les
+  plus âgés passent Sans-emploi ; places libres → les Sans-emploi
+  ADULTES deviennent Chasseurs, les plus âgés d'abord, jamais les
+  enfants. Les cités libres ne passent pas (hors champ vague 1).
+- **Migrations versionnées** : état **v3** `migrerTitresVersMetiers`
+  (joueurs ET cités libres via `toutesLesPopulations`, retrait
+  `titre`/`ageMax`, `recap.titresAttribues` → `metiersAttribues`,
+  idempotente, robuste à l'`elargirEtat` préalable de `loadLocal`) ;
+  config **v3** (conversion champ par champ dans `cfgOf`,
+  personnalisations conservées) + `mergeParams` traduit les anciennes
+  clés `titreXxx` sans jamais écraser les nouvelles.
+- **UI** : accents français restaurés partout (Métier, métiers ×
+  taxes, « (sans métier) »…), colonne **Âge max retirée** de la table
+  Population, classes CSS `picker-metier`/`refbat-metier`, onglets
+  « Métiers ».
+- **`scripts/diag.ts`** : seules les lectures du référentiel renommé
+  sont patchées avec REPLI sur l'ancien format (`ref.metiers ??
+  ref.titres`) — le moteur interne legacy du diag est volontairement
+  inchangé (freeze accepté).
+- **Tests** : harnais local `node --experimental-strip-types`
+  112/112 verts (97 baseline + 15 nouveaux) : formule Gompertz +
+  Monte-Carlo seedé (E ∈ [55, 66]), caps/surnombre/places libres/
+  Sans-emploi neutre, `mergeParams` v3, `cfgOf` v2→v3, migrations v3.
+  INCIDENT de la séance : le sandbox local a été RÉINITIALISÉ en
+  cours de mise en œuvre — tout le travail a été reconstruit depuis
+  le tarball `0d017a58` (aucune perte, harnais rejoué intégralement).
+  Le `tsc --noEmit` strict n'est PAS vérifiable localement (pas de
+  `npm ci` dans le bac) : la CI GitHub est le filet (la convention
+  « jamais de push sans validation locale » est respectée au
+  harnais près — la CI fait foi).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

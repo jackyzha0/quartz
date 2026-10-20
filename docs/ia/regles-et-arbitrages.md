@@ -239,11 +239,11 @@ Remplace le prérequis « 1 serment par rang intermédiaire » du classeur, jug�
 - **Production des villes** : capital par défaut VIDE (aucun bâtiment initial) ;
   toutes les ressources affichées même à production 0.
 
-## Rework des habitants (design arbitré 2026-10-20 — NON ENCORE IMPLÉMENTÉ)
+## Rework des habitants (design arbitré 2026-10-20 — VAGUE 1 IMPLÉMENTÉE)
 
 Refonte complète du système d'habitants demandée par l'arbitre le 2026-10-20.
-Les arbitrages ci-dessous sont ACTÉS ; les caps de base exacts restent à
-calibrer au lancement de la vague 1. Cette section devient la référence de
+Les arbitrages ci-dessous sont ACTÉS et la **VAGUE 1 EST IMPLÉMENTÉE**
+(2026-10-20, voir journal-technique.md). Cette section reste la référence de
 l'implémentation (le code devra y revenir avant chaque vague).
 
 ### Modèle d'habitant (arbitré)
@@ -268,11 +268,13 @@ l'implémentation (le code devra y revenir avant chaque vague).
   pour une espérance de vie d'environ **60 ans**.
 - **Un malade qui re-contracte la maladie MEURT** (règle existante de
   `maladieStep`) — la maladie reste la seule cause de mort.
-- Paramètres `base`/`pente`/`cap` éditables (Paramètres → Santé) ; les
-  modificateurs de bâtiments existants (`malContraction`, `bonusGuerison`,
+- Paramètres `maladieBase`/`maladiePente`/`maladieCap` éditables (Paramètres →
+  Maladie) ; calibrés à **0.0025 / 0.08 / 0.9** par Monte-Carlo (N=200 000) :
+  E[âge de décès] = 59,5 ans, médiane 60, p10 48, p90 70. Les modificateurs
+  de bâtiments existants (`malContraction`, `bonusGuerison`,
   `bonusGuerisonGlobal`, `modMaladieEnceinte`) sont conservés.
-- Interim traits : jusqu'au rework des traits, `life_delta` modulerait la
-  pente de la courbe (à confirmer à l'implémentation).
+- Implémenté (interim traits) : jusqu'au rework des traits, `life_delta`
+  module la PENTE de la courbe (somme des deltas des traits, bornée ±50 %).
 
 ### Métiers (arbitré)
 
@@ -294,8 +296,12 @@ l'implémentation (le code devra y revenir avant chaque vague).
 - Impôts : « métiers × taxes » remplace « titres × taxes ».
 - Choc attendu sur les parties existantes (50 habitants/ville avec des caps
   bas → vagues massives de Sans-emploi au premier tour) → caps de base
-  généreux proposés (Ville 30 / Château 15, éditables) — À ARBITRER au
-  lancement de la vague 1.
+  GÉNÉREUSES ARBITRÉES le 2026-10-20 : **Ville 50 / Château 25** (« très
+  généreux »), paramétrables (`capMetierChasseurVille` /
+  `capMetierChasseurChateau`). Seul le Chasseur est plafonné en vague 1 ;
+  les autres métiers pourront déclarer `capParVille` au référentiel
+  (absent = illimité). La réaffectation tourne à chaque tour AVANT le
+  calcul des gains (étape 2ter, les caps s'appliquent aux impôts du tour).
 
 ### Migration (actée techniquement)
 
@@ -306,9 +312,10 @@ l'implémentation (le code devra y revenir avant chaque vague).
 
 ### Plan en 3 vagues (proposé)
 
-1. **V1 moteur** : renommage intégral titre → métier (~75 sites UI+moteur),
-   champ domicile, fin d'ageMax + courbe calibrée, caps Chasseur,
-   réaffectation chaque tour par ville, migration, tests.
+1. **V1 moteur — FAIT (2026-10-20)** : renommage intégral titre → métier
+   (~60 fichiers UI+moteur), champ domicile, fin d'ageMax + courbe calibrée,
+   caps Chasseur (Ville 50 / Château 25), réaffectation chaque tour par
+   ville (étape 2ter), migrations état v3 + config v3, harnais 112/112.
 2. **V2 UI** : PopulationTable (colonnes Métier/Domicile), écran métiers et
    places par ville.
 3. **V3 (ultérieure)** : métiers créés par les bâtiments/aménagements,
