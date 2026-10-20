@@ -1,198 +1,49 @@
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════════
 //  PROGRÈS AUTOMATIQUES (retour Thibaut 2026-10-15 : « applique tout ce
 //  que tu peux appliquer automatiquement ») — fin de l'arbitrage « tout
 //  s'applique au plateau » pour les effets chiffrés.
 //
-//  Ce module centralise les effets AUTOMATIQUES des technologies :
-//    · fluxProgresJoueur      : flux par tour (canal « Progrès » du
-//      récap ressources — prodCapitale, prodParHabitation, côtier,
-//      par aménagement, conditionnels vassal/suzerain, par ministre…) ;
-//    · gainDeblocageProgres   : one-shot au déblocage (Science, Or,
-//      Habitants, Émissaires) ;
-//    · reductionCout          : réductions de coût à la construction
-//      (aménagements, habitations, bâtiments, levées d'armée) ;
-//    · garnisonProgresVille   : garnisons par habitation/capitale.
-//
-//  Les effets restent CUMULABLES et paramétrables par le référentiel
-//  (texte de la tech). Ce qui exige le plateau (batailles, cases,
-//  assassins, serments, crises, bateaux…) reste une AIDE DE JEU.
-// ═════════════════════════════════════════════════════════════════════
+//  VOIE BANQUE depuis le 2026-10-20 (brûlage #3 source 3/3 — retour
+//  Thibaut « toute production passe par la banque ») : les FLUX par
+//  tour des technologies (fluxProgresJoueur, canal « Progrès » du
+//  récap ressources) vivent dans le REGISTRE (rules/registry.ts —
+//  PROGRES_FLUX + génériques prodParTitre du référentiel) et sont
+//  interprétés par la BANQUE ; ce module ne fait plus que LIRE la
+//  banque. Restent locaux, hors production par tour :
+//    · aTech                  : résolution nom → clés DÉLÉGUÉE au
+//      registre (clesTechsParNom — même sémantique, homonymes inclus) ;
+//    · gainDeblocageProgres   : one-shot au déblocage (instantané) ;
+//    · reductions de coût     : coûts, pas des productions ;
+//    · garnisons + plancher  : valeurs d'état.
+//  Ce qui exige le plateau (batailles, cases, assassins, serments,
+//  crises, bateaux…) reste une AIDE DE JEU.
+// ═══════════════════════════════════════════════════════════════════════════
 
 import type { GameState, Player, City } from './types'
 import type { Cfg } from './gameData'
 import { capitaleDe } from './factions'
-import { rangNiveau, garnisonHabitationVille } from './regimes'
+import { reglesProgres, clesTechsParNom } from '../rules/registry'
+import { appliquerRegles } from '../rules/effects/banque'
 
-const rangNiveauVille = rangNiveau
-
-/** Le joueur a-t-il débloqué la tech portant ce NOM ? */
+/** Le joueur a-t-il débloqué la tech portant ce NOM ? (les homonymes
+ *  de plusieurs arbres matchent — la résolution nom → clés
+ *  `<arbre>:<slot>` vit dans le REGISTRE, clesTechsParNom : une
+ *  seule vérité entre moteur et banque, brûlage #3 source 3/3.) */
 export function aTech(p: Player, nomTech: string, C: Cfg): boolean {
   const set = new Set(p.progresDebloques ?? [])
-  for (let i = 0; i < C.config.progres.length; i++) {
-    const a = C.config.progres[i]
-    const slots: Array<'a1' | 'a2' | 'b1' | 'b2' | 'c'> = ['a1', 'a2', 'b1', 'b2', 'c']
-    for (const slot of slots) {
-      const t = slot === 'c' ? a.techC : (slot[0] === 'a' ? a.brancheA : a.brancheB)[+slot[1] - 1]
-      if (t?.nom === nomTech && set.has(`${i}:${slot}`)) return true
-    }
-  }
-  return false
+  return clesTechsParNom(C.config, nomTech).some((k) => set.has(k))
 }
 
 /** Flux par tour des technologies débloquées (canal « Progrès » du
- *  récap). Vue CALCUL PUR — le moteur crédite via
- *  appliquerEffetsProgres. */
+ *  récap). VOIE BANQUE (brûlage #3 source 3/3, 2026-10-20) : les
+ *  règles vivent dans le registre (reglesProgres — conditions
+ *  techNom / tech, effets fluxSiCapitale, fluxParVille,
+ *  fluxParVilleProximite, fluxParRangHabitation,
+ *  fluxParAmenagement, fluxParBatiment, fluxParGarnisonHabitation,
+ *  fluxParTitre) ; cette fonction ne fait que LIRE la banque, plus
+ *  aucun montant codé ici. */
 export function fluxProgresJoueur(state: GameState, p: Player, C: Cfg): Record<string, number> {
-  const out: Record<string, number> = {}
-  const cap = capitaleDe(p)
-  const add = (res: string, v: number) => { out[res] = (out[res] ?? 0) + v }
-
-  // ── prodCapitale : la capitale produit +N ──
-  if (cap) {
-    if (aTech(p, 'Comprendre la soie', C)) add('Science', 1)
-    if (aTech(p, 'Technologies futures I', C)) add('Science', 3)
-    if (aTech(p, 'Etude astronomique', C)) add('Science', 1)
-    if (aTech(p, 'Lumi\u00e8re', C)) add('Science', 1)
-    if (aTech(p, 'D\u00e9forestation', C)) add('Bois', 1)
-    if (aTech(p, 'Carrieristes', C)) add('Pierre', 1)
-    if (aTech(p, 'Organisation fiscale', C)) add('Or', 2)
-    if (aTech(p, 'Granges', C)) add('Nourriture', 10)
-    if (aTech(p, 'Usinage', C)) add('Charbon', 1)
-    if (aTech(p, 'Musées', C)) add('Tourisme', 30)
-    if (aTech(p, 'Hausse du loyer', C)) add('Or', 15)
-    // relations diplomatiques (Âge 1) : SUZERAIN
-    if (aTech(p, 'Garde suzeraine', C) && citesSuzerainesCount(state, p) > 0) add('Nourriture', 12)
-    if (aTech(p, 'Patronage', C) && citesSuzerainesCount(state, p) > 0) add('Science', 1)
-  }
-  // ── par habitation : chaque ville produit +N ──
-  const nbVilles = p.villes.length
-  if (nbVilles > 0) {
-    if (aTech(p, 'Assembl\u00e9es scientifiques', C)) add('Science', 1 * nbVilles)
-    if (aTech(p, 'Technologies futures II', C)) add('Science', 1 * nbVilles)
-  }
-  // ── côtier : habitations à proximité de la Mer ──
-  const nbCotes = p.villes.filter((v) => v.proximite === 'Mer').length
-  if (nbCotes > 0) {
-    if (aTech(p, 'Cours de p\u00eache', C)) add('Nourriture', 4 * nbCotes)
-    if (aTech(p, 'Commerce maritime I', C)) add('Or', 2 * nbCotes)
-    if (aTech(p, 'Pêche de culture', C)) add('Nourriture', 3 * nbCotes)
-  }
-  // ── Surconsommation (industrialisation) : habitations +1 Science
-  //  +5 Tourisme par RANG d'habitation (consommation +10 Nourriture
-  //  par rang — appliquée dans consommationsVille, engine/habitations.ts).
-  if (aTech(p, 'Surconsommation', C)) {
-    let sci = 0, tour = 0
-    for (const v of p.villes) {
-      const r = rangNiveauVille(v, C)
-      sci += 1 * r
-      tour += 5 * r
-    }
-    if (sci > 0) add('Science', sci)
-    if (tour > 0) add('Tourisme', tour)
-  }
-  // ── par aménagement (Champs / Rizières) ──
-  const nbChamps = p.villes.reduce((n, v) => n + (v.amenagements ?? []).filter((a) => a === 'Champ' || a === 'Rizi\u00e8re').length, 0)
-  if (nbChamps > 0) {
-    if (aTech(p, 'Engrais naturels I', C)) add('Nourriture', 2 * nbChamps)
-    if (aTech(p, 'Engrais naturels II', C)) add('Nourriture', 3 * nbChamps)
-  }
-  // ── Service militaire avanc\u00e9 (17:b2) : habitations +0,5 \u00d7 garnison
-  //  d'habitants par tour (doublon renomm\u00e9, revue 2026-10-16) ───────
-  if (aTech(p, 'Service militaire avanc\u00e9', C)) {
-    let bonusHab = 0
-    for (const v of p.villes) bonusHab += 0.5 * garnisonHabitationVille(p, v, C, state)
-    if (bonusHab > 0) add('Habitants', bonusHab)
-  }
-  // ── Exploitation foresti\u00e8re (21:a2) : les Scieries produisent du
-  //  Charbon au lieu du Bois (doublon renomm\u00e9) ───────────────
-  if (aTech(p, 'Exploitation foresti\u00e8re', C)) {
-    const nbScieries = p.villes.reduce(
-      (n, v) => n + (v.amenagements ?? []).filter((a) => a === 'Scierie').length, 0)
-    if (nbScieries > 0) {
-      add('Bois', -1 * nbScieries)
-      add('Charbon', 1 * nbScieries)
-    }
-  }
-  // ── Industrialisation (21:b2) : +1 Charbon par tour et par b\u00e2timent
-  //  (doublon renomm\u00e9 ; r\u00e9duction de co\u00fbt \u00e0 la construction) ────────
-  if (aTech(p, 'Industrialisation', C)) {
-    const nbBat = p.villes.reduce((n, v) => n + v.batiments.length, 0)
-    if (nbBat > 0) add('Charbon', nbBat)
-  }
-  // ── Merveilles naturelles (18:b2) : +10 Tourisme par merveille et
-  //  par tour (doublon renomm\u00e9 ; r\u00e9duction \u00e0 la construction) ───────
-  if (aTech(p, 'Merveilles naturelles', C)) {
-    let nbMervNat = 0
-    for (const v of p.villes) nbMervNat += v.batiments.filter((b) => (C.config.constructions ?? []).find((c) => c.nom === b)?.famille === 'Merveille').length
-    if (nbMervNat > 0) add('Tourisme', 10 * nbMervNat)
-  }
-  // ── Charues (21:a1) : champs +5 Nourriture et +1 Or par tour —──────────
-  if (nbChamps > 0 && aTech(p, 'Charues', C)) {
-    add('Nourriture', 5 * nbChamps)
-    add('Or', 1 * nbChamps)
-  }
-  // ── par merveille : +1 Science chacune ──
-  const nbMerveilles = p.villes.reduce((n, v) => n + v.batiments.filter((b) => (C.config.constructions ?? []).find((c) => c.nom === b)?.famille === 'Merveille').length, 0)
-  if (nbMerveilles > 0 && aTech(p, 'Merveilleux', C)) add('Science', 1 * nbMerveilles)
-  // Prix Gorback Nobel (+6 Science/ministre) : appliqué par le
-  //  générique prodParTitre ci-dessous — codage en dur retiré
-  //  (doublon détecté par l'audit 2026-10-16 : 12 au lieu de 6).
-  // ── foires : +2 Or +2 Tourisme par Foire (Stands de goodies) ──
-  const nbFoires = p.villes.reduce((n, v) => n + (v.amenagements ?? []).filter((a) => a === 'Foire').length, 0)
-  if (nbFoires > 0 && aTech(p, 'Stands de goodies', C)) {
-    add('Or', 2 * nbFoires)
-    add('Tourisme', 2 * nbFoires)
-  }
-  // ── par FOIRE : +2 Tourisme (Fascination culturelle, 14:a1) ────────
-  if (nbFoires > 0 && aTech(p, 'Fascination culturelle', C)) {
-    add('Tourisme', 2 * nbFoires)
-  }
-  // ── par SITE ARCHÉOLOGIQUE : +8 Tourisme (Parcs naturels, 14:b2 —
-  //  homonyme de 18:b2 mais effet différent ; aTech matche les deux
-  //  par nom, l'effet ici est celui de l'arbre Tourisme) ─────────────
-  const nbSitesArcheo = p.villes.reduce(
-    (n, v) => n + (v.amenagements ?? []).filter((a) => a === 'site arch\u00e9ologique' || a === 'Site arch\u00e9ologique').length, 0)
-  if (nbSitesArcheo > 0 && aTech(p, 'Parcs naturels', C)) {
-    add('Tourisme', 8 * nbSitesArcheo)
-  }
-  // ── prodParTitre (générique, revue 2026-10-16) : « +N RESSOURCE par
-  //  tour par TITULAIRE du titre X » — les techs du référentiel avec un
-  //  effet { type: 'prodParTitre', montant, ressource, titre } sont
-  //  appliquées pour TOUS leurs porteurs vivants. Corrige :
-  //  · « Commerce lointain » : +3 Or/marchand ;
-  //  · « Prix Gorback Nobel » : +6 Science/ministre ;
-  //  · « Culte de la personnalité » : +30 Tourisme/ministre.
-  const vivants = (state.population[p.n] ?? []).filter((c) => c.statut !== 'Décédé')
-  const nbTitre = (titre: string): number =>
-    vivants.filter((c) => c.titre === titre).length
-  for (let i = 0; i < C.config.progres.length; i++) {
-    const arbre = C.config.progres[i]
-    const debloquees = new Set(p.progresDebloques ?? [])
-    const techs: Array<{ effets?: Array<{ type?: string; montant?: number; ressource?: string; titre?: string }> | undefined }> = [
-      ...(arbre.brancheA ?? []), ...(arbre.brancheB ?? []), ...(arbre.techC ? [arbre.techC] : []),
-    ]
-    techs.forEach((t, k) => {
-      // clés de déblocage : a1|a2 (brancheA), b1|b2 (brancheB), c
-      const nbA = (arbre.brancheA ?? []).length
-      const nbB = (arbre.brancheB ?? []).length
-      let slot = ''
-      if (k < nbA) slot = `a${k + 1}`
-      else if (k < nbA + nbB) slot = `b${k - nbA + 1}`
-      else slot = 'c'
-      if (!slot || !debloquees.has(`${i}:${slot}`)) return
-      for (const e of t.effets ?? []) {
-        if (e.type === 'prodParTitre' && e.titre && e.montant && e.ressource) {
-          const n = nbTitre(e.titre)
-          if (n > 0) add(e.ressource, e.montant * n)
-        }
-      }
-    })
-  }
-  return out
-}
-
-function citesSuzerainesCount(state: GameState, p: Player): number {
-  return (state.citesLibres ?? []).filter((c) => c.suzerain === p.n).length
+  return appliquerRegles(reglesProgres(C.config), { state, joueur: p, saison: state.saison }).flux
 }
 
 /** One-shot au DÉBLOCAGE d'une technologie (appelé par ProgresView) :

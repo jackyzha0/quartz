@@ -16,8 +16,9 @@ import type {
 } from '../types'
 import { cfgOf } from '../../engine/gameData'
 import { capitaleDe } from '../../engine/factions'
-import { rangNiveau } from '../../engine/regimes'
+import { rangNiveau, garnisonHabitationVille } from '../../engine/regimes'
 import { aMinistre, portefeuillesDuJoueur } from '../../engine/ministeres'
+import { clesTechsParNom } from '../registry'
 
 // ── Conditions ─────────────────────────────────────────────────────────────
 
@@ -34,6 +35,12 @@ export function conditionsRemplies(cond: ConditionRegle | undefined, ctx: Contex
   if (cond.tech && !(joueur.progresDebloques ?? []).includes(cond.tech)) return false
   if (cond.regime && joueur.regime !== cond.regime) return false
   if (cond.culture && joueur.culture !== cond.culture) return false
+  // Technologie débloquée par NOM (source 'tech', brûlage #3 source
+  //  3/3) : la clé `<arbre>:<slot>` est résolue par le registre, les
+  //  homonymes de plusieurs arbres matchent (comme l'historique aTech).
+  if (cond.techNom && !clesTechsParNom(ctx.state.config, cond.techNom).some((k) => (joueur.progresDebloques ?? []).includes(k))) return false
+  // Suzerain d'au moins une cité libre (relations diplomatiques).
+  if (cond.suzerainDeCite === true && !(ctx.state.citesLibres ?? []).some((c) => c.suzerain === joueur.n)) return false
   // cond.ageMin : suivi manuel au plateau (arbitre) — documentaire
   //  tant que l'âge n'est pas suivi dans Player.
   // cond.pontificatMin : suivi manuel au plateau — documentaire.
@@ -96,6 +103,74 @@ function appliquerEffet(e: Effet, ctx: ContexteEffet, out: ContributionEffets): 
           if (v.culture === ctx.joueur.culture) nb++
         }
       }
+      if (nb > 0) out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur * nb
+      break
+    }
+    case 'fluxSiCapitale': {
+      // Production à condition que le joueur possède une capitale
+      //  (canal historique « prodCapitale » des techs, source 3/3 du
+      //  brûlage #3 — ex. Musées : +30 Tourisme par tour).
+      if (capitaleDe(ctx.joueur)) {
+        out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur
+      }
+      break
+    }
+    case 'fluxParVille': {
+      // Production par VILLE du joueur (canal historique « par
+      //  habitation » des techs — ex. Assemblées scientifiques :
+      //  +1 Science par ville).
+      const nb = ctx.joueur.villes.length
+      if (nb > 0) out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur * nb
+      break
+    }
+    case 'fluxParVilleProximite': {
+      // Production par ville dont la proximité est `proximite` (canal
+      //  historique « côtier » des techs — ex. Cours de pêche :
+      //  +4 Nourriture par ville à proximité de la Mer).
+      const nb = ctx.joueur.villes.filter((v) => v.proximite === e.proximite).length
+      if (nb > 0) out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur * nb
+      break
+    }
+    case 'fluxParRangHabitation': {
+      // Production par RANG d'habitation cumulé sur les villes du
+      //  joueur (ex. Surconsommation : +1 Science +5 Tourisme par
+      //  rang — la consommation de Nourriture reste un coût moteur).
+      const C = cfgOf(ctx.state.config)
+      let rangs = 0
+      for (const v of ctx.joueur.villes) rangs += rangNiveau(v, C)
+      if (rangs > 0) out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur * rangs
+      break
+    }
+    case 'fluxParBatiment': {
+      // Production par BÂTIMENT des villes, limité à une FAMILLE du
+      //  référentiel si fournie (ex. Industrialisation : +1 Charbon
+      //  par bâtiment ; Merveilleux : +1 Science par Merveille).
+      const refs = cfgOf(ctx.state.config).config.constructions ?? []
+      let nb = 0
+      for (const v of ctx.joueur.villes) {
+        for (const b of v.batiments) {
+          if (!e.famille || refs.find((c) => c.nom === b)?.famille === e.famille) nb++
+        }
+      }
+      if (nb > 0) out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur * nb
+      break
+    }
+    case 'fluxParGarnisonHabitation': {
+      // Production proportionnelle à la garnison d'habitants :
+      //  valeur × Σ garnisonHabitationVille (ex. Service militaire
+      //  avancé : +0,5 Habitants par point de garnison).
+      const C = cfgOf(ctx.state.config)
+      let total = 0
+      for (const v of ctx.joueur.villes) total += garnisonHabitationVille(ctx.joueur, v, C, ctx.state)
+      if (total > 0) out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur * total
+      break
+    }
+    case 'fluxParTitre': {
+      // Production par TITULAIRE VIVANT du titre dans la population
+      //  du joueur (générique `prodParTitre` du référentiel — ex.
+      //  Commerce lointain : +3 Or par Marchand vivant).
+      const vivants = (ctx.state.population[ctx.joueur.n] ?? []).filter((c) => c.statut !== 'Décédé')
+      const nb = vivants.filter((c) => c.titre === e.titre).length
       if (nb > 0) out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur * nb
       break
     }

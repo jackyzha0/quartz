@@ -28,6 +28,8 @@ import { effetsConstructionRef, garnisonConstructionRef, instantanesConstruction
 const TYPES_CONNUSS = new Set([
   'fluxVille', 'fluxJoueur', 'fluxCapitale', 'fluxJoueurParMinistre',
   'fluxParAmenagement', 'fluxParVilleCultureMonde',
+  'fluxSiCapitale', 'fluxParVille', 'fluxParVilleProximite',
+  'fluxParRangHabitation', 'fluxParBatiment', 'fluxParGarnisonHabitation', 'fluxParTitre',
   'garnisonVille', 'garnisonParRang', 'garnisonJoueur',
   'tourismeInstantane', 'habitantsVille', 'conversionPoids', 'migrationPoids',
   'reductionCout', 'reductionLeveeArmee', 'emissaires',
