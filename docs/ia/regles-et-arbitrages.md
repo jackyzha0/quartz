@@ -239,6 +239,81 @@ Remplace le prérequis « 1 serment par rang intermédiaire » du classeur, jug�
 - **Production des villes** : capital par défaut VIDE (aucun bâtiment initial) ;
   toutes les ressources affichées même à production 0.
 
+## Rework des habitants (design arbitré 2026-10-20 — NON ENCORE IMPLÉMENTÉ)
+
+Refonte complète du système d'habitants demandée par l'arbitre le 2026-10-20.
+Les arbitrages ci-dessous sont ACTÉS ; les caps de base exacts restent à
+calibrer au lancement de la vague 1. Cette section devient la référence de
+l'implémentation (le code devra y revenir avant chaque vague).
+
+### Modèle d'habitant (arbitré)
+
+- Champs conservés tels quels : **nom, prénom, dynastie, âge, sexe,
+  orientation sexuelle, mariage, culture, ville**, traits génétiques (rework
+  ultérieur), et le **statut Sain / Malade / Enceinte / Décédé** (inchangé).
+- **`titre` devient `métier`** : les rôles de cour (Dirigeant, Héritier,
+  Gouverneur, Ministre, Marchand, Professeur, Maréchal) migrent DANS le champ
+  métier — plus de champ « titre » distinct.
+- **Nouveau `domicile`** (identifiant de bâtiment de logement, ou null =
+  sans domicile) : aucun effet au plateau tant que les bâtiments de logement
+  n'existent pas (vague 3).
+- **Suppression d'`ageMax`** : plus d'âge-plafond individuel ; les fonctions
+  associées (`computeAgeMax`, résurrection) sont retirées.
+
+### Santé et mortalité (arbitré)
+
+- La mort ne vient plus d'un plafond d'âge : chaque tour, la probabilité de
+  CONTRACTER la maladie croît avec l'âge — courbe de Gompertz
+  `min(cap, base × exp(pente × âge))`, calibrée par simulation Monte-Carlo
+  pour une espérance de vie d'environ **60 ans**.
+- **Un malade qui re-contracte la maladie MEURT** (règle existante de
+  `maladieStep`) — la maladie reste la seule cause de mort.
+- Paramètres `base`/`pente`/`cap` éditables (Paramètres → Santé) ; les
+  modificateurs de bâtiments existants (`malContraction`, `bonusGuerison`,
+  `bonusGuerisonGlobal`, `modMaladieEnceinte`) sont conservés.
+- Interim traits : jusqu'au rework des traits, `life_delta` modulerait la
+  pente de la courbe (à confirmer à l'implémentation).
+
+### Métiers (arbitré)
+
+- Registre des métiers (ex-table des titres) : chaque métier a un **nombre
+  maximal de postes par ville**, qui évoluera avec les bâtiments et
+  aménagements présents (vague 3).
+- **Chasseur** : capacité paramétrable DIFFÉRENTE selon le type d'habitation
+  (Ville vs Château).
+- **Priorisation** : un habitant sans métier prend en priorité un métier
+  autre que Chasseur si une place y est libre ; si seul Chasseur a des
+  places, il devient Chasseur ; si aucun métier n'a de place, il est
+  **Sans-emploi**.
+- **Surnombre** (cap baissé, bâtiment perdu…) : les PLUS ÂGÉS perdent leur
+  métier en premier.
+- **Sans-emploi** : aucun effet au plateau (neutre), impôt nul.
+- Règles propres de cour conservées : Gouverneur = noble le plus âgé de la
+  ville (hors Dirigeant/Héritier, +10 % impôts), cap des Ministres = rang de
+  pays, Dirigeant/Héritier inchangés.
+- Impôts : « métiers × taxes » remplace « titres × taxes ».
+- Choc attendu sur les parties existantes (50 habitants/ville avec des caps
+  bas → vagues massives de Sans-emploi au premier tour) → caps de base
+  généreux proposés (Ville 30 / Château 15, éditables) — À ARBITRER au
+  lancement de la vague 1.
+
+### Migration (actée techniquement)
+
+- `SCHEMA_VERSION_ETAT`++ dans `engine/migrations.ts` : conversion
+  `titre` → `métier` (mapping 1:1 des noms actuels), retrait d'`ageMax`,
+  `domicile` → null. Les parties en cours doivent rester jouables sans
+  intervention manuelle.
+
+### Plan en 3 vagues (proposé)
+
+1. **V1 moteur** : renommage intégral titre → métier (~75 sites UI+moteur),
+   champ domicile, fin d'ageMax + courbe calibrée, caps Chasseur,
+   réaffectation chaque tour par ville, migration, tests.
+2. **V2 UI** : PopulationTable (colonnes Métier/Domicile), écran métiers et
+   places par ville.
+3. **V3 (ultérieure)** : métiers créés par les bâtiments/aménagements,
+   production taxable étendue, bâtiments de logement → domicile.
+
 ## Conventions techniques de règles (à respecter en implémentant)
 
 - **Effets structurés** : les constructions (bâtiments + aménagements) portent
