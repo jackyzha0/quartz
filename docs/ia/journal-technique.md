@@ -710,6 +710,70 @@ distinctives `fluxSiCapitale`, `fluxParRangHabitation`,
 `techNom` (la banque du canal Progrès est en prod — pensez à
 Ctrl+F5).
 
+## Correctif egress Supabase — les états publiés n'embarquent plus la config (2026-10-20)
+
+**Incident** : Supabase renvoie 402 `exceed_egress_quota` — quota
+d'egress du plan Free (5 Go/mois, tout cumulé) épuisé. Cause mesurée :
+le champ `state.config` — devenu un simple CACHE du moteur depuis la
+règle 2026-10-19 (seule la mondiale `__config__` fait foi) — continuait
+d'être PUBLIÉ dans chaque état de référence (~181 Ko, le référentiel
+complet) puis RELU par chaque client à chaque fin de tour (realtime,
+poll, relectures post-résolution) : ~1,5 Mo de config par tour et par
+salon de 8 joueurs, pour un cache que chaque navigateur possède déjà.
+Arbitrage de l'arbitre : rester sur Pages + Supabase, correctif payload
+(demandé « repars de ce qui a été fait sur la branche v4 »).
+
+**Correctif** (8 fichiers, porté sur les DEUX branches) :
+- `etatReseau(state)` (engine/fusion.ts, pur, partagé client + Edge
+  Function via le bundle `_engine.mjs`) : copie superficielle SANS la
+  clé `config` (la clé est retirée, pas mise à null — le payload ne
+  dépend pas du comportement de `JSON.stringify` sur `undefined`) ;
+  ne mute pas l'original (le client garde son cache en mémoire).
+- PUBLICATION : `publierEtatFusionne` (supabase/client.ts) et l'Edge
+  Function `resoudre-tour` publient `etatReseau(...)` — le draft garde
+  sa config en mémoire (runTurn l'a consommée avant la publication).
+- INGESTION : les 5 sites du store qui avalent un état distant (callback
+  realtime, `nextTurnV2`, `pollerBarriereV2`, `forceNextTurn`, repli
+  `resoudreBarriereLocaleV2` : locale d'abord, mondiale ensuite)
+  réinjectent la locale via `adopterConfig` (contrat configPriorite :
+  mondiale adoptée au chargement — sans injection, l'UI et runTurn
+  rouleraient sur `cfgOf(undefined)` = DÉFAUTS, bug classe
+  « adultAge 16 »).
+- TESTS : `src/state/payload.test.ts` (6 tests : clé absente du JSON,
+  non-mutation, conservation du reste, ingestion, rétrocompat embarquée
+  ≠ source, repli locale-puis-mondiale) ; `scripts/test-function.mjs`
+  vérifie que le BUNDLE expose et retire (un bundle sans le helper n'est
+  jamais déployé) ; stub `types/stubs.d.ts` étendu (typecheck du
+  handler). Harnais : 97/97 (91 baseline + 6) sur les DEUX branches.
+
+**Compatibilité** : les lignes existantes qui embarquent encore leur
+config restent lisibles (le champ est ignoré — l'ingestion écrase le
+cache par la locale, il n'est plus une source). Fenêtre courte : entre
+le déploiement de la nouvelle Edge Function et le rechargement
+(Ctrl+F5) de chaque joueur, un ANCIEN bundle client qui recevrait un
+état sans config afficherait les défauts. Salon sans `__config__`
+jamais publiée : le serveur résout désormais sur les défauts (plus de
+cache embarqué pour l'amorcer) — publier une fois la config mondiale
+depuis l'accueil si ce cas existe.
+
+**Shas** : v4 `e7d5fcf9` (correctif demandé par l'arbitre, posé sur la
+tête qui porte la publication conditionnée `c2b49c5c`) ;
+chasse-et-peche-web `58a72c89` (SOURCE DU JEU LIVE — le deploy.yaml
+checkoute TOUJOURS cette branche pour le build Pages ; un push v4 seul
+ne change pas le jeu en prod). Intégrité byte-à-byte 8/8 au sha sur
+chaque branche.
+
+**Vérifications** : CI VERTE au premier coup sur les DEUX branches —
+chasse-et-peche-web : CI jeu #57, diag #213, Deploy Pages #1232,
+Deploy Edge Function #30 (la fonction redéployée publie sans la
+config) ; v4 : deploy #1231. LIVE vérifié : bundle `index-BqeOLTZ4.js`
+(nouveau hash) contient la forme minifiée d'`etatReseau`
+(`const t={...e};return delete t.config,t`) — pensez à Ctrl+F5.
+NB : v4 conserve 4 correctifs NON portés sur chasse-et-peche-web
+(publication conditionnée CAS `c2b49c5c`, fusion déterministe +
+conflits de cités journalisés, journal du Forcer, doc dette
+déterminisme rng/newId) — à synchroniser à l'arbitrage de l'arbitre.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
