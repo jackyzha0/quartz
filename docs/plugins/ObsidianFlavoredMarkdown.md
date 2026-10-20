@@ -21,7 +21,7 @@ This plugin accepts the following configuration options:
 - `wikilinks`:If `true` (default), turns [[wikilinks]] into regular links.
 - `callouts`: If `true` (default), adds support for [[callouts|callout]] blocks for emphasizing content.
 - `mermaid`: If `true` (default), enables [[Mermaid diagrams|Mermaid diagram]] parsing within Markdown files.
-- `diagramRenderer`: `"mermaid"` (default) or `"pele"`. Selects the engine that draws Mermaid fences. Mermaid.js remains the default; [Pele](https://pele.run) is opt-in while Mermaid.js is deprecated toward Pele.
+- `diagramRenderer`: `"mermaid"` (default) or `"pele"`. Which engine draws Mermaid fences. [Pele](https://pele.run) is opt-in; Mermaid.js is deprecated.
 - `parseTags`: If `true` (default), parses and links tags within the content.
 - `parseBlockReferences`: If `true` (default), handles block references, linking to specific content blocks.
 - `enableInHtmlEmbed`: If `true`, allows embedding of content directly within HTML. Defaults to `false`.
