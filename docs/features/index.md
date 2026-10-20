@@ -10,7 +10,7 @@ Quartz comes with a wide variety of features out of the box. Most features are p
 - [[wikilinks]] — Link between notes using `[[wikilinks]]` syntax
 - [[callouts]] — Obsidian-style callout blocks
 - [[features/Latex|Latex]] — LaTeX math rendering
-- [[Mermaid diagrams]] — Diagram support via Mermaid
+- [[Mermaid diagrams]] — Mermaid syntax diagrams rendered with Pele
 - [[syntax highlighting|Syntax highlighting]] — Code block highlighting with themes
 - [[OxHugo compatibility]] — Support for ox-hugo Markdown
 - [[Roam Research compatibility]] — Support for Roam Research syntax

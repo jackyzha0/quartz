@@ -70,7 +70,7 @@ Quartz 5 aims for full compatibility with Obsidian's core features:
 - **Comments** — `%%hidden comments%%` (inline and block)
 - **Tags** — `#tag` and `#nested/tag` with tag pages
 - **Custom task characters** — `[?]`, `[!]`, `[>]`, etc. preserved as `data-task` attributes
-- **Mermaid diagrams** — rendered with expand button
+- **Mermaid diagrams** — rendered with [Pele](https://pele.run) and an expand button
 - **YouTube and Tweet embeds** — via image syntax
 - **Block references** — `^block-id` with broad character support
 - **Video/audio embeds** — full format support (mp4, webm, ogv, mov, mkv, avi, flac, aac, etc.)
