@@ -21,7 +21,7 @@ import {
 } from './ConfigTables'
 
 const ONGLETS = [
-  'Formules', 'Titres', 'Traits', 'Cultures', 'Régimes',
+  'Formules', 'Métiers', 'Traits', 'Cultures', 'Régimes',
   'Bâtiments', 'Aménagements', 'Progrès', 'Pays & rangs', 'Habitations',
   'Ministères', 'Couleurs',
   'Événements', 'Effets évts', 'Dynasties', 'Cartes', 'Offrandes',
@@ -101,7 +101,7 @@ export function ParamsPanel() {
                 />
               </label>
             ))}
-            {(['titreDirigeant', 'titreGouverneur', 'titreProfesseur', 'titreChasseur', 'titreSoldat', 'titreCommandant', 'traitBatard', 'traitConsanguin', 'dynastieRoturier'] as const).map((k) => (
+            {(['metierDirigeant', 'metierGouverneur', 'metierProfesseur', 'metierChasseur', 'metierSoldat', 'metierCommandant', 'traitBatard', 'traitConsanguin', 'dynastieRoturier'] as const).map((k) => (
               <label key={k} className="field">
                 <span className="field-label">{k}</span>
                 <TextInput
@@ -114,32 +114,32 @@ export function ParamsPanel() {
         </Card>
       )}
 
-      {onglet === 'Titres' && (
-        <Card title="Titres du classeur (15) — gains par tour, règles">
+      {onglet === 'Métiers' && (
+        <Card title="Métiers du classeur (15) — gains par tour, règles">
           <div className="table-wrap">
             <table className="tbl small">
               <thead>
-                <tr><th>Titre</th><th>Éducation</th><th>Valeur 1</th><th>Ressource 1</th><th>Valeur 2</th><th>Ressource 2</th><th>Noble seul</th><th>Genre</th><th>Attribution</th><th>Description</th></tr>
+                <tr><th>Métier</th><th>Éducation</th><th>Valeur 1</th><th>Ressource 1</th><th>Valeur 2</th><th>Ressource 2</th><th>Noble seul</th><th>Genre</th><th>Attribution</th><th>Description</th></tr>
               </thead>
               <tbody>
-                {config.titres.map((t, i) => (
+                {config.metiers.map((t, i) => (
                   <tr key={i}>
-                    <td><TextInput value={t.titre} onChange={(v) => setCfg((c) => { c.titres[i].titre = v })} /></td>
-                    <td><TextInput value={t.education} onChange={(v) => setCfg((c) => { c.titres[i].education = v })} /></td>
-                    <td><NumberInput value={t.valeur1} step={0.1} onChange={(v) => setCfg((c) => { c.titres[i].valeur1 = v })} /></td>
-                    <td><TextInput value={t.ressource1} onChange={(v) => setCfg((c) => { c.titres[i].ressource1 = v })} /></td>
-                    <td><NumberInput value={t.valeur2} step={0.1} onChange={(v) => setCfg((c) => { c.titres[i].valeur2 = v })} /></td>
-                    <td><TextInput value={t.ressource2} onChange={(v) => setCfg((c) => { c.titres[i].ressource2 = v })} /></td>
-                    <td><input type="checkbox" checked={t.nobleSeul} onChange={(e) => setCfg((c) => { c.titres[i].nobleSeul = e.target.checked })} /></td>
-                    <td><TextInput value={t.regleGenre} onChange={(v) => setCfg((c) => { c.titres[i].regleGenre = v })} /></td>
-                    <td><TextInput value={t.attribution} onChange={(v) => setCfg((c) => { c.titres[i].attribution = v })} /></td>
-                    <td><TextInput value={t.description} onChange={(v) => setCfg((c) => { c.titres[i].description = v })} /></td>
+                    <td><TextInput value={t.metier} onChange={(v) => setCfg((c) => { c.metiers[i].metier = v })} /></td>
+                    <td><TextInput value={t.education} onChange={(v) => setCfg((c) => { c.metiers[i].education = v })} /></td>
+                    <td><NumberInput value={t.valeur1} step={0.1} onChange={(v) => setCfg((c) => { c.metiers[i].valeur1 = v })} /></td>
+                    <td><TextInput value={t.ressource1} onChange={(v) => setCfg((c) => { c.metiers[i].ressource1 = v })} /></td>
+                    <td><NumberInput value={t.valeur2} step={0.1} onChange={(v) => setCfg((c) => { c.metiers[i].valeur2 = v })} /></td>
+                    <td><TextInput value={t.ressource2} onChange={(v) => setCfg((c) => { c.metiers[i].ressource2 = v })} /></td>
+                    <td><input type="checkbox" checked={t.nobleSeul} onChange={(e) => setCfg((c) => { c.metiers[i].nobleSeul = e.target.checked })} /></td>
+                    <td><TextInput value={t.regleGenre} onChange={(v) => setCfg((c) => { c.metiers[i].regleGenre = v })} /></td>
+                    <td><TextInput value={t.attribution} onChange={(v) => setCfg((c) => { c.metiers[i].attribution = v })} /></td>
+                    <td><TextInput value={t.description} onChange={(v) => setCfg((c) => { c.metiers[i].description = v })} /></td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <Button onClick={() => setCfg((c) => { c.titres.push({ titre: 'Nouveau titre', education: '', valeur1: 0, ressource1: '', valeur2: 0, ressource2: '', description: '', nobleSeul: false, regleGenre: '', attribution: 'Manuelle' }) })}>+ Ajouter un titre</Button>
+          <Button onClick={() => setCfg((c) => { c.metiers.push({ metier: 'Nouveau métier', education: '', valeur1: 0, ressource1: '', valeur2: 0, ressource2: '', description: '', nobleSeul: false, regleGenre: '', attribution: 'Manuelle' }) })}>+ Ajouter un métier</Button>
         </Card>
       )}
 

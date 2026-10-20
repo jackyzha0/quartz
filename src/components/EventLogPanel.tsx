@@ -7,7 +7,7 @@ import { useGame } from '../state/store'
 import type { LogEntry } from '../engine/types'
 import { Card, Select } from './ui'
 
-const TYPES = ['Événement', 'Dynastie', 'Crise', 'Naissance', 'Décès', 'Mariage', 'Titre', 'Armée', 'Culture', 'Commerce', 'Système']
+const TYPES = ['Événement', 'Dynastie', 'Crise', 'Naissance', 'Décès', 'Mariage', 'Métier', 'Titre', 'Armée', 'Culture', 'Commerce', 'Système']
 
 export function EventLogPanel() {
   const { state } = useGame()

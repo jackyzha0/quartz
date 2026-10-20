@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════════════════════════════
 //  TEST DE RENDU — page « Wiki » (ReferenceDataPanel) : référentiels du
-//  classeur d'origine, titres, traits, cultures, ministères…
+//  classeur d'origine, métiers, traits, cultures, ministères…
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { test } from 'node:test'

@@ -332,7 +332,7 @@ export function VilleCarte({ idx, ville, joueur, p, C, setPlayer, setSurint, set
                 label: 'Aménagements',
                 options: amRefs.map((a) => ({
                   value: a.nom,
-                  titre: a.nom,
+                  metier: a.nom,
                   droite: `${fmtCout(parseCoutTexte(a.cout))}${a.terrain ? ` · ${a.terrain}` : ''}`,
                   description: [
                     resumeConstruction(a) || a.production || '',
@@ -443,7 +443,7 @@ export function VilleCarte({ idx, ville, joueur, p, C, setPlayer, setSurint, set
         </div>
 
         {/* Retour Thibaut 2026-10-15 : le tableau récapitulatif des
-            taxes (titres × taxes / conso / net) est retiré — le net
+            taxes (métiers × taxes / conso / net) est retiré — le net
             reste visible dans « Production de la ville » ci-dessous et
             dans le récap par tour de la page. */}
         {/* ── Production de la ville : ce qu'elle produit en

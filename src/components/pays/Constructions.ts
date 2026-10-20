@@ -252,7 +252,7 @@ export function faireConstruire(o: {
       //  habitants + bâtiments de la ville, nouveau bâtiment inclus).
       if (type === 'batiment' && aMinistre(s, t, 'Surintendant des finances')) {
         const prodVille = new Set<string>()
-        for (const r of Object.keys(detailGainsVille(s, t, ville, C).titres)) prodVille.add(r)
+        for (const r of Object.keys(detailGainsVille(s, t, ville, C).metiers)) prodVille.add(r)
         for (const r of Object.keys(effetsTourBatiment(nom, C))) prodVille.add(r)
         const options = [...prodVille].filter((r) => t.resources[r] !== undefined)
         const qty = rangNiveau(ville, C)
@@ -368,7 +368,7 @@ export function faireBatParFamille(o: { state: GameState; p: Player; C: Cfg }): 
           label: `${label} · rang ${r}${r > 1 ? '+' : ''}`,
           options: items.map(({ b, groupe }) => ({
             value: `${groupe}|${b.nom}`,
-            titre: b.nom,
+            metier: b.nom,
             droite: fmtCout(parseCoutTexte(b.cout)),
             alerte: alertePour(b) || undefined,
             description: [
@@ -387,7 +387,7 @@ export function faireBatParFamille(o: { state: GameState; p: Player; C: Cfg }): 
         .filter(({ b }) => (b.famille ?? '') === fam)
         .map(({ b, groupe }) => ({
           value: `${groupe}|${b.nom}`,
-          titre: b.nom,
+          metier: b.nom,
           droite: fmtCout(parseCoutTexte(b.cout)),
           alerte: alertePour(b) || undefined,
           description: [
@@ -406,7 +406,7 @@ export function faireBatParFamille(o: { state: GameState; p: Player; C: Cfg }): 
         label: `Merveilles · rang ${r}${r > 1 ? '+' : ''}`,
         options: ms.map((b) => ({
           value: `${b.groupe}|${b.nom}`,
-          titre: b.nom,
+          metier: b.nom,
           badge: pastilleClass(statutMerveille(b.nom)),
           droite: fmtCout(parseCoutTexte(b.cout)),
           alerte: alertePour(b) || undefined,

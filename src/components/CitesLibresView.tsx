@@ -8,14 +8,14 @@
 //      la population n'est
 //      PLUS gérée ici — elle vit dans l'onglet « 👥 Population »,
 //      avec un onglet 🗼 par cité « comme si c'étaient des joueurs »
-//      (mêmes tableaux, ajout, titres, dons et mariages) ;
+//      (mêmes tableaux, ajout, métiers, dons et mariages) ;
 //    · garnison automatique : 100 + 40 par rang de pays du joueur
 //      ayant le plus haut rang (batailles au plateau : manuel) ;
 //    · émissaires : suivi manuel des tentatives d'influence (une par
 //      saison au plateau) — à 3 émissaires, un joueur peut devenir
 //      suzerain de la cité ;
 //    · suzerain : à chaque fin de tour, la cité verse ses taxes à
-//      son suzerain (production nette de ses habitants — titres ×
+//      son suzerain (production nette de ses habitants — métiers ×
 //      niveau de taxes, moins leur consommation —, canal « Cités
 //      libres » du récap ressources, appliqué automatiquement).
 //  Une cité libre compte comme un Serment pour son suzerain
@@ -189,7 +189,7 @@ export function CitesLibresView() {
       <Card title="🗼 Cités libres — règle et fonctionnement">
         <p className="small muted pre-wrap">{C.config.regleCitesLibres}</p>
         <div className="badges-wrap">
-          <Badge tone="good">✓ population : adultes titrés (Chasseurs ×1,1 Nourriture) ; enfants sans titre (consomment, ne produisent pas)</Badge>
+          <Badge tone="good">✓ population : adultes avec métier (Chasseurs ×1,1 Nourriture) ; enfants sans métier (consomment, ne produisent pas)</Badge>
           <Badge tone="good">✓ garnison : 100 + 40 × rang de pays le plus haut (auto)</Badge>
           <Badge tone="good">✓ taxes au suzerain : versées à chaque fin de tour (canal « Cités libres »)</Badge>
           <Badge tone="good">✓ consommation de Nourriture : par habitant vivant, comme une ville de joueur</Badge>
@@ -395,8 +395,8 @@ export function CitesLibresView() {
                 {' '}· taxes ×{d.taxeMult}
               </span>
               <div className="badges-wrap">
-                {Object.entries(d.titres).map(([res, v]) => (
-                  <span key={res} className="badge badge-info">titres : +{fmtNum(v)} {res}</span>
+                {Object.entries(d.metiers).map(([res, v]) => (
+                  <span key={res} className="badge badge-info">métiers : +{fmtNum(v)} {res}</span>
                 ))}
                 {Object.entries(d.conso).map(([res, v]) => (
                   <span key={res} className="badge badge-neutral">conso : {fmtNum(v)} {res}</span>

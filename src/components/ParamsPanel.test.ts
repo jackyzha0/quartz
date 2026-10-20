@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════════════════════════════
 //  TEST DE RENDU — page « Paramètres » (ParamsPanel) : configuration
-//  commune, constantes des formules, titres, cultures, export/import.
+//  commune, constantes des formules, metiers, cultures, export/import.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { test } from 'node:test'

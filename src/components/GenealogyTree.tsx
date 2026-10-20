@@ -22,14 +22,14 @@ export function GenealogyTree({ joueur }: { joueur: number }) {
 
   const pop = state.population[joueur] ?? []
   const vivants = pop.filter((c) => c.statut !== 'Décédé')
-  const dirigeant = vivants.find((c) => c.titre === C.p.titreDirigeant)
+  const dirigeant = vivants.find((c) => c.metier === C.p.metierDirigeant)
   // Famille dirigeante = dynastie du Dirigeant vivant (à défaut la carte
   // dynastie en cours), roturiers exclus.
   const dyn = dirigeant?.dynastie ?? p.dynastie?.nom ?? null
   if (!dyn || dyn === C.p.dynastieRoturier) {
     return (
       <Card title="🌳 Arbre généalogique">
-        <p className="muted">Aucune famille dirigeante : ce joueur n'a ni {C.p.titreDirigeant} ni dynastie.</p>
+        <p className="muted">Aucune famille dirigeante : ce joueur n'a ni {C.p.metierDirigeant} ni dynastie.</p>
       </Card>
     )
   }
@@ -67,7 +67,7 @@ export function GenealogyTree({ joueur }: { joueur: number }) {
           <div><strong>{c.prenom}</strong> <span className="muted">{c.nom}</span></div>
           <div className="gt-sub">
             {c.statut === 'Décédé' ? `† ${c.age} ans` : `${c.age} ans`}
-            {c.titre ? ` · ${c.titre}` : ''}
+            {c.metier ? ` · ${c.metier}` : ''}
             {c.sexe === 'F' && c.statut === 'Enceinte' ? ' · enceinte' : ''}
           </div>
           {c.mariage && <div className="gt-spouse">⚭ {c.mariage}</div>}

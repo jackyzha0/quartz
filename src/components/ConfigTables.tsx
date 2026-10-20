@@ -207,7 +207,7 @@ export function ProgresParams({ config, setCfg }: TableProps) {
                           <EffetsTechEditor
                             tech={arbre[br][idx]}
                             ressources={config.ressources}
-                            titres={config.titres.map((t) => t.titre)}
+                            metiers={config.metiers.map((t) => t.metier)}
                             set={(fn) => setCfg((c) => {
                               const t = c.progres[i][br][idx]
                               if (!t) return
@@ -227,7 +227,7 @@ export function ProgresParams({ config, setCfg }: TableProps) {
                         <EffetsTechEditor
                           tech={arbre.techC}
                           ressources={config.ressources}
-                          titres={config.titres.map((t) => t.titre)}
+                          metiers={config.metiers.map((t) => t.metier)}
                           set={(fn) => setCfg((c) => {
                             const t = c.progres[i].techC
                             if (!t) return
@@ -264,15 +264,15 @@ const TYPES_EFFETS: Array<{ value: EffetProgres['type']; label: string }> = [
   { value: 'gain', label: 'Gain au déblocage' },
   { value: 'prodCapitale', label: '+/tour (capitale)' },
   { value: 'prodParHabitation', label: '+/tour par habitation' },
-  { value: 'prodParTitre', label: '+/tour par titre' },
+  { value: 'prodParMetier', label: '+/tour par métier' },
   { value: 'prodParAmenagement', label: '+/tour par aménagement' },
   { value: 'garnison', label: 'Garnison (statique)' },
 ]
 
-export function EffetsTechEditor({ tech, ressources, titres, set }: {
+export function EffetsTechEditor({ tech, ressources, metiers, set }: {
   tech: ProgresTechDef | undefined
   ressources: string[]
-  titres: string[]
+  metiers: string[]
   /** applique une mutation au tableau « effets » de la tech (brouillon) */
   set: (fn: (effets: EffetProgres[]) => void) => void
 }) {
@@ -305,11 +305,11 @@ export function EffetsTechEditor({ tech, ressources, titres, set }: {
             />
           )}
           <NumberInput value={e.montant} step={1} onChange={(v) => maj(j, { montant: v })} />
-          {e.type === 'prodParTitre' && (
+          {e.type === 'prodParMetier' && (
             <Select
-              value={e.titre ?? ''}
-              options={titres.map((t) => ({ value: t, label: t }))}
-              onChange={(v) => maj(j, { titre: v })}
+              value={e.metier ?? ''}
+              options={metiers.map((t) => ({ value: t, label: t }))}
+              onChange={(v) => maj(j, { metier: v })}
             />
           )}
           {e.type === 'prodParAmenagement' && (

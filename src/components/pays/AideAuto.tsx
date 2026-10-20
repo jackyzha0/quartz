@@ -16,7 +16,7 @@ export function AideAuto({ C }: { C: Cfg }) {
         <div>
           <strong>✅ Compté automatiquement</strong> — à chaque « ▶ Terminer le tour » (une seule pression suffit, TOUT est crédité) :
           <ul className="small">
-            <li><strong>Impôts des habitants</strong> : titres × taxes de chaque ville, sur toutes les ressources, moins leur consommation.</li>
+            <li><strong>Impôts des habitants</strong> : métiers × taxes de chaque ville, sur toutes les ressources, moins leur consommation.</li>
             <li><strong>Production</strong> des bâtiments, aménagements et lignes « Autres » — la « Nourr - été » n'est créditée qu'en été.</li>
             <li><strong>Consommation des habitations</strong> (rang de chaque ville) et <strong>bonus de proximité</strong> (Rivière / Mer).</li>
             <li><strong>Règles de pays & culture</strong> (ex. +N par ville de ta culture dans le monde) et <strong>lois de régime</strong>.</li>

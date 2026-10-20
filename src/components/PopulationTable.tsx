@@ -2,8 +2,8 @@
 //  Table de population : récapitulatif des métiers (royaume puis par
 //  ville), ajout manuel d'habitants (roturiers ou nouvelle famille
 //  noble, culture pondérée par celles présentes dans la ville),
-//  filtres, tri, édition des titres — seuls les titres accessibles
-//  sont proposés (Chasseur, Gouverneur, titres Education enseignés
+//  filtres, tri, édition des métiers — seuls les métiers accessibles
+//  sont proposés (Chasseur, Gouverneur, métiers Education enseignés
 //  par un Professeur vivant) — et arbre généalogique de la famille
 //  dirigeante (déplacé ici depuis la page Royaume).
 //  Retour Thibaut (2026-10-14) : la population est séparée en deux
@@ -16,7 +16,7 @@
 //  AUSSI les CITÉS LIBRES comme des onglets « comme si c'étaient des
 //  joueurs » (joueur négatif = index de la cité) — mêmes tableaux
 //  « La cour » / « Population », ajout de roturiers ou de familles
-//  nobles, titres, dons et mariages. Seules différences : pas de
+//  nobles, métiers, dons et mariages. Seules différences : pas de
 //  Ministres ni d'arbre dynastique, et le STATUT reste éditable
 //  (les cités libres ne passent pas au moteur démographique).
 // ══════════════════════════════════════════════════════════════════════
@@ -25,12 +25,12 @@ import { useMemo, useState } from 'react'
 import { useGame } from '../state/store'
 import type { Character, CiteLibre, GameState } from '../engine/types'
 import { cfgOf } from '../engine/gameData'
-import { validateTitleAssignment } from '../engine/validation'
+import { validateMetierAssignment } from '../engine/validation'
 import { ajouterHabitant } from '../engine/setup'
 import {
-  titresAccessibles, changerPortefeuille, isNobleDyn, fullName,
+  metiersAccessibles, changerPortefeuille, isNobleDyn, fullName,
   marierPersonnages, deplacerPersonnage, toutesLesPopulations,
-  titresAccessiblesCite, pseudoJoueurDeCite,
+  metiersAccessiblesCite, pseudoJoueurDeCite,
   ajouterHabitantsCiteLibre, ajouterFamilleNobleCiteLibre,
   type Detenteur,
 } from '../engine/engine'
@@ -41,7 +41,7 @@ import { traitDef } from '../engine/gameData'
 import { statutMinistre, pastilleClass } from '../engine/statutAuto'
 import { resynchroniserTourisme } from '../engine/regimes'
 
-type SortKey = 'nom' | 'age' | 'dynastie' | 'ville' | 'titre' | 'statut'
+type SortKey = 'nom' | 'age' | 'dynastie' | 'ville' | 'metier' | 'statut'
 
 const STATUTS: Character['statut'][] = ['Sain', 'Malade', 'Décédé']
 
@@ -63,7 +63,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   const PAR_PAGE = 200
   const [filtreDyn, setFiltreDyn] = useState('')
   const [filtreVille, setFiltreVille] = useState('')
-  const [filtreTitre, setFiltreTitre] = useState('')
+  const [filtreMetier, setFiltreMetier] = useState('')
   const [filtreStatut, setFiltreStatut] = useState('Vivants')
   const [tri, setTri] = useState<SortKey>('age')
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -79,10 +79,10 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   const p = cite ? undefined : state?.players.find((x) => x.n === joueur)
   const pop = cite ? (cite.population ?? []) : (state?.population[joueur] ?? [])
   const C = cfgOf(state?.config)
-  // Description complète d'un titre pour le picker (marqueur (y)) :
+  // Description complète d'un métier pour le picker (marqueur (y)) :
   //  gains par habitant/tour + noblesse + éducation requise.
-  const descTitre = (t: string): string => {
-    const td = (C.config.titres ?? []).find((x) => x.titre === t)
+  const descMetier = (t: string): string => {
+    const td = (C.config.metiers ?? []).find((x) => x.metier === t)
     if (!td) return ''
     const parts: string[] = []
     if (td.ressource1 && td.valeur1) parts.push(`+${fmt(td.valeur1)} ${td.ressource1}`)
@@ -94,8 +94,8 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       td.description || '',
     ].filter(Boolean).join('\n')
   }
-  const resumeTitre = (t: string): string => {
-    const td = (C.config.titres ?? []).find((x) => x.titre === t)
+  const resumeMetier = (t: string): string => {
+    const td = (C.config.metiers ?? []).find((x) => x.metier === t)
     if (!td) return ''
     const parts: string[] = []
     if (td.ressource1 && td.valeur1) parts.push(`+${fmt(td.valeur1)} ${td.ressource1}`)
@@ -115,13 +115,13 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       else if (filtreStatut === 'Enfants') list = list.filter((c) => c.statut !== 'Décédé' && c.age < 16)
       if (filtreDyn) list = list.filter((c) => c.dynastie.toLowerCase().includes(filtreDyn.toLowerCase()))
       if (filtreVille) list = list.filter((c) => c.ville === filtreVille)
-      if (filtreTitre) list = list.filter((c) => (c.titre ?? '') === filtreTitre)
+      if (filtreMetier) list = list.filter((c) => (c.metier ?? '') === filtreMetier)
       const cmp: Record<SortKey, (a: Character, b: Character) => number> = {
         nom: (a, b) => (a.nom + a.prenom).localeCompare(b.nom + b.prenom, 'fr'),
         age: (a, b) => b.age - a.age,
         dynastie: (a, b) => a.dynastie.localeCompare(b.dynastie, 'fr'),
         ville: (a, b) => a.ville.localeCompare(b.ville, 'fr'),
-        titre: (a, b) => (a.titre ?? '').localeCompare(b.titre ?? '', 'fr'),
+        metier: (a, b) => (a.metier ?? '').localeCompare(b.metier ?? '', 'fr'),
         statut: (a, b) => a.statut.localeCompare(b.statut, 'fr'),
       }
       list.sort(cmp[tri])
@@ -132,7 +132,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       rowsClassique: filtre(pop.filter((c) => !estNoble(c))),
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pop, C, filtreDyn, filtreVille, filtreTitre, filtreStatut, tri])
+  }, [pop, C, filtreDyn, filtreVille, filtreMetier, filtreStatut, tri])
 
   if (!state || (!p && !cite)) return null
 
@@ -165,12 +165,12 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       const t = slot === 'c' ? a.techC : (slot[0] === 'a' ? a.brancheA : a.brancheB)[+slot[1] - 1]
       return t?.nom === 'Progrès du développement futur C'
     }) ? 1 : 0)
-  const nbMinistres = pop.filter((c) => c.titre === 'Ministre' && c.statut !== 'Décédé' && c.ministere).length
+  const nbMinistres = pop.filter((c) => c.metier === 'Ministre' && c.statut !== 'Décédé' && c.ministere).length
 
-  // Aucune contrainte bloquante : le titre est TOUJOURS appliqué ;
+  // Aucune contrainte bloquante : le métier est TOUJOURS appliqué ;
   // le contrôle de cohérence n'affiche qu'un avertissement (ignorable).
   /** Éducation enseignée par un professeur — modifiable à tout moment
-   *  (même le titre « sans éducation » est possible). Uniquement pour
+   *  (même le métier « sans éducation » est possible). Uniquement pour
    *  les Professeurs vivants, comme demandé — les autres gardent leur
    *  éducation (acquise via un professeur pendant l'enfance). */
   const changerEducationProf = (c: Character, v: string) => {
@@ -182,12 +182,12 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       if (target) target.education = v || null
     })
   }
-  const changeTitre = (c: Character, titre: string) => {
+  const changeMetier = (c: Character, metier: string) => {
     // Cité libre : validation via un pseudo-joueur (culture de la cité,
     // mêmes contrôles de cohérence que pour un joueur).
     const porteur = p ?? (cite ? pseudoJoueurDeCite(cite) : undefined)
     const issue = porteur
-      ? validateTitleAssignment(state, porteur, c, titre)
+      ? validateMetierAssignment(state, porteur, c, metier)
       : { ok: true, message: '' }
     setErrors((e) => {
       const copy = { ...e }
@@ -203,23 +203,23 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       if (target) {
         // Dirigeant / Héritier UNIQUE (retour utilisateur
         //  2026-10-17) : nommer un nouveau porteur relève
-        //  automatiquement l'ancien (il redevient sans titre) — la
+        //  automatiquement l'ancien (il redevient sans métier) — la
         //  validation ne fait qu'avertir, jamais bloquer, mais on
-        //  garantit l'unicité du titre dans l'état.
-        if (titre === C.p.titreDirigeant || titre === C.p.titreHeritierStr) {
+        //  garantit l'unicité du métier dans l'état.
+        if (metier === C.p.metierDirigeant || metier === C.p.metierHeritierStr) {
           for (const autre of liste) {
-            if (autre.id !== target.id && autre.titre === titre) {
-              autre.titre = null
+            if (autre.id !== target.id && autre.metier === metier) {
+              autre.metier = null
               s.log.push({
-                turn: s.turn, type: 'Titre', joueur,
-                texte: `\u{1F451} ${fullName(autre)} quitte le titre ${titre} — remplacé(e) par ${fullName(target)}.`,
+                turn: s.turn, type: 'Métier', joueur,
+                texte: `\u{1F451} ${fullName(autre)} quitte le métier ${metier} — remplacé(e) par ${fullName(target)}.`,
               })
             }
           }
         }
-        target.titre = titre
-        // On quitte le titre « Ministre » → le portefeuille part avec.
-        if (titre !== 'Ministre') target.ministere = null
+        target.metier = metier
+        // On quitte le métier « Ministre » → le portefeuille part avec.
+        if (metier !== 'Ministre') target.ministere = null
       }
     })
   }
@@ -289,8 +289,8 @@ export function PopulationTable({ joueur }: { joueur: number }) {
     const dstNom = dst.kind === 'joueur'
       ? `${dst.p.nom} (J${dst.p.n})`
       : `la cité libre ${dst.cite.nom}`
-    if (p && c.titre === C.p.titreDirigeant
-      && !window.confirm(`Donner ${fullName(c)} (${C.p.titreDirigeant} de ${p.nom}) à ${dstNom} ?`)) return
+    if (p && c.metier === C.p.metierDirigeant
+      && !window.confirm(`Donner ${fullName(c)} (${C.p.metierDirigeant} de ${p.nom}) à ${dstNom} ?`)) return
     let errDon: string | null = null
     update((s) => {
       const tc = cite
@@ -311,7 +311,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
     // Retour Thibaut (marqueur (o)) : le mariage DÉMÉNAGE la personne
     //  mariée dans la ville de son conjoint — confirmation avant de
     //  déplacer un Dirigeant (changement de porteur possible).
-    if (p && c.titre === C.p.titreDirigeant
+    if (p && c.metier === C.p.metierDirigeant
       && !window.confirm(`Le mariage déplace la personne mariée dans la ville de son conjoint (${fullName(c)} changera de ville). Marier ${fullName(c)} ?`)) return
     let errMariage: string | null = null
     update((s) => {
@@ -337,17 +337,17 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   const vivants = pop.filter((c) => c.statut !== 'Décédé')
   const villesOcc = cite ? [{ nom: cite.nom }] : (p?.villes ?? [])
   const accessibles = p
-    ? titresAccessibles(state, p)
-    : (cite ? titresAccessiblesCite(state, cite) : [])
-  const compteTitres = (liste: Character[]): [string, number][] => {
-    const parTitre: Record<string, number> = {}
-    let sansTitre = 0
+    ? metiersAccessibles(state, p)
+    : (cite ? metiersAccessiblesCite(state, cite) : [])
+  const compteMetiers = (liste: Character[]): [string, number][] => {
+    const parMetier: Record<string, number> = {}
+    let sansMetier = 0
     for (const c of liste) {
-      if (c.titre) parTitre[c.titre] = (parTitre[c.titre] ?? 0) + 1
-      else sansTitre++
+      if (c.metier) parMetier[c.metier] = (parMetier[c.metier] ?? 0) + 1
+      else sansMetier++
     }
-    const lignes = Object.entries(parTitre).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'fr'))
-    return sansTitre > 0 ? [...lignes, ['(sans titre)', sansTitre]] : lignes
+    const lignes = Object.entries(parMetier).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'fr'))
+    return sansMetier > 0 ? [...lignes, ['(sans métier)', sansMetier]] : lignes
   }
 
   // ── Ajout manuel d'habitants ────────────────────────────────────────
@@ -385,7 +385,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   //  cour (le mariage manuel unit deux nobles — le reste de la
   //  population se marie au fil des tours).
   const renderLigne = (c: Character, avecMariage: boolean) => (
-    <tr key={c.id} className={c.statut === 'Décédé' ? 'dead' : (c.titre === C.p.titreDirigeant || c.titre === C.p.titreHeritierStr) ? 'lead' : ''}>
+    <tr key={c.id} className={c.statut === 'Décédé' ? 'dead' : (c.metier === C.p.metierDirigeant || c.metier === C.p.metierHeritierStr) ? 'lead' : ''}>
       <td><strong>{c.prenom} {c.nom}</strong></td>
       <td>{c.dynastie}</td>
       <td>{c.sexe}</td>
@@ -393,40 +393,40 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       <td>{c.ville}</td>
       <td>{c.culture}</td>
       <td>
-        {/* Marqueur (y), retour Thibaut : attribution de titre avec
-            DESCRIPTION (gains du titre, noblesse, éducation) AVANT
-            le choix — badge du titre actuel + bouton Retirer. */}
+        {/* Marqueur (y), retour Thibaut : attribution de métier avec
+            DESCRIPTION (gains du métier, noblesse, éducation) AVANT
+            le choix — badge du métier actuel + bouton Retirer. */}
         <div className="row" style={{ alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
-          <span className={`badge ${c.titre ? 'badge-info' : 'badge-neutral'}`}>
-            {c.titre ?? '(sans titre)'}
+          <span className={`badge ${c.metier ? 'badge-info' : 'badge-neutral'}`}>
+            {c.metier ?? '(sans métier)'}
           </span>
           {c.statut !== 'Décédé' && (
             <ChoicePicker
               bouton="Attribuer…"
               categories={[
                 {
-                  label: 'Titres accessibles',
+                  label: 'Métiers accessibles',
                   options: accessibles
-                    .filter((t) => t !== c.titre)
+                    .filter((t) => t !== c.metier)
                     .map((t) => ({
                       value: t,
-                      titre: t,
-                      droite: resumeTitre(t),
-                      description: descTitre(t),
+                      metier: t,
+                      droite: resumeMetier(t),
+                      description: descMetier(t),
                     })),
                 },
               ]}
-              onPick={(v) => changeTitre(c, v)}
+              onPick={(v) => changeMetier(c, v)}
             />
           )}
-          {c.titre && c.statut !== 'Décédé' && (
-            <Button tone="danger" title="Retirer le titre" onClick={() => changeTitre(c, '')}>✕</Button>
+          {c.metier && c.statut !== 'Décédé' && (
+            <Button tone="danger" title="Retirer le métier" onClick={() => changeMetier(c, '')}>✕</Button>
           )}
         </div>
         {errors[c.id] && <div className="neg small">⚠ {errors[c.id]}</div>}
       </td>
       <td>
-        {c.titre === C.p.titreProfesseur && c.statut !== 'Décédé' ? (
+        {c.metier === C.p.metierProfesseur && c.statut !== 'Décédé' ? (
           <Select
             value={c.education ?? ''}
             options={[
@@ -460,7 +460,6 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       </td>
       <td className="small">{c.mariage ?? '—'}</td>
       <td>{c.fecondite > 0 ? fmt(c.fecondite, 2) : '—'}</td>
-      <td>{c.ageMax || '—'}</td>
       <td className="small">
         {c.statut !== 'Décédé' && (
           <div className="act-row">
@@ -501,17 +500,17 @@ export function PopulationTable({ joueur }: { joueur: number }) {
         { value: '', label: 'Toutes les villes' },
         ...villes.map((v) => ({ value: v, label: v })),
       ]} onChange={setFiltreVille} />
-      <Select value={filtreTitre} options={[
-        { value: '', label: 'Tous les titres' },
-        ...C.titres.map((t) => ({ value: t.titre, label: t.titre })),
-      ]} onChange={setFiltreTitre} />
+      <Select value={filtreMetier} options={[
+        { value: '', label: 'Tous les métiers', },
+        ...C.metiers.map((t) => ({ value: t.metier, label: t.metier })),
+      ]} onChange={setFiltreMetier} />
       <TextInput value={filtreDyn} onChange={setFiltreDyn} placeholder="Filtrer dynastie…" />
       <Select value={tri} options={[
         { value: 'age', label: 'Trier : âge' },
         { value: 'nom', label: 'Trier : nom' },
         { value: 'dynastie', label: 'Trier : dynastie' },
         { value: 'ville', label: 'Trier : ville' },
-        { value: 'titre', label: 'Trier : titre' },
+        { value: 'metier', label: 'Trier : métier', },
       ]} onChange={(v) => setTri(v as SortKey)} />
     </div>
   )
@@ -520,8 +519,8 @@ export function PopulationTable({ joueur }: { joueur: number }) {
     <thead>
       <tr>
         <th>Nom</th><th>Dynastie</th><th>Sx</th><th>Âge</th><th>Ville</th>
-        <th>Culture</th><th>Titre</th><th>Éducation</th><th>Traits</th>
-        <th>Statut</th><th>Mariage</th><th>Fécondité</th><th>Âge max</th><th>Actions</th>
+        <th>Culture</th><th>Métier</th><th>Éducation</th><th>Traits</th>
+        <th>Statut</th><th>Mariage</th><th>Fécondité</th><th>Actions</th>
       </tr>
     </thead>
   )
@@ -543,7 +542,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
               <div>Décès : {dictToString(p.recap.deces)} (dont maladie : {p.recap.decesMaladie})</div>
               <div>Mariages nobles : {dictToString(p.recap.mariagesNobles)}</div>
               <div>Conversions : {dictToString(p.recap.conversions)}</div>
-              <div>Titres attribués : {dictToString(p.recap.titresAttribues)}</div>
+              <div>Metiers attribués : {dictToString(p.recap.metiersAttribues)}</div>
               {(p.recap.crises.length > 0 || p.recap.commandantTombe) && (
                 <div className="neg">⚠ {p.recap.crises.join(' ; ')}{p.recap.commandantTombe ? ` Commandant tombé : ${p.recap.commandantTombe}` : ''}</div>
               )}
@@ -555,7 +554,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       )}
       {/* 👑 Ministres du porteur (retour Thibaut, marqueur (r) : « les
           ministres n'ont jamais été intégrés » — ils l'étaient depuis la
-          refonte du 2026-10-14 (titre « Ministre » + portefeuille +
+          refonte du 2026-10-14 (métier « Ministre » + portefeuille +
           effets moteur) mais restaient invisibles si on ne savait pas
           où regarder. Cette carte affiche l'équipe en place et rappelle
           comment nommer. Marqueur (v) : le portefeuille se choisit ICI,
@@ -564,12 +563,12 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       {p && (
         <Card title={`👑 Ministres de ${p.nom}`}>
           {(() => {
-            const mins = pop.filter((c) => c.titre === 'Ministre' && c.statut !== 'Décédé')
+            const mins = pop.filter((c) => c.metier === 'Ministre' && c.statut !== 'Décédé')
             if (mins.length === 0) {
               return (
                 <p className="muted small">
                   Aucun ministre en poste. Pour en nommer un : dans « La cour » ci-dessous,
-                  choisir le titre <strong>Ministre</strong> dans la colonne Titre d'un noble vivant,
+                  choisir le métier <strong>Ministre</strong> dans la colonne Métier d'un noble vivant,
                   puis revenir choisir son <strong>portefeuille</strong> dans cette carte
                   (Trésorier, Sénéchal, Connétable…). Les effets s'appliquent automatiquement
                   à chaque fin de tour / fin de saison.
@@ -601,7 +600,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
                         .filter((m) => m.ministere !== c.ministere)
                         .map((m) => ({
                           value: m.ministere,
-                          titre: m.ministere,
+                          metier: m.ministere,
                           droite: m.mode === 'Auto' ? 'auto' : 'plateau',
                           description: m.effet,
                         })),
@@ -682,14 +681,14 @@ export function PopulationTable({ joueur }: { joueur: number }) {
             <tbody>
               {villesOcc.map((v) => {
                 const habitants = vivants.filter((c) => c.ville === v.nom)
-                const detail = compteTitres(habitants)
+                const detail = compteMetiers(habitants)
                 return (
                   <tr key={v.nom}>
                     <td><strong>{v.nom}</strong></td>
                     <td>
                       {detail.length
                         ? detail.map(([t, n]) => (
-                          <span key={t} className={`badge ${t === '(sans titre)' ? 'badge-neutral' : 'badge-info'}`} style={{ marginRight: 4 }}>
+                          <span key={t} className={`badge ${t === '(sans métier)' ? 'badge-neutral' : 'badge-info'}`} style={{ marginRight: 4 }}>
                             {t} ×{n}
                           </span>
                         ))
@@ -737,13 +736,13 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           « 💍 Marier avec… » unit deux nobles DU MÊME porteur (retour Thibaut (z) : on ne
           cible plus les autres joueurs ni les cités) : la personne mariée déménage
           dans la ville de son conjoint (confirmation avant de marier un Dirigeant).
-          Si un mariage ou un don est refusé, le motif s'affiche en rouge sous le titre
+          Si un mariage ou un don est refusé, le motif s'affiche en rouge sous le métier
           (déjà marié, non noble, mineur…).
         </p>
         {p && (
           <p className="muted small">
-            👑 Pour nommer un <strong>ministre</strong> : titre « Ministre » dans la colonne
-            Titre, puis portefeuille dans la carte « 👑 Ministres » ci-dessus.
+            👑 Pour nommer un <strong>ministre</strong> : métier « Ministre » dans la colonne
+            Métier, puis portefeuille dans la carte « 👑 Ministres » ci-dessus.
           </p>
         )}
       </Card>
@@ -775,7 +774,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           Population « classique » {cite ? 'de la cité libre' : 'du joueur'} (hors nobles){cite
             ? ' — le statut (Sain/Malade/Décédé) y est éditable : les cités libres ne passent pas au moteur démographique'
             : ' ; une ville transférée à un autre joueur emmène ses habitants classiques, la cour reste auprès de son joueur'}.
-          Titres d'éducation « {C.p.titreProfesseur} » : enseignés par un Professeur vivant {cite ? 'de la cité' : 'du royaume'}.
+          Metiers d'éducation « {C.p.metierProfesseur} » : enseignés par un Professeur vivant {cite ? 'de la cité' : 'du royaume'}.
         </p>
       </Card>
 

@@ -2,7 +2,7 @@
 //  CHOICE PICKER — sélecteur à CATÉGORIES + DESCRIPTIONS
 //  (marqueur (y), retour Thibaut 2026-10-15) : « tous les onglets
 //  déroulants lors du choix d'un aménagement, d'un bâtiment, de la
-//  nomination d'un ministre, attribution d'un titre… il faut afficher
+//  nomination d'un ministre, attribution d'un métier… il faut afficher
 //  la description à chaque fois pour aider les joueurs à choisir, et
 //  séparer en catégories ».
 //  Un bouton ouvre un panneau : boutons de CATÉGORIE en haut, cartes
@@ -17,7 +17,7 @@ export interface PickerOption {
   /** valeur renvoyée au choix */
   value: string
   /** nom affiché en tête de carte */
-  titre: string
+  metier: string
   /** texte court à droite du nom (coût, production…) */
   droite?: string
   /** description complète (règle du classeur) affichée sous le nom */
@@ -96,9 +96,9 @@ export function ChoicePicker({ bouton, categories, onPick, disabled }: {
               className="picker-card"
               onClick={() => { setOuvert(false); onPick(o.value) }}
             >
-              <span className="picker-titre">
+              <span className="picker-metier">
                 {o.badge && <span className={o.badge} style={{ marginRight: 6 }}>●</span>}
-                <strong>{o.titre}</strong>
+                <strong>{o.metier}</strong>
                 {o.droite && <span className="picker-droite">{o.droite}</span>}
               </span>
               {o.alerte && <span className="picker-desc neg">⚠ {o.alerte}</span>}

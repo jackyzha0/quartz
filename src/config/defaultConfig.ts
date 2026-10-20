@@ -1,7 +1,7 @@
 // ══════════════════════════════════════════════════════════════════════
 //  CHASSE & PÊCHE — Configuration par défaut
 //  Toutes les données de référence du classeur Excel (feuilles init,
-//  JSON, Titres, traits_genetiques, Culture, Peuples, Ville, Bat,
+//  JSON, Metiers, traits_genetiques, Culture, Peuples, Ville, Bat,
 //  Progrès, Tourisme, Cités L, BDD_pop, Accueil) + paramètres moteur.
 //  Tout est stocké DANS la partie (state.config) et modifiable à chaud
 //  depuis l'onglet « Paramètres » — aucun redémarrage nécessaire.
@@ -12,8 +12,8 @@ import { mergeParams, type GameParams, type GameParamStrings } from './params'
 
 // ── Types des référentiels (issus du classeur) ─────────────────────────
 
-export interface TitreDef {
-  titre: string
+export interface MetierDef {
+  metier: string
   education: string
   valeur1: number
   ressource1: string
@@ -23,6 +23,10 @@ export interface TitreDef {
   nobleSeul: boolean
   regleGenre: string
   attribution: string
+  /** Capacité maximale par ville (rework habitants 2026-10-20) :
+   *  absent = illimité (vague 1 : seul le Chasseur est plafonné, via
+   *  les paramètres capMetierChasseurVille / capMetierChasseurChateau). */
+  capParVille?: number
 }
 export interface TraitDef {
   name: string
@@ -43,7 +47,7 @@ export interface CultureDef {
   reglePays: string
   reglePerso: string
   /** Règles chiffrées appliquées AUTOMATIQUEMENT par le moteur
-   *  (engine/regimes.ts, engine/titres.ts) : la capitale génère +N d'une
+   *  (engine/regimes.ts, engine/metiers.ts) : la capitale génère +N d'une
    *  ressource par habitation de cette culture dans le monde, et chaque
    *  construction de bâtiment rapporte +N Science. Champs optionnels :
    *  absents des vieilles configurations, complétés par migrerCultures. */
@@ -160,20 +164,20 @@ export interface ConstructionRef {
  *    gain               — crédit unique au déblocage (« recevez 20 Or »),
  *    prodCapitale       — +N ressource par tour (capitale du joueur),
  *    prodParHabitation  — +N ressource par tour et par habitation,
- *    prodParTitre       — +N ressource par tour et par habitant titré,
+ *    prodParMetier       — +N ressource par tour et par habitant titré,
  *    prodParAmenagement — +N ressource par tour et par aménagement listé,
  *    garnison           — +N garnison statique (capitale ou habitations).
  *  AIDE DE JEU UNIQUEMENT (arbitrage Thibaut 2026-10-14) : AUCUN effet
  *  moteur — le résumé est affiché sous la tech, tout s'applique au
  *  plateau (bataille, coûts de construction, limites… inclus). */
 export interface EffetProgres {
-  type: 'gain' | 'prodCapitale' | 'prodParHabitation' | 'prodParTitre' | 'prodParAmenagement' | 'garnison'
+  type: 'gain' | 'prodCapitale' | 'prodParHabitation' | 'prodParMetier' | 'prodParAmenagement' | 'garnison'
   /** ressource concernée (tous les types sauf garnison) */
   ressource?: string
   /** valeur de l'effet (négative = malus) */
   montant: number
-  /** titre des habitants concernés (prodParTitre) */
-  titre?: string
+  /** metier des habitants concernés (prodParMetier) */
+  metier?: string
   /** aménagements concernés (prodParAmenagement) */
   amenagements?: string[]
   /** cible de la garnison (garnison) */
@@ -224,7 +228,7 @@ export interface GameConfig {
   ressources: string[]
   educations: string[]
   params: GameParams & GameParamStrings
-  titres: TitreDef[]
+  metiers: MetierDef[]
   traits: TraitDef[]
   cultures: CultureDef[]
   regimes: RegimeDef[]
@@ -266,7 +270,7 @@ export interface GameConfig {
      *  la table). Champ optionnel : anciens formats → « Plateau ». */
     mode?: string
   }[]
-  titresEffets: { titre: string; effet: string; revocation: string }[]
+  metiersEffets: { metier: string; effet: string; revocation: string }[]
   peuplesLibres: PeupleRef[]
   peuplesAutres: PeupleRef[]
   batimentsVille: BatimentRef[]
@@ -478,9 +482,9 @@ function normaliserTraits(): TraitDef[] {
   return out
 }
 
-function normaliserTitres(): TitreDef[] {
-  return ref.titres.map((t: any) => ({
-    titre: t.titre,
+function normaliserMetiers(): MetierDef[] {
+  return ref.metiers.map((t: any) => ({
+    metier: t.metier,
     education: t.education || '',
     valeur1: Number(t.valeur1) || 0,
     ressource1: t.ressource1 || '',
@@ -490,6 +494,7 @@ function normaliserTitres(): TitreDef[] {
     nobleSeul: !!t.nobleSeul,
     regleGenre: (t.regleGenre === 'vide' ? '' : t.regleGenre) || '',
     attribution: t.attribution || '',
+    capParVille: t.capParVille === undefined ? undefined : Number(t.capParVille),
   }))
 }
 
@@ -600,7 +605,7 @@ export const DEFAULT_CONFIG: GameConfig = {
   ressources: ['Bétail', 'Bois', 'Charbon', 'Fer', 'Pierre', 'Soie', 'Or', 'Nourriture', 'Science', 'Habitants', 'Tourisme', 'Garnison'],
   educations: ['Agricole', 'Scientifique', 'Militaire', 'Économique', 'Culturelle'],
   params: mergeParams(undefined),
-  titres: normaliserTitres(),
+  metiers: normaliserMetiers(),
   traits: normaliserTraits(),
   cultures: normaliserCultures(),
   regimes: ref.regimes,
@@ -628,7 +633,7 @@ export const DEFAULT_CONFIG: GameConfig = {
   init: ref.init,
   traitsGenetiques: ref.traitsGenetiques,
   ministeres: ref.ministeres,
-  titresEffets: ref.titresEffets,
+  metiersEffets: ref.metiersEffets,
   peuplesLibres: ref.peuplesLibres,
   peuplesAutres: ref.peuplesAutres,
   batimentsVille: ref.batimentsVille,
@@ -673,7 +678,7 @@ export interface Cfg {
   p: GameParams & GameParamStrings
   ressources: string[]
   educations: string[]
-  titres: TitreDef[]
+  metiers: MetierDef[]
   traits: TraitDef[]
   cultures: CultureDef[]
   regimes: RegimeDef[]
@@ -910,7 +915,12 @@ function migrerMinisteres(list: GameConfig['ministeres']): GameConfig['ministere
 //  — les constructions marquées `faction` (Église, Apiculture, Puit de
 //  mana, Colonies souterraines…, 19 au total) sont FILTRÉES des
 //  configurations existantes lors de la convergence.
-export const SCHEMA_VERSION_CONFIG = 2
+// Version 3 (2026-10-20, rework habitants) : le référentiel `titres`
+//  devient `metiers` (champ `titre` → `metier` par entrée), la banque
+//  `titresEffets` devient `metiersEffets`, et les effets de techs
+//  `prodParTitre` deviennent `prodParMetier` — les configs v2 sont
+//  converties une fois dans cfgOf (personnalisations conservées).
+export const SCHEMA_VERSION_CONFIG = 3
 
 /** Garde-fous appliqués à TOUTES les configurations, même convergées :
  *  chaque table du référentiel migrée doit contenir au moins une entrée
@@ -1015,6 +1025,46 @@ export function cfgOf(config?: GameConfig): Cfg {
     // Ancienne configuration : migrations une fois pour toutes, puis
     // tampon — le résultat est sauvegardé convergé par les points
     // d'entrée (setGlobalCfg, syncGlobalCfg, import/export…).
+    // rework habitants (2026-10-20, v3) : `titres` → `metiers` (champ
+    //  renommé, personnalisation conservée), `titresEffets` →
+    //  `metiersEffets`, effets de techs `prodParTitre` →
+    //  `prodParMetier`. Les configs déjà convergées v3 ne portent plus
+    //  ces champs : le bloc est dans la branche de migration une fois
+    //  pour toutes.
+    const ancienM = c as unknown as { titres?: unknown; titresEffets?: unknown }
+    if (Array.isArray(ancienM.titres)) {
+      merged.metiers = (ancienM.titres as Array<Record<string, unknown>>).map((t) => {
+        const { titre: ancienMetier, ...reste } = t
+        const r = reste as unknown as MetierDef
+        if (r.metier === undefined && ancienMetier !== undefined) r.metier = ancienMetier as string
+        return r
+      })
+      delete ancienM.titres
+    }
+    if (Array.isArray(ancienM.titresEffets)) {
+      // champ interne `titre` → `metier` de chaque entrée (l'UI et la
+      //  révocation lisent e.metier)
+      merged.metiersEffets = (ancienM.titresEffets as Array<Record<string, unknown>>).map((e) => {
+        const { titre: ancienTitre, ...reste } = e
+        const r = reste as unknown as GameConfig['metiersEffets'][number]
+        if (r.metier === undefined && ancienTitre !== undefined) r.metier = ancienTitre as string
+        return r
+      })
+      delete ancienM.titresEffets
+    }
+    for (const arbre of merged.progres ?? []) {
+      const techs = [...(arbre.brancheA ?? []), ...(arbre.brancheB ?? []), ...(arbre.techC ? [arbre.techC] : [])] as unknown as Array<{ effets?: Array<Record<string, unknown>> }>
+      for (const tech of techs) {
+        for (const e of tech.effets ?? []) {
+          if (e.type === 'prodParTitre') {
+            const ancienTitre = e.titre
+            delete e.titre
+            e.type = 'prodParMetier'
+            if (e.metier === undefined && ancienTitre !== undefined) e.metier = ancienTitre
+          }
+        }
+      }
+    }
     // migrations : traits (V2), cultures et régimes (champs chiffrés)
     merged.traits = migrateTraits(merged.traits)
     merged.cultures = migrerCultures(merged.cultures)
@@ -1258,7 +1308,7 @@ export function cfgOf(config?: GameConfig): Cfg {
     p: merged.params,
     ressources: merged.ressources,
     educations: merged.educations,
-    titres: merged.titres,
+    metiers: merged.metiers,
     traits: merged.traits,
     cultures: merged.cultures,
     regimes: merged.regimes,

@@ -62,10 +62,10 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
     || (regimeDef?.nourrEteChampRiziere ?? 0) !== 0
 
   // ── Personnages importants ───────────────────────────────────────────
-  const dirigeant = vivants.find((c) => c.titre === C.p.titreDirigeant)
-  const heritier = vivants.find((c) => c.titre === C.p.titreHeritierStr)
-  const professeurs = vivants.filter((c) => c.titre === C.p.titreProfesseur)
-  const commandants = vivants.filter((c) => c.titre === C.p.titreCommandant)
+  const dirigeant = vivants.find((c) => c.metier === C.p.metierDirigeant)
+  const heritier = vivants.find((c) => c.metier === C.p.metierHeritierStr)
+  const professeurs = vivants.filter((c) => c.metier === C.p.metierProfesseur)
+  const commandants = vivants.filter((c) => c.metier === C.p.metierCommandant)
   // Famille royale = vivants de la dynastie du Dirigeant (ou de la carte
   // dynastie en cours s'il n'y a pas de Dirigeant), roturiers exclus.
   const dynRoyale = dirigeant?.dynastie ?? p.dynastie?.nom ?? null
@@ -196,7 +196,7 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
                 {cult.reglePerso && <div className="small muted">Règle de personnage : {cult.reglePerso}</div>}
                 <div className="muted small">
                   Ce que fait la culture : l'hérédité et la martialité règlent la
-                  transmission des titres et l'armée ; la fécondité influe sur les
+                  transmission des métiers et l'armée ; la fécondité influe sur les
                   naissances ; les mariages homosexuels (si autorisés) permettent des
                   unions de même sexe (sans conception) ; la règle de pays et les lois
                   chiffrées sont appliquées automatiquement à chaque fin de tour.
@@ -381,29 +381,29 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
         <div className="table-wrap">
           <table className="tbl">
             <thead>
-              <tr><th>Rôle</th><th>Personnage</th><th>Titre</th><th>Ville</th></tr>
+              <tr><th>Rôle</th><th>Personnage</th><th>Métier</th><th>Ville</th></tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>{C.p.titreDirigeant}</strong></td>
+                <td><strong>{C.p.metierDirigeant}</strong></td>
                 <td>{dirigeant ? pers(dirigeant) : <span className="neg">poste vacant</span>}</td>
-                <td>{dirigeant?.titre ?? '—'}</td>
+                <td>{dirigeant?.metier ?? '—'}</td>
                 <td>{dirigeant?.ville ?? '—'}</td>
               </tr>
               <tr>
-                <td><strong>{C.p.titreHeritierStr}</strong></td>
+                <td><strong>{C.p.metierHeritierStr}</strong></td>
                 <td>{heritier ? pers(heritier) : <span className="muted">aucun</span>}</td>
-                <td>{heritier?.titre ?? '—'}</td>
+                <td>{heritier?.metier ?? '—'}</td>
                 <td>{heritier?.ville ?? '—'}</td>
               </tr>
               <tr>
-                <td><strong>{C.p.titreProfesseur}s</strong> ({professeurs.length})</td>
+                <td><strong>{C.p.metierProfesseur}s</strong> ({professeurs.length})</td>
                 <td>{professeurs.length ? professeurs.map(pers).join(' · ') : <span className="muted">aucun</span>}</td>
                 <td>—</td>
                 <td>—</td>
               </tr>
               <tr>
-                <td><strong>{C.p.titreCommandant}s</strong> ({commandants.length})</td>
+                <td><strong>{C.p.metierCommandant}s</strong> ({commandants.length})</td>
                 <td>{commandants.length ? commandants.map(pers).join(' · ') : <span className="muted">aucun</span>}</td>
                 <td>—</td>
                 <td>—</td>
@@ -416,7 +416,7 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
                   {familleRoyale.length
                     ? familleRoyale.map((c) => (
                       <span key={c.id} className="badge badge-info" style={{ marginRight: 4 }}>
-                        {pers(c)}{c.titre ? ` — ${c.titre}` : ''}
+                        {pers(c)}{c.metier ? ` — ${c.metier}` : ''}
                       </span>
                     ))
                     : <span className="muted">aucun membre vivant</span>}

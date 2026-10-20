@@ -75,7 +75,7 @@ export function RessourcesBar({ p, C, prodDetail, setPlayer }: {
               const rs = p.resources[r] ?? { stock: 0, prod: 0 }
               const prod = prodDetail.total[r] ?? 0
               return (
-                <span key={r} className="res-chip" style={{ background: fondRessource(r, C) }} title={`${r} — stock modifiable · production / tour calculée${r === 'Habitants' ? ' (production = titres × taxes des habitants)' : ''}`}>
+                <span key={r} className="res-chip" style={{ background: fondRessource(r, C) }} title={`${r} — stock modifiable · production / tour calculée${r === 'Habitants' ? ' (production = métiers × taxes des habitants)' : ''}`}>
                   <strong>{r}</strong>
                   <span className={rs.stock < 0 ? 'neg' : ''}>
                     <NumberInput

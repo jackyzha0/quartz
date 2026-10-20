@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════════════════════════════
 //  TEST DE RENDU — page « Royaume » (RoyaumeView) : identité du joueur,
-//  titres, personnages importants, vassalité, crises, offrandes.
+//  metiers, personnages importants, vassalité, crises, offrandes.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { test } from 'node:test'

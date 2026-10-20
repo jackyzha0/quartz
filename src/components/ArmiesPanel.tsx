@@ -85,7 +85,7 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
       })
       const pers = (s.population[joueur] ?? []).find((c) => c.id === cmd.id)
       if (pers) {
-        pers.titre = C.p.titreCommandant
+        pers.metier = C.p.metierCommandant
         pers.armee = nomArmee
       }
       s.log.push({
@@ -139,7 +139,7 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
                     if (ancien) {
                       const ancienPers = pers.find((c) => c.id === ancien)
                       if (ancienPers) {
-                        ancienPers.titre = null
+                        ancienPers.metier = null
                         ancienPers.armee = null
                       }
                     }
@@ -147,7 +147,7 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
                     if (v) {
                       const nouveau = pers.find((c) => c.id === v)
                       if (nouveau) {
-                        nouveau.titre = C.p.titreCommandant
+                        nouveau.metier = C.p.metierCommandant
                         nouveau.armee = x.armees[idx].nom
                       }
                     }
@@ -168,7 +168,7 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
                 for (const c of pers) {
                   if (c.armee === armee.nom) {
                     c.armee = null
-                    c.titre = 'Chasseur' // re-titré comme RetirerArmee
+                    c.metier = 'Chasseur' // re-titré comme RetirerArmee
                   }
                 }
                 x.armees.splice(idx, 1)

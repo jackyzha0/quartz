@@ -17,7 +17,7 @@ import { resumeConstruction } from '../engine/engine'
 import { Card, Badge } from './ui'
 
 const ONGLETS = [
-  'Titres', 'Traits gén.', 'Peuples', 'Bâtiments', 'Aménagements', 'Progrès',
+  'Métiers', 'Traits gén.', 'Peuples', 'Bâtiments', 'Aménagements', 'Progrès',
   'Pays & rangs', 'Habitations', 'Cultures & régimes', 'Tourisme & dogmes', 'Cités libres',
   'Victoires', 'Crises', 'Rappels règles', 'Offrandes', 'Ministères',
   'Couleurs', 'Aide-mémoire',
@@ -25,7 +25,7 @@ const ONGLETS = [
 
 export function ReferenceDataPanel() {
   const { globalConfig } = useGame()
-  const [onglet, setOnglet] = useState<(typeof ONGLETS)[number]>('Titres')
+  const [onglet, setOnglet] = useState<(typeof ONGLETS)[number]>('Métiers')
   // Wiki : on affiche les VALEURS DES PARAMÈTRES (configuration commune,
   // mémorisée par le navigateur) — modifiables dans « 🎛 Paramètres ».
   const C = cfgOf(globalConfig)
@@ -46,18 +46,18 @@ export function ReferenceDataPanel() {
         </div>
       </Card>
 
-      {onglet === 'Titres' && (
+      {onglet === 'Métiers' && (
         <>
-          <Card title={`Titres (${cfg.titres.length})`}>
+          <Card title={`Métiers (${cfg.metiers.length})`}>
             <div className="table-wrap">
               <table className="tbl small">
                 <thead>
-                  <tr><th>Titre</th><th>Éducation</th><th>Gain 1 / tour</th><th>Gain 2 / tour</th><th>Noble seul</th><th>Genre</th><th>Attribution</th><th>Description</th></tr>
+                  <tr><th>Métier</th><th>Éducation</th><th>Gain 1 / tour</th><th>Gain 2 / tour</th><th>Noble seul</th><th>Genre</th><th>Attribution</th><th>Description</th></tr>
                 </thead>
                 <tbody>
-                  {cfg.titres.map((t) => (
-                    <tr key={t.titre}>
-                      <td><strong>{t.titre}</strong></td>
+                  {cfg.metiers.map((t) => (
+                    <tr key={t.metier}>
+                      <td><strong>{t.metier}</strong></td>
                       <td>{t.education || '—'}</td>
                       <td>{t.valeur1 ? `${t.valeur1} ${t.ressource1}` : '—'}</td>
                       <td>{t.valeur2 ? `${t.valeur2} ${t.ressource2}` : '—'}</td>
@@ -71,10 +71,10 @@ export function ReferenceDataPanel() {
               </table>
             </div>
           </Card>
-          <Card title="Effets de titre & coûts de révocation">
-            {cfg.titresEffets.map((t, i) => (
+          <Card title="Effets de métier & coûts de révocation">
+            {cfg.metiersEffets.map((t, i) => (
               <div key={i} className="mini">
-                <strong>{t.titre || '—'}</strong>
+                <strong>{t.metier || '—'}</strong>
                 <div className="small">{t.effet}</div>
                 <div className="small muted">Révocation : {t.revocation || '—'}</div>
               </div>
@@ -115,8 +115,8 @@ export function ReferenceDataPanel() {
           {([
             ['Peuples libres (jouables)', cfg.peuplesLibres],
             ['Autres peuples (PNJ du monde)', cfg.peuplesAutres],
-          ] as const).map(([titre, liste]) => (
-            <Card key={titre} title={titre}>
+          ] as const).map(([metier, liste]) => (
+            <Card key={metier} title={metier}>
               <p className="muted small">
                 Fiches du classeur conservées à titre documentaire (système de
                 faction retiré du jeu le 2026-10-19, retour arbitre — à refaire).
@@ -179,7 +179,7 @@ export function ReferenceDataPanel() {
             <div className="refbat-grid">
               {[['Ville', 'VILLES'], ['Château', 'CHÂTEAUX']].map(([groupe, label]) => (
                 <div key={groupe}>
-                  <h3 className="refbat-titre">{label}</h3>
+                  <h3 className="refbat-metier">{label}</h3>
                   {(() => {
                     const bats = (cfg.constructions ?? [])
                       .filter((c) => c.categorie === 'Bâtiment' && c.groupe === groupe)
@@ -197,13 +197,13 @@ export function ReferenceDataPanel() {
                       if (duRang.length === 0) return null
                       return (
                         <div key={rang} className="refbat-rang">
-                          <div className="refbat-rang-titre">Rang {rang}</div>
+                          <div className="refbat-rang-metier">Rang {rang}</div>
                           {familles.map(([fam, famLabel]) => {
                             const deLaFamille = duRang.filter((b) => (b.famille ?? '') === fam)
                             if (deLaFamille.length === 0) return null
                             return (
                               <div key={fam} className="refbat-famille">
-                                <div className="refbat-famille-titre">{famLabel}</div>
+                                <div className="refbat-famille-metier">{famLabel}</div>
                                 {deLaFamille.map((b) => (
                                   <div key={b.nom} className="refbat-bat">
                                     <strong>{b.nom}</strong>
@@ -628,7 +628,7 @@ function fmtEffetTech(e: EffetProgres): string {
     case 'gain': return `${m} ${e.ressource ?? ''} au déblocage`
     case 'prodCapitale': return `${m} ${e.ressource ?? ''} / tour (capitale)`
     case 'prodParHabitation': return `${m} ${e.ressource ?? ''} / tour par habitation`
-    case 'prodParTitre': return `${m} ${e.ressource ?? ''} / tour par titre « ${e.titre ?? ''} »`
+    case 'prodParMetier': return `${m} ${e.ressource ?? ''} / tour par métier « ${e.metier ?? ''} »`
     case 'prodParAmenagement': return `${m} ${e.ressource ?? ''} / tour par aménagement (${(e.amenagements ?? []).join(', ')})`
     case 'garnison': return `Garnison ${m} (${e.cible ?? 'habitations'})`
     default: return ''

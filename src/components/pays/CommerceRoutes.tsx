@@ -178,7 +178,7 @@ export function CommerceRoutes({ p, C }: { p: Player; C: Cfg }) {
             ) : (
               <p className="muted small">
                 Aucun marchand titré pour l'instant — laisse « — Automatique » :
-                un roturier de ta population recevra le titre de Marchand en
+                un roturier de ta population recevra le métier de Marchand en
                 ouvrant la route.
               </p>
             )}
