@@ -1,7 +1,7 @@
 // Test d'exécution du bundle Edge Function (_engine.mjs) tel que Deno le
 // chargera (ESM pur, JSON inliné). Échoue si le bundle ne s'exécute pas.
 //   node scripts/build-function.mjs && node scripts/test-function.mjs
-import { runTurn, normaliserEtat } from '../supabase/functions/resoudre-tour/_engine.mjs'
+import { runTurn, normaliserEtat, etatReseau } from '../supabase/functions/resoudre-tour/_engine.mjs'
 
 const state = {
   version: 1, seed: 42, rngState: 12345, turn: 1, saison: 'Été', modDanger: 0,
@@ -45,3 +45,12 @@ if (out2.turn !== 2) throw new Error('intégration : le tour doit avancer')
 // Le Poste de garde consomme 10 Nourriture/tour (via la banque d'effets)
 console.log('✓ intégration : tour 1→2, Or', orAvant, '→', out2.players[0].resources['Or'].stock)
 console.log('✓ bâtiments passés par la banque (flux Or/Nourriture appliqués)')
+
+// ── Correctif egress (2026-10-20) : le bundle doit exposer etatReseau et
+// retirer la clé config du payload réseau (l'Edge Function publie
+// etatReseau(draft) — un bundle sans ce helper ne doit PAS être déployé).
+const avecCfg = { ...out2, config: { params: { adultAge: 18 } } }
+const reseau = etatReseau(avecCfg)
+if ('config' in reseau) throw new Error('etatReseau doit RETIRER la clé config du payload réseau')
+if (reseau.turn !== out2.turn) throw new Error('etatReseau doit conserver le reste de l état')
+console.log('✓ etatReseau : publication SANS le cache config (correctif egress)')

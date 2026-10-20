@@ -184,3 +184,39 @@ export function appliquerConfigMondiale(
 ): void {
   if (cfg) draft.config = cfg
 }
+
+/** CORRECTIF EGRESS (2026-10-20) : la forme RÉSEAU d'un état — tout
+ *  l'état, SANS le cache config.
+ *
+ *  Incident réel : quota egress Supabase (5 Go/mois, plan Free) explosé
+ *  — chaque publication d'état de référence embarquait le CACHE config
+ *  (~181 Ko, le référentiel complet), relu par CHAQUE client à CHAQUE
+ *  fin de tour (8 joueurs ≈ 1,5 Mo de config par tour et par salon,
+ *  pour un cache que chaque client possède déjà : la mondiale
+ *  '__config__', adoptée au chargement). La règle 2026-10-19 avait
+ *  déjà déclassé ce champ : la config EMBARQUÉE n'est PLUS une source,
+ *  seule la mondiale fait foi — le réseau n'avait plus aucune raison
+ *  de la transporter.
+ *
+ *  CONTRAT :
+ *   · PUBLICATION — publierEtatFusionne (src/supabase/client.ts) et
+ *     l'Edge Function « resoudre-tour » publient etatReseau(state) ;
+ *   · INGESTION — chaque site d'ingestion du store réinjecte la
+ *     config locale (mondiale adoptée au chargement — adopterConfig,
+ *     src/state/configPriorite.ts : le cache doit rester présent pour
+ *     l'UI et runTurn, cfgOf(undefined) = défauts serait un bug de la
+ *     classe « adultAge 16 ») ;
+ *   · RÉTROCOMPAT — les lignes EXISTANTES qui embarquent encore leur
+ *     config restent lisibles (le champ est ignoré : l'ingestion
+ *     écrase le cache par la locale, il n'est plus une source).
+ *
+ *  PARTAGÉ client + Edge Function (même contrat que fusionnerSections
+ *  — le bundle _engine.mjs l'embarque). Pur : ne mute PAS `state`
+ *  (copie superficielle, la clé `config` est retirée de la copie — le
+ *  JSON réseau ne dépend pas du comportement de JSON.stringify sur
+ *  `undefined`). */
+export function etatReseau(state: GameState): GameState {
+  const reseau: GameState = { ...state }
+  delete reseau.config
+  return reseau
+}

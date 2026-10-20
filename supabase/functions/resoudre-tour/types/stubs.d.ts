@@ -46,4 +46,6 @@ declare module '*_engine.mjs' {
   export function rejouerEvenementsPartages(draft: any, evenements: any): void
   export function migrerEtat(state: any): string[]
   export function appliquerConfigMondiale(draft: any, cfg: any): void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  export function etatReseau(state: any): any
 }

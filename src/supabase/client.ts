@@ -14,6 +14,7 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import type { GameState } from '../engine/types'
 import type { GameConfig } from '../config/defaultConfig'
 import { elargirEtat } from '../state/storage'
+import { etatReseau } from '../engine/fusion'
 
 const LS_URL = 'cpe.supabase.url'
 const LS_KEY = 'cpe.supabase.anon'
@@ -177,14 +178,22 @@ export interface SectionJoueur {
 //  ÉVÉNEMENTS append-only (pousserSectionV2, table cp_events).
 
 /** Publier l'état de référence du NOUVEAU tour (résolution de la
- *  barrière) et réinitialiser les sections. */
+ *  barrière) et réinitialiser les sections.
+ *
+ *  CORRECTIF EGRESS (2026-10-20) : la publication passe par etatReseau
+ *  (src/engine/fusion.ts) — le payload réseau n'embarque PLUS le cache
+ *  config (~181 Ko publiés puis relus par chaque joueur à chaque tour,
+ *  cause du quota egress Supabase explosé). L'appelant CONSERVE sa
+ *  config en mémoire (l'UI lit state.config) : seul le fil est allégé.
+ *  Les clients réinjectent la config à l'ingestion (store.tsx —
+ *  adopterConfig, la mondiale '__config__' adoptée au chargement). */
 export async function publierEtatFusionne(
   id: string, state: GameState,
 ): Promise<boolean> {
   const sb = getSupabase()
   if (!sb) return false
   const { error } = await sb.from(TABLE).update({
-    state,
+    state: etatReseau(state),
     sections: {},
     turn_done: state.turn,
     // v2 : le tour publié avance aussi pour la garde anti-rollback

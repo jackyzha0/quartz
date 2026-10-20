@@ -19,7 +19,7 @@
 // Payload : { salon: string, tour: number, attendus: number[] }
 // ═══════════════════════════════════════════════════════════════════════════
 import { createClient } from 'jsr:@supabase/supabase-js@2'
-import { runTurn, fusionnerSections, rejouerEvenementsPartages, migrerEtat, appliquerConfigMondiale } from './_engine.mjs'
+import { runTurn, fusionnerSections, rejouerEvenementsPartages, migrerEtat, appliquerConfigMondiale, etatReseau } from './_engine.mjs'
 
 const cors = {
   'Access-Control-Allow-Origin': '*',
@@ -131,10 +131,17 @@ Deno.serve(async (req) => {
     runTurn(draft)
 
     // 6. Publication + purge (transaction logique : update puis delete).
+    // CORRECTIF EGRESS (2026-10-20) : la publication passe par
+    //  etatReseau — le payload réseau n'embarque PLUS le cache config
+    //  (~181 Ko publiés + relus par chaque joueur à chaque tour :
+    //  cause du quota egress Supabase explosé). Le draft GARD sa
+    //  config en mémoire (runTurn l'a déjà consommée ci-dessus) ;
+    //  les clients réinjectent la leur à l'ingestion (adopterConfig,
+    //  mondiale '__config__' adoptée au chargement).
     const { error: errPub } = await sb
       .from('parties_chasse_peche')
       .update({
-        state: draft,
+        state: etatReseau(draft),
         sections: {},
         turn_done: tour,
         tour_publie: draft.turn,

@@ -460,6 +460,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
           const nouveau = await remote.loadRemote(salon)
           if (nouveau) {
             migrerEtat(nouveau)
+            // EGRESS 2026-10-20 : l'état publié n'embarque plus le cache
+            //  config (etatReseau) — réinjection locale (configPriorite).
+            adopterConfig(nouveau, { locale: globalConfigRef.current })
             stateRef.current = nouveau
             setState(nouveau)
             setConflit(false)
@@ -532,6 +535,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         const nouveau = await remote.loadRemote(salon)
         if (nouveau) {
           migrerEtat(nouveau)
+          // EGRESS 2026-10-20 : l'état publié n'embarque plus le cache
+          //  config (etatReseau) — réinjection locale (configPriorite).
+          adopterConfig(nouveau, { locale: globalConfigRef.current })
           stateRef.current = nouveau
           setState(nouveau)
           setBarriere({ prets: new Set(), monTourPousse: false })
@@ -574,6 +580,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     rejouerEvenementsPartages(draft, evts)
     // CONFIG MONDIALE : effet en fin de tour, comme tout le reste —
     //  le repli local applique exactement ce que l'Edge Function applique.
+    // EGRESS 2026-10-20 : la référence publiée n'embarque PLUS le cache
+    //  config — la LOCALE (mondiale adoptée au chargement) amorce le
+    //  draft, puis la MONDIALE prime si elle est publiée (contrat
+    //  configPriorite : le draft ne doit JAMAIS rouler sur cfgOf(undefined)).
+    adopterConfig(draft, { locale: globalConfigRef.current })
     appliquerConfigMondiale(draft, await remote.chargerConfigMondiale())
     runTurn(draft)
     const ok = await remote.publierEtatFusionne(salon, draft)
@@ -616,6 +627,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
           const nouveau = await remote.loadRemote(salon)
           if (nouveau) {
             migrerEtat(nouveau)
+            // EGRESS 2026-10-20 : l'état publié n'embarque plus le cache
+            //  config (etatReseau) — réinjection locale (configPriorite).
+            adopterConfig(nouveau, { locale: globalConfigRef.current })
             stateRef.current = nouveau
             setState(nouveau)
             setBarriere({ prets: new Set(), monTourPousse: false })
@@ -787,6 +801,15 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       // Les états distants arrivent BRUTS — migrations versionnées
       //  (idempotentes, tamponnées par état).
       migrerEtat(remoteState)
+      // CORRECTIF EGRESS (2026-10-20) : les états publiés n'embarquent
+      //  PLUS le cache config (etatReseau, ~181 Ko par publication ×
+      //  N lecteurs par tour — cause du quota egress Supabase explosé).
+      //  Injection LOCALE (contrat configPriorite : la mondiale
+      //  '__config__' adoptée au chargement fait foi — un cache
+      //  embarqué par une vieille ligne ne PRIME PAS non plus) :
+      //  sans elle, l'UI et runTurn rouleraient sur les DÉFAUTS
+      //  (bug classe « adultAge 16 »).
+      adopterConfig(remoteState, { locale: globalConfigRef.current })
       const localDirty = Date.now() - lastLocalEdit.current < 1500
       if (localDirty) {
         // Revue (Q2/Q3) : une édition locale est en cours — l'état
