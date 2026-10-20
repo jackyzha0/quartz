@@ -22,7 +22,7 @@ import { cfgOf } from './gameData'
 import type { Character } from './types'
 
 /** Personnage de test (tous les champs obligatoires de Character). */
-function perso(age: number, traits: string[] = []): Character {
+function perso(age: number, traits: [string, string, string] = ['Obstiné', 'Stérile', 'Fécond']): Character {
   return {
     id: `sante-${age}-${traits.join('-') || 'sans'}`,
     nom: 'Test', prenom: 'Santé', dynastie: 'Roturier', sexe: 'M', age,

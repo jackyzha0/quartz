@@ -90,8 +90,8 @@ export function migrerTitresVersMetiers(state: GameState): void {
   for (const p of state.players as unknown as Array<{ recap?: Record<string, unknown> }>) {
     const recap = p.recap
     if (recap && recap.titresAttribues !== undefined) {
-      const existants = recap.metiersAttribues
-      if (existants === undefined || Object.keys(existants).length === 0) {
+      const existants = recap.metiersAttribues as Record<string, unknown> | null | undefined
+      if (existants == null || Object.keys(existants).length === 0) {
         recap.metiersAttribues = recap.titresAttribues
       }
       delete recap.titresAttribues
