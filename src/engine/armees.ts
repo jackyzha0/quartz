@@ -46,12 +46,12 @@ export function recruitForArmies(state: GameState, p: Player, rng: Rng) {
         (c) =>
           c.statut !== 'Décédé' &&
           c.age >= C.p.soldatAgeMin && c.age <= C.p.soldatAgeMax &&
-          !c.armee && (!c.titre || c.titre === C.p.titreChasseur) &&
+          !c.armee && (!c.metier || c.metier === C.p.metierChasseur) &&
           martialiteOk(cult?.martialite, c.sexe),
       )
       if (candidats.length === 0) break
       const s = rng.pick(candidats)
-      s.titre = C.p.titreSoldat
+      s.metier = C.p.metierSoldat
       s.armee = armee.nom
       armee.soldats.push(s.id)
       puissance += C.p.puissanceSoldat
@@ -151,7 +151,7 @@ export function libererSoldats(
   const liberes: string[] = []
   const liberer = (c: import('./types').Character) => {
     c.armee = null
-    c.titre = 'Chasseur' // re-titré comme Dissoudre / RetirerArmee
+    c.metier = 'Chasseur' // re-titré comme Dissoudre / RetirerArmee
     armee.soldats = armee.soldats.filter((id) => id !== c.id)
     liberes.push(fullName(c))
   }

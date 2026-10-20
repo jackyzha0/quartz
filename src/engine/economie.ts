@@ -1,6 +1,6 @@
 // ══════════════════════════════════════════════════════════════════════
 //  ÉCONOMIE — GAINS DE POPULATION (CalculerGainsPopulation)
-//  Revenus par ville (titres, taxes, consommation) et facteur de taxes sur
+//  Revenus par ville (metiers, taxes, consommation) et facteur de taxes sur
 //  les naissances. Portage des macros VBA du classeur Chasse & Pêche 7.19.
 //  RÈGLE DES TAXES : le niveau de taxes module la production en TOUTE
 //  ressource générée par les habitants (Or, Science, Nourriture, Tourisme…),
@@ -9,13 +9,13 @@
 // ══════════════════════════════════════════════════════════════════════
 
 import type { City, GameState, Player } from './types'
-import { cfgOf, titreDef, type Cfg } from './gameData'
+import { cfgOf, metierDef, type Cfg } from './gameData'
 import { aMinistre } from './ministeres'
-import { gouverneurDeVille } from './titres'
+import { gouverneurDeVille } from './metiers'
 
 // ══════════════════════════════════════════════════════════════════════
 //  GAINS DE POPULATION PAR VILLE (CalculerGainsPopulation)
-//  Titres → Ressource1/Valeur1 + Ressource2/Valeur2, modulés par le niveau
+//  Metiers → Ressource1/Valeur1 + Ressource2/Valeur2, modulés par le niveau
 //  de taxes de la ville (sur TOUTES les ressources), puis consommation de
 //  1 Nourriture par habitant vivant (non taxée).
 // ══════════════════════════════════════════════════════════════════════
@@ -32,7 +32,7 @@ export function calculerGainsPopulation(state: GameState, p: Player): Record<str
   return gainsPopulationJoueur(state, p, cfgOf(state.config))
 }
 
-/** Gains nets de population d'un joueur, toutes villes (titres × taxes −
+/** Gains nets de population d'un joueur, toutes villes (métiers × taxes −
  *  consommation). Partagé entre le moteur de fin de tour et les impôts
  *  manuels (génération hors fin de tour). */
 function gainsPopulationJoueur(state: GameState, p: Player, C: Cfg): Record<string, number> {
@@ -45,7 +45,7 @@ function gainsPopulationJoueur(state: GameState, p: Player, C: Cfg): Record<stri
   return totals
 }
 
-/** Gains bruts d'une ville (titres × taxes, moins la consommation),
+/** Gains bruts d'une ville (métiers × taxes, moins la consommation),
  *  cœur de calcul partagé entre le moteur et le détail affiché. */
 function gainsVilleBruts(state: GameState, p: Player, ville: City, C: Cfg): Record<string, number> {
   const detail = detailGainsVille(state, p, ville, C)
@@ -58,14 +58,14 @@ function gainsVilleBruts(state: GameState, p: Player, ville: City, C: Cfg): Reco
 
 /** Détail des gains d'une ville, canal par canal (affiché en bas de la
  *  carte de la ville : « ce que les taxes rapportent »).
- *    titres  : production brute des titres des habitants vivants,
+ *    metiers  : production brute des metiers des habitants vivants,
  *    taxeMult: multiplicateur de taxes de la ville (toutes ressources),
- *    taxes   : production taxée (= titres × taxeMult),
+ *    taxes   : production taxée (= metiers × taxeMult),
  *    conso   : consommation de Nourriture (non taxée),
  *    net     : taxes − conso (ce qui est crédité au stock). */
 export interface GainsVilleDetail {
   habitants: number
-  titres: Record<string, number>
+  metiers: Record<string, number>
   taxeMult: number
   taxes: Record<string, number>
   conso: Record<string, number>
@@ -75,17 +75,17 @@ export interface GainsVilleDetail {
 export function detailGainsVille(state: GameState, p: Player, ville: City, C: Cfg): GainsVilleDetail {
   const pop = state.population[p.n] ?? []
   const vivants = pop.filter((c) => c.statut !== 'Décédé' && c.ville === ville.nom)
-  // Production brute des titres des habitants vivants de la ville
-  const titres: Record<string, number> = {}
+  // Production brute des metiers des habitants vivants de la ville
+  const metiers: Record<string, number> = {}
   for (const c of vivants) {
-    if (!c.titre) continue
-    const td = titreDef(c.titre, C.config)
+    if (!c.metier) continue
+    const td = metierDef(c.metier, C.config)
     if (!td) continue
     if (td.ressource1 && td.valeur1 !== 0) {
-      titres[td.ressource1] = (titres[td.ressource1] ?? 0) + td.valeur1
+      metiers[td.ressource1] = (metiers[td.ressource1] ?? 0) + td.valeur1
     }
     if (td.ressource2 && td.valeur2 !== 0) {
-      titres[td.ressource2] = (titres[td.ressource2] ?? 0) + td.valeur2
+      metiers[td.ressource2] = (metiers[td.ressource2] ?? 0) + td.valeur2
     }
   }
   // Taxes : le niveau module TOUTES les ressources produites par les habitants.
@@ -98,7 +98,7 @@ export function detailGainsVille(state: GameState, p: Player, ville: City, C: Cf
     * (aMinistre(state, p, 'Grand Chambellan') ? 1.1 : 1)
     * (gouverneurDeVille(state, p, ville.nom, C) ? 1.1 : 1)
   const taxes: Record<string, number> = {}
-  for (const [res, v] of Object.entries(titres)) {
+  for (const [res, v] of Object.entries(metiers)) {
     const tv = v * taxeMult
     if (tv !== 0) taxes[res] = tv
   }
@@ -111,7 +111,7 @@ export function detailGainsVille(state: GameState, p: Player, ville: City, C: Cf
   for (const [res, v] of Object.entries(taxes)) net[res] = (net[res] ?? 0) + v
   for (const [res, v] of Object.entries(conso)) net[res] = (net[res] ?? 0) + v
   for (const k of Object.keys(net)) if (net[k] === 0) delete net[k]
-  return { habitants: vivants.length, titres, taxeMult, taxes, conso, net }
+  return { habitants: vivants.length, metiers, taxeMult, taxes, conso, net }
 }
 
 /** Facteur de taxes sur la conception (Faible ×taxNaissFaibles / Moyenne ×1 / Forte ×taxNaissHautes — ±25 %, marqueur (z)). */
@@ -125,7 +125,7 @@ export function taxBirthFactor(ville: City | undefined, C: Cfg = cfgOf()): numbe
 //  Boutons « Générer l'impôt » : créditer AUSSI SOUVENT QUE VOULU l'impôt
 //  que la population (ou les vassaux) produit sur UN tour, sans attendre
 //  la fin de tour. Mêmes formules que le moteur (canal « Habitants » du
-//  récap : titres × taxes − consommation ; tribut de vassalité sur l'Or).
+//  récap : métiers × taxes − consommation ; tribut de vassalité sur l'Or).
 // ══════════════════════════════════════════════════════════════════════
 
 /**

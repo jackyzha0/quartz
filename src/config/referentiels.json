@@ -840,188 +840,6 @@
       "description": "(système) Parents apparentés."
     }
   ],
-  "titres": [
-    {
-      "titre": "Chasseur",
-      "education": "",
-      "valeur1": 1,
-      "ressource1": "Nourriture",
-      "valeur2": 0.1,
-      "ressource2": "Or",
-      "description": "Titre par défaut",
-      "nobleSeul": false,
-      "regleGenre": "vide",
-      "attribution": ""
-    },
-    {
-      "titre": "Artiste",
-      "education": "Culturelle",
-      "valeur1": 1.2,
-      "ressource1": "Tourisme",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "",
-      "nobleSeul": false,
-      "regleGenre": "vide",
-      "attribution": "Education"
-    },
-    {
-      "titre": "Chercheur",
-      "education": "Scientifique",
-      "valeur1": 0.2,
-      "ressource1": "Science",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "",
-      "nobleSeul": false,
-      "regleGenre": "vide",
-      "attribution": "Education"
-    },
-    {
-      "titre": "Éleveur",
-      "education": "Agricole",
-      "valeur1": 2.5,
-      "ressource1": "Nourriture",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "",
-      "nobleSeul": false,
-      "regleGenre": "vide",
-      "attribution": "Education"
-    },
-    {
-      "titre": "Sportif",
-      "education": "Militaire",
-      "valeur1": 5,
-      "ressource1": "Garnison",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "",
-      "nobleSeul": false,
-      "regleGenre": "vide",
-      "attribution": "Education"
-    },
-    {
-      "titre": "Artisan",
-      "education": "Économique",
-      "valeur1": 1.5,
-      "ressource1": "Or",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "",
-      "nobleSeul": false,
-      "regleGenre": "vide",
-      "attribution": "Education"
-    },
-    {
-      "titre": "Professeur",
-      "education": "",
-      "valeur1": 0,
-      "ressource1": "",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "",
-      "nobleSeul": false,
-      "regleGenre": "vide",
-      "attribution": "Ville"
-    },
-    {
-      "titre": "Dirigeant",
-      "education": "",
-      "valeur1": 0,
-      "ressource1": "",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "Chef de faction · 1 par joueur",
-      "nobleSeul": true,
-      "regleGenre": "Hérédité",
-      "attribution": "Succession"
-    },
-    {
-      "titre": "Gouverneur",
-      "education": "",
-      "valeur1": 0,
-      "ressource1": "",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "Max 1 par ville",
-      "nobleSeul": true,
-      "regleGenre": "vide",
-      "attribution": "Manuelle"
-    },
-    {
-      "titre": "Héritier",
-      "education": "",
-      "valeur1": 0,
-      "ressource1": "",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "Même dynastie que le Dirigeant",
-      "nobleSeul": true,
-      "regleGenre": "Hérédité",
-      "attribution": "Manuelle"
-    },
-    {
-      "titre": "Marchand",
-      "education": "",
-      "valeur1": 0,
-      "ressource1": "",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "",
-      "nobleSeul": false,
-      "regleGenre": "vide",
-      "attribution": "Manuelle"
-    },
-    {
-      "titre": "Ministre",
-      "education": "",
-      "valeur1": 0,
-      "ressource1": "",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "Plusieurs autorisés",
-      "nobleSeul": true,
-      "regleGenre": "vide",
-      "attribution": "Manuelle"
-    },
-    {
-      "titre": "Propagandiste",
-      "education": "",
-      "valeur1": 0,
-      "ressource1": "",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "",
-      "nobleSeul": false,
-      "regleGenre": "vide",
-      "attribution": "Manuelle"
-    },
-    {
-      "titre": "Soldat",
-      "education": "",
-      "valeur1": 0,
-      "ressource1": "",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "",
-      "nobleSeul": false,
-      "regleGenre": "Martialité",
-      "attribution": "Armée"
-    },
-    {
-      "titre": "Commandant",
-      "education": "",
-      "valeur1": 0,
-      "ressource1": "",
-      "valeur2": 0,
-      "ressource2": "",
-      "description": "",
-      "nobleSeul": true,
-      "regleGenre": "Martialité",
-      "attribution": "Armée"
-    }
-  ],
   "ministeres": [
     {
       "ministere": "Grand bailli",
@@ -1130,53 +948,6 @@
       "effet": "Le sacre d'avènement de vos successions est réduit de moitié (appliqué automatiquement).",
       "rangMinimum": "Empire",
       "mode": "Auto"
-    }
-  ],
-  "titresEffets": [
-    {
-      "titre": "Commandant",
-      "effet": "Il s'agit d'une unité de type Commandant.",
-      "revocation": "10  Or"
-    },
-    {
-      "titre": "Dirigeant",
-      "effet": "Un de vos personnage doit posséder ce titre, s'il meurt, déclenchez une succession. Ce titre n'est pas exclusif.",
-      "revocation": "Irrévocable"
-    },
-    {
-      "titre": "Général",
-      "effet": "Chaque armée doit posséder un général parmi ses commandants.",
-      "revocation": "20  Or"
-    },
-    {
-      "titre": "Gouverneur",
-      "effet": "Un gouverneur doit être placé dans une habitation et octroie +10 % d'impôts à sa ville (les anciens bonus de garnison et d'Or sont retirés). Si une ville sans gouverneur abrite un noble, le noble le plus âgé devient automatiquement gouverneur à la fin du tour.",
-      "revocation": "30  Or"
-    },
-    {
-      "titre": "Héritier",
-      "effet": "L'Héritier devient Dirigeant lors de la succession. Si votre héritier meurt, déclenchez une crise.",
-      "revocation": "50 Or \n+  10  Soie"
-    },
-    {
-      "titre": "Mage",
-      "effet": "Il s'agit d'un unité de type Lanceur de sorts.",
-      "revocation": "5  Or"
-    },
-    {
-      "titre": "Marchand",
-      "effet": "Portée 9 PM, 4 PM par tour. Le marchand ouvre UNE route commerciale entre sa ville et la ville d'un autre joueur : chaque tour, les DEUX joueurs reliés gagnent 4 Or et le propriétaire du marchand copie la production de l'aménagement ENTIER choisi dans la ville ciblée — toutes ses ressources produites (choisi à l'ouverture de la route, modifiable à tout moment ; un marchand ne tient qu'une route, qui se ferme s'il perd son titre ou meurt). Un marchand peut traverser les cases d'eau et de rivière une fois les bateaux débloqués. Un marchand envoyé vers une cité libre ne produit pas de ressources (règle de plateau).",
-      "revocation": "20  Or + 6 ressources au choix"
-    },
-    {
-      "titre": "Ministre",
-      "effet": "Octroie un ministre qui appartient à un ministère, maximum 1.",
-      "revocation": "30 Or\n+ 6  Soie"
-    },
-    {
-      "titre": "Propagandiste",
-      "effet": "Peut dépenser une charge pour convertir 5 personnes aléatoire à sa culture ou 1 personne choisie.  Le propagandiste possède 3 charges.",
-      "revocation": "6  Tourisme"
     }
   ],
   "cultures": [
@@ -4352,10 +4123,10 @@
           "description": "Vos marchands vous rapportent 3 Or par tour supplémentaires.",
           "effets": [
             {
-              "type": "prodParTitre",
+              "type": "prodParMetier",
               "montant": 3,
               "ressource": "Or",
-              "titre": "Marchand"
+              "metier": "Marchand"
             }
           ]
         }
@@ -5003,10 +4774,10 @@
           "description": "Vos Ministres génèrent +6 Science par tour.",
           "effets": [
             {
-              "type": "prodParTitre",
+              "type": "prodParMetier",
               "montant": 6,
               "ressource": "Science",
-              "titre": "Ministre"
+              "metier": "Ministre"
             }
           ]
         }
@@ -5023,10 +4794,10 @@
           "description": "Vos Ministres génèrent +30 Tourisme.",
           "effets": [
             {
-              "type": "prodParTitre",
+              "type": "prodParMetier",
               "montant": 30,
               "ressource": "Tourisme",
-              "titre": "Ministre"
+              "metier": "Ministre"
             }
           ]
         }
@@ -6778,6 +6549,235 @@
       "habitantsRequis": 200,
       "consommation": "20 Nourriture, 20 Or",
       "garnison": 90
+    }
+  ],
+  "metiers": [
+    {
+      "education": "",
+      "valeur1": 1,
+      "ressource1": "Nourriture",
+      "valeur2": 0.1,
+      "ressource2": "Or",
+      "description": "Métier par défaut",
+      "nobleSeul": false,
+      "regleGenre": "vide",
+      "attribution": "",
+      "metier": "Chasseur"
+    },
+    {
+      "education": "Culturelle",
+      "valeur1": 1.2,
+      "ressource1": "Tourisme",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "",
+      "nobleSeul": false,
+      "regleGenre": "vide",
+      "attribution": "Education",
+      "metier": "Artiste"
+    },
+    {
+      "education": "Scientifique",
+      "valeur1": 0.2,
+      "ressource1": "Science",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "",
+      "nobleSeul": false,
+      "regleGenre": "vide",
+      "attribution": "Education",
+      "metier": "Chercheur"
+    },
+    {
+      "education": "Agricole",
+      "valeur1": 2.5,
+      "ressource1": "Nourriture",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "",
+      "nobleSeul": false,
+      "regleGenre": "vide",
+      "attribution": "Education",
+      "metier": "Éleveur"
+    },
+    {
+      "education": "Militaire",
+      "valeur1": 5,
+      "ressource1": "Garnison",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "",
+      "nobleSeul": false,
+      "regleGenre": "vide",
+      "attribution": "Education",
+      "metier": "Sportif"
+    },
+    {
+      "education": "Économique",
+      "valeur1": 1.5,
+      "ressource1": "Or",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "",
+      "nobleSeul": false,
+      "regleGenre": "vide",
+      "attribution": "Education",
+      "metier": "Artisan"
+    },
+    {
+      "education": "",
+      "valeur1": 0,
+      "ressource1": "",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "",
+      "nobleSeul": false,
+      "regleGenre": "vide",
+      "attribution": "Ville",
+      "metier": "Professeur"
+    },
+    {
+      "education": "",
+      "valeur1": 0,
+      "ressource1": "",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "Chef de faction · 1 par joueur",
+      "nobleSeul": true,
+      "regleGenre": "Hérédité",
+      "attribution": "Succession",
+      "metier": "Dirigeant"
+    },
+    {
+      "education": "",
+      "valeur1": 0,
+      "ressource1": "",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "Max 1 par ville",
+      "nobleSeul": true,
+      "regleGenre": "vide",
+      "attribution": "Manuelle",
+      "metier": "Gouverneur"
+    },
+    {
+      "education": "",
+      "valeur1": 0,
+      "ressource1": "",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "Même dynastie que le Dirigeant",
+      "nobleSeul": true,
+      "regleGenre": "Hérédité",
+      "attribution": "Manuelle",
+      "metier": "Héritier"
+    },
+    {
+      "education": "",
+      "valeur1": 0,
+      "ressource1": "",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "",
+      "nobleSeul": false,
+      "regleGenre": "vide",
+      "attribution": "Manuelle",
+      "metier": "Marchand"
+    },
+    {
+      "education": "",
+      "valeur1": 0,
+      "ressource1": "",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "Plusieurs autorisés",
+      "nobleSeul": true,
+      "regleGenre": "vide",
+      "attribution": "Manuelle",
+      "metier": "Ministre"
+    },
+    {
+      "education": "",
+      "valeur1": 0,
+      "ressource1": "",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "",
+      "nobleSeul": false,
+      "regleGenre": "vide",
+      "attribution": "Manuelle",
+      "metier": "Propagandiste"
+    },
+    {
+      "education": "",
+      "valeur1": 0,
+      "ressource1": "",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "",
+      "nobleSeul": false,
+      "regleGenre": "Martialité",
+      "attribution": "Armée",
+      "metier": "Soldat"
+    },
+    {
+      "education": "",
+      "valeur1": 0,
+      "ressource1": "",
+      "valeur2": 0,
+      "ressource2": "",
+      "description": "",
+      "nobleSeul": true,
+      "regleGenre": "Martialité",
+      "attribution": "Armée",
+      "metier": "Commandant"
+    }
+  ],
+  "metiersEffets": [
+    {
+      "effet": "Il s'agit d'une unité de type Commandant.",
+      "revocation": "10  Or",
+      "metier": "Commandant"
+    },
+    {
+      "effet": "Un de vos personnage doit posséder ce titre, s'il meurt, déclenchez une succession. Ce titre n'est pas exclusif.",
+      "revocation": "Irrévocable",
+      "metier": "Dirigeant"
+    },
+    {
+      "effet": "Chaque armée doit posséder un général parmi ses commandants.",
+      "revocation": "20  Or",
+      "metier": "Général"
+    },
+    {
+      "effet": "Un gouverneur doit être placé dans une habitation et octroie +10 % d'impôts à sa ville (les anciens bonus de garnison et d'Or sont retirés). Si une ville sans gouverneur abrite un noble, le noble le plus âgé devient automatiquement gouverneur à la fin du tour.",
+      "revocation": "30  Or",
+      "metier": "Gouverneur"
+    },
+    {
+      "effet": "L'Héritier devient Dirigeant lors de la succession. Si votre héritier meurt, déclenchez une crise.",
+      "revocation": "50 Or \n+  10  Soie",
+      "metier": "Héritier"
+    },
+    {
+      "effet": "Il s'agit d'un unité de type Lanceur de sorts.",
+      "revocation": "5  Or",
+      "metier": "Mage"
+    },
+    {
+      "effet": "Portée 9 PM, 4 PM par tour. Le marchand ouvre UNE route commerciale entre sa ville et la ville d'un autre joueur : chaque tour, les DEUX joueurs reliés gagnent 4 Or et le propriétaire du marchand copie la production de l'aménagement ENTIER choisi dans la ville ciblée — toutes ses ressources produites (choisi à l'ouverture de la route, modifiable à tout moment ; un marchand ne tient qu'une route, qui se ferme s'il perd son titre ou meurt). Un marchand peut traverser les cases d'eau et de rivière une fois les bateaux débloqués. Un marchand envoyé vers une cité libre ne produit pas de ressources (règle de plateau).",
+      "revocation": "20  Or + 6 ressources au choix",
+      "metier": "Marchand"
+    },
+    {
+      "effet": "Octroie un ministre qui appartient à un ministère, maximum 1.",
+      "revocation": "30 Or\n+ 6  Soie",
+      "metier": "Ministre"
+    },
+    {
+      "effet": "Peut dépenser une charge pour convertir 5 personnes aléatoire à sa culture ou 1 personne choisie.  Le propagandiste possède 3 charges.",
+      "revocation": "6  Tourisme",
+      "metier": "Propagandiste"
     }
   ]
 }

@@ -10,8 +10,6 @@ export interface GameParams {
   // ── Population ──
   adultAge: number
   setupAgeMax: number
-  ageMaxBase: number
-  ageMaxAla: number
   adulteryRate: number
   /** Migration scolaire : enfant sans Professeur dans sa ville → ville
    *  avec Professeur du même joueur. */
@@ -30,12 +28,26 @@ export interface GameParams {
   fertTraitFactorMin: number
   fertTraitFactorMax: number
   cultureFertBase: number
-  // ── Maladie ──
-  probaMaladie: number
-  modMaladieAge: number
+  // ── Maladie (rework habitants 2026-10-20 : Gompertz, plus d'âge-
+  //    plafond — la maladie est la SEULE cause de mort) ──
+  /** Probabilité de contracter la maladie ce tour :
+   *  min(maladieCap, maladieBase × exp(maladiePente × âge)),
+   *  calibrée Monte-Carlo pour une espérance de vie ≈ 60 ans. */
+  maladieBase: number
+  maladiePente: number
+  maladieCap: number
+  /** Modificateur de contraction pour une femme enceinte. */
   modMaladieEnceinte: number
+  /** Guérison par tour d'un malade : probaGuerison − modGuerisonAge × âge
+   *  (un malade qui re-contracte la maladie meurt). */
   probaGuerison: number
   modGuerisonAge: number
+  // ── Métiers (caps par habitation, rework habitants 2026-10-20) ──
+  /** Capacité maximale de Chasseurs dans une habitation « Ville »
+   *  (arbitre 2026-10-20 : caps séparées selon le type). */
+  capMetierChasseurVille: number
+  /** Capacité maximale de Chasseurs dans un « Château ». */
+  capMetierChasseurChateau: number
   // ── Éducation ──
   chanceEducRoturier: number
   chanceEducNoble: number
@@ -45,7 +57,7 @@ export interface GameParams {
   mariageRoturiers: number
   mariageNobles: number
   mariageMesalliance: number
-  mariageBonusTitre: number
+  mariageBonusMetier: number
   mariageMemeCulture: number
   mariageAutreCulture: number
   mariageParAnEcart: number
@@ -90,12 +102,12 @@ export interface GameParams {
    *  CHACUN des deux joueurs reliés (retour Thibaut 2026-10-15). */
   marchandOrTour: number
   // ── Noms des entités système (chaînes) ──
-  titreDirigeant: string
-  titreGouverneur: string
-  titreProfesseur: string
-  titreChasseur: string
-  titreSoldat: string
-  titreCommandant: string
+  metierDirigeant: string
+  metierGouverneur: string
+  metierProfesseur: string
+  metierChasseur: string
+  metierSoldat: string
+  metierCommandant: string
   traitBatard: string
   traitConsanguin: string
   traitObstine: string
@@ -118,8 +130,6 @@ export interface GameParams {
 export const DEFAULT_PARAMS: GameParams = {
   adultAge: 16,
   setupAgeMax: 50,
-  ageMaxBase: 40,
-  ageMaxAla: 39,
   adulteryRate: 0.03,
   migrationEcole: 0.10,
   migrationSuzerain: 0.02,
@@ -133,11 +143,14 @@ export const DEFAULT_PARAMS: GameParams = {
   fertTraitFactorMin: 0,
   fertTraitFactorMax: 1.6,
   cultureFertBase: 1,
-  probaMaladie: 0.0005,
-  modMaladieAge: 0.0001,
+  maladieBase: 0.0025,
+  maladiePente: 0.08,
+  maladieCap: 0.9,
   modMaladieEnceinte: 0.03,
   probaGuerison: 0.25,
   modGuerisonAge: 0.003,
+  capMetierChasseurVille: 50,
+  capMetierChasseurChateau: 25,
   chanceEducRoturier: 0.08,
   chanceEducNoble: 0.15,
   professeurBaseChance: 0.9,
@@ -145,7 +158,7 @@ export const DEFAULT_PARAMS: GameParams = {
   mariageRoturiers: 0.3,
   mariageNobles: 0.15,
   mariageMesalliance: 0.03,
-  mariageBonusTitre: 0.1,
+  mariageBonusMetier: 0.1,
   mariageMemeCulture: 0.1,
   mariageAutreCulture: -0.1,
   mariageParAnEcart: 0.005,
@@ -179,12 +192,12 @@ export const DEFAULT_PARAMS: GameParams = {
   marchandOrTour: 4,
   proxRiviereNourriture: 12,
   proxMerNourriture: 7,
-  titreDirigeant: 'Dirigeant',
-  titreGouverneur: 'Gouverneur',
-  titreProfesseur: 'Professeur',
-  titreChasseur: 'Chasseur',
-  titreSoldat: 'Soldat',
-  titreCommandant: 'Commandant',
+  metierDirigeant: 'Dirigeant',
+  metierGouverneur: 'Gouverneur',
+  metierProfesseur: 'Professeur',
+  metierChasseur: 'Chasseur',
+  metierSoldat: 'Soldat',
+  metierCommandant: 'Commandant',
   traitBatard: 'Bâtard',
   traitConsanguin: 'Consanguin',
   traitObstine: 'Obstiné',
@@ -202,10 +215,10 @@ export const DEFAULT_PARAMS: GameParams = {
 
 // champs texte (éditables aussi) — gérés sépartement pour l'UI
 export interface GameParamStrings {
-  titreHeritierStr: string
+  metierHeritierStr: string
 }
 export const DEFAULT_PARAM_STRINGS: GameParamStrings = {
-  titreHeritierStr: 'Héritier',
+  metierHeritierStr: 'Héritier',
 }
 
 /** Groupes + libellés pour l'éditeur de l'onglet Paramètres. */
@@ -216,9 +229,7 @@ export const PARAM_META: {
   unite?: string
   aide?: string
 }[] = [
-  { key: 'adultAge', label: 'Âge adulte', groupe: 'Population', aide: 'Âge à partir duquel un personnage reçoit un titre et peut se marier.' },
-  { key: 'ageMaxBase', label: 'Espérance de vie de base', groupe: 'Population', aide: 'AgeMax = base + aléa(0..ageMaxAla) + modificateurs de traits.' },
-  { key: 'ageMaxAla', label: 'Espérance de vie — aléa maximal', groupe: 'Population' },
+  { key: 'adultAge', label: 'Âge adulte', groupe: 'Population', aide: 'Âge à partir duquel un personnage reçoit un métier et peut se marier.' },
   { key: 'adulteryRate', label: 'Taux d\'adultère', groupe: 'Population', unite: 'proba' },
   { key: 'migrationEcole', label: 'Migration scolaire (même joueur)', groupe: 'Population', unite: 'proba', aide: 'Un enfant sans éducation dont la ville n\'a pas de Professeur part vers une ville avec Professeur du même joueur.' },
   { key: 'migrationSuzerain', label: 'Migration scolaire (suzerain)', groupe: 'Population', unite: 'proba', aide: '…vers une ville avec Professeur de son suzerain, ou du suzerain de son suzerain.' },
@@ -232,11 +243,14 @@ export const PARAM_META: {
   { key: 'fertTraitFactorMin', label: 'Facteur traits — plancher', groupe: 'Fécondité' },
   { key: 'fertTraitFactorMax', label: 'Facteur traits — plafond', groupe: 'Fécondité' },
   { key: 'cultureFertBase', label: 'Facteur fécondité culturel de base', groupe: 'Fécondité' },
-  { key: 'probaMaladie', label: 'Probabilité de maladie (base)', groupe: 'Maladie', unite: 'proba' },
-  { key: 'modMaladieAge', label: 'Maladie — modificateur par année d\'âge', groupe: 'Maladie' },
+  { key: 'maladieBase', label: 'Maladie — probabilité de base (Gompertz)', groupe: 'Maladie', unite: 'proba', aide: 'Rework 2026-10-20 : plus d\'âge-plafond — chaque tour, probabilité de contracter la maladie = min(cap, base × exp(pente × âge)) ; calibrée pour une espérance de vie ≈ 60 ans.' },
+  { key: 'maladiePente', label: 'Maladie — pente (Gompertz)', groupe: 'Maladie' },
+  { key: 'maladieCap', label: 'Maladie — plafond de probabilité', groupe: 'Maladie' },
   { key: 'modMaladieEnceinte', label: 'Maladie — modificateur femme enceinte', groupe: 'Maladie' },
   { key: 'probaGuerison', label: 'Probabilité de guérison (base)', groupe: 'Maladie', unite: 'proba' },
   { key: 'modGuerisonAge', label: 'Guérison — modificateur par année d\'âge', groupe: 'Maladie' },
+  { key: 'capMetierChasseurVille', label: 'Capacité Chasseurs par ville « Ville »', groupe: 'Métiers' },
+  { key: 'capMetierChasseurChateau', label: 'Capacité Chasseurs par « Château »', groupe: 'Métiers' },
   { key: 'chanceEducRoturier', label: 'Chance d\'éducation — roturier', groupe: 'Éducation', unite: 'proba' },
   { key: 'chanceEducNoble', label: 'Chance d\'éducation — noble', groupe: 'Éducation', unite: 'proba' },
   { key: 'professeurBaseChance', label: 'Chance de base d\'attribution Professeur', groupe: 'Éducation' },
@@ -244,7 +258,7 @@ export const PARAM_META: {
   { key: 'mariageRoturiers', label: 'Proba mariage roturier × roturier', groupe: 'Mariage', unite: 'proba' },
   { key: 'mariageNobles', label: 'Proba mariage noble × noble', groupe: 'Mariage', unite: 'proba' },
   { key: 'mariageMesalliance', label: 'Proba mésalliance noble × roturier', groupe: 'Mariage', unite: 'proba' },
-  { key: 'mariageBonusTitre', label: 'Bonus par époux titré (non-Chasseur)', groupe: 'Mariage' },
+  { key: 'mariageBonusMetier', label: 'Bonus par époux avec métier (non-Chasseur)', groupe: 'Mariage' },
   { key: 'mariageMemeCulture', label: 'Bonus même culture', groupe: 'Mariage' },
   { key: 'mariageAutreCulture', label: 'Malus culture différente', groupe: 'Mariage' },
   { key: 'mariageParAnEcart', label: 'Malus par année d\'écart d\'âge', groupe: 'Mariage' },
@@ -287,16 +301,38 @@ export const PARAM_META: {
 ]
 
 export const PARAM_STRINGS_META: { key: keyof GameParamStrings; label: string; groupe: string }[] = [
-  { key: 'titreHeritierStr', label: 'Nom du titre Héritier', groupe: 'Noms système' },
+  { key: 'metierHeritierStr', label: 'Nom du métier Héritier', groupe: 'Noms système' },
 ]
 
 /** Fusionne les paramètres d'une partie avec les défauts (tolérant aux clés manquantes). */
+// Rework habitants 2026-10-20 : les clés titreXxx sont devenues
+//  metierXxx (et mariageBonusTitre → mariageBonusMetier). Les configs
+//  existantes embarquent les anciennes clés — traduction ciblée,
+//  IDEMPOTENTE : la nouvelle clé, si déjà présente, prime ; l'ancienne
+//  n'écrase jamais, quel que soit l'ordre des clés.
+const RENOMMAGES_PARAMS: Record<string, string> = {
+  titreDirigeant: 'metierDirigeant',
+  titreGouverneur: 'metierGouverneur',
+  titreProfesseur: 'metierProfesseur',
+  titreChasseur: 'metierChasseur',
+  titreSoldat: 'metierSoldat',
+  titreCommandant: 'metierCommandant',
+  titreHeritierStr: 'metierHeritierStr',
+  mariageBonusTitre: 'mariageBonusMetier',
+}
+
 export function mergeParams(custom: Record<string, unknown> | undefined): GameParams & GameParamStrings {
-  const out: Record<string, unknown> = { ...DEFAULT_PARAMS, ...DEFAULT_PARAM_STRINGS }
+  const trad: Record<string, unknown> = {}
   if (custom && typeof custom === 'object') {
     for (const [k, v] of Object.entries(custom)) {
-      if (v !== undefined && v !== null && v !== '') out[k] = v
+      if (v === undefined || v === null || v === '') continue
+      const cle = RENOMMAGES_PARAMS[k] ?? k
+      //  une clé ANCIENNE (renommée) ne doit jamais écraser la clé
+      //  nouvelle déjà fournie — la nouvelle prime (rework habitants v3).
+      if (RENOMMAGES_PARAMS[k] !== undefined && trad[cle] !== undefined) continue
+      trad[cle] = v
     }
   }
+  const out: Record<string, unknown> = { ...DEFAULT_PARAMS, ...DEFAULT_PARAM_STRINGS, ...trad }
   return out as unknown as GameParams & GameParamStrings
 }

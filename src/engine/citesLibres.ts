@@ -2,7 +2,7 @@
 //  CITÉS LIBRES — POPULATION, GARNISON ET TAXES AU SUZERAIN (3decies)
 //  Une cité libre est une habitation sans joueur (règle « Cités libres »
 //  du référentiel). Elle possède sa PROPRE POPULATION : ses habitants
-//  ont des titres comme ceux d'une ville de joueur, avec une règle
+//  ont des métiers comme ceux d'une ville de joueur, avec une règle
 //  propre aux cités libres — les Chasseurs y produisent 1,1 × la
 //  Nourriture (revue 2026-10-16).
 //  Garnison (règle du référentiel) : 100 + 40 par rang de pays du
@@ -10,7 +10,7 @@
 //  Suzerain : lorsqu'un joueur devient suzerain de la cité (3
 //  émissaires — plateau, suivi manuel dans l'onglet « 🗼 Cités
 //  libres »), la cité lui verse ses taxes à chaque fin de tour : sa
-//  production nette (titres × niveau de taxes de la cité, moins sa
+//  production nette (metiers × niveau de taxes de la cité, moins sa
 //  consommation), plafonnée à 0 par ressource — canal « Cités
 //  libres » du récap ressources.
 //  La population d'une cité libre CONSOMME de la Nourriture comme une
@@ -19,7 +19,7 @@
 //  est gérée dans l'onglet « 👥 Population » comme si c'était un
 //  joueur (roturiers OU nobles, dons et mariages inter-porteurs).
 //  PYRAMIDE D'ÂGES (revue 2026-10-16) : comme chez les joueurs, la
-//  population compte des ENFANTS (sans titre — ils ne produisent
+//  population compte des ENFANTS (sans metier — ils ne produisent
 //  pas mais consomment) et des adultes titrés (Chasseur par
 //  défaut) ; la population suit TOUJOURS la cité dans ses
 //  transformations (ville → cité : les inscrits partent ; cité →
@@ -30,8 +30,7 @@
 
 import type { Character, CiteLibre, GameState, Player, TaxeNiveau } from './types'
 import { makeRng } from './rng'
-import { cfgOf, peupleDef, titreDef, type Cfg } from './gameData'
-import { computeAgeMax } from './sante'
+import { cfgOf, peupleDef, metierDef, type Cfg } from './gameData'
 import { rangPaysNiveau } from './factions'
 import { aMinistre } from './ministeres'
 import { isNobleDyn } from './shared'
@@ -80,10 +79,10 @@ export function citesSuzerainesDe(state: GameState, p: Player): CiteLibre[] {
 // ── Gains de la population de la cité (chasseurs ×1,1 Nourriture) ──────
 
 /** Détail des gains d'une cité libre, canal par canal :
- *    titres     : production brute des titres des habitants vivants —
+ *    metiers     : production brute des metiers des habitants vivants —
  *                 les Chasseurs produisent 1,1 × la Nourriture,
  *    taxeMult   : multiplicateur de taxes de la cité,
- *    taxes      : production taxée (= titres × taxeMult),
+ *    taxes      : production taxée (= metiers × taxeMult),
  *    conso      : consommation de la cité (négative — Nourriture par
  *                habitant vivant, comme une ville de joueur),
  *    net        : taxes − conso (peut être négatif),
@@ -91,12 +90,12 @@ export function citesSuzerainesDe(state: GameState, p: Player): CiteLibre[] {
  *                 — ce que le suzerain reçoit réellement. */
 export interface DetailCiteLibre {
   habitants: number
-  /** adultes (âge >= adultAge) — les seuls qui portent un titre et produisent */
+  /** adultes (âge >= adultAge) — les seuls qui portent un metier et produisent */
   adultes: number
   /** enfants vivants (âge < adultAge) — ne produisent pas mais consomment */
   enfants: number
   chasseurs: number
-  titres: Record<string, number>
+  metiers: Record<string, number>
   taxeMult: number
   taxes: Record<string, number>
   conso: Record<string, number>
@@ -104,34 +103,34 @@ export interface DetailCiteLibre {
   transfert: Record<string, number>
 }
 
-/** Production brute des titres des habitants vivants d'une cité libre.
+/** Production brute des métiers des habitants vivants d'une cité libre.
  *  Règle propre aux cités libres : les Chasseurs produisent 1,1 × la
- *  Nourriture (les autres ressources du titre sont inchangées). */
+ *  Nourriture (les autres ressources du metier sont inchangées). */
 export function detailCiteLibre(cite: CiteLibre, C: Cfg): DetailCiteLibre {
   const vivants = (cite.population ?? []).filter((c) => c.statut !== 'Décédé')
   const adultes = vivants.filter((c) => c.age >= C.p.adultAge).length
   const enfants = vivants.length - adultes
-  const titres: Record<string, number> = {}
+  const metiers: Record<string, number> = {}
   let chasseurs = 0
   for (const c of vivants) {
-    if (!c.titre) continue
-    const td = titreDef(c.titre, C.config)
+    if (!c.metier) continue
+    const td = metierDef(c.metier, C.config)
     if (!td) continue
-    const chass = c.titre === C.p.titreChasseur
+    const chass = c.metier === C.p.metierChasseur
     if (chass) chasseurs++
     if (td.ressource1 && td.valeur1 !== 0) {
       const v = chass && td.ressource1 === 'Nourriture' ? td.valeur1 * MULT_NOURR_CHASSEUR_CITE : td.valeur1
-      titres[td.ressource1] = (titres[td.ressource1] ?? 0) + v
+      metiers[td.ressource1] = (metiers[td.ressource1] ?? 0) + v
     }
     if (td.ressource2 && td.valeur2 !== 0) {
       const v = chass && td.ressource2 === 'Nourriture' ? td.valeur2 * MULT_NOURR_CHASSEUR_CITE : td.valeur2
-      titres[td.ressource2] = (titres[td.ressource2] ?? 0) + v
+      metiers[td.ressource2] = (metiers[td.ressource2] ?? 0) + v
     }
   }
   // Taxes de la cité : le niveau module TOUTES les ressources
   const taxeMult = facteurTaxesCite(cite, C)
   const taxes: Record<string, number> = {}
-  for (const [res, v] of Object.entries(titres)) {
+  for (const [res, v] of Object.entries(metiers)) {
     const tv = v * taxeMult
     if (tv !== 0) taxes[res] = tv
   }
@@ -153,7 +152,7 @@ export function detailCiteLibre(cite: CiteLibre, C: Cfg): DetailCiteLibre {
     const t = v * C.p.gainsCrediteStock
     if (t !== 0) transfert[res] = t
   }
-  return { habitants: vivants.length, adultes, enfants, chasseurs, titres, taxeMult, taxes, conso, net, transfert }
+  return { habitants: vivants.length, adultes, enfants, chasseurs, metiers, taxeMult, taxes, conso, net, transfert }
 }
 
 /** Taxes que les cités libres sous suzeraineté d'un joueur lui versent
@@ -219,7 +218,7 @@ export function appliquerTaxesCitesLibres(
 //  naissances, mariages et décès des cités libres se jouent au plateau
 //  (le statut reste éditable dans l'onglet 👥 Population).
 
-/** Ajoute des habitants roturiers à une cité libre (adultes, titre
+/** Ajoute des habitants roturiers à une cité libre (adultes, metier
  *  Chasseur par défaut, culture de la cité). Noms tirés dans une
  *  banque de noms de peuple au hasard (graine d'état → déterministe). */
 export function ajouterHabitantsCiteLibre(
@@ -282,8 +281,8 @@ function ajouterCiteLibre(
       sexe,
       // Pyramide d'âges réaliste (revue 2026-10-16) : comme la
       //  population d'un joueur au setup — certains habitants sont
-      //  des ENFANTS (0..adultAge) sans titre (ils ne produisent pas
-      //  mais consomment), les adultes reçoivent le titre Chasseur.
+      //  des ENFANTS (0..adultAge) sans metier (ils ne produisent pas
+      //  mais consomment), les adultes reçoivent le metier Chasseur.
       age: ageTiree,
       culture,
       ville: cite.nom,
@@ -296,13 +295,11 @@ function ajouterCiteLibre(
       pere: null,
       pereBio: null,
       enfantBatard: false,
-      titre: ageTiree >= C.p.adultAge ? C.p.titreChasseur : null,
+      metier: ageTiree >= C.p.adultAge ? C.p.metierChasseur : null,
       education: null,
       fecondite: 0,
-      ageMax: 0,
       armee: null,
     }
-    c.ageMax = computeAgeMax(c, rng, C)
     pop.push(c)
     ajoutes++
   }
@@ -316,32 +313,32 @@ function ajouterCiteLibre(
 
 // ── Population « comme un joueur » (onglet 👥 Population) ────────────
 
-/** Titres accessibles pour la population d'une cité libre (comme
- *  titresAccessibles pour un joueur) : Chasseur et Gouverneur, plus
- *  les titres d'éducation enseignés par un Professeur VIVANT DE LA
+/** Métiers accessibles pour la population d'une cité libre (comme
+ *  metiersAccessibles pour un joueur) : Chasseur et Gouverneur, plus
+ *  les métiers d'éducation enseignés par un Professeur VIVANT DE LA
  *  CITÉ. Pas de Ministre ni de Dirigeant : une cité libre n'a ni
  *  conseil ni dirigeant (son suzerain est un joueur). */
-export function titresAccessiblesCite(
+export function metiersAccessiblesCite(
   state: GameState, cite: CiteLibre, C: Cfg = cfgOf(state.config),
 ): string[] {
-  const out: string[] = [C.p.titreChasseur, C.p.titreGouverneur]
+  const out: string[] = [C.p.metierChasseur, C.p.metierGouverneur]
   const pop = cite.population ?? []
   const educations = new Set<string>()
   for (const c of pop) {
-    if (c.statut !== 'Décédé' && c.titre === C.p.titreProfesseur && c.education) {
+    if (c.statut !== 'Décédé' && c.metier === C.p.metierProfesseur && c.education) {
       educations.add(c.education)
     }
   }
-  for (const t of C.titres) {
+  for (const t of C.metiers) {
     if (t.attribution === 'Education' && t.education && educations.has(t.education)) {
-      out.push(t.titre)
+      out.push(t.metier)
     }
   }
   return [...new Set(out)]
 }
 
 /** Pseudo-joueur représentant une cité libre pour la VALIDATION des
- *  titres (validateTitleAssignment, validation.ts) : la population de
+ *  metiers (validateMetierAssignment, validation.ts) : la population de
  *  la cité est semblable en tout point à celle d'un joueur — les
  *  contrôles de cohérence (noblesse, genre, éducation, culture) y
  *  sont appliqués avec la culture de la cité. NB : les règles

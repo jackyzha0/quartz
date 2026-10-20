@@ -32,7 +32,7 @@ import { isNobleDyn, fullName, deplacerPersonnage, populationDe, porteurDe, nomD
 /** Donne un personnage (habitant ou noble) à un autre joueur : cadeau,
  *  exile, rachat… Il quitte la population du joueur source, rejoint
  *  celle de la cible (éditable dans son onglet Population, production
- *  des titres recalculée pour elle) ; sa ville est ré-ancrée sur la
+ *  des metiers recalculée pour elle) ; sa ville est ré-ancrée sur la
  *  première ville de la cible si sa ville actuelle n'y existe pas.
  *  Wrapper joueur→joueur du don GÉNÉRALISÉ (deplacerPersonnage,
  *  shared.ts) qui couvre aussi les cités libres. Retourne null si tout

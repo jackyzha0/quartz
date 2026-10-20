@@ -68,7 +68,7 @@ export function applyCultureInfluence(state: GameState, p: Player, rng: Rng, rec
     pression[cult] = (pression[cult] ?? 0) + Math.max(0, v)
   }
   for (const c of pop) {
-    if (c.statut === 'Décédé' || c.titre === C.p.titreDirigeant) continue
+    if (c.statut === 'Décédé' || c.metier === C.p.metierDirigeant) continue
     if (!rng.chance(C.p.conversionProba)) continue
     const poids: Record<string, number> = {}
     for (const [cult, w] of Object.entries(pression)) {

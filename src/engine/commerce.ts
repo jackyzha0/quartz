@@ -1,6 +1,6 @@
 // ══════════════════════════════════════════════════════════════════════
 //  COMMERCE — ROUTES COMMERCIALES DES MARCHANDS (marqueur (t))
-//  Un personnage portant le titre « Marchand » ouvre UNE route
+//  Un personnage portant le métier « Marchand » ouvre UNE route
 //  commerciale entre SA ville (ville actuelle du personnage) et une
 //  ville d'un AUTRE joueur. Chaque tour, les DEUX joueurs reliés
 //  gagnent marchandOrTour Or (4 par défaut — Paramètres, groupe
@@ -14,7 +14,7 @@
 //  cumulé) — marqueur (u) : plus de choix de
 //  ressource, arbitrage Thibaut « c'est l'aménagement entier qui est
 //  copié ».
-//  La route se ferme si le marchand perd son titre ou meurt.
+//  La route se ferme si le marchand perd son metier ou meurt.
 //  Canal « Commerce » du récap ressources (engine/production.ts),
 //  étape 3terdecies de FinDeTour.
 //  HYGIÈNE D'IMPORT (règle durable, incident CI #36 du 2026-10-19) : ce
@@ -44,7 +44,7 @@ import { constructionRef, effetsConstructionRef, effetsEteConstructionRef } from
 import { nbBatiments } from './factions'
 import { aTech } from './progresAuto'
 
-/** Nom du titre (fixe, comme « Ministre » dans engine/ministeres.ts). */
+/** Nom du metier (fixe, comme « Ministre » dans engine/ministeres.ts). */
 export const TITRE_MARCHAND = 'Marchand'
 
 /** Toutes les routes commerciales du monde (champ optionnel → vide). */
@@ -62,17 +62,17 @@ export function routesCommerceVers(state: GameState, joueur: number): RouteComme
   return routesCommerce(state).filter((r) => r.joueurCible === joueur)
 }
 
-/** Marchands vivants d'un joueur (porteurs du titre). */
+/** Marchands vivants d'un joueur (porteurs du métier). */
 export function marchandsDe(state: GameState, joueur: number) {
   return (state.population[joueur] ?? [])
-    .filter((c) => c.statut !== 'Décédé' && c.titre === TITRE_MARCHAND)
+    .filter((c) => c.statut !== 'Décédé' && c.metier === TITRE_MARCHAND)
 }
 
 /** Personnage marchand d'une route : null s'il est mort, introuvable
- *  ou a perdu son titre (la route est alors mourante → nettoyage). */
+ *  ou a perdu son metier (la route est alors mourante → nettoyage). */
 function marchandDeRoute(state: GameState, route: RouteCommerce) {
   const c = (state.population[route.joueur] ?? []).find((x) => x.id === route.marchandId)
-  if (!c || c.statut === 'Décédé' || c.titre !== TITRE_MARCHAND) return null
+  if (!c || c.statut === 'Décédé' || c.metier !== TITRE_MARCHAND) return null
   return c
 }
 
@@ -189,7 +189,7 @@ export function detailCommerceJoueur(
 }
 
 /** Supprime les routes dont le marchand est mort, introuvable ou a
- *  perdu son titre (appelée à chaque FinDeTour avant le crédit, et
+ *  perdu son metier (appelée à chaque FinDeTour avant le crédit, et
  *  c'est aussi la garde-fou des accès calculés). Log « Commerce ». */
 export function nettoyerRoutesCommerce(state: GameState): RouteCommerce[] {
   const avant = routesCommerce(state)
@@ -228,13 +228,13 @@ export function appliquerEffetsCommerce(
 /** Nomme automatiquement les marchands d'un joueur (revue
  *  2026-10-16, homogénéisation avec les soldats et professeurs) :
  *    · chaque ROUTE commerciale doit avoir son marchand — si un
- *      marchand est mort ou a perdu son titre, un habitant vivant de
+ *      marchand est mort ou a perdu son metier, un habitant vivant de
  *      sa ville est promu pour reprendre la route ;
  *    · jusqu'au CAP de routes disponibles (maxMarchandsJoueur :
  *      paramètre + techs + échoppes/guildes), des marchands
  *      supplémentaires sont nommés, prêts à ouvrir des routes.
  *  Comme les soldats (armées) et professeurs (écoles), c'est
- *  AUTOMATIQUE : le joueur n'attribue plus le titre à la main.
+ *  AUTOMATIQUE : le joueur n'attribue plus le métier à la main.
  *  Dépasser le cap reste possible (annonce, jamais bloqué) — les
  *  marchands au-delà ne sont simplement pas pré-nommés. */
 export function peuplerMarchands(state: GameState, p: Player): void {
@@ -244,7 +244,7 @@ export function peuplerMarchands(state: GameState, p: Player): void {
   const routes = routesCommerceDe(state, p.n)
   // 1. chaque route doit avoir un marchand vivant titré
   for (const route of routes) {
-    const m = vivants.find((c) => c.id === route.marchandId && c.titre === TITRE_MARCHAND)
+    const m = vivants.find((c) => c.id === route.marchandId && c.metier === TITRE_MARCHAND)
     if (m) continue
     // marchand manquant (mort, déchu) : remplacer par un habitant de
     //  la ville du marchand d'origine, sinon n'importe quelle ville
@@ -252,13 +252,13 @@ export function peuplerMarchands(state: GameState, p: Player): void {
     const ancien = pop.find((c) => c.id === route.marchandId)
     const estCandidat = (c: typeof vivants[number]) =>
       c.age >= C.p.adultAge &&
-      (!c.titre || c.titre === C.p.titreChasseur) &&
+      (!c.metier || c.metier === C.p.metierChasseur) &&
       p.villes.some((v) => v.nom === c.ville)
     const poolVille = (ancien?.ville ?? '')
     const elu = vivants.find((c) => estCandidat(c) && c.ville === poolVille)
       ?? vivants.find((c) => estCandidat(c))
     if (!elu) continue
-    elu.titre = TITRE_MARCHAND
+    elu.metier = TITRE_MARCHAND
     route.marchandId = elu.id
     state.log.push({
       turn: state.turn + 1, type: 'Commerce', joueur: p.n,
@@ -268,7 +268,7 @@ export function peuplerMarchands(state: GameState, p: Player): void {
   // 2. (SUPPRIMÉ — bug 2026-10-17 « marchands aléatoires
   //    indestructibles ») l'ancienne étape promouvait des marchands
   //    « en réserve » pour remplir le cap SANS route ouverte :
-  //    des marchands apparaissaient aléatoirement, et un titre
+  //    des marchands apparaissaient aléatoirement, et un metier
   //    retiré à la main était re-promu au tour suivant. La demande
   //    d'origine est « les marchands sont nommés automatiquement
   //    S'IL Y A DES ROUTES commerciales » (comme les soldats avec
@@ -327,27 +327,27 @@ export function creerRouteCommerce(
   // Revue 2026-10-16 (retour Thibaut) : une route commerciale peut
   //  être créée EN TOUTE SITUATION. Si le marchand fourni est
   //  invalide (absent, décédé, non titré, tient déjà une route), un
-  //  ROTURIER VIVANT reçoit automatiquement le titre de Marchand pour
+  //  ROTURIER VIVANT reçoit automatiquement le métier de Marchand pour
   //  tenir la route — plus aucun refus lié au personnage.
   const popJoueur = state.population[joueur] ?? []
   let m = marchandId ? popJoueur.find((c) => c.id === marchandId) : undefined
-  const invalide = !m || m.statut === 'Décédé' || m.titre !== TITRE_MARCHAND
+  const invalide = !m || m.statut === 'Décédé' || m.metier !== TITRE_MARCHAND
     || routesCommerceDe(state, joueur).some((r) => r.marchandId === marchandId)
   if (invalide) {
-    // roturier disponible : adulte vivant sans titre ni titre
+    // roturier disponible : adulte vivant sans metier ni metier
     //  spécialisé, dans une ville du joueur.
     const roturier = popJoueur.find((c) =>
       c.statut !== 'Décédé' && c.age >= C.p.adultAge &&
-      (!c.titre || c.titre === C.p.titreChasseur) &&
+      (!c.metier || c.metier === C.p.metierChasseur) &&
       pj?.villes.some((v) => v.nom === c.ville))
     if (!roturier) {
       return 'Aucun roturier disponible pour tenir la route (population adulte vide).'
     }
-    roturier.titre = TITRE_MARCHAND
+    roturier.metier = TITRE_MARCHAND
     m = roturier
     state.log.push({
       turn: state.turn, type: 'Commerce', joueur,
-      texte: `🛒 ${fullName(roturier)} reçoit le titre de Marchand pour tenir la nouvelle route.`,
+      texte: `🛒 ${fullName(roturier)} reçoit le métier de Marchand pour tenir la nouvelle route.`,
     })
   }
   if (joueurCible === joueur) return "La route doit viser la ville d'un autre joueur."
