@@ -625,6 +625,91 @@ redéployé embarque la refonte ministres) ; le grep des chaînes dans le
 bundle live reste À FAIRE au prochain tour (bac indisponible — règle
 10 à compléter).
 
+## Brûlage #3, source 2/3 — régimes & cultures passent par la banque (2026-10-20)
+
+Deuxième source, principe arbitré : TOUTE production passe par la
+banque. Commit `35c34bcd` (7 fichiers) : types d'effet
+`fluxParAmenagement{ressource, valeur, noms}` (Socialisme :
++N Nourriture d'été par Champ/Rizière — l'été est une CONDITION de la
+règle, plus un if moteur) et `fluxParVilleCultureMonde{ressource,
+valeur}` (règles de pays : +N par ville de la culture dans le MONDE,
+tous joueurs confondus) ; conditions `regime`/`culture` dans
+`ConditionRegle` ; `reglesRegimes`/`reglesCultures` dans le registre
+lisant les champs du référentiel (`nourrEteChampRiziere`,
+`capitalNourr/Tourisme/OrParHabMonde`) ; `effetsRegime` prend l'état
+en argument (contexte banque) et `detailCulturePays` lit la banque
+(UI = moteur, une seule vérité). Restent HORS banque, en conscience :
+garnison Autoritarisme (valeur d'état), Déisme
+(scienceParConstruction = instantané de construction).
+
+**Incident CI rouge (règle 12 confirmée)** : le harnais local (sans
+type-check) passait 75/75 mais `tsc strict` refusait le nouveau
+fichier de tests — 8 annotations `'ville' is possibly 'undefined'`
+(hors du `const { state, joueur, ville } = ctx`, `ville?: City` est
+optionnel dans ContexteEffet). GitHub n'affiche que 10 annotations
+max : le diff a été RE-LU en entier pour traquer d'éventuelles erreurs
+cachées (aucune). Correctif `2d2b73f9` : 6 gardes
+`assert.ok(ville, …)` (rétrécissement de type pour tsc strict,
+pattern déjà éprouvé dans banque.test.ts). CI du correctif VERTE —
+CI jeu #54, diag #210, Deploy Pages #1224, Deploy Edge Function #28
+(le bundle moteur redéployé embarque la source régimes & cultures).
+Vérifications : harnais 75/75 après correctif ; byte-à-byte 6/6
+types.ts/registry.ts/banque.ts/regimes.ts/production.ts/
+regimes-cultures.test.ts au sha `35c34bcd` + 1/1 au `2d2b73f9`.
+
+## Brûlage #3, source 3/3 — les flux de progrès passent par la banque (2026-10-20)
+
+Troisième et dernière source du brûlage #3 : le canal « Progrès » du
+récap. Commit `cd791628` (6 fichiers). Les montants qui vivaient
+codés en dur dans `fluxProgresJoueur` (engine/progresAuto.ts, ~150
+lignes de `if aTech(...) add(...)`) deviennent des DONNÉES du
+registre :
+
+- **7 types d'effet nouveaux** dans la banque (chacun implémenté UNE
+  fois) : `fluxSiCapitale` (canal prodCapitale — Musées +30 Tourisme,
+  Garde suzeraine +12 Nourriture avec condition `suzerainDeCite`),
+  `fluxParVille` (Assemblées scientifiques), `fluxParVilleProximite`
+  (côtier — Cours de pêche × Mer), `fluxParRangHabitation`
+  (Surconsommation : +1 Science +5 Tourisme par rang), `fluxParBatiment`
+  (Industrialisation +1 Charbon ; filtre `famille` pour Merveilles
+  naturelles/Merveilleux), `fluxParGarnisonHabitation` (Service
+  militaire avancé : +0,5 Habitants × garnison), `fluxParTitre`
+  (générique `prodParTitre` du référentiel : Commerce lointain
+  +3 Or/Marchand, Prix Gorback Nobel +6 Science/Ministre, Culte de la
+  personnalité +30 Tourisme/Ministre) — plus le réutilisé
+  `fluxParAmenagement` (Engrais, Charues, Exploitation forestière
+  avec Bois NÉGATIF, Stands de goodies, Fascination culturelle,
+  Parcs naturels).
+- **Table éditoriale `PROGRES_FLUX`** (30 règles, ids `tech.<slug>`,
+  conditions `techNom` = nom de tech — homonymes matchés comme
+  l'historique aTech) + `reglesProgres(config)` qui y ajoute les
+  génériques prodParTitre traduits du référentiel (conditions `tech`
+  par clé `<arbre>:<slot>`, application par arbre préservée).
+- **`clesTechsParNom`** : la résolution nom → clés vit dans le
+  REGISTRE ; `aTech` (moteur : réductions de coût, garnisons) et la
+  condition `techNom` (banque) partagent la MÊME vérité.
+- **`fluxProgresJoueur` = LIRE la banque** (une ligne) ; restent
+  locaux, hors production par tour : `gainDeblocageProgres`
+  (one-shot au déblocage = instantané, comme le Chancelier), les
+  réductions de coût (coûts), les garnisons (valeurs d'état).
+
+Sémantiques préservées exactement : capitale requise pour le canal
+prodCapitale, application par arbre de prodParTitre, filtre famille
+Merveille, montants négatifs (Bois −1/Charbon +1 des Scieries),
+décédés exclus. Tests : +16 dans `src/rules/progres.test.ts`
+(91/91 au harnais local, Node 22 strip-types SANS type-check) ;
+registre 33 règles progrès, ids uniques, TYPES_CONNUSS étendu.
+
+Vérifications : byte-à-byte 6/6 au sha `cd791628` ; CI VERTE au
+premier coup — CI jeu #55, diag #211, Deploy Pages #1225, Deploy
+Edge Function #29 (le bundle moteur redéployé embarque la voie
+banque du canal Progrès). LIVE vérifié : le bundle déployé
+(index-r0L6w5DM.js, Pages #1225) contient les chaînes
+distinctives `fluxSiCapitale`, `fluxParRangHabitation`,
+`fluxParGarnisonHabitation`, `fluxParTitre`, `suzerainDeCite`,
+`techNom` (la banque du canal Progrès est en prod — pensez à
+Ctrl+F5).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

@@ -441,21 +441,39 @@ La banque est la **bonne base** (contrat sain, testée, unique point de vérité
    de levée), hors production par tour. Restent hors périmètre production
    (coûts/prérequis, toujours lus sur les textes canoniques du classeur) :
    `reductionCampDeBatisseurs` et `prerequisConstruction` ;
-3. ✅ EN COURS — brûlage #3 (2026-10-20, principe « TOUTE production
-   passe par la banque ») : les MINISTRES sont migrés (`9ae36ad0`,
-   correctif CI `78bd3f24`) — type d'effet `fluxJoueurParMinistre`
-   (cumulable : valeur × porteurs vivants), `declencheur
-   'tour'|'finSaison'` sur la règle, montants dans `MINISTERES_AUTO`
-   (registry.ts), ministeres.ts ne fait plus que LIRE la banque,
-   tourismeCourant canal « Ministères » via `fluxFinSaisonMinisteres`,
-   Chancelier des émissaires resté instantané au site. Restent à
-   migrer : lois de régime (Socialisme champ/rizière) + règles de pays
-   culturelles, puis les flux de progrès (progresAuto.ts). Les règles de
-   faction ayant été retirées, leur éventuelle refonte devra naître DIRECTEMENT
-   sur la banque (ne pas recréer d'implémentation en dur).
+3. ✅ RÉSOLU (2026-10-20) — brûlage #3 TERMINÉ, principe « TOUTE
+   production passe par la banque », sources migrées une par une :
+   · **MINISTRES** (`9ae36ad0`, correctif CI `78bd3f24`) — type
+     d'effet `fluxJoueurParMinistre` (cumulable : valeur × porteurs
+     vivants), `declencheur 'tour'|'finSaison'` sur la règle, montants
+     dans `MINISTERES_AUTO` (registry.ts), ministeres.ts ne fait plus
+     que LIRE la banque, tourismeCourant canal « Ministères » via
+     `fluxFinSaisonMinisteres`, Chancelier des émissaires resté
+     instantané au site ;
+   · **RÉGIMES & CULTURES** (`35c34bcd`, correctif CI `2d2b73f9` —
+     gardes assert.ok pour tsc strict) — types `fluxParAmenagement`
+     (Socialisme) et `fluxParVilleCultureMonde` (règles de pays :
+     Communautarisme, Lunisme, Zélotisme), conditions
+     `regime`/`culture`, `reglesRegimes`/`reglesCultures` lisant les
+     champs du référentiel, `effetsRegime`/`effetsCulturePays`/
+     `detailCulturePays` ne font plus que LIRE la banque ;
+   · **FLUX DE PROGRÈS** (`cd791628`) — 7 types d'effet nouveaux
+     (`fluxSiCapitale`, `fluxParVille`, `fluxParVilleProximite`,
+     `fluxParRangHabitation`, `fluxParBatiment`, `fluxParGarnisonHabitation`,
+     `fluxParTitre`) + réutilisé `fluxParAmenagement`, table
+     éditoriale `PROGRES_FLUX` (30 règles, conditions `techNom`),
+     génériques `prodParTitre` du référentiel traduits en
+     `fluxParTitre`, `fluxProgresJoueur` = LIRE la banque,
+     `clesTechsParNom` = vérité unique nom → clés partagée entre
+     `aTech` et la condition `techNom`. Restent HORS banque, en
+     conscience : one-shots au déblocage (instantanés), réductions de
+     coût (coûts), garnisons (valeurs d'état).
+   Les règles de faction ayant été retirées, leur éventuelle refonte
+   devra naître DIRECTEMENT sur la banque (ne pas recréer
+   d'implémentation en dur).
 
 *Mise à jour le 19/10 au soir après le retrait de l'attrait migratoire et des bonus
 de faction (commit `2c24bd3a`) ; B4 résolu dans la foulée (arbitrage Thibaut,
-`ee26eb80` + `06422b9`) ; analyse initiale sur la tête `8476070e` ; brûlage #3 entamé le
-   20/10/2026 (source ministres migrée sur la banque, `9ae36ad0` +
-   correctif CI `78bd3f24`, CI verte).*
+`ee26eb80` + `06422b9`) ; analyse initiale sur la tête `8476070e` ; brûlage #3
+ENTAMÉ puis TERMINÉ le 20/10/2026 (ministres `9ae36ad0` + `78bd3f24`, régimes &
+cultures `35c34bcd` + `2d2b73f9`, flux de progrès `cd791628`).*
