@@ -116,7 +116,7 @@ test('Sénéchal : +15 Nourriture fin d’Été, RIEN fin d’Hiver (condition d
   assert.equal(joueur.resources['Nourriture'].stock, avant + 15, 'crédité fin d’été')
   const logEté = state.log.filter((l) => l.type === 'Système' && l.texte.includes('Ministères'))
   assert.ok(logEté.some((l) => l.texte.includes('+15 Nourriture (1 Sénéchal')),
-    `format du log conservé : ${logEté.at(-1)?.texte}`)
+    `format du log conservé : ${logEté[logEté.length - 1]?.texte}`)
   const apresEté = joueur.resources['Nourriture'].stock
   effetsFinSaisonMinisteres(state, 'Hiver')
   assert.equal(joueur.resources['Nourriture'].stock, apresEté, 'rien fin d’hiver (saisons ≠ été)')
@@ -135,7 +135,7 @@ test('Maître de cour +2 et Légat +20 Tourisme à CHAQUE fin de saison', () => 
   const logs = state.log.filter((l) => l.type === 'Système' && l.texte.includes('Ministères'))
   assert.ok(logs.some((l) => l.texte.includes('+2 Tourisme (1 Maître de cour') &&
     l.texte.includes('+20 Tourisme (1 Légat du pontificat')),
-    `parts par portefeuille : ${logs.at(-1)?.texte}`)
+    `parts par portefeuille : ${logs[logs.length - 1]?.texte}`)
 })
 
 test('deux Maîtres de cour : cumul + pluriel dans le log', () => {
