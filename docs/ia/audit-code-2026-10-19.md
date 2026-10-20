@@ -441,13 +441,21 @@ La banque est la **bonne base** (contrat sain, testée, unique point de vérité
    de levée), hors production par tour. Restent hors périmètre production
    (coûts/prérequis, toujours lus sur les textes canoniques du classeur) :
    `reductionCampDeBatisseurs` et `prerequisConstruction` ;
-3. ensuite seulement migrer les autres sources (ministres, régimes…) une
-   par une sur la banque, et supprimer leurs implémentations en dur — en
-   appliquant PARTOUT le principe arbitré le 2026-10-19 : TOUT ce qui a
-   rapport à une production passe par la banque. Les règles de
+3. ✅ EN COURS — brûlage #3 (2026-10-20, principe « TOUTE production
+   passe par la banque ») : les MINISTRES sont migrés (`9ae36ad0`,
+   correctif CI `78bd3f24`) — type d'effet `fluxJoueurParMinistre`
+   (cumulable : valeur × porteurs vivants), `declencheur
+   'tour'|'finSaison'` sur la règle, montants dans `MINISTERES_AUTO`
+   (registry.ts), ministeres.ts ne fait plus que LIRE la banque,
+   tourismeCourant canal « Ministères » via `fluxFinSaisonMinisteres`,
+   Chancelier des émissaires resté instantané au site. Restent à
+   migrer : lois de régime (Socialisme champ/rizière) + règles de pays
+   culturelles, puis les flux de progrès (progresAuto.ts). Les règles de
    faction ayant été retirées, leur éventuelle refonte devra naître DIRECTEMENT
    sur la banque (ne pas recréer d'implémentation en dur).
 
 *Mise à jour le 19/10 au soir après le retrait de l'attrait migratoire et des bonus
 de faction (commit `2c24bd3a`) ; B4 résolu dans la foulée (arbitrage Thibaut,
-`ee26eb80` + `06422b9`) ; analyse initiale sur la tête `8476070e`.*
+`ee26eb80` + `06422b9`) ; analyse initiale sur la tête `8476070e` ; brûlage #3 entamé le
+   20/10/2026 (source ministres migrée sur la banque, `9ae36ad0` +
+   correctif CI `78bd3f24`, CI verte).*

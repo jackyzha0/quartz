@@ -553,6 +553,78 @@ poussé/local 10/10. Prochaine
 (ministres, lois de régime/culture, techs) en appliquant partout le
 principe « toute production passe par la banque ».
 
+## Brûlage #3, source 1/3 — les ministres passent par la banque (2026-10-20)
+
+Première source du brûlage #3, principe arbitré : TOUTE production
+passe par la banque. Commit `9ae36ad0` (7 fichiers) + correctif CI
+`78bd3f24`.
+
+- **Nouveau type d'effet `fluxJoueurParMinistre`** (rules/types.ts) :
+  production CUMULABLE — valeur × nombre de ministres VIVANTS porteurs
+  (arbitrage portefeuilles cumulables) ; nouveau champ
+  `declencheur?: 'tour' | 'finSaison'` sur `RegleBanque` (production
+  par tour, canal « Ministères » du récap, vs production de fin de
+  saison — production ÉQUIVALENTE PAR TOUR, comptée dans
+  tourismeCourant).
+- **`MINISTERES_AUTO`** (rules/registry.ts) — LA couche d'édition des
+  règles ministérielles : Trésorier +5 Or, Grand Précepteur +1 Science,
+  Grand prévôt +1 Fer ('tour') ; Sénéchal +15 Nourriture avec la
+  condition `saison: 'Été'` DANS LA RÈGLE, Maître de cour +2 Tourisme,
+  Légat du pontificat +20 Tourisme ('finSaison'). `registreComplet` =
+  constructions + ministres.
+- **`engine/ministeres.ts` ne fait que LIRE la banque** (plus aucun
+  montant codé) : `appliquerEffetsMinisteres` applique les règles
+  'tour' ; `effetsFinSaisonMinisteres` applique les règles 'finSaison'
+  règle par règle (conditions évaluées par la banque) en conservant le
+  format EXACT des logs ; nouveau `fluxFinSaisonMinisteres` (lecture
+  seule) alimente le canal 5 « Ministères » de `tourismeCourant`
+  (regimes.ts — plus de ×2/×20 codés en dur).
+- **Chancelier des émissaires : HORS banque, en conscience** — +1
+  émissaire en réserve par fin de saison est un INSTANTANÉ, pas une
+  production par tour : il reste appliqué au site, documenté dans le
+  registre et le code (test dédié).
+- **8 nouveaux tests** (src/rules/ministres.test.ts — cumul deux
+  Trésoriers +10 Or, ministre décédé = rien, Sénéchal fin d'été oui /
+  fin d'hiver non, Maître de cour + Légat chaque saison + format des
+  logs + pluriels, flux par tour 22 Tourisme, Chancelier instantané,
+  cohérence du registre). 65/65 verts au harnais local AVANT le push.
+
+**Incident CI #50 (rouge) — `Array.prototype.at()` vs lib ES2020** :
+`9ae36ad0` a fait échouer le tsc strict de la CI (jeu + build) sur
+`.at(-1)` dans deux messages de diagnostic de ministres.test.ts — le
+harnais local (Node 22, strip-types, SANS type-check) l'exécutait très
+bien. Correctif `78bd3f24` : index classique `[arr.length - 1]`,
+diff chirurgical +2/−2 vérifié par l'API compare. → règle 12
+ci-dessous.
+
+**Incident d'outillage (sans effet dépôt)** : le bac d'exécution local
+a été recyclé EN COURS DE TOUR (worker bash perdu, système de fichiers
+indisponible, ~20 min de tentatives) — diagnostic (annotations de
+l'API check-runs) et correctif ont été menés ENTIÈREMENT à distance
+(contenu via l'API GitHub authentifiée, push, diff vérifié). Les
+sources 2/3 (lois de régime + règles de pays culturelles) et 3/3
+(flux de progrès) du brûlage #3 NE SONT PAS ENTAMÉES : la règle 11
+impose les tests AVANT push après tout nouvel import entre modules du
+moteur (effetsRegime/effetsCulturePays importeront la banque), et le
+harnais est indisponible. Conception de la suite (pour le prochain
+tour) : types `fluxParAmenagement{ressource, valeur, noms}`
+(Socialisme : +5 Nourriture d'été × Champ/Rizière, condition saison
+dans la règle) et `fluxParVilleCultureMonde{ressource, valeur}`
+(règles de pays : +N par ville de la culture dans le MONDE) ;
+conditions `regime`/`culture` ajoutées à `ConditionRegle` ;
+`reglesRegimes`/`reglesCultures` dans le registre lisant les champs
+du référentiel (`nourrEteChampRiziere`,
+`capitalNourr/Tourisme/OrParHabMonde`) ; `effetsRegime` prend l'état
+en argument (contexte banque) et `detailCulturePays` lit la banque
+(UI = moteur, une seule vérité).
+
+Vérifications : byte-à-byte 7/7 au sha `9ae36ad0` (avant le recyclage
+du bac) ; CI du correctif `78bd3f24` VERTE — CI jeu #51, diag #207,
+Deploy Pages #1221, Deploy Edge Function #26 (le bundle moteur
+redéployé embarque la refonte ministres) ; le grep des chaînes dans le
+bundle live reste À FAIRE au prochain tour (bac indisponible — règle
+10 à compléter).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
@@ -596,6 +668,13 @@ principe « toute production passe par la banque ».
     à effets de bord top-level (`AMENAGEMENTS` dans amenagements.ts) ne doit
     jamais se retrouver dans un cycle (le canal Commerce de `tourismeCourant`,
     regimes → commerce, l'a appris à nos dépens).
+12. **lib ES2020 de la CI (incident CI #50, 2026-10-20)** : le tsc
+    strict de la CI compile avec `lib: ES2020` — les API post-ES2020
+    (`Array.prototype.at`, `findLast`, `Object.hasOwn`…) échouent au
+    type-check alors que le harnais local (Node 22, sans type-check)
+    les exécute très bien. Ne pas utiliser d'API post-ES2020 dans
+    `src/` (ou passer la lib en ES2022 — à arbitrer à l'occasion d'un
+    vrai besoin).
 
 ## Raccourci git
 
