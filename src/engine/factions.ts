@@ -11,7 +11,7 @@
 //
 //  Ce module garde les COMPTEURS D'ÉTAT partagés par le moteur et
 //  l'interface (indépendants des règles de faction), utilisés par les
-//  cités libres, le commerce, les merveilles, la validation des titres…
+//  cités libres, le commerce, les merveilles, la validation des metiers…
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
 

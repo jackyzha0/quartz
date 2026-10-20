@@ -17,7 +17,7 @@
 //      le monde (champs `capitalNourrParHabMonde`, etc.).
 //  Les autres attributs des cultures (hérédité, martialité, fécondité,
 //  mariages homosexuels) sont appliqués dans setup / naissances /
-//  armees / titres. Les règles restées textuelles (terres de
+//  armees / metiers. Les règles restées textuelles (terres de
 //  succession, serments supplémentaires, cases de terrain…) restent
 //  descriptives tant que ces systèmes ne sont pas modélisés.
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.

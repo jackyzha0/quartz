@@ -10,7 +10,7 @@ import type { Rng } from './rng'
 import { cfgOf, traitDef, cultureDef, peupleDef, type Cfg } from './gameData'
 import { bump, fullName, isNobleDyn, newId } from './shared'
 import { taxBirthFactor } from './economie'
-import { computeAgeMax, killCharacter } from './sante'
+import { killCharacter } from './sante'
 
 
 /**
@@ -146,7 +146,7 @@ export function conceptionEtNaissances(state: GameState, p: Player, rng: Rng, re
     if (mere.age < C.p.adultAge) continue
     const ville = villesParNom.get(mere.ville)
     const mari = mere.mariageId ? indexMonde.get(mere.mariageId) : undefined
-    // Mariage homosexuel (culture l'autorisant — mariages dans titres.ts) :
+    // Mariage homosexuel (culture l'autorisant — mariages dans metiers.ts) :
     // pas de conception entre épouses de même sexe.
     if (mari && mari.sexe !== 'M') continue
     const factorMari = mari ? maleAgeFactor(mari.age) * orientationFertFactor(mari.orientation) : C.p.fertSingleFactor
@@ -224,17 +224,15 @@ function accoucher(state: GameState, p: Player, mere: Character, pere: Character
       pereBio: null,
       pereBioId: null,
       enfantBatard: batard,
-      titre: null,
+      metier: null,
       education: null,
       fecondite: 0,
-      ageMax: 0,
       armee: null,
     }
     // traits
     inheritTraits(enfant, mere, pere, rng, C)
     if (batard) ensureTraitPresent(enfant, C.p.traitBatard)
     if (consanguin) ensureTraitPresent(enfant, C.p.traitConsanguin)
-    enfant.ageMax = computeAgeMax(enfant, rng, C)
     pop.push(enfant)
     invaliderIndexPopulation()
     bump(recap.naissances, enfant.dynastie)

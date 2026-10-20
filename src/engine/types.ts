@@ -29,8 +29,8 @@ export interface TraitDef {
   marriage_mod: number         // modificateur de probabilité de mariage
 }
 
-export interface TitreDef {
-  titre: string
+export interface MetierDef {
+  metier: string
   education: string            // éducation requise ('' = aucune)
   valeur1: number              // gain par tour
   ressource1: string           // ressource du gain 1
@@ -40,6 +40,10 @@ export interface TitreDef {
   nobleSeul: boolean
   regleGenre: RegleGenre
   attribution: Attribution
+  /** Capacité maximale par ville (rework habitants 2026-10-20) : absent =
+   *  illimité (vague 1 : seul le Chasseur est plafonné, via les paramètres
+   *  capMetierChasseurVille / capMetierChasseurChateau). */
+  capParVille?: number
 }
 
 export interface CultureDef {
@@ -117,15 +121,22 @@ export interface Character {
   /** femme enceinte ayant contracté la maladie : elle accouchera,
    *  puis mourra de la maladie (règle simplifiée « malade ou sain »). */
   enceinteMalade?: boolean
-  titre: string | null
-  /** Portefeuille ministériel si le titre est « Ministre » (table
+  /** Métier du personnage (rework habitants 2026-10-20) : l'ancien champ
+   *  `titre` devient `metier` — les rôles de cour (Dirigeant, Héritier,
+   *  Gouverneur, Ministre…) vivent DANS le champ métier. null = Sans-
+   *  emploi : NEUTRE, aucun effet au plateau, impôt nul. */
+  metier: string | null
+  /** Domicile du personnage (rework habitants 2026-10-20, vague 2 UI) :
+   *  null = sans domicile, AUCUN effet en vague 1. Champ optionnel :
+   *  absent des états migrés (compressé quand null). */
+  domicile?: string | null
+  /** Portefeuille ministériel si le metier est « Ministre » (table
    *  `ministeres` du référentiel : Sénéchal, Trésorier… — refonte
    *  2026-10-14). Champ optionnel : absent des vieilles sauvegardes →
    *  aucun portefeuille. */
   ministere?: string | null
   education: string | null
   fecondite: number
-  ageMax: number
   armee: string | null        // nom de l'armée de rattachement
 }
 
@@ -200,7 +211,7 @@ export interface Army {
   puissanceCible: number
   puissance: number
   commandant: string | null   // id du personnage
-  soldats: string[]           // ids des personnages titre Soldat
+  soldats: string[]           // ids des personnages metier Soldat
   cible: string | null        // ville / joueur visé
 }
 
@@ -232,7 +243,7 @@ export interface CiteLibre {
   /** Émissaires gagnés par chaque joueur auprès de la cité (clé = n° de
    *  joueur) — suivi manuel des tentatives d'influence du plateau. */
   emissaires?: Record<number, number>
-  /** Population de la cité (habitants — titre Chasseur par défaut). */
+  /** Population de la cité (habitants — metier Chasseur par défaut). */
   population?: Character[]
 }
 
@@ -242,13 +253,13 @@ export interface CiteLibre {
  *  copie en plus la production d'UNE ressource d'UN aménagement de la
  *  ville ciblée (choix modifiable à tout moment — arbitrage Thibaut
  *  2026-10-15). Un marchand ne tient qu'une route ; elle se ferme s'il
- *  meurt ou perd son titre (nettoyerRoutesCommerce, engine/commerce.ts).
+ *  meurt ou perd son metier (nettoyerRoutesCommerce, engine/commerce.ts).
  *  Champ optionnel de GameState : absent des vieilles sauvegardes → []. */
 export interface RouteCommerce {
   id: string
   /** N° du joueur PROPRIÉTAIRE du marchand (encaisse Or + copie). */
   joueur: number
-  /** Id du personnage portant le titre « Marchand ». */
+  /** Id du personnage portant le metier « Marchand ». */
   marchandId: string
   /** N° du joueur propriétaire de la ville ciblée (encaisse l'Or). */
   joueurCible: number
@@ -276,7 +287,7 @@ export interface PlayerRecap {
   decesMaladie: number
   mariagesNobles: Record<string, number>
   conversions: Record<string, number>
-  titresAttribues: Record<string, number>
+  metiersAttribues: Record<string, number>
   crises: string[]
   commandantTombe: string | null
 }
@@ -335,7 +346,7 @@ export interface Player {
 
 export interface LogEntry {
   turn: number
-  type: 'Événement' | 'Dynastie' | 'Crise' | 'Naissance' | 'Décès' | 'Mariage' | 'Titre' | 'Armée' | 'Culture' | 'Commerce' | 'Système' | 'Conflit'
+  type: 'Événement' | 'Dynastie' | 'Crise' | 'Naissance' | 'Décès' | 'Mariage' | 'Métier' | 'Titre' | 'Armée' | 'Culture' | 'Commerce' | 'Système' | 'Conflit'
   joueur: number | null
   texte: string
 }
@@ -360,7 +371,7 @@ export interface ApportsTour {
   /** lignes « Autres » des villes (ressource × nombre × bonus — engine/autres.ts).
    *  Champ optionnel : absent des historiques d'avant l'ajout de la catégorie. */
   autres?: Record<string, number>
-  /** gains d'habitants (titres, taxes) après coefficient gainsCrediteStock, hors tribut */
+  /** gains d'habitants (métiers, taxes) après coefficient gainsCrediteStock, hors tribut */
   population: Record<string, number>
   /** tribut de vassalité net (négatif = payé, positif = reçu) */
   vassalite: Record<string, number>

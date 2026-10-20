@@ -9,7 +9,7 @@ import {
   DEFAULT_CONFIG, cfgOf, cloneDefaultConfig,
   couleurJoueur, couleurRessource, fondRessource, migrerCouleurs,
   COULEURS_JOUEURS_DEFAUT, COULEURS_RESSOURCES_DEFAUT, TRANSPARENCE_LIGNES_DEFAUT,
-  type Cfg, type GameConfig, type TitreDef, type TraitDef, type CultureDef,
+  type Cfg, type GameConfig, type MetierDef, type TraitDef, type CultureDef,
   type CouleursConfig,
 } from '../config/defaultConfig'
 
@@ -33,8 +33,8 @@ export const PEUPLES: PeupleDef[] = DEFAULT_CONFIG.peuples.map((nom) => {
   return { nom, noms: b.noms, prenomsM: b.prenomsM, prenomsF: b.prenomsF }
 })
 
-export function titreDef(titre: string, cfg?: GameConfig): TitreDef | undefined {
-  return (cfg ?? DEFAULT_CONFIG).titres.find((t) => t.titre === titre)
+export function metierDef(metier: string, cfg?: GameConfig): MetierDef | undefined {
+  return (cfg ?? DEFAULT_CONFIG).metiers.find((t) => t.metier === metier)
 }
 export function traitDef(name: string, cfg?: GameConfig): TraitDef | undefined {
   return (cfg ?? DEFAULT_CONFIG).traits.find((t) => t.name === name)

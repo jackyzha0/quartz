@@ -3,7 +3,7 @@
 //  Portage TypeScript des macros VBA :
 //    · FinDeTour (ressources, saisons, événements, dynasties)
 //    · PersonnagesPourJoueur (moteur de population)
-//    · CalculerGainsPopulation (gains par ville : titres, taxes, conso)
+//    · CalculerGainsPopulation (gains par ville : metiers, taxes, conso)
 //    · RecruitForArmies (armées)
 //  Un tour = 2 ans de jeu.
 //
@@ -16,7 +16,7 @@
 //    autres.ts      lignes « Autres » des villes (production additionnelle)
 //    vassalite.ts   tribut des vassaux vers leur suzerain
 //    population.ts  orchestration démographique du tour, migration
-//    titres.ts      professeurs, mariages, éducation, titres
+//    metiers.ts      professeurs, mariages, éducation, metiers
 //    sante.ts       maladie, décès, succession du Dirigeant
 //    naissances.ts  fécondité, conceptions, accouchement, traits
 //    culture.ts    conversions culturelles, culture des villes
@@ -31,7 +31,7 @@ import { makeRng } from './rng'
 import { cfgOf } from './gameData'
 import { saisonForTurn, applyEventEffect, applyDynastieCard } from './saisons'
 import { calculerGainsPopulation } from './economie'
-import { designerGouverneurs } from './titres'
+import { designerGouverneurs, reaffecterMetiers } from './metiers'
 import { appliquerEffetsBatiments } from './batiments'
 import { appliquerEffetsAmenagements, effetsNourrEteAmenagementsVille } from './amenagements'
 import { appliquerEffetsAutres, effetsNourrEteAutresVille } from './autres'
@@ -118,6 +118,12 @@ export function runTurn(state: GameState): GameState {
   //    AVANT le calcul des gains : le bonus +10 % d'impôts de la
   //    ville s'applique dès le tour de la nomination.
   designerGouverneurs(state, C)
+
+  // 2ter. Réaffectation des métiers plafonnés (rework habitants
+  //    2026-10-20) : caps de Chasseurs par ville (Ville 50 / Château 25,
+  //    paramétrables) — AVANT le calcul des gains : les caps
+  //    s'appliquent aux impôts du même tour.
+  reaffecterMetiers(state, C)
 
   // 3. Gains de population par joueur (CalculerGainsPopulation), puis
   //    production de base : stock += prod (lignes 18-28 des J{n}).
@@ -402,7 +408,7 @@ export {
   citesLibresDe, garnisonCiteLibre, facteurTaxesCite, emissairesDe,
   citesSuzerainesDe, detailCiteLibre, taxesCitesLibresRecues,
   appliquerTaxesCitesLibres, ajouterHabitantsCiteLibre, taxesCite,
-  ajouterFamilleNobleCiteLibre, titresAccessiblesCite,
+  ajouterFamilleNobleCiteLibre, metiersAccessiblesCite,
   pseudoJoueurDeCite, MULT_NOURR_CHASSEUR_CITE,
   type DetailCiteLibre,
 } from './citesLibres'
@@ -441,12 +447,12 @@ export {
 export { populationTurn, migrerPopulation } from './population'
 export {
   maybeAssignProfesseurs, gestionMariages, formatDynastyPair,
-  computeMarriageProbability, tryEducateMinor, assignAdultTitle,
-  titreAllowedForCharacter, titresAccessibles,
-  gouverneurDeVille, designerGouverneurs,
-} from './titres'
+  computeMarriageProbability, tryEducateMinor, assignAdultMetier,
+  metierAllowedForCharacter, metiersAccessibles,
+  gouverneurDeVille, designerGouverneurs, capMetierVille, reaffecterMetiers,
+} from './metiers'
 export {
-  computeAgeMax, killCharacter, handleDirigeantSuccession,
+  killCharacter, handleDirigeantSuccession, probaContracterMaladie,
 } from './sante'
 export {
   computeFecondite, femaleAgeFactor, maleAgeFactor, orientationFertFactor,
@@ -460,7 +466,7 @@ export {
   cocherLaurier, nbLauriers, victoireAtteinte,
   victoryProgress, victoryLabels,
 } from './victory'
-export { findTitleIssues, titleCandidatesFor } from './validation'
+export { findMetierIssues, titleCandidatesFor } from './validation'
 // Couleurs d'affichage (marqueur (o)) — palettes paramétrables
 export {
   couleurJoueur, couleurRessource, fondRessource, migrerCouleurs,

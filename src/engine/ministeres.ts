@@ -8,7 +8,7 @@
 //  paramétrable dans Référentiels → « Ministères ». Arbitrage Thibaut :
 //  portefeuilles CUMULABLES (deux fois le même = effet doublé),
 //  nomination réservée aux nobles et dynasties (avertissement du
-//  titre « nobleSeul »), certains portefeuilles exigent un RANG DE PAYS
+//  metier « nobleSeul »), certains portefeuilles exigent un RANG DE PAYS
 //  MINIMUM (avertissement), effets FIXES pour les 16 portefeuilles
 //  « de cour » (les 7 du classeur scalent sur le rang de pays).
 //  Mode « Auto » = appliqué par le moteur (montants ci-dessous, par
@@ -22,19 +22,19 @@ import { reglesMinistres } from '../rules/registry'
 import { appliquerRegles } from '../rules/effects/banque'
 
 /** Portefeuilles ministériels actifs d'un joueur : personnages VIVANTS
- *  portant le titre « Ministre » et un portefeuille. Les doublons sont
+ *  portant le metier « Ministre » et un portefeuille. Les doublons sont
  *  conservés (portefeuilles cumulables — deux Trésoriers comptent
  *  double dans les effets automatiques). */
 export function portefeuillesDuJoueur(state: GameState, p: Player): string[] {
   return (state.population[p.n] ?? [])
-    .filter((c) => c.statut !== 'Décédé' && c.titre === 'Ministre' && c.ministere)
+    .filter((c) => c.statut !== 'Décédé' && c.metier === 'Ministre' && c.ministere)
     .map((c) => c.ministere as string)
 }
 
 /** Le joueur possède-t-il au moins un ministre du portefeuille donné ? */
 export function aMinistre(state: GameState, p: Player, portefeuille: string): boolean {
   return (state.population[p.n] ?? []).some(
-    (c) => c.statut !== 'Décédé' && c.titre === 'Ministre' && c.ministere === portefeuille,
+    (c) => c.statut !== 'Décédé' && c.metier === 'Ministre' && c.ministere === portefeuille,
   )
 }
 

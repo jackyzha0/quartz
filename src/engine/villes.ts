@@ -11,7 +11,7 @@
 //  · transfererVille : déplace la ville ET sa population « classique »
 //    (vivants et décédés inscrits dans cette ville) vers le joueur
 //    cible : ils produisent désormais pour lui (gains d'habitants par
-//    titres × taxes) et y sont éditables dans son onglet Population.
+//    metiers × taxes) et y sont éditables dans son onglet Population.
 //    La COUR du joueur (nobles — tableau « La cour » de l'onglet
 //    Population) reste auprès de lui : un noble ne change de joueur
 //    que s'il est explicitement DONNÉ (donnerPersonnage, cour.ts —
@@ -117,7 +117,7 @@ export function transfererVille(
   //  rattachables sans ambiguïté (filtre « ville », gains par ville…).
   //  M5 (audit 2026-10-19, à garder en tête) : les associations par NOM
   //  de ville (gouverneur, c.ville, filtres de population —
-  //  economie.ts/titres.ts/villes.ts) tiennent parce que ce renommage
+  //  economie.ts/metiers.ts/villes.ts) tiennent parce que ce renommage
   //  AUTOMATIQUE met à jour les habitants en même temps que la ville.
   //  Toute future UI de renommage MANUEL doit répercuter le nom sur
   //  gouverneurs + populations + rattachements, sinon elle casse
@@ -140,7 +140,7 @@ export function transfererVille(
   state.population[cible.n] = [...(state.population[cible.n] ?? []), ...deplaces]
   state.log.push({
     turn: state.turn, type: 'Système', joueur: cible.n,
-    texte: `🗝 ${ancienNom}${renommee ? ` (renommée « ${renommee} »)` : ''} passe de ${p.nom} à ${cible.nom}${deplaces.length ? `, avec ses ${deplaces.length} habitant(s) (production des titres recalculée pour ${cible.nom})` : ''}${courRestee.length ? ` — la cour de ${p.nom} (${courRestee.length} noble(s)) reste auprès de lui` : ''}.`,
+    texte: `🗝 ${ancienNom}${renommee ? ` (renommée « ${renommee} »)` : ''} passe de ${p.nom} à ${cible.nom}${deplaces.length ? `, avec ses ${deplaces.length} habitant(s) (production des métiers recalculée pour ${cible.nom})` : ''}${courRestee.length ? ` — la cour de ${p.nom} (${courRestee.length} noble(s)) reste auprès de lui` : ''}.`,
   })
   return true
 }

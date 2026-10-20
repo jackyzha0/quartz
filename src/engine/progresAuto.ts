@@ -7,7 +7,7 @@
 //  Thibaut « toute production passe par la banque ») : les FLUX par
 //  tour des technologies (fluxProgresJoueur, canal « Progrès » du
 //  récap ressources) vivent dans le REGISTRE (rules/registry.ts —
-//  PROGRES_FLUX + génériques prodParTitre du référentiel) et sont
+//  PROGRES_FLUX + génériques prodParMetier du référentiel) et sont
 //  interprétés par la BANQUE ; ce module ne fait plus que LIRE la
 //  banque. Restent locaux, hors production par tour :
 //    · aTech                  : résolution nom → clés DÉLÉGUÉE au
@@ -40,7 +40,7 @@ export function aTech(p: Player, nomTech: string, C: Cfg): boolean {
  *  techNom / tech, effets fluxSiCapitale, fluxParVille,
  *  fluxParVilleProximite, fluxParRangHabitation,
  *  fluxParAmenagement, fluxParBatiment, fluxParGarnisonHabitation,
- *  fluxParTitre) ; cette fonction ne fait que LIRE la banque, plus
+ *  fluxParMetier) ; cette fonction ne fait que LIRE la banque, plus
  *  aucun montant codé ici. */
 export function fluxProgresJoueur(state: GameState, p: Player, C: Cfg): Record<string, number> {
   return appliquerRegles(reglesProgres(C.config), { state, joueur: p, saison: state.saison }).flux
@@ -85,7 +85,7 @@ export function gainDeblocageProgres(state: GameState, p: Player, nomTech: strin
       // Revue 2026-10-16 : 50 Or par ministre en poste au déblocage
       //  (la montée de rang est gérée par ProgresView, qui a l'état).
       const nbMinistres = (state.population[p.n] ?? [])
-        .filter((c) => c.statut !== 'Décédé' && c.titre === 'Ministre' && c.ministere).length
+        .filter((c) => c.statut !== 'Décédé' && c.metier === 'Ministre' && c.ministere).length
       return nbMinistres > 0 ? credit('Or', 50 * nbMinistres) : ''
     }
     case 'Geste': return credit('\u00c9missaires', 1)

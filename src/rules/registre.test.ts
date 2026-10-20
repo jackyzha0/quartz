@@ -29,7 +29,7 @@ const TYPES_CONNUSS = new Set([
   'fluxVille', 'fluxJoueur', 'fluxCapitale', 'fluxJoueurParMinistre',
   'fluxParAmenagement', 'fluxParVilleCultureMonde',
   'fluxSiCapitale', 'fluxParVille', 'fluxParVilleProximite',
-  'fluxParRangHabitation', 'fluxParBatiment', 'fluxParGarnisonHabitation', 'fluxParTitre',
+  'fluxParRangHabitation', 'fluxParBatiment', 'fluxParGarnisonHabitation', 'fluxParMetier',
   'garnisonVille', 'garnisonParRang', 'garnisonJoueur',
   'tourismeInstantane', 'habitantsVille', 'conversionPoids', 'migrationPoids',
   'reductionCout', 'reductionLeveeArmee', 'emissaires',

@@ -46,11 +46,10 @@ function ministre(
     pereBio: null,
     pereBioId: null,
     enfantBatard: false,
-    titre: 'Ministre',
+    metier: 'Ministre',
     ministere: portefeuille,
     education: null,
     fecondite: 1,
-    ageMax: 80,
     armee: null,
   }
 }

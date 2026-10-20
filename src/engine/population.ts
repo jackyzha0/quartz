@@ -1,6 +1,6 @@
 // ══════════════════════════════════════════════════════════════════════
 //  MOTEUR DE POPULATION (PersonnagesPourJoueur) + MIGRATION
-//  Orchestration démographique du tour : appelle les modules titres, santé, naissances, culture et journal.
+//  Orchestration démographique du tour : appelle les modules metiers, santé, naissances, culture et journal.
 //  Portage des macros VBA du classeur Chasse & Pêche 7.19.
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
@@ -9,8 +9,8 @@ import type { Character, City, GameState, Player } from './types'
 import type { Rng } from './rng'
 import { cfgOf } from './gameData'
 import { emptyRecap, fullName } from './shared'
-import { maybeAssignProfesseurs, gestionMariages, tryEducateMinor, assignAdultTitle } from './titres'
-import { computeAgeMax, tryResurrection, killCharacter, maladieStep } from './sante'
+import { maybeAssignProfesseurs, gestionMariages, tryEducateMinor, assignAdultMetier } from './metiers'
+import { maladieStep } from './sante'
 import { computeFecondite, conceptionEtNaissances } from './naissances'
 import { applyCultureInfluence, updateCityCultures } from './culture'
 import { writeRecap } from './journal'
@@ -37,24 +37,15 @@ export function populationTurn(state: GameState, p: Player, rng: Rng) {
   for (const c of vivants) {
     // statut vide → Sain
     if (!c.statut) c.statut = 'Sain'
-    // AgeMax par défaut : 40 + aléa(0-39) + life_delta(Trait1)
-    if (!c.ageMax || c.ageMax <= 0) c.ageMax = computeAgeMax(c, rng, C)
     // vieillissement : +2 ans par tour
+    // (rework habitants 2026-10-20 : plus d'âge-plafond, la maladie seule tue)
     c.age += 2
     // éducation des mineurs
     if (c.age < C.p.adultAge) tryEducateMinor(state, p, c, rng)
     // fécondité affichée
     c.fecondite = computeFecondite(state, p, c)
-    // mort de vieillesse
-    if (c.age >= c.ageMax) {
-      const resurrected = tryResurrection(c, rng, C)
-      if (!resurrected) {
-        killCharacter(state, p, c, 'vieillesse', recap)
-        continue
-      }
-    }
-    // titre automatique à l'âge adulte
-    if (c.age >= C.p.adultAge && !c.titre) assignAdultTitle(state, p, c, recap)
+    // métier automatique à l'âge adulte
+    if (c.age >= C.p.adultAge && !c.metier) assignAdultMetier(state, p, c, recap)
     // maladie
     maladieStep(state, p, c, rng, recap)
   }
@@ -107,7 +98,7 @@ function villesAvecProfesseur(state: GameState, joueur: Player): City[] {
       const n = Number(nStr)
       const villes = new Set<string>()
       for (const c of liste ?? []) {
-        if (c.statut !== 'Décédé' && c.titre === C.p.titreProfesseur) villes.add(c.ville)
+        if (c.statut !== 'Décédé' && c.metier === C.p.metierProfesseur) villes.add(c.ville)
       }
       parJoueur.set(n, villes)
     }

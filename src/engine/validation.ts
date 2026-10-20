@@ -1,52 +1,52 @@
 // ══════════════════════════════════════════════════════════════════════
-//  Contrôle de cohérence de l'attribution des titres
-//  (portage de la macro VBA ValidateTitleAssignment + frmAttribuerTitre)
+//  Contrôle de cohérence de l'attribution des métiers
+//  (portage de la macro VBA ValidateMetierAssignment + frmAttribuerMetier)
 //  PHILOSOPHIE : ces contrôles sont des AVERTISSEMENTS, jamais des
 //  blocages. L'attribution est toujours appliquée (aucune contrainte
 //  bloquante) ; le message sert d'aide au joueur qui peut l'ignorer.
 // ══════════════════════════════════════════════════════════════════════
 
 import type { Character, Player, GameState } from './types'
-import { cfgOf, cultureDef, titreDef } from './gameData'
+import { cfgOf, cultureDef, metierDef } from './gameData'
 import { schoolRankOf } from './gameData2'
 import { isNobleDyn } from './engine'
 import { rangPaysNiveau } from './factions'
 
-export interface TitleIssue {
+export interface MetierIssue {
   ok: boolean
   message: string
 }
 
 /**
- * Contrôle l'attribution d'un titre à un personnage (cohérence avec le
- * classeur) : âge adulte, noblesse, règles de genre du titre et de la
+ * Contrôle l'attribution d'un métier à un personnage (cohérence avec le
+ * classeur) : âge adulte, noblesse, règles de genre du metier et de la
  * culture (Reglege : vide / Masculine / Féminine / Hérédité / Martialité),
  * éducation requise, unicité Dirigeant/Héritier/Gouverneur/Professeur.
  */
-export function validateTitleAssignment(
+export function validateMetierAssignment(
   state: GameState,
   player: Player,
   char: Character,
-  titre: string,
-): TitleIssue {
+  metier: string,
+): MetierIssue {
   const C = cfgOf(state.config)
-  const td = titreDef(titre, C.config)
-  if (!td) return { ok: false, message: `Titre inconnu : ${titre}` }
+  const td = metierDef(metier, C.config)
+  if (!td) return { ok: false, message: `Métier inconnu : ${metier}` }
   if (char.statut === 'Décédé') return { ok: false, message: 'Ce personnage est décédé.' }
   if (char.age < C.p.adultAge) return { ok: false, message: `Ce personnage est mineur (${char.age} ans, adulte à ${C.p.adultAge}).` }
   if (td.attribution === 'Armée') {
-    return { ok: false, message: `Le titre « ${titre} » s'obtient normalement par l'engagement militaire.` }
+    return { ok: false, message: `Le métier « ${metier} » s'obtient normalement par l'engagement militaire.` }
   }
   if (td.nobleSeul && !isNobleDyn(char.dynastie, C)) {
-    return { ok: false, message: `Le titre « ${titre} » est en principe réservé aux nobles (${char.dynastie}).` }
+    return { ok: false, message: `Le métier « ${metier} » est en principe réservé aux nobles (${char.dynastie}).` }
   }
   // règles de genre (colonne RegleGenre du classeur : vide/Masculine/Féminine/Hérédité/Martialité)
   const cult = cultureDef(player.culture, C.config)
   if (td.regleGenre === 'Masculine' && char.sexe !== 'M') {
-    return { ok: false, message: 'Ce titre est en principe réservé aux hommes.' }
+    return { ok: false, message: 'Ce métier est en principe réservé aux hommes.' }
   }
   if (td.regleGenre === 'Féminine' && char.sexe !== 'F') {
-    return { ok: false, message: 'Ce titre est en principe réservé aux femmes.' }
+    return { ok: false, message: 'Ce métier est en principe réservé aux femmes.' }
   }
   if (td.regleGenre === 'Hérédité' && cult) {
     if (cult.heredite === 'Masculine' && char.sexe !== 'M') {
@@ -70,39 +70,39 @@ export function validateTitleAssignment(
   }
   // règles d'unicité (Dirigeant, Héritier, Gouverneur, Professeurs)
   const pop = (state.population[player.n] ?? []).filter((c) => c.statut !== 'Décédé')
-  if (titre === C.p.titreDirigeant && pop.some((c) => c.id !== char.id && c.titre === C.p.titreDirigeant)) {
-    return { ok: false, message: `Il y a déjà un ${C.p.titreDirigeant}.` }
+  if (metier === C.p.metierDirigeant && pop.some((c) => c.id !== char.id && c.metier === C.p.metierDirigeant)) {
+    return { ok: false, message: `Il y a déjà un ${C.p.metierDirigeant}.` }
   }
-  if (titre === C.p.titreHeritierStr) {
-    const dirigeant = pop.find((c) => c.titre === C.p.titreDirigeant)
-    if (pop.some((c) => c.id !== char.id && c.titre === C.p.titreHeritierStr)) {
-      return { ok: false, message: `Il y a déjà un ${C.p.titreHeritierStr}.` }
+  if (metier === C.p.metierHeritierStr) {
+    const dirigeant = pop.find((c) => c.metier === C.p.metierDirigeant)
+    if (pop.some((c) => c.id !== char.id && c.metier === C.p.metierHeritierStr)) {
+      return { ok: false, message: `Il y a déjà un ${C.p.metierHeritierStr}.` }
     }
     if (dirigeant && char.dynastie !== dirigeant.dynastie) {
-      return { ok: false, message: `L'${C.p.titreHeritierStr} est en principe de la dynastie du ${C.p.titreDirigeant} (${dirigeant.dynastie}).` }
+      return { ok: false, message: `L'${C.p.metierHeritierStr} est en principe de la dynastie du ${C.p.metierDirigeant} (${dirigeant.dynastie}).` }
     }
   }
-  if (titre === C.p.titreGouverneur) {
-    const autres = pop.filter((c) => c.id !== char.id && c.titre === C.p.titreGouverneur && c.ville === char.ville)
+  if (metier === C.p.metierGouverneur) {
+    const autres = pop.filter((c) => c.id !== char.id && c.metier === C.p.metierGouverneur && c.ville === char.ville)
     if (autres.length > 0) {
-      return { ok: false, message: `${char.ville} a déjà un ${C.p.titreGouverneur}.` }
+      return { ok: false, message: `${char.ville} a déjà un ${C.p.metierGouverneur}.` }
     }
   }
-  if (titre === C.p.titreProfesseur) {
+  if (metier === C.p.metierProfesseur) {
     const ville = player.villes.find((v) => v.nom === char.ville)
     const rank = ville ? schoolRankOf(ville.batiments, C.config) : 0
-    const nbProfs = pop.filter((c) => c.titre === C.p.titreProfesseur && c.ville === char.ville).length
+    const nbProfs = pop.filter((c) => c.metier === C.p.metierProfesseur && c.ville === char.ville).length
     if (rank === 0) return { ok: false, message: `${char.ville} ne possède pas d'école.` }
     if (nbProfs >= rank) {
-      return { ok: false, message: `${char.ville} a déjà ${nbProfs} ${C.p.titreProfesseur}(s) pour une école de rang ${rank}.` }
+      return { ok: false, message: `${char.ville} a déjà ${nbProfs} ${C.p.metierProfesseur}(s) pour une école de rang ${rank}.` }
     }
   }
   // conseil de Ministres indexé sur le rang de pays (échelle féodale unique) :
   // chaque rang de la table paysRangs fixe le nombre de Ministres autorisés.
-  if (titre === 'Ministre') {
+  if (metier === 'Ministre') {
     const rangs = C.config.paysRangs ?? []
     const cap = rangs[rangPaysNiveau(player, C) - 1]?.ministres ?? 0
-    const nbMin = pop.filter((c) => c.id !== char.id && c.titre === 'Ministre').length
+    const nbMin = pop.filter((c) => c.id !== char.id && c.metier === 'Ministre').length
     if (nbMin >= cap) {
       return {
         ok: false,
@@ -110,27 +110,27 @@ export function validateTitleAssignment(
       }
     }
   }
-  return { ok: true, message: `« ${titre} » attribué à ${char.prenom} ${char.nom}.` }
+  return { ok: true, message: `« ${metier} » attribué à ${char.prenom} ${char.nom}.` }
 }
 
-/** Liste des titres du référentiel avec contrôle de cohérence (jamais bloquant). */
+/** Liste des metiers du référentiel avec contrôle de cohérence (jamais bloquant). */
 export function titleCandidatesFor(state: GameState, player: Player, char: Character) {
   const C = cfgOf(state.config)
-  return C.titres.map((t) => {
-    const issue = validateTitleAssignment(state, player, char, t.titre)
-    return { titre: t.titre, ok: issue.ok, motif: issue.ok ? '' : issue.message }
+  return C.metiers.map((t) => {
+    const issue = validateMetierAssignment(state, player, char, t.metier)
+    return { metier: t.metier, ok: issue.ok, motif: issue.ok ? '' : issue.message }
   })
 }
 
-/** Avertissements pour le titre courant d'un personnage (affichés, jamais bloquants). */
-export function findTitleIssues(state: GameState, player: Player, char: Character): string[] {
+/** Avertissements pour le métier courant d'un personnage (affichés, jamais bloquants). */
+export function findMetierIssues(state: GameState, player: Player, char: Character): string[] {
   const out: string[] = []
-  if (!char.titre) return out
+  if (!char.metier) return out
   const C = cfgOf(state.config)
-  const td = titreDef(char.titre, C.config)
+  const td = metierDef(char.metier, C.config)
   if (!td) return out
   if (char.statut !== 'Décédé') {
-    const issue = validateTitleAssignment(state, player, char, char.titre)
+    const issue = validateMetierAssignment(state, player, char, char.metier)
     if (!issue.ok) out.push(issue.message)
   }
   return out

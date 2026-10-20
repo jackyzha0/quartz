@@ -14,7 +14,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { migrerEtat, MIGRATIONS, SCHEMA_VERSION_ETAT } from './migrations'
 import { createGame, type SetupLine } from './setup'
-import type { GameState } from './types'
+import type { Character, GameState } from './types'
 
 const SETUP: SetupLine[] = [{
   nom: 'Test', peuple: 'NORLS', culture: 'Culture Nordique', regime: 'Autoritarisme',
@@ -121,7 +121,8 @@ test('compactage : le nouveau saveLocal (replacer, zéro clone) produit le MÊME
   const DEFAUTS: Record<string, unknown> = {
     mariage: null, mere: null, pere: null, pereBio: null, armee: null,
     mariageId: null, mereId: null, pereId: null, pereBioId: null,
-    titre: null, education: null, enfantBatard: false, fecondite: 0, ministere: null,
+    metier: null, education: null, enfantBatard: false, fecondite: 0, ministere: null,
+    domicile: null,
   }
   const tri = (x: unknown): unknown => {
     if (Array.isArray(x)) return x.map(tri)
@@ -140,4 +141,81 @@ test('compactage : le nouveau saveLocal (replacer, zéro clone) produit le MÊME
   const { config: _c2, ...b } = relu
   assert.deepEqual(tri(b), tri(a),
     'l état relu doit être identique à l original (champs omis reconstruits, défauts ajoutés tolérés, ordre indifférent)')
+})
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  V3 — REWORK HABITANTS (2026-10-20) : titre → metier, retrait ageMax
+//
+//  La migration v3 (migrerTitresVersMetiers) convertit `titre` en
+//  `metier` sur TOUTES les populations (joueurs ET cités libres),
+//  supprime `titre`/`ageMax` et renomme `recap.titresAttribues` →
+//  `recap.metiersAttribues`. Le test nullish de `metier` est CRITIQUE :
+//  loadLocal appelle elargirEtat AVANT migrerEtat, et elargirEtat
+//  ajoute déjà `metier: null` depuis DEFAUTS_PERSO.
+// ═══════════════════════════════════════════════════════════════════════════
+
+test('v3 : titre → metier + retrait ageMax + recap renommé, idempotente', () => {
+  const state = createGame(SETUP, 42, 'local')
+  const p = state.players[0]
+  const anciens = (state.population[p.n] ?? []).slice(0, 3) as unknown as Array<Record<string, unknown>>
+  anciens.forEach((c, i) => {
+    c.titre = ['Ministre', 'Marchand', 'Chasseur'][i]
+    c.ageMax = 80 + i
+    delete c.metier
+  })
+  // recap v2
+  ;(p as unknown as { recap: Record<string, unknown> }).recap = { titresAttribues: { Nourriture: 4 } }
+  state.schema = 2
+  migrerEtat(state)
+  const converts = (state.population[p.n] ?? []).slice(0, 3)
+  assert.equal(converts[0].metier, 'Ministre', 'titre converti en metier')
+  assert.equal(converts[1].metier, 'Marchand')
+  assert.equal(converts[2].metier, 'Chasseur')
+  assert.ok(converts.every((c) => !('titre' in (c as unknown as Record<string, unknown>))), 'champ titre supprimé')
+  assert.ok(converts.every((c) => !('ageMax' in (c as unknown as Record<string, unknown>))), 'champ ageMax supprimé')
+  const recap = (p as unknown as { recap: Record<string, unknown> }).recap
+  assert.deepEqual(recap.metiersAttribues, { Nourriture: 4 }, 'recap.titresAttribues → recap.metiersAttribues')
+  assert.ok(!('titresAttribues' in recap))
+  // idempotente : rejouer ne change rien (et le tampon schema tient)
+  migrerEtat(state)
+  const rejoues = (state.population[p.n] ?? []).slice(0, 3)
+  assert.equal(rejoues[0].metier, 'Ministre')
+  assert.equal(state.schema, SCHEMA_VERSION_ETAT)
+})
+
+test('v3 : un metier null posé par elargirEtat AVANT la migration est REMPLACÉ par le titre (cas loadLocal)', async () => {
+  const { elargirEtat } = await import('../state/storage')
+  const state = createGame(SETUP, 42, 'local')
+  const p = state.players[0]
+  const cible = (state.population[p.n] ?? [])[0] as unknown as Record<string, unknown>
+  cible.titre = 'Ministre'
+  cible.metier = null // elargirEtat a déjà ajouté metier: null (DEFAUTS_PERSO)
+  elargirEtat(state) // la vraie séquence de loadLocal : élargir PUIS migrer
+  state.schema = 2
+  migrerEtat(state)
+  const relu = (state.population[p.n] ?? [])[0]
+  assert.equal(relu.metier, 'Ministre', 'le titre est converti même si metier vaut déjà null')
+  assert.ok(!('titre' in (relu as unknown as Record<string, unknown>)))
+})
+
+test('v3 : les cités libres sont converties aussi (toutesLesPopulations)', () => {
+  const state = createGame(SETUP, 42, 'local')
+  const cite = (state.citesLibres ?? [])[0]
+  assert.ok(cite, 'la partie de test a au moins une cité libre')
+  const habitant: Partial<Character> = {
+    id: 'cl-test-1', nom: 'Test', prenom: 'Cité', dynastie: 'Roturier', sexe: 'M',
+    age: 30, culture: 'Déisme', ville: cite.nom, orientation: 'Hétérosexuelle',
+    traits: [], statut: 'Sain', mariage: null, mariageId: null, mere: null, mereId: null,
+    pere: null, pereId: null, pereBio: null, pereBioId: null, enfantBatard: false,
+    metier: null, education: null, fecondite: 0, armee: null, ministere: null,
+  }
+  ;(cite.population as Character[]).push(habitant as Character)
+  const brut = habitant as unknown as Record<string, unknown>
+  brut.titre = 'Marchand'
+  brut.ageMax = 90
+  state.schema = 2
+  migrerEtat(state)
+  const converti = (cite.population as Character[]).find((c) => c.id === 'cl-test-1') as unknown as Record<string, unknown>
+  assert.equal(converti.metier, 'Marchand', 'l habitant de la cité libre est converti')
+  assert.ok(!('titre' in converti) && !('ageMax' in converti), 'titre et ageMax supprimés dans les cités libres')
 })

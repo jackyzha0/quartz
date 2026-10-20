@@ -74,7 +74,7 @@ export function resumeEffetsTech(t: ProgresTechDef | undefined): string {
     if (e.type === 'gain' && e.ressource) parts.push(`${m} ${e.ressource} (une fois)`)
     else if (e.type === 'prodCapitale' && e.ressource) parts.push(`${m} ${e.ressource}/tour (capitale)`)
     else if (e.type === 'prodParHabitation' && e.ressource) parts.push(`${m} ${e.ressource}/tour par habitation`)
-    else if (e.type === 'prodParTitre' && e.ressource) parts.push(`${m} ${e.ressource}/tour par ${e.titre ?? 'titulaire'}`)
+    else if (e.type === 'prodParMetier' && e.ressource) parts.push(`${m} ${e.ressource}/tour par ${e.metier ?? 'titulaire'}`)
     else if (e.type === 'prodParAmenagement' && e.ressource)
       parts.push(`${m} ${e.ressource}/tour par ${(e.amenagements ?? []).join(' / ') || 'aménagement'}`)
     else if (e.type === 'garnison')

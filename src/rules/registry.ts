@@ -298,16 +298,16 @@ const PROGRES_FLUX: RegleBanque[] = [
 /** Règles de banque des FLUX des technologies débloquées (source 3/3
  *  du brûlage #3, 2026-10-20) : table éditoriale PROGRES_FLUX (les
  *  montants sont des DONNÉES — plus aucun codage moteur) + les
- *  génériques `prodParTitre` du référentiel traduits en
- *  fluxParTitre (montants déjà DONNÉES du côté référentiel,
+ *  génériques `prodParMetier` du référentiel traduits en
+ *  fluxParMetier (montants déjà DONNÉES du côté référentiel,
  *  conditions par clé `<arbre>:<slot>` pour préserver
  *  l'application par arbre de l'historique). */
 export function reglesProgres(config?: GameConfig): RegleBanque[] {
   const C = cfgOf(config)
   const out: RegleBanque[] = PROGRES_FLUX.map((r) => ({ ...r, effets: [...r.effets] }))
-  // Génériques prodParTitre du référentiel (+N ressource par
+  // Génériques prodParMetier du référentiel (+N ressource par
   //  TITULAIRE vivant — ex. Commerce lointain : +3 Or par Marchand).
-  const techs: Array<{ nom: string; cle: string; effets?: Array<{ type?: string; montant?: number; ressource?: string; titre?: string }> | undefined }> = []
+  const techs: Array<{ nom: string; cle: string; effets?: Array<{ type?: string; montant?: number; ressource?: string; metier?: string }> | undefined }> = []
   C.config.progres.forEach((a, i) => {
     ;(a.brancheA ?? []).forEach((t, j) => techs.push({ nom: t.nom, cle: `${i}:a${j + 1}`, effets: t.effets }))
     ;(a.brancheB ?? []).forEach((t, j) => techs.push({ nom: t.nom, cle: `${i}:b${j + 1}`, effets: t.effets }))
@@ -315,8 +315,8 @@ export function reglesProgres(config?: GameConfig): RegleBanque[] {
   })
   for (const t of techs) {
     const effets = (t.effets ?? [])
-      .filter((e) => e.type === 'prodParTitre' && !!e.titre && !!e.montant && !!e.ressource)
-      .map((e): Effet => ({ type: 'fluxParTitre', ressource: e.ressource!, valeur: e.montant!, titre: e.titre! }))
+      .filter((e) => e.type === 'prodParMetier' && !!e.metier && !!e.montant && !!e.ressource)
+      .map((e): Effet => ({ type: 'fluxParMetier', ressource: e.ressource!, valeur: e.montant!, metier: e.metier! }))
     if (effets.length === 0) continue
     out.push({
       id: 'tech.' + slug(t.nom) + '-' + t.cle,

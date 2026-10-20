@@ -3,11 +3,11 @@
 //
 //  Retour Thibaut « toute production passe par la banque » : les FLUX
 //  par tour des technologies (canal « Progrès » du récap) vivent dans
-//  le REGISTRE (PROGRES_FLUX + génériques prodParTitre du référentiel)
+//  le REGISTRE (PROGRES_FLUX + génériques prodParMetier du référentiel)
 //  et le moteur (fluxProgresJoueur) ne fait que LIRE la banque. Ces
 //  tests verrouillent :
 //   · le contenu exact du registre (30 règles éditoriales + 3
-//     génériques prodParTitre, conditions techNom/tech dans les
+//     génériques prodParMetier, conditions techNom/tech dans les
 //     règles, montants = données) ;
 //   · la résolution nom → clés (clesTechsParNom : homonymes
 //     « Parcs naturels » des deux arbres Tourisme) ;
@@ -34,7 +34,7 @@ function debloquer(nom: string): string[] {
 }
 
 /** Personnage de test (tous les champs obligatoires). */
-function perso(id: string, titre: string, statut: Character['statut'] = 'Sain'): Character {
+function perso(id: string, metier: string, statut: Character['statut'] = 'Sain'): Character {
   return {
     id,
     nom: 'Test',
@@ -56,20 +56,19 @@ function perso(id: string, titre: string, statut: Character['statut'] = 'Sain'):
     pereBio: null,
     pereBioId: null,
     enfantBatard: false,
-    titre,
+    metier,
     ministere: null,
     education: null,
     fecondite: 1,
-    ageMax: 80,
     armee: null,
   }
 }
 
 // ── registre : contenu exact des règles de progrès ─────────────────────────
 
-test('registre progrès : 30 règles éditoriales + 3 génériques prodParTitre', () => {
+test('registre progrès : 30 règles éditoriales + 3 génériques prodParMetier', () => {
   const regles = reglesProgres(undefined)
-  assert.equal(regles.length, 33, '30 règles de PROGRES_FLUX + 3 prodParTitre du référentiel')
+  assert.equal(regles.length, 33, '30 règles de PROGRES_FLUX + 3 prodParMetier du référentiel')
   for (const r of regles) assert.equal(r.source, 'tech', `source de ${r.id}`)
   const ids = regles.map((r) => r.id)
   assert.equal(new Set(ids).size, ids.length, 'ids uniques')
@@ -88,18 +87,18 @@ test('registre progrès : Surconsommation = 2 effets par RANG, condition techNom
   ], 'montants = données (la consommation de Nourriture reste un coût moteur)')
 })
 
-test('registre progrès : génériques prodParTitre traduits en fluxParTitre', () => {
+test('registre progrès : génériques prodParMetier traduits en fluxParMetier', () => {
   const regles = reglesProgres(undefined)
   const commerce = regles.find((r) => r.nom === 'Commerce lointain')
   assert.ok(commerce, 'règle Commerce lointain présente')
   assert.ok(commerce.conditions?.tech, 'condition = clé réelle <arbre>:<slot>')
   assert.deepEqual(commerce.effets, [
-    { type: 'fluxParTitre', ressource: 'Or', valeur: 3, titre: 'Marchand' },
+    { type: 'fluxParMetier', ressource: 'Or', valeur: 3, metier: 'Marchand' },
   ], 'montant lu sur le référentiel, interprété par la banque')
   const gorback = regles.find((r) => r.nom === 'Prix Gorback Nobel')
-  assert.deepEqual(gorback?.effets, [{ type: 'fluxParTitre', ressource: 'Science', valeur: 6, titre: 'Ministre' }])
+  assert.deepEqual(gorback?.effets, [{ type: 'fluxParMetier', ressource: 'Science', valeur: 6, metier: 'Ministre' }])
   const culte = regles.find((r) => r.nom === 'Culte de la personnalité')
-  assert.deepEqual(culte?.effets, [{ type: 'fluxParTitre', ressource: 'Tourisme', valeur: 30, titre: 'Ministre' }])
+  assert.deepEqual(culte?.effets, [{ type: 'fluxParMetier', ressource: 'Tourisme', valeur: 30, metier: 'Ministre' }])
 })
 
 // ── résolution nom → clés (une seule vérité, registre) ─────────────────────
@@ -201,7 +200,7 @@ test('Merveilleux : +1 Science par bâtiment de famille Merveille', () => {
     { Science: 1 }, 'seule la Merveille compte (filtre famille = donnée de la règle)')
 })
 
-test('Commerce lointain : +3 Or par Marchand VIVANT (générique prodParTitre)', () => {
+test('Commerce lointain : +3 Or par Marchand VIVANT (générique prodParMetier)', () => {
   const ctx = partieMock()
   const { state, joueur } = ctx
   const regle = reglesProgres(state.config).find((r) => r.nom === 'Commerce lointain')

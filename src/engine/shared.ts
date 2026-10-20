@@ -120,7 +120,7 @@ export function deplacerPersonnage(
   state.log.push({
     turn: state.turn, type: 'Système',
     joueur: src.kind === 'joueur' ? src.p.n : null,
-    texte: `🤝 ${fullName(c)} (${c.dynastie}${c.titre ? `, ${c.titre}` : ''}) passe de ${nomDe(src)} à ${nomDe(dst)}.`,
+    texte: `🤝 ${fullName(c)} (${c.dynastie}${c.metier ? `, ${c.metier}` : ''}) passe de ${nomDe(src)} à ${nomDe(dst)}.`,
   })
   return null
 }
@@ -128,7 +128,7 @@ export function deplacerPersonnage(
 export function emptyRecap(): PlayerRecap {
   return {
     conceptions: {}, naissances: {}, deces: {}, decesMaladie: 0,
-    mariagesNobles: {}, conversions: {}, titresAttribues: {}, crises: [],
+    mariagesNobles: {}, conversions: {}, metiersAttribues: {}, crises: [],
     commandantTombe: null,
   }
 }

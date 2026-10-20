@@ -2,7 +2,7 @@
 //  PRODUCTION PAR TOUR — VUE DÉTAILLÉE PAR CANAL (page « Pays »)
 //  Recense l'ensemble des productions par tour d'un joueur :
 //    · base (production propre du pays, stockée dans resources[r].prod),
-//    · habitants (titres × taxes — toutes ressources —, moins la
+//    · habitants (metiers × taxes — toutes ressources —, moins la
 //      consommation — Économie),
 //    · bâtiments (production exacte du référentiel, Ville / Château /
 //      Capitale),
@@ -34,7 +34,7 @@ export interface ProductionDetail {
    *  nourriture générale n'est jamais doublée : la nourriture d'été est
    *  une production séparée (canal nourrEte) */
   base: Record<string, number>
-  /** gains d'habitants (titres × taxes — toutes ressources —, − consommation)
+  /** gains d'habitants (métiers × taxes — toutes ressources —, − consommation)
    *  × gainsCrediteStock */
   habitants: Record<string, number>
   /** effets automatiques des bâtiments */
@@ -232,7 +232,7 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
 // ══════════════════════════════════════════════════════════════════════
 //  PRODUCTION D'UNE VILLE (bas de son cadre, page « Pays »)
 //  Ce que la ville produit par tour, canal par canal : bâtiments,
-//  aménagements, lignes « Autres », villageois (titres × taxes −
+//  aménagements, lignes « Autres », villageois (metiers × taxes −
 //  consommation, × coefficient de crédit au stock) et consommation
 //  par tour de son habitation (négative). La production de base du
 //  pays, les lois de régime/culture et le tribut de vassalité sont
@@ -250,7 +250,7 @@ export interface ProductionVilleDetail {
   nourrEte: Record<string, number>
   /** lignes « Autres » de la ville (ressource × nombre × bonus) */
   autres: Record<string, number>
-  /** villageois (titres × taxes − consommation) × gainsCrediteStock */
+  /** villageois (metiers × taxes − consommation) × gainsCrediteStock */
   habitants: Record<string, number>
   /** consommation par tour de l'habitation (négative) */
   consoVille: Record<string, number>
@@ -339,12 +339,12 @@ export function provenancesApports(
     if (rs.prod !== 0) push(res, 'Base', 'production propre du pays', rs.prod)
   }
 
-  // Habitants : villageois de chaque ville (titres × taxes − conso)
+  // Habitants : villageois de chaque ville (metiers × taxes − conso)
   for (const ville of p.villes) {
     const tg = detailGainsVille(state, p, ville, C)
     for (const [res, v] of Object.entries(tg.net)) {
       push(res, 'Habitants',
-        `villageois de ${ville.nom} (titres × taxes — ${tg.habitants} hab.)`, v * coef)
+        `villageois de ${ville.nom} (metiers × taxes — ${tg.habitants} hab.)`, v * coef)
     }
   }
 

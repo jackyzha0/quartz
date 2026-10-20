@@ -165,12 +165,12 @@ function appliquerEffet(e: Effet, ctx: ContexteEffet, out: ContributionEffets): 
       if (total > 0) out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur * total
       break
     }
-    case 'fluxParTitre': {
-      // Production par TITULAIRE VIVANT du titre dans la population
-      //  du joueur (générique `prodParTitre` du référentiel — ex.
+    case 'fluxParMetier': {
+      // Production par TITULAIRE VIVANT du metier dans la population
+      //  du joueur (générique `prodParMetier` du référentiel — ex.
       //  Commerce lointain : +3 Or par Marchand vivant).
       const vivants = (ctx.state.population[ctx.joueur.n] ?? []).filter((c) => c.statut !== 'Décédé')
-      const nb = vivants.filter((c) => c.titre === e.titre).length
+      const nb = vivants.filter((c) => c.metier === e.metier).length
       if (nb > 0) out.flux[e.ressource] = (out.flux[e.ressource] ?? 0) + e.valeur * nb
       break
     }

@@ -10,7 +10,7 @@ import type { Character, CiteLibre, GameState, Player } from './types'
 import { makeRng, type Rng } from './rng'
 import { cfgOf, cloneDefaultConfig, peupleDef, type Cfg } from './gameData'
 import type { GameConfig } from '../config/defaultConfig'
-import { computeAgeMax, computeFecondite, isNobleDyn, ajouterHabitantsCiteLibre, rangsDisponibles } from './engine'
+import { computeFecondite, isNobleDyn, ajouterHabitantsCiteLibre, rangsDisponibles } from './engine'
 import { fullName } from './shared'
 import { SCHEMA_VERSION_ETAT } from './migrations'
 
@@ -214,13 +214,11 @@ export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): 
       pere: null,
       pereBio: null,
       enfantBatard: false,
-      titre: null,
+      metier: null,
       education: null,
       fecondite: 0,
-      ageMax: 0,
       armee: null,
     }
-    c.ageMax = computeAgeMax(c, rng, C)
     pop.push(c)
   }
 
@@ -235,8 +233,8 @@ export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): 
     orientation: (C.orientations[0]?.nom ?? 'Hétérosexuelle') as Character['orientation'],
     traits: randomTraits(), statut: 'Sain', mariage: null, mere: null, pere: null,
     mariageId: null, mereId: null, pereId: null, pereBioId: null,
-    pereBio: null, enfantBatard: false, titre: null, education: null,
-    fecondite: 0, ageMax: 0, armee: null,
+    pereBio: null, enfantBatard: false, metier: null, education: null,
+    fecondite: 0, armee: null,
   }
   const reine: Character = {
     id: nextId(), nom: reineName, prenom: rng.pick(prenomsF), dynastie: reineName,
@@ -244,18 +242,16 @@ export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): 
     orientation: (C.orientations[0]?.nom ?? 'Hétérosexuelle') as Character['orientation'],
     traits: randomTraits(), statut: 'Sain', mariage: null, mere: null, pere: null,
     mariageId: null, mereId: null, pereId: null, pereBioId: null,
-    pereBio: null, enfantBatard: false, titre: null, education: null,
-    fecondite: 0, ageMax: 0, armee: null,
+    pereBio: null, enfantBatard: false, metier: null, education: null,
+    fecondite: 0, armee: null,
   }
   roi.mariage = `${reine.prenom} ${reine.nom}`
   reine.mariage = `${roi.prenom} ${roi.nom}`
   roi.mariageId = reine.id
   reine.mariageId = roi.id
-  roi.ageMax = computeAgeMax(roi, rng, C)
-  reine.ageMax = computeAgeMax(reine, rng, C)
   // Le Dirigeant est le roi si l'hérédité est masculine ou paritaire, sinon la reine
-  if (heredite === 'Féminine') reine.titre = C.p.titreDirigeant
-  else roi.titre = C.p.titreDirigeant
+  if (heredite === 'Féminine') reine.metier = C.p.metierDirigeant
+  else roi.metier = C.p.metierDirigeant
   pop.push(roi, reine)
 
   // 3. Fratrie du couple dirigeant (« potentiellement des frères et
@@ -271,9 +267,8 @@ export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): 
         orientation: randomOrientation(), traits: randomTraits(), statut: 'Sain',
         mariage: null, mere: null, pere: null, pereBio: null, enfantBatard: false,
         mariageId: null, mereId: null, pereId: null, pereBioId: null,
-        titre: C.p.titreChasseur, education: null, fecondite: 0, ageMax: 0, armee: null,
+        metier: C.p.metierChasseur, education: null, fecondite: 0, armee: null,
       }
-      frere.ageMax = computeAgeMax(frere, rng, C)
       pop.push(frere)
     }
   }
@@ -295,19 +290,18 @@ export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): 
       orientation: randomOrientation(), traits: randomTraits(), statut: 'Sain',
       mariage: null, mere: fullName(reine), pere: fullName(roi), pereBio: null,
       mariageId: null, mereId: reine.id, pereId: roi.id, pereBioId: null,
-      enfantBatard: false, titre: null, education: null, fecondite: 0, ageMax: 0, armee: null,
+      enfantBatard: false, metier: null, education: null, fecondite: 0, armee: null,
     }
-    enfant.ageMax = computeAgeMax(enfant, rng, C)
     pop.push(enfant)
   }
 
-  // 5. Titre par défaut des adultes : Chasseur (par défaut le seul
-  //    titre accessible — les autres dépendent des professeurs,
+  // 5. Metier par défaut des adultes : Chasseur (par défaut le seul
+  //    metier accessible — les autres dépendent des professeurs,
   //    gouverneur à part, noblesse requise). Puis mariages des
   //    roturiers (~le % demandé).
-  const adultes = pop.filter((c) => c.age >= C.p.adultAge && c.titre !== C.p.titreDirigeant)
+  const adultes = pop.filter((c) => c.age >= C.p.adultAge && c.metier !== C.p.metierDirigeant)
   for (const c of adultes) {
-    if (!c.titre) c.titre = C.p.titreChasseur
+    if (!c.metier) c.metier = C.p.metierChasseur
   }
   // ~le % demandé d'adultes roturiers se marient entre eux
   const celibataires = adultes.filter((c) => !c.mariageId && !isNobleDyn(c.dynastie, C))
@@ -356,8 +350,8 @@ export function defaultSetups(): SetupLine[] {
 //  famille noble (un nom de famille jamais utilisé comme dynastie —
 //  jamais une famille déjà existante). La culture de chaque nouvel
 //  habitant est tirée au hasard, PONDÉRÉE par les cultures présentes
-//  dans la ville. Les adultes reçoivent le titre par défaut
-//  (Chasseur) — les autres titres dépendent des professeurs.
+//  dans la ville. Les adultes reçoivent le metier par défaut
+//  (Chasseur) — les autres metiers dépendent des professeurs.
 // ══════════════════════════════════════════════════════════════════════
 
 export function ajouterHabitant(
@@ -420,13 +414,11 @@ export function ajouterHabitant(
       pere: null,
       pereBio: null,
       enfantBatard: false,
-      titre: C.p.titreChasseur,
+      metier: C.p.metierChasseur,
       education: null,
       fecondite: 0,
-      ageMax: 0,
       armee: null,
     }
-    c.ageMax = computeAgeMax(c, rng, C)
     c.fecondite = computeFecondite(state, p, c)
     pop.push(c)
     ajoutes++
@@ -443,7 +435,7 @@ export function ajouterHabitant(
  *  retour Thibaut) : 50 habitants SANS noble, mêmes paramètres que la
  *  population initiale de la première ville — sexes pondérés par le
  *  classeur, âges 0-setupAgeMax, traits comme la génération initiale,
- *  titre Chasseur des adultes, ~pourcentageMariages % d'adultes
+ *  métier Chasseur des adultes, ~pourcentageMariages % d'adultes
  *  mariés (défaut du setup : 40), fécondités calculées. */
 export function peuplerNouvelleVille(
   state: GameState, p: Player, nomVille: string,
@@ -490,14 +482,12 @@ export function peuplerNouvelleVille(
       pere: null,
       pereBio: null,
       enfantBatard: false,
-      titre: null,
+      metier: null,
       education: null,
       fecondite: 0,
-      ageMax: 0,
       armee: null,
     }
-    c.ageMax = computeAgeMax(c, rng, C)
-    if (c.age >= C.p.adultAge) c.titre = C.p.titreChasseur
+    if (c.age >= C.p.adultAge) c.metier = C.p.metierChasseur
     pop.push(c)
     ajoutes.push(c)
   }

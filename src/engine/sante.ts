@@ -1,6 +1,6 @@
 // ══════════════════════════════════════════════════════════════════════
 //  SANTÉ, MORT ET SUCCESSION
-//  Âge maximum, résurrection, maladie, décès et succession du Dirigeant.
+//  Maladie (Gompertz), décès et succession du Dirigeant.
 //  Portage des macros VBA du classeur Chasse & Pêche 7.19.
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
@@ -11,27 +11,25 @@ import { makeRng, type Rng } from './rng'
 import { cfgOf, traitDef, type Cfg } from './gameData'
 import { buildingDef } from './gameData2'
 import { bump, fullName, isNobleDyn, toutesLesPopulations } from './shared'
-import { titreAllowedForCharacter } from './titres'
+import { metierAllowedForCharacter } from './metiers'
 import { facteurSacre, facteurAvencement } from './ministeres'
 
-export function computeAgeMax(c: Character, rng: Rng, C: Cfg = cfgOf()): number {
-  // VBA ComputeAgeMaxEx : somme des life_delta des trois traits.
+// ── Mortalité (rework habitants 2026-10-20) ──────────────────────────────
+//  Plus d'âge-plafond ni de résurrection : la maladie est la SEULE cause
+//  de mort. Un personnage sain contracte la maladie chaque tour avec la
+//  probabilité Gompertz min(cap, base × exp(pente × âge)), calibrée par
+//  Monte-Carlo pour une espérance de vie ≈ 60 ans (un tour = 2 ans).
+//  Les traits life_delta modulent la pente (somme des deltas, bornée
+//  ±50 %).
+
+export function probaContracterMaladie(c: Character, C: Cfg = cfgOf()): number {
   let delta = 0
   for (const t of (c.traits ?? [])) {
     const td = t ? traitDef(t, C.config) : undefined
     if (td) delta += td.life_delta
   }
-  return C.p.ageMaxBase + rng.int(0, Math.max(0, C.p.ageMaxAla)) + delta
-}
-
-export function tryResurrection(c: Character, rng: Rng, C: Cfg = cfgOf()): boolean {
-  const t1 = traitDef((c.traits ?? [])[0], C.config)
-  const seuil = t1 ? t1.resurrection_min_roll : 0
-  if (seuil > 0 && rng.die(6) >= seuil) {
-    c.ageMax += rng.die(6) + rng.die(6)
-    return true
-  }
-  return false
+  const pente = C.p.maladiePente * Math.min(1.5, Math.max(0.5, 1 + delta / 100))
+  return Math.min(C.p.maladieCap, C.p.maladieBase * Math.exp(pente * c.age))
 }
 
 // ── Maladie (règle simplifiée : on est malade ou sain, plus de
@@ -63,7 +61,7 @@ export function maladieStep(state: GameState, p: Player, c: Character, rng: Rng,
     }
   }
   if (c.statut === 'Sain' || c.statut === 'Enceinte') {
-    let pContract = C.p.probaMaladie + C.p.modMaladieAge * c.age + contractMod
+    let pContract = probaContracterMaladie(c, C) + contractMod
     if (c.statut === 'Enceinte') pContract += C.p.modMaladieEnceinte
     if (rng.chance(Math.max(0, pContract))) {
       if (c.statut === 'Enceinte') {
@@ -79,7 +77,7 @@ export function maladieStep(state: GameState, p: Player, c: Character, rng: Rng,
     }
   } else if (c.statut === 'Malade') {
     // un malade qui re-contracte la maladie meurt
-    if (rng.chance(Math.max(0, C.p.probaMaladie + C.p.modMaladieAge * c.age + contractMod))) {
+    if (rng.chance(Math.max(0, probaContracterMaladie(c, C) + contractMod))) {
       killCharacter(state, p, c, 'maladie', recap)
       return
     }
@@ -90,7 +88,9 @@ export function maladieStep(state: GameState, p: Player, c: Character, rng: Rng,
 
 // ── Décès ────────────────────────────────────────────────────────────────
 
-export function killCharacter(state: GameState, p: Player, c: Character, cause: 'vieillesse' | 'maladie', recap: PlayerRecap) {
+// Rework habitants 2026-10-20 : la cause « vieillesse » n'existe plus,
+// la maladie est la seule cause de décès.
+export function killCharacter(state: GameState, p: Player, c: Character, cause: 'maladie', recap: PlayerRecap) {
   invaliderIndexPopulation()
 
   const C = cfgOf(state.config)
@@ -109,10 +109,10 @@ export function killCharacter(state: GameState, p: Player, c: Character, cause: 
   if (cause === 'maladie') recap.decesMaladie++
   state.log.push({
     turn: state.turn + 1, type: 'Décès', joueur: p.n,
-    texte: `${fullName(c)} (${c.age} ans, ${c.dynastie}${c.titre ? `, ${c.titre}` : ''}) meurt de ${cause === 'maladie' ? 'la maladie' : 'vieillesse'}.`,
+    texte: `${fullName(c)} (${c.age} ans, ${c.dynastie}${c.metier ? `, ${c.metier}` : ''}) meurt de ${cause === 'maladie' ? 'la maladie' : cause}.`,
   })
   // succession si Dirigeant
-  if (c.titre === C.p.titreDirigeant) {
+  if (c.metier === C.p.metierDirigeant) {
     handleDirigeantSuccession(state, p, c, recap)
   }
 }
@@ -121,10 +121,10 @@ export function handleDirigeantSuccession(state: GameState, p: Player, defunt: C
   const C = cfgOf(state.config)
   const pop = state.population[p.n] ?? []
   const heritier = pop.find(
-    (c) => c.statut !== 'Décédé' && c.titre === C.p.titreHeritierStr,
+    (c) => c.statut !== 'Décédé' && c.metier === C.p.metierHeritierStr,
   )
   if (heritier) {
-    heritier.titre = C.p.titreDirigeant
+    heritier.metier = C.p.metierDirigeant
     // Sacre d'Avènement (refonte des rangs) : le nouveau dirigeant paie
     // la MOITIÉ du prix de son rang de pays (coût de sacre de la table
     // paysRangs, débité automatiquement ; un coût nul ne débite rien).
@@ -163,13 +163,13 @@ export function handleDirigeantSuccession(state: GameState, p: Player, defunt: C
     return
   }
   const nobles = pop.filter(
-    (c) => c.statut !== 'Décédé' && c.age >= C.p.adultAge && isNobleDyn(c.dynastie, C) && c.titre !== C.p.titreSoldat && c.titre !== C.p.titreCommandant,
+    (c) => c.statut !== 'Décédé' && c.age >= C.p.adultAge && isNobleDyn(c.dynastie, C) && c.metier !== C.p.metierSoldat && c.metier !== C.p.metierCommandant,
   )
   const rng = makeRng(state.rngState)
-  const eligibles = nobles.filter((c) => titreAllowedForCharacter(C.p.titreDirigeant, c, p, C))
+  const eligibles = nobles.filter((c) => metierAllowedForCharacter(C.p.metierDirigeant, c, p, C))
   if (eligibles.length > 0) {
     const elu = rng.pick(eligibles)
-    elu.titre = C.p.titreDirigeant
+    elu.metier = C.p.metierDirigeant
     // Avènement SANS héritier (refonte des rangs) : un noble est promu et
     // une crise ALÉATOIRE de la table « crises » du référentiel se déclenche.
     const crises = C.config.crises ?? []

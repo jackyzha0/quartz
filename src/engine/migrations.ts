@@ -23,6 +23,7 @@
 import type { GameState } from './types'
 import { normaliserEtat } from './villes'
 import { migrerNomsMinisteres } from './ministeres'
+import { toutesLesPopulations } from './shared'
 
 /** Une migration de schéma : numéro unique croissant + transformation
  *  pure de l'état (peut muter l'état reçu — il vient d'être chargé). */
@@ -36,7 +37,7 @@ export interface MigrationSchema {
 }
 
 /** Version courante du schéma = plus haut v de MIGRATIONS. */
-export const SCHEMA_VERSION_ETAT = 2
+export const SCHEMA_VERSION_ETAT = 3
 
 /** Registre des migrations. N° attribués définitivement — ne JAMAIS
  *  réutiliser ni renuméroter (les sauvegardes tamponnent leur v). */
@@ -55,10 +56,48 @@ export const MIGRATIONS: MigrationSchema[] = [
     // Historiquement « migrerNomsMinisteres ».
     appliquer: migrerNomsMinisteres,
   },
-  // ── Futures migrations : v: 3, 4… (une entrée = une évolution) ──
+  {
+    v: 3,
+    quoi: 'rework habitants : titre → metier, retrait ageMax, ajout domicile',
+    // Rework habitants (2026-10-20) : le champ `titre` devient `metier`
+    //  (null = Sans-emploi, rôle neutre) ; `ageMax` disparaît (la
+    //  maladie Gompertz est la seule cause de mort) ; `domicile`
+    //  (null en vague 1) est ajouté par les garde-fous, pas ici.
+    appliquer: migrerTitresVersMetiers,
+  },
+  // ── Futures migrations : v: 4, 5… (une entrée = une évolution) ──
   //  Ex. ajout d'un champ aux personnages, renommage d'une ressource,
   //  restructuration d'un tableau : jamais de renumérotation.
 ]
+
+/** Rework habitants (2026-10-20), migration v3 : convertit
+ *  `titre` → `metier` sur TOUTES les populations (joueurs ET cités
+ *  libres), supprime les champs `titre`/`ageMax` obsolètes et renomme
+ *  `recap.titresAttribues` → `recap.metiersAttribues`. Le test
+ *  nullish sur `metier` est CRITIQUE : loadLocal appelle elargirEtat
+ *  AVANT migrerEtat, et elargirEtat ajoute déjà `metier: null` depuis
+ *  DEFAUTS_PERSO — dans ce cas le titre est PERDU (comportement
+ *  accepté : l'élargissement est la référence) ; sans elargirEtat
+ *  préalable, le titre est converti. Idempotente. */
+export function migrerTitresVersMetiers(state: GameState): void {
+  for (const c of toutesLesPopulations(state) as unknown as Array<Record<string, unknown>>) {
+    if (c.titre !== undefined && (c.metier === undefined || c.metier === null)) {
+      c.metier = c.titre
+    }
+    delete c.titre
+    delete c.ageMax
+  }
+  for (const p of state.players as unknown as Array<{ recap?: Record<string, unknown> }>) {
+    const recap = p.recap
+    if (recap && recap.titresAttribues !== undefined) {
+      const existants = recap.metiersAttribues
+      if (existants === undefined || Object.keys(existants).length === 0) {
+        recap.metiersAttribues = recap.titresAttribues
+      }
+      delete recap.titresAttribues
+    }
+  }
+}
 
 /** Exécute toutes les migrations que l'état n'a pas encore eues.
  *  Tamponne state.schema à la version courante. Retourne la liste des

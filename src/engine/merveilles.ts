@@ -72,7 +72,7 @@ export function effetImmediatMerveille(
       for (const q of state.players) {
         for (const c of state.population[q.n] ?? []) {
           if (c.statut === 'Décédé' || c.culture === p.culture) continue
-          if (c.titre === C.p.titreDirigeant) continue
+          if (c.metier === C.p.metierDirigeant) continue
           c.culture = p.culture
           total++
         }

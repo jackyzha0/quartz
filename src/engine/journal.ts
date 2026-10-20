@@ -55,7 +55,7 @@ export function writeRecap(state: GameState, p: Player, recap: PlayerRecap) {
     `Décès — ${fmt(recap.deces)} (dont maladie : ${recap.decesMaladie})`,
     `Mariages nobles — ${fmt(recap.mariagesNobles)}`,
     `Conversions culturelles — ${fmt(recap.conversions)}`,
-    `Titres attribués — ${fmt(recap.titresAttribues)}`,
+    `Métiers attribués — ${fmt(recap.metiersAttribues)}`,
   ]
   if (recap.crises.length > 0) lignes.push(`⚠ Crises : ${recap.crises.join(' ; ')}`)
   if (recap.commandantTombe) lignes.push(`⚠ Commandant tombé : ${recap.commandantTombe}`)

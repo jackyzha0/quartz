@@ -82,10 +82,9 @@ function perso(
     pereBio: null,
     pereBioId: null,
     enfantBatard: false,
-    titre: null,
+    metier: null,
     education: null,
     fecondite: 1,
-    ageMax: 80,
     armee: null,
   }
 }
@@ -237,7 +236,7 @@ test('M1 : veuvage par id — un homonyme du défunt ne libère PAS son conjoint
   const leurre = perso('v-leurre', 'Valois', 'Capitale 1', { sexe: 'F', mariage: 'Test-v-mari Montclair', mariageId: 'v-autre' })
   state.population[1] = [mari, epouse, leurre]
 
-  killCharacter(state, p1, mari, 'vieillesse', emptyRecap())
+  killCharacter(state, p1, mari, 'maladie', emptyRecap())
   assert.equal(epouse.mariage, null, 'la vraie épouse est libérée (affichage)')
   assert.equal(epouse.mariageId, null, 'la vraie épouse est libérée (id)')
   assert.equal(leurre.mariage, 'Test-v-mari Montclair', 'l homonyme garde son conjoint AFFICHÉ')
