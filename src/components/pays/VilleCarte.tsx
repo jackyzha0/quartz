@@ -145,7 +145,7 @@ export function VilleCarte({ idx, ville, joueur, p, C, setPlayer, setSurint, set
           <Button
             tone="danger"
             onClick={() => {
-              if (!window.confirm(`Supprimer « ${ville.nom} » ? Ses habitants resteront inscrits dans la population de ${p.nom}.`)) return
+              if (!window.confirm(`Supprimer « ${ville.nom} » ? Sa population classique sera DÉFINITIVEMENT supprimée avec elle (la cour reste inscrite ; l'arbitre la reloge).`)) return
               update((st) => {
                 const src = st.players.find((x) => x.n === joueur)
                 if (src) supprimerVille(st, src, idx)

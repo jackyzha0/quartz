@@ -6,8 +6,10 @@
 //  PopulationTable.tsx) sur l'état partagé — elles ne sont couvertes
 //  par aucun autre test. Les règles verrouillées ici sont des retours
 //  Thibaut actés :
-//    · supprimerVille (2026-10-14) : les habitants RESTENT dans la
-//      population du joueur (l'arbitre les reloge ensuite) ;
+//    · supprimerVille (2026-10-14, puis arbitrage 2026-10-21) : la
+//      population CLASSIQUE de la ville est SUPPRIMÉE avec elle
+//      (fiches effacées) ; seule la cour (nobles) reste inscrite
+//      (l'arbitre la reloge ensuite) ;
 //    · transfererVille (2026-10-14) : la ville ET sa population
 //      « classique » suivent le nouveau propriétaire, la COUR (nobles)
 //      reste auprès de son joueur, renommage en cas de collision de
@@ -29,7 +31,7 @@ import { supprimerVille, transfererVille, rejouerTransfertVille } from './villes
 import { marierPersonnages } from './cour'
 import { killCharacter } from './sante'
 import { isConsanguineous } from './naissances'
-import { emptyRecap, deplacerPersonnage } from './shared'
+import { emptyRecap, deplacerPersonnage, isNobleDyn } from './shared'
 
 const PEUPLES = ['Basiléens', 'PEAUX VERTES', "ELFES D'OR", 'Sylvains', 'NORLS', 'VERMINES DE KAOSS']
 const CULTURES = ['Communautarisme', 'Déisme', 'Lunisme', 'Naturalisme', 'Sethisme', 'Zélotisme']
@@ -91,21 +93,32 @@ function perso(
 
 // ── supprimerVille ────────────────────────────────────────────────────────
 
-test('supprimerVille : la ville disparaît mais ses habitants RESTENT en population', () => {
+test('supprimerVille : la pop classique de la ville est SUPPRIMÉE avec elle, la cour reste (arbitrage 2026-10-21)', () => {
   const state = partieHuitJoueurs()
   const p1 = state.players[0]
-  const popAvant = (state.population[1] ?? []).slice()
+  // un noble ET un roturier vivant dans la ville qui va être supprimée
+  const noble = perso('sup-nob', 'Valois', 'Bourg 1')
+  const roturier = perso('sup-rot', 'Roturier', 'Bourg 1')
+  state.population[1] = [...(state.population[1] ?? []), noble, roturier]
   const bourg = p1.villes.find((v) => v.nom === 'Bourg 1')
   assert.ok(bourg, 'Bourg 1 attendu dans le setup du joueur 1')
   const idx = p1.villes.indexOf(bourg)
+  const popAvant = (state.population[1] ?? []).slice()
 
   const retour = supprimerVille(state, p1, idx)
   assert.equal(retour, 'Bourg 1', 'retour = nom de la ville supprimée')
   assert.ok(!p1.villes.some((v) => v.nom === 'Bourg 1'), 'la ville est retirée')
   assert.equal(p1.villes.length, 1, 'il reste la capitale')
-  // Retour Thibaut 2026-10-14 : les habitants ne sont PAS supprimés.
-  assert.deepEqual(state.population[1], popAvant, 'population inchangée (habitants conservés)')
-  assert.ok(state.log.some((l) => l.type === 'Système' && l.texte.includes('Bourg 1')), 'log de suppression')
+  // Arbitrage 2026-10-21 : la pop classique de la ville disparaît
+  //  avec elle (fiches effacées, ordre du reste préservé) ; la cour
+  //  (nobles) reste inscrite telle quelle.
+  const attendus = popAvant.filter((c) => c.ville !== 'Bourg 1' || isNobleDyn(c.dynastie))
+  assert.deepEqual(state.population[1], attendus, 'roturiers de Bourg 1 supprimés, tout le reste conservé')
+  assert.ok(!(state.population[1] ?? []).some((x) => x.id === 'sup-rot'), 'le roturier injecté est effacé')
+  assert.ok((state.population[1] ?? []).some((x) => x.id === 'sup-nob'), 'le noble injecté reste inscrite')
+  assert.equal(noble.ville, 'Bourg 1', 'la cour garde son champ ville (l arbitre reloge)')
+  assert.equal(roturier.ville, 'Bourg 1', 'fiche effacée mais objet non muté')
+  assert.ok(state.log.some((l) => l.type === 'Système' && l.texte.includes('Bourg 1') && l.texte.includes('effacée')), 'log de suppression avec effacement')
 })
 
 test('supprimerVille : idx invalide → null, état intact', () => {

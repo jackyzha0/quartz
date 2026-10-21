@@ -3,9 +3,11 @@
 //  Retours Thibaut (2026-10-14) : chaque ville de la page « Pays »
 //  peut être SUPPRIMÉE (détruite / retirée de la partie) ou
 //  TRANSFÉRÉE à un autre joueur (capture, vente, cadeau).
-//  · supprimerVille : retire la ville du joueur ; ses habitants
-//    RESTENT dans la population du joueur (l'arbitre les gère ensuite
-//    — filtre « ville » de l'onglet Population). Si la ville était la
+//  · supprimerVille : retire la ville du joueur ; sa population
+//    CLASSIQUE (roturiers inscrits dans cette ville) est SUPPRIMÉE
+//    avec elle, fiches effacées (arbitrage Thibaut 2026-10-21) ;
+//    seule la COUR (nobles) reste inscrite auprès de son joueur
+//    (l'arbitre la reloge ensuite). Si la ville était la
 //    capitale, la première ville restante devient capitale (règle
 //    générale : capitaleDe = ville nommée « Capitale », sinon la 1re).
 //  · transfererVille : déplace la ville ET sa population « classique »
@@ -55,19 +57,33 @@ export function normaliserEtat(state: GameState): void {
 }
 
 /** Supprime la i-ème ville d'un joueur (bouton « Supprimer la ville »,
- *  confirmation côté interface). Les habitants inscrits dans cette
- *  ville restent dans la population du joueur. Retourne le nom de la
- *  ville supprimée (null = introuvable). */
+ *  confirmation côté interface). Arbitrage Thibaut (2026-10-21) : la
+ *  population CLASSIQUE de la ville (roturiers, vivants ET décédés)
+ *  est SUPPRIMÉE avec elle — fiches définitivement effacées, aucune
+ *  trace. Seule la COUR (nobles) reste inscrite auprès de son joueur
+ *  (un noble ne quitte jamais son porteur autrement que par don
+ *  explicite) ; son champ « ville » est laissé tel quel, l'arbitre
+ *  reloge la cour quand le joueur refonde une ville. Retourne le nom
+ *  de la ville supprimée (null = introuvable). */
 export function supprimerVille(state: GameState, p: Player, idx: number): string | null {
+  const C = cfgOf(state.config)
   const ville = p.villes[idx]
   if (!ville) return null
   // Tourisme (retour Thibaut 2026-10-16) : la production de la ville
   //  disparaît — le stock est recalculé = production courante.
   resynchroniserTourisme(state, p, `ville « ${ville.nom} » supprimée`)
   p.villes.splice(idx, 1)
+  // Arbitrage Thibaut (2026-10-21) : la pop classique de la ville
+  //  supprimée disparaît AVEC elle (suppression DÉFINITIVE, vivants et
+  //  décédés) ; la cour (nobles) reste inscrite.
+  const pop = state.population[p.n] ?? []
+  const supprimes = new Set(pop.filter((c) => c.ville === ville.nom && !isNobleDyn(c.dynastie, C)))
+  if (supprimes.size) {
+    state.population[p.n] = pop.filter((c) => !supprimes.has(c))
+  }
   state.log.push({
     turn: state.turn, type: 'Système', joueur: p.n,
-    texte: `🗑 ${ville.nom} n'est plus une ville de ${p.nom} (supprimée) — ses habitants restent inscrits dans sa population.`,
+    texte: `🗑 ${ville.nom} n'est plus une ville de ${p.nom} (supprimée) — ${supprimes.size} fiche(s) de population classique effacée(s) avec elle ; la cour (nobles) reste inscrite (l'arbitre la reloge).`,
   })
   return ville.nom
 }
