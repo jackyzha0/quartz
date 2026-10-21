@@ -34,8 +34,16 @@ export function isNobleDyn(dyn: string, C: Cfg = cfgOf()): boolean {
  *  neutre, impôt nul) jusqu'à la réaffectation de fin de tour. Ne
  *  s'applique PAS aux renommages de ville (même ville, nouveau nom)
  *  ni aux transferts de PROPRIÉTÉ d'une ville (les habitants ne
- *  bougent pas). */
-export function perteDemenagement(c: Character): void {
+ *  bougent pas). Arbitrage complémentaire (2026-10-21) : un DIRIGEANT
+ *  ou un HÉRITIER ne déménage jamais — il garde son métier-titre et
+ *  son domicile même lors d'un ré-ancrage de cour (sa ville est
+ *  perdue, il DOIT suivre, mais son titre ne se perd pas). */
+export function neDemenageJamais(c: Character, C: Cfg): boolean {
+  return c.metier === C.p.metierDirigeant || c.metier === C.p.metierHeritierStr
+}
+
+export function perteDemenagement(c: Character, C: Cfg): void {
+  if (neDemenageJamais(c, C)) return
   c.metier = null
   c.domicile = null
 }
@@ -113,6 +121,11 @@ export function deplacerPersonnage(
 ): string | null {
   const src = porteurDe(state, c)
   if (!src) return 'Personnage introuvable dans les populations de la partie.'
+  // Arbitrage complémentaire (2026-10-21) : un Dirigeant ou un Héritier
+  //  ne déménage jamais — don refusé AVANT toute mutation.
+  if (neDemenageJamais(c, cfgOf(state.config))) {
+    return 'Un Dirigeant ou un Héritier ne déménage jamais (don refusé).'
+  }
   if (src.kind === dst.kind && (src.kind === 'joueur'
     ? src.p.n === (dst as { kind: 'joueur'; p: Player }).p.n
     : src.cite === (dst as { kind: 'cite'; cite: CiteLibre }).cite)) {
@@ -136,7 +149,7 @@ export function deplacerPersonnage(
   //  donc d'habitation — il perd son métier et son domicile (Sans-
   //  emploi jusqu'à la réaffectation ; un éventuel Gouverneur sera
   //  re-désigné automatiquement à la fin du tour).
-  perteDemenagement(c)
+  perteDemenagement(c, cfgOf(state.config))
   state.log.push({
     turn: state.turn, type: 'Système',
     joueur: src.kind === 'joueur' ? src.p.n : null,

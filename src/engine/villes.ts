@@ -140,9 +140,12 @@ export function transfererVille(
   //  seront re-désignés à la fin du tour). Les roturiers `deplaces`
   //  restent dans LEUR ville (transfert de propriété, pas un
   //  déménagement) : ils gardent leur poste.
+  // Arbitrage complémentaire (2026-10-21) : un Dirigeant ou Héritier
+  //  ne déménage jamais — ré-ancré avec sa cour (sa ville est perdue,
+  //  il DOIT suivre) mais il GARDE son titre et son domicile.
   if (refuge) for (const c of courRestee) {
     c.ville = refuge
-    perteDemenagement(c)
+    perteDemenagement(c, C)
   }
   state.population[p.n] = restants
   state.population[cible.n] = [...(state.population[cible.n] ?? []), ...deplaces]

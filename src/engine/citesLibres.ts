@@ -396,14 +396,18 @@ export function villeDevientCiteLibre(
   state.population[p.n] = restants
   // les nobles restants chez le joueur restent où ils sont (réancrés
   //  sur sa première ville restante s'ils vivaient dans la ville perdue)
+  // Arbitrage complémentaire (2026-10-21) : un Dirigeant ou Héritier
+  //  ne déménage jamais — ré-ancré (sa ville est perdue, il DOIT
+  //  suivre) mais il GARDE son titre et son domicile.
+  const CC = cfgOf(state.config)
   for (const c of restants) {
-    if (isNobleDyn(c.dynastie, cfgOf(state.config)) && c.ville === nom) {
+    if (isNobleDyn(c.dynastie, CC) && c.ville === nom) {
       const dest = p.villes.find((v) => v.nom !== nom)?.nom ?? c.ville
       // Vague 3a (arbitrage 2026-10-21) : changement d'habitation →
       //  perte du métier et du domicile.
       if (dest !== c.ville) {
         c.ville = dest
-        perteDemenagement(c)
+        perteDemenagement(c, CC)
       }
     }
   }

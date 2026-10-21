@@ -329,3 +329,109 @@ test('vague 3a : transfererVille — la population classique suit la ville SANS 
   assert.equal(noble.metier, null, 'ré-ancrage : métier perdu')
   assert.equal(noble.domicile, null, 'ré-ancrage : domicile perdu')
 })
+
+// ── Arbitrage complémentaire 3a (2026-10-21) : un Dirigeant ou un ─────────
+//    Héritier ne déménage JAMAIS — don refusé, mariage inversé ou refusé,
+//    ré-ancrage de cour sans perte du titre.
+
+test('3a+ : un Dirigeant (ou Héritier) ne déménage jamais — don REFUSÉ, personnage inchangé', () => {
+  const state = partieHuitJoueurs()
+  const p2 = state.players[1]
+  const dirigeant = perso('d-dir', 'Valois', 'Capitale 1')
+  dirigeant.metier = 'Dirigeant'
+  dirigeant.domicile = 'Palais'
+  state.population[1] = [...(state.population[1] ?? []), dirigeant]
+  const err = deplacerPersonnage(state, dirigeant, { kind: 'joueur', p: p2 })
+  assert.ok(err !== null && err.includes('ne déménage jamais'), 'don refusé avec le bon message')
+  assert.ok((state.population[1] ?? []).some((x) => x.id === 'd-dir'), 'le Dirigeant n a pas quitté sa population')
+  assert.ok(!(state.population[2] ?? []).some((x) => x.id === 'd-dir'), 'rien n arrive chez J2')
+  assert.equal(dirigeant.ville, 'Capitale 1', 'ville inchangée')
+  assert.equal(dirigeant.metier, 'Dirigeant', 'titre conservé')
+  assert.equal(dirigeant.domicile, 'Palais', 'domicile conservé')
+  // idem pour un Héritier
+  const heritier = perso('d-her', 'Valois', 'Capitale 1')
+  heritier.metier = 'Héritier'
+  state.population[1] = [...(state.population[1] ?? []), heritier]
+  assert.ok(deplacerPersonnage(state, heritier, { kind: 'joueur', p: p2 }) !== null, 'don d un Héritier refusé')
+  assert.equal(heritier.metier, 'Héritier', "titre de l Héritier conservé")
+})
+
+test('3a+ : mariage — le conjoint d un Dirigeant DÉMÉNAGE chez lui (le Dirigeant ne bouge pas)', () => {
+  const state = partieHuitJoueurs()
+  const roi = perso('d-roi', 'Valois', 'Capitale 1', { sexe: 'M' })
+  roi.metier = 'Dirigeant'
+  roi.domicile = 'Palais'
+  const duchesse = perso('d-duch', 'Montclair', 'Capitale 2', { sexe: 'F' })
+  duchesse.metier = 'Gouverneur'
+  duchesse.domicile = 'Donjon'
+  state.population[1] = [...(state.population[1] ?? []), roi]
+  state.population[2] = [...(state.population[2] ?? []), duchesse]
+  assert.equal(marierPersonnages(state, roi, duchesse), null, 'mariage accepté')
+  // c'est la duchesse qui déménage chez le Dirigeant (swap)
+  assert.ok((state.population[1] ?? []).some((x) => x.id === 'd-duch'), 'la conjointe a rejoint la cour du Dirigeant')
+  assert.ok(!(state.population[2] ?? []).some((x) => x.id === 'd-duch'), 'elle a quitté sa cour d origine')
+  assert.equal(duchesse.ville, 'Capitale 1', 'elle s installe dans la ville du Dirigeant')
+  assert.equal(duchesse.metier, null, 'déménagement : la conjointe perd son métier')
+  assert.equal(duchesse.domicile, null, 'déménagement : la conjointe perd son domicile')
+  assert.equal(roi.ville, 'Capitale 1', 'le Dirigeant n a pas bougé')
+  assert.equal(roi.metier, 'Dirigeant', 'le Dirigeant garde son titre')
+  assert.equal(roi.domicile, 'Palais', 'le Dirigeant garde son domicile')
+})
+
+test('3a+ : mariage de DEUX ancrés (Dirigeant/Héritier) de cours différentes — REFUSÉ avant toute mutation', () => {
+  const state = partieHuitJoueurs()
+  const r1 = perso('d-r1', 'Valois', 'Capitale 1', { sexe: 'M' })
+  r1.metier = 'Dirigeant'
+  const h2 = perso('d-h2', 'Montclair', 'Capitale 2', { sexe: 'F' })
+  h2.metier = 'Héritier'
+  state.population[1] = [...(state.population[1] ?? []), r1]
+  state.population[2] = [...(state.population[2] ?? []), h2]
+  const err = marierPersonnages(state, r1, h2)
+  assert.ok(err !== null && err.includes('ne déménage jamais'), 'mariage refusé avec le bon message')
+  assert.equal(r1.mariage, null, 'aucune mutation : pas de mariage posé sur r1')
+  assert.equal(r1.mariageId, null, 'pas d id de mariage sur r1')
+  assert.equal(h2.mariage, null, 'aucune mutation sur h2')
+  assert.equal(h2.mariageId, null, 'pas d id de mariage sur h2')
+  assert.ok((state.population[1] ?? []).some((x) => x.id === 'd-r1'), 'r1 n a pas bougé')
+  assert.ok((state.population[2] ?? []).some((x) => x.id === 'd-h2'), 'h2 n a pas bougé')
+})
+
+test('3a+ : mariage d un Dirigeant avec un noble de SA cour — accepté, AUCUN déménagement', () => {
+  const state = partieHuitJoueurs()
+  const roi = perso('d-roi2', 'Valois', 'Capitale 1', { sexe: 'M' })
+  roi.metier = 'Dirigeant'
+  const noble = perso('d-nob2', 'Montclair', 'Bourg 1', { sexe: 'F' })
+  noble.metier = 'Gouverneur'
+  noble.domicile = 'Donjon'
+  state.population[1] = [...(state.population[1] ?? []), roi, noble]
+  assert.equal(marierPersonnages(state, roi, noble), null, 'mariage accepté (même porteur)')
+  assert.equal(roi.metier, 'Dirigeant', 'titre du Dirigeant conservé')
+  assert.equal(noble.metier, 'Gouverneur', 'même porteur : pas de déménagement, métier conservé')
+  assert.equal(noble.ville, 'Bourg 1', 'aucun changement de ville')
+  assert.equal(roi.mariageId, noble.id, 'mariage bien enregistré')
+})
+
+test('3a+ : transfererVille — un Dirigeant/Héritier de la cour ré-ancrée GARDE titre et domicile', () => {
+  const state = partieHuitJoueurs()
+  const p1 = state.players[0]
+  const p3 = state.players[2]
+  const roi = perso('d-roi3', 'Valois', 'Bourg 1')
+  roi.metier = 'Dirigeant'
+  roi.domicile = 'Palais'
+  const heritier = perso('d-h3', 'Valois', 'Bourg 1')
+  heritier.metier = 'Héritier'
+  const noble = perso('d-nob3', 'Montclair', 'Bourg 1')
+  noble.metier = 'Gouverneur'
+  noble.domicile = 'Donjon'
+  state.population[1] = [...(state.population[1] ?? []), roi, heritier, noble]
+  const idx = p1.villes.findIndex((v) => v.nom === 'Bourg 1')
+  assert.ok(idx >= 0)
+  assert.equal(transfererVille(state, p1, idx, p3), true, 'transfert effectué')
+  assert.equal(roi.ville, 'Capitale 1', 'le Dirigeant suit sa cour (ré-ancré sur la première ville restante)')
+  assert.equal(roi.metier, 'Dirigeant', 'le Dirigeant garde son titre')
+  assert.equal(roi.domicile, 'Palais', 'le Dirigeant garde son domicile')
+  assert.equal(heritier.metier, 'Héritier', 'l Héritier garde son titre')
+  assert.ok(heritier.domicile == null, 'l Héritier n avait pas de domicile')
+  assert.equal(noble.metier, null, 'un noble classique de la cour perd toujours son métier')
+  assert.equal(noble.domicile, null, 'et son domicile')
+})

@@ -127,8 +127,10 @@ export function migrerPopulation(state: GameState, p: Player, rng: Rng) {
     c.ville = dest.ville.nom
     // Vague 3a (arbitrage 2026-10-21) : changement d'habitation →
     //  perte du métier ET du domicile (retour Sans-emploi jusqu'à
-    //  la réaffectation de fin de tour).
-    perteDemenagement(c)
+    //  la réaffectation de fin de tour). NB : migrer ne déplace QUE
+    //  des enfants, un Dirigeant/Héritier ne passe jamais ici
+    //  (arbitrage 2026-10-21 : il ne déménage jamais).
+    perteDemenagement(c, C)
     deplaces.add(c.id)
     state.log.push({
       turn: state.turn + 1, type: 'Système', joueur: srcN,

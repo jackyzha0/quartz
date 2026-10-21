@@ -27,7 +27,7 @@
 
 import type { Character, GameState, Player } from './types'
 import { cfgOf } from './gameData'
-import { isNobleDyn, fullName, deplacerPersonnage, populationDe, porteurDe, nomDe, memeDetenteur, perteDemenagement } from './shared'
+import { isNobleDyn, fullName, deplacerPersonnage, populationDe, porteurDe, nomDe, memeDetenteur, perteDemenagement, neDemenageJamais } from './shared'
 
 /** Donne un personnage (habitant ou noble) à un autre joueur : cadeau,
  *  exile, rachat… Il quitte la population du joueur source, rejoint
@@ -59,6 +59,17 @@ export function marierPersonnages(state: GameState, a: Character, b: Character):
   if (!isNobleDyn(a.dynastie, C) || !isNobleDyn(b.dynastie, C)) {
     return 'Le mariage manuel unit deux NOBLES (la population se marie au fil des tours).'
   }
+  // Arbitrage complémentaire (2026-10-21) : un Dirigeant ou un Héritier
+  //  ne déménage JAMAIS. Si les DEUX époux sont ancrés (Dirigeant ou
+  //  Héritier chacun dans sa cour), aucun ne peut rejoindre l'autre
+  //  → mariage refusé AVANT toute mutation.
+  if (neDemenageJamais(a, C) && neDemenageJamais(b, C)) {
+    const d0a = porteurDe(state, a)
+    const d0b = porteurDe(state, b)
+    if (d0a && d0b && !memeDetenteur(d0a, d0b)) {
+      return 'Un Dirigeant ou un Héritier ne déménage jamais : deux époux ancrés dans des cours différentes ne peuvent pas se marier.'
+    }
+  }
   a.mariage = fullName(b)
   b.mariage = fullName(a)
   // M1 (2026-10-19) : identité du conjoint par id (le nom complet reste
@@ -77,24 +88,33 @@ export function marierPersonnages(state: GameState, a: Character, b: Character):
   //  DÉMÉNAGE — elle quitte la population de son porteur actuel,
   //  rejoint celle du porteur de son conjoint et s'installe dans sa
   //  ville (changement de joueur ou de cité libre possible).
+  // Arbitrage complémentaire (2026-10-21) : un Dirigeant ou un Héritier
+  //  ne déménage jamais → si `a` est ancré, c'est `b` qui déménage
+  //  chez `a` (si `b` est ancré aussi, refus ci-dessus ; si seul `b`
+  //  est ancré, `a` déménage normalement chez lui).
+  const dem = neDemenageJamais(a, C) ? b : a
+  const autre = dem === a ? b : a
   let demenagement = ''
   if (dA && dB && !memeDetenteur(dA, dB)) {
-    const popSrc = populationDe(state, dA)
-    const i = popSrc.indexOf(a)
+    const srcDem = dem === a ? dA : dB
+    const dstDem = dem === a ? dB : dA
+    const popSrc = populationDe(state, srcDem)
+    const i = popSrc.indexOf(dem)
     if (i >= 0) popSrc.splice(i, 1)
-    if (dB.kind === 'joueur') {
-      const arr = state.population[dB.p.n] ?? (state.population[dB.p.n] = [])
-      arr.push(a)
+    if (dstDem.kind === 'joueur') {
+      const arr = state.population[dstDem.p.n] ?? (state.population[dstDem.p.n] = [])
+      arr.push(dem)
     } else {
-      const arr = dB.cite.population ?? (dB.cite.population = [])
-      arr.push(a)
+      const arr = dstDem.cite.population ?? (dstDem.cite.population = [])
+      arr.push(dem)
     }
-    a.ville = b.ville
+    dem.ville = autre.ville
     // Vague 3a (arbitrage 2026-10-21) : déménagement → perte du métier
     //  ET du domicile (même un rôle de cour : le Gouverneur sera
-    //  re-désigné automatiquement à la fin du tour).
-    perteDemenagement(a)
-    demenagement = ` — ${fullName(a)} rejoint la ville « ${a.ville} » (et quitte son poste)`
+    //  re-désigné automatiquement à la fin du tour). `dem` n'est
+    //  jamais Dirigeant/Héritier ici (refus ci-dessus ou swap).
+    perteDemenagement(dem, C)
+    demenagement = ` — ${fullName(dem)} rejoint la ville « ${dem.ville} » (et quitte son poste)`
   }
   state.log.push({
     turn: state.turn, type: 'Mariage', joueur: dA?.kind === 'joueur' ? dA.p.n : null,
