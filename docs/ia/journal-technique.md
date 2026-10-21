@@ -1002,6 +1002,34 @@ Validation avant push : harnais **127/127** (126 + 1 nouveau test de
 migration), tsc strict local **vide**, diff vs base = les 15 fichiers
 attendus exactement.
 
+## Rework métiers & aménagements — design arbitré et consigné (2026-10-21)
+
+Thibaut a arbitré la vague 3 du rework des habitants : les métiers
+deviennent des postes à emplacements créés par les aménagements. Design
+complet consigné dans docs/ia/regles-et-arbitrages.md (section « Rework
+métiers & aménagements — vague 3 ») :
+
+- **24 métiers** : renommages Artisan → Commerçant, Chercheur →
+  Scientifique, Sportif → Garde ; Propagandiste supprimé (ses
+  titulaires deviennent Sans-emploi en migration).
+- **Emplacements tier 1** : la production directe des 14 aménagements
+  devient des emplacements de métiers, calibrée sur les valeurs
+  actuelles (10/14 identiques si tous les emplacements sont remplis).
+- **Aucune éducation requise** : emplacement libre = prise
+  automatique (priorisation vague 1). Chasseur par défaut (cap par
+  habitation + emplacements) ; Sans-emploi sinon.
+- **Bonus de taxe ADDITIFS** (Professeur +10 % Science, Banquier
+  +10 % Or, Troubadour +10 % Tourisme, cumulables avec le Gouverneur).
+- **Garde +10 Garnison statique**, actif tant que le poste est tenu
+  (« la Garnison n'est jamais par tour »).
+- **Marchand dissocié des routes** : métier de production (+2 Or/tour) ;
+  la route copie exactement UN aménagement (emplacements compris) et
+  octroie +1 emplacement Marchand de chaque côté ; plus de +4 Or/tour.
+
+Implémentation planifiée en sous-vagues : **3a** (métiers & emplacements)
+puis **3b** (routes dissociées — arbitrages restants listés dans la
+section design).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

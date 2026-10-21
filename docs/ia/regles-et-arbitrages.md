@@ -334,6 +334,100 @@ l'implémentation (le code devra y revenir avant chaque vague).
 3. **V3 (ultérieure)** : métiers créés par les bâtiments/aménagements,
    production taxable étendue, bâtiments de logement → domicile.
 
+## Rework métiers & aménagements — vague 3 (arbitré 2026-10-21, design consolidé)
+
+Suite du rework des habitants : les métiers deviennent des **postes à
+emplacements** créés par les aménagements. Tous les arbitrages ci-dessous
+sont ACTÉS (session 2026-10-21) — l'implémentation est planifiée en
+sous-vagues 3a (métiers & emplacements) puis 3b (routes dissociées).
+
+### Métiers de production (arbitré)
+
+- **Aucune éducation requise** : un emplacement libre est pris
+  automatiquement (priorisation vague 1 : métier autre que Chasseur
+  d'abord, habitant sans métier ; les plus âgés perdent leur poste en
+  premier au surnombre). La colonne éducation disparaît des métiers de
+  production.
+- Gains par habitant et par tour : Chasseur +1,2 Nourriture (défaut) ·
+  Artiste +5 Tourisme · Commerçant +1 Or · Bûcheron +0,5 Bois ·
+  Mineur +0,5 Pierre · Forgeron +0,5 Fer · Tisseur +0,5 Soie ·
+  Éleveur +0,5 Bétail +2 Nourriture · Charbonnier +0,5 Charbon ·
+  Fermier +5 Nourriture (ÉTÉ uniquement) · Archéologue +4 Tourisme ·
+  Pêcheur +4 Nourriture · Scientifique +0,5 Science · Marchand +2 Or.
+- **Garde : +10 Garnison — STATIQUE** (« la Garnison n'est jamais par
+  tour ») : le bonus est ACTIF tant que le Garde tient le poste ;
+  retiré s'il part ou meurt.
+- **Métiers de taxe** : Professeur +10 % taxe Science, Banquier +10 %
+  taxe Or, Troubadour +10 % taxe Tourisme — dans leur ville. Les bonus
+  de taxe se cumulent de façon **ADDITIVE** avec le Gouverneur (+10 %
+  d'impôts) : ex. Gouverneur + Professeur = +20 % sur la Science.
+- Rôles de cour inchangés : Dirigeant, Héritier, Gouverneur, Ministre
+  (noblesse et règles propres conservées).
+- Soldat (15 pts d'armée) et Commandant (45 pts, nobles) : attribution
+  Armée, aucune restriction de sexe (arbitrage martialité du même jour).
+- **Chasseur = métier par défaut** : cap par habitation (paramètres
+  Ville/Château conservés) + emplacements des aménagements ; tout
+  habitant sans place est **Sans-emploi** (rôle neutre, impôt nul).
+  Une ville sans aménagement ne produit quasiment rien par métiers —
+  assumé (c'était déjà le cas).
+- **Disparitions ACTÉES** : Artisan (→ Commerçant), Chercheur
+  (→ Scientifique), Sportif (→ Garde), **Propagandiste supprimé** (les
+  3 charges de conversion disparaissent ; en migration, ses titulaires
+  deviennent Sans-emploi). **24 métiers** au référentiel.
+
+### Aménagements tier 1 : production → emplacements (arbitré)
+
+La production directe des aménagements tier 1 (coût inchangé :
+8 Or + 3 Bois) est remplacée par des emplacements de métiers. La
+production calibrée retombe sur les valeurs actuelles (10/14 aménagements
+identiques si tous les emplacements sont remplis) :
+
+- Baleinier : +3 Pêcheur, +2 Commerçant
+- Bâteau de pêche : +2 Pêcheur
+- Carrière : +2 Mineur
+- Champ : +3 Fermier
+- Foire : +1 Artiste, +1 Commerçant
+- Mine de Charbon : +2 Charbonnier
+- Mine de Fer : +2 Forgeron
+- Mine d'Or : +3 Marchand
+- Observatoire : +1 Scientifique
+- Pâturage : +2 Éleveur
+- Rizière : +4 Fermier
+- Scierie : +2 Bûcheron, +2 Chasseur
+- Sériciculture : +2 Tisseur, +2 Chasseur
+- Site archéologique : +2 Archéologue
+
+- Garde, Professeur, Banquier, Troubadour : **aucune source d'emplacement
+  tier 1** — les bâtiments qui les créeront arrivent plus tard (tiers
+  suivants) ; en attendant, attribution manuelle MJ possible.
+- Caps par ville = **somme des emplacements des aménagements présents**
+  (+ cap par défaut du Chasseur selon le type d'habitation).
+
+### Marchand & routes commerciales dissociées (arbitré)
+
+- Le **Marchand devient un métier de production** (+2 Or/tour) ; ses
+  emplacements viennent des Mines d'Or et des routes commerciales.
+- La **route commerciale est dissociée du Marchand** : ouverte
+  indépendamment, elle permet de **copier exactement UN aménagement**
+  de la ville ciblée — **y compris ses emplacements de population** —
+  et octroie **+1 emplacement de Marchand au joueur à l'origine et
+  +1 au joueur ciblé**.
+- **Le bonus +4 Or/tour des deux côtés disparaît** : la route ne
+  rapporte plus QUE la copie + les emplacements Marchand.
+- **À trancher avant la sous-vague 3b** : nombre de routes par
+  joueur/ville, coût d'ouverture, portée et destinations (cités
+  libres ?), conditions de fermeture, sort des routes existantes des
+  parties en cours.
+
+### Plan d'implémentation (proposé)
+
+1. **3a — métiers & emplacements** : référentiel 24 métiers +
+   emplacements des aménagements + caps dynamiques par ville +
+   bonus de taxe additifs + Garde statique + migrations (état :
+   renommages des métiers ; config : pattern (z)) + UI (PopulationTable,
+   écran Métiers et places par ville, Référentiels, Paramètres).
+2. **3b — routes dissociées** : après les arbitrages restants.
+
 ## Conventions techniques de règles (à respecter en implémentant)
 
 - **Effets structurés** : les constructions (bâtiments + aménagements) portent
