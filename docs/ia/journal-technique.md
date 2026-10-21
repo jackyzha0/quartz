@@ -1198,6 +1198,18 @@ qui embarque ces contenus) sont verts sur la tête.
   sans page cible ; lien `[[content/Règles/Règles#États Spéciaux|…]]`
   du Revenant au préfixe douteux.
 
+## Section JdR — liens hypertexte cassés (2026-10-21, 2e session)
+
+Retour Thibaut : « beaucoup de liens hypertexte renvoient en 404 ». Audit COMPLET des wikilinks de \`content/JdR/\` (105 fichiers, 194 liens) avec re-implementation fidèle des règles de résolution Quartz (\`markdownLinkResolution: "shortest"\` dans quartz.config.ts ; resolution : slugification segments par segments — espaces→-, &→-and-, %→-percent — puis si le SEGMENT FINAL est un nom de fichier unique dans tout le vault, lien relatif direct, SINON chemin absolu depuis la racine de content/ ; dossiers sans index.md = pas de page).
+
+46 liens cassés trouvés, CAUSES : (1) anciens chemins Obsidian pré-réorganisation (\`[[Règles/...]]\` sans le segment \`JdR/\` — la résolution se fait depuis la racine du vault, pas depuis le dossier du fichier) ; (2) casse/accents ne correspondant pas aux slugs (\`Anti-infanterie\` vs \`Anti-Infanterie\`, \`Point de talent\` vs \`Points de talent\`, \`Maître-Lame\` vs \`Maitre-Lame\`, \`classes/mage\` vs \`Classes/Mage\`) ; (3) \`[[Cadavérique]]\` ×7 : lien vers un DOSSIER sans index.md (pas de page) → dé-lié en texte simple ; (4) \`![[Pasted image 20260201143559.png]]\` ×2 (Grondeur) : l'image n'existe nulle part dans content/ → embeds retirés (Thibaut doit pousser l'image dans le dépôt si il la veut) ; (5) \`[[content/Règles/...]]\` : préfixe content/ invalide dans les wikilinks.
+
+CORRECTIFS (18 fichiers modifiés + 1 nouveau) : Règles, Armes, Armures, Chaman, Cuisinier, Guerrier, Paladin, Revenant, Savant, 7× Cadavérique (dé-liage), 2× Grondeur (embeds), et NOUVELLE PAGE \`content/JdR/Règles/Races/index.md\` (page dossier listant les 10 races — les 4 liens \`[[JdR/Races|Race]]\`/\`[[JdR/Règles/Races|race]]\` des classes y pointent désormais, un dossier sans index.md n'ayant pas de page).
+
+BONUS sémantique : 3 liens qui « résolvaient » (200) vers \`zDev/Anciens-fichiers/Règles-spéciales\` (page héritée) via le matching shortest par nom de fichier — réécrits vers les pages JdR (Saignement → \`JdR/Règles/Règles#États Spéciaux\`, Attaques enflammées → page dédiée _Visualisation). NB : la section Wargame a des fichiers aux MÊMES noms que les règles spéciales JdR (Anti-Infanterie etc.) — les wikilinks à nom court (\`[[Anti-Infanterie]]\`) seraient AMBIGUS → toujours utiliser le chemin complet depuis la racine dans les liens JdR.
+
+Re-audit post-correctifs sur l'univers complet (JdR+Wargame+zDev) : 0 lien cassé, 0 résolution hors-JdR. Convention pour l'avenir : liens wikilink TOUJOURS en chemin complet depuis la racine du vault (\`[[JdR/...]]\`), jamais en nom court, jamais de préfixe \`content/\`.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
