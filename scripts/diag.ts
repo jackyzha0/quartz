@@ -304,7 +304,6 @@ export interface TraitDef {
 export interface CultureDef {
   nom: string
   heredite: string
-  martialite: string
   homoAutorisee: boolean
   fertFactor: number
   reglePays: string
@@ -466,7 +465,6 @@ function normaliserCultures(): CultureDef[] {
   return ref.cultures.map((c: any) => ({
     nom: c.nom,
     heredite: c.heredite,
-    martialite: c.martialite,
     homoAutorisee: false,
     fertFactor: 1,
     reglePays: c.reglePays || '',
@@ -714,7 +712,6 @@ export type Orientation =
 export type Saison = 'Été' | 'Hiver'
 export type TaxeNiveau = 'Faible' | 'Moyenne' | 'Forte'
 export type Heredite = 'Masculine' | 'Féminine' | 'Parité'
-export type Martialite = 'Masculine' | 'Féminine' | 'Les deux'
 export type RegleGenre = 'Aucune' | 'Masculine' | 'Féminine' | 'Culture'
 export type Attribution = 'Manuelle' | 'Education' | 'Armée' | 'Aléatoire'
 
@@ -747,7 +744,6 @@ export interface TitreDef {
 export interface CultureDef {
   nom: string
   heredite: Heredite
-  martialite: Martialite
   homoAutorisee: boolean
   fertFactor: number
 }
@@ -1459,10 +1455,6 @@ export function titreAllowedForCharacter(titre: string, c: Character, p: Player,
       if (cult.heredite === 'Féminine' && c.sexe !== 'F') return false
     }
   }
-  if (td.regleGenre === 'Martialité') {
-    const cult = cultureDef(p.culture, C.config)
-    if (cult && !martialiteOk(cult.martialite, c.sexe)) return false
-  }
   return true
 }
 
@@ -2016,7 +2008,7 @@ export function migrerEnfants(state: GameState, p: Player, rng: Rng) {
 // ══ src/engine/armees.ts ══
 // ══════════════════════════════════════════════════════════════════════
 //  ARMÉES (RecruitForArmies)
-//  Recrutement, pertes, commandants, martialité et puissance des armées.
+//  Recrutement, pertes, commandants et puissance des armées.
 //  Portage des macros VBA du classeur Chasse & Pêche 7.19.
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
@@ -2028,7 +2020,6 @@ export function recruitForArmies(state: GameState, p: Player, rng: Rng) {
   const C = cfgOf(state.config)
   const pop = state.population[p.n] ?? []
   const recap = p.recap ?? emptyRecap()
-  const cult = cultureDef(p.culture, C.config)
   for (const armee of p.armees) {
     // retirer les soldats morts
     armee.soldats = armee.soldats.filter((id) => {
@@ -2054,8 +2045,7 @@ export function recruitForArmies(state: GameState, p: Player, rng: Rng) {
         (c) =>
           c.statut !== 'Décédé' &&
           c.age >= C.p.soldatAgeMin && c.age <= C.p.soldatAgeMax &&
-          !c.armee && (!c.titre || c.titre === C.p.titreChasseur) &&
-          martialiteOk(cult?.martialite, c.sexe),
+          !c.armee && (!c.titre || c.titre === C.p.titreChasseur),
       )
       if (candidats.length === 0) break
       const s = rng.pick(candidats)
@@ -2070,13 +2060,6 @@ export function recruitForArmies(state: GameState, p: Player, rng: Rng) {
     }
     armee.puissance = puissance
   }
-}
-
-export function martialiteOk(martialite: string | undefined, sexe: 'M' | 'F'): boolean {
-  if (!martialite || martialite === 'Les deux') return true
-  if (martialite === 'Masculine') return sexe === 'M'
-  if (martialite === 'Féminine') return sexe === 'F'
-  return true
 }
 
 /** Recalcule la puissance affichée d'une armée (après édition manuelle). */
@@ -2226,7 +2209,7 @@ export interface TitleIssue {
 /**
  * Contrôle l'attribution d'un titre à un personnage (cohérence avec le
  * classeur) : âge adulte, noblesse, règles de genre du titre et de la
- * culture (Reglege : vide / Masculine / Féminine / Hérédité / Martialité),
+ * culture (Reglege : vide / Masculine / Féminine / Hérédité),
  * éducation requise, unicité Dirigeant/Héritier/Gouverneur/Professeur.
  */
 export function validateTitleAssignment(
@@ -2246,7 +2229,7 @@ export function validateTitleAssignment(
   if (td.nobleSeul && !isNobleDyn(char.dynastie, C)) {
     return { ok: false, message: `Le titre « ${titre} » est en principe réservé aux nobles (${char.dynastie}).` }
   }
-  // règles de genre (colonne RegleGenre du classeur : vide/Masculine/Féminine/Hérédité/Martialité)
+  // règles de genre (colonne RegleGenre du classeur : vide/Masculine/Féminine/Hérédité)
   const cult = cultureDef(player.culture, C.config)
   if (td.regleGenre === 'Masculine' && char.sexe !== 'M') {
     return { ok: false, message: 'Ce titre est en principe réservé aux hommes.' }
@@ -2260,14 +2243,6 @@ export function validateTitleAssignment(
     }
     if (cult.heredite === 'Féminine' && char.sexe !== 'F') {
       return { ok: false, message: `La culture ${player.culture} (hérédité féminine) réserve en principe ce poste aux femmes.` }
-    }
-  }
-  if (td.regleGenre === 'Martialité' && cult) {
-    if (cult.martialite === 'Masculine' && char.sexe !== 'M') {
-      return { ok: false, message: `La culture ${player.culture} (martialité masculine) réserve en principe ce poste aux hommes.` }
-    }
-    if (cult.martialite === 'Féminine' && char.sexe !== 'F') {
-      return { ok: false, message: `La culture ${player.culture} (martialité féminine) réserve en principe ce poste aux femmes.` }
     }
   }
   // éducation requise
@@ -2722,10 +2697,9 @@ try {
   const C = cfgOf(st.config)
   const p1 = st.players[0]
   const pop1 = st.population[1] ?? []
-  const cult = cultureDef(p1.culture, C.config)
-  let cands = pop1.filter((c: any) => c.statut !== 'Décédé' && c.age >= C.p.adultAge && isNobleDyn(c.dynastie, C) && !c.armee && martialiteOk(cult?.martialite, c.sexe))
+  let cands = pop1.filter((c: any) => c.statut !== 'Décédé' && c.age >= C.p.adultAge && isNobleDyn(c.dynastie, C) && !c.armee)
   if (cands.length < 2) {
-    cands = pop1.filter((c: any) => c.statut !== 'Décédé' && c.age >= C.p.adultAge && !c.armee && martialiteOk(cult?.martialite, c.sexe))
+    cands = pop1.filter((c: any) => c.statut !== 'Décédé' && c.age >= C.p.adultAge && !c.armee)
     cands.forEach((c: any) => { c.dynastie = c.nom + '-nob' })
   }
   dlog('commandants disponibles pour J1 :', cands.length)
