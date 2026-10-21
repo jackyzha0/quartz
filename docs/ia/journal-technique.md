@@ -1210,6 +1210,45 @@ BONUS sémantique : 3 liens qui « résolvaient » (200) vers \`zDev/Anciens-fic
 
 Re-audit post-correctifs sur l'univers complet (JdR+Wargame+zDev) : 0 lien cassé, 0 résolution hors-JdR. Convention pour l'avenir : liens wikilink TOUJOURS en chemin complet depuis la racine du vault (\`[[JdR/...]]\`), jamais en nom court, jamais de préfixe \`content/\`.
 
+## Sync contenu JdR vers v4 — le site se construit depuis v4 (2026-10-21, 3e session)
+
+Retour Thibaut : « peux-tu faire le merge et le deploy automatiquement ? » après la
+session liens 404. **DÉCOUVERTE STRUCTURANTE** : le workflow deploy.yaml checkoute
+`v4` pour construire le SITE Quartz (`content/`), puis `chasse-et-peche-web`
+UNIQUEMENT pour le jeu (build vite → `public/jeu/`). Les correctifs de contenu
+poussés sur `chasse-et-peche-web` (liens 404 : `d369bffb`, journal `a8e4d006`)
+n'étaient donc PAS en ligne — le « merge » à faire = pousser le contenu vers `v4`.
+
+- **Sync de 53 fichiers JdR web→v4** : `d35a85c5` (19 fichiers de la session liens :
+  18 modifiés + nouvelle page `Règles/Races/index.md`), puis `cf52c11b` (35 fichiers :
+  32 syncs directs des corrections de contenu de la session 1 + 3 FUSIONS des édits
+  manuels de Thibaut, voir ci-dessous), puis 2 suppressions `f2c55f22` +
+  `ab467e11` (fichiers orphelins restés sur v4 alors que la session 1 les avait
+  supprimés sur web : « Sans titre.md » et « Elémentaire d'eau.md »).
+- **Édits manuels de Thibaut préservés** (3 commits « Update … » faits sur v4 via
+  l'UI GitHub, absents de la branche web) : Armes.md (Paire de pistolets 2 Bois /
+  4 Métaux / 260f, Arquebuse 2 Bois / 3 Métaux / 200f, « 2 métaux »→« 2 Métaux »),
+  Anti-Large.md (« Taille 2 ou plus »→« Taille 3 ou plus »), Attaques Empoisonnées.md
+  (typo « ne déclenche peut plus faire »→« ne peut plus faire »).
+  INCIDENT : le premier sync `d35a85c5` a ÉCRASÉ les coûts d'Armes.md (260f/200f
+  perdus) — découvert par l'inventaire blob-SHA des deux branches, ré-appliqués
+  dans la fusion de `cf52c11b`. **Règle qui en découle : le contenu du site vit sur
+  `v4` (c'est la branche que le déploiement Pages construit) ; toute modif de
+  contenu doit vivre sur les DEUX branches, sinon la sync d'une branche vers
+  l'autre écrase les édits de la seconde.**
+- **Portage des 3 édits vers `chasse-et-peche-web`** : `da810417` (convergence —
+  une future sync ne les écrasera plus).
+
+Vérifications : déploiements Pages de `d35a85c5` (#1289), `cf52c11b` et des deux
+suppressions verts ; site live vérifié (page Races index, Armes 260f/200f). Penser à
+Ctrl+F5 (cache CDN navigateur).
+
+Signalés, non traités : l'image `Pasted image 20260201143559.png` (Grondeur) reste
+absente du dépôt (embeds retirés, Thibaut doit pousser l'image dans `content/JdR/`
+s'il la veut) ; `content/Wargame/_Visualisation/Règles spéciales/Sans titre.md`
+(fichier parasite hors périmètre, non touché) ; la divergence Wargame/zDev entre
+branches n'a PAS été auditée (seul JdR l'a été).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
