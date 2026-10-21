@@ -189,8 +189,12 @@ Remplace le prérequis « 1 serment par rang intermédiaire » du classeur, jug�
 ## Arbitrages de jeu au fil des sessions (tous ACTÉS)
 
 - **Aménagements dédoublables** ; les bâtiments restent uniques par ville.
-- **Supprimer une ville** : les habitants RESTENT dans la population de l'ancien
-  propriétaire (l'arbitre les reloge ensuite).
+- **Supprimer une ville** (revu 2026-10-21) : la population CLASSIQUE de la
+  ville (roturiers, vivants et décédés) est **SUPPRIMÉE avec elle — fiches
+  définitivement effacées, aucune trace**. Seule la COUR (nobles) reste
+  inscrite auprès de son joueur, champ « ville » laissé tel quel (l'arbitre
+  la reloge ensuite) ; un noble ne disparaît jamais par suppression de
+  ville. (Retour initial 2026-10-14 « les habitants restent » abrogé.)
 - **Transférer une ville** : la ville ET sa population « classique » (vivants et
   décédés) changent de propriétaire ; la COUR (nobles) reste auprès de son joueur,
   ré-ancrée sur sa première ville restante ; renommage automatique en cas de
@@ -450,10 +454,12 @@ identiques si tous les emplacements sont remplis) :
   `perteDemenagement`) : don du personnage à un autre porteur
   (`deplacerPersonnage` — joueur ou cité libre), mariage chez le
   conjoint (`marierPersonnages`), migration automatique de population
-  (`migrerPopulation`), cour ré-ancrée après transfert ou suppression
-  de ville (`transfererVille`/`supprimerVille` — la cour suit son
-  joueur mais change de ville), nobles ré-ancrés ville → cité libre
-  (`citesLibres.ts`).
+  (`migrerPopulation`), cour ré-ancrée après transfert de ville
+  (`transfererVille` — la cour suit son joueur mais change de ville),
+  nobles ré-ancrés ville → cité libre (`citesLibres.ts`). NB : la
+  SUPPRESSION de ville n'y figure plus — depuis l'arbitrage du
+  2026-10-21 sa population classique est effacée et sa cour reste
+  telle quelle (pas de changement d'habitation).
 - **Exceptions** : le RENOMMAGE d'une ville (même ville, nouveau nom)
   et le TRANSFERT DE PROPRIÉTÉ d'une ville (les habitants ne bougent
   pas — la population classique suit la ville et garde son poste et

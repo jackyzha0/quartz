@@ -1129,6 +1129,30 @@ verrouillé par tests ce même soir :
   verts, `tsc --noEmit` strict : PROPRE. `scripts/diag.ts` : exit 0
   (gelé, non répliqué).
 
+## Arbitrage : suppression de ville — la pop classique est effacée avec elle (2026-10-21, soir)
+
+Retour de Thibaut après la question « que se passe-t-il si une ville
+est transférée ou détruite ? » : **la population classique d'une ville
+supprimée disparaît avec elle** (suppression DÉFINITIVE, fiches
+effacées, aucune trace — pas de statut « Décédé »). Précisions
+arbitrées : seuls les ROTURIERS sont effacés ; la cour (nobles) reste
+inscrite auprès de son joueur, champ « ville » intact (l'arbitre la
+reloge) — un noble ne disparaît jamais par suppression de ville.
+
+- `supprimerVille` (villes.ts) : filtre la population du joueur —
+  roturiers de la ville (vivants ET décédés) retirés du tableau,
+  nobles conservés ; le log compte les fiches effacées. Le retour
+  initial 2026-10-14 « les habitants restent » est abrogé.
+- VilleCarte.tsx : le texte de confirmation du bouton 🗑 annonce
+  l'effacement définitif.
+- Docs : la liste des « sites de déménagement » ne cite plus
+  supprimerVille (aucun ré-ancrage, aucun perteDemenagement là-bas) ;
+  la fiche de la règle 2026-10-14 est réécrite.
+- Tests : le test « habitants RESTENT » est remplacé (pop classique
+  effacée, cour conservée, autres villes intactes). Harnais : 141/141
+  verts, `tsc --noEmit` strict : PROPRE. `scripts/diag.ts` : exit 0
+  (gelé, non répliqué).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
