@@ -99,4 +99,4 @@ A partir du niveau 5, vous pouvez dépenser une action longue pour planter votre
 ##### Moisson d'os (niveau 8)
 A partir du niveau 8, vos attaques deviennent magiques.
 ##### Avatar de la ruine (niveau 11)
-A partir du niveau 11, lorsque vous éliminez une créature, les créatures à 6'' ou moins ayant moins de PV actuels que vous doivent réussir un test de volonté (nombre de réussite égal à la différence de PV actuels) ou être [[content/Règles/Règles#États Spéciaux|paniqués]].
+A partir du niveau 11, lorsque vous éliminez une créature, les créatures à 6m ou moins ayant moins de PV actuels que vous doivent réussir un test de volonté (nombre de réussite égal à la différence de PV actuels) ou être [[content/Règles/Règles#États Spéciaux|paniqués]].

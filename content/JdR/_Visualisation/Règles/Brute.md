@@ -1,0 +1,1 @@
+La **Brute** est la compétence de force pure : soulever un objet lourd, enfoncer une porte, plier du métal ou briser ses liens. C'est une compétence de l'arbre **Physique**, testée avec un pool de dés de Physique.

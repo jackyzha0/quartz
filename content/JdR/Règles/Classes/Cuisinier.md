@@ -19,7 +19,7 @@ Le Cuisinier est un lanceur de sorts. Lorsque vous créez un Cuisinier, choisiss
 ##### Bien nourri
 Lorsque vous cuisinez, quiconque se nourrit de votre nourriture reçoit 1 [[JdR/_Visualisation/Règles/Points de vie|Points de Vie]] temporaire pour le reste de la journée.
 ##### Chef de service
-Vous pouvez dépenser votre réaction et un dé de magie pour octroyer une action courte gratuite à une créature à 6'' ou moins.
+Vous pouvez dépenser votre réaction et un dé de magie pour octroyer une action courte gratuite à une créature à 6m ou moins.
 ### Par delà le niveau 1
 Lorsque vous montez de niveau, vous gagnez 1 [[JdR/_Visualisation/Règles/Points de talent|point de talent]]. Si vous atteingez un niveau pair, gagnez également 1 [[JdR/_Visualisation/Règles/Points de vie|Points de Vie]]. Consultez ensuite les sections ci-dessous pour apprendre vos nouvelles compétences.
 ## Niveau 2 :
@@ -97,4 +97,4 @@ Tant que vous êtes ivre, vos attaques gagnent +1d6 en mêlée et à distance ai
 ##### Bagarreur de taverne (niveau 8)
 Vos attaques à mains nues et vos attaques à distance a l'aide d'armes improvisées gagnent respectivement [[JdR/_Visualisation/Règles spéciales/Force dévastatrice|Force dévastatrice (2)]] et [[JdR/_Visualisation/Règles spéciales/Perforant|Perforant (2)]], ainsi que +2d6.
 ##### Cuvée légendaire (niveau 11)
-A partir du niveau 11, les personnes que vous avez rendues ivres avec vos rations savoureuses gagnent [[JdR/_Visualisation/Règles spéciales/Egide|Egide (1)]] au début de chaque tour par état d'ivresse. De plus, lorsqu'une créature à 6'' ou moins consomme un de vos rations savoureuses, vous pouvez également devenir ivre si vous le souhaitez.
+A partir du niveau 11, les personnes que vous avez rendues ivres avec vos rations savoureuses gagnent [[JdR/_Visualisation/Règles spéciales/Egide|Egide (1)]] au début de chaque tour par état d'ivresse. De plus, lorsqu'une créature à 6m ou moins consomme un de vos rations savoureuses, vous pouvez également devenir ivre si vous le souhaitez.

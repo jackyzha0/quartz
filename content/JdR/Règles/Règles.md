@@ -99,7 +99,7 @@ Le nombre de réussites obtenues au test de Fabrication détermine le résultat 
 | 0 | Fiasco : perte des matériaux. |
 | 1-2 | Réussite normale : objet utilisable. |
 | 3-4 | Objet de qualité : l'objet reçoit une amélioration de rang 1 |
-| 4-5 | Chef-d'œuvre : l'objet reçoit une amélioration de rang 2. |
+| 5 | Chef-d'œuvre : l'objet reçoit une amélioration de rang 2. |
 | 6+ | Chef-d'œuvre : l'objet reçoit une amélioration de rang 3. |
 
 ##### Matériaux de base
@@ -158,7 +158,7 @@ Certains effets infligent un état à un personnage, qui en modifie temporaireme
 ##### Tomber à 0 PV
 Lorsqu'un personnage tombe à 0 PV, il subit un **Trauma**. Il récupère un nombre de PV égal à son niveau.
 > La table des conséquences se trouve dans l'espace MJ, afin que les joueurs ne puissent pas y avoir accès à l'avance.
-**Refuser un Trauma** — un joueur peut refuser de subir le Trauma (et donc de réduire sa caractéristique ou remonter à 1 PV), à condition de le justifier en jeu : son personnage s'effondre, sombre dans l'inconscience, etc.
+**Refuser un Trauma** — un joueur peut refuser de subir le Trauma et rester à 0 PV, inconscient, à condition de le justifier en jeu : son personnage s'effondre, sombre dans l'inconscience, etc.
 **Dernière scène** — un joueur ayant déjà subi des Traumas peut déclencher une dernière scène pour son personnage : il récupère immédiatement 1 PV par niveau ainsi que toute sa réserve de magie, mais meurt définitivement à la fin de la scène, ou si ses PV retombent à 0.
 **Guérir d'un Trauma** — aucun Trauma n'est irréversible : une prothèse peut compenser un membre perdu, une thérapie peut apaiser une phobie.
 ## 6. Le Bivouac

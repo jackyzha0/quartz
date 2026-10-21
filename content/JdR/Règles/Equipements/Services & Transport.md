@@ -14,12 +14,12 @@
 ## Transport
 | Nom                  | Vitesse        | Capacité              | Matériaux requis (entretien)    | Coût |
 | -------------------- | -------------- | --------------------- | ------------------------------- | ---- |
-| **Âne**              | 6''            | Jusqu’à 6 sacs        | 1 Organique (/jour)             | 100f |
-| **Charrette**        | 5''            | 3 passagers + 10 sacs | 1 Bois/jour                     | 150f |
-| **Bateau léger**     | 5'' (rivière)  | 2 passagers + 5 sacs  | 2 Bois + 1 Tissu (voile)        | 180f |
-| **Cheval**           | 7''            | 1 cavalier + 2 sacs   | 1 Organique (/jour)             | 200f |
-| **Cheval de guerre** | 7''            | 1 cavalier + armure   | 1 Organique (/jour)             | 200f |
-| **Chariot renforcé** | 4''            | 6 passagers + 20 sacs | 2 Bois + 1 Métal/jour           | 250f |
+| **Âne**              | 6m            | Jusqu’à 6 sacs        | 1 Organique (/jour)             | 100f |
+| **Charrette**        | 5m            | 3 passagers + 10 sacs | 1 Bois/jour                     | 150f |
+| **Bateau léger**     | 5m (rivière)  | 2 passagers + 5 sacs  | 2 Bois + 1 Tissu (voile)        | 180f |
+| **Cheval**           | 7m            | 1 cavalier + 2 sacs   | 1 Organique (/jour)             | 200f |
+| **Cheval de guerre** | 7m            | 1 cavalier + armure   | 1 Organique (/jour)             | 200f |
+| **Chariot renforcé** | 4m            | 6 passagers + 20 sacs | 2 Bois + 1 Métal/jour           | 250f |
 | **Chambre volante**  | Vol (12 cases) | 2 passagers           | 3 Plantes, 2 Métaux/jour (rare) | 900f |
 ## Montures
 | Nom        | Vitesse  | Effets en jeu                                                 | Entretien quotidien | Prix |

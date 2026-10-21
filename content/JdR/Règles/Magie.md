@@ -30,7 +30,7 @@ L'hémomancie est l'une des pratiques magiques les plus anciennes et les plus co
 ### Domaine de la Lumière
 - **Écoles principales** : Altération, Construction.  
 - **Passif** : un maître de la Lumière est capable de déceler l'invisibilité et ignore la *Furtivité*.
-- **Attribut de domaine** : lorsqu'un sort de ce domaine est lancé, le lanceur peut désigner une créature alliée à 9" ou moins et lui conférer Égide (1).  
+- **Attribut de domaine** : lorsqu'un sort de ce domaine est lancé, le lanceur peut désigner une créature alliée à 9m ou moins et lui conférer Égide (1).  
 - **Exemples d'utilisation** : protéger un allié, créer une barrière lumineuse, inonder une zone de lumière aveuglante pour annuler toute furtivité ou invisibilité, etc.
 #### Histoire & Contexte
 Le rapport à la lumière a été profondément bouleversé lors de la création de Lun par celui qui deviendra plus tard le Dieu Dragon Bahamutt. Les clercs et paladins qui en maîtrisent le domaine sont généralement membres d'institutions religieuses officielles, formés dans des ordres stricts. Il est à noter que d'autres peuples, tels que les hommes-lézards, continuent de vénérer la lumière et le soleil tels qu'ils l'étaient à la fondation des âges — une pratique plus brute, moins raffinée, mais tout aussi puissante.
@@ -55,7 +55,7 @@ Les mages des Astres lisent l'avenir dans le mouvement des étoiles et canalisen
 ### Domaine des Cieux
 - **Écoles principales** : Destruction, Altération.  
 - **Passif** : un maître des Cieux bénéficie de +1 Vitesse. 
-- **Attribut de domaine** : lorsqu'un sort de ce domaine est lancé, le lanceur peut déplacer une créature de 3".  
+- **Attribut de domaine** : lorsqu'un sort de ce domaine est lancé, le lanceur peut déplacer une créature de 3m.  
 - **Exemples d'utilisation** : repousser une créature dangereuse, faire tomber la foudre, repositionner un allié en hauteur, dévier les projectiles d'un archer ennemi, etc.
 #### Histoire & Contexte
 Ses praticiens sont souvent des voyageurs solitaires, des capitaines de vaisseaux volants ou des druides des cimes qui ont appris à lire l'air comme d'autres lisent des livres. Dans les armées, les mages des Cieux sont redoutés pour leur capacité à rompre les formations adverses — une poussée de vent bien placée peut ouvrir une brèche dans laquelle toute une cavalerie s'engouffre. Leur force est le contrôle de l'espace : pas seulement frapper, mais dicter où chacun se trouve.
@@ -63,7 +63,7 @@ Ses praticiens sont souvent des voyageurs solitaires, des capitaines de vaisseau
 ### Domaine des Racines
 - **Écoles principales** : Altération, Construction.  
 - **Passif** : un maître des Racines ignore les malus liés aux terrains difficiles.
-- **Attribut de domaine** : lorsqu'un sort de ce domaine est lancé, le lanceur peut désigner une créature à 9" ou moins et lui infliger l'état Fatigué.  
+- **Attribut de domaine** : lorsqu'un sort de ce domaine est lancé, le lanceur peut désigner une créature à 9m ou moins et lui infliger l'état Fatigué.  
 - **Exemples d'utilisation** : attirer à soi une créature, faire jaillir un enchevêtrement de racines transformant une zone en terrain difficile, accélérer la croissance d'une forêt pour obstruer un passage, etc.
 #### Histoire & Contexte
 Le Domaine des Racines puise dans les forces lentes et implacables de la vie et de la mort : la croissance des plantes, le pourrissement de la matière organique, etc... Contrairement à la magie des Cieux qui frappe vite et fort, celle des Racines installe une pression constante : elle ralentit, épuise et attire, jusqu'à ce que les adversaires ne puissent plus résister.
@@ -79,7 +79,7 @@ Les Ténèbres ne sont pas le mal — elles sont l'absence, le vide entre les ch
 ### Domaine du Cataclysme
 - **Écoles principales** : Destruction, Construction.  
 - **Passif** : un maître du Cataclysme peut, une fois par jour, dévorer une source de feu au prix d'une action courte pour regagner 2 dés de sa réserve de magie.
-- **Attribut de domaine** : lorsqu'un sort de ce domaine est lancé, le lanceur peut ajouter un marqueur Enflammé à une créature à 12" ou moins.  
+- **Attribut de domaine** : lorsqu'un sort de ce domaine est lancé, le lanceur peut ajouter un marqueur Enflammé à une créature à 12m ou moins.  
 - **Exemples d'utilisation** : intensifier une explosion de lave contre une cible déjà enflammée, briser l'élan d'une ligne de charge ennemie avec un séisme localisé, fondre des barreaux ou chauffer une armure à blanc en dehors du combat, etc.
 #### Histoire & Contexte
 
@@ -96,7 +96,7 @@ Le Domaine du Festin est la magie de la consommation — absorber, dévorer, tra
 ### Domaine du Givre
 - **Écoles principales** : Construction, Altération.  
 - **Passif** : un maître du Givre ezt immunisé au Gel et aux basses températures.  
-- **Attribut de domaine** : lorsqu'un sort de ce domaine est lancé, le lanceur peut désigner une créature à 9" ou moins et lui appliquer un marqueur Gelé.  
+- **Attribut de domaine** : lorsqu'un sort de ce domaine est lancé, le lanceur peut désigner une créature à 9m ou moins et lui appliquer un marqueur Gelé.  
 - **Exemples d'utilisation** : cumuler les marqueurs Gelé pour réduire Vitesse et Armure jusqu'à l'immobilisation totale, créer une couche de glace transformant une zone en terrain difficile, produire de l'eau utile en contexte de survie, etc.
 #### Histoire & Contexte
 La magie du Givre vient des régions du grand nord, là où les hivers durent huit mois et où les esprits du froid ont été vénérés bien avant que les dieux dragons ne s'imposent. Les chamans des peuples nordiques qui la pratiquent voient le froid non comme une punition mais comme un état naturel de préservation — le givre conserve ce qu'il touche. Dans les armées du Sud, les rares mages du Givre sont des spécialistes du contrôle de zone. Ils ne tuent pas vite — ils font en sorte que leurs cibles ne puissent plus fuir.
@@ -104,7 +104,7 @@ La magie du Givre vient des régions du grand nord, là où les hivers durent hu
 ### Domaine Primordial
 - **Écoles principales** : Altération, Invocation.  
 - **Passif** : un maître Primordial bénéficie d'une armure naturelle de 5+, ou qui augmente sa valeur d'armure de -1 s'il porte une armure (par exemple, un 4+ deviendrait 3+).
-- **Attribut de domaine** : lorsqu'un sort de ce domaine est lancé, le lanceur peut désigner une créature à 12" ou moins et lui conférer Sauvagerie (1) pendant 2 tours.  
+- **Attribut de domaine** : lorsqu'un sort de ce domaine est lancé, le lanceur peut désigner une créature à 12m ou moins et lui conférer Sauvagerie (1) pendant 2 tours.  
 - **Exemples d'utilisation** : octroyer Sauvagerie à l'allié le plus offensif avant une charge, se métamorphoser partiellement pour devenir soi-même le front de combat, faire jaillir ronces et racines pour créer une zone d'entrave permanente, etc.
 #### Histoire & Contexte
 Le Domaine Primordial est la magie d'avant — avant les dieux dragons, avant les villes, avant l'écriture. Druides des forêts vierges, chamans des steppes et berserkers qui ont appris à puiser dans quelque chose de plus ancien que leurs propres muscles : tous touchent, à leur façon, au Primordial. Cette magie amplifie, accélère, déchaîne — elle ne construit pas, elle libère ce qui est déjà là. Ses praticiens sont souvent aussi physiques que magiques, et la frontière entre lancer un sort et hurler de rage n'est pas toujours claire.

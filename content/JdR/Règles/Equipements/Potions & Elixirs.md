@@ -2,7 +2,7 @@
 | **Nom**                         | Effet                                                                                                                                                 | Ingrédients                | Coût |
 | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | :--: |
 | **Antidote**                    | Annule tous les effets de poisons.                                                                                                                    | 2 Plantes, 1 Organique     | 65f  |
-| **Flasque Incendiaire**         | Effectuez une attaque à  distance selon les règles suivantes : Portée 9'', 2d6, Attaque enflammée. L'attaque cible une  case et les cases adjacentes. | 2 Plantes, 1 Métal, 1 Bois | 100f |
+| **Flasque Incendiaire**         | Effectuez une attaque à  distance selon les règles suivantes : Portée 9m, 2d6, Attaque enflammée. L'attaque cible une  case et les cases adjacentes. | 2 Plantes, 1 Métal, 1 Bois | 100f |
 | **Huile Glissante**             | Lorsque le liquide se déverse, la case et les cases adjacentes deviennent du terrain difficile.                                                       | 2 Plantes, 1 Organique     | 65f  |
 | **Potion de hâte**              | Permet d'effectuer immédiatement une action, même une action que vous avez déjà faite.                                                                | 3 Plantes, 1 Métal         | 105f |
 | **Potion de Soin**              | Rend 1 PV.                                                                                                                                            | 2 Plantes, 1 Organique     | 65f  |
@@ -22,23 +22,6 @@
 | **Tisane d'amabilité**     | +1d6 aux jets de Social pendant 1 heure.                 | 3 Plantes, 1  Organique | 80f  |
 | **Tisane d'esprit**        | +1d6 aux jets de Mental pendant 1 heure.                 | 3 Plantes, 1  Organique | 80f  |
 | **Tisane de fougue**       | +1d6 aux jets de Physique pendant 1 heure.               | 3 Plantes, 1  Organique | 80f  |
-## Système de fabrication
-Dans **Chasse & Pêche**, tous les objets peuvent être fabriqués à l’aide de matériaux trouvés ou récoltés durant l’aventure. La fabrication permet de créer des armes, armures, outils ou objets spéciaux.
-##### Fabriquer un consommable
-Pour créer un objet, le personnage doit :
-- Avoir accès à un atelier, un campement ou des outils adaptés.
-- Posséder tous les matériaux nécessaires (voir tableau des recettes).
-- Dépenser autant d'heures que de matériaux requis.
-Une fois les conditions réunies, un personnage peut  effectuer un test de DIY de difficulté facile pour tenter de fabriquer un objet. 
-
-| Réussites | Résultat de fabrication                                |
-| --------- | ------------------------------------------------------ |
-| 0         | Echec : perte des matériaux                            |
-| 1         | Succès partiel : dépensez 1 matériaux supplémentaire.  |
-| 2         | Succès normal : objet utilisable.                      |
-| 3         | Objet de qualité : amélioration de rang I.             |
-| 4+        | Objet de qualité supérieure : amélioration de rang II. |
-| 5+        | Chef-d'œuvre : amélioration de rang III.               |
 ### Améliorations de rang I (3 réussites)
 Lorsque vous réalisez une réussite suffisante, vous pouvez améliorer un consommable en fonction de son type :
 ##### Potion

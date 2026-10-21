@@ -1,1 +1,1 @@
-Avant la phase de déploiement, déployez ce modèle à 9" ou plus tout modèle adverse et à plus de 9" de la zone de déploiement adverse.
+Avant la phase de déploiement, déployez ce modèle à 9m ou plus tout modèle adverse et à plus de 9m de la zone de déploiement adverse.

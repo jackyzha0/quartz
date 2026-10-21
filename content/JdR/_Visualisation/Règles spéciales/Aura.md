@@ -1,1 +1,1 @@
-Une règle spéciale bénéficiant d'Aura affecte toutes les unités à portée N'' ou moins, sans nécessiter de ligne de vue.
+Une règle spéciale bénéficiant d'Aura affecte toutes les unités à portée Nm ou moins, sans nécessiter de ligne de vue.

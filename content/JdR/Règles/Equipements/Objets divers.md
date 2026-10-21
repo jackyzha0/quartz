@@ -2,9 +2,9 @@
 | Nom                       | Effet                                                                             | Ingrédients                        | Coût |
 | ------------------------- | --------------------------------------------------------------------------------- | ---------------------------------- | ---- |
 | **Torche (10)**           | Éclaire un rayon de 6 cases pendant 1h.                                           | 1 Bois, 1 Tissu, 1 Plante          | 75f  |
-| **Corde**                 | Permet de grimper/descendre jusqu’à 10''.                                         | 2 Organiques                       | 70f  |
+| **Corde**                 | Permet de grimper/descendre jusqu’à 10m.                                         | 2 Organiques                       | 70f  |
 | **Piège à loup**          | Déclenche une attaque 2d6, *Saignement*.                                          | 1 Métal, 1 Organique               | 95f  |
-| **Grappin**               | Permet de s’accrocher à un rebord ou mur jusqu’à 9'' de distance.                 | 1 Métal, 1 Tissu                   | 110f |
+| **Grappin**               | Permet de s’accrocher à un rebord ou mur jusqu’à 9m de distance.                 | 1 Métal, 1 Tissu                   | 110f |
 | **Sac**                   | Transporte jusqu'à 50 kg                                                          | 2 Organiques                       | 70f  |
 | **Piège sonore**          | Émet un bruit en rayon de 12 cases quand déclenché.                               | 1 Métal, 1 Bois, 1 Plante          | 85f  |
 | **Sceau en cire**         |                                                                                   | 1 Plante, 1 Organique              | 50f  |
