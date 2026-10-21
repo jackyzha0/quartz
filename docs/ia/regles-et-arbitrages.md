@@ -238,6 +238,16 @@ Remplace le prérequis « 1 serment par rang intermédiaire » du classeur, jug�
   Mer = +7 (paramétrable) ; les aménagements marins restent disponibles partout.
 - **Production des villes** : capital par défaut VIDE (aucun bâtiment initial) ;
   toutes les ressources affichées même à production 0.
+- **Martialité supprimée** (arbitrage 2026-10-21) : la règle de genre
+  « Martialité » disparaît du jeu — Soldat et Commandant passent à regleGenre
+  vide (aucune restriction de sexe), le recrutement des armées (soldats ET
+  commandants) est ouvert aux deux sexes, la colonne martialité disparaît des
+  cultures (référentiel, Référentiels, Paramètres). **L'HÉRÉDITÉ est
+  conservée** (Dirigeant/Héritier et les métiers marqués Hérédité continuent
+  d'être régis par elle). Les configs sauvegardées sont converties par la
+  migration ciblée `martialiteSupprimee` (pattern (z), sans incrémenter
+  SCHEMA_VERSION_CONFIG — les configs v3 convergées ne rejouent pas les
+  migrations v3).
 
 ## Rework des habitants (design arbitré 2026-10-20 — VAGUES 1 & 2 IMPLÉMENTÉES)
 

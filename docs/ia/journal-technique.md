@@ -958,6 +958,50 @@ jamais poussé) → le tsc strict local est désormais PROPRE à 100 %
 tests + tsc vide. Le check d'équilibre JSX (règle 2) est couvert par
 le tsc strict lui-même (une balise non refermée = erreur de syntaxe).
 
+## Suppression de la martialité (2026-10-21, arbitrage Thibaut)
+
+Thibaut a arbitré la suppression de la **martialité** des cultures
+(l'**hérédité est conservée**) : Soldat et Commandant passent de
+regleGenre « Martialité » à vide (aucune restriction de sexe), le
+recrutement des armées (soldats et commandants) est ouvert aux deux
+sexes, la colonne martialité disparaît des cultures. **Commits
+`368a864` + `487a17c` + `c96b714` (jeu) + miroir v4 `4b6a012` +
+`8749031` + `9e7c061`** (payload découpé en 3 groupes pour rester
+sous la limite mémoire du push). Contenu :
+
+- **Moteur** : `martialiteOk` supprimée (armees.ts, export engine.ts,
+  import metiers.ts), filtres de recrutement retirés (soldats et
+  commandants), blocs regleGenre « Martialité » retirés (validation.ts,
+  metiers.ts), type `Martialite` et champ `CultureDef.martialite`
+  supprimés (types.ts).
+- **UI** : ArmiesPanel (titre de carte sans martialité, commandants sans
+  filtre, textes d'aide), RoyaumeView et CulturePays (affichage
+  martialité retiré, « Ce que fait la culture » reformulé sur
+  l'hérédité seule), ParamsPanel et ReferenceDataPanel (colonne
+  Martialité retirée des tables Cultures).
+- **Migration ciblée (z)** : `martialiteSupprimee?: boolean` dans
+  GameConfig, migration dans `cfgOf` SANS toucher au tampon
+  schemaVersion (règle (x)) : regleGenre « Martialité » → vide (seule
+  la valeur exacte est remplacée, édition personnalisée préservée),
+  clé `martialite` dépouillée des cultures, marqueur posé. Test dédié
+  dans params.test.ts (la migration joue MÊME sur une config déjà
+  convergée v3 ; idempotence vérifiée).
+- **referentiels.json** : 6 clés martialite retirées, Soldat et
+  Commandant regleGenre « vide ».
+- **scripts/diag.ts** (copie auto-contenue du moteur, workflow diag) :
+  mêmes nettoyages ; rejoué en local, sortie identique à la base
+  (les « ÉCHEC » de robustesse volontaires sont inchangés, seule
+  l'ordre d'un crash sur état délibérément corrompu varie — effet
+  attendu du changement de recrutement sur le seed).
+- Hors périmètre : `vba/Personnages.vba` (archive du classeur source)
+  et `scripts/make_docx.py` (générateur docx déjà obsolète : Occultisme
+  disparu, valeurs antérieures au rework, non exécuté en CI) restés
+  tels quels.
+
+Validation avant push : harnais **127/127** (126 + 1 nouveau test de
+migration), tsc strict local **vide**, diff vs base = les 15 fichiers
+attendus exactement.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
