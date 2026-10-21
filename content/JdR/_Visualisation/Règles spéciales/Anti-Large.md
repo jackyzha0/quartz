@@ -1,1 +1,1 @@
-Un modèle possédant cette règle bénéficie de +2d6 en mêlée lorsqu'il attaque un modèle de Taille 2 ou plus.
+Un modèle possédant cette règle bénéficie de +2d6 en mêlée lorsqu'il attaque un modèle de Taille 3 ou plus.

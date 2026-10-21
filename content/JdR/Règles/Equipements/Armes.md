@@ -14,13 +14,13 @@
 ## Armes à distance
 | Nom                    | Maniement  | Atta | Propriétés              | Ingrédients      | Coût |
 | ---------------------- | ---------- | :--: | ----------------------- | ---------------- | :--: |
-| **Arbalète de poing**  | Portée 9m  | 3d6  | Rapide                  | 1 Bois, 2 métaux | 130f |
+| **Arbalète de poing**  | Portée 9m  | 3d6  | Rapide                  | 1 Bois, 2 Métaux | 130f |
 | **Pistolet**           | Portée 9m  | 3d6  | Perforant (1), Rapide   | 2 Bois, 2 Métaux | 140f |
-| **Paire de pistolets** | Portée 9m  | 5d6  | Perforant (1)           | 1 Bois, 1 Métal  | 70f  |
+| **Paire de pistolets** | Portée 9m  | 5d6  | Perforant (1)           | 2 Bois, 4 Métaux | 260f |
 | **Arc court**          | Portée 12m | 3d6  |                         | 3 Bois, 1 Métal  | 90f  |
 | **Arc long**           | Portée 15m | 3d6  |                         | 3 Bois, 2 Métal  | 150f |
 | **Arbalète**           | Portée 12m | 3d6  | Tir long, Perforant (1) | 1 Métal          | 60f  |
-| **Arquebuse**          | Portée 15m | 3d6  | Tir long, Perforant (1) | 2 Bois, 1 Métal  | 80f  |
+| **Arquebuse**          | Portée 15m | 3d6  | Tir long, Perforant (1) | 2 Bois, 3 Métaux | 200f |
 ## Améliorations de rang I (3 réussites)
 Lorsque vous réalisez une réussite suffisante, vous pouvez améliorer une arme :
 
