@@ -1153,6 +1153,51 @@ reloge) — un noble ne disparaît jamais par suppression de ville.
   verts, `tsc --noEmit` strict : PROPRE. `scripts/diag.ts` : exit 0
   (gelé, non répliqué).
 
+## Section JdR du site — corrections de contenu (2026-10-21)
+
+Relecture complète de `content/JdR/` (règles, classes, races, équipements,
+visualisation, espace MJ, bestiaire) suivie de corrections arbitrées par
+Thibaut. Commits : `e40360cb` + `ef180f6c` (contenu) puis 4 commits de
+suppression (`81b4cf3`, `c2ed120`, `40abe2b`, `f6d4f313` = tête). Le code
+du jeu (`src/`) n'est PAS touché ; les déploiements Pages (site Quartz,
+qui embarque ces contenus) sont verts sur la tête.
+
+- **Distances unifiées en MÈTRES partout** (arbitrage : « toutes les
+  distances sont en mètres ») : les pouces (`''` et `"`) deviennent `m`
+  dans 42 fichiers — bestiaire, armes, armures, transports, magie
+  (attributs de domaine), classes (Savant, Cuisinier, Revenant), races
+  (Peaux-Vertes), tables MJ (Traumas, Puissance irrésistible), règles
+  spéciales (Aura, Eclaireur, Embuscade). Les « cases » de grille sont
+  conservées volontairement (sémantique de plateau — à arbitrer un jour).
+- **Armes.md** : le bloc « Améliorations de Rang II (5 réussites) »
+  renommé **Rang III**, son « Précision II » doublé devient **Précision
+  III** ; typos (« ayant moyens de 5 PV » → « moins de 5 PV », « 3 case
+  en cas de touches » → « 3 cases en cas de touche »).
+- **Règles.md** : « Refuser un Trauma » réécrit — un Trauma ne RÉDUIT
+  JAMAIS de caractéristique (erreur signalée par Thibaut) ; le refus =
+  rester inconscient à 0 PV. Chevauchement 3-4/4-5 de la table de
+  fabrication corrigé : 1-2 normal, 3-4 rang 1, **5 rang 2**, 6+ rang 3.
+- **Fabrication** : la table des Règles est l'UNIQUE référence — les
+  sections « Système de fabrication » dupliquées (avec la table
+  divergente et le test « DIY ») sont retirées de Potions & Elixirs.md
+  et Matériaux.md (il ne reste que les listes d'améliorations par
+  type d'objet et les tables de matériaux) ; **« DIY » n'existe plus**,
+  tout est renommé **Fabrication** (Outils.md, Savant.md, Prima
+  Donna.md) ; le heading « Rang II » vide d'Outils.md retiré.
+- **Fichiers vides/orphelins supprimés** : `Règles.md` (racine, 0 o),
+  `MJ/Créatures/Mecka.md` (racine, 0 o — les Mecka vivent dans le
+  bestiaire), `Sans titre.md` (Règles spéciales), `Elémentaire d'eau.md`
+  (bestiaire, 0 o). `Brute.md` (vide mais LIÉ par le Cuisinier) est
+  REMPLI d'une page glossaire au lieu d'être supprimé ; les liens
+  `[Mecka](MJ/Créatures/Mecka)` du Savant (qui pointaient vers
+  l'orphelin racine) re-dirigés vers le dossier du bestiaire
+  (`[[JdR/MJ/Bestiaire/Mecka/index|Mecka]]`).
+- **Signalés, non traités (repoussés par Thibaut)** : sections
+  « Personnalité » des Nains/Ogres = copier-coller des Humains,
+  religions tronquées (Ogres/Orques) ; liens `[[Homonculus]]` du Savant
+  sans page cible ; lien `[[content/Règles/Règles#États Spéciaux|…]]`
+  du Revenant au préfixe douteux.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
