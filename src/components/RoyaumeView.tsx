@@ -2,7 +2,7 @@
 //  Page « Royaume » (par joueur) :
 //   · cadre « Joueur N » : identité éditable du pays (nom, peuple,
 //     culture, régime) — déplacé ici depuis la page « Pays »,
-//   · culture du pays (celle de la capitale) : hérédité, martialité,
+//   · culture du pays (celle de la capitale) : hérédité,
 //     mariages homosexuels, règle de pays & règle de personnage
 //     (la garnison des habitations n'est PAS affichée ici — valeur
 //     d'état consultable sur la page Joueur, avec son décompte détaillé),
@@ -189,14 +189,13 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
               <>
                 <div className="muted small">
                   Hérédité {String(cult.heredite).toLowerCase()} ·
-                  martialité {String(cult.martialite).toLowerCase()} ·
                   mariage homosexuel {cult.homoAutorisee ? 'autorisé' : 'interdit'}
                 </div>
                 {cult.reglePays && <div className="small muted">Règle de pays : {cult.reglePays}</div>}
                 {cult.reglePerso && <div className="small muted">Règle de personnage : {cult.reglePerso}</div>}
                 <div className="muted small">
-                  Ce que fait la culture : l'hérédité et la martialité règlent la
-                  transmission des métiers et l'armée ; la fécondité influe sur les
+                  Ce que fait la culture : l'hérédité conditionne l'accès aux métiers
+                  héréditaires ; la fécondité influe sur les
                   naissances ; les mariages homosexuels (si autorisés) permettent des
                   unions de même sexe (sans conception) ; la règle de pays et les lois
                   chiffrées sont appliquées automatiquement à chaque fin de tour.

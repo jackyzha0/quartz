@@ -11,7 +11,6 @@ import { cfgOf, metierDef, cultureDef, traitDef, type Cfg } from './gameData'
 import { schoolRankOf } from './gameData2'
 import { bump, fullName, isNobleDyn } from './shared'
 import { invaliderIndexPopulation } from './naissances'
-import { martialiteOk } from './armees'
 
 // ── Professeurs ─────────────────────────────────────────────────────────
 
@@ -258,10 +257,6 @@ export function metierAllowedForCharacter(metier: string, c: Character, p: Playe
       if (cult.heredite === 'Masculine' && c.sexe !== 'M') return false
       if (cult.heredite === 'Féminine' && c.sexe !== 'F') return false
     }
-  }
-  if (td.regleGenre === 'Martialité') {
-    const cult = cultureDef(p.culture, C.config)
-    if (cult && !martialiteOk(cult.martialite, c.sexe)) return false
   }
   return true
 }

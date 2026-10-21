@@ -1,16 +1,15 @@
 // ══════════════════════════════════════════════════════════════════════
 //  Armées : lever, renommer, nommer un commandant, définir la cible,
 //  dissoudre (portage de LeverArmee / NommerCommandant / RetirerArmee).
-//  Général = 45 pts, Soldat = 15 pts, soldat = adulte 16-30 ans conforme
-//  à la Martialité de la culture.
+//  Général = 45 pts, Soldat = 15 pts, soldat = adulte 16-30 ans.
 // ══════════════════════════════════════════════════════════════════════
 
 import { useState } from 'react'
 import { useGame } from '../state/store'
 import type { GameState, Player } from '../engine/types'
-import { cfgOf, cultureDef } from '../engine/gameData'
+import { cfgOf } from '../engine/gameData'
 import { prixArmee, infligerPertes, libererSoldats } from '../engine/armees'
-import { isNobleDyn, martialiteOk } from '../engine/engine'
+import { isNobleDyn } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, fmt } from './ui'
 
 export function ArmiesPanel({ joueur }: { joueur: number }) {
@@ -36,12 +35,10 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
   if (!p) return null
   const pop = state.population[joueur] ?? []
   const vivants = pop.filter((c) => c.statut !== 'Décédé')
-  const cult = cultureDef(p.culture, C.config)
 
   // Nobles adultes vivants, pas déjà engagés dans une armée
   const commandantsDispo = vivants.filter(
-    (c) => c.age >= C.p.adultAge && isNobleDyn(c.dynastie, C) && !c.armee
-      && martialiteOk(cult?.martialite, c.sexe),
+    (c) => c.age >= C.p.adultAge && isNobleDyn(c.dynastie, C) && !c.armee,
   )
 
   // Le mutateur reçoit (joueur, état) : la population vit dans
@@ -100,7 +97,7 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
 
   return (
     <div className="stack">
-      <Card title={`Armées de ${p.nom} (culture : martialité ${cult?.martialite ?? '?'} — Soldat 15 pts, Général 45 pts)`}>
+      <Card title={`Armées de ${p.nom} — Soldat 15 pts, Général 45 pts`}>
         {p.armees.length === 0 && <p className="muted">Aucune armée en lice.</p>}
         {p.armees.map((a, idx) => {
           const cmd = a.commandant ? vivants.find((c) => c.id === a.commandant) : undefined
@@ -258,8 +255,8 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
           Armées : {p.armees.length} (aucun plafond).
         </p>
         <p className="muted small">
-          Chaque tour, l'armée recrute automatiquement des soldats (adultes 16-30 ans, conformes à la
-          martialité de votre culture) jusqu'à atteindre la puissance cible. Le prix de levée
+          Chaque tour, l'armée recrute automatiquement des soldats (adultes 16-30 ans)
+          jusqu'à atteindre la puissance cible. Le prix de levée
           (1 Or tous les 2 points de force) est débité une seule fois, à la création de
           l'armée. Choisir une VILLE DE LEVÉE applique les bonus de ses bâtiments
           (Terrain d'entrainement −10 Or, Ecole militaire −25, Grande caserne −8,

@@ -41,7 +41,6 @@ export interface TraitDef {
 export interface CultureDef {
   nom: string
   heredite: string
-  martialite: string
   homoAutorisee: boolean
   fertFactor: number
   reglePays: string
@@ -350,6 +349,12 @@ export interface GameConfig {
    *  de l'arbre, indépendant des index). Couvre les trous laissés
    *  par les techs ajoutées après la création de la partie. */
   slotsVides2026?: boolean
+  /** Suppression de la martialité (arbitrage Thibaut 2026-10-21) :
+   *  Soldat/Commandant passent de regleGenre « Martialité » à vide
+   *  (aucune restriction de sexe), la clé martialite disparaît des
+   *  cultures — l'HÉRÉDITÉ est conservée. Marqueur (z) : migration
+   *  ciblée (cfgOf) indépendante du tampon schemaVersion. */
+  martialiteSupprimee?: boolean
 }
 
 // ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
@@ -502,7 +507,6 @@ function normaliserCultures(): CultureDef[] {
   return ref.cultures.map((c: any) => ({
     nom: c.nom,
     heredite: c.heredite,
-    martialite: c.martialite,
     homoAutorisee: c.homoAutorisee === true || c.homoAutorisee === 'true',
     fertFactor: Number(c.fertFactor) || 1,
     reglePays: c.reglePays || '',
@@ -1303,6 +1307,25 @@ export function cfgOf(config?: GameConfig): Cfg {
     if (pm.taxNaissFaibles === 1.5) pm.taxNaissFaibles = 1.25
     if (pm.taxNaissHautes === 0.5) pm.taxNaissHautes = 0.75
     merged.taxes25 = true
+  }
+  // SUPPRESSION DE LA MARTIALITÉ (arbitrage Thibaut 2026-10-21) :
+  //  l'hérédité est conservée, mais la martialité disparaît du jeu —
+  //  Soldat et Commandant ne sont plus régis par le sexe, le
+  //  recrutement des armées est ouvert à tous. Migration ciblée
+  //  (même schéma que taxes25, SANS toucher au tampon schemaVersion —
+  //  règle (x)) : les configs sauvegardées portent encore
+  //  regleGenre « Martialité » et la clé martialite des cultures.
+  //  Seule la valeur exacte « Martialité » est remplacée (une
+  //  édition personnalisée est préservée) ; la clé martialite est
+  //  dépouillée (inerte de toute façon). Marquée martialiteSupprimee.
+  if (!merged.martialiteSupprimee) {
+    for (const m of merged.metiers) {
+      if (m.regleGenre === 'Martialité') m.regleGenre = ''
+    }
+    for (const cu of merged.cultures) {
+      delete (cu as unknown as { martialite?: string }).martialite
+    }
+    merged.martialiteSupprimee = true
   }
   return {
     p: merged.params,

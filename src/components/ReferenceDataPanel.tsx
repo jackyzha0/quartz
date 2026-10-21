@@ -379,7 +379,7 @@ export function ReferenceDataPanel() {
               <table className="tbl small">
                 <thead>
                   <tr>
-                    <th>Culture</th><th>Hérédité</th><th>Martialité</th><th>Homo autorisée</th>
+                    <th>Culture</th><th>Hérédité</th><th>Homo autorisée</th>
                     <th>Fécondité</th><th>Nourr / hab (monde)</th>
                     <th>Tourisme / hab</th><th>Or / hab</th>
                     <th>Science / constr.</th><th>Règle du pays</th><th>Règle des personnages</th>
@@ -390,7 +390,6 @@ export function ReferenceDataPanel() {
                     <tr key={i}>
                       <td><strong>{t.nom}</strong></td>
                       <td>{t.heredite}</td>
-                      <td>{t.martialite}</td>
                       <td>{t.homoAutorisee ? 'oui' : 'non'}</td>
                       <td>×{t.fertFactor}</td>
                       <td>{t.capitalNourrParHabMonde || '—'}</td>

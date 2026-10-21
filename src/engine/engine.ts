@@ -461,7 +461,7 @@ export {
   inheritTraits,
 } from './naissances'
 export { applyCultureInfluence, updateCityCultures } from './culture'
-export { recruitForArmies, martialiteOk, recomputeArmy } from './armees'
+export { recruitForArmies, recomputeArmy } from './armees'
 export { snapshotRessources, writeRecap } from './journal'
 export {
   cocherLaurier, nbLauriers, victoireAtteinte,

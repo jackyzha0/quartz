@@ -18,7 +18,7 @@ export function CulturePays({ state, p, C }: { state: GameState; p: Player; C: C
         const cult = cultureDef(p.culture, C.config)
         const lois = detailCulturePays(state, p, C)
         const traits = cult
-          ? `hérédité ${String(cult.heredite).toLowerCase()} · martialité ${String(cult.martialite).toLowerCase()} · mariages homosexuels ${cult.homoAutorisee ? 'autorisés' : 'interdits'}`
+          ? `hérédité ${String(cult.heredite).toLowerCase()} · mariages homosexuels ${cult.homoAutorisee ? 'autorisés' : 'interdits'}`
           : ''
         return (
           <div className="stack">

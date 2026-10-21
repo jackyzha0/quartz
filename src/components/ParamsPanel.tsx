@@ -171,19 +171,18 @@ export function ParamsPanel() {
       )}
 
       {onglet === 'Cultures' && (
-        <Card title="Cultures (hérédité, martialité, fécondité, règles)">
+        <Card title="Cultures (hérédité, fécondité, règles)">
           <p className="muted small">Colonnes chiffrées = lois appliquées à chaque fin de tour. 0 = désactivé.</p>
           <div className="table-wrap">
             <table className="tbl small">
               <thead>
-                <tr><th>Culture</th><th>Hérédité</th><th>Martialité</th><th>Homo autorisée</th><th>Facteur fécondité</th><th>Nourr./hab monde</th><th>Tourisme/hab</th><th>Or/hab</th><th>Science/constr.</th><th>Règle du pays</th><th>Règle des personnages</th></tr>
+                <tr><th>Culture</th><th>Hérédité</th><th>Homo autorisée</th><th>Facteur fécondité</th><th>Nourr./hab monde</th><th>Tourisme/hab</th><th>Or/hab</th><th>Science/constr.</th><th>Règle du pays</th><th>Règle des personnages</th></tr>
               </thead>
               <tbody>
                 {config.cultures.map((t, i) => (
                   <tr key={i}>
                     <td><TextInput value={t.nom} onChange={(v) => setCfg((c) => { c.cultures[i].nom = v })} /></td>
                     <td><TextInput value={t.heredite} onChange={(v) => setCfg((c) => { c.cultures[i].heredite = v })} /></td>
-                    <td><TextInput value={t.martialite} onChange={(v) => setCfg((c) => { c.cultures[i].martialite = v })} /></td>
                     <td><input type="checkbox" checked={t.homoAutorisee} onChange={(e) => setCfg((c) => { c.cultures[i].homoAutorisee = e.target.checked })} /></td>
                     <td><NumberInput value={t.fertFactor} step={0.05} onChange={(v) => setCfg((c) => { c.cultures[i].fertFactor = v })} /></td>
                     <td><NumberInput value={t.capitalNourrParHabMonde ?? 0} onChange={(v) => setCfg((c) => { c.cultures[i].capitalNourrParHabMonde = v })} /></td>

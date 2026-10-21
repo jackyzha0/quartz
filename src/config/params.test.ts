@@ -91,3 +91,18 @@ test('cfgOf : une config DÉJÀ convergée (v3) ignore les champs v2 restants', 
   assert.ok(C.metiers.length > 1, 'le référentiel par défaut est conservé')
   assert.ok(!C.metiers.some((m) => m.metier === 'Fantôme'), 'la table titres n a pas été convertie (déjà convergée)')
 })
+
+test('cfgOf : suppression de la martialité (arbitrage 2026-10-21) — regleGenre « Martialité » → vide, clé martialite dépouillée, même sur config convergée', () => {
+  const cfg = cloneDefaultConfig()
+  cfg.schemaVersion = 3 // déjà convergée : la migration ciblée (z) doit jouer quand même
+  cfg.metiers[0].regleGenre = 'Martialité'
+  ;(cfg.cultures[0] as unknown as { martialite: string }).martialite = 'Masculine'
+  const C = cfgOf(cfg)
+  assert.ok(C.metiers.every((m) => m.regleGenre !== 'Martialité'), 'plus aucun métier régi par la martialité')
+  assert.equal(C.metiers[0].regleGenre, '', 'regleGenre Martialité devient vide')
+  assert.ok(C.cultures.every((c) => !('martialite' in c)), 'la clé martialite disparaît des cultures')
+  assert.equal(C.config.martialiteSupprimee, true)
+  // idempotente : un second passage ne casse rien (le marqueur tient)
+  const C2 = cfgOf(C.config)
+  assert.ok(C2.metiers.every((m) => m.regleGenre !== 'Martialité'))
+})

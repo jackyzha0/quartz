@@ -15,9 +15,9 @@
 //    · culture — Communautarisme / Lunisme / Zélotisme : la capitale
 //      génère +N d'une ressource par habitation de cette culture dans
 //      le monde (champs `capitalNourrParHabMonde`, etc.).
-//  Les autres attributs des cultures (hérédité, martialité, fécondité,
+//  Les autres attributs des cultures (hérédité, fécondité,
 //  mariages homosexuels) sont appliqués dans setup / naissances /
-//  armees / metiers. Les règles restées textuelles (terres de
+//  metiers. Les règles restées textuelles (terres de
 //  succession, serments supplémentaires, cases de terrain…) restent
 //  descriptives tant que ces systèmes ne sont pas modélisés.
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.

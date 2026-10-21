@@ -20,7 +20,7 @@ export interface MetierIssue {
 /**
  * Contrôle l'attribution d'un métier à un personnage (cohérence avec le
  * classeur) : âge adulte, noblesse, règles de genre du metier et de la
- * culture (Reglege : vide / Masculine / Féminine / Hérédité / Martialité),
+ * culture (Reglege : vide / Masculine / Féminine / Hérédité),
  * éducation requise, unicité Dirigeant/Héritier/Gouverneur/Professeur.
  */
 export function validateMetierAssignment(
@@ -40,7 +40,7 @@ export function validateMetierAssignment(
   if (td.nobleSeul && !isNobleDyn(char.dynastie, C)) {
     return { ok: false, message: `Le métier « ${metier} » est en principe réservé aux nobles (${char.dynastie}).` }
   }
-  // règles de genre (colonne RegleGenre du classeur : vide/Masculine/Féminine/Hérédité/Martialité)
+  // règles de genre (colonne RegleGenre du classeur : vide/Masculine/Féminine/Hérédité)
   const cult = cultureDef(player.culture, C.config)
   if (td.regleGenre === 'Masculine' && char.sexe !== 'M') {
     return { ok: false, message: 'Ce métier est en principe réservé aux hommes.' }
@@ -54,14 +54,6 @@ export function validateMetierAssignment(
     }
     if (cult.heredite === 'Féminine' && char.sexe !== 'F') {
       return { ok: false, message: `La culture ${player.culture} (hérédité féminine) réserve en principe ce poste aux femmes.` }
-    }
-  }
-  if (td.regleGenre === 'Martialité' && cult) {
-    if (cult.martialite === 'Masculine' && char.sexe !== 'M') {
-      return { ok: false, message: `La culture ${player.culture} (martialité masculine) réserve en principe ce poste aux hommes.` }
-    }
-    if (cult.martialite === 'Féminine' && char.sexe !== 'F') {
-      return { ok: false, message: `La culture ${player.culture} (martialité féminine) réserve en principe ce poste aux femmes.` }
     }
   }
   // éducation requise

@@ -1,13 +1,13 @@
 // ══════════════════════════════════════════════════════════════════════
 //  ARMÉES (RecruitForArmies)
-//  Recrutement, pertes, commandants, martialité et puissance des armées.
+//  Recrutement, pertes, commandants et puissance des armées.
 //  Portage des macros VBA du classeur Chasse & Pêche 7.19.
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
 
 import type { GameState, Player } from './types'
 import type { Rng } from './rng'
-import { cfgOf, cultureDef } from './gameData'
+import { cfgOf } from './gameData'
 import { aMinistre } from './ministeres'
 import { rangPaysNiveau } from './factions'
 import { emptyRecap, fullName } from './shared'
@@ -20,7 +20,6 @@ export function recruitForArmies(state: GameState, p: Player, rng: Rng) {
   const C = cfgOf(state.config)
   const pop = state.population[p.n] ?? []
   const recap = p.recap ?? emptyRecap()
-  const cult = cultureDef(p.culture, C.config)
   for (const armee of p.armees) {
     // retirer les soldats morts
     armee.soldats = armee.soldats.filter((id) => {
@@ -46,8 +45,7 @@ export function recruitForArmies(state: GameState, p: Player, rng: Rng) {
         (c) =>
           c.statut !== 'Décédé' &&
           c.age >= C.p.soldatAgeMin && c.age <= C.p.soldatAgeMax &&
-          !c.armee && (!c.metier || c.metier === C.p.metierChasseur) &&
-          martialiteOk(cult?.martialite, c.sexe),
+          !c.armee && (!c.metier || c.metier === C.p.metierChasseur),
       )
       if (candidats.length === 0) break
       const s = rng.pick(candidats)
@@ -62,13 +60,6 @@ export function recruitForArmies(state: GameState, p: Player, rng: Rng) {
     }
     armee.puissance = puissance
   }
-}
-
-export function martialiteOk(martialite: string | undefined, sexe: 'M' | 'F'): boolean {
-  if (!martialite || martialite === 'Les deux') return true
-  if (martialite === 'Masculine') return sexe === 'M'
-  if (martialite === 'Féminine') return sexe === 'F'
-  return true
 }
 
 /** Recalcule la puissance affichée d'une armée (après édition manuelle). */

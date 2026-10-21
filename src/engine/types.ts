@@ -12,7 +12,6 @@ export type Orientation =
 export type Saison = 'Été' | 'Hiver'
 export type TaxeNiveau = 'Faible' | 'Moyenne' | 'Forte'
 export type Heredite = 'Masculine' | 'Féminine' | 'Parité'
-export type Martialite = 'Masculine' | 'Féminine' | 'Les deux'
 export type RegleGenre = 'Aucune' | 'Masculine' | 'Féminine' | 'Culture'
 export type Attribution = 'Manuelle' | 'Education' | 'Armée' | 'Aléatoire'
 
@@ -49,7 +48,6 @@ export interface MetierDef {
 export interface CultureDef {
   nom: string
   heredite: Heredite
-  martialite: Martialite
   homoAutorisee: boolean
   fertFactor: number
 }
