@@ -1103,6 +1103,32 @@ Sous-vague 3a (métiers & emplacements) poussée sur `chasse-et-peche-web`
   ci-dessus, la spec vague 3 (« les emplacements de Marchand viennent
   des Mines d'Or ET des routes commerciales ») la justifiait.
 
+## Arbitrage complémentaire 3a : Dirigeant/Héritier ne déménagent jamais (2026-10-21, soir)
+
+Réponse de Thibaut au point ouvert signalé en fin de vague 3a (« un
+Dirigeant qui déménage perd son titre → succession à prévoir ») :
+**« Un dirigeant ou héritier ne déménage jamais. »** Implémenté et
+verrouillé par tests ce même soir :
+
+- `shared.ts` : nouveau helper `neDemenageJamais(c, C)` (métier
+  Dirigeant ou Héritier) ; `perteDemenagement(c, C)` ne fait RIEN
+  pour un ancré (titre ET domicile conservés) ;
+- `deplacerPersonnage` : don d'un Dirigeant/Héritier REFUSÉ avant
+  toute mutation (« Un Dirigeant ou un Héritier ne déménage jamais ») ;
+- `marierPersonnages` : si l'époux désigné déménageur (`a`, règle (o))
+  est ancré → c'est `b` qui déménage chez lui (swap) ; si les DEUX
+  sont ancrés dans des cours différentes → mariage refusé avant
+  toute mutation ; même porteur → aucun déménagement ;
+- ré-ancrages de cour (`transfererVille` refuge, ville devenue cité
+  libre) : l'ancré suit sa cour mais garde titre et domicile ;
+  `migrerPopulation` ne déplace que des enfants (jamais concerné) ;
+- tests : 5 nouveaux cas dans `mutateurs.test.ts` (don refusé
+  Dirigeant + Héritier, mariage avec swap, mariage de deux ancrés
+  refusé, mariage même porteur sans déménagement, transfert de ville
+  avec Dirigeant/Héritier dans la cour ré-ancrée). Harnais : 141/141
+  verts, `tsc --noEmit` strict : PROPRE. `scripts/diag.ts` : exit 0
+  (gelé, non répliqué).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

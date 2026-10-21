@@ -437,7 +437,7 @@ identiques si tous les emplacements sont remplis) :
    d'été lu sur le métier, plus sur le Champ).
 2. **3b — routes dissociées** : après les arbitrages restants.
 
-### Déménagement : perte du métier ET du domicile (arbitré 2026-10-21, vague 3a)
+### Déménagement : perte du métier ET du domicile (arbitré 2026-10-21, vague 3a ; complément Dirigeant/Héritier le même soir)
 
 - **Règle** : un habitant qui CHANGE d'habitation (il déménage vers
   une autre ville) **perd son métier ET son domicile** — les postes à
@@ -459,10 +459,23 @@ identiques si tous les emplacements sont remplis) :
   pas — la population classique suit la ville et garde son poste et
   son domicile ; seule la cour restée derrière, ré-ancrée sur une
   autre ville du joueur, perd les deux).
-- **Point ouvert (non arbitré)** : un DIRIGEANT qui déménage perd son
-  titre → une succession devrait se déclencher (à trancher avec la
-  vague 3b ; en attendant le cas ne peut survenir que par don/mariage
-  manuel du MJ).
+- **Arbitrage complémentaire (acté 2026-10-21, soir) : un DIRIGEANT ou
+  un HÉRITIER ne déménage JAMAIS** — son titre n'est pas perdu par un
+  changement d'habitation, aucune succession ne se déclenche :
+  - **don** : refusé AVANT toute mutation (« Un Dirigeant ou un Héritier
+    ne déménage jamais ») — `deplacerPersonnage` retourne l'erreur,
+    personnage inchangé ;
+  - **mariage** : le conjoint non ancré DÉMÉNAGE chez le
+    Dirigeant/Héritier (inversion de la règle (o) pour ce cas) ; si les
+    DEUX époux sont ancrés (Dirigeant/Héritier) dans des cours
+    différentes, le mariage est REFUSÉ avant toute mutation ; même
+    porteur → mariage normal, aucun déménagement ;
+  - **ré-ancrage de cour** (transfert/suppression de ville, ville
+    devenue cité libre) : le Dirigeant/Héritier suit sa cour (sa ville
+    est perdue, il DOIT suivre) mais GARDE son titre et son domicile
+    de fonction ;
+  - la migration automatique (`migrerPopulation`) ne déplace QUE des
+    enfants : un Dirigeant/Héritier n'y passe jamais.
 
 ## Conventions techniques de règles (à respecter en implémentant)
 
