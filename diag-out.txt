@@ -1,5 +1,5 @@
 createGame OK — 8 joueurs
-4 tours OK — turn 5 · saison Hiver · log 347 entrées
+4 tours OK — turn 5 · saison Hiver · log 370 entrées
 commandants disponibles pour J1 : 7
 levée + recrutement OK — Armée 1:3 soldats, Armée 2:2 soldats
 dissolution armée idx=1 : OK
@@ -24,7 +24,7 @@ tour suivant (armées en place) : OK — turn 7
   [ÉCHEC runTurn] state.log supprimé → Cannot read properties of undefined (reading 'push')
   [ÉCHEC runTurn] state.history supprimé → Cannot read properties of undefined (reading 'push')
   [OK sans erreur]  state.rngState supprimé
-  [ÉCHEC runTurn] player.resources supprimé → Cannot read properties of undefined (reading 'Science')
+  [ÉCHEC runTurn] player.resources supprimé → Cannot read properties of undefined (reading 'Tourisme')
   [OK sans erreur]  config supprimée
   [OK sans erreur]  config.cultures = []
   [ÉCHEC runTurn] config.genres = [] → Cannot read properties of undefined (reading 'nom')
