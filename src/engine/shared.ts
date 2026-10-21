@@ -25,6 +25,21 @@ export function isNobleDyn(dyn: string, C: Cfg = cfgOf()): boolean {
   return d !== '' && d !== C.p.dynastieRoturier
 }
 
+/** Arbitrage Thibaut (vague 3a, 2026-10-21) : un habitant qui CHANGE
+ *  d'habitation (déménagement vers une autre ville, don à un autre
+ *  porteur, mariage chez le conjoint, cour ré-ancrée, ville perdue)
+ *  PERD son métier ET son domicile — les postes à emplacements sont
+ *  créés par les aménagements de la ville qu'il quitte, le domicile
+ *  est un bâtiment de cette ville. Il redevient Sans-emploi (rôle
+ *  neutre, impôt nul) jusqu'à la réaffectation de fin de tour. Ne
+ *  s'applique PAS aux renommages de ville (même ville, nouveau nom)
+ *  ni aux transferts de PROPRIÉTÉ d'une ville (les habitants ne
+ *  bougent pas). */
+export function perteDemenagement(c: Character): void {
+  c.metier = null
+  c.domicile = null
+}
+
 export function fullName(c: Character): string {
   return `${c.prenom} ${c.nom}`
 }
@@ -117,10 +132,15 @@ export function deplacerPersonnage(
     const arr = dst.cite.population ?? (dst.cite.population = [])
     arr.push(c)
   }
+  // Vague 3a (arbitrage 2026-10-21) : le personnage CHANGE de porteur
+  //  donc d'habitation — il perd son métier et son domicile (Sans-
+  //  emploi jusqu'à la réaffectation ; un éventuel Gouverneur sera
+  //  re-désigné automatiquement à la fin du tour).
+  perteDemenagement(c)
   state.log.push({
     turn: state.turn, type: 'Système',
     joueur: src.kind === 'joueur' ? src.p.n : null,
-    texte: `🤝 ${fullName(c)} (${c.dynastie}${c.metier ? `, ${c.metier}` : ''}) passe de ${nomDe(src)} à ${nomDe(dst)}.`,
+    texte: `🤝 ${fullName(c)} (${c.dynastie}) passe de ${nomDe(src)} à ${nomDe(dst)} — il quitte son poste (déménagement).`,
   })
   return null
 }

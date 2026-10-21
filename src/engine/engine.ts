@@ -449,7 +449,7 @@ export {
   maybeAssignProfesseurs, gestionMariages, formatDynastyPair,
   computeMarriageProbability, tryEducateMinor, assignAdultMetier,
   metierAllowedForCharacter, metiersAccessibles,
-  gouverneurDeVille, designerGouverneurs, capMetierVille, reaffecterMetiers,
+  gouverneurDeVille, designerGouverneurs, capMetierVille, emplacementsMetierVille, reaffecterMetiers,
   occupationsMetierVille, type OccupationMetier,
 } from './metiers'
 export {

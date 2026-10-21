@@ -75,6 +75,17 @@ export function garnisonHabitationVille(p: Player, ville: City, C: Cfg, state?: 
     g += 10 * rangPaysNiveau(p, C)
   }
   for (const b of ville.batiments) g += garnisonBatiment(b, C, ville.type)
+  // Garde (vague 3a, rework métiers & emplacements, arbitrage
+  //  2026-10-21) : +garnisonParGarde Garnison STATIQUE par Garde en
+  //  poste dans la ville — valeur d'ÉTAT, jamais un flux par tour
+  //  (« la Garnison n'est jamais par tour ») : le bonus disparaît de
+  //  lui-même si le Garde part, est renvoyé ou meurt.
+  if (state) {
+    const pop = state.population[p.n] ?? []
+    g += C.p.garnisonParGarde * pop.filter(
+      (c) => c.statut !== 'Décédé' && c.ville === ville.nom && c.metier === C.p.metierGarde,
+    ).length
+  }
   // Technologies (revue 2026-10-15) : Milices civiles I/III/V, Fortifications,
   //  Pr\u00e9 carr\u00e9, Vasselit\u00e9 \u2014 le commentaire le promettait, c'est r\u00e9el.
   g += garnisonProgresVille(p, ville, C)
@@ -93,8 +104,8 @@ export interface LigneDetailGarnison {
   label: string
   valeur: number
   /** catégorie affichable : base / bâtiment / technologie /
-   *  régime / ministre */
-  origine: 'base' | 'bâtiment' | 'technologie' | 'régime' | 'ministre'
+   *  régime / ministre / métier (Garde) */
+  origine: 'base' | 'bâtiment' | 'technologie' | 'régime' | 'ministre' | 'métier'
 }
 
 export function detailGarnisonVille(
@@ -115,7 +126,16 @@ export function detailGarnisonVille(
   const regime = C.regimes.find((r) => r.nom === p.regime)
   const bonus = regime?.garnisonParRang ?? 0
   if (bonus) push('régime', `${p.regime} : ${bonus} × rang de la ville`, bonus * rangNiveau(ville, C))
-  // 5. Ministres : Connétable (+15 par ville, crédité à la prise de
+  // 5. Gardes en poste (vague 3a) : +garnisonParGarde Garnison
+  //    STATIQUE par Garde vivant en poste dans la ville.
+  if (state) {
+    const pop = state.population[p.n] ?? []
+    const gardes = pop.filter(
+      (c) => c.statut !== 'Décédé' && c.ville === ville.nom && c.metier === C.p.metierGarde,
+    ).length
+    if (gardes > 0) push('métier', `${gardes} ${C.p.metierGarde}(s) en poste (statique)`, gardes * C.p.garnisonParGarde)
+  }
+  // 6. Ministres : Connétable (+15 par ville, crédité à la prise de
   //    fonction) et Grand prévôt (+10 × rang de pays).
   if (p.garnisonMinisteres) push('ministre', 'Connétable (prise de fonction)', p.garnisonMinisteres)
   if (state && aMinistre(state, p, 'Grand prévôt')) {

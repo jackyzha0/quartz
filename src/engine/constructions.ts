@@ -164,6 +164,17 @@ export function prerequisConstruction(ref: Pick<ConstructionRef, 'cout'> | undef
   return m[1].trim().replace(/\s*$/,'') || null
 }
 
+/** Emplacements de métiers accordés par une construction (vague 3a,
+ *  rework métiers & aménagements 2026-10-21) : chaque aménagement tier 1
+ *  octroie `places` postes de `metier` aux villes qui le possèdent —
+ *  la production directe a disparu au profit de ces postes (caps par
+ *  ville = somme des emplacements des aménagements présents, cf.
+ *  engine/metiers.ts capMetierVille). Format du référentiel :
+ *  `emplacements: [{ metier, places }]`. */
+export function emplacementsConstructionRef(ref: ConstructionRef): Array<{ metier: string; places: number }> {
+  return (ref.emplacements ?? []).map((e) => ({ metier: e.metier, places: Number(e.places) || 0 }))
+}
+
 /** Garnison statique accordée par une construction (valeur d'état, pas un
  *  flux) — via la banque d'effets ; sans règle : 0. */
 export function garnisonConstructionRef(ref: ConstructionRef): number {
@@ -188,6 +199,10 @@ export function resumeConstruction(ref: ConstructionRef | undefined): string {
   }
   const inst = instantanesConstructionRef(ref)
   if (inst.Garnison) parts.push(`Garnison +${inst.Garnison}`)
+  const emp = emplacementsConstructionRef(ref)
+  if (emp.length > 0) {
+    parts.push(emp.map((e) => `${e.places} ${e.metier.toLowerCase()}`).join(', '))
+  }
   return parts.join(' · ')
 }
 

@@ -67,6 +67,12 @@ export interface GainsVilleDetail {
   habitants: number
   metiers: Record<string, number>
   taxeMult: number
+  /** Bonus de taxe ADDITIF par ressource (vague 3a, rework métiers
+   *  & emplacements 2026-10-21) : Gouverneur +10 % sur toutes les
+   *  ressources, Professeur +10 % Science, Banquier +10 % Or,
+   *  Troubadour +10 % Tourisme — les bonus se CUMULENT de façon
+   *  additive (ex. Gouverneur + Professeur = +20 % sur la Science). */
+  bonusTaxes: Record<string, number>
   taxes: Record<string, number>
   conso: Record<string, number>
   net: Record<string, number>
@@ -75,12 +81,15 @@ export interface GainsVilleDetail {
 export function detailGainsVille(state: GameState, p: Player, ville: City, C: Cfg): GainsVilleDetail {
   const pop = state.population[p.n] ?? []
   const vivants = pop.filter((c) => c.statut !== 'Décédé' && c.ville === ville.nom)
-  // Production brute des metiers des habitants vivants de la ville
+  // Production brute des metiers des habitants vivants de la ville.
+  // Vague 3a : les métiers marqués `ete` (Fermier) ne produisent
+  //  qu'en saison d'Été ; Sans-emploi (metier null) ne produit rien.
   const metiers: Record<string, number> = {}
   for (const c of vivants) {
     if (!c.metier) continue
     const td = metierDef(c.metier, C.config)
     if (!td) continue
+    if (td.ete && state.saison !== 'Été') continue
     if (td.ressource1 && td.valeur1 !== 0) {
       metiers[td.ressource1] = (metiers[td.ressource1] ?? 0) + td.valeur1
     }
@@ -91,15 +100,30 @@ export function detailGainsVille(state: GameState, p: Player, ville: City, C: Cf
   // Taxes : le niveau module TOUTES les ressources produites par les habitants.
   // Grand Chambellan (ministère, refonte 2026-10-14) : +10 % sur toutes
   // les taxes reçues — multiplicateur appliqué ici (cumulables).
-  // Gouverneur (marqueur (w), retour Thibaut) : +10 % d'impôts sur SA
-  // ville — les anciens bonus (garnison / Or par rang) sont retirés.
+  // Vague 3a (rework métiers, arbitrage 2026-10-21) : les bonus de taxe
+  //  sont ADDITIFS par ressource — Gouverneur +10 % (toutes ressources),
+  //  Professeur +10 % Science, Banquier +10 % Or, Troubadour +10 %
+  //  Tourisme (présence d'au moins un titulaire vivant dans la ville ;
+  //  ex. Gouverneur + Professeur = +20 % sur la Science).
   const taxeMult =
     facteurTaxes(ville, C)
     * (aMinistre(state, p, 'Grand Chambellan') ? 1.1 : 1)
-    * (gouverneurDeVille(state, p, ville.nom, C) ? 1.1 : 1)
+  const bonusTaxes: Record<string, number> = {}
+  const ajouteBonus = (res: string, part: number) => {
+    bonusTaxes[res] = (bonusTaxes[res] ?? 0) + part
+  }
+  if (gouverneurDeVille(state, p, ville.nom, C)) {
+    for (const res of Object.keys(metiers)) ajouteBonus(res, 0.1)
+  }
+  // Vague 3a (cohérence) : les bonus ne portent que les ressources
+  //  EFFECTIVEMENT produites dans la ville (comme le Gouverneur) —
+  //  un Troubadour sans production de Tourisme n'ouvre aucune clé.
+  if (C.p.metierBanquier && vivants.some((c) => c.metier === C.p.metierBanquier) && metiers['Or'] !== undefined) ajouteBonus('Or', 0.1)
+  if (C.p.metierProfesseur && vivants.some((c) => c.metier === C.p.metierProfesseur) && metiers['Science'] !== undefined) ajouteBonus('Science', 0.1)
+  if (C.p.metierTroubadour && vivants.some((c) => c.metier === C.p.metierTroubadour) && metiers['Tourisme'] !== undefined) ajouteBonus('Tourisme', 0.1)
   const taxes: Record<string, number> = {}
   for (const [res, v] of Object.entries(metiers)) {
-    const tv = v * taxeMult
+    const tv = v * taxeMult * (1 + (bonusTaxes[res] ?? 0))
     if (tv !== 0) taxes[res] = tv
   }
   // Consommation (non taxée, appliquée après)
@@ -111,7 +135,7 @@ export function detailGainsVille(state: GameState, p: Player, ville: City, C: Cf
   for (const [res, v] of Object.entries(taxes)) net[res] = (net[res] ?? 0) + v
   for (const [res, v] of Object.entries(conso)) net[res] = (net[res] ?? 0) + v
   for (const k of Object.keys(net)) if (net[k] === 0) delete net[k]
-  return { habitants: vivants.length, metiers, taxeMult, taxes, conso, net }
+  return { habitants: vivants.length, metiers, taxeMult, bonusTaxes, taxes, conso, net }
 }
 
 /** Facteur de taxes sur la conception (Faible ×taxNaissFaibles / Moyenne ×1 / Forte ×taxNaissHautes — ±25 %, marqueur (z)). */

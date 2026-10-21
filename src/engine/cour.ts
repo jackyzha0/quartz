@@ -27,7 +27,7 @@
 
 import type { Character, GameState, Player } from './types'
 import { cfgOf } from './gameData'
-import { isNobleDyn, fullName, deplacerPersonnage, populationDe, porteurDe, nomDe, memeDetenteur } from './shared'
+import { isNobleDyn, fullName, deplacerPersonnage, populationDe, porteurDe, nomDe, memeDetenteur, perteDemenagement } from './shared'
 
 /** Donne un personnage (habitant ou noble) à un autre joueur : cadeau,
  *  exile, rachat… Il quitte la population du joueur source, rejoint
@@ -90,7 +90,11 @@ export function marierPersonnages(state: GameState, a: Character, b: Character):
       arr.push(a)
     }
     a.ville = b.ville
-    demenagement = ` — ${fullName(a)} rejoint la ville « ${a.ville} »`
+    // Vague 3a (arbitrage 2026-10-21) : déménagement → perte du métier
+    //  ET du domicile (même un rôle de cour : le Gouverneur sera
+    //  re-désigné automatiquement à la fin du tour).
+    perteDemenagement(a)
+    demenagement = ` — ${fullName(a)} rejoint la ville « ${a.ville} » (et quitte son poste)`
   }
   state.log.push({
     turn: state.turn, type: 'Mariage', joueur: dA?.kind === 'joueur' ? dA.p.n : null,

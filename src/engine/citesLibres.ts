@@ -33,7 +33,7 @@ import { makeRng } from './rng'
 import { cfgOf, peupleDef, metierDef, type Cfg } from './gameData'
 import { rangPaysNiveau } from './factions'
 import { aMinistre } from './ministeres'
-import { isNobleDyn } from './shared'
+import { isNobleDyn, perteDemenagement } from './shared'
 import { resynchroniserTourisme } from './regimes'
 
 /** Consommation d'une cité libre : même règle qu'une ville de joueur —
@@ -398,7 +398,13 @@ export function villeDevientCiteLibre(
   //  sur sa première ville restante s'ils vivaient dans la ville perdue)
   for (const c of restants) {
     if (isNobleDyn(c.dynastie, cfgOf(state.config)) && c.ville === nom) {
-      c.ville = p.villes.find((v) => v.nom !== nom)?.nom ?? c.ville
+      const dest = p.villes.find((v) => v.nom !== nom)?.nom ?? c.ville
+      // Vague 3a (arbitrage 2026-10-21) : changement d'habitation →
+      //  perte du métier et du domicile.
+      if (dest !== c.ville) {
+        c.ville = dest
+        perteDemenagement(c)
+      }
     }
   }
   p.villes.splice(idx, 1)

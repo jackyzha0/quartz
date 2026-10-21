@@ -8,7 +8,7 @@
 import type { Character, City, GameState, Player } from './types'
 import type { Rng } from './rng'
 import { cfgOf } from './gameData'
-import { emptyRecap, fullName } from './shared'
+import { emptyRecap, fullName, perteDemenagement } from './shared'
 import { maybeAssignProfesseurs, gestionMariages, tryEducateMinor, assignAdultMetier } from './metiers'
 import { maladieStep } from './sante'
 import { computeFecondite, conceptionEtNaissances } from './naissances'
@@ -125,6 +125,10 @@ export function migrerPopulation(state: GameState, p: Player, rng: Rng) {
     }
     const avant = c.ville
     c.ville = dest.ville.nom
+    // Vague 3a (arbitrage 2026-10-21) : changement d'habitation →
+    //  perte du métier ET du domicile (retour Sans-emploi jusqu'à
+    //  la réaffectation de fin de tour).
+    perteDemenagement(c)
     deplaces.add(c.id)
     state.log.push({
       turn: state.turn + 1, type: 'Système', joueur: srcN,

@@ -24,7 +24,7 @@
 
 import type { Character, City, GameState, Player } from './types'
 import { cfgOf, type Cfg } from './gameData'
-import { isNobleDyn } from './shared'
+import { isNobleDyn, perteDemenagement } from './shared'
 // (M6 2026-10-19) : productionTourismeBatiment n'est plus importé ici —
 //  le transfert de ville passe par resynchroniserTourisme (stock =
 //  production courante), plus de crédit « statique » manuel.
@@ -135,7 +135,15 @@ export function transfererVille(
   //  reste aucune ville, le champ « ville » est laissé tel quel
   //  (l'arbitre reloge la cour quand le joueur refonde une ville).
   const refuge = p.villes[0]?.nom
-  if (refuge) for (const c of courRestee) c.ville = refuge
+  // Vague 3a (arbitrage 2026-10-21) : la cour change d'habitation →
+  //  perte du métier et du domicile (Sans-emploi ; les Gouverneurs
+  //  seront re-désignés à la fin du tour). Les roturiers `deplaces`
+  //  restent dans LEUR ville (transfert de propriété, pas un
+  //  déménagement) : ils gardent leur poste.
+  if (refuge) for (const c of courRestee) {
+    c.ville = refuge
+    perteDemenagement(c)
+  }
   state.population[p.n] = restants
   state.population[cible.n] = [...(state.population[cible.n] ?? []), ...deplaces]
   state.log.push({

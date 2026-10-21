@@ -37,7 +37,7 @@ export interface MigrationSchema {
 }
 
 /** Version courante du schéma = plus haut v de MIGRATIONS. */
-export const SCHEMA_VERSION_ETAT = 3
+export const SCHEMA_VERSION_ETAT = 4
 
 /** Registre des migrations. N° attribués définitivement — ne JAMAIS
  *  réutiliser ni renuméroter (les sauvegardes tamponnent leur v). */
@@ -65,7 +65,17 @@ export const MIGRATIONS: MigrationSchema[] = [
     //  (null en vague 1) est ajouté par les garde-fous, pas ici.
     appliquer: migrerTitresVersMetiers,
   },
-  // ── Futures migrations : v: 4, 5… (une entrée = une évolution) ──
+  {
+    v: 4,
+    quoi: 'vague 3a : renommages métiers Artisan→Commerçant, Chercheur→Scientifique, Sportif→Garde ; Propagandiste supprimé (Sans-emploi)',
+    // Rework métiers & aménagements (2026-10-21) : la table du
+    //  référentiel passe à 24 métiers. Les métiers disparus ou
+    //  renommés migrent sur TOUTES les populations (joueurs ET
+    //  cités libres). Le Propagandiste (supprimé avec ses charges)
+    //  devient Sans-emploi (metier null).
+    appliquer: migrerMetiersVague3a,
+  },
+  // ── Futures migrations : v: 5, 6… (une entrée = une évolution) ──
   //  Ex. ajout d'un champ aux personnages, renommage d'une ressource,
   //  restructuration d'un tableau : jamais de renumérotation.
 ]
@@ -96,6 +106,22 @@ export function migrerTitresVersMetiers(state: GameState): void {
       }
       delete recap.titresAttribues
     }
+  }
+}
+
+/** Vague 3a (rework métiers & aménagements, 2026-10-21), migration
+ *  v4 : renomme les métiers disparus du référentiel sur toutes les
+ *  populations et passe les Propagandistes Sans-emploi. Idempotente
+ *  (un métier déjà renommé ne matche plus la table). */
+export function migrerMetiersVague3a(state: GameState): void {
+  const RENOMS: Record<string, string | null> = {
+    Artisan: 'Commerçant',
+    Chercheur: 'Scientifique',
+    Sportif: 'Garde',
+    Propagandiste: null, // supprimé (charges comprises) → Sans-emploi
+  }
+  for (const c of toutesLesPopulations(state) as unknown as Array<{ metier?: string | null }>) {
+    if (c.metier && c.metier in RENOMS) c.metier = RENOMS[c.metier]
   }
 }
 

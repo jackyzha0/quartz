@@ -43,6 +43,10 @@ export interface MetierDef {
    *  illimité (vague 1 : seul le Chasseur est plafonné, via les paramètres
    *  capMetierChasseurVille / capMetierChasseurChateau). */
   capParVille?: number
+  /** Production UNIQUEMENT pendant l'été (vague 3a — ex. Fermier
+   *  « +5 Nourriture par tour en été ») : les gains valeur1/ressource1 et
+   *  valeur2/ressource2 ne sont crédités qu'en saison d'Été. */
+  ete?: boolean
 }
 
 export interface CultureDef {
