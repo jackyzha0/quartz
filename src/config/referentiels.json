@@ -956,7 +956,6 @@
       "homoAutorisee": false,
       "fertFactor": 1,
       "heredite": "Parité",
-      "martialite": "Féminine",
       "reglePays": "Entraide : votre capitale génère +3 Nourriture par habitation de cette culture dans le monde.",
       "reglePerso": "Générosité : les personnages gouverneurs réduisent la puissance des révoltes de 20 pts supplémentaires.",
       "capitalNourrParHabMonde": 3
@@ -966,7 +965,6 @@
       "homoAutorisee": false,
       "fertFactor": 1,
       "heredite": "Masculine",
-      "martialite": "Parité",
       "reglePays": "Prier les dieux : chaque fois que vous construisez un bâtiment de faction, vous gagnez 4 Science.",
       "reglePerso": "Enfant Divin : un personnage Héritier génère +6 Tourisme par rang de la capitale.",
       "scienceParConstruction": 4
@@ -976,7 +974,6 @@
       "homoAutorisee": false,
       "fertFactor": 1,
       "heredite": "Masculine",
-      "martialite": "Masculine",
       "reglePays": "Prêcheurs : votre capitale génère +4 Tourisme par habitation de cette culture dans le monde.",
       "reglePerso": "Soldats de la Lumière : lorsqu'une armée attaque une habitation, la garnison de celle-ci est réduite de 15 par rang de votre pays.",
       "capitalTourismeParHabMonde": 4
@@ -986,7 +983,6 @@
       "homoAutorisee": false,
       "fertFactor": 1,
       "heredite": "Parité",
-      "martialite": "Masculine",
       "reglePays": "Ecologisme : vos habitations construites sur des cases de forêt produisent +1 Bois.",
       "reglePerso": "Walpurgis : les personnages possèdent 0,1 Fécondité."
     },
@@ -995,7 +991,6 @@
       "homoAutorisee": false,
       "fertFactor": 1,
       "heredite": "Féminine",
-      "martialite": "Parité",
       "reglePays": "Adaptation : vos habitations génèrent +1 Or par case de désert dans leur enceinte.",
       "reglePerso": "Sorcellerie : votre dirigeant génèrent +1 Science par rang de votre capitale."
     },
@@ -1004,7 +999,6 @@
       "homoAutorisee": false,
       "fertFactor": 1,
       "heredite": "Féminine",
-      "martialite": "Féminine",
       "reglePays": "Supériorité évidente : votre capitale génère +2 Or par habitation de cette culture dans le monde.",
       "reglePerso": "Par le fer : les personnages génèrent un dé de manœuvre rouge s'ils sont commandants.",
       "capitalOrParHabMonde": 2
@@ -6716,7 +6710,7 @@
       "ressource2": "",
       "description": "",
       "nobleSeul": false,
-      "regleGenre": "Martialité",
+      "regleGenre": "vide",
       "attribution": "Armée",
       "metier": "Soldat"
     },
@@ -6728,7 +6722,7 @@
       "ressource2": "",
       "description": "",
       "nobleSeul": true,
-      "regleGenre": "Martialité",
+      "regleGenre": "vide",
       "attribution": "Armée",
       "metier": "Commandant"
     }
