@@ -12,7 +12,7 @@ Intuition (4+), Manipulation (4+), Magie (5+)
 **Soumission absolue** : les créatures ayant moins de 3d6 en Mental doivent réussir un test de Présence / Volonté pour désobéir à un ordre vocal de la Gouvernante.  
 **Mémoire obsédée** : elle connaît instinctivement les noms et fautes de chaque intrus : +2d6 en Mêlée contre toute créature ayant déjà échoué un test contre elle.
 ### Actions  
-**Fouet invisible** : portée 4'', 3d6.s, inflige *Silence* sur 2 blessures et projette la cible de 1''.  
+**Fouet invisible** : portée 4m, 3d6.s, inflige *Silence* sur 2 blessures et projette la cible de 1m.  
 ### Réactions  
 **Autorité glaciale** : si elle est ciblée par un sort, peut forcer le lanceur à réussir un test de Volonté moyen ou voir son sort annulé.
 ### Butin  

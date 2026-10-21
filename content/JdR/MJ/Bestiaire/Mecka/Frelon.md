@@ -8,4 +8,4 @@
 Furtif.
 ##### Actions
 **Coup de poing** : mêlée, 6d6.
-**Roquette légère** : Portée 9'', 6d6.
+**Roquette légère** : Portée 9m, 6d6.

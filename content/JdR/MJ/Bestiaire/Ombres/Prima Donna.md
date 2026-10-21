@@ -8,13 +8,13 @@ Diva spectrale dont la voix peut encore briser le verre... et l’esprit. Son vi
 | Vit | Me  | Tir | RP/RM | PV  | Ta  | Physique | Mental | Social |
 | :-: | :-: | :-: | :---: | :-: | :-: | :------: | :----: | :----: |
 |  5  | 4+  | 4+  | 5+/4+ | 12  |  M  |   5d6    |  4d6   |  5d6   |
-Agilité (3+), Résilience (4+), Analyse (5+), DIY (4+), Histoire (5+), Etiquette (5+), Séduction (4+), Spectacle (4+).
+Agilité (3+), Résilience (4+), Analyse (5+), Fabrication (4+), Histoire (5+), Etiquette (5+), Séduction (4+), Spectacle (4+).
 **Chant hypnotique** : toute créature ciblée par une attaque perd sa réaction pour le reste du tour. 
 **Masque plein** : Au début de chaque tour, le masque s'illumine et confère Egide (1) à la Prima Donna.
 **Masque fendu** : lorsqu'elle passe sous la moitié de ses PV, gagne +1d6 à ses attaques à distance jusqu'à la fin du combat. Au moment où le masque se fend, la Prima Donna reçoit Egide (3).
 ### Actions  
-**Note aiguë** : Portée 6'', magique, 3d6.
-**Voix destructrice** : action longue, zone 3'', 4d6 magiques, inflige -1 Mental aux survivants.
+**Note aiguë** : Portée 6m, magique, 3d6.
+**Voix destructrice** : action longue, zone 3m, 4d6 magiques, inflige -1 Mental aux survivants.
 ### Réactions  
 **Contre-chant** : après avoir été blessée par un sort, inflige immédiatement 1 touche magique automatique à l'assaillant.
 ### Action d'environnement

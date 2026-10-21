@@ -8,4 +8,4 @@
 Guide
 ##### Actions
 **Coup de patte** : mêlée, 3d6, Attaques empoisonnées.
-**Roquette légère** : Portée 9'', 6d6.
+**Roquette légère** : Portée 9m, 6d6.

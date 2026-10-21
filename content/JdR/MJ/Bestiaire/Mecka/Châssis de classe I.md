@@ -7,4 +7,4 @@
 
 ##### Actions
 **Coup de poing** : mêlée, 3d6, Force dévastatrice (1).
-**Roquette légère** : Portée 9'', 3d6.
+**Roquette légère** : Portée 9m, 3d6.

@@ -12,7 +12,7 @@ Tous les effets ci-dessous sont **définitifs**, à moins qu'une intrigue ne vie
 - **11** — Une aura de lumière ténue émane désormais en permanence du lanceur. Impossible pour lui de se cacher dans l'obscurité.
 - **12** — Le lanceur parle et comprend désormais toutes les langues, en permanence.
 - **13** — Le lanceur ne sait plus ni lire, ni écrire. Définitivement.
-- **14** — Le lanceur porte désormais une vulnérabilité magique au rire : chaque fois qu'il canalise à nouveau de la magie, lui et les créatures à 6" ou moins qui l'entendent tombent au sol, pris d'un rire incontrôlable, pendant 1d6 tours.
+- **14** — Le lanceur porte désormais une vulnérabilité magique au rire : chaque fois qu'il canalise à nouveau de la magie, lui et les créatures à 6m ou moins qui l'entendent tombent au sol, pris d'un rire incontrôlable, pendant 1d6 tours.
 - **15** — La magie du lanceur devient définitivement instable : chaque sort qu'il lance produit désormais un effet sensiblement différent de celui qu'il avait décrit — au MJ de décider dans quelle mesure.
 - **16** — À chaque sort qu'il lance désormais, la décharge magique le projette 1d6 mètres en arrière et le fait tomber au sol.
 ## 21-26

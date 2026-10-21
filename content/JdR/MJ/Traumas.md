@@ -52,7 +52,7 @@ Sauf mention contraire, le test associé à un Trauma se fait sur la compétence
 ## 61-66
  
 - **61 — Claustrophobie (peur des espaces confinés)** — Dans tout espace fermé (donjon, cellule, couloir étroit), le personnage subit -1d6 à tous ses jets. En cas de blocage physique total, il entre automatiquement en Panique.
-- **62 — Agoraphobie (peur des espaces ouverts)** — En terrain découvert, sans bâtiment ni mur à moins de 12", le personnage subit -1d6 à ses jets sociaux et de concentration. Il cherche instinctivement à coller les murs et les angles.
+- **62 — Agoraphobie (peur des espaces ouverts)** — En terrain découvert, sans bâtiment ni mur à moins de 12m, le personnage subit -1d6 à ses jets sociaux et de concentration. Il cherche instinctivement à coller les murs et les angles.
 - **63 — Dysmorphophobie (peur de sa propre apparence)** — Le reflet, l'ombre ou tout objet révélant le visage du personnage lui inflige -1d6 en Social pendant la scène suivante. Il évite les miroirs et l'eau calme.
 - **64 — Peur du feu** — Toute source de feu plus grande qu'une torche impose un test de Volonté au personnage. En cas d'échec, il ne peut pas s'en approcher volontairement.
 - **65 — Peur de la magie** — Chaque fois que le personnage est ciblé par un sort — même allié — il subit Étourdi pendant 1 tour, submergé par la panique.

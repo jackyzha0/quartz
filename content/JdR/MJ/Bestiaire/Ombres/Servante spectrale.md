@@ -10,7 +10,7 @@
 |  5  | 5+  |  —  | 6+/5+ |  2  |  M  |   2d6    |  2d6   |  3d6   |
 |     |     |     |       |     |     |          |        |        |
 Discrétion (4+), Premiers Secours (5+)  
-**Nettoyage obsessionnel** : à chaque tour, elle peut retirer un marqueur *Saignement* ou *Enflammement* d'une créature à 3'' (y compris ennemie).  
+**Nettoyage obsessionnel** : à chaque tour, elle peut retirer un marqueur *Saignement* ou *Enflammement* d'une créature à 3m (y compris ennemie).  
 **Soumission pervertie** : ne peut jamais initier un combat.  
 **Odeur de cire** : les jets de Perception contre elle subissent -1d6 dans les zones faiblement éclairées.
 ### Actions  

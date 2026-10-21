@@ -10,7 +10,7 @@ Majordome de l’Opéra, autrefois maître du protocole, aujourd’hui âme lié
 Etiquette (4+), Intuition (4+)  
 ### Actions  
 **Canne-épée en argent sale** : mêlée, 5d6, magique, saignement, les résultats obtenant 6 infligent 1 touche sans possibilité d'armure.
-**Silence, je vous prie** : action longue, portée 6'', inflige -1d6 à tout test de compétence sociale pendant 1 tour.
+**Silence, je vous prie** : action longue, portée 6m, inflige -1d6 à tout test de compétence sociale pendant 1 tour.
 ### Réactions  
 **Nétiquette** : peut interdire verbalement une action 1 fois/tour ; si la cible échoue un test Mental (2 réussites), elle ne peut la réaliser.  
 ### Butin  
