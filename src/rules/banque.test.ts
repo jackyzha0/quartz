@@ -173,14 +173,28 @@ test('Tourisme = FLUX NORMAL via la banque (Chapelle +35 : ni instantané, ni st
   assert.equal(productionTourismeBatiment('Chapelle', C, 'Ville'), 35)
 })
 
-test('Champ / Rizière : production d’ÉTÉ uniquement, lue sur la règle (canal « Nourr - été »)', () => {
+test('Champ / Rizière (vague 3a) : plus AUCUN flux direct — la production passe par les emplacements de Fermier (été)', () => {
   const refs = cfgOf(undefined).config.constructions ?? []
   const champ = refs.find((r) => r.nom === 'Champ')
   assert.ok(champ, 'Champ présent dans le référentiel')
-  assert.equal(eteSeulementRef(champ), true, 'Champ ne produit qu’en été')
-  assert.equal(Object.keys(effetsConstructionRef(champ)).length, 0, 'Champ : aucun flux hors été')
-  assert.ok(Object.keys(effetsEteConstructionRef(champ)).length > 0, 'Champ : production d’été attendue')
-  // le Camp de bûcheron, lui, est un flux NORMAL (pas marqué été)
+  // vague 3a : le Champ ne porte PLUS de flux — ni normal ni d'été
+  //  (la production de Nourriture vit dans le métier Fermier, dont
+  //  les postes sont créés par les emplacements du Champ).
+  assert.equal(eteSeulementRef(champ), false, 'le Champ ne porte plus de flux d été')
+  assert.equal(Object.keys(effetsConstructionRef(champ)).length, 0, 'Champ : aucun flux')
+  assert.equal(Object.keys(effetsEteConstructionRef(champ)).length, 0, 'Champ : aucun flux d été non plus')
+  assert.equal((champ.emplacements ?? []).find((e) => e.metier === 'Fermier')?.places ?? 0, 3,
+    'Champ : 3 emplacements de Fermier')
+  const riziere = refs.find((r) => r.nom === 'Rizière')
+  assert.ok(riziere, 'Rizière présente')
+  assert.equal(Object.keys(effetsConstructionRef(riziere!)).length, 0, 'Rizière : aucun flux')
+  assert.equal((riziere!.emplacements ?? []).find((e) => e.metier === 'Fermier')?.places ?? 0, 4,
+    'Rizière : 4 emplacements de Fermier')
+  // le Fermier, lui, produit en ÉTÉ seulement (champ ete du référentiel métiers)
+  const fermier = cfgOf(undefined).metiers.find((m) => m.metier === 'Fermier')
+  assert.ok(fermier, 'Fermier présent dans le référentiel métiers')
+  assert.equal(fermier!.ete, true, 'Fermier : production d été seulement (champ ete)')
+  // le Camp de bûcheron, lui, reste un flux NORMAL (pas marqué été)
   const camp = refs.find((r) => r.nom === 'Camp de bûcheron')
   assert.ok(camp, 'Camp de bûcheron présent')
   assert.equal(eteSeulementRef(camp), false)

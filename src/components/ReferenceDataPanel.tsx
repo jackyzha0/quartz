@@ -52,14 +52,13 @@ export function ReferenceDataPanel() {
             <div className="table-wrap">
               <table className="tbl small">
                 <thead>
-                  <tr><th>Métier</th><th>Éducation</th><th>Gain 1 / tour</th><th>Gain 2 / tour</th><th>Noble seul</th><th>Genre</th><th>Attribution</th><th>Description</th></tr>
+                  <tr><th>Métier</th><th>Gain 1 / tour</th><th>Gain 2 / tour</th><th>Noble seul</th><th>Genre</th><th>Attribution</th><th>Description</th></tr>
                 </thead>
                 <tbody>
                   {cfg.metiers.map((t) => (
                     <tr key={t.metier}>
                       <td><strong>{t.metier}</strong></td>
-                      <td>{t.education || '—'}</td>
-                      <td>{t.valeur1 ? `${t.valeur1} ${t.ressource1}` : '—'}</td>
+                      <td>{t.valeur1 ? `${t.valeur1} ${t.ressource1}${t.ete ? ' (été)' : ''}` : '—'}</td>
                       <td>{t.valeur2 ? `${t.valeur2} ${t.ressource2}` : '—'}</td>
                       <td>{t.nobleSeul ? <Badge tone="info">oui</Badge> : 'non'}</td>
                       <td>{t.regleGenre || '—'}</td>

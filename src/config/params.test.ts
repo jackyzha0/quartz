@@ -66,11 +66,15 @@ test('cfgOf : conversion v2 → v3 (titres → metiers, champ interne renommé, 
   const C = cfgOf(cfg)
   assert.equal(SCHEMA_VERSION_CONFIG, 3)
   assert.equal(C.config.schemaVersion, 3, 'tampon posé à la version courante')
-  // referentiel converti : table metiers, champ metier
-  assert.equal(C.metiers.length, 1)
+  // referentiel converti : table metiers, champ metier — la vague 3a
+  //  (migration metiersAmenagements2026) AJOUTE les métiers manquants
+  //  du nouveau référentiel derrière la table convertie : 1 Testeur + 24.
+  assert.equal(C.metiers.length, 25)
   assert.equal(C.metiers[0].metier, 'Testeur', 'le champ interne titre devient metier')
-  // banque convertie : champ interne renommé aussi
-  assert.equal(C.config.metiersEffets.length, 1)
+  assert.ok(C.metiers.some((m) => m.metier === 'Fermier'), 'vague 3a : les métiers manquants sont ajoutés')
+  assert.ok(!C.metiers.some((m) => m.metier === 'Propagandiste'), 'vague 3a : Propagandiste retiré')
+  // banque convertie : champ interne renommé aussi (Testeur + 12 défauts)
+  assert.equal(C.config.metiersEffets.length, 13)
   assert.equal(C.config.metiersEffets[0].metier, 'Testeur')
   // effet de tech converti
   const techApres = (C.config.progres?.[0]?.brancheA?.[0] ?? {}) as unknown as { effets?: Array<{ type?: string; metier?: string }> }

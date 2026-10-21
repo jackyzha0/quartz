@@ -219,3 +219,39 @@ test('v3 : les cités libres sont converties aussi (toutesLesPopulations)', () =
   assert.equal(converti.metier, 'Marchand', 'l habitant de la cité libre est converti')
   assert.ok(!('titre' in converti) && !('ageMax' in converti), 'titre et ageMax supprimés dans les cités libres')
 })
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  VAGUE 3a (rework métiers & aménagements, 2026-10-21) — migration v4 :
+//  renomme les métiers disparus sur TOUTES les populations (joueurs ET
+//  cités libres — Artisan → Commerçant, Chercheur → Scientifique,
+//  Sportif → Garde) et passe les Propagandistes Sans-emploi (métier
+//  supprimé du référentiel).
+// ═══════════════════════════════════════════════════════════════════════════
+
+test('v4 : renoms vague 3a — Artisan → Commerçant, Chercheur → Scientifique, Sportif → Garde, Propagandiste → Sans-emploi (idempotente)', () => {
+  const state = createGame(SETUP, 42, 'local')
+  const p = state.players[0]
+  const pop = (state.population[p.n] ?? []).slice(0, 4)
+  pop[0].metier = 'Artisan'
+  pop[1].metier = 'Chercheur'
+  pop[2].metier = 'Sportif'
+  pop[3].metier = 'Propagandiste'
+  const cite = (state.citesLibres ?? [])[0]
+  let citePropa: Character | null = null
+  if (cite) {
+    citePropa = ((cite.population as Character[])[0] ?? null)
+    if (citePropa) citePropa.metier = 'Propagandiste'
+  }
+  state.schema = 3
+  migrerEtat(state)
+  assert.equal(pop[0].metier, 'Commerçant', 'Artisan renommé Commerçant')
+  assert.equal(pop[1].metier, 'Scientifique', 'Chercheur renommé Scientifique')
+  assert.equal(pop[2].metier, 'Garde', 'Sportif renommé Garde')
+  assert.equal(pop[3].metier, null, 'Propagandiste supprimé → Sans-emploi')
+  if (citePropa) assert.equal(citePropa.metier, null, 'les cités libres sont migrées aussi (toutesLesPopulations)')
+  // idempotente : rejouer ne casse rien (les nouveaux noms ne matchent plus la table)
+  migrerEtat(state)
+  assert.equal(pop[0].metier, 'Commerçant')
+  assert.equal(pop[3].metier, null)
+  assert.equal(state.schema, SCHEMA_VERSION_ETAT, 'le tampon schema tient')
+})

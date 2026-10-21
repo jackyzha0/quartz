@@ -29,7 +29,7 @@ import { supprimerVille, transfererVille, rejouerTransfertVille } from './villes
 import { marierPersonnages } from './cour'
 import { killCharacter } from './sante'
 import { isConsanguineous } from './naissances'
-import { emptyRecap } from './shared'
+import { emptyRecap, deplacerPersonnage } from './shared'
 
 const PEUPLES = ['Basiléens', 'PEAUX VERTES', "ELFES D'OR", 'Sylvains', 'NORLS', 'VERMINES DE KAOSS']
 const CULTURES = ['Communautarisme', 'Déisme', 'Lunisme', 'Naturalisme', 'Sethisme', 'Zélotisme']
@@ -269,4 +269,63 @@ test('M1 : setup — champs ids posés partout et couples symétriques par id', 
       }
     }
   }
+})
+
+// ── Vague 3a : déménagement → perte du métier ET du domicile ──────────────
+
+test('vague 3a : marierPersonnages — le noble qui déménage perd son métier et son domicile', () => {
+  const state = partieHuitJoueurs()
+  const ada = perso('d-ada', 'Valois', 'Capitale 1', { sexe: 'F' })
+  const bob = perso('d-bob', 'Montclair', 'Capitale 2', { sexe: 'M' })
+  ada.metier = 'Marchand'
+  ada.domicile = 'Manoir des Valois'
+  state.population[1] = [...(state.population[1] ?? []), ada]
+  state.population[2] = [...(state.population[2] ?? []), bob]
+  assert.equal(marierPersonnages(state, ada, bob), null, 'mariage accepté')
+  assert.equal(ada.ville, 'Capitale 2', 'ada a déménagé chez son conjoint')
+  assert.equal(ada.metier, null, 'déménagement : le métier est perdu (Sans-emploi)')
+  assert.equal(ada.domicile, null, 'déménagement : le domicile est perdu')
+  assert.equal(bob.metier, null, 'bob n a pas bougé : aucun effet sur lui')
+})
+
+test('vague 3a : deplacerPersonnage — don à un autre porteur = déménagement (métier et domicile perdus)', () => {
+  const state = partieHuitJoueurs()
+  const p2 = state.players[1]
+  const c = perso('d-don', 'Roturier', 'Capitale 1')
+  c.metier = 'Bûcheron'
+  c.domicile = 'Cabane'
+  state.population[1] = [...(state.population[1] ?? []), c]
+  const err = deplacerPersonnage(state, c, { kind: 'joueur', p: p2 })
+  assert.equal(err, null, 'don accepté')
+  assert.ok((state.population[2] ?? []).some((x) => x.id === 'd-don'), 'le personnage a rejoint J2')
+  assert.equal(c.ville, 'Capitale 2', 'ré-ancré sur la première ville de J2')
+  assert.equal(c.metier, null, 'déménagement : métier perdu')
+  assert.equal(c.domicile, null, 'déménagement : domicile perdu')
+  assert.ok(state.log.some((l) => l.type === 'Système' && l.texte.includes('quitte son poste')),
+    'le log raconte la perte du poste')
+})
+
+test('vague 3a : transfererVille — la population classique suit la ville SANS perdre son métier (transfert ≠ déménagement), la cour ré-ancrée le perd', () => {
+  const state = partieHuitJoueurs()
+  const p1 = state.players[0]
+  const p3 = state.players[2]
+  const roturier = perso('d-suiv', 'Roturier', 'Bourg 1')
+  roturier.metier = 'Pêcheur'
+  roturier.domicile = 'Maison du Bourg'
+  const noble = perso('d-cour', 'Valois', 'Bourg 1')
+  noble.metier = 'Gouverneur'
+  noble.domicile = 'Donjon'
+  state.population[1] = [...(state.population[1] ?? []), roturier, noble]
+  const idx = p1.villes.findIndex((v) => v.nom === 'Bourg 1')
+  assert.ok(idx >= 0)
+  assert.equal(transfererVille(state, p1, idx, p3), true, 'transfert effectué')
+  // le roturier suit la ville (changement de PROPRIÉTAIRE, pas
+  //  d'habitation) : il garde son poste et son domicile.
+  assert.equal(roturier.metier, 'Pêcheur', 'transfert de propriété : le métier est conservé')
+  assert.equal(roturier.domicile, 'Maison du Bourg', 'le domicile est conservé')
+  // la cour restée derrière change d'habitation (ré-ancrée sur
+  //  Capitale 1) : métier et domicile perdus.
+  assert.equal(noble.ville, 'Capitale 1', 'noble ré-ancré sur la première ville restante')
+  assert.equal(noble.metier, null, 'ré-ancrage : métier perdu')
+  assert.equal(noble.domicile, null, 'ré-ancrage : domicile perdu')
 })

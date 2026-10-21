@@ -101,7 +101,7 @@ export function ParamsPanel() {
                 />
               </label>
             ))}
-            {(['metierDirigeant', 'metierGouverneur', 'metierProfesseur', 'metierChasseur', 'metierSoldat', 'metierCommandant', 'traitBatard', 'traitConsanguin', 'dynastieRoturier'] as const).map((k) => (
+            {(['metierDirigeant', 'metierGouverneur', 'metierProfesseur', 'metierChasseur', 'metierSoldat', 'metierCommandant', 'metierGarde', 'metierBanquier', 'metierTroubadour', 'traitBatard', 'traitConsanguin', 'dynastieRoturier'] as const).map((k) => (
               <label key={k} className="field">
                 <span className="field-label">{k}</span>
                 <TextInput
@@ -115,21 +115,21 @@ export function ParamsPanel() {
       )}
 
       {onglet === 'Métiers' && (
-        <Card title="Métiers du classeur (15) — gains par tour, règles">
+        <Card title="Métiers du classeur (24) — gains par tour, règles (vague 3a : sans éducation)">
           <div className="table-wrap">
             <table className="tbl small">
               <thead>
-                <tr><th>Métier</th><th>Éducation</th><th>Valeur 1</th><th>Ressource 1</th><th>Valeur 2</th><th>Ressource 2</th><th>Noble seul</th><th>Genre</th><th>Attribution</th><th>Description</th></tr>
+                <tr><th>Métier</th><th>Valeur 1</th><th>Ressource 1</th><th>Valeur 2</th><th>Ressource 2</th><th>Été</th><th>Noble seul</th><th>Genre</th><th>Attribution</th><th>Description</th></tr>
               </thead>
               <tbody>
                 {config.metiers.map((t, i) => (
                   <tr key={i}>
                     <td><TextInput value={t.metier} onChange={(v) => setCfg((c) => { c.metiers[i].metier = v })} /></td>
-                    <td><TextInput value={t.education} onChange={(v) => setCfg((c) => { c.metiers[i].education = v })} /></td>
                     <td><NumberInput value={t.valeur1} step={0.1} onChange={(v) => setCfg((c) => { c.metiers[i].valeur1 = v })} /></td>
                     <td><TextInput value={t.ressource1} onChange={(v) => setCfg((c) => { c.metiers[i].ressource1 = v })} /></td>
                     <td><NumberInput value={t.valeur2} step={0.1} onChange={(v) => setCfg((c) => { c.metiers[i].valeur2 = v })} /></td>
                     <td><TextInput value={t.ressource2} onChange={(v) => setCfg((c) => { c.metiers[i].ressource2 = v })} /></td>
+                    <td><input type="checkbox" checked={!!t.ete} title="Ne produit qu'en été (ex. Fermier)" onChange={(e) => setCfg((c) => { c.metiers[i].ete = e.target.checked })} /></td>
                     <td><input type="checkbox" checked={t.nobleSeul} onChange={(e) => setCfg((c) => { c.metiers[i].nobleSeul = e.target.checked })} /></td>
                     <td><TextInput value={t.regleGenre} onChange={(v) => setCfg((c) => { c.metiers[i].regleGenre = v })} /></td>
                     <td><TextInput value={t.attribution} onChange={(v) => setCfg((c) => { c.metiers[i].attribution = v })} /></td>

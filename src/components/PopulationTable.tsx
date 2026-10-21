@@ -714,11 +714,16 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           </table>
         </div>
         <p className="muted small">
-          Seuls le Chasseur (cap Ville {C.p.capMetierChasseurVille} / Château {C.p.capMetierChasseurChateau})
-          et les métiers déclarant une capacité au référentiel sont plafonnés — ∞ = illimité.
-          La réaffectation automatique tourne à chaque fin de tour : surnombre → les plus âgés
-          passent Sans-emploi ; places libres → les Sans-emploi adultes deviennent Chasseurs.
-          Les cités libres ne sont pas concernées par les caps.
+          Vague 3a — les caps viennent des EMPLACEMENTS des aménagements de la ville :
+          un métier de production dispose d'autant de postes que la ville a d'emplacements
+          (le Chasseur garde en plus sa cap par défaut Ville {C.p.capMetierChasseurVille} /
+          Château {C.p.capMetierChasseurChateau}) ; sans aménagement, cap 0. Garde, Banquier,
+          Troubadour, Professeur et les rôles de cour/armée ne sont pas plafonnés ici (∞ =
+          règles propres) ; un marchand tenant une route commerciale occupe un poste créé
+          par elle. La réaffectation automatique tourne à chaque fin de tour : surnombre →
+          les plus âgés passent Sans-emploi ; places libres → les Sans-emploi adultes
+          prennent un poste (autre que Chasseur en priorité). Les cités libres ne sont pas
+          concernées par les caps.
         </p>
       </Card>
 

@@ -48,6 +48,10 @@ export interface GameParams {
   capMetierChasseurVille: number
   /** Capacité maximale de Chasseurs dans un « Château ». */
   capMetierChasseurChateau: number
+  /** Garnison STATIQUE accordée par un Garde en poste (vague 3a :
+   *  « la Garnison n'est jamais par tour » — valeur d'état de la ville,
+   *  retirée si le Garde part ou meurt). */
+  garnisonParGarde: number
   // ── Éducation ──
   chanceEducRoturier: number
   chanceEducNoble: number
@@ -108,6 +112,9 @@ export interface GameParams {
   metierChasseur: string
   metierSoldat: string
   metierCommandant: string
+  metierGarde: string
+  metierBanquier: string
+  metierTroubadour: string
   traitBatard: string
   traitConsanguin: string
   traitObstine: string
@@ -151,6 +158,7 @@ export const DEFAULT_PARAMS: GameParams = {
   modGuerisonAge: 0.003,
   capMetierChasseurVille: 50,
   capMetierChasseurChateau: 25,
+  garnisonParGarde: 10,
   chanceEducRoturier: 0.08,
   chanceEducNoble: 0.15,
   professeurBaseChance: 0.9,
@@ -198,6 +206,9 @@ export const DEFAULT_PARAMS: GameParams = {
   metierChasseur: 'Chasseur',
   metierSoldat: 'Soldat',
   metierCommandant: 'Commandant',
+  metierGarde: 'Garde',
+  metierBanquier: 'Banquier',
+  metierTroubadour: 'Troubadour',
   traitBatard: 'Bâtard',
   traitConsanguin: 'Consanguin',
   traitObstine: 'Obstiné',
@@ -251,6 +262,7 @@ export const PARAM_META: {
   { key: 'modGuerisonAge', label: 'Guérison — modificateur par année d\'âge', groupe: 'Maladie' },
   { key: 'capMetierChasseurVille', label: 'Capacité Chasseurs par ville « Ville »', groupe: 'Métiers' },
   { key: 'capMetierChasseurChateau', label: 'Capacité Chasseurs par « Château »', groupe: 'Métiers' },
+  { key: 'garnisonParGarde', label: 'Garnison par Garde en poste', groupe: 'Métiers' },
   { key: 'chanceEducRoturier', label: 'Chance d\'éducation — roturier', groupe: 'Éducation', unite: 'proba' },
   { key: 'chanceEducNoble', label: 'Chance d\'éducation — noble', groupe: 'Éducation', unite: 'proba' },
   { key: 'professeurBaseChance', label: 'Chance de base d\'attribution Professeur', groupe: 'Éducation' },

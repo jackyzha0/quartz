@@ -19,8 +19,10 @@ import { createGame, type SetupLine } from './setup'
 import type { GameState } from './types'
 
 /** Partie minimale à 2 joueurs — copieur (Communautarisme : aucune loi
-//  de Tourisme) et cible porteuse d'une Foire (aménagement producteur de
-//  Tourisme), graine fixe → déterminisme. */
+//  de Tourisme) et cible porteuse d'un Hôtel de tourisme (construction
+//  productrice de Tourisme — vague 3a : la Foire ne produit plus rien,
+//  elle donne des emplacements d'Artiste/Commerçant), graine fixe →
+//  déterminisme. */
 function partieDeuxJoueurs(): GameState {
   const setups: SetupLine[] = [
     { nom: 'Copieur', peuple: 'Basiléens', culture: 'Communautarisme', regime: 'Monarchie',
@@ -38,16 +40,16 @@ test('commerce : le Tourisme copié par une route compte dans la production et l
   const cible = state.players[1]
   const C = cfgOf(state.config)
 
-  // La ville cible possède une Foire : elle doit avoir un Tourisme copiable.
+  // La ville cible possède un Hôtel de tourisme : Tourisme copiable.
   const villeCible = cible.villes[0]
-  villeCible.amenagements = [...(villeCible.amenagements ?? []), 'Foire']
-  const copiables = ressourcesCopiables('Foire', C.config)
+  villeCible.amenagements = [...(villeCible.amenagements ?? []), 'Hôtel de tourisme']
+  const copiables = ressourcesCopiables('Hôtel de tourisme', C.config)
   assert.ok(copiables.some((c) => c.ressource === 'Tourisme' && c.valeur > 0),
-    `la Foire doit avoir un Tourisme copiable (obtenu : ${JSON.stringify(copiables)})`)
+    `l'Hôtel de tourisme doit avoir un Tourisme copiable (obtenu : ${JSON.stringify(copiables)})`)
 
-  // Le copieur ouvre une route vers la Foire (un roturier est promu
+  // Le copieur ouvre une route vers l'Hôtel de tourisme (un roturier est promu
   //  marchand automatiquement — revue 2026-10-16).
-  const err = creerRouteCommerce(state, copieur.n, '', cible.n, villeCible.nom, 'Foire')
+  const err = creerRouteCommerce(state, copieur.n, '', cible.n, villeCible.nom, 'Hôtel de tourisme')
   assert.equal(err, null, `la route doit s'ouvrir (obtenu : ${err})`)
 
   // Le canal Commerce du copieur apporte bien du Tourisme.
