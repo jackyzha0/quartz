@@ -1,4 +1,4 @@
-**Type** : [[Cadavérique]].
+**Type** : Cadavérique.
 **Niveau** : 1/2.
 
 | Vit | Me  | Tir | Ar  | PV  | Ta  |

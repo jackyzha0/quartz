@@ -17,13 +17,13 @@ Choisissez ensuite 8 [[JdR/Règles/Règles#Compétences|compétences]] que vous 
 Lorsque vous créez un Guerrier, vous pouvez choisir un entrainement militaire dans la liste ci-dessous :
 - **Bagarreur** : lorsque vous ne maniez aucune arme ou bouclier, vos attaques à mains nues bénéficient de 2d6 supplémentaires en mêlée.
 - **Bourreau :** vos attaques contre les cibles ayant moins de 50% de leurs [[JdR/_Visualisation/Règles/Points de vie|Points de Vie]] bénéficient de +2d6.
-- **Bretteur** : si vous maniez une arme à une main sans rien dans votre seconde main, vous bénéficiez de la règle [[JdR/_Visualisation/Règles spéciales/Anti-infanterie|Anti-Infanterie]].
+- **Bretteur** : si vous maniez une arme à une main sans rien dans votre seconde main, vous bénéficiez de la règle [[JdR/_Visualisation/Règles spéciales/Anti-Infanterie|Anti-Infanterie]].
 - **[[JdR/_Visualisation/Règles spéciales/Charge Dévastatrice|Charge dévastatrice]]** : après avoir réussi une charge, vous bénéficiez de +2d6 à l'attaque gratuite octroyée.
 - **Défenseur** : lorsque vous effectuez des jets d'armure, vous pouvez relancer vos jets ayant obtenu 1 si vous possédez un bouclier.
 - **Discipline** : recevez 1 *[[JdR/_Visualisation/Règles/Points de talent|point de talent]]*.
 - **Esquive** : lorsque vous subissez une attaque, vous pouvez  dépenser votre réaction pour jeter 1d6 supplémentaire lors de votre test d'armure.
 - **Indomptable** : si vous tombez à 0 PV, vous remonter à 1 PV. Cet effet n'est utilisable qu'une seule fois par jour.
-- **[[JdR/_Visualisation/Règles spéciales/Maître-Lame|Maitre-lame]]** : lors d'une attaque en mêlée, vous
+- **[[JdR/_Visualisation/Règles spéciales/Maitre-Lame|Maitre-lame]]** : lors d'une attaque en mêlée, vous
 - **[[JdR/_Visualisation/Règles spéciales/Tireur d'Elite|Tireur d'élite]]** : lors d'une attaque à distance, vous pouvez relancer les jets de touche ayant obtenu 1. pouvez relancer les jets de touche ayant obtenu 1.
 - **Vif :** au début de chaque combat, recevez 1 **[[JdR/_Visualisation/Règles/Point d'Action|PA]]** supplémentaire.
 - **Visée :** vos pouvez utiliser une action longue au lieu d'une action courte pour un tir et ainsi bénéficier de [[JdR/_Visualisation/Règles spéciales/Perforant|Perforant (+1)]] pour cette attaque.

@@ -1,7 +1,7 @@
 ## Description
 Le Chaman est un intermédiaire entre les mondes. Capable de communier avec les esprits de la nature, des ancêtres ou des éléments, il est à la fois un guide spirituel et un guerrier mystique. Son pouvoir provient de ses liens étroits avec le monde spirituel, qu'il utilise pour soutenir ses alliés ou affaiblir ses ennemis.
 ## Race
-Le Chaman peut être de n'importe quelle **[[JdR/Races|Race]]**, mais les races proches de la nature comme les [[JdR/Race/Elfe d'Or|Elfe d'Or]] ou les [[JdR/Race/Peaux - Vertes|Peaux-Vertes]] sont naturellement attirées par cette classe.
+Le Chaman peut être de n'importe quelle **[[JdR/Règles/Races|Race]]**, mais les races proches de la nature comme les [[JdR/Règles/Races/Elfe d'Or|Elfe d'Or]] ou les [[JdR/Règles/Races/Peaux - Vertes|Peaux-Vertes]] sont naturellement attirées par cette classe.
 ## Caractéristiques de base
 ##### Compétences de base
 Les caractéristiques de base d'un Chaman sont :
@@ -29,7 +29,7 @@ A partir du niveau 2, vous pouvez choisir une spécialisation parmi les spécial
 Lorsque vous atteignez le niveau 3, 6 et 9, vous pouvez améliorer votre compétence de Mêlée ou Tir d'un niveau (un 5+ devient donc 4+).
 ## Niveau 4
 ##### Voie de l'esprit
-Lorsque vous atteignez le niveau 4, vous pouvez apprendre l'[[JdR/Règles/classes/mage#Enseignement magique|Enseignement magique]] de votre choix.
+Lorsque vous atteignez le niveau 4, vous pouvez apprendre l'[[JdR/Règles/Classes/Mage#Enseignement magique|Enseignement magique]] de votre choix.
 ## Niveau 7
 ##### Eveil
 A partir du niveau 7, vous pouvez apprendre un domaine de magie élémentaire supplémentaire.

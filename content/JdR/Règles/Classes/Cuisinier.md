@@ -1,7 +1,7 @@
 ## Description
 Le Cuisinier est un expert de la survie et du réconfort, alliant savoir-faire culinaire et débrouillardise. Capable de nourrir, soigner ou booster ses alliés avec ses plats, il s'impose comme un soutien indispensable en expédition. Il peut être un ancien chef d'auberge, un voyageur gourmand ou un mystique des saveurs, mais tous partagent la même mission : cuisiner pour survivre… et dominer.
 ## Race
-Les Cuisiniers peuvent être de n'importe quelle **[[JdR/Races|Race]]** (Humain, Nain, Gobelin, Ogre, etc.). Les Ogres et Humains sont particulièrement réputés pour leur sens du goût et leur estomac à toute épreuve.
+Les Cuisiniers peuvent être de n'importe quelle **[[JdR/Règles/Races|Race]]** (Humain, Nain, Gobelin, Ogre, etc.). Les Ogres et Humains sont particulièrement réputés pour leur sens du goût et leur estomac à toute épreuve.
 ## Caractéristiques de base
 ##### Compétences de base
 Les caractéristiques de base d'un Cuisinier sont :
@@ -29,7 +29,7 @@ A partir du niveau 2, vous pouvez choisir une spécialisation parmi les spécial
 Lorsque vous atteignez le niveau 3, 6 et 9, vous pouvez améliorer votre compétence de Mêlée ou Tir d'un niveau (un 5+ devient donc 4+).
 ## Niveau 4
 ##### La science du chaudron
-Lorsque vous atteignez le niveau 4, vous pouvez apprendre l'[[JdR/Règles/classes/mage#Enseignement magique|Enseignement de Mage]] de votre choix.
+Lorsque vous atteignez le niveau 4, vous pouvez apprendre l'[[JdR/Règles/Classes/Mage#Enseignement magique|Enseignement de Mage]] de votre choix.
 ## Niveau 7
 ##### Tout goûter
 A partir du niveau 7, vous êtes immunisé au poison.
@@ -38,7 +38,7 @@ A partir du niveau 7, vous êtes immunisé au poison.
 A partir du niveau 10, lorsque vous cuisinez à partir de viande, les créatures **Bien nourries** gagnent toutes les règles spéciales de la créature pendant 1 jour.
 ## Niveau 12
 ##### Ajouter la sauce
-Lorsque vous cuisinez, vous pouvez ajouter une plante par ration pour lui octroyer un effet d'Elixir (cf. [[JdR/Potions & Elixirs|Potions & Elixirs]]) de votre choix.
+Lorsque vous cuisinez, vous pouvez ajouter une plante par ration pour lui octroyer un effet d'Elixir (cf. [[JdR/Règles/Equipements/Potions & Elixirs|Potions & Elixirs]]) de votre choix.
 
 <center><h1>Spécialisations</h1> </center>
 
@@ -47,15 +47,15 @@ Lorsque vous cuisinez, vous pouvez ajouter une plante par ration pour lui octroy
 
 Le Chef de Guerre est un maître des cuisines… et du champ de bataille. Il transforme ses poêles en armes et ses plats en outils de domination physique. Quand ça chauffe, c'est lui qui sert le plat principal : la baston.
 ##### Ustensiles de guerre (niveau 2)
-A partir du niveau 2, vos attaques avec des armes improvisées suivent les règles suivantes : Mêlée, 3d6, [[JdR/_Visualisation/Règles spéciales/Anti-infanterie|Anti-infanterie]], [[JdR/_Visualisation/Règles spéciales/Lancer|Lancer]].
+A partir du niveau 2, vos attaques avec des armes improvisées suivent les règles suivantes : Mêlée, 3d6, [[JdR/_Visualisation/Règles spéciales/Anti-Infanterie|Anti-infanterie]], [[JdR/_Visualisation/Règles spéciales/Lancer|Lancer]].
 ##### Le boss des cuisines (niveau 2)
-Lorsque vous atteignez le niveau 2, apprenez l'[[JdR/Règles/classes/guerrier#Entrainement|Entrainement de Guerrier]] de votre choix.
+Lorsque vous atteignez le niveau 2, apprenez l'[[JdR/Règles/Classes/Guerrier#Entrainement|Entrainement de Guerrier]] de votre choix.
 ##### Rôtissage brutal (niveau 5)
 A partir du niveau 5, si une de vos attaques obtient au moins une blessure, déclencher l'[[JdR/Règles/Règles#Attributs de Domaine|attribut de domaine]] d'un de vos domaine de magie.
 ##### Tranche chair (niveau 8)
-A partir du niveau 8, vos attaques avec des armes improvisées gagnent +2d6 (total 5d6, [[JdR/_Visualisation/Règles spéciales/Anti-infanterie|Anti-infanterie]], [[JdR/_Visualisation/Règles spéciales/Lancer|Lancer]]).
+A partir du niveau 8, vos attaques avec des armes improvisées gagnent +2d6 (total 5d6, [[JdR/_Visualisation/Règles spéciales/Anti-Infanterie|Anti-infanterie]], [[JdR/_Visualisation/Règles spéciales/Lancer|Lancer]]).
 ##### Assiette de plomb (niveau 11)
-A partir du niveau 11, vos attaques avec des armes improvisées gagnent [[JdR/_Visualisation/Règles spéciales/Force Dévastatrice|Force Dévastatrice (2)]] (total 5d6, [[JdR/_Visualisation/Règles spéciales/Anti-infanterie|Anti-infanterie]], [[JdR/_Visualisation/Règles spéciales/Force Dévastatrice|Force Dévastatrice (2)]], [[JdR/_Visualisation/Règles spéciales/Lancer|Lancer]]).
+A partir du niveau 11, vos attaques avec des armes improvisées gagnent [[JdR/_Visualisation/Règles spéciales/Force Dévastatrice|Force Dévastatrice (2)]] (total 5d6, [[JdR/_Visualisation/Règles spéciales/Anti-Infanterie|Anti-infanterie]], [[JdR/_Visualisation/Règles spéciales/Force Dévastatrice|Force Dévastatrice (2)]], [[JdR/_Visualisation/Règles spéciales/Lancer|Lancer]]).
 
 ---
 <center><h2>Gastromancien</h2> </center>
@@ -95,6 +95,6 @@ Immédiatement et gratuitement après avoir consommé une de vos rations savoure
 ##### Jouer avec le feu (niveau 5)
 Tant que vous êtes ivre, vos attaques gagnent +1d6 en mêlée et à distance ainsi que la règle [[JdR/_Visualisation/Règles spéciales/Attaques Enflammées|attaques enflammées]].
 ##### Bagarreur de taverne (niveau 8)
-Vos attaques à mains nues et vos attaques à distance a l'aide d'armes improvisées gagnent respectivement [[JdR/_Visualisation/Règles spéciales/Force dévastatrice|Force dévastatrice (2)]] et [[JdR/_Visualisation/Règles spéciales/Perforant|Perforant (2)]], ainsi que +2d6.
+Vos attaques à mains nues et vos attaques à distance a l'aide d'armes improvisées gagnent respectivement [[JdR/_Visualisation/Règles spéciales/Force Dévastatrice|Force dévastatrice (2)]] et [[JdR/_Visualisation/Règles spéciales/Perforant|Perforant (2)]], ainsi que +2d6.
 ##### Cuvée légendaire (niveau 11)
 A partir du niveau 11, les personnes que vous avez rendues ivres avec vos rations savoureuses gagnent [[JdR/_Visualisation/Règles spéciales/Egide|Egide (1)]] au début de chaque tour par état d'ivresse. De plus, lorsqu'une créature à 6m ou moins consomme un de vos rations savoureuses, vous pouvez également devenir ivre si vous le souhaitez.

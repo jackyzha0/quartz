@@ -1,4 +1,4 @@
-**Type** : [[Cadavérique]].
+**Type** : Cadavérique.
 **Niveau** : 4.
 **Immunité :** Eclair
 

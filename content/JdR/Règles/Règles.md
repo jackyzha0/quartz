@@ -171,7 +171,7 @@ Durant les temps creux des Bivouacs, les joueurs peuvent effectuer jusqu'à deux
 - Identifier un objet magique.
 - Soigner un trauma.
 - Vendre ou acheter des objets (si des marchands se trouvent à proximité).
-- Se former pour retirer 1 [[JdR/_Visualisation/Règles/Point de talent|point de talent]] d'une compétence et le transférer à une autre.
+- Se former pour retirer 1 [[JdR/_Visualisation/Règles/Points de talent|point de talent]] d'une compétence et le transférer à une autre.
 Une action de Bivouac n'est pas forcément une réussite, mais peut être un progrès. *Par exemple, Camille utilise une action de Bivouac pour déchiffrer un livre. Elle n'arrivera probablement pas à déchiffrer le livre en entier, mais pourrait reconnaitre un lieux ou une personne qui est nommé de manière récurrente dans le livre.*
 ## 7. La Magie
 La magie utilise le même moteur que le reste du jeu — un pool de dés, des 6 qui explosent — mais avec ses propres règles de risque.

@@ -8,7 +8,7 @@ Les caractéristiques de base d’un Paladin sont :
 - **Tir** : 5+
 - **PV** : 5 + niveau de Résilience.
 - **Réserve de Magie :** 6 dés.
-Choisissez 8 [[Règles/Règles#Compétences|compétences]]  que vous apprenez niveau 1.
+Choisissez 8 [[JdR/Règles/Règles#Compétences|compétences]]  que vous apprenez niveau 1.
 ##### Equipement
 - **Maitrises** : Armures complètes.
 - **Argent de départ** : 700 Florins.
@@ -18,14 +18,14 @@ Le Paladin est un lanceur de sorts. Lorsque vous créez un Paladin, choisissez u
 ##### Faveur divine
 Vous pouvez dépenser votre réaction et un dé de votre réserve de magie pour transformer n'importe quel résultat obtenu lors d'un test de compétence ou d'attaque pour le transformer en 6 explosif.
 ##### Vœux
-Lorsque vous créez un paladin, vous devez choisir une [[Règles/Divinités|Divinité]] à laquelle vous jurez fidélité, et le  vœu que vous souhaitez prononcer. une fois par jour, vous pouvez faire une offrande d'une valeur totale de 100 florins pour utiliser une fraction de leurs pouvoirs. Vous trouverez ci-dessous quelques exemples de vœux:  
+Lorsque vous créez un paladin, vous devez choisir une [[JdR/Règles/Divinités|Divinité]] à laquelle vous jurez fidélité, et le  vœu que vous souhaitez prononcer. une fois par jour, vous pouvez faire une offrande d'une valeur totale de 100 florins pour utiliser une fraction de leurs pouvoirs. Vous trouverez ci-dessous quelques exemples de vœux:  
 **Vœu de Justice** : *Vous avez juré de luter pour la justice*.  
 **Vœu de vengeance** : *vous avez juré de venger quelqu'un : votre famille, votre ami peut-être ?*  
 **Vœu de pureté** : *Vous avez juré de ne rester pur.e et de ne pas céder aux tentations obscures.*  
 **Vœu de vaillance** : *Quelle que soit la situation, jamais vous ne céderez face à l'ennemi !*  
 **Vœu de protection** : *vous avez juré de protéger les plus faibles*.  
 ### Par delà le niveau 1
-Lorsque vous atteignez un niveau supérieur avec un Paladin, vous gagnez 1 PV et 1 [[Règles/Règles#Points de talent|point de talent]]. Consultez ensuite les sections ci-dessous pour apprendre vos nouvelles compétences.
+Lorsque vous atteignez un niveau supérieur avec un Paladin, vous gagnez 1 PV et 1 [[JdR/_Visualisation/Règles/Points de talent|point de talent]]. Consultez ensuite les sections ci-dessous pour apprendre vos nouvelles compétences.
 ## Niveau 2
 A partir du niveau 2, vous pouvez choisir une spécialisation parmi les spécialisations présentées dans les sections suivantes.
 ## Niveau 3, 6, 9

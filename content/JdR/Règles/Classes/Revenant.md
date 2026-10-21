@@ -9,7 +9,7 @@ Les caractéristiques de base d'un Revenant sont :
 - **Tir** : 5+
 - **PV** : 4 + niveau de Résilience.
 - **Réserve de Magie :** 8 dés.
-Choisissez ensuite 8 [[Règles/Règles#Compétences|compétences]]  que vous apprenez niveau 1.
+Choisissez ensuite 8 [[JdR/Règles/Règles#Compétences|compétences]]  que vous apprenez niveau 1.
 ##### Equipement
 - **Maitrises** : Armures partielles.
 - **Argent de départ** : 500 Florins.
@@ -21,7 +21,7 @@ Vous pouvez dépenser un dé de votre réserve de magie pour vous téléporter s
 ##### Résistance à la magie
 Vous bénéficiez d'une résistance magique naturelle de 6+. Si vous portez des objets vous octroyant une résistance magique, vous résistance magique totale est améliorée de 1 (un 5+ devient donc 4+).
 ### Par delà le niveau 1
-Lorsque vous atteignez un niveau supérieur avec un Revenant, vous gagnez 1 PV et 1 [[Règles/Règles#Points de talent|point de talent]]. Consultez ensuite les sections ci-dessous pour apprendre vos nouvelles compétences.
+Lorsque vous atteignez un niveau supérieur avec un Revenant, vous gagnez 1 PV et 1 [[JdR/_Visualisation/Règles/Points de talent|point de talent]]. Consultez ensuite les sections ci-dessous pour apprendre vos nouvelles compétences.
 ## Niveau 2 :
 A partir du niveau 2, vous pouvez choisir une spécialisation parmi les spécialisations présentées dans les sections suivantes.
 ## Niveau 3, 6, 9
@@ -78,7 +78,7 @@ Le Chevalier Noir est une forteresse imprenable, une ancre spectrale sur le cham
 ##### Maitrise des plaques (Niveau 2)
 A partir du niveau 2, vous gagnez la maitrise des armures lourdes.
 ##### Parade (niveau 2)
-A partir du niveau 2, après avoir subit des touches en mêlée mais avant d'effectuer vos jets d'armure, vous pouvez annuler un nombre de touches égales à votre niveau. Si votre niveau est supérieur au nombre de touches que vous avez subies, l'attaquant reçoit un nombre de touche égal à la différence auxquelles s'applique la [[Règles/Règles spéciales#force dévastatrice(N)|force dévastatrice]] de votre arme.
+A partir du niveau 2, après avoir subit des touches en mêlée mais avant d'effectuer vos jets d'armure, vous pouvez annuler un nombre de touches égales à votre niveau. Si votre niveau est supérieur au nombre de touches que vous avez subies, l'attaquant reçoit un nombre de touche égal à la différence auxquelles s'applique la [[JdR/_Visualisation/Règles spéciales/Force Dévastatrice|force dévastatrice]] de votre arme.
 ##### Retour d'outre-tombe (niveau 5)
 A partir du niveau 5, vous pouvez dépenser votre réaction et 1 dé de magie par niveau du sort pour renvoyer un sort vous prenant pour cible à son envoyeur.
 ##### Aura de désespoir (niveau 8)
@@ -99,4 +99,4 @@ A partir du niveau 5, vous pouvez dépenser une action longue pour planter votre
 ##### Moisson d'os (niveau 8)
 A partir du niveau 8, vos attaques deviennent magiques.
 ##### Avatar de la ruine (niveau 11)
-A partir du niveau 11, lorsque vous éliminez une créature, les créatures à 6m ou moins ayant moins de PV actuels que vous doivent réussir un test de volonté (nombre de réussite égal à la différence de PV actuels) ou être [[content/Règles/Règles#États Spéciaux|paniqués]].
+A partir du niveau 11, lorsque vous éliminez une créature, les créatures à 6m ou moins ayant moins de PV actuels que vous doivent réussir un test de volonté (nombre de réussite égal à la différence de PV actuels) ou être [[JdR/Règles/Règles#États Spéciaux|paniqués]].

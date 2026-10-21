@@ -26,13 +26,13 @@ Lorsque vous réalisez une réussite suffisante, vous pouvez améliorer une arme
 
 **Tranchant I** : les attaques effectuées avec cette arme bénéficient de +1d6 en Mêlée.   
 **Précision I** : les attaques effectuées avec cette arme bénéficient de +1d6 en Tir.  
-**Equilibre** : les attaques effectuées en mêlée avec cette arme bénéficient de [[Règles/Règles spéciales#Maitre-lame|maitre-lame]].  
-**Léger** : confère [[Règles/Règles spéciales#Rapide|rapide]].  
+**Equilibre** : les attaques effectuées en mêlée avec cette arme bénéficient de [[JdR/_Visualisation/Règles spéciales/Maitre-Lame|maitre-lame]].  
+**Léger** : confère rapide.  
 **Poussée I** : les attaques à distance effectuées avec cette arme repoussent leur cible de 1 case en cas de touche.  
 ## Améliorations de Rang II (4 réussites)
 **Tranchant II** : les attaques effectuées avec cette arme bénéficient de +2d6 en Mêlée.  
 **Précision II** : les attaques effectuées avec cette arme bénéficient de +2d6 en Tir.  
-**Saignante** : les attaques effectuées avec cette arme  infligent 1 marqueur *[[Règles spéciales#Saignement|Saignement]]*
+**Saignante** : les attaques effectuées avec cette arme  infligent 1 marqueur *[[JdR/Règles/Règles#États Spéciaux|Saignement]]*
 en cas de blessure.  
 **Assommage** : les attaques effectuées avec cette arme infligent *Etourdissement* pendant 1 tour en cas de blessure.  
 **Filante** : les attaques à distance effectuées avec cette arme à distance ont +3m de portée.  

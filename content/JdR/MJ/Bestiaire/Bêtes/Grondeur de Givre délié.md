@@ -10,5 +10,3 @@
 ### Actions
 **Coup de crocs** : mêlée, 3d6, Force dévastatrice (1).
 **Souffle de givre** :  Portée  6m, 6d6, Gel, Souffle. Ceci est une attaque à distance utilisable en mêlée.
-
-![[Pasted image 20260201143559.png]]
