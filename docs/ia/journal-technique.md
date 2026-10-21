@@ -1030,6 +1030,79 @@ Implémentation planifiée en sous-vagues : **3a** (métiers & emplacements)
 puis **3b** (routes dissociées — arbitrages restants listés dans la
 section design).
 
+## Rework métiers & aménagements — VAGUE 3a IMPLÉMENTÉE (2026-10-21, soir)
+
+Sous-vague 3a (métiers & emplacements) poussée sur `chasse-et-peche-web`
+(code + docs) et en miroir sur `v4` (arbres src/ byte-identiques).
+
+- **Référentiel 24 métiers** : gains par tour sans éducation (Chasseur
+  +1,2 N · Artiste +5 T · Commerçant +1 Or · Bûcheron/Mineur/Forgeron/
+  Tisseur/Charbonnier/Scientifique +0,5 · Éleveur +0,5 Bétail +2 N ·
+  Fermier +5 N **marqué `ete`** (été seulement) · Archéologue +4 T ·
+  Pêcheur +4 N · Marchand +2 Or). Disparitions : Artisan → Commerçant,
+  Chercheur → Scientifique, Sportif → Garde, **Propagandiste supprimé**.
+  Colonne Éducation retirée des tables UI, colonne **Été** ajoutée
+  (Paramètres + wiki Référentiels).
+- **Emplacements tier 1** : les 14 aménagements passent
+  `effets: []` + `emplacements: [{metier, places}]` (Baleinier +3
+  Pêcheur +2 Commerçant, …, Rizière +4 Fermier) ; `production`/
+  `description` = « N emplacements de X. ». La production d'été des
+  Champ/Rizière vit désormais dans le métier Fermier (`ete`), plus
+  dans la construction (le flux `ete` de la banque disparaît — la loi
+  Socialisme nourrEteChampRiziere et les techs Engrais, elles, restent
+  des flux par aménagement).
+- **Caps par ville** (`capMetierVille`) : métier productif = SOMME des
+  emplacements des aménagements (0 sans aménagement) ; Chasseur = cap
+  défaut (Ville 50/Château 25) + emplacements ; Garde/Banquier/
+  Troubadour/Professeur/cour/armée = ∞ (règles propres).
+  `emplacementsMetierVille` exporté ; écran « Métiers et places »
+  re-documenté (PopulationTable).
+- **Réaffectation généralisée** : surnombre par métier plafonné (les
+  plus âgés → Sans-emploi, log par métier) ; remplissage multi-métiers
+  avec PRIORISATION (autre que Chasseur d'abord, ordre du référentiel,
+  log agrégé par ville). **Exemption Marchand-route** : un marchand qui
+  tient une route occupe un poste créé par elle, jamais en surnombre —
+  sans elle, `reaffecterMetiers` tuait chaque route à la fin du tour
+  (contrat B4 « la route vit toujours » verrouillé par test). Pont
+  provisoire voué à disparaître en 3b.
+- **Taxes additives** (`detailGainsVille`) : `bonusTaxes` par ressource
+  — Gouverneur +10 % toutes, Banquier +10 % Or, Professeur +10 %
+  Science, Troubadour +10 % Tourisme, cumul ADDITIF (Gouv+Prof =
+  +20 % Science) ; les bonus ne portent que les ressources produites.
+- **Garde statique** : `garnisonParGarde` (10, paramètre groupe
+  Métiers) × Gardes vivants en poste, via `garnisonHabitationVille`
+  (canal valeur d'état, ligne `origine: 'métier'` du détail).
+- **Déménagement** (arbitrage du tour, consigné dans
+  regles-et-arbitrages.md) : `perteDemenagement(c)` (métier + domicile
+  → null) appliqué aux 5 sites réels — `deplacerPersonnage`,
+  `marierPersonnages`, `migrerPopulation`, cour ré-ancrée
+  (`transfererVille`/`supprimerVille`), nobles ré-ancrés en cité
+  libre. Exceptions : renommage de ville et transfert de propriété
+  (population classique inchangée). Verrouillé par tests
+  (mutateurs.test.ts).
+- **Migrations** : état **v4** `migrerMetiersVague3a` (renoms + retrait
+  Propagandiste sur `toutesLesPopulations`, idempotente) ; config
+  ciblée pattern (z) `metiersAmenagements2026` dans `cfgOf` (anciens
+  15 défauts codés en dur, renoms en conservant les personnalisations,
+  ajout des manquants, ANCIENS_EFFETS des 14 aménagements, effets
+  remplacés seulement si encore défaut exact, emplacements ajoutés si
+  absents, `metiersEffets` migré) — SANS toucher à
+  `SCHEMA_VERSION_CONFIG`.
+- **`scripts/diag.ts`** : inchangé (freeze accepté depuis la vague 1) —
+  vérifié exit 0 avec le nouveau référentiel.
+- **Tests** : harnais local **136/136 verts** (127 baseline + 9
+  nouveaux/étendus) : caps 3a (Scierie/Mine d'Or/Champ), occupations
+  emplacements, priorisation Bâteau de pêche, Fermier été/hiver,
+  taxes additives, Garde garnison, exemption marchand-route,
+  migration v4, déménagement (mariage/don/transfert), commerce B4 sur
+  Hôtel de tourisme (la Foire ne produit plus), Champ sans flux
+  (banque). `tsc --noEmit` strict : PROPRE.
+- **Incident de conception détecté par les tests** : le Marchand
+  auto-promu par `creerRouteCommerce` était décoiffé par
+  `reaffecterMetiers` (cap 0 sans Mine d'Or) — résolu par l'exemption
+  ci-dessus, la spec vague 3 (« les emplacements de Marchand viennent
+  des Mines d'Or ET des routes commerciales ») la justifiait.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

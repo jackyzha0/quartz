@@ -426,7 +426,43 @@ identiques si tous les emplacements sont remplis) :
    bonus de taxe additifs + Garde statique + migrations (état :
    renommages des métiers ; config : pattern (z)) + UI (PopulationTable,
    écran Métiers et places par ville, Référentiels, Paramètres).
+   **→ IMPLÉMENTÉE le 2026-10-21** (moteur + UI + migrations état v4 /
+   config `metiersAmenagements2026`, 136 tests verts) — voir
+   journal-technique.md, entrée « vague 3a ». Exceptions provisoires
+   tant que la 3b n'est pas là : les routes commerciales restent
+   « telles quelles » (+4 Or/tour + copie, tenues par un Marchand) et
+   un Marchand qui TIENT une route occupe un poste créé par elle
+   (jamais en surnombre — sinon toute route mourrait à chaque fin de
+   tour) ; le métier « Fermier » porte le marqueur `ete` (production
+   d'été lu sur le métier, plus sur le Champ).
 2. **3b — routes dissociées** : après les arbitrages restants.
+
+### Déménagement : perte du métier ET du domicile (arbitré 2026-10-21, vague 3a)
+
+- **Règle** : un habitant qui CHANGE d'habitation (il déménage vers
+  une autre ville) **perd son métier ET son domicile** — les postes à
+  emplacements sont créés par les aménagements de la ville qu'il
+  quitte, le domicile est un bâtiment de cette ville. Il redevient
+  Sans-emploi (rôle neutre, impôt nul) jusqu'à la réaffectation de fin
+  de tour ; un Gouverneur perdu ainsi est re-désigné automatiquement
+  (noble le plus âgé de la ville, règle (w)).
+- **Sites de déménagement réels** (le moteur y applique
+  `perteDemenagement`) : don du personnage à un autre porteur
+  (`deplacerPersonnage` — joueur ou cité libre), mariage chez le
+  conjoint (`marierPersonnages`), migration automatique de population
+  (`migrerPopulation`), cour ré-ancrée après transfert ou suppression
+  de ville (`transfererVille`/`supprimerVille` — la cour suit son
+  joueur mais change de ville), nobles ré-ancrés ville → cité libre
+  (`citesLibres.ts`).
+- **Exceptions** : le RENOMMAGE d'une ville (même ville, nouveau nom)
+  et le TRANSFERT DE PROPRIÉTÉ d'une ville (les habitants ne bougent
+  pas — la population classique suit la ville et garde son poste et
+  son domicile ; seule la cour restée derrière, ré-ancrée sur une
+  autre ville du joueur, perd les deux).
+- **Point ouvert (non arbitré)** : un DIRIGEANT qui déménage perd son
+  titre → une succession devrait se déclencher (à trancher avec la
+  vague 3b ; en attendant le cas ne peut survenir que par don/mariage
+  manuel du MJ).
 
 ## Conventions techniques de règles (à respecter en implémentant)
 
