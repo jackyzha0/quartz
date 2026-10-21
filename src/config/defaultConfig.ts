@@ -26,6 +26,10 @@ export interface MetierDef {
   /** Capacité maximale par ville (rework habitants 2026-10-20) :
    *  absent = illimité (vague 1 : seul le Chasseur est plafonné, via
    *  les paramètres capMetierChasseurVille / capMetierChasseurChateau). */
+  /** Production UNIQUEMENT pendant l'été (vague 3a — ex. Fermier
+   *  « +5 Nourriture par tour en été ») : les gains valeur1/ressource1 et
+   *  valeur2/ressource2 ne sont crédités qu'en saison d'Été. */
+  ete?: boolean
   capParVille?: number
 }
 export interface TraitDef {
@@ -157,6 +161,17 @@ export interface ConstructionRef {
   /** Effets STRUCTURÉS (marqueur (s)) — source du moteur quand présents ;
    *  sinon repli sur l'analyse du texte exact (anciennes configs). */
   effets?: EffetConstruction[]
+  /** Emplacements de métiers (vague 3a, arbitrage Thibaut 2026-10-21) :
+   *  la production DIRECTE des aménagements tier 1 est remplacée par des
+   *  postes — chaque aménagement présent dans une ville octroie
+   *  `places` postes de `metier` (cap par ville = somme des emplacements,
+   *  + cap par défaut du Chasseur). Champ optionnel : aucun emplacement. */
+  emplacements?: EmplacementDef[]
+}
+/** Un emplacement de métier accordé par une construction (vague 3a). */
+export interface EmplacementDef {
+  metier: string
+  places: number
 }
 /** Effet AUTOMATIQUE d'une technologie de progrès (paramétrable dans
  *  Référentiels → Progrès, champ « effets » de chaque tech) :
@@ -355,6 +370,14 @@ export interface GameConfig {
    *  cultures — l'HÉRÉDITÉ est conservée. Marqueur (z) : migration
    *  ciblée (cfgOf) indépendante du tampon schemaVersion. */
   martialiteSupprimee?: boolean
+  /** Rework métiers & aménagements vague 3a (arbitrage Thibaut
+   *  2026-10-21) : 24 métiers (renommages Artisan→Commerçant,
+   *  Chercheur→Scientifique, Sportif→Garde, Propagandiste supprimé,
+   *  nouveaux métiers de production), gains recalibrés SANS éducation,
+   *  et production des 14 aménagements tier 1 remplacée par des
+   *  emplacements. Marqueur (z) : migration ciblée (cfgOf)
+   *  indépendante du tampon schemaVersion. */
+  metiersAmenagements2026?: boolean
 }
 
 // ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
@@ -500,6 +523,7 @@ function normaliserMetiers(): MetierDef[] {
     regleGenre: (t.regleGenre === 'vide' ? '' : t.regleGenre) || '',
     attribution: t.attribution || '',
     capParVille: t.capParVille === undefined ? undefined : Number(t.capParVille),
+    ete: t.ete === true ? true : undefined,
   }))
 }
 
@@ -1326,6 +1350,118 @@ export function cfgOf(config?: GameConfig): Cfg {
       delete (cu as unknown as { martialite?: string }).martialite
     }
     merged.martialiteSupprimee = true
+  }
+  // REWORK MÉTIERS & AMÉNAGEMENTS (vague 3a, arbitrage Thibaut
+  //  2026-10-21) : les métiers deviennent des postes à emplacements
+  //  créés par les aménagements — 24 métiers au référentiel, gains
+  //  recalibrés SANS éducation requise (Artisan→Commerçant,
+  //  Chercheur→Scientifique, Sportif→Garde, Propagandiste supprimé,
+  //  nouveaux métiers de production), production DIRECTE des 14
+  //  aménagements tier 1 remplacée par des emplacements. Migration
+  //  ciblée (même schéma que taxes25, SANS toucher au tampon
+  //  schemaVersion — règle (x)) : les configs sauvegardées portent
+  //  encore l'ancienne table. Convention de préservation :
+  //  · une entrée qui vaut ENCORE l'ANCIEN défaut exact est remplacée
+  //    par le nouveau défaut (renommage + valeurs comprises) ;
+  //  · une entrée personnalisée est seulement RENOMMÉE (ses valeurs
+  //    restent les siennes) ;
+  //  · les métiers manquants du nouveau référentiel sont AJOUTÉS ;
+  //  · Propagandiste (supprimé) est retiré (ses titulaires passent
+  //    Sans-emploi par la migration d'ÉTAT v4).
+  if (!merged.metiersAmenagements2026) {
+    const RENOMMAGES: Record<string, string> = {
+      Artisan: 'Commerçant', Chercheur: 'Scientifique', Sportif: 'Garde',
+    }
+    // Anciens défauts (15 métiers, pré-3a, après normalisation —
+    //  regleGenre « vide » → '') : [nom, education, v1, r1, v2, r2, desc, nobleSeul, regleGenre, attribution]
+    const ANCIENS: Array<[string, string, number, string, number, string, string, boolean, string, string]> = [
+      ['Chasseur', '', 1, 'Nourriture', 0.1, 'Or', 'Métier par défaut', false, '', ''],
+      ['Artiste', 'Culturelle', 1.2, 'Tourisme', 0, '', '', false, '', 'Education'],
+      ['Chercheur', 'Scientifique', 0.2, 'Science', 0, '', '', false, '', 'Education'],
+      ['Éleveur', 'Agricole', 2.5, 'Nourriture', 0, '', '', false, '', 'Education'],
+      ['Sportif', 'Militaire', 5, 'Garnison', 0, '', '', false, '', 'Education'],
+      ['Artisan', 'Économique', 1.5, 'Or', 0, '', '', false, '', 'Education'],
+      ['Professeur', '', 0, '', 0, '', '', false, '', 'Ville'],
+      ['Dirigeant', '', 0, '', 0, '', 'Chef de faction · 1 par joueur', true, 'Hérédité', 'Succession'],
+      ['Gouverneur', '', 0, '', 0, '', 'Max 1 par ville', true, '', 'Manuelle'],
+      ['Héritier', '', 0, '', 0, '', 'Même dynastie que le Dirigeant', true, 'Hérédité', 'Manuelle'],
+      ['Marchand', '', 0, '', 0, '', '', false, '', 'Manuelle'],
+      ['Ministre', '', 0, '', 0, '', 'Plusieurs autorisés', true, '', 'Manuelle'],
+      ['Propagandiste', '', 0, '', 0, '', '', false, '', 'Manuelle'],
+      ['Soldat', '', 0, '', 0, '', '', false, '', 'Armée'],
+      ['Commandant', '', 0, '', 0, '', '', true, '', 'Armée'],
+    ]
+    const cle = (m: { education: string; valeur1: number; ressource1: string; valeur2: number; ressource2: string; description: string; nobleSeul: boolean; regleGenre: string; attribution: string }) =>
+      JSON.stringify([m.education, m.valeur1, m.ressource1, m.valeur2, m.ressource2, m.description, m.nobleSeul, m.regleGenre, m.attribution])
+    const nouveaux = new Map(DEFAULT_CONFIG.metiers.map((d) => [d.metier, d]))
+    const parAncienNom = new Map(ANCIENS.map((a2) => [a2[0], a2]))
+    const out: MetierDef[] = []
+    for (const m of merged.metiers) {
+      const nom = m.metier
+      const ancien = parAncienNom.get(nom)
+      if (ancien && cle(m) === JSON.stringify(ancien.slice(1))) {
+        // encore à l'ancien défaut exact → nouveau défaut (renommé si besoin)
+        const def = nouveaux.get(RENOMMAGES[nom] ?? nom)
+        if (def) out.push(structuredClone(def))
+        continue
+      }
+      if (RENOMMAGES[nom] && !merged.metiers.some((x) => x.metier === RENOMMAGES[nom])) {
+        m.metier = RENOMMAGES[nom] // personnalisée : renommée, valeurs conservées
+      }
+      if (nom !== 'Propagandiste') out.push(m)
+    }
+    // métiers manquants du nouveau référentiel : ajoutés à la fin
+    for (const d of DEFAULT_CONFIG.metiers) {
+      if (!out.some((m) => m.metier === d.metier)) out.push(structuredClone(d))
+    }
+    merged.metiers = out
+    // metiersEffets (wiki) : Propagandiste retiré, Garde/Banquier/
+    //  Troubadour/Professeur ajoutés, texte Marchand mis à jour.
+    merged.metiersEffets = (merged.metiersEffets ?? []).filter((e) => e.metier !== 'Propagandiste')
+    for (const d of DEFAULT_CONFIG.metiersEffets) {
+      if (!merged.metiersEffets.some((e) => e.metier === d.metier)) {
+        merged.metiersEffets.push(structuredClone(d))
+      } else if (d.metier === 'Marchand') {
+        const e = merged.metiersEffets.find((x) => x.metier === 'Marchand')
+        const ANCIEN_M = 'Portée 9 PM, 4 PM par tour. Le marchand ouvre UNE route commerciale entre sa ville et la ville d\'un autre joueur : chaque tour, les DEUX joueurs reliés gagnent 4 Or et le propriétaire du marchand copie la production de l\'aménagement ENTIER choisi dans la ville ciblée — toutes ses ressources produites (choisi à l\'ouverture de la route, modifiable à tout moment ; un marchand ne tient qu\'une route, qui se ferme s\'il perd son titre ou meurt). Un marchand peut traverser les cases d\'eau et de rivière une fois les bateaux débloqués. Un marchand envoyé vers une cité libre ne produit pas de ressources (règle de plateau).'
+        if (e && e.effet === ANCIEN_M) e.effet = d.effet
+      }
+    }
+    // Constructions : les 14 aménagements tier 1 passent production →
+    //  emplacements. Effets remplacés SEULEMENT s'ils valent encore
+    //  l'ancien défaut exact (édition préservée sinon) ; les
+    //  emplacements sont TOUJOURS ajoutés s'ils manquent.
+    const ANCIENS_EFFETS: Record<string, Array<EffetConstruction>> = {
+      'Baleinier': [{ ressource: 'Or', quantite: 2 }, { ressource: 'Nourriture', quantite: 10 }],
+      'Bâteau de pêche': [{ ressource: 'Nourriture', quantite: 8 }],
+      'Carrière': [{ ressource: 'Pierre', quantite: 1 }],
+      'Champ': [{ ressource: 'Nourriture', quantite: 15, ete: true }],
+      'Foire': [{ ressource: 'Tourisme', quantite: 5 }],
+      'Mine de Charbon': [{ ressource: 'Charbon', quantite: 1 }],
+      'Mine de Fer': [{ ressource: 'Fer', quantite: 1 }],
+      "Mine d'Or": [{ ressource: 'Or', quantite: 4 }],
+      'Observatoire': [{ ressource: 'Science', quantite: 1 }],
+      'Pâturage': [{ ressource: 'Bétail', quantite: 1 }, { ressource: 'Nourriture', quantite: 4 }],
+      'Rizière': [{ ressource: 'Nourriture', quantite: 20, ete: true }],
+      'Scierie': [{ ressource: 'Bois', quantite: 1 }],
+      'Sériciculture': [{ ressource: 'Soie', quantite: 1 }],
+      'Site archéologique': [{ ressource: 'Tourisme', quantite: 8 }],
+    }
+    const defsAmenagements = new Map(
+      DEFAULT_CONFIG.constructions.filter((c) => c.emplacements).map((c) => [c.nom, c]),
+    )
+    for (const c of merged.constructions ?? []) {
+      const def = defsAmenagements.get(c.nom)
+      if (!def) continue
+      if (c.emplacements === undefined) c.emplacements = structuredClone(def.emplacements)
+      const ancienEffets = ANCIENS_EFFETS[c.nom]
+      if (ancienEffets && JSON.stringify(c.effets ?? null) === JSON.stringify(ancienEffets)) {
+        c.effets = []
+        c.production = def.production
+        c.description = def.description
+      }
+    }
+    merged.metiersAmenagements2026 = true
   }
   return {
     p: merged.params,
