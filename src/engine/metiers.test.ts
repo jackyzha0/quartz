@@ -15,9 +15,12 @@
 //     n'attribue JAMAIS les postes nobles ni les métiers à
 //     attribution Armée/Succession/Ville ;
 //   · surnombre : les PLUS ÂGÉS perdent leur métier (Sans-emploi) ;
-//   · places libres : les Sans-emploi ADULTES prennent un poste,
-//     les plus âgés d'abord, en priorisant un métier AUTRE que
-//     Chasseur (ordre du référentiel) — jamais les enfants ;
+//   · places libres (arbitrage Thibaut 2026-10-22) : ordre « n'importe
+//     quel métier → Chasseur → sans métier » ; les Sans-emploi ADULTES
+//     prennent un poste, les plus âgés d'abord, en priorisant un métier
+//     AUTRE que Chasseur (ordre du référentiel) — jamais les enfants ;
+//     les CHASSEURS changent de métier dès qu'un poste AUTRE est
+//     disponible (le Chasseur n'est jamais qu'un poste de repli) ;
 //   · Sans-emploi = rôle NEUTRE : impôt nul, aucun effet ;
 //   · Fermier : production d'ÉTÉ seulement (champ ete du référentiel) ;
 //   · taxes : bonus ADDITIFS (Gouverneur +10 % toutes, Banquier +10 %
@@ -409,4 +412,40 @@ test('vague 3b : Ponton — chaque Pêcheur de la ville produit +0,5 Bétail par
   ville.batiments = []
   ville.proximite = 'Mer'
   assert.equal(detailGainsVille(state, p, ville, C).metiers['Bétail'] ?? 0, 0, 'sans Ponton : les Pêcheurs ne produisent pas de Bétail')
+})
+
+test('vague 3b : ordre de prise de poste « n\'importe quel métier → Chasseur → sans métier » — un Chasseur change de métier dès qu\'un autre poste est disponible', () => {
+  const state = partie()
+  const C = cfgOf(state.config)
+  const p = state.players[0]
+  // rang Hameau : 1 Commerçant, 3 Chasseurs (cap de test)
+  C.config.typesHabitation[0].metiersDisponibles = '3 Chasseurs, 1 Commerçant'
+  // un Chasseur en poste, un sans-emploi adulte, un enfant sans-emploi
+  state.population[p.n] = [
+    perso('ch-40', 40, { metier: C.p.metierChasseur }),
+    perso('s-30', 30),
+    perso('s-8', 8),
+  ]
+  invaliderIndexPopulation()
+  reaffecterMetiers(state, C)
+  const parId = new Map(state.population[p.n].map((c) => [c.id, c]))
+  assert.equal(parId.get('ch-40')!.metier, 'Commerçant', 'le Chasseur le plus âgé prend le poste de Commerçant (autre métier prioritaire)')
+  assert.equal(parId.get('s-30')!.metier, C.p.metierChasseur, 'le sans-emploi prend le poste de Chasseur LIBÉRÉ par le changement de métier')
+  assert.equal(parId.get('s-8')!.metier, null, 'un enfant ne prend jamais de poste')
+  assert.ok(state.log.some((l) => l.type === 'Métier' && l.texte.includes('change(nt) de métier')),
+    'un log Métier raconte le changement de métier du Chasseur')
+  // sans autre poste disponible : les Chasseurs restent Chasseurs
+  C.config.typesHabitation[0].metiersDisponibles = '3 Chasseurs'
+  const state2 = partie()
+  const C2 = cfgOf(state2.config)
+  C2.config.typesHabitation[0].metiersDisponibles = '3 Chasseurs'
+  state2.population[p.n] = [
+    perso('ch-50', 50, { metier: C2.p.metierChasseur }),
+    perso('ch-20', 20, { metier: C2.p.metierChasseur }),
+  ]
+  invaliderIndexPopulation()
+  reaffecterMetiers(state2, C2)
+  const parId2 = new Map(state2.population[p.n].map((c) => [c.id, c]))
+  assert.equal(parId2.get('ch-50')!.metier, C2.p.metierChasseur, 'sans autre poste : le Chasseur reste Chasseur')
+  assert.equal(parId2.get('ch-20')!.metier, C2.p.metierChasseur, 'sans autre poste : personne ne bouge')
 })

@@ -722,10 +722,12 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           rôles de cour/armée) ne sont pas plafonnés ici (∞ = règles propres) ; un
           marchand tenant une route commerciale occupe un poste créé par elle. La
           réaffectation automatique tourne à chaque fin de tour : surnombre →
-          les plus âgés passent Sans-emploi ; places libres → les Sans-emploi adultes
-          prennent un poste (autre que Chasseur en priorité ; jamais les postes nobles
-          ni les nominations d'école/armée). Les cités libres ne sont pas
-          concernées par les caps.
+          les plus âgés passent Sans-emploi ; places libres (ordre « n'importe quel
+          métier → Chasseur → sans métier ») → les Sans-emploi adultes prennent un
+          poste (autre que Chasseur en priorité ; jamais les postes nobles ni les
+          nominations d'école/armée) et les Chasseurs CHANGENT de métier dès qu'un
+          autre poste est disponible — le Chasseur n'est jamais qu'un poste de
+          repli. Les cités libres ne sont pas concernées par les caps.
         </p>
       </Card>
 

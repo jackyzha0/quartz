@@ -361,10 +361,10 @@ export function capMetierVille(metier: string | null, ville: City, C: Cfg = cfgO
 }
 
 /** Métiers plafonnés (cap FINIE) d'une ville, dans l'ordre de
- *  PRIORISATION (référentiel, Chasseur en dernier — vague 1 : « un
- *  habitant sans métier prend en priorité un métier autre que
- *  Chasseur si une place y est libre »), avec leurs places libres
- *  (cap − en poste, vivants seulement). */
+ *  PRIORISATION (référentiel, Chasseur en dernier — arbitrage
+ *  Thibaut 2026-10-22 : « n'importe quel métier → Chasseur → sans
+ *  métier »), avec leurs places libres (cap − en poste, vivants
+ *  seulement). */
 function postesLibresVille(vivants: Character[], ville: City, C: Cfg): Array<{ metier: string; libres: number }> {
   const enPoste: Record<string, number> = {}
   for (const c of vivants) {
@@ -448,11 +448,15 @@ export function occupationsMetierVille(
  *  · SURNOMBRE (cap baissée, aménagement perdu…) : les PLUS ÂGÉS
  *    perdent leur poste en premier (passage Sans-emploi — rôle
  *    neutre : impôt nul, aucun effet) ;
- *  · PLACES LIBRES : les Sans-emploi ADULTES prennent un poste,
- *    les plus âgés d'abord (jamais les enfants), en priorisant un
- *    métier AUTRE QUE Chasseur (ordre du référentiel) — le Chasseur
- *    n'est pris que s'il ne reste que lui, sans place l'habitant
- *    reste Sans-emploi.
+ *  · PLACES LIBRES (arbitrage Thibaut 2026-10-22) : ordre de prise
+ *    de poste « n'importe quel métier → Chasseur → sans métier ».
+ *    Les Sans-emploi ADULTES prennent un poste, les plus âgés
+ *    d'abord (jamais les enfants), en priorisant un métier AUTRE
+ *    QUE Chasseur (ordre du référentiel) ; et les CHASSEURS en
+ *    poste CHANGENT de métier dès qu'un poste AUTRE est disponible
+ *    (même priorisation, même ordre d'âge) — le Chasseur n'est
+ *    jamais qu'un poste de repli ; sans place, l'habitant reste
+ *    Sans-emploi.
  *  Les cités libres ne passent PAS ici (hors du champ des caps). */
 export function reaffecterMetiers(state: GameState, C: Cfg = cfgOf(state.config)): void {
   for (const p of state.players) {
@@ -488,23 +492,43 @@ export function reaffecterMetiers(state: GameState, C: Cfg = cfgOf(state.config)
           texte: `${ville.nom} : capacité de ${t.metier.toLowerCase()}(s) atteinte (${Math.floor(cap)}) — ${perdants.length} habitant(s) (les plus âgés) passe(nt) sans emploi.`,
         })
       }
-      // 2. places libres : les Sans-emploi adultes prennent un poste
-      //    (priorisation — autre que Chasseur d'abord), les plus âgés
-      //    d'abord (jamais les enfants).
+      // 2. places libres (arbitrage Thibaut 2026-10-22) : ordre de
+      //    prise de poste « n'importe quel métier → Chasseur → sans
+      //    métier ». Candidats : les Sans-emploi ADULTES ET les
+      //    CHASSEURS en poste (un Chasseur CHANGE de métier dès qu'un
+      //    poste AUTRE que Chasseur est disponible — le Chasseur
+      //    n'est jamais qu'un poste de repli), les plus âgés d'abord
+      //    (jamais les enfants).
       const attribues = new Map<string, number>()
-      const sansEmploi = vivants
-        .filter((c) => !c.metier && c.age >= C.p.adultAge)
+      const changements = new Map<string, number>()
+      const candidats = vivants
+        .filter((c) => (!c.metier && c.age >= C.p.adultAge) || c.metier === C.p.metierChasseur)
         .sort((a, b) => b.age - a.age)
-      if (sansEmploi.length > 0) {
+      if (candidats.length > 0) {
         // postes recalculés APRÈS le surnombre (les perdants ci-dessus
         //  sont déjà Sans-emploi et ne comptent plus comme en poste)
         const postes = postesLibresVille(vivants, ville, C)
-        for (const c of sansEmploi) {
-          const poste = postes.find((x) => x.libres > 0)
-          if (!poste) break
+        for (const c of candidats) {
+          const etaitChasseur = c.metier === C.p.metierChasseur
+          // un Chasseur ne « prend » pas son propre poste : il ne
+          //  bouge que vers un métier AUTRE (s'il ne reste que des
+          //  postes de Chasseur, il reste Chasseur — sans consommer
+          //  de place) ; les autres candidats les prennent.
+          const poste = postes.find((x) => x.libres > 0
+            && (!etaitChasseur || x.metier !== C.p.metierChasseur))
+          if (!poste) { if (etaitChasseur) continue; else break }
           c.metier = poste.metier
           poste.libres -= 1
-          attribues.set(poste.metier, (attribues.get(poste.metier) ?? 0) + 1)
+          if (etaitChasseur) {
+            // son poste de Chasseur se libère — disponible pour les
+            //  candidats suivants (le cap n'est pas concerné : il
+            //  repart du nombre d'occupants au prochain tour).
+            const pChasseur = postes.find((x) => x.metier === C.p.metierChasseur)
+            if (pChasseur) pChasseur.libres += 1
+            changements.set(poste.metier, (changements.get(poste.metier) ?? 0) + 1)
+          } else {
+            attribues.set(poste.metier, (attribues.get(poste.metier) ?? 0) + 1)
+          }
         }
       }
       if (attribues.size > 0) {
@@ -512,6 +536,13 @@ export function reaffecterMetiers(state: GameState, C: Cfg = cfgOf(state.config)
         state.log.push({
           turn: state.turn + 1, type: 'Métier', joueur: p.n,
           texte: `${ville.nom} : ${[...attribues.values()].reduce((x, y) => x + y, 0)} sans-emploi(s) pren(nen)t un poste (places disponibles) — ${textePostes}.`,
+        })
+      }
+      if (changements.size > 0) {
+        const textePostes = [...changements.entries()].map(([m, n]) => `${n} ${m.toLowerCase()}(s)`).join(', ')
+        state.log.push({
+          turn: state.turn + 1, type: 'Métier', joueur: p.n,
+          texte: `${ville.nom} : ${[...changements.values()].reduce((x, y) => x + y, 0)} chasseur(s) change(nt) de métier (places disponibles) — ${textePostes} ; le Chasseur n est jamais qu un poste de repli.`,
         })
       }
     }
