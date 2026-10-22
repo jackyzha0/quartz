@@ -382,7 +382,7 @@ function postesLibresVille(vivants: Character[], ville: City, C: Cfg): Array<{ m
     if (t.nobleSeul || t.attribution === 'Armée' || t.attribution === 'Succession' || t.attribution === 'Ville') continue
     if (Number.isFinite(capMetierVille(t.metier, ville, C))) plafonnes.push(t.metier)
   }
-  // priorisation : le Chasseur passe en dernier (métier par défaut)
+  // priorisation : le Chasseur passe en dernier (poste de repli — arbitrage 2026-10-22)
   plafonnes.sort((a, b) => (a === C.p.metierChasseur ? 1 : 0) - (b === C.p.metierChasseur ? 1 : 0))
   return plafonnes.map((m) => ({
     metier: m,

@@ -2765,12 +2765,6 @@
    "effet": ""
   },
   {
-   "categorie": "",
-   "nom": "Consomme 2 Or par tour. 10 Garnison.",
-   "cout": "",
-   "effet": "Métiers disponibles : 50 Chasseurs, 2 Gardes, 1 Commerçant, 1 Gouverneur. Domiciles disponibles : 50 maisons, 10 Auberge."
-  },
-  {
    "categorie": "Militaire",
    "nom": "Poste de garde",
    "cout": "25 Or + 4 Fer",
@@ -2817,12 +2811,6 @@
    "nom": "Ponton",
    "cout": "5 Or + 5 Bois.",
    "effet": "+2 emplacements de Pêcheur. Les pêcheurs de cette habitation produisent également +0,5 Bétail par tour. Habitations côtières uniquement (proximité Rivière ou Mer)."
-  },
-  {
-   "categorie": "Economique",
-   "nom": "Consomme 10 Nourriture et 8 Or par tour. 24 Garnison.",
-   "cout": "",
-   "effet": "Métiers disponibles : 30 Chasseurs, 4 Gardes, 5 Commerçants, 1 Gouverneur. Domiciles disponibles : 100 maisons, 50 Auberge."
   },
   {
    "categorie": "Militaire",
@@ -2907,12 +2895,6 @@
    "nom": "Grande Cité : 40 Or + 12 Bétail + 12 Charbons, 200 habitants requis",
    "cout": "",
    "effet": ""
-  },
-  {
-   "categorie": "Guilde",
-   "nom": "Consomme 20 Nourriture et 20 Or par tour. 40 Garnison.",
-   "cout": "",
-   "effet": "Métiers disponibles : 8 Gardes, 10 Commerçants, 1 Gouverneur. Domiciles disponibles : 150 maisons, 100 Auberge."
   },
   {
    "categorie": "Militaire",
@@ -3067,12 +3049,6 @@
    "effet": ""
   },
   {
-   "categorie": "",
-   "nom": "Consomme 2 Or par tour. 26 Garnison.",
-   "cout": "",
-   "effet": "Métiers disponibles : 40 Chasseurs, 4 Gardes, 1 Gouverneur. Domiciles disponibles : 50 maisons, 10 Auberge."
-  },
-  {
    "categorie": "Militaire",
    "nom": "Poste de garde",
    "cout": "25 Or + 4 Fer",
@@ -3133,12 +3109,6 @@
    "effet": "Si vous levez une armée dans cette habitation, dépensez 10 Or de moins."
   },
   {
-   "categorie": "Economique",
-   "nom": "Consomme 10 Nourriture et 8 Or par tour. 45 Garnison.",
-   "cout": "",
-   "effet": "Métiers disponibles : 20 Chasseurs, 8 Gardes, 1 Gouverneur. Domiciles disponibles : 100 maisons, 50 Auberge."
-  },
-  {
    "categorie": "Militaire",
    "nom": "Caserne",
    "cout": "Poste de garde requis. 25 Or + 4 Fer.",
@@ -3197,12 +3167,6 @@
    "nom": "Forteresse : 120 Or + 10 Pierres + 12  Fer, 200 habitants requis",
    "cout": "",
    "effet": ""
-  },
-  {
-   "categorie": "Guilde",
-   "nom": "Consomme 20 Nourriture et 20 Or par tour. 90 Garnison.",
-   "cout": "",
-   "effet": "Métiers disponibles : 16 Gardes, 1 Gouverneur. Domiciles disponibles : 150 maisons, 100 Auberge."
   },
   {
    "categorie": "Militaire",
@@ -6595,7 +6559,7 @@
    "ressource1": "Nourriture",
    "valeur2": 0,
    "ressource2": "",
-   "description": "Métier par défaut",
+   "description": "Dernier métier pris (poste de repli) : change de métier dès qu'un autre poste est disponible",
    "nobleSeul": false,
    "regleGenre": "vide",
    "attribution": "",
