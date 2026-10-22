@@ -1345,6 +1345,33 @@ référentiel chirurgicale (28 entrées au style indent=1 du fichier
 d'origine, aucune autre ligne touchée — re-vérifié par diff
 sémantique contre la tête).
 
+**Correctif (même jour, retour Thibaut : « les descriptions des
+aménagements, c'est du grand n'importe quoi »).** DIAGNOSTIC : la
+partie en cours embarque une config sauvegardée AVANT la vague 3a
+(production → emplacements) ; `migrerConstructions` n'ajoute que
+les entrées MANQUANTES par nom — les entrées existantes gardaient
+donc l'ANCIENNE description (« +2 Or et +10 Nourriture par tour. »),
+les ANCIENS effets structurés (encore lus par le moteur : l'aménagement
+continuait de produire !) et PAS de champ `emplacements`, alors que
+les tiers 2/3 (ajoutés neufs) étaient conformes — d'où le mélange
+mensonger. CORRECTIF : SCHEMA_VERSION_CONFIG 3 → 4 + migration
+`realignerAmenagements` (defaultConfig.ts) — tout aménagement de même
+nom qu'une entrée du référentiel est REMPLACÉ par l'entrée courante
+(description, production, coût, terrain, emplacements, effets,
+rangMinHabitation, remplaceAmenagement) ; arbitrage : un aménagement
+du référentiel est une donnée de RÉFÉRENCE, pas de personnalisation ;
+les aménagements PERSO survivent, bâtiments et autres tables
+intouchés. Les configs v3 tamponnées repassent une fois par les
+migrations au prochain chargement (cfgOf) puis sont retamponnées v4
+et sauvegardées convergées. Tests : nouveau cas migration v4 dans
+state/config.test.ts (description/effets réalignés, perso conservé,
+tiers ajoutés, idempotence) ; params.test.ts mis au niveau (tampon
+courant = 4). Validation : tsc EXIT 0, 150/150 tests verts, diag
+exit 0. NOTE : la table morte `amenagements` (feuille d'origine du
+classeur — Baleine, Brasserie, Bâtiment, doublons, rangs incohérents)
+n'est lue NULLE PART (UI = constructions uniquement) : non touchée
+pour l'instant, à purger un jour si demandé.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
