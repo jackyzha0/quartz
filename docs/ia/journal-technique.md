@@ -1372,6 +1372,39 @@ classeur — Baleine, Brasserie, Bâtiment, doublons, rangs incohérents)
 n'est lue NULLE PART (UI = constructions uniquement) : non touchée
 pour l'instant, à purger un jour si demandé.
 
+**Retrait des descriptions d'aménagements (même jour, retour Thibaut :
+« retire carrément les descriptions des aménagements »).** Après le
+réalignement v4 ci-dessus, les descriptions d'aménagements ne servaient
+plus à rien en jeu : la carte affiche l'effet réel
+(`resumeConstruction || production`, les emplacements) et le picker des
+tiers reconstruit lui-même sa ligne « Remplace un … (habitation de rang
+N minimum) » — la description n'était qu'un résidu de texte, sujet à
+re-devenir mensonger. DÉCISION : vider le champ `description` des 42
+entrées Aménagement du référentiel (tiers 1, 2 ET 3), par édition
+textuelle chirurgicale (aucune resérialisation du JSON indent=1, autres
+sections vérifiées intactes par diff sémantique). MIGRATION CIBLÉE
+one-shot `descriptionsAmenagementsVides` (patron taxes25 : marqueur
+indépendant du tampon schemaVersion, PAS de bump v4→v5) dans cfgOf —
+jouée même sur les configs déjà convergées v4, elle vide
+`description` de toute entrée Aménagement puis pose le marqueur ;
+une description d'aménagement personnalisée saisie ENSUITE dans
+Référentiels survit aux re-lectures (one-shot). NON TOUCHÉ :
+descriptions des BÂTIMENTS (Servitude, Hôtel de ville, Camp de
+bâtisseurs — lues par le moteur/le wiki), champ `production`
+(= l'effet affiché), colonne Description de l'UI Référentiels/Wiki
+(reste vide, colonnes conservées). Consumers vérifiés : VilleCarte
+(tooltip vide, picker inchangé — filter(Boolean) saute la ligne),
+amenagements.ts `effet: ref.description` → '' (champ non consommé
+en aval). Tests : assertion migration v4 mise à jour (description
+réalignée = '') + nouveau cas one-shot dans state/config.test.ts
+(config v4 portant des descriptions → vidées, bâtiments intacts,
+marqueur posé, description perso post-migration préservée).
+Validation : tsc EXIT 0, 151/151 tests verts, diag exit 0. Push en
+deux commits (CI verte sur chacun) : A = référentiel vidé + test v1
+(le réalignement v4 déjà déployé tire les descriptions courantes),
+B = migration ciblée + test complet ; miroirs v4 avec blobs
+identiques.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild
