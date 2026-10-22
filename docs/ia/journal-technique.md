@@ -1299,6 +1299,21 @@ log agrégé « change(nt) de métier ») ; texte d'aide caps actualisé
 libéré pris par un sans-emploi, sans autre poste personne ne bouge).
 Validation : tsc EXIT 0, 145/145 tests verts, diag exit 0.
 
+**Purge (même jour) : suppression des anciennes descriptions devenues
+trompeuses.** (1) Métier Chasseur du référentiel : description
+« Métier par défaut » → « Dernier métier pris (poste de repli) :
+change de métier dès qu'un autre poste est disponible » (visible en
+jeu, onglet Référentiels ; l'entrée « Métier par défaut » de la table
+ANCIENS de migration est HISTORIQUE et reste intacte). (2) Six
+rangées de rang « Consomme X par tour. Y Garnison. » retirées de
+batimentsVille/batimentsChateau (47/43 entrées) : consommation et
+garnison de base des rangs supprimées par la vague 3b, ces rangées
+n'étaient plus affichées (filtre batimentsDef) ni lues par le moteur
+ou migrerTypesHabitation — données mortes au texte mensonger. (3)
+Commentaire metiers.ts reformulé (« poste de repli » au lieu de
+« métier par défaut »). Validation : diff byte-exact attendu
+(6 blocs + description), tsc EXIT 0, 145/145 tests verts, diag exit 0.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

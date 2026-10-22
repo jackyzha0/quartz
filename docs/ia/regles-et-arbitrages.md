@@ -514,6 +514,13 @@ rang 1). Arbitrages actés lors de la session :
   2026-10-22 : toute proximité autre que « Plaine ») — câblé moteur :
   hors proximité, le Ponton n'ouvre aucun poste et son bonus disparaît
   (helper `villeCotiere`, garde-fou d'avertissement à la construction).
+- **Purge des anciennes descriptions (2026-10-22)** : la description
+  du métier Chasseur du référentiel dit désormais « Dernier métier
+  pris (poste de repli) : change de métier dès qu'un autre poste est
+  disponible » ; les six rangées de rang « Consomme X par tour.
+  Y Garnison. » ont été retirées du référentiel
+  (batimentsVille/batimentsChateau) — consommation et garnison de
+  base des rangs n'existent plus.
 - **Points ouverts** : le **Grand veneur** (ministère −5 Nourriture
   sur la consommation des habitations) devient INERT tant qu'aucune
   consommation n'existe ; garnisons hors-rang (régimes, ministères,
