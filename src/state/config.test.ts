@@ -129,8 +129,8 @@ test('config : migration v4 — les aménagements pré-vague-3a sont réalignés
   })
   const C = cfgOf(c)
   const b = C.config.constructions.find((x) => x.nom === 'Baleinier')!
-  assert.equal(b.description, '3 emplacements de Pêcheur, 2 emplacements de Commerçant.',
-    'description réalignée sur le référentiel (plus d ancien texte de production)')
+  assert.equal(b.description, '',
+    'description réalignée sur le référentiel (vide depuis le retrait des descriptions, plus d ancien texte de production)')
   assert.deepEqual(
     (b.emplacements ?? []).map((e) => `${e.places} ${e.metier}`),
     ['3 Pêcheur', '2 Commerçant'],
@@ -148,5 +148,6 @@ test('config : migration v4 — les aménagements pré-vague-3a sont réalignés
     're-lecture : le perso survit (pas de re-migration)')
   assert.equal(
     C2.config.constructions.find((x) => x.nom === 'Baleinier')!.description,
-    '3 emplacements de Pêcheur, 2 emplacements de Commerçant.')
+    '', 're-lecture : description toujours vide')
 })
+

@@ -6069,7 +6069,7 @@
    "terrain": "Baleine",
    "cout": "8 Or + 3 Bois",
    "production": "3 emplacements de Pêcheur, 2 emplacements de Commerçant.",
-   "description": "3 emplacements de Pêcheur, 2 emplacements de Commerçant.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6090,7 +6090,7 @@
    "terrain": "Crabe",
    "cout": "8 Or + 3 Bois",
    "production": "2 emplacements de Pêcheur.",
-   "description": "2 emplacements de Pêcheur.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6107,7 +6107,7 @@
    "terrain": "Pierre",
    "cout": "8 Or + 3 Bois",
    "production": "2 emplacements de Mineur.",
-   "description": "2 emplacements de Mineur.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6124,7 +6124,7 @@
    "terrain": "Plaine",
    "cout": "8 Or + 3 Bois",
    "production": "3 emplacements de Fermier.",
-   "description": "3 emplacements de Fermier.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6141,7 +6141,7 @@
    "terrain": "Plaine ou Désert",
    "cout": "8 Or + 3 Bois",
    "production": "1 emplacement d'Artiste, 1 emplacement de Commerçant.",
-   "description": "1 emplacement d'Artiste, 1 emplacement de Commerçant.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6162,7 +6162,7 @@
    "terrain": "Charbon",
    "cout": "8 Or + 3 Bois",
    "production": "2 emplacements de Charbonnier.",
-   "description": "2 emplacements de Charbonnier.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6179,7 +6179,7 @@
    "terrain": "Fer",
    "cout": "8 Or + 3 Bois",
    "production": "2 emplacements de Forgeron.",
-   "description": "2 emplacements de Forgeron.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6196,7 +6196,7 @@
    "terrain": "Or",
    "cout": "8 Or + 3 Bois",
    "production": "3 emplacements de Marchand.",
-   "description": "3 emplacements de Marchand.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6213,7 +6213,7 @@
    "terrain": "Geyser/Volcan",
    "cout": "8 Or + 3 Bois",
    "production": "1 emplacement de Scientifique.",
-   "description": "1 emplacement de Scientifique.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6230,7 +6230,7 @@
    "terrain": "Bétail",
    "cout": "8 Or + 3 Bois",
    "production": "2 emplacements d'Éleveur.",
-   "description": "2 emplacements d'Éleveur.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6247,7 +6247,7 @@
    "terrain": "Marais",
    "cout": "8 Or + 3 Bois",
    "production": "4 emplacements de Fermier.",
-   "description": "4 emplacements de Fermier.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6264,7 +6264,7 @@
    "terrain": "Forêt",
    "cout": "8 Or + 3 Bois",
    "production": "2 emplacements de Bûcheron, 2 emplacements de Chasseur.",
-   "description": "2 emplacements de Bûcheron, 2 emplacements de Chasseur.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6285,7 +6285,7 @@
    "terrain": "Soie",
    "cout": "8 Or + 3 Bois",
    "production": "2 emplacements de Tisseur, 2 emplacements de Chasseur.",
-   "description": "2 emplacements de Tisseur, 2 emplacements de Chasseur.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6306,7 +6306,7 @@
    "terrain": "Ruine",
    "cout": "8 Or + 3 Bois",
    "production": "2 emplacements d'Archéologue.",
-   "description": "2 emplacements d'Archéologue.",
+   "description": "",
    "effets": [],
    "emplacements": [
     {
@@ -6509,7 +6509,7 @@
   "terrain": "Geyser/Volcan",
   "cout": "15 Or + 3 Pierre",
   "production": "3 emplacements de Scientifique.",
-  "description": "Amélioration (remplace le Observatoire de tier 1) : 3 emplacements de Scientifique.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6528,7 +6528,7 @@
   "terrain": "Geyser/Volcan",
   "cout": "35 Or + 3 Fer",
   "production": "5 emplacements de Scientifique.",
-  "description": "Amélioration (remplace le Observatoire de tier 2) : 5 emplacements de Scientifique.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6547,7 +6547,7 @@
   "terrain": "Baleine",
   "cout": "15 Or + 3 Pierre",
   "production": "5 emplacements de Pêcheur, 5 emplacements de Commerçant.",
-  "description": "Amélioration (remplace le Baleinier de tier 1) : 5 emplacements de Pêcheur, 5 emplacements de Commerçant.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6570,7 +6570,7 @@
   "terrain": "Baleine",
   "cout": "35 Or + 3 Fer",
   "production": "7 emplacements de Pêcheur, 10 emplacements de Commerçant.",
-  "description": "Amélioration (remplace le Baleinier de tier 2) : 7 emplacements de Pêcheur, 10 emplacements de Commerçant.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6593,7 +6593,7 @@
   "terrain": "Crabe",
   "cout": "15 Or + 3 Pierre",
   "production": "4 emplacements de Pêcheur.",
-  "description": "Amélioration (remplace le Bâteau de pêche de tier 1) : 4 emplacements de Pêcheur.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6612,7 +6612,7 @@
   "terrain": "Crabe",
   "cout": "35 Or + 3 Fer",
   "production": "7 emplacements de Pêcheur.",
-  "description": "Amélioration (remplace le Bâteau de pêche de tier 2) : 7 emplacements de Pêcheur.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6631,7 +6631,7 @@
   "terrain": "Pierre",
   "cout": "15 Or + 3 Pierre",
   "production": "4 emplacements de Mineur.",
-  "description": "Amélioration (remplace la Carrière de tier 1) : 4 emplacements de Mineur.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6650,7 +6650,7 @@
   "terrain": "Pierre",
   "cout": "35 Or + 3 Fer",
   "production": "6 emplacements de Mineur, 2 emplacements de Charbonnier.",
-  "description": "Amélioration (remplace la Carrière de tier 2) : 6 emplacements de Mineur, 2 emplacements de Charbonnier.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6673,7 +6673,7 @@
   "terrain": "Plaine",
   "cout": "15 Or + 3 Pierre",
   "production": "6 emplacements de Fermier.",
-  "description": "Amélioration (remplace le Champ de tier 1) : 6 emplacements de Fermier.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6692,7 +6692,7 @@
   "terrain": "Plaine",
   "cout": "35 Or + 3 Fer",
   "production": "10 emplacements de Fermier.",
-  "description": "Amélioration (remplace le Champ de tier 2) : 10 emplacements de Fermier.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6711,7 +6711,7 @@
   "terrain": "Plaine ou Désert",
   "cout": "15 Or + 3 Pierre",
   "production": "2 emplacements d'Artiste, 2 emplacements de Commerçant.",
-  "description": "Amélioration (remplace la Foire de tier 1) : 2 emplacements d'Artiste, 2 emplacements de Commerçant.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6734,7 +6734,7 @@
   "terrain": "Plaine ou Désert",
   "cout": "35 Or + 3 Fer",
   "production": "4 emplacements d'Artiste, 4 emplacements de Commerçant.",
-  "description": "Amélioration (remplace la Foire de tier 2) : 4 emplacements d'Artiste, 4 emplacements de Commerçant.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6757,7 +6757,7 @@
   "terrain": "Charbon",
   "cout": "15 Or + 3 Pierre",
   "production": "4 emplacements de Charbonnier.",
-  "description": "Amélioration (remplace la Mine de Charbon de tier 1) : 4 emplacements de Charbonnier.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6776,7 +6776,7 @@
   "terrain": "Charbon",
   "cout": "35 Or + 3 Fer",
   "production": "6 emplacements de Charbonnier.",
-  "description": "Amélioration (remplace la Mine de Charbon de tier 2) : 6 emplacements de Charbonnier.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6795,7 +6795,7 @@
   "terrain": "Fer",
   "cout": "15 Or + 3 Pierre",
   "production": "4 emplacements de Forgeron, 1 emplacement de Garde.",
-  "description": "Amélioration (remplace la Mine de Fer de tier 1) : 4 emplacements de Forgeron, 1 emplacement de Garde.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6818,7 +6818,7 @@
   "terrain": "Fer",
   "cout": "35 Or + 3 Fer",
   "production": "6 emplacements de Forgeron, 3 emplacements de Garde.",
-  "description": "Amélioration (remplace la Mine de Fer de tier 2) : 6 emplacements de Forgeron, 3 emplacements de Garde.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6841,7 +6841,7 @@
   "terrain": "Or",
   "cout": "15 Or + 3 Pierre",
   "production": "7 emplacements de Marchand.",
-  "description": "Amélioration (remplace la Mine d'Or de tier 1) : 7 emplacements de Marchand.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6860,7 +6860,7 @@
   "terrain": "Or",
   "cout": "35 Or + 3 Fer",
   "production": "12 emplacements de Marchand.",
-  "description": "Amélioration (remplace la Mine d'Or de tier 2) : 12 emplacements de Marchand.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6879,7 +6879,7 @@
   "terrain": "Bétail",
   "cout": "15 Or + 3 Pierre",
   "production": "5 emplacements d'Éleveur.",
-  "description": "Amélioration (remplace le Pâturage de tier 1) : 5 emplacements d'Éleveur.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6898,7 +6898,7 @@
   "terrain": "Bétail",
   "cout": "35 Or + 3 Fer",
   "production": "8 emplacements d'Éleveur.",
-  "description": "Amélioration (remplace le Pâturage de tier 2) : 8 emplacements d'Éleveur.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6917,7 +6917,7 @@
   "terrain": "Marais",
   "cout": "15 Or + 3 Pierre",
   "production": "8 emplacements de Fermier.",
-  "description": "Amélioration (remplace la Rizière de tier 1) : 8 emplacements de Fermier.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6936,7 +6936,7 @@
   "terrain": "Marais",
   "cout": "35 Or + 3 Fer",
   "production": "15 emplacements de Fermier.",
-  "description": "Amélioration (remplace la Rizière de tier 2) : 15 emplacements de Fermier.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6955,7 +6955,7 @@
   "terrain": "Forêt",
   "cout": "15 Or + 3 Pierre",
   "production": "4 emplacements de Bûcheron, 1 emplacement de Tisseur.",
-  "description": "Amélioration (remplace la Scierie de tier 1) : 4 emplacements de Bûcheron, 1 emplacement de Tisseur.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -6978,7 +6978,7 @@
   "terrain": "Forêt",
   "cout": "35 Or + 3 Fer",
   "production": "6 emplacements de Bûcheron, 2 emplacements de Tisseur.",
-  "description": "Amélioration (remplace la Scierie de tier 2) : 6 emplacements de Bûcheron, 2 emplacements de Tisseur.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -7001,7 +7001,7 @@
   "terrain": "Soie",
   "cout": "15 Or + 3 Pierre",
   "production": "4 emplacements de Tisseur, 2 emplacements de Commerçant.",
-  "description": "Amélioration (remplace la Sériciculture de tier 1) : 4 emplacements de Tisseur, 2 emplacements de Commerçant.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -7024,7 +7024,7 @@
   "terrain": "Soie",
   "cout": "35 Or + 3 Fer",
   "production": "6 emplacements de Tisseur, 5 emplacements de Commerçant.",
-  "description": "Amélioration (remplace la Sériciculture de tier 2) : 6 emplacements de Tisseur, 5 emplacements de Commerçant.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -7047,7 +7047,7 @@
   "terrain": "Ruine",
   "cout": "15 Or + 3 Pierre",
   "production": "4 emplacements d'Archéologue.",
-  "description": "Amélioration (remplace le Site archéologique de tier 1) : 4 emplacements d'Archéologue.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
@@ -7066,7 +7066,7 @@
   "terrain": "Ruine",
   "cout": "35 Or + 3 Fer",
   "production": "7 emplacements d'Archéologue.",
-  "description": "Amélioration (remplace le Site archéologique de tier 2) : 7 emplacements d'Archéologue.",
+  "description": "",
   "effets": [],
   "emplacements": [
    {
