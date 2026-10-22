@@ -2816,7 +2816,7 @@
    "categorie": "Economique",
    "nom": "Ponton",
    "cout": "5 Or + 5 Bois.",
-   "effet": "+2 emplacements de Pêcheur. Les pêcheurs de cette habitation produisent également +0,5 Bétail par tour. Habitations côtières uniquement."
+   "effet": "+2 emplacements de Pêcheur. Les pêcheurs de cette habitation produisent également +0,5 Bétail par tour. Habitations côtières uniquement (proximité Rivière ou Mer)."
   },
   {
    "categorie": "Economique",
@@ -5251,7 +5251,7 @@
    "nom": "Ponton",
    "cout": "5 Or + 5 Bois",
    "production": "+2 emplacements de Pêcheur.",
-   "description": "+2 emplacements de Pêcheur. Les pêcheurs de cette habitation produisent également +0,5 Bétail par tour. Habitations côtières uniquement.",
+   "description": "+2 emplacements de Pêcheur. Les pêcheurs de cette habitation produisent également +0,5 Bétail par tour. Habitations côtières uniquement (proximité Rivière ou Mer).",
    "rangMinHabitation": 1,
    "effets": [],
    "emplacements": [
