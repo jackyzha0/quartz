@@ -386,6 +386,17 @@ export interface GameConfig {
    *  emplacements. Marqueur (z) : migration ciblée (cfgOf)
    *  indépendante du tampon schemaVersion. */
   metiersAmenagements2026?: boolean
+  /** Descriptions d'aménagements vidées (retour Thibaut 2026-10-22
+   *  « retire carrément les descriptions des aménagements ») : le
+   *  champ description de toute entrée constructions categorie
+   *  Aménagement (tiers 1-3) est vidé UNE FOIS, y compris sur les
+   *  configs déjà tamponnées v4 — la description ne servait plus en
+   *  jeu (l'effet affiché est resumeConstruction || production, la
+   *  ligne « Remplace… » des tiers est reconstruite par la carte).
+   *  One-shot : une description d'aménagement personnalisée saisie
+   *  APRÈS ce passage dans Référentiels est préservée. Marqueur (z) :
+   *  migration ciblée (cfgOf), même schéma que taxes25. */
+  descriptionsAmenagementsVides?: boolean
 }
 
 // ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
@@ -1524,6 +1535,18 @@ export function cfgOf(config?: GameConfig): Cfg {
       }
     }
     merged.metiersAmenagements2026 = true
+  }
+  //  Migration ciblée (même schéma que taxes25, SANS toucher au tampon
+  //  schemaVersion) : descriptions d'aménagements vidées une bonne
+  //  fois pour toutes (retour Thibaut 2026-10-22). Jouée même sur les
+  //  configs déjà convergées v4, puis tamponnée par
+  //  descriptionsAmenagementsVides pour préserver toute description
+  //  personnalisée saisie ensuite dans Référentiels.
+  if (!merged.descriptionsAmenagementsVides) {
+    for (const c of merged.constructions ?? []) {
+      if (c.categorie === 'Aménagement') c.description = ''
+    }
+    merged.descriptionsAmenagementsVides = true
   }
   return {
     p: merged.params,

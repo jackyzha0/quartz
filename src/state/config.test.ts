@@ -151,3 +151,39 @@ test('config : migration v4 — les aménagements pré-vague-3a sont réalignés
     '', 're-lecture : description toujours vide')
 })
 
+// ── Retrait des descriptions d'aménagements (retour Thibaut
+//    2026-10-22 « retire carrément les descriptions ») ─────────────────────
+
+test('config : descriptions des aménagements vidées une bonne fois pour toutes, même sur une config déjà convergée v4', () => {
+  // Config déjà tamponnée v4 (aucune migration de complétion ne
+  //  rejouera) : la migration ciblée doit pourtant vider les
+  //  descriptions d'aménagements et poser son marqueur.
+  const c = cloneDefaultConfig()
+  c.schemaVersion = 4
+  const iB = c.constructions.findIndex((x) => x.nom === 'Baleinier')
+  const iT2 = c.constructions.findIndex((x) => x.nom === 'Baleinier (tier 2)')
+  assert.ok(iB >= 0 && iT2 >= 0, 'Baleinier et tier 2 dans les défauts')
+  c.constructions[iB].description = 'texte hérité obsolète'
+  c.constructions[iT2].description = 'Amélioration (remplace le Baleinier de tier 1) : 5 emplacements…'
+  const iM = c.constructions.findIndex((x) => x.nom === 'Moulin à vent')
+  assert.ok(iM >= 0 && c.constructions[iM].categorie !== 'Aménagement',
+    'un bâtiment de contrôle existe (Moulin à vent)')
+  c.constructions[iM].description = 'Bâtiment : description conservée.'
+  delete (c as { descriptionsAmenagementsVides?: boolean }).descriptionsAmenagementsVides
+  const C = cfgOf(c)
+  assert.equal(C.config.constructions.find((x) => x.nom === 'Baleinier')!.description, '',
+    'tier 1 : description vidée sur config déjà v4')
+  assert.equal(C.config.constructions.find((x) => x.nom === 'Baleinier (tier 2)')!.description, '',
+    'tier 2 : description vidée sur config déjà v4')
+  assert.equal(C.config.constructions.find((x) => x.nom === 'Moulin à vent')!.description,
+    'Bâtiment : description conservée.',
+    'les descriptions de BÂTIMENTS ne sont pas touchées')
+  assert.ok(C.config.descriptionsAmenagementsVides,
+    'marqueur posé (one-shot : une description perso saisie ensuite est préservée)')
+  // one-shot : une description personnalisée saisie APRÈS survit aux re-lectures
+  const c2 = C.config
+  const iB2 = c2.constructions.findIndex((x) => x.nom === 'Baleinier')
+  c2.constructions[iB2].description = 'note perso'
+  assert.equal(cfgOf(c2).config.constructions.find((x) => x.nom === 'Baleinier')!.description,
+    'note perso', 're-lecture : la description perso posée après la migration survit')
+})
