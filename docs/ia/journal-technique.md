@@ -1286,6 +1286,19 @@ garde-fou non bloquant à la construction (Constructions.ts, même
 calibre que le rang d'habitation) ; textes du référentiel précisés ;
 tests Mer/Rivière actifs, Plaine inactif.
 
+**Amendement (arbitrage Thibaut, même jour) : ordre de prise de
+poste « n'importe quel métier → Chasseur → sans métier »** — le
+Chasseur est le DERNIER métier pris, et un Chasseur en poste CHANGE
+de métier dès qu'un autre poste est disponible (priorité sur les
+sans-emploi, âge décroissant) ; son poste de Chasseur se libère
+alors pour les candidats suivants. Câblé dans `reaffecterMetiers`
+(metiers.ts : candidats = sans-emploi adultes + Chasseurs en poste,
+un Chasseur ne consomme une place que pour un poste NON-Chasseur,
+log agrégé « change(nt) de métier ») ; texte d'aide caps actualisé
+(PopulationTable) ; nouveau test (Chasseur → Commerçant, poste
+libéré pris par un sans-emploi, sans autre poste personne ne bouge).
+Validation : tsc EXIT 0, 145/145 tests verts, diag exit 0.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

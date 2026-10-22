@@ -496,6 +496,16 @@ rang 1). Arbitrages actés lors de la session :
   nobles (Gouverneur) ni les métiers à attribution Armée/Succession/
   Ville — la base du rang les plafonne (surnombre applicable) mais
   ne les remplit pas.
+- **Ordre de prise de poste (arbitrage Thibaut, 2026-10-22) :
+  « n'importe quel métier → Chasseur → sans métier »** — le métier de
+  Chasseur est le DERNIER pris. Un Chasseur en poste CHANGE de métier
+  dès qu'un autre poste est disponible (il est prioritaire sur les
+  sans-emploi pour ce poste, tri par âge décroissant) ; son poste de
+  Chasseur se libère alors pour les candidats suivants, qui ne
+  deviennent Chasseurs que s'il ne reste aucun autre poste. Câblé
+  dans `reaffecterMetiers` (metiers.ts), testé (métier pris puis
+  poste libéré repris par un sans-emploi ; sans autre poste, les
+  Chasseurs restent en place).
 - **Migration** : les configs sauvegardées sans les colonnes
   « Métiers/Domiciles disponibles » les reçoivent depuis la ligne du
   référentiel par défaut de même (type, rang) ; les anciens champs
