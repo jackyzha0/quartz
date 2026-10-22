@@ -187,3 +187,41 @@ test('config : descriptions des aménagements vidées une bonne fois pour toutes
   assert.equal(cfgOf(c2).config.constructions.find((x) => x.nom === 'Baleinier')!.description,
     'note perso', 're-lecture : la description perso posée après la migration survit')
 })
+
+// ── Nettoyage du code mort (retour Thibaut 2026-10-22, points 5 et 6
+//    de la revue critique des habitations) ─────────────────────────
+
+test('config : le Grand veneur (office sans effet depuis la vague 3b) est retiré des ministères, même sur une config convergée', () => {
+  const c = cloneDefaultConfig()
+  c.schemaVersion = 4 // config déjà convergée : aucune migration de complétion ne rejoue
+  assert.ok(
+    !c.ministeres.some((m) => m.ministere === 'Grand veneur' || m.ministere === 'Ecologie'),
+    'les défauts ne portent plus le Grand veneur (17 portefeuilles)')
+  // une config sauvegardée qui le porte encore (pré-nettoyage) :
+  c.ministeres = [...c.ministeres, {
+    ministere: 'Grand veneur',
+    effet: '-5 Nourriture × rang de pays sur la consommation des habitations.',
+    rangMinimum: 'Baronnie', mode: 'Auto',
+  }]
+  const C = cfgOf(c)
+  assert.ok(!C.config.ministeres.some((m) => m.ministere === 'Grand veneur'),
+    'le Grand veneur est retiré d une config convergée')
+  assert.equal(C.config.ministeres.length, 17, '17 portefeuilles après filtrage')
+  // idempotence : re-lecture stable (rien d autre retiré)
+  const C2 = cfgOf(C.config)
+  assert.equal(C2.config.ministeres.length, 17, 're-lecture : le filtre est idempotent')
+})
+
+test('config : rangsHabitation (table dupliquée, morte) absente des défauts et supprimée des configs sauvegardées', () => {
+  const c = cloneDefaultConfig()
+  assert.ok(!('rangsHabitation' in c),
+    'les défauts ne portent plus la table rangsHabitation (doublon de typesHabitation)')
+  // une config sauvegardée qui la porte encore (clé orpheline) :
+  ;(c as { rangsHabitation?: unknown }).rangsHabitation = [{ rang: 'Ville' }]
+  const C = cfgOf(c)
+  assert.ok(!('rangsHabitation' in C.config),
+    'rangsHabitation est supprimée par cfgOf (clé orpheline non persistée)')
+  // re-lecture : toujours absente
+  assert.ok(!('rangsHabitation' in cfgOf(C.config).config),
+    're-lecture : toujours absente')
+})

@@ -41,7 +41,7 @@ import { cfgOf } from './gameData'
 import { capMetierVille, reaffecterMetiers, occupationsMetierVille } from './metiers'
 import { invaliderIndexPopulation } from './naissances'
 import { detailGainsVille } from './economie'
-import { consommationsVille, consommationsPays, garnisonBaseVille } from './habitations'
+import * as habitationsMod from './habitations'
 import { garnisonHabitationVille, detailGarnisonVille } from './regimes'
 
 const SETUP: SetupLine[] = [{
@@ -381,13 +381,17 @@ test('vague 3b : caps CUMULATIVES — Poste de garde +4 Garde sur la base du ran
   assert.equal(capMetierVille('Scientifique', donjon, C), 1, 'École élémentaire : +1 emplacement de Scientifique (« chercheur »)')
 })
 
-test('vague 3b : consommation par tour et garnison de base des rangs SUPPRIMÉES (arbitrage « les Gardes font tout »)', () => {
+test('nettoyage 2026-10-22 (retour Thibaut, retrait du code mort) : les no-ops de consommation/garnison de base sont retirées du module habitations', () => {
+  assert.ok(!('consommationsVille' in habitationsMod), 'consommationsVille : retirée')
+  assert.ok(!('consommationsPays' in habitationsMod), 'consommationsPays : retirée')
+  assert.ok(!('garnisonBaseVille' in habitationsMod), 'garnisonBaseVille : retirée')
+  assert.ok(!('appliquerConsommationsHabitations' in habitationsMod), 'appliquerConsommationsHabitations : retirée')
+  // le détail de garnison ne mentionne plus de ligne « base du rang »
   const state = partie()
   const C = cfgOf(state.config)
   const p = state.players[0]
-  assert.equal(Object.keys(consommationsVille(p.villes[0], C)).length, 0, 'consommationsVille : vide (no-op)')
-  assert.equal(Object.keys(consommationsPays(p, C, state)).length, 0, 'consommationsPays : vide (no-op)')
-  assert.equal(garnisonBaseVille(p.villes[0], C), 0, 'garnisonBaseVille : 0 — la garnison vient des Gardes en poste')
+  const detail = detailGarnisonVille(p, p.villes[0], C, state)
+  assert.ok(!detail.some((l) => l.label.startsWith('base du rang')), 'aucune ligne « base du rang » dans le détail de garnison')
 })
 
 test('vague 3b : Ponton — chaque Pêcheur de la ville produit +0,5 Bétail par tour (ville CÔTIÈRE : Rivière ou Mer, gains bruts avant taxes)', () => {

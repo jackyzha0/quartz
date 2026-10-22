@@ -404,7 +404,6 @@ export interface GameConfig {
   batimentsChateau: BatimentRef[]
   batimentsCouts: Record<string, unknown>[]
   amenagements: AmenagementRef[]
-  rangsHabitation: { rang: string; cout: string; effet: string }[]
   progres: ProgresArbre[]
   paysRangs: { bloc: string; nom: string; cout: string; bonus: string; succession: string }[]
   tourismeSeuils: { seuil: number; bonus: string }[]
@@ -599,7 +598,6 @@ export const DEFAULT_CONFIG: GameConfig = {
   batimentsChateau: ref.batimentsChateau,
   batimentsCouts: ref.batimentsCouts,
   amenagements: ref.amenagements,
-  rangsHabitation: ref.rangsHabitation,
   progres: ref.progres,
   paysRangs: [], // rempli depuis la feuille Pays (voir normalisation ci-dessous)
   tourismeSeuils: ref.tourismeSeuils,
