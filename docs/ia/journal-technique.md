@@ -1249,6 +1249,34 @@ s'il la veut) ; `content/Wargame/_Visualisation/Règles spéciales/Sans titre.md
 (fichier parasite hors périmètre, non touché) ; la divergence Wargame/zDev entre
 branches n'a PAS été auditée (seul JdR l'a été).
 
+## Rangs d'habitation & bâtiments tier 1 — VAGUE 3b (1) IMPLÉMENTÉE (2026-10-22)
+
+Implémentation de la proposition de Thibaut (rangs + bâtiments de
+tier 1), arbitrages actés en session : caps **cumulatives**
+(base du rang « Métiers disponibles » + emplacements des bâtiments ET
+aménagements — `capMetierChasseurVille/Chateau` supprimés) ;
+consommation par tour et garnison de base des rangs **supprimées**
+(no-ops `consommationsVille/consommationsPays/garnisonBaseVille` —
+« les Gardes font tout ») ; « Domiciles disponibles » = affichage
+seul ; Ponton +0,5 Bétail par Pêcheur (économies.ts, gains bruts
+avant taxes) ; réaffectation : jamais de postes nobles ni
+attribution Armée/Succession/Ville. Référentiel : colonnes
+metiersDisponibles/domicilesDisponibles + rework des 10 bâtiments
+tier 1 (Poste de garde, Camps, Echoppe, Grange, École élémentaire —
+doublons anciens éliminés, Herses corrigé, Terrain d'entraînement
+rang Militaire). UI : ConfigTables/ReferenceDataPanel (colonnes
+Métiers/Domiciles disponibles), PopulationTable (nouveau texte
+caps). Migration `migrerTypesHabitation` : complétion des colonnes
+manquantes depuis la table par défaut. Validation : tsc EXIT 0,
+144/144 tests verts, diag exit 0.
+
+**Points ouverts notés dans regles-et-arbitrages.md** : côtière =
+proximité Mer (défaut) ; Grand veneur INERT (plus de consommation à
+réduire) ; garnisons hors-rang (régimes/ministères/bâtiments 2+)
+inchangées ; « Domiciles disponibles » sans effet moteur pour
+l'instant. La sous-vague 3b (2) « routes dissociées » reste à
+arbitrer.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

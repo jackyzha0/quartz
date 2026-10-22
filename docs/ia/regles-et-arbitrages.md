@@ -404,8 +404,17 @@ identiques si tous les emplacements sont remplis) :
 - Garde, Professeur, Banquier, Troubadour : **aucune source d'emplacement
   tier 1** — les bâtiments qui les créeront arrivent plus tard (tiers
   suivants) ; en attendant, attribution manuelle MJ possible.
-- Caps par ville = **somme des emplacements des aménagements présents**
-  (+ cap par défaut du Chasseur selon le type d'habitation).
+- Caps par ville, **vague 3b (actée 2026-10-22) : CUMULATIVES** =
+  **base du RANG d'habitation** (colonne « Métiers disponibles » du
+  référentiel Habitations — ex. Hameau : 50 Chasseurs, 2 Gardes,
+  1 Commerçant, 1 Gouverneur ; Motte : 40 Chasseurs, 4 Gardes,
+  1 Gouverneur) **+ emplacements des bâtiments ET aménagements
+  présents** (vague 3a). Les paramètres `capMetierChasseurVille` /
+  `capMetierChasseurChateau` sont SUPPRIMÉS. La Garde, le Commerçant
+  et le Gouverneur deviennent donc PLAFONNÉS par la base du rang
+  (jamais auto-attribués pour le Gouverneur — poste noble) ;
+  Banquier/Troubadour/cour/armée restent hors champ (∞, règles
+  propres) tant qu'aucun rang/bâtiment ne leur donne de base.
 
 ### Marchand & routes commerciales dissociées (arbitré)
 
@@ -440,6 +449,62 @@ identiques si tous les emplacements sont remplis) :
    tour) ; le métier « Fermier » porte le marqueur `ete` (production
    d'été lu sur le métier, plus sur le Champ).
 2. **3b — routes dissociées** : après les arbitrages restants.
+
+### Rangs d'habitation & bâtiments tier 1 — VAGUE 3b (actée 2026-10-22)
+
+Reprise de la proposition de Thibaut (habitations et bâtiments de
+rang 1). Arbitrages actés lors de la session :
+
+- **Rangs Ville** : Hameau (20 Or + 10 Bois + 6 Bétail, 0 hab.
+  requis) → base 50 Chasseurs, 2 Gardes, 1 Commerçant, 1
+  Gouverneur ; Cité (40 Or + 8 Bétail + 6 Pierres, 120 hab.) →
+  30 Chasseurs, 4 Gardes, 5 Commerçants, 1 Gouverneur ; Grande Cité
+  (40 Or + 12 Bétail + 12 Charbons, 200 hab.) → 8 Gardes,
+  10 Commerçants, 1 Gouverneur.
+- **Rangs Château** : Motte (20 Or + 12 Bois + 2 Bétail) → 40
+  Chasseurs, 4 Gardes, 1 Gouverneur ; Donjon (40 Or + 2 Bétail +
+  12 Pierres, 120) → 20 Chasseurs, 8 Gardes, 1 Gouverneur ;
+  Forteresse (120 Or + 10 Pierres + 12 Fer, 200) → 16 Gardes,
+  1 Gouverneur.
+- **« Domiciles disponibles »** (ex-« Habitations disponibles »,
+  ex. 50 maisons, 10 Auberge) : **AFFICHAGE SEUL** pour l'instant —
+  aucun effet moteur (à câbler plus tard).
+- **Consommation par tour et garnison de base des RANGS :
+  SUPPRIMÉES** (« les Gardes font tout ») — la garnison d'une ville
+  vient des Gardes en poste (+garnisonParGarde statique, vague 3a)
+  et des bâtiments ; les fonctions moteur deviennent des no-ops.
+  NB : garnisons des régimes (garnisonParRang Autoritarisme),
+  ministères (Connétable) et bâtiments rang 2+ restent telles
+  quelles — **point ouvert**.
+- **Bâtiments tier 1** (emplacements ajoutés à la base du rang) :
+  Poste de garde (les deux, 25 Or + 4 Fer) +4 Garde ; Camp de
+  bûcheron (les deux) +2 Bûcheron ; Camp de mineur (les deux) +2
+  Mineur ; Echoppe (Ville, 10 Or + 3 Bois) +2 Commerçant et
+  +1 route commerciale (maxMarchandsJoueur) ; Grange (Ville,
+  10 Or + 3 Bétail + 3 Bois) +2 Éleveur, +4 Fermier ; École
+  élémentaire (Château, 10 Or + 2 Bétail, consomme 1 Or/tour)
+  +1 Professeur et +1 Scientifique (« chercheur » = alias du métier
+  Scientifique — arbitré) ; Herses (les deux, 4 Or + 2 Bois,
+  bataille de siège) ; Terrain d'entraînement (Château, 12 Or +
+  3 Bois) −10 Or sur une levée d'armée dans cette habitation ;
+  Conjuratoire (Château, 10 Or + 2 Pierre) +15 Tourisme/tour ;
+  Herboristerie (les deux, 10 Or + 2 Pierre) ±5 % contracter/guérir ;
+  Ponton (Ville, 5 Or + 5 Bois, côtières) +2 Pêcheur et +0,5
+  Bétail par tour et par Pêcheur (gains bruts, taxés comme les
+  autres).
+- **Réaffectation automatique** : elle n'attribue JAMAIS les postes
+  nobles (Gouverneur) ni les métiers à attribution Armée/Succession/
+  Ville — la base du rang les plafonne (surnombre applicable) mais
+  ne les remplit pas.
+- **Migration** : les configs sauvegardées sans les colonnes
+  « Métiers/Domiciles disponibles » les reçoivent depuis la ligne du
+  référentiel par défaut de même (type, rang) ; les anciens champs
+  consommation/garnison sont ignorés.
+- **Points ouverts** : « côtière » = proximité Mer (défaut choisi,
+  à confirmer) ; le **Grand veneur** (ministère −5 Nourriture sur la
+  consommation des habitations) devient INERT tant qu'aucune
+  consommation n'existe ; garnisons hors-rang (régimes, ministères,
+  bâtiments rang 2+) inchangées.
 
 ### Déménagement : perte du métier ET du domicile (arbitré 2026-10-21, vague 3a ; complément Dirigeant/Héritier le même soir)
 
