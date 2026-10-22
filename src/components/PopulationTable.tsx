@@ -714,15 +714,17 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           </table>
         </div>
         <p className="muted small">
-          Vague 3a — les caps viennent des EMPLACEMENTS des aménagements de la ville :
-          un métier de production dispose d'autant de postes que la ville a d'emplacements
-          (le Chasseur garde en plus sa cap par défaut Ville {C.p.capMetierChasseurVille} /
-          Château {C.p.capMetierChasseurChateau}) ; sans aménagement, cap 0. Garde, Banquier,
-          Troubadour, Professeur et les rôles de cour/armée ne sont pas plafonnés ici (∞ =
-          règles propres) ; un marchand tenant une route commerciale occupe un poste créé
-          par elle. La réaffectation automatique tourne à chaque fin de tour : surnombre →
+          Vague 3b — caps CUMULATIVES : cap d'un métier = BASE DU RANG d'habitation
+          (colonne « Métiers disponibles », ex. Hameau : 50 Chasseurs, 2 Gardes,
+          1 Commerçant, 1 Gouverneur) + EMPLACEMENTS des bâtiments et aménagements de
+          la ville (ex. Poste de garde : +4 Garde). Les métiers sans base, sans
+          emplacement et non productifs (Banquier, Troubadour, Dirigeant/Héritier,
+          rôles de cour/armée) ne sont pas plafonnés ici (∞ = règles propres) ; un
+          marchand tenant une route commerciale occupe un poste créé par elle. La
+          réaffectation automatique tourne à chaque fin de tour : surnombre →
           les plus âgés passent Sans-emploi ; places libres → les Sans-emploi adultes
-          prennent un poste (autre que Chasseur en priorité). Les cités libres ne sont pas
+          prennent un poste (autre que Chasseur en priorité ; jamais les postes nobles
+          ni les nominations d'école/armée). Les cités libres ne sont pas
           concernées par les caps.
         </p>
       </Card>
