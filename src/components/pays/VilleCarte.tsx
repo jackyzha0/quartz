@@ -14,12 +14,12 @@ import { useGame } from '../../state/store'
 import * as remote from '../../supabase/client'
 import {
   effetsTourBatiment, garnisonBatiment, constructionsRefs, amenagementRef,
-  coutAmenagement, aCampDeBatisseurs, parseCoutTexte, garnisonHabitationVille,
+  aCampDeBatisseurs, parseCoutTexte, garnisonHabitationVille,
   detailGarnisonVille, typeVille, habitationDef, rangsDisponibles,
   consommationsVille, resumeConstruction, productionVille,
   effetsNourrEteAmenagementsVille,
   effetsNourrEteAutresVille, supprimerVille, transfererVille,
-  debiterCoutHabitation,
+  debiterCoutHabitation, rangNiveau,
 } from '../../engine/engine'
 import { couleurRessource, fondRessource, type Cfg } from '../../engine/gameData'
 import { villeDevientCiteLibre } from '../../engine/citesLibres'
@@ -47,8 +47,24 @@ export function VilleCarte({ idx, ville, joueur, p, C, setPlayer, setSurint, set
   if (!state) return null
   // ── Référentiel des constructions (coût / production / description exacts) ──
   const refs = constructionsRefs(C.config)
-  const amRefs = refs.filter((r) => r.categorie === 'Aménagement')
-  const coutAm = coutAmenagement(p, C.config)
+  // Vague 3c (arbitrage Thibaut 2026-10-22) : les aménagements se
+  //  répartissent en BASE (tier 1, coût propre, terrain) et
+  //  AMÉLIORATIONS (tiers 2/3 — coût uniforme, rangMinHabitation,
+  //  remplaceAmenagement : l'action REMPLACE une instance du tier
+  //  inférieur, qui doit être présent dans la ville).
+  const amRefsBase = refs.filter((r) => r.categorie === 'Aménagement' && !r.remplaceAmenagement)
+  const amRefsTier = refs.filter((r) => r.categorie === 'Aménagement' && r.remplaceAmenagement)
+  const coutTier = (tier: number) => amRefsTier.find((a) => (a.rangMinHabitation ?? 0) === tier)?.cout ?? '—'
+  // Améliorations proposées : uniquement celles dont le tier inférieur
+  //  est présent à la ville (et masquées si le rang d'habitation est
+  //  insuffisant — la catégorie vide est de toute façon masquée par
+  //  le picker, ce filtre évite les ⚠ de rang).
+  const ameliorationsTier = (tier: number) => {
+    if (rangNiveau(ville, C) < tier) return []
+    return amRefsTier
+      .filter((a) => (a.rangMinHabitation ?? 0) === tier)
+      .filter((a) => (ville.amenagements ?? []).includes(a.remplaceAmenagement ?? ''))
+  }
   const reducBatisseurs = aCampDeBatisseurs(p)
   // Mutateurs (fabriques de Constructions.ts) :
   const construire = faireConstruire({ update, joueur, C, setSurint, setSurintRes })
@@ -294,7 +310,7 @@ export function VilleCarte({ idx, ville, joueur, p, C, setPlayer, setSurint, set
         <div className="mini-title">
           Aménagements
           <span className="muted small">
-            {' '}· coût : {fmtCout(coutAm)}
+            {' '}· coût tier 1 : selon le référentiel · tier 2 : {coutTier(2)} (habitation de rang 2) · tier 3 : {coutTier(3)} (rang 3)
             {reducBatisseurs ? ' (réduit par le Camp de bâtisseurs)' : ''}
           </span>
         </div>
@@ -321,22 +337,51 @@ export function VilleCarte({ idx, ville, joueur, p, C, setPlayer, setSurint, set
           )
         })}
         <div className="add-bat">
-          {/* Marqueur (y) : choix à CATÉGORIES + DESCRIPTIONS —
-              aménagements classiques. (RETRAIT 2026-10-19, retour
-              arbitre : les aménagements de faction ont été retirés
-              avec le système de faction.) */}
+          {/* Marqueur (y) : choix à CATÉGORIES + DESCRIPTIONS.
+              (RETRAIT 2026-10-19, retour arbitre : les aménagements
+              de faction ont été retirés avec le système de faction.)
+              Vague 3c : la catégorie « Aménagements » ne propose que
+              le TIER 1 ; les catégories « Améliorations » ne
+              proposent que les tiers dont le tier inférieur est
+              présent à la ville (remplacement, pas ajout). */}
           <ChoicePicker
             bouton="+ Aménager une case…"
             categories={[
               {
                 label: 'Aménagements',
-                options: amRefs.map((a) => ({
+                options: amRefsBase.map((a) => ({
                   value: a.nom,
                   metier: a.nom,
                   droite: `${fmtCout(parseCoutTexte(a.cout))}${a.terrain ? ` · ${a.terrain}` : ''}`,
                   description: [
                     resumeConstruction(a) || a.production || '',
                     a.description,
+                  ].filter(Boolean).join('\n'),
+                })),
+              },
+              {
+                label: 'Améliorations · tier 2',
+                options: ameliorationsTier(2).map((a) => ({
+                  value: a.nom,
+                  metier: a.nom,
+                  droite: `${fmtCout(parseCoutTexte(a.cout))} · améliore ${a.remplaceAmenagement}`,
+                  description: [
+                    resumeConstruction(a) || a.production || '',
+                    a.description,
+                    `Remplace un « ${a.remplaceAmenagement} » de ${ville.nom} (habitation de rang 2 minimum).`,
+                  ].filter(Boolean).join('\n'),
+                })),
+              },
+              {
+                label: 'Améliorations · tier 3',
+                options: ameliorationsTier(3).map((a) => ({
+                  value: a.nom,
+                  metier: a.nom,
+                  droite: `${fmtCout(parseCoutTexte(a.cout))} · améliore ${a.remplaceAmenagement}`,
+                  description: [
+                    resumeConstruction(a) || a.production || '',
+                    a.description,
+                    `Remplace un « ${a.remplaceAmenagement} » de ${ville.nom} (habitation de rang 3 minimum).`,
                   ].filter(Boolean).join('\n'),
                 })),
               },

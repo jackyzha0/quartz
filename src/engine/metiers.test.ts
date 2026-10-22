@@ -21,6 +21,10 @@
 //     AUTRE que Chasseur (ordre du référentiel) — jamais les enfants ;
 //     les CHASSEURS changent de métier dès qu'un poste AUTRE est
 //     disponible (le Chasseur n'est jamais qu'un poste de repli) ;
+//   · vague 3c (2026-10-22) : AMÉLIORATIONS d'aménagements — tiers 2
+//     (« 15 Or + 3 Pierre », remplace le tier 1) et 3 (« 35 Or +
+//     3 Fer », remplace le tier 2), rang d'habitation minimum 2/3 ;
+//     le tier inférieur remplacé ne compte PLUS ses emplacements ;
 //   · Sans-emploi = rôle NEUTRE : impôt nul, aucun effet ;
 //   · Fermier : production d'ÉTÉ seulement (champ ete du référentiel) ;
 //   · taxes : bonus ADDITIFS (Gouverneur +10 % toutes, Banquier +10 %
@@ -448,4 +452,30 @@ test('vague 3b : ordre de prise de poste « n\'importe quel métier → Chasseur
   const parId2 = new Map(state2.population[p.n].map((c) => [c.id, c]))
   assert.equal(parId2.get('ch-50')!.metier, C2.p.metierChasseur, 'sans autre poste : le Chasseur reste Chasseur')
   assert.equal(parId2.get('ch-20')!.metier, C2.p.metierChasseur, 'sans autre poste : personne ne bouge')
+})
+
+// ── Vague 3c (2026-10-22) : caps des AMÉLIORATIONS d'aménagements
+//    (tiers 2/3 — remplacent le tier inférieur) ───────────────────────────
+
+test('vague 3c : caps des aménagements tiers 2/3 — le tier remplacé ne compte plus, les emplacements propres si', () => {
+  const state = partie()
+  const C = cfgOf(state.config)
+  const p = state.players[0]
+  // Baleinier (tier 2) : +5 Pêcheur, +5 Commerçant (caps CUMULATIVES :
+  //  le Commerçant = base du rang 1 + 5 emplacements du tier 2).
+  const baleinier2: City = { ...p.villes[0], type: 'Ville', rang: 'Hameau', batiments: [], amenagements: ['Baleinier (tier 2)'] }
+  assert.equal(capMetierVille('Pêcheur', baleinier2, C), 5, 'Baleinier (tier 2) : 5 emplacements de Pêcheur')
+  assert.equal(capMetierVille('Commerçant', baleinier2, C), 6, 'Commerçant : base du rang Hameau (1) + 5 emplacements du tier 2 = 6')
+  // Scierie (tier 3) : +6 Bûcheron, +2 Tisseur — et PAS les emplacements
+  //  de la Scierie de tier 1 (remplacée).
+  const scierie3: City = { ...p.villes[0], type: 'Ville', rang: 'Hameau', batiments: [], amenagements: ['Scierie (tier 3)'] }
+  assert.equal(capMetierVille('Bûcheron', scierie3, C), 6, 'Scierie (tier 3) : 6 emplacements de Bûcheron')
+  assert.equal(capMetierVille('Tisseur', scierie3, C), 2, 'Scierie (tier 3) : 2 emplacements de Tisseur')
+  assert.equal(capMetierVille(C.p.metierChasseur, scierie3, C), 50, 'tier 3 seul : la base du Chasseur du rang Hameau (50), sans les +2 du tier 1 remplacé')
+  // Champ amélioré en tier 2 : +6 Fermier (les 3 du tier 1 ont disparu).
+  const champ2: City = { ...p.villes[0], type: 'Ville', rang: 'Hameau', batiments: [], amenagements: ['Champ (tier 2)'] }
+  assert.equal(capMetierVille('Fermier', champ2, C), 6, 'Champ (tier 2) : 6 emplacements de Fermier (tier 1 remplacé)')
+  // plusieurs exemplaires : 2 Baleiniers dont un seul amélioré
+  const mixte: City = { ...p.villes[0], type: 'Ville', rang: 'Hameau', batiments: [], amenagements: ['Baleinier', 'Baleinier (tier 2)'] }
+  assert.equal(capMetierVille('Pêcheur', mixte, C), 8, 'Baleinier tier 1 (3) + tier 2 (5) : caps cumulées = 8 Pêcheurs')
 })

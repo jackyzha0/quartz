@@ -7,6 +7,9 @@
 //     merveilles), réductions (technologies, Basiléens, Sylvains),
 //     coût débité, règle de culture, recalcule du Tourisme, effet
 //     one-shot des merveilles, déclenchement du Surintendant ;
+//   · vague 3c : les aménagements de tier 2/3 (rangMinHabitation +
+//     remplaceAmenagement) REMPLACENT une instance du tier inférieur
+//     (amélioration, pas construction en plus) ;
 //   · faireBatParFamille : les catégories du sélecteur « + Construire »
 //     d'une ville (familles × rangs, merveilles par rang, alertes
 //     rouges des limites — marqueur (y)).
@@ -53,7 +56,12 @@ export function faireConstruire(o: {
       // ── Restrictions des catégories de bâtiments ────────────────────
       // · bâtiment de faction : uniquement ceux du peuple du joueur ;
       // · bâtiment de capitale (groupe « Capitale ») : capitale uniquement.
-      const ref = type === 'batiment' ? constructionRef(nom, C.config) : undefined
+      // Vague 3c : la ref est résolue pour les DEUX types — les
+      //  aménagements de tier 2/3 portent rangMinHabitation et
+      //  remplaceAmenagement (les garde-fous « groupe/famille »
+      //  ci-dessous restent sans effet sur eux : groupe « Terrain »,
+      //  famille vide).
+      const ref = constructionRef(nom, C.config)
       const estCapitale = capitaleDe(t)?.nom === ville.nom
       if (ref && ref.groupe === 'Capitale' && !estCapitale) {
         s.log.push({
@@ -228,7 +236,28 @@ export function faireConstruire(o: {
       // (RETRAIT 2026-10-19 : le remplacement des bâtiments de faction —
       //  Église → Grande Cathédrale → Palais du Palatinat — a été retiré
       //  avec le système de faction.)
-      cible.push(nom)
+      // ── Améliorations d'aménagements (vague 3c, arbitrage Thibaut
+      //  2026-10-22) : « Baleinier (tier 2) » / « (tier 3) » REMPLACENT
+      //  une instance du tier inférieur dans la ville (le tier inférieur
+      //  est un prérequis ; un même terrain peut être aménagé PLUSIEURS
+      //  FOIS, chaque action n'améliore qu'UN exemplaire). Garde-fou non
+      //  bloquant, même calibre que le rang d'habitation : tier inférieur
+      //  absent → ⚠ + amélioration quand même enregistrée (poussée).
+      let amelioreDe = ''
+      if (type === 'amenagement' && ref?.remplaceAmenagement) {
+        const base = ref.remplaceAmenagement
+        const iBase = cible.indexOf(base)
+        if (iBase >= 0) {
+          cible[iBase] = nom
+          amelioreDe = base
+        } else {
+          s.log.push({
+            turn: s.turn, type: 'Système', joueur: t.n,
+            texte: `⚠ ${nom} améliore normalement d'abord un « ${base} » — aucun exemplaire à ${ville.nom}. Amélioration quand même enregistrée.`,
+          })
+        }
+      }
+      if (!amelioreDe) cible.push(nom)
       const parts: string[] = []
       for (const [res, v] of Object.entries(cout)) {
         const rs = t.resources[res]
@@ -254,7 +283,7 @@ export function faireConstruire(o: {
         ? effetImmediatMerveille(s, t, nom) : ''
       s.log.push({
         turn: s.turn, type: 'Système', joueur: t.n,
-        texte: `🏗 ${nom} construit(e) à ${ville.nom} — coût déduit du stock : ${parts.length ? parts.join(' + ') : 'gratuit'}${sci > 0 ? ` — règle de culture : +${fmt(sci)} Science` : ''}${mervTxt}.`,
+        texte: `🏗 ${amelioreDe ? `${amelioreDe} amélioré(e) en ${nom}` : `${nom} construit(e)`} à ${ville.nom} — coût déduit du stock : ${parts.length ? parts.join(' + ') : 'gratuit'}${sci > 0 ? ` — règle de culture : +${fmt(sci)} Science` : ''}${mervTxt}.`,
       })
       // Surintendant des finances (marqueur (y)) : « Après avoir
       //  construit un bâtiment, générez 1 Ressource de votre choix

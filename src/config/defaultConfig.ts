@@ -151,11 +151,18 @@ export interface ConstructionRef {
   groupe: string      // 'Ville' | 'Château' | 'Capitale' | 'Terrain'
   famille: string      // Militaire / Economique / Guilde / Capitale / Merveille / ''
   nom: string
-  /** Merveilles uniquement : rang d'habitation MINIMUM requis pour
-   *  construire (1 = Hameau/Motte…, 2 = Cité/Donjon, 3 = Grande
-   *  Cité/Forteresse). Champ optionnel. */
+  /** Merveilles ET aménagements tiers 2/3 : rang d'habitation
+   *  MINIMUM requis pour construire/améliorer (1 = Hameau/Motte…,
+   *  2 = Cité/Donjon, 3 = Grande Cité/Forteresse). Champ optionnel. */
   rangMinHabitation?: number
   terrain?: string     // aménagements uniquement
+  /** Aménagements tiers 2/3 (vague 3c, arbitrage Thibaut
+   *  2026-10-22) : nom de l'aménagement de TIER INFÉRIEUR que cette
+   *  AMÉLIORATION remplace (un exemplaire de la même ville) —
+   *  « Baleinier (tier 2) » remplace « Baleinier », « Baleinier
+   *  (tier 3) » remplace « Baleinier (tier 2) ». Champ optionnel :
+   *  absent = tier 1 (aménagement de base, constructible tel quel). */
+  remplaceAmenagement?: string
   cout: string
   production: string
   description: string
