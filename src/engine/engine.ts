@@ -40,7 +40,6 @@ import { nbVassaux } from './factions'
 import { appliquerEffetsMinisteres, effetsFinSaisonMinisteres } from './ministeres'
 import { appliquerEffetsCommerce, nettoyerRoutesCommerce, peuplerMarchands } from './commerce'
 import { appliquerTaxesCitesLibres, citesSuzerainesDe } from './citesLibres'
-import { appliquerConsommationsHabitations } from './habitations'
 import { transfererTributVassal } from './vassalite'
 import { appliquerBonusProximite } from './villes'
 import { populationTurn } from './population'
@@ -228,13 +227,9 @@ export function runTurn(state: GameState): GameState {
     resynchroniserTourisme(state, p, 'fin de tour')
   }
 
-  // 3octies. Habitations : consommation par tour de chaque ville selon
-  //  son type (Ville / Château) et son rang (engine/habitations.ts —
-  //  ex. Cité : −10 Nourriture, −8 Or ; table typesHabitation).
-  const habitationsParJoueur: Record<number, Record<string, number>> = {}
-  for (const p of state.players) {
-    habitationsParJoueur[p.n] = appliquerConsommationsHabitations(state, p, C)
-  }
+  // 3octies. (RETRAIT 2026-10-22, nettoyage du code mort : la
+  //  consommation par tour des habitations — supprimée par
+  //  l'arbitrage vague 3b — n'est plus débitée ni affichée.)
 
   // 3nonies. (RETRAIT 2026-10-19, retour arbitre : les bonus de faction
   //  ont été retirés — système à refaire.) Tourisme : le stock n'est
@@ -333,7 +328,6 @@ export function runTurn(state: GameState): GameState {
       nourrEte: nourrEteParJoueur[p.n] ?? {},
       autres: autresParJoueur[p.n] ?? {},
       regimesCultures: regimesCulturesParJoueur[p.n] ?? {},
-      habitations: habitationsParJoueur[p.n] ?? {},
       citesLibres: citesLibresParJoueur[p.n] ?? {},
       ministeres: ministeresParJoueur[p.n] ?? {},
       commerce: commerceParJoueur[p.n] ?? {},
@@ -413,9 +407,8 @@ export {
   type DetailCiteLibre,
 } from './citesLibres'
 export {
-  typeVille, habitationDef, rangsDisponibles, garnisonBaseVille,
-  habitantsRequisVille, consommationsVille, consommationsPays,
-  appliquerConsommationsHabitations,
+  typeVille, habitationDef, rangsDisponibles,
+  habitantsRequisVille,
   coutHabitation, debiterCoutHabitation,
 } from './habitations'
 export {

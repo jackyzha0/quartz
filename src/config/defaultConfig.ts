@@ -300,7 +300,6 @@ export interface GameConfig {
   batimentsCouts: Record<string, unknown>[]
   amenagements: AmenagementRef[]
   constructions: ConstructionRef[]
-  rangsHabitation: { rang: string; cout: string; effet: string }[]
   typesHabitation: HabitationDef[]
   progres: ProgresArbre[]
   paysRangs: { nom: string; coutOr: number; coutNourriture: number; serments: number; ministres: number; bonus: string }[]
@@ -688,7 +687,6 @@ export const DEFAULT_CONFIG: GameConfig = {
   batimentsCouts: ref.batimentsCouts,
   amenagements: ref.amenagements,
   constructions: ref.constructions,
-  rangsHabitation: ref.rangsHabitation,
   typesHabitation: ref.typesHabitation,
   progres: ref.progres,
   paysRangs: [], // rempli depuis la feuille Pays (voir normalisation ci-dessous)
@@ -944,11 +942,15 @@ function migrerVictoires(list: GameConfig['victoires']): GameConfig['victoires']
 // manquants d'une vieille config (ex. les 16 offices de cour arrivés au
 // marqueur (h)) sont réintégrés ; les personnalisations de même nom
 // sont conservées ; les entrées perso hors référentiel restent en queue.
+// (Nettoyage 2026-10-22, retour Thibaut : l'office « Grand veneur »
+//  (ex-Ecologie) n'a plus d'effet depuis la suppression de la
+//  consommation des rangs d'habitation (vague 3b) — il est retiré du
+//  référentiel ET filtré des configs (cf. cfgOf), le renommage
+//  Ecologie→Grand veneur disparaît avec lui.)
 export const RENOMMAGES_MINISTERES: Record<string, string> = {
   Colonial: 'Grand bailli',
   Culture: 'Maître des arts',
   'Défense': 'Grand prévôt',
-  Ecologie: 'Grand veneur',
   Economie: 'Surintendant des finances',
   Guerre: 'Grand écuyer',
   Recherche: 'Grand bibliothécaire',
@@ -1548,6 +1550,23 @@ export function cfgOf(config?: GameConfig): Cfg {
     }
     merged.descriptionsAmenagementsVides = true
   }
+  //  Nettoyage du code mort (retour Thibaut 2026-10-22, points 5 et 6
+  //  de la revue des habitations) :
+  //  · l'office « Grand veneur » (−5 Nourriture par habitation × rang
+  //    de pays) n'a plus d'effet depuis la suppression de la
+  //    consommation des rangs d'habitation (arbitrage vague 3b) : il
+  //    est retiré du référentiel ET des configs existantes (convergées
+  //    ou non — même patron que le retrait des constructions de
+  //    faction). Idempotent. Un éventuel Grand veneur déjà nommé dans
+  //    une partie en cours garde son badge mais n'a plus d'effet (il
+  //    n'en avait déjà plus).
+  merged.ministeres = (merged.ministeres ?? []).filter(
+    (m) => m.ministere !== 'Grand veneur' && m.ministere !== 'Ecologie',
+  )
+  //  · l'ancienne table rangsHabitation (doublon historique de
+  //    typesHabitation, vague 3b) n'est plus lue nulle part : la clé
+  //    orpheline des configs sauvegardées n'est plus persistée.
+  delete (merged as { rangsHabitation?: unknown }).rangsHabitation
   return {
     p: merged.params,
     ressources: merged.ressources,

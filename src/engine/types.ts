@@ -198,10 +198,11 @@ export interface City {
    *  récap). Champ optionnel : absent des vieilles sauvegardes →
    *  « Plaine » (aucun bonus). */
   proximite?: string
-  /** Rang d'habitation (Hameau / Cité / Grande Cité — table
-   *  rangsHabitation du classeur). Champ optionnel : absent des vieilles
-   *  sauvegardes → « Hameau ». Utilisé par la garnison des habitations
-   *  (loi Autoritarisme) et l'affichage page « Pays ». */
+  /** Rang d'habitation (Hameau / Cité / Grande Cité / Motte / Donjon /
+   *  Forteresse — table typesHabitation du référentiel). Champ
+   *  optionnel : absent des vieilles sauvegardes → « Hameau ».
+   *  Utilisé par la garnison des habitations (loi Autoritarisme) et
+   *  l'affichage page « Pays ». */
   rang?: string
   batiments: string[]
   /** Aménagements de terrain (Baleinier, Champ, Mine d'Or… — feuille
@@ -387,10 +388,10 @@ export interface ApportsTour {
    *  garnison de la loi du régime, bonus de capitale de la culture, etc.
    *  Champ optionnel : absent des historiques d'avant l'ajout du canal. */
   regimesCultures?: Record<string, number>
-  /** consommations par tour des habitations (engine/habitations.ts) —
-   *  négatives (ex. Cité : −10 Nourriture, −8 Or). Champ optionnel :
-   *  absent des historiques d'avant l'ajout du canal. */
-  habitations?: Record<string, number>
+  /** (RETRAIT 2026-10-22, nettoyage du code mort : le canal
+   *  « habitations » — consommation des rangs d'habitation, vide
+   *  depuis l'arbitrage vague 3b — n'est plus écrit ; la clé
+   *  orpheline des vieux historiques est simplement ignorée.) */
   /** effets par tour des technologies de progrès débloquées
    *  (engine/progres.ts — étape 3undecies). Champ optionnel : absent
    *  des historiques d'avant l'ajout du canal. */

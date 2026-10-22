@@ -9,13 +9,16 @@
 //  2 Gardes, 1 Commerçant, 1 Gouverneur) et les DOMICILES
 //  disponibles (affichage seul pour l'instant). La consommation par
 //  tour et la garnison de base des rangs sont SUPPRIMÉES : la
-//  garnison vient des Gardes en poste (regimes.ts, vague 3a).
+//  garnison vient des Gardes en poste (regimes.ts, vague 3a) —
+//  (nettoyage 2026-10-22, retour Thibaut : les no-ops qui restaient
+//  pour ne pas casser les appelants ont été retirées du code, avec
+//  le canal « habitations » des récaps ressources).
 //  Table entièrement paramétrable : Référentiels → « Habitations ».
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
 
 import type { City, GameState, Player } from './types'
-import { cfgOf, type Cfg } from './gameData'
+import { type Cfg } from './gameData'
 import { parseCoutTexte } from './constructions'
 import { aMinistre } from './ministeres'
 import { reductionFondation, aTech } from './progresAuto'
@@ -32,73 +35,25 @@ export function typeVille(ville: City): string {
   return ville.type ?? 'Ville'
 }
 
-/** Définition du rang d'habitation d'une ville (table typesHabitation).
- *  Repli sur l'ancienne table rangsHabitation (Ville) si absente. */
+/** Définition du rang d'habitation d'une ville (table typesHabitation). */
 export function habitationDef(ville: City, C: Cfg): import('./types').HabitationDef | undefined {
   const type = typeVille(ville)
-  const nom = nomRang(ville.rang ?? C.config.rangsHabitation?.[0]?.rang ?? 'Hameau')
+  const nom = nomRang(ville.rang ?? 'Hameau')
   const table = C.config.typesHabitation ?? []
-  const def = table.find((d) => d.type.toLowerCase() === type.toLowerCase()
+  return table.find((d) => d.type.toLowerCase() === type.toLowerCase()
     && nomRang(d.rang).toLowerCase() === nom.toLowerCase())
-  if (def) return def
-  // Repli ancien format (table rangsHabitation, échelle Ville uniquement)
-  const idx = (C.config.rangsHabitation ?? [])
-    .findIndex((r) => nomRang(r.rang).toLowerCase() === nom.toLowerCase())
-  if (idx < 0) return undefined
-  const metiers = ['50 Chasseurs, 2 Gardes, 1 Commerçant, 1 Gouverneur',
-    '30 Chasseurs, 4 Gardes, 5 Commerçants, 1 Gouverneur',
-    '8 Gardes, 10 Commerçants, 1 Gouverneur']
-  const domiciles = ['50 maisons, 10 Auberge', '100 maisons, 50 Auberge', '150 maisons, 100 Auberge']
-  return { type: 'Ville', rang: nom, cout: '', habitantsRequis: [0, 120, 200][idx] ?? 0,
-    metiersDisponibles: metiers[idx] ?? '', domicilesDisponibles: domiciles[idx] ?? '' }
 }
 
 /** Rangs d'habitation disponibles pour un type donné
  *  (pour les listes déroulantes de la page « Pays »). */
 export function rangsDisponibles(type: string, C: Cfg): string[] {
   const table = C.config.typesHabitation ?? []
-  const rangs = table.filter((d) => d.type.toLowerCase() === type.toLowerCase()).map((d) => d.rang)
-  if (rangs.length > 0) return rangs
-  return (C.config.rangsHabitation ?? []).map((r) => nomRang(r.rang))
-}
-
-/** Garnison de base du rang d'habitation d'une ville. Vague 3b
- *  (arbitrage 2026-10-22) : SUPPRIMÉE — « les Gardes font tout »,
- *  la garnison d'une ville vient des Gardes en poste
- *  (garnisonParGarde, regimes.ts) et des bâtiments. Toujours 0 ;
- *  conservée comme no-op pour ne pas casser les appelants. */
-export function garnisonBaseVille(_ville: City, _C: Cfg): number {
-  return 0
+  return table.filter((d) => d.type.toLowerCase() === type.toLowerCase()).map((d) => d.rang)
 }
 
 /** Habitants requis pour le rang d'habitation d'une ville. */
 export function habitantsRequisVille(ville: City, C: Cfg): number {
   return habitationDef(ville, C)?.habitantsRequis ?? 0
-}
-
-/** Consommation par tour d'une ville. Vague 3b (arbitrage
- *  2026-10-22) : SUPPRIMÉE — les rangs d'habitation ne consomment
- *  plus rien par tour. Toujours vide ; conservée comme no-op pour
- *  ne pas casser les appelants (production.ts, VilleCarte…). */
-export function consommationsVille(_ville: City, _C: Cfg): Record<string, number> {
-  return {}
-}
-
-/** Consommation par tour de toutes les habitations d'un pays.
- *  Grand veneur (ministère, marqueur (y)) : « Vos habitations
- *  consomment -5 Nourriture par rang de votre pays » — la
- *  consommation de Nourriture de CHAQUE habitation est réduite de
- *  5 × rang de pays (plafonnée à 0 par habitation, jamais inversée
- *  en gain). Passer `state` active l'effet (moteur et récap) ;
- *  sans `state` (affichages statiques), pas de réduction. */
-export function consommationsPays(
-  _p: Player, _C: Cfg, _state?: GameState,
-): Record<string, number> {
-  // Vague 3b (arbitrage 2026-10-22) : consommation des rangs
-  //  supprimée → toujours vide. Le Grand veneur (−5 Nourriture par
-  //  rang de pays) devient donc INERT tant qu'aucune consommation
-  //  n'existe — point ouvert documenté dans docs/ia.
-  return {}
 }
 
 /** Coût d'un rang d'habitation (colonne « Coût d'amélioration » du
@@ -161,32 +116,6 @@ export function debiterCoutHabitation(
   return cout
 }
 
-/** Étape moteur : débite du stock la consommation par tour des
- *  habitations du pays (canal « habitations » du récap ressources).
- *  Les quantités sont négatives (elles réduisent le stock). */
-export function appliquerConsommationsHabitations(
-  state: GameState, p: Player, C: Cfg = cfgOf(state.config),
-): Record<string, number> {
-  const out = consommationsPays(p, C, state)
-  for (const [res, v] of Object.entries(out)) {
-    const rs = p.resources[res]
-    if (rs) rs.stock += v
-  }
-  if (Object.keys(out).length > 0) {
-    const parts = Object.entries(out)
-      .map(([r, v]) => `${fmtCourt(v)} ${r}`).join(', ')
-    state.log.push({
-      turn: state.turn + 1, type: 'Système', joueur: p.n,
-      texte: `🏠 ${p.nom} — consommation des habitations : ${parts} par tour.`,
-    })
-  }
-  return out
-}
-
-function fmtCourt(v: number): string {
-  return `${v < 0 ? '−' : ''}${Math.abs(v)}`
-}
-
 // ── Métiers disponibles à la base du rang (vague 3b) ────────────────────
 
 /** Normalise un nom de métier pour le parse de « Métiers
@@ -226,7 +155,7 @@ export function metiersDisponiblesRang(ville: City, C: Cfg): Record<string, numb
   const def = habitationDef(ville, C)
   if (def?.metiersDisponibles) return parseMetiersDisponibles(def.metiersDisponibles, C)
   const type = typeVille(ville)
-  const nom = nomRang(ville.rang ?? C.config.rangsHabitation?.[0]?.rang ?? 'Hameau')
+  const nom = nomRang(ville.rang ?? 'Hameau')
   const defDefaut = DEFAULT_CONFIG.typesHabitation.find(
     (d) => d.type.toLowerCase() === type.toLowerCase()
       && nomRang(d.rang).toLowerCase() === nom.toLowerCase(),

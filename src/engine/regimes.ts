@@ -29,7 +29,7 @@ import { cfgOf, cultureDef, type Cfg } from './gameData'
 import { aMinistre, fluxFinSaisonMinisteres } from './ministeres'
 import { garnisonBatiment, productionTourismeBatiment } from './batiments'
 import { rangPaysNiveau } from './factions'
-import { nomRang, garnisonBaseVille } from './habitations'
+import { nomRang } from './habitations'
 import { garnisonProgresVille, lignesGarnisonProgresVille, garnisonMinimaleProgres, fluxProgresJoueur } from './progresAuto'
 import { effetsCommerceJoueur } from './commerce'
 import { reglesRegimes, reglesCultures } from '../rules/registry'
@@ -42,29 +42,25 @@ export { nomRang } from './habitations'
  *  typesHabitation pour le type de la ville). Défaut : 1. */
 export function rangNiveau(ville: City, C: Cfg): number {
   const type = ville.type ?? 'Ville'
-  const nom = nomRang(ville.rang ?? C.config.rangsHabitation?.[0]?.rang ?? 'Hameau')
+  const nom = nomRang(ville.rang ?? 'Hameau')
   const table = C.config.typesHabitation ?? []
   // niveau DANS l'échelle du type de la ville (1er rang du type = 1)
   const rangsType = table.filter((d) => d.type.toLowerCase() === type.toLowerCase())
   const idx = rangsType.findIndex((d) => nomRang(d.rang).toLowerCase() === nom.toLowerCase())
-  if (idx >= 0) return idx + 1
-  // Repli ancien format : table rangsHabitation (échelle Ville)
-  const idx2 = (C.config.rangsHabitation ?? [])
-    .findIndex((r) => nomRang(r.rang).toLowerCase() === nom.toLowerCase())
-  return idx2 >= 0 ? idx2 + 1 : 1
+  return idx >= 0 ? idx + 1 : 1
 }
 
-/** Garnison des habitations d'une ville : garnison de base du rang
- *  d'habitation (typesHabitation — Hameau 10, Cité 24, Motte 26,
- *  Forteresse 90…), garnisons statiques des bâtiments, bonus de la
- *  loi du régime (ex. Autoritarisme : + garnisonParRang × niveau du
- *  rang d'habitation), bonus des règles de faction actives
- *  (engine/factions.ts — état du jeu requis en 4e argument) et garnisons
- *  des technologies de progrès débloquées (engine/progres.ts).
+/** Garnison des habitations d'une ville : garnisons statiques des
+ *  bâtiments, bonus de la loi du régime (ex. Autoritarisme : +
+ *  garnisonParRang × niveau du rang d'habitation), bonus de la
+ *  règle de faction active (engine/factions.ts — état du jeu requis
+ *  en 4e argument), Gardes en poste (vague 3a, arbitrage « les
+ *  Gardes font tout » — la garnison de BASE des rangs est supprimée)
+ *  et garnisons des technologies de progrès débloquées.
  *  Valeur d'état (pas un flux) : affichée sous la culture de chaque
  *  ville (page « Pays ») et du pays (page « Royaume »). */
 export function garnisonHabitationVille(p: Player, ville: City, C: Cfg, state?: GameState): number {
-  let g = garnisonBaseVille(ville, C)
+  let g = 0
   // Ministères : bonus permanent crédité à la prise de fonction d'un
   //  Connétable (+15 par ville — engine/ministeres.ts, marqueur (y)).
   g += p.garnisonMinisteres ?? 0
@@ -103,9 +99,9 @@ export function garnisonHabitationVille(p: Player, ville: City, C: Cfg, state?: 
 export interface LigneDetailGarnison {
   label: string
   valeur: number
-  /** catégorie affichable : base / bâtiment / technologie /
+  /** catégorie affichable : bâtiment / technologie /
    *  régime / ministre / métier (Garde) */
-  origine: 'base' | 'bâtiment' | 'technologie' | 'régime' | 'ministre' | 'métier'
+  origine: 'bâtiment' | 'technologie' | 'régime' | 'ministre' | 'métier'
 }
 
 export function detailGarnisonVille(
@@ -115,18 +111,15 @@ export function detailGarnisonVille(
   const push = (origine: LigneDetailGarnison['origine'], label: string, valeur: number) => {
     if (valeur !== 0) out.push({ origine, label, valeur })
   }
-  // 1. Base du rang d'habitation (ex. Hameau 10, Cité 24, Motte 26…)
-  const base = garnisonBaseVille(ville, C)
-  push('base', `base du rang ${nomRang(ville.rang ?? '') || ville.rang || 'Hameau'}`, base)
-  // 2. Bâtiments de la ville (Poste de garde +40, Caserne +40…)
+  // 1. Bâtiments de la ville (Poste de garde +40, Caserne +40…)
   for (const b of ville.batiments) push('bâtiment', b, garnisonBatiment(b, C, ville.type))
-  // 3. Technologies (Milices civiles, Fortifications, Pré carré…)
+  // 2. Technologies (Milices civiles, Fortifications, Pré carré…)
   for (const l of lignesGarnisonProgresVille(p, ville, C)) push('technologie', l.label, l.valeur)
-  // 4. Loi du régime (ex. Autoritarisme : +15 par rang d'habitation)
+  // 3. Loi du régime (ex. Autoritarisme : +15 par rang d'habitation)
   const regime = C.regimes.find((r) => r.nom === p.regime)
   const bonus = regime?.garnisonParRang ?? 0
   if (bonus) push('régime', `${p.regime} : ${bonus} × rang de la ville`, bonus * rangNiveau(ville, C))
-  // 5. Gardes en poste (vague 3a) : +garnisonParGarde Garnison
+  // 4. Gardes en poste (vague 3a) : +garnisonParGarde Garnison
   //    STATIQUE par Garde vivant en poste dans la ville.
   if (state) {
     const pop = state.population[p.n] ?? []
@@ -135,7 +128,7 @@ export function detailGarnisonVille(
     ).length
     if (gardes > 0) push('métier', `${gardes} ${C.p.metierGarde}(s) en poste (statique)`, gardes * C.p.garnisonParGarde)
   }
-  // 6. Ministres : Connétable (+15 par ville, crédité à la prise de
+  // 5. Ministres : Connétable (+15 par ville, crédité à la prise de
   //    fonction) et Grand prévôt (+10 × rang de pays).
   if (p.garnisonMinisteres) push('ministre', 'Connétable (prise de fonction)', p.garnisonMinisteres)
   if (state && aMinistre(state, p, 'Grand prévôt')) {

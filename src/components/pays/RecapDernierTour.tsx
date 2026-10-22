@@ -28,12 +28,11 @@ export function RecapDernierTour({ p, C }: { p: Player; C: Cfg }) {
             </p>
           )
         }
-        const { production, batiments, amenagements, nourrEte, autres, population, vassalite, regimesCultures, habitations, citesLibres, commerce } = row.apports
+        const { production, batiments, amenagements, nourrEte, autres, population, vassalite, regimesCultures, citesLibres, commerce } = row.apports
         const amen = amenagements ?? {}
         const nEte = nourrEte ?? {}
         const aut = autres ?? {}
         const reg = regimesCultures ?? {}
-        const hab = habitations ?? {}
         const cl = citesLibres ?? {}
         const com = commerce ?? {}
         const val = (d: Record<string, number> | undefined, r: string) => (d ?? {})[r] ?? 0
@@ -57,7 +56,6 @@ export function RecapDernierTour({ p, C }: { p: Player; C: Cfg }) {
                 <tr>
                   <th>Ressource</th><th>Production</th><th>Bâtiments</th>
                   <th>Aménagements</th><th>Autres</th>
-                  <th>Conso. villes</th>
                   <th>Habitants</th><th>Régimes & cultures</th><th>Cités libres</th><th>Commerce</th><th>Vassalité</th><th>Total</th>
                 </tr>
               </thead>
@@ -68,7 +66,7 @@ export function RecapDernierTour({ p, C }: { p: Player; C: Cfg }) {
                     return (
                       <tr key="nourr-ete" className="muted" style={{ background: fondRessource('Nourr - été', C) }}>
                         <td><strong>Nourr - été</strong></td>
-                        <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+                        <td>—</td><td>—</td><td>—</td><td>—</td>
                         <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
                         <td><strong>{fmtNum(vEte)}</strong>{' '}
                           <span className="muted small">(créditée en été seulement)</span></td>
@@ -77,7 +75,7 @@ export function RecapDernierTour({ p, C }: { p: Player; C: Cfg }) {
                   }
                   const r = l.r
                   const total = val(production, r) + val(batiments, r) + val(amen, r)
-                    + val(nEte, r) + val(aut, r) + val(hab, r) + val(population, r) + val(vassalite, r) + val(reg, r)
+                    + val(nEte, r) + val(aut, r) + val(population, r) + val(vassalite, r) + val(reg, r)
                     + val(cl, r) + val(com, r)
                   return (
                     <tr key={r} style={{ background: fondRessource(r, C) }}>
@@ -89,7 +87,6 @@ export function RecapDernierTour({ p, C }: { p: Player; C: Cfg }) {
                       <td>{fmtNum(val(batiments, r))}</td>
                       <td>{fmtNum(val(amen, r))}</td>
                       <td>{fmtNum(val(aut, r))}</td>
-                      <td className="neg">{val(hab, r) !== 0 ? fmtNum(val(hab, r)) : '—'}</td>
                       <td>{fmtNum(val(population, r))}</td>
                       <td>{fmtNum(val(reg, r))}</td>
                       <td>{fmtNum(val(cl, r))}</td>

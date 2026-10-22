@@ -16,7 +16,7 @@ import {
   effetsTourBatiment, garnisonBatiment, constructionsRefs, amenagementRef,
   aCampDeBatisseurs, parseCoutTexte, garnisonHabitationVille,
   detailGarnisonVille, typeVille, habitationDef, rangsDisponibles,
-  consommationsVille, resumeConstruction, productionVille,
+  resumeConstruction, productionVille,
   effetsNourrEteAmenagementsVille,
   effetsNourrEteAutresVille, supprimerVille, transfererVille,
   debiterCoutHabitation, rangNiveau,
@@ -275,25 +275,13 @@ export function VilleCarte({ idx, ville, joueur, p, C, setPlayer, setSurint, set
             />
           </Field>
         </div>
-        {/* Consommation par tour de la ville, en dessous du rang
-            (ex. Cité : 10 Nourriture + 8 Or) — débitée
-            automatiquement à chaque fin de tour par le moteur. */}
+        {/* Habitants requis par le rang courant, en dessous du rang.
+            (La consommation par tour des rangs d'habitation est
+            supprimée — arbitrage vague 3b, code retiré 2026-10-22.) */}
         {(() => {
-          const consos = Object.entries(consommationsVille(ville, C))
-            .filter(([, v]) => v !== 0)
           const requis = habitationDef(ville, C)?.habitantsRequis ?? 0
           return (
             <div className="small">
-              {consos.length > 0 && (
-                <>
-                  Consommation de la ville :{' '}
-                  <span className="neg">
-                    {consos.map(([r, v]) => `${fmt(Math.abs(v))} ${r}`).join(' + ')}
-                  </span>
-                  <span className="muted small"> par tour (débitée automatiquement)</span>
-                  {' '}
-                </>
-              )}
               {requis > 0 && (
                 <span className={`small ${nbVivants < requis ? 'neg' : 'muted'}`}>
                   · {fmt(requis)} habitants requis ({nbVivants} vivant(s){nbVivants < requis ? ' — insuffisant' : ''})
@@ -567,7 +555,6 @@ export function VilleCarte({ idx, ville, joueur, p, C, setPlayer, setSurint, set
                       <th>Aménagements</th>
                       <th>Autres</th>
                       <th>Villageois</th>
-                      <th>Conso. habitation</th>
                       <th>Total / tour</th>
                     </tr>
                   </thead>
@@ -586,7 +573,6 @@ export function VilleCarte({ idx, ville, joueur, p, C, setPlayer, setSurint, set
                             <td>{nEteAm !== 0 ? fmtNum(nEteAm) : '—'}</td>
                             <td>{nEteAut !== 0 ? fmtNum(nEteAut) : '—'}</td>
                             <td>—</td>
-                            <td>—</td>
                             <td>
                               <strong>{fmtNum(nEteTot)}</strong>{' '}
                               <span className="muted small">(créditée en été seulement)</span>
@@ -604,7 +590,6 @@ export function VilleCarte({ idx, ville, joueur, p, C, setPlayer, setSurint, set
                               <strong>{l.r} - été</strong>{' '}
                               <span className="badge-ete">☀ été</span>
                             </td>
-                            <td>—</td>
                             <td>—</td>
                             <td>—</td>
                             <td>—</td>
@@ -630,9 +615,6 @@ export function VilleCarte({ idx, ville, joueur, p, C, setPlayer, setSurint, set
                           <td>{col(pv.amenagements)}</td>
                           <td>{col(pv.autres)}</td>
                           <td>{col(pv.habitants)}</td>
-                          <td className={(pv.consoVille[r] ?? 0) < 0 ? 'neg' : ''}>
-                            {col(pv.consoVille)}
-                          </td>
                           <td className={t < 0 ? 'neg' : ''}><strong>{fmtNum(t)}</strong></td>
                         </tr>
                       )

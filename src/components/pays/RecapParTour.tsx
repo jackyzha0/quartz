@@ -45,7 +45,6 @@ export function RecapParTour({ joueur, p, C, prodDetail, impotPopPrev, impotsVas
           ['Cités libres', prodDetail.citesLibres],
           ['Commerce', prodDetail.commerce],
           ['Proximité', prodDetail.proximite],
-          ['Conso villes', prodDetail.habitations],
           ['Vassalité', prodDetail.vassalite],
           ['Ministères', prodDetail.ministeres],
           ['Progrès', prodDetail.progres],

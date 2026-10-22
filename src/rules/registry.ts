@@ -239,7 +239,10 @@ export function clesTechsParNom(config: GameConfig | undefined, nom: string): st
  *   · gainDeblocageProgres = ONE-SHOT au déblocage (instantané) ;
  *   · reductions de coût + garnisons + plancher = valeurs d'état ;
  *   · Surconsommation consomme +10 Nourriture/rang : un COÛT
- *     (consommationsVille), pas une production. */
+ *     (consommation des rangs d'habitation), pas une production —
+ *     INERT depuis l'arbitrage vague 3b (plus aucune consommation
+ *     de rang n'existe au moteur) ; seule sa production
+ *     (fluxParRangHabitation Science/Tourisme) reste vivante. */
 const PROGRES_FLUX: RegleBanque[] = [
   // ── canal historique « prodCapitale » (capitale requise) ──
   { id: 'tech.comprendre-la-soie', source: 'tech', nom: 'Comprendre la soie', conditions: { techNom: 'Comprendre la soie' }, effets: [{ type: 'fluxSiCapitale', ressource: 'Science', valeur: 1 }] },

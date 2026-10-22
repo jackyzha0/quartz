@@ -23,7 +23,6 @@ import { effetsAmenagementsVille, effetsNourrEteAmenagementsVille, detailsAmenag
 import { effetsAutresVille, effetsNourrEteAutresVille, estNourrEte, detailsAutresJoueur } from './autres'
 import { effetsRegime, effetsCulturePays, detailCulturePays } from './regimes'
 import { citesLibresDe, detailCiteLibre } from './citesLibres'
-import { consommationsPays, consommationsVille, nomRang } from './habitations'
 import { bonusProximite } from './villes'
 import { effetsCommerceJoueur, detailCommerceJoueur } from './commerce'
 import { portefeuillesDuJoueur } from './ministeres'
@@ -50,9 +49,6 @@ export interface ProductionDetail {
   /** lois chiffrées du régime et règle de pays de la culture
    *  (engine/regimes.ts) : garnison de la loi, bonus de capitale… */
   regimesCultures: Record<string, number>
-  /** consommations par tour des habitations (engine/habitations.ts) —
-   *  négatives (ex. Cité : −10 Nourriture, −8 Or) */
-  habitations: Record<string, number>
   /** taxes reçues des cités libres sous suzeraineté du joueur
    *  (engine/citesLibres.ts — étape 3decies) */
   citesLibres: Record<string, number>
@@ -166,12 +162,9 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     if (part !== 0) vassalite['Or'] = (vassalite['Or'] ?? 0) + part
   }
 
-  // Habitations : consommation par tour de chaque ville selon son type
-  //  (Ville / Château) et son rang — étape 3octies du moteur.
-  const habitations: Record<string, number> = {}
-  for (const [res, v] of Object.entries(consommationsPays(p, C, state))) {
-    if (v !== 0) habitations[res] = (habitations[res] ?? 0) + v
-  }
+  // (Retrait 2026-10-22, nettoyage du code mort : le canal
+  //  « habitations » — consommation par tour des rangs d'habitation,
+  //  supprimée par l'arbitrage vague 3b — n'existe plus.)
 
   // Cités libres : taxes versées par les cités sous suzeraineté du
   //  joueur (production nette, Chasseurs ×1,1 Nourriture) — étape
@@ -221,12 +214,12 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
   const armees: Record<string, number> = {}
   // Total
   const total: Record<string, number> = {}
-  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, citesLibres, commerce, proximite, vassalite, ministeres, progres, armees]) {
+  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, citesLibres, commerce, proximite, vassalite, ministeres, progres, armees]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, citesLibres, commerce, proximite, vassalite, ministeres, progres, armees, total }
+  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, citesLibres, commerce, proximite, vassalite, ministeres, progres, armees, total }
 }
 
 // ══════════════════════════════════════════════════════════════════════
@@ -252,15 +245,13 @@ export interface ProductionVilleDetail {
   autres: Record<string, number>
   /** villageois (metiers × taxes − consommation) × gainsCrediteStock */
   habitants: Record<string, number>
-  /** consommation par tour de l'habitation (négative) */
-  consoVille: Record<string, number>
   /** somme de tous les canaux de la ville */
   total: Record<string, number>
 }
 
 /** Production par tour d'UNE VILLE — affichée en bas de son cadre
  *  (page « Pays »). Reflète les étapes du moteur qui concernent la
- *  ville (bâtiments, aménagements, autres, habitants, habitations). */
+ *  ville (bâtiments, aménagements, autres, habitants). */
 export function productionVille(
   state: GameState, p: Player, ville: City, C: Cfg,
 ): ProductionVilleDetail {
@@ -283,14 +274,13 @@ export function productionVille(
   for (const [res, v] of Object.entries(detailGainsVille(state, p, ville, C).net)) {
     if (v !== 0) habitants[res] = v * coef
   }
-  const consoVille = consommationsVille(ville, C)
   const total: Record<string, number> = {}
-  for (const canal of [batiments, amenagements, nourrEte, autres, habitants, consoVille]) {
+  for (const canal of [batiments, amenagements, nourrEte, autres, habitants]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { batiments, amenagements, nourrEte, autres, habitants, consoVille, total }
+  return { batiments, amenagements, nourrEte, autres, habitants, total }
 }
 
 // (RETRAIT 2026-10-19, retour arbitre : attraitTouristiqueVille et
@@ -309,7 +299,7 @@ export function productionVille(
 /** Canal d'un apport (colonne du récap ressources). */
 export type CanalApport =
   | 'Base' | 'Habitants' | 'Bâtiments' | 'Aménagements' | 'Nourr - été' | 'Autres'
-  | 'Régimes & cultures' | 'Conso villes' | 'Progrès' | 'Cités libres' | 'Commerce' | 'Proximité' | 'Vassalité'
+  | 'Régimes & cultures' | 'Progrès' | 'Cités libres' | 'Commerce' | 'Proximité' | 'Vassalité'
 
 export interface ProvenanceApport {
   /** canal de l'apport (colonne du récap) */
@@ -401,12 +391,6 @@ export function provenancesApports(
       `règle de pays « ${p.culture} » : +${d.parVille} × ${d.nbVillesMonde} ville(s) de cette culture dans le monde (dont ${d.nbVillesPerso} chez toi)`, d.total)
   }
 
-  // Consommation par tour des habitations (par ville, négative)
-  for (const ville of p.villes) {
-    for (const [res, v] of Object.entries(consommationsVille(ville, C))) {
-      push(res, 'Conso villes', `${ville.nom} (${nomRang(ville.rang ?? '')})`, v)
-    }
-  }
 
   // Cités libres : taxes des cités sous suzeraineté du joueur
   for (const cite of citesLibresDe(state)) {
