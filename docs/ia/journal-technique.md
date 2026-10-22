@@ -1405,6 +1405,55 @@ deux commits (CI verte sur chacun) : A = référentiel vidé + test v1
 B = migration ciblée + test complet ; miroirs v4 avec blobs
 identiques.
 
+## Nettoyage : retrait du code mort et de la duplication résiduelle (2026-10-22, retour Thibaut sur la revue critique des habitations)
+
+Retour Thibaut sur la revue critique des habitations/population :
+« Retire le code mort » (point 5) et « Retire la duplication
+résiduelle » (point 6). 15 fichiers touchés, sans aucun changement
+de comportement jouable.
+
+**Code mort supprimé** (no-ops depuis la vague 3b, qui a retiré la
+consommation et la garnison de base des habitations) :
+`garnisonBaseVille`, `consommationsVille`, `consommationsPays`,
+`appliquerConsommationsHabitations`, `fmtCourt` (habitations.ts) ;
+étape moteur 3octies (engine.ts) ; canal « habitations » des récaps
+(productionDetaillee/productionVille `consoVille`, provenancesApports,
+CanalApport « Conso villes », ApportsTour.habitations) ; colonnes
+mortes UI (VilleCarte « Conso. habitation », RecapParTour « Conso
+villes », RecapDernierTour « Conso. villes » — cellule excédentaire
+de la ligne « Nourr - été » corrigée au passage) ; bloc
+« Consommation de la ville » de VilleCarte (l'affichage
+« habitants requis » est conservé) ; ligne « base du rang » du détail
+de garnison (regimes.ts, union `origine` 6→5 catégories, commentaires
+renumérotés). Le **Grand veneur** (INERT depuis la vague 3b) est
+retiré du référentiel (18→17 portefeuilles), du renommage
+`RENOMMAGES_MINISTERES` et de l'Aide ; filtre idempotent dans `cfgOf`
+pour les configs embarquées déjà convergées (un Grand veneur déjà
+nommé garde son badge, sans effet — il n'en avait plus). Le test
+no-op vague 3b est remplacé par un test de non-régression des
+exports (metiers.test.ts).
+
+**Duplication supprimée** : table `rangsHabitation` retirée de
+referentiels.json, de l'interface GameConfig, des défauts
+(defaultConfig.ts) et de scripts/diag.ts ; replis « ancien format »
+supprimés de `habitationDef`, `rangsDisponibles`, `rangNiveau`
+(regimes.ts) ; les chaînes en dur associées partent avec ; `cfgOf`
+supprime la clé orpheline des configs persistées. Le commentaire
+registry.ts sur Surconsommation est mis à jour (coût INERT depuis
+la vague 3b, seule la production reste vivante).
+
+Tests : +2 cas dans state/config.test.ts (Grand veneur filtré +
+idempotent ; rangsHabitation absente des défauts et supprimée d'une
+config la portant). Total : 153/153 verts. Validation : tsc EXIT 0,
+diag exit 0 et sortie identique à la base (les 16 « ÉCHEC »
+informatifs attendus), bundle esbuild OK. Les vieux historiques de
+parties portant `rangsHabitation`/un Grand veneur nommé sont lus
+sans erreur (clé ignorée, badge conservé sans effet).
+
+Push en trois commits : A = chore(référentiel) referentiels.json,
+B = refactor(moteur) code+tests+diag, C = docs(ia) ; miroirs v4
+avec blobs identiques.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

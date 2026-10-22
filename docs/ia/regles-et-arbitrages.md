@@ -128,14 +128,16 @@ Remplace le prérequis « 1 serment par rang intermédiaire » du classeur, jug�
   les voies de victoire.
 - Les 7 ministères du classeur ont été renommés en offices de cour :
   Colonial→**Grand bailli**, Culture→**Maître des arts**, Défense→**Grand prévôt**,
-  Ecologie→**Grand veneur**, Economie→**Surintendant des finances**,
+  Economie→**Surintendant des finances**,
   Guerre→**Grand écuyer**, Recherche→**Grand bibliothécaire**.
+  (Le renommage Ecologie→**Grand veneur** a disparu le 2026-10-22 :
+  l'office a été RETIRÉ avec son effet — il n'y a plus de consommation
+  des habitations à réduire.)
 - **Catalogue en ligne : 18 portefeuilles** (adapté de la partie réelle de Thibaut ;
   5 supprimés : Maître des arts, Intendant des hommes, Maître des œuvres, Maître des
   espions, Ambassadeur des cités). Effets **Auto codés** :
   - Grand bailli : fondation d'habitation −8 Or −3 Bois (plafonnés à 0 ; améliorations non réduites).
   - Grand prévôt : +1 Fer/tour + 10 Garnison × rang de pays par habitation (dynamique).
-  - Grand veneur : −5 Nourriture × rang de pays sur la consommation des habitations.
   - Surintendant des finances : après construction d'un bâtiment, 1 ressource au
     choix produite par l'habitation × rang.
   - Grand bibliothécaire : +rang de pays en Science au déblocage d'une technologie.
@@ -578,9 +580,19 @@ rang 1). Arbitrages actés lors de la session :
   Y Garnison. » ont été retirées du référentiel
   (batimentsVille/batimentsChateau) — consommation et garnison de
   base des rangs n'existent plus.
-- **Points ouverts** : le **Grand veneur** (ministère −5 Nourriture
-  sur la consommation des habitations) devient INERT tant qu'aucune
-  consommation n'existe ; garnisons hors-rang (régimes, ministères,
+- **Retrait du code mort (2026-10-22, retour Thibaut sur la revue
+  critique des habitations)** : purgé du moteur et de l'UI tout ce qui
+  ne produisait plus d'effet — `garnisonBaseVille`, `consommationsVille`,
+  `consommationsPays`, `appliquerConsommationsHabitations`, `fmtCourt`,
+  l'étape moteur 3octies, le canal « habitations » des récaps (Conso
+  villes) et ses colonnes mortes (VilleCarte « Conso. habitation »,
+  récaps « Conso villes »), la ligne « base du rang » du détail de
+  garnison ; le **Grand veneur** est retiré du référentiel et filtré des
+  configs embarquées (17 portefeuilles) ; la table dupliquée
+  `rangsHabitation` est retirée (referentiels.json, interface, défauts,
+  replis « ancien format »). La production des habitations et leurs
+  emplacements restent intacts.
+- **Points ouverts** : garnisons hors-rang (régimes, ministères,
   bâtiments rang 2+) inchangées.
 
 ### Déménagement : perte du métier ET du domicile (arbitré 2026-10-21, vague 3a ; complément Dirigeant/Héritier le même soir)
