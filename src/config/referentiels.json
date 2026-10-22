@@ -2768,13 +2768,13 @@
    "categorie": "",
    "nom": "Consomme 2 Or par tour. 10 Garnison.",
    "cout": "",
-   "effet": ""
+   "effet": "Métiers disponibles : 50 Chasseurs, 2 Gardes, 1 Commerçant, 1 Gouverneur. Domiciles disponibles : 50 maisons, 10 Auberge."
   },
   {
    "categorie": "Militaire",
    "nom": "Poste de garde",
    "cout": "25 Or + 4 Fer",
-   "effet": "Consomme 10 Nourritures par tour.\nGarnison +40."
+   "effet": "+4 emplacements de Garde."
   },
   {
    "categorie": "Militaire",
@@ -2786,43 +2786,43 @@
    "categorie": "Economique",
    "nom": "Camp de bûcheron",
    "cout": "5 Or + 1 Bétail.",
-   "effet": "+1 Bois par tour."
+   "effet": "+2 emplacements de Bûcheron."
   },
   {
    "categorie": "Economique",
    "nom": "Camp de mineur",
    "cout": "5 Or + 1 Charbon.",
-   "effet": "+1 Pierre par tour."
+   "effet": "+2 emplacements de Mineur."
   },
   {
    "categorie": "Economique",
    "nom": "Echoppe",
    "cout": "10 Or + 3 Bois.",
-   "effet": "+ 2 Or par tour. Permet d'entretenir 1 route commerciale supplémentaire."
+   "effet": "+2 emplacements de Commerçant. Permet d'entretenir 1 route commerciale supplémentaire."
   },
   {
    "categorie": "Economique",
    "nom": "Grange",
    "cout": "10 Or + 3 Bétail + 3 Bois.",
-   "effet": "+ 15 Nourriture par tour."
+   "effet": "+2 emplacements d'Éleveur, +4 emplacements de Fermier."
   },
   {
    "categorie": "Economique",
    "nom": "Herboristerie",
-   "cout": "10 Or + 4 Bois",
+   "cout": "10 Or + 2 Pierre",
    "effet": "Chances de contracter une maladie et de guérir  d'une maladie augmentées de 5%"
   },
   {
    "categorie": "Economique",
    "nom": "Ponton",
    "cout": "5 Or + 5 Bois.",
-   "effet": "Habitations côtières uniquement. Les ressources maritimes aménagées génèrent 1 Bétail par tour."
+   "effet": "+2 emplacements de Pêcheur. Les pêcheurs de cette habitation produisent également +0,5 Bétail par tour. Habitations côtières uniquement."
   },
   {
    "categorie": "Economique",
    "nom": "Consomme 10 Nourriture et 8 Or par tour. 24 Garnison.",
    "cout": "",
-   "effet": ""
+   "effet": "Métiers disponibles : 30 Chasseurs, 4 Gardes, 5 Commerçants, 1 Gouverneur. Domiciles disponibles : 100 maisons, 50 Auberge."
   },
   {
    "categorie": "Militaire",
@@ -2912,7 +2912,7 @@
    "categorie": "Guilde",
    "nom": "Consomme 20 Nourriture et 20 Or par tour. 40 Garnison.",
    "cout": "",
-   "effet": ""
+   "effet": "Métiers disponibles : 8 Gardes, 10 Commerçants, 1 Gouverneur. Domiciles disponibles : 150 maisons, 100 Auberge."
   },
   {
    "categorie": "Militaire",
@@ -3070,31 +3070,31 @@
    "categorie": "",
    "nom": "Consomme 2 Or par tour. 26 Garnison.",
    "cout": "",
-   "effet": ""
+   "effet": "Métiers disponibles : 40 Chasseurs, 4 Gardes, 1 Gouverneur. Domiciles disponibles : 50 maisons, 10 Auberge."
   },
   {
    "categorie": "Militaire",
    "nom": "Poste de garde",
    "cout": "25 Or + 4 Fer",
-   "effet": "Consomme 10 Nourritures par tour.\nGarnison +40."
+   "effet": "+4 emplacements de Garde."
   },
   {
    "categorie": "Militaire",
    "nom": "Herses",
-   "cout": "Acquis par défaut",
+   "cout": "4 Or + 2 Bois",
    "effet": "Ajoute deux Herses lors de bataille de siège, aux endroits choisis par le défenseur."
   },
   {
    "categorie": "Economique",
    "nom": "Camp de bûcheron",
    "cout": "5 Or + 1 Bétail.",
-   "effet": "+1 Bois par tour."
+   "effet": "+2 emplacements de Bûcheron."
   },
   {
    "categorie": "Economique",
    "nom": "Camp de mineur",
    "cout": "5 Or + 1 Charbon.",
-   "effet": "+1 Pierre par tour."
+   "effet": "+2 emplacements de Mineur."
   },
   {
    "categorie": "Economique",
@@ -3112,13 +3112,13 @@
    "categorie": "Economique",
    "nom": "Ecole élémentaire",
    "cout": "10 Or + 2 Bétail.",
-   "effet": "Consomme 1 Or par tour, peut accueillir 1 Professeur. Coût des Progrès -1 Science."
+   "effet": "Consomme 1 Or par tour.\n+1 emplacement de Professeur et +1 emplacement de chercheur (Scientifique)."
   },
   {
    "categorie": "Economique",
    "nom": "Echoppe",
    "cout": "12 Or + 2 Bois.",
-   "effet": "+ 2 Or par tour. Permet d'entretenir 1 route commerciale supplémentaire."
+   "effet": "+2 emplacements de Commerçant. Permet d'entretenir 1 route commerciale supplémentaire."
   },
   {
    "categorie": "Economique",
@@ -3127,7 +3127,7 @@
    "effet": "Chances de contracter une maladie et de guérir  d'une maladie augmentées de 5%"
   },
   {
-   "categorie": "Economique",
+   "categorie": "Militaire",
    "nom": "Terrain d'entrainement",
    "cout": "12 Or + 3 Bois.",
    "effet": "Si vous levez une armée dans cette habitation, dépensez 10 Or de moins."
@@ -3136,7 +3136,7 @@
    "categorie": "Economique",
    "nom": "Consomme 10 Nourriture et 8 Or par tour. 45 Garnison.",
    "cout": "",
-   "effet": ""
+   "effet": "Métiers disponibles : 20 Chasseurs, 8 Gardes, 1 Gouverneur. Domiciles disponibles : 100 maisons, 50 Auberge."
   },
   {
    "categorie": "Militaire",
@@ -3202,7 +3202,7 @@
    "categorie": "Guilde",
    "nom": "Consomme 20 Nourriture et 20 Or par tour. 90 Garnison.",
    "cout": "",
-   "effet": ""
+   "effet": "Métiers disponibles : 16 Gardes, 1 Gouverneur. Domiciles disponibles : 150 maisons, 100 Auberge."
   },
   {
    "categorie": "Militaire",
@@ -5141,19 +5141,16 @@
    "famille": "Militaire",
    "nom": "Poste de garde",
    "cout": "25 Or + 4 Fer",
-   "production": "Consomme 10 Nourriture par tour.",
-   "description": "Consomme 10 Nourritures par tour.\nGarnison +40.",
-   "effets": [
+   "production": "",
+   "description": "+4 emplacements de Garde.",
+   "effets": [],
+   "rangMinHabitation": 1,
+   "emplacements": [
     {
-     "ressource": "Nourriture",
-     "quantite": -10
-    },
-    {
-     "ressource": "Garnison",
-     "quantite": 40
+     "metier": "Garde",
+     "places": 4
     }
-   ],
-   "rangMinHabitation": 1
+   ]
   },
   {
    "categorie": "Bâtiment",
@@ -5171,15 +5168,16 @@
    "famille": "Economique",
    "nom": "Camp de bûcheron",
    "cout": "5 Or + 1 Bétail",
-   "production": "+1 Bois par tour.",
-   "description": "+1 Bois par tour.",
-   "effets": [
+   "production": "+2 emplacements de Bûcheron.",
+   "description": "+2 emplacements de Bûcheron.",
+   "effets": [],
+   "rangMinHabitation": 1,
+   "emplacements": [
     {
-     "ressource": "Bois",
-     "quantite": 1
+     "metier": "Bûcheron",
+     "places": 2
     }
-   ],
-   "rangMinHabitation": 1
+   ]
   },
   {
    "categorie": "Bâtiment",
@@ -5187,15 +5185,16 @@
    "famille": "Economique",
    "nom": "Camp de mineur",
    "cout": "5 Or + 1 Charbon",
-   "production": "+1 Pierre par tour.",
-   "description": "+1 Pierre par tour.",
-   "effets": [
+   "production": "+2 emplacements de Mineur.",
+   "description": "+2 emplacements de Mineur.",
+   "effets": [],
+   "rangMinHabitation": 1,
+   "emplacements": [
     {
-     "ressource": "Pierre",
-     "quantite": 1
+     "metier": "Mineur",
+     "places": 2
     }
-   ],
-   "rangMinHabitation": 1
+   ]
   },
   {
    "categorie": "Bâtiment",
@@ -5203,15 +5202,16 @@
    "famille": "Economique",
    "nom": "Echoppe",
    "cout": "10 Or + 3 Bois",
-   "production": "+2 Or par tour.",
-   "description": "+ 2 Or par tour. Permet d'entretenir 1 route commerciale supplémentaire.",
-   "effets": [
+   "production": "+2 emplacements de Commerçant.",
+   "description": "+2 emplacements de Commerçant. Permet d'entretenir 1 route commerciale supplémentaire.",
+   "effets": [],
+   "rangMinHabitation": 1,
+   "emplacements": [
     {
-     "ressource": "Or",
-     "quantite": 2
+     "metier": "Commerçant",
+     "places": 2
     }
-   ],
-   "rangMinHabitation": 1
+   ]
   },
   {
    "categorie": "Bâtiment",
@@ -5219,22 +5219,27 @@
    "famille": "Economique",
    "nom": "Grange",
    "cout": "10 Or + 3 Bétail + 3 Bois",
-   "production": "+20 Nourriture par tour.",
-   "description": "+ 15 Nourriture par tour.",
-   "effets": [
+   "production": "+2 emplacements d'Éleveur, +4 emplacements de Fermier.",
+   "description": "+2 emplacements d'Éleveur, +4 emplacements de Fermier.",
+   "effets": [],
+   "rangMinHabitation": 1,
+   "emplacements": [
     {
-     "ressource": "Nourriture",
-     "quantite": 20
+     "metier": "Éleveur",
+     "places": 2
+    },
+    {
+     "metier": "Fermier",
+     "places": 4
     }
-   ],
-   "rangMinHabitation": 1
+   ]
   },
   {
    "categorie": "Bâtiment",
    "groupe": "Ville",
    "famille": "Economique",
    "nom": "Herboristerie",
-   "cout": "10 Or + 4 Bois",
+   "cout": "10 Or + 2 Pierre",
    "production": "",
    "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 5%.",
    "rangMinHabitation": 1
@@ -5245,9 +5250,16 @@
    "famille": "Economique",
    "nom": "Ponton",
    "cout": "5 Or + 5 Bois",
-   "production": "",
-   "description": "Habitations côtières uniquement. Les ressources maritimes aménagées génèrent 1 Bétail par tour.",
-   "rangMinHabitation": 1
+   "production": "+2 emplacements de Pêcheur.",
+   "description": "+2 emplacements de Pêcheur. Les pêcheurs de cette habitation produisent également +0,5 Bétail par tour. Habitations côtières uniquement.",
+   "rangMinHabitation": 1,
+   "effets": [],
+   "emplacements": [
+    {
+     "metier": "Pêcheur",
+     "places": 2
+    }
+   ]
   },
   {
    "categorie": "Bâtiment",
@@ -5587,28 +5599,36 @@
    "famille": "Militaire",
    "nom": "Poste de garde",
    "cout": "25 Or + 4 Fer",
-   "production": "Consomme 10 Nourriture par tour.",
-   "description": "Consomme 10 Nourritures par tour.\nGarnison +40.",
-   "effets": [
+   "production": "",
+   "description": "+4 emplacements de Garde.",
+   "effets": [],
+   "rangMinHabitation": 1,
+   "emplacements": [
     {
-     "ressource": "Nourriture",
-     "quantite": -10
-    },
-    {
-     "ressource": "Garnison",
-     "quantite": 40
+     "metier": "Garde",
+     "places": 4
     }
-   ],
-   "rangMinHabitation": 1
+   ]
   },
   {
    "categorie": "Bâtiment",
    "groupe": "Château",
    "famille": "Militaire",
    "nom": "Herses",
-   "cout": "Acquis par défaut",
+   "cout": "4 Or + 2 Bois",
    "production": "",
    "description": "Ajoute deux Herses lors de bataille de siège, aux endroits choisis par le défenseur.",
+   "rangMinHabitation": 1
+  },
+  {
+   "categorie": "Bâtiment",
+   "groupe": "Château",
+   "famille": "Militaire",
+   "nom": "Terrain d'entrainement",
+   "cout": "12 Or + 3 Bois",
+   "production": "",
+   "description": "Si vous levez une armée dans cette habitation, dépensez 10 Or de moins.",
+   "effets": [],
    "rangMinHabitation": 1
   },
   {
@@ -5617,15 +5637,16 @@
    "famille": "Economique",
    "nom": "Camp de bûcheron",
    "cout": "5 Or + 1 Bétail",
-   "production": "+1 Bois par tour.",
-   "description": "+1 Bois par tour.",
-   "effets": [
+   "production": "+2 emplacements de Bûcheron.",
+   "description": "+2 emplacements de Bûcheron.",
+   "effets": [],
+   "rangMinHabitation": 1,
+   "emplacements": [
     {
-     "ressource": "Bois",
-     "quantite": 1
+     "metier": "Bûcheron",
+     "places": 2
     }
-   ],
-   "rangMinHabitation": 1
+   ]
   },
   {
    "categorie": "Bâtiment",
@@ -5633,15 +5654,16 @@
    "famille": "Economique",
    "nom": "Camp de mineur",
    "cout": "5 Or + 1 Charbon",
-   "production": "+1 Pierre par tour.",
-   "description": "+1 Pierre par tour.",
-   "effets": [
+   "production": "+2 emplacements de Mineur.",
+   "description": "+2 emplacements de Mineur.",
+   "effets": [],
+   "rangMinHabitation": 1,
+   "emplacements": [
     {
-     "ressource": "Pierre",
-     "quantite": 1
+     "metier": "Mineur",
+     "places": 2
     }
-   ],
-   "rangMinHabitation": 1
+   ]
   },
   {
    "categorie": "Bâtiment",
@@ -5660,7 +5682,7 @@
    "nom": "Conjuratoire",
    "cout": "10 Or + 2 Pierre",
    "production": "+15 Tourisme par tour.",
-   "description": "Tourisme +15.",
+   "description": "+15 Tourisme par tour.",
    "effets": [
     {
      "ressource": "Tourisme",
@@ -5676,14 +5698,24 @@
    "nom": "Ecole élémentaire",
    "cout": "10 Or + 2 Bétail",
    "production": "Consomme 1 Or par tour.",
-   "description": "Consomme 1 Or par tour, peut accueillir 1 Professeur. Coût des Progrès -1 Science.",
+   "description": "Consomme 1 Or par tour.\n+1 emplacement de Professeur et +1 emplacement de chercheur (Scientifique).",
    "effets": [
     {
      "ressource": "Or",
      "quantite": -1
     }
    ],
-   "rangMinHabitation": 1
+   "rangMinHabitation": 1,
+   "emplacements": [
+    {
+     "metier": "Professeur",
+     "places": 1
+    },
+    {
+     "metier": "Scientifique",
+     "places": 1
+    }
+   ]
   },
   {
    "categorie": "Bâtiment",
@@ -5691,15 +5723,16 @@
    "famille": "Economique",
    "nom": "Echoppe",
    "cout": "12 Or + 2 Bois",
-   "production": "+2 Or par tour.",
-   "description": "+ 2 Or par tour. Permet d'entretenir 1 route commerciale supplémentaire.",
-   "effets": [
+   "production": "+2 emplacements de Commerçant.",
+   "description": "+2 emplacements de Commerçant. Permet d'entretenir 1 route commerciale supplémentaire.",
+   "effets": [],
+   "rangMinHabitation": 1,
+   "emplacements": [
     {
-     "ressource": "Or",
-     "quantite": 2
+     "metier": "Commerçant",
+     "places": 2
     }
-   ],
-   "rangMinHabitation": 1
+   ]
   },
   {
    "categorie": "Bâtiment",
@@ -5709,16 +5742,6 @@
    "cout": "10 Or + 2 Pierre",
    "production": "",
    "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 5%.",
-   "rangMinHabitation": 1
-  },
-  {
-   "categorie": "Bâtiment",
-   "groupe": "Château",
-   "famille": "Economique",
-   "nom": "Terrain d'entrainement",
-   "cout": "12 Or + 3 Bois",
-   "production": "",
-   "description": "Si vous levez une armée dans cette habitation, dépensez 10 Or de moins.",
    "rangMinHabitation": 1
   },
   {
@@ -6521,48 +6544,48 @@
    "rang": "Hameau",
    "cout": "20 Or + 10 Bois + 6 Bétail",
    "habitantsRequis": 0,
-   "consommation": "2 Or",
-   "garnison": 10
+   "metiersDisponibles": "50 Chasseurs, 2 Gardes, 1 Commerçant, 1 Gouverneur",
+   "domicilesDisponibles": "50 maisons, 10 Auberge"
   },
   {
    "type": "Ville",
    "rang": "Cité",
    "cout": "40 Or + 8 Bétail + 6 Pierres",
    "habitantsRequis": 120,
-   "consommation": "10 Nourriture, 8 Or",
-   "garnison": 24
+   "metiersDisponibles": "30 Chasseurs, 4 Gardes, 5 Commerçants, 1 Gouverneur",
+   "domicilesDisponibles": "100 maisons, 50 Auberge"
   },
   {
    "type": "Ville",
    "rang": "Grande Cité",
    "cout": "40 Or + 12 Bétail + 12 Charbons",
    "habitantsRequis": 200,
-   "consommation": "20 Nourriture, 20 Or",
-   "garnison": 40
+   "metiersDisponibles": "8 Gardes, 10 Commerçants, 1 Gouverneur",
+   "domicilesDisponibles": "150 maisons, 100 Auberge"
   },
   {
    "type": "Château",
    "rang": "Motte",
    "cout": "20 Or + 12 Bois + 2 Bétail",
    "habitantsRequis": 0,
-   "consommation": "2 Or",
-   "garnison": 26
+   "metiersDisponibles": "40 Chasseurs, 4 Gardes, 1 Gouverneur",
+   "domicilesDisponibles": "50 maisons, 10 Auberge"
   },
   {
    "type": "Château",
    "rang": "Donjon",
    "cout": "40 Or + 2 Bétail + 12 Pierres",
    "habitantsRequis": 120,
-   "consommation": "10 Nourriture, 8 Or",
-   "garnison": 45
+   "metiersDisponibles": "20 Chasseurs, 8 Gardes, 1 Gouverneur",
+   "domicilesDisponibles": "100 maisons, 50 Auberge"
   },
   {
    "type": "Château",
    "rang": "Forteresse",
    "cout": "120 Or + 10 Pierres + 12 Fer",
    "habitantsRequis": 200,
-   "consommation": "20 Nourriture, 20 Or",
-   "garnison": 90
+   "metiersDisponibles": "16 Gardes, 1 Gouverneur",
+   "domicilesDisponibles": "150 maisons, 100 Auberge"
   }
  ],
  "metiers": [
