@@ -830,6 +830,34 @@ export function migrerConstructions(
   return out
 }
 
+/** (v4, retour Thibaut 2026-10-22) : RÉALIGNEMENT des aménagements
+ *  d'une ancienne configuration sur le référentiel courant. Les configs
+ *  sauvegardées AVANT le rework « production → emplacements » (vague
+ *  3a, 2026-10-21) portent encore les ANCIENNES descriptions (« +2 Or
+ *  et +10 Nourriture par tour. ») ET les anciens effets structurés
+ *  (encore lus par le moteur — l'aménagement continuait de produire !)
+ *  sans champ `emplacements` : la partie en cours affichait donc des
+ *  aménagements mensongers et hors rework, alors que les tiers 2/3
+ *  (ajoutés neufs par migrerConstructions) étaient conformes — un
+ *  mélange incohérent. migrerConstructions n'ajoutant que les
+ *  entrées MANQUANTES par nom, les entrées existantes restaient figées.
+ *  Arbitrage : un aménagement du référentiel est une donnée de
+ *  RÉFÉRENCE, pas de personnalisation — toute entrée de même nom (et
+ *  de catégorie Aménagement) est REMPLACÉE par l'entrée courante du
+ *  référentiel (description, production, coût, terrain, emplacements,
+ *  effets, rangMinHabitation, remplaceAmenagement). Les aménagements
+ *  PERSO (noms hors référentiel) sont conservés tels quels. */
+export function realignerAmenagements(
+  list: ConstructionRef[] | undefined, defauts: ConstructionRef[],
+): ConstructionRef[] {
+  if (!Array.isArray(list)) return defauts
+  const parNom = new Map(
+    defauts.filter((d) => d.categorie === 'Aménagement').map((d) => [d.nom, d]),
+  )
+  return list.map((c) =>
+    (c.categorie === 'Aménagement' ? parNom.get(c.nom) : undefined) ?? c)
+}
+
 /** Table des types d'habitation (Ville / Château) d'une configuration
  *  existante — défauts du classeur si absents ou vides. */
 export function migrerTypesHabitation(list: HabitationDef[] | undefined): HabitationDef[] {
@@ -969,7 +997,16 @@ function migrerMinisteres(list: GameConfig['ministeres']): GameConfig['ministere
 //  `titresEffets` devient `metiersEffets`, et les effets de techs
 //  `prodParTitre` deviennent `prodParMetier` — les configs v2 sont
 //  converties une fois dans cfgOf (personnalisations conservées).
-export const SCHEMA_VERSION_CONFIG = 3
+// Version 4 (2026-10-22, retour Thibaut « les descriptions des
+//  aménagements, c'est du grand n'importe quoi ») : les configs v3
+//  sauvegardées avant la vague 3a portent encore les ANCIENNES
+//  descriptions/effets des aménagements (« +2 Or et +10 Nourriture
+//  par tour. », effets structurés actifs, pas d'emplacements) —
+//  RÉALIGNEMENT complet des aménagements sur le référentiel (entrées
+//  de même nom remplacées ; aménagements perso conservés ; bâtiments
+//  et autres tables intouchés). Les tiers 2/3 de la vague 3c sont
+//  ajoutés par migrerConstructions.
+export const SCHEMA_VERSION_CONFIG = 4
 
 /** Garde-fous appliqués à TOUTES les configurations, même convergées :
  *  chaque table du référentiel migrée doit contenir au moins une entrée
@@ -1138,6 +1175,10 @@ export function cfgOf(config?: GameConfig): Cfg {
     merged.constructions = (merged.constructions ?? []).filter((c) => !(c as { faction?: string }).faction)
     // constructions : ajout des entrées du référentiel apparues depuis
     //  la sauvegarde
+    // (v4) : réalignement des AMÉNAGEMENTS existants sur le
+    //  référentiel AVANT la complétion (retour Thibaut 2026-10-22 —
+    //  voir realignerAmenagements : descriptions/effets de la vague 3a)
+    merged.constructions = realignerAmenagements(merged.constructions, DEFAULT_CONFIG.constructions)
     merged.constructions = migrerConstructions(merged.constructions, DEFAULT_CONFIG.constructions)
     merged.schemaVersion = SCHEMA_VERSION_CONFIG
   }

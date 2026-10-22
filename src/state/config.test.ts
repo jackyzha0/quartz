@@ -102,3 +102,51 @@ test('config : l injection fin de tour conserve la config si la mondiale est abs
   assert.equal(cfgOf(etat.config!).config.params?.adultAge, 18,
     'avec une mondiale, la résolution l applique avant runTurn')
 })
+
+// ── Migration v4 (retour Thibaut 2026-10-22 « les descriptions des
+//    aménagements, c'est du grand n'importe quoi ») ─────────────────────────
+
+test('config : migration v4 — les aménagements pré-vague-3a sont réalignés (descriptions, effets, emplacements)', () => {
+  const c = cloneDefaultConfig()
+  c.schemaVersion = 3
+  // Config d'avant la vague 3a (production → emplacements) et avant la
+  //  vague 3c : le Baleinier porte l'ANCIENNE description, les ANCIENS
+  //  effets structurés (encore lus par le moteur !) et PAS de champ
+  //  emplacements ; les tiers 2/3 n'existent pas.
+  const iB = c.constructions.findIndex((x) => x.nom === 'Baleinier')
+  assert.ok(iB >= 0, 'Baleinier dans les défauts')
+  c.constructions[iB] = {
+    ...c.constructions[iB],
+    description: '+2 Or et +10 Nourriture par tour.',
+    effets: [{ ressource: 'Or', quantite: 2 }, { ressource: 'Nourriture', quantite: 10 }],
+  } as typeof c.constructions[number]
+  delete (c.constructions[iB] as { emplacements?: unknown }).emplacements
+  c.constructions = c.constructions.filter((x) => !x.nom.includes('tier'))
+  // un aménagement PERSO doit survivre au réalignement
+  c.constructions.push({
+    categorie: 'Aménagement', groupe: 'Terrain', famille: '', nom: 'Mon aménagement perso',
+    cout: '', production: '', description: 'perso', effets: [],
+  })
+  const C = cfgOf(c)
+  const b = C.config.constructions.find((x) => x.nom === 'Baleinier')!
+  assert.equal(b.description, '3 emplacements de Pêcheur, 2 emplacements de Commerçant.',
+    'description réalignée sur le référentiel (plus d ancien texte de production)')
+  assert.deepEqual(
+    (b.emplacements ?? []).map((e) => `${e.places} ${e.metier}`),
+    ['3 Pêcheur', '2 Commerçant'],
+    'emplacements de la vague 3a récupérés (caps conformes)')
+  assert.equal((b.effets ?? []).length, 0,
+    'les anciens effets de production directe (Or, Nourriture) disparaissent')
+  assert.ok(C.config.constructions.some((x) => x.nom === 'Baleinier (tier 2)'),
+    'les tiers 2/3 sont ajoutés par la complétion')
+  assert.ok(C.config.constructions.some((x) => x.nom === 'Mon aménagement perso'),
+    'un aménagement perso (hors référentiel) est conservé')
+  assert.equal(C.config.schemaVersion, 4, 'tampon v4 apposé')
+  // idempotence : la config convergée ne repasse PAS par les migrations
+  const C2 = cfgOf(C.config)
+  assert.ok(C2.config.constructions.some((x) => x.nom === 'Mon aménagement perso'),
+    're-lecture : le perso survit (pas de re-migration)')
+  assert.equal(
+    C2.config.constructions.find((x) => x.nom === 'Baleinier')!.description,
+    '3 emplacements de Pêcheur, 2 emplacements de Commerçant.')
+})

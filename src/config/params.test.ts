@@ -46,7 +46,7 @@ test('défauts v3 : Gompertz 0.0025/0.08/0.9, caps Chasseur supprimées (vague 3
   assert.ok(!('ageMaxAla' in DEFAULT_PARAMS))
 })
 
-test('cfgOf : conversion v2 → v3 (titres → metiers, champ interne renommé, prodParTitre → prodParMetier), tampon schemaVersion', () => {
+test('cfgOf : conversion v2 → courante (titres → metiers, champ interne renommé, prodParTitre → prodParMetier), tampon schemaVersion', () => {
   const cfg = cloneDefaultConfig()
   const asAny = cfg as unknown as Record<string, unknown>
   // referentiel v2 : table `titres` avec champ `titre`
@@ -64,8 +64,8 @@ test('cfgOf : conversion v2 → v3 (titres → metiers, champ interne renommé, 
   tech.effets = [{ type: 'prodParTitre', titre: 'Testeur', montant: 1, ressource: 'Or' }]
   asAny.schemaVersion = 2
   const C = cfgOf(cfg)
-  assert.equal(SCHEMA_VERSION_CONFIG, 3)
-  assert.equal(C.config.schemaVersion, 3, 'tampon posé à la version courante')
+  assert.equal(SCHEMA_VERSION_CONFIG, 4)
+  assert.equal(C.config.schemaVersion, 4, 'tampon posé à la version courante')
   // referentiel converti : table metiers, champ metier — la vague 3a
   //  (migration metiersAmenagements2026) AJOUTE les métiers manquants
   //  du nouveau référentiel derrière la table convertie : 1 Testeur + 24.
@@ -85,10 +85,15 @@ test('cfgOf : conversion v2 → v3 (titres → metiers, champ interne renommé, 
   assert.equal(C2.metiers[0].metier, 'Testeur')
 })
 
-test('cfgOf : une config DÉJÀ convergée (v3) ignore les champs v2 restants', () => {
+test('cfgOf : une config DÉJÀ convergée ignore les champs v2 restants', () => {
   const cfg = cloneDefaultConfig()
   const asAny = cfg as unknown as Record<string, unknown>
-  asAny.schemaVersion = 3 // déjà convergée
+  // v4 = tampon courant (bumpé par la migration des aménagements,
+  //  retour Thibaut 2026-10-22) : les configs tamponnées au numéro
+  //  précédent REPASSENT par les migrations — la conversion v2 → v3
+  //  rejouerait sur les restes de `titres` ; ce test garantit qu'une
+  //  config au tampon COURANT n'est plus re-migrée.
+  asAny.schemaVersion = SCHEMA_VERSION_CONFIG
   asAny.titres = [{ titre: 'Fantôme', education: '', valeur1: 0, ressource1: '', valeur2: 0, ressource2: '', description: '', nobleSeul: false, regleGenre: '', attribution: 'Manuelle' }]
   const C = cfgOf(cfg)
   // le référentiel par défaut prime (garde-fous), la table v2 est ignorée
