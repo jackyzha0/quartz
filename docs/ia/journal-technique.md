@@ -1314,6 +1314,37 @@ Commentaire metiers.ts reformulé (« poste de repli » au lieu de
 « métier par défaut »). Validation : diff byte-exact attendu
 (6 blocs + description), tsc EXIT 0, 145/145 tests verts, diag exit 0.
 
+**Vague 3c (même jour) : améliorations d'aménagements — tiers 2
+et 3.** Arbitrage Thibaut : un aménagement tier 1 s'AMÉLIORE
+(REMPLACE, jamais en plus) en tier 2 (coût uniforme 15 Or + 3
+Pierre, habitation de rang 2 requise), puis le tier 2 en tier 3
+(35 Or + 3 Fer, rang 3). Implémentation : 28 entrées
+« X (tier 2/3) » au référentiel constructions (champs
+`rangMinHabitation` 2/3 + nouveau champ optionnel
+`remplaceAmenagement` sur ConstructionRef, defaultConfig.ts ;
+coûts/emplacements/emplacement de terrain selon les specs de
+Thibaut) ; `faireConstruire` (Constructions.ts) résout la ref
+pour les DEUX types (garde-fou de rang hérité pour les tiers) et
+REMPLACE une instance du tier inférieur (indexOf + assignation ;
+⚠ non bloquant si le tier inférieur est absent, log final
+« X amélioré(e) en Y ») ; les caps compte les tiers automatiquement
+(emplacementsMetierVille itère batiments + amenagements) ;
+migrerConstructions ajoute les entrées manquantes aux vieilles
+configs (pas de bump SCHEMA_VERSION_CONFIG). UI VilleCarte : la
+catégorie « Aménagements » ne propose plus que le tier 1 ;
+catégories « Améliorations · tier 2/3 » limitées aux tiers
+inférieurs présents dans la ville et masquées si le rang est
+insuffisant ; sous-titre de coûts réécrit (coût tier 1 selon le
+référentiel · tier 2 · tier 3 — l'ancien « coût : » unique, calibré
+sur le Baleinier, était devenu trompeur). Tests : caps des tiers +
+remplacement effectif (metiers.test.ts vague 3c) + nouveau fichier
+Constructions.test.ts (remplacement en place + débit 15 Or + 3
+Pierre / 35 Or + 3 Fer, garde-fous rang et prérequis non bloquants).
+Validation : tsc EXIT 0, 149/149 tests verts, diag exit 0. Insertion
+référentiel chirurgicale (28 entrées au style indent=1 du fichier
+d'origine, aucune autre ligne touchée — re-vérifié par diff
+sémantique contre la tête).
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

@@ -416,6 +416,63 @@ identiques si tous les emplacements sont remplis) :
   Banquier/Troubadour/cour/armée restent hors champ (∞, règles
   propres) tant qu'aucun rang/bâtiment ne leur donne de base.
 
+### Améliorations d'aménagements : tiers 2 et 3 (arbitré 2026-10-22)
+
+Un aménagement de tier 1 peut être **AMÉLIORÉ** : le tier 2
+**remplace** une instance du tier 1 dans la ville, le tier 3 remplace
+une instance du tier 2 — l'amélioration n'est jamais une construction
+en plus. Chaque action n'améliore qu'**UN exemplaire** (un même
+terrain peut être aménagé plusieurs fois, ex. 2 Champs dont un seul
+amélioré) ; le tier inférieur remplacé **ne compte plus ses
+emplacements** (caps recalculées automatiquement).
+
+- **Gates** : améliorer en tier 2 exige une **habitation de rang 2**
+  (Cité/Donjon) ; le tier 3 exige le **rang 3** (Grande Cité /
+  Forteresse). Le tier inférieur doit être présent dans la ville.
+  Garde-fous NON bloquants à la maison (⚠ dans le log, action quand
+  même enregistrée) — la vue filtre déjà les options.
+- **Coûts uniformes** (indépendants de l'aménagement) :
+  tier 2 = **15 Or + 3 Pierre** ; tier 3 = **35 Or + 3 Fer**.
+  Les réductions habituelles s'appliquent (technologies, Camp de
+  bâtisseurs).
+- **Nommage** : « Baleinier (tier 2) » / « Baleinier (tier 3) » ;
+  champs référentiel `rangMinHabitation` (2/3) et
+  `remplaceAmenagement` (le tier remplacé).
+
+Emplacements du **tier 2** (coût 15 Or + 3 Pierre) :
+
+- Baleinier : +5 Pêcheur, +5 Commerçant
+- Bâteau de pêche : +4 Pêcheur
+- Carrière : +4 Mineur
+- Champ : +6 Fermier
+- Foire : +2 Artiste, +2 Commerçant
+- Mine de Charbon : +4 Charbonnier
+- Mine de Fer : +4 Forgeron, +1 Garde
+- Mine d'Or : +7 Marchand
+- Observatoire : +3 Scientifique
+- Pâturage : +5 Éleveur
+- Rizière : +8 Fermier
+- Scierie : +4 Bûcheron, +1 Tisseur
+- Sériciculture : +4 Tisseur, +2 Commerçant
+- Site archéologique : +4 Archéologue
+
+Emplacements du **tier 3** (coût 35 Or + 3 Fer) :
+
+- Baleinier : +7 Pêcheur, +10 Commerçant
+- Bâteau de pêche : +7 Pêcheur
+- Carrière : +6 Mineur, +2 Charbonnier
+- Champ : +10 Fermier
+- Foire : +4 Artiste, +4 Commerçant
+- Mine de Charbon : +6 Charbonnier
+- Mine de Fer : +6 Forgeron, +3 Garde
+- Mine d'Or : +12 Marchand
+- Observatoire : +5 Scientifique
+- Pâturage : +8 Éleveur
+- Rizière : +15 Fermier
+- Scierie : +6 Bûcheron, +2 Tisseur
+- Sériciculture : +6 Tisseur, +5 Commerçant
+- Site archéologique : +7 Archéologue
+
 ### Marchand & routes commerciales dissociées (arbitré)
 
 - Le **Marchand devient un métier de production** (+2 Or/tour) ; ses
