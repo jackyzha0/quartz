@@ -1277,6 +1277,15 @@ inchangées ; « Domiciles disponibles » sans effet moteur pour
 l'instant. La sous-vague 3b (2) « routes dissociées » reste à
 arbitrer.
 
+**Amendement (arbitrage Thibaut, même jour) : « côtière » =
+proximité Rivière OU Mer** (toute proximité autre que « Plaine » —
+le « défaut Mer » initial est remplacé). Câblé : helper
+`villeCotiere` (villes.ts) gate les emplacements de Pêcheur du
+Ponton (metiers.ts) ET le bonus +0,5 Bétail/Pêcheur (economie.ts) ;
+garde-fou non bloquant à la construction (Constructions.ts, même
+calibre que le rang d'habitation) ; textes du référentiel précisés ;
+tests Mer/Rivière actifs, Plaine inactif.
+
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
 1. **Jamais `a || b ?? c` sans parenthèses** — erreur de syntaxe JS/esbuild

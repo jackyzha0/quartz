@@ -489,9 +489,9 @@ rang 1). Arbitrages actés lors de la session :
   3 Bois) −10 Or sur une levée d'armée dans cette habitation ;
   Conjuratoire (Château, 10 Or + 2 Pierre) +15 Tourisme/tour ;
   Herboristerie (les deux, 10 Or + 2 Pierre) ±5 % contracter/guérir ;
-  Ponton (Ville, 5 Or + 5 Bois, côtières) +2 Pêcheur et +0,5
-  Bétail par tour et par Pêcheur (gains bruts, taxés comme les
-  autres).
+  Ponton (Ville, 5 Or + 5 Bois) +2 Pêcheur et +0,5 Bétail par tour
+  et par Pêcheur (gains bruts, taxés comme les autres) — **villes
+  côtières uniquement**.
 - **Réaffectation automatique** : elle n'attribue JAMAIS les postes
   nobles (Gouverneur) ni les métiers à attribution Armée/Succession/
   Ville — la base du rang les plafonne (surnombre applicable) mais
@@ -500,9 +500,12 @@ rang 1). Arbitrages actés lors de la session :
   « Métiers/Domiciles disponibles » les reçoivent depuis la ligne du
   référentiel par défaut de même (type, rang) ; les anciens champs
   consommation/garnison sont ignorés.
-- **Points ouverts** : « côtière » = proximité Mer (défaut choisi,
-  à confirmer) ; le **Grand veneur** (ministère −5 Nourriture sur la
-  consommation des habitations) devient INERT tant qu'aucune
+- **« Côtière » = proximité Rivière OU Mer** (arbitrage Thibaut,
+  2026-10-22 : toute proximité autre que « Plaine ») — câblé moteur :
+  hors proximité, le Ponton n'ouvre aucun poste et son bonus disparaît
+  (helper `villeCotiere`, garde-fou d'avertissement à la construction).
+- **Points ouverts** : le **Grand veneur** (ministère −5 Nourriture
+  sur la consommation des habitations) devient INERT tant qu'aucune
   consommation n'existe ; garnisons hors-rang (régimes, ministères,
   bâtiments rang 2+) inchangées.
 
