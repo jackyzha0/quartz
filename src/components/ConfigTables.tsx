@@ -387,19 +387,20 @@ export function PaysRangsParams({ config, setCfg }: TableProps) {
 
 export function HabitationsParams({ config, setCfg }: TableProps) {
   return (
-    <Card title={`Types & rangs d'habitation (${config.typesHabitation.length}) — consommation, garnison de base`}>
+    <Card title={`Types & rangs d'habitation (${config.typesHabitation.length}) — métiers & domiciles disponibles`}>
       <p className="muted small">
         Coût d'amélioration : débité automatiquement du stock à la construction /
-        amélioration du rang (page Pays). Consommation / tour : débitée à chaque fin
-        de tour (quantités positives, ex. « 10 Nourriture, 8 Or ») ; garnison de base
-        fixe, s'ajoutant aux bâtiments.
+        amélioration du rang (page Pays). « Métiers disponibles » : cap de BASE du
+        rang (vague 3b — les emplacements des bâtiments s'y ajoutent) ;
+        « Domiciles disponibles » : affichage seul pour l'instant.
+        Consommation / tour et garnison de base : supprimées (arbitrage 2026-10-22).
       </p>
       <div className="table-wrap">
         <table className="tbl small">
           <thead>
             <tr>
               <th>Type</th><th>Rang</th><th>Coût d'amélioration</th>
-              <th>Habitants requis</th><th>Consommation / tour</th><th>Garnison de base</th><th></th>
+              <th>Habitants requis</th><th>Métiers disponibles</th><th>Domiciles disponibles</th><th></th>
             </tr>
           </thead>
           <tbody>
@@ -415,8 +416,8 @@ export function HabitationsParams({ config, setCfg }: TableProps) {
                 <td><TextInput value={h.rang} onChange={(v) => setCfg((c) => { c.typesHabitation[i].rang = v })} /></td>
                 <td><TextInput value={h.cout} onChange={(v) => setCfg((c) => { c.typesHabitation[i].cout = v })} /></td>
                 <td><NumberInput value={h.habitantsRequis} step={10} min={0} onChange={(v) => setCfg((c) => { c.typesHabitation[i].habitantsRequis = v })} /></td>
-                <td><TextInput value={h.consommation} onChange={(v) => setCfg((c) => { c.typesHabitation[i].consommation = v })} /></td>
-                <td><NumberInput value={h.garnison} step={1} min={0} onChange={(v) => setCfg((c) => { c.typesHabitation[i].garnison = v })} /></td>
+                <td><TextInput value={h.metiersDisponibles ?? ''} onChange={(v) => setCfg((c) => { c.typesHabitation[i].metiersDisponibles = v })} /></td>
+                <td><TextInput value={h.domicilesDisponibles ?? ''} onChange={(v) => setCfg((c) => { c.typesHabitation[i].domicilesDisponibles = v })} /></td>
                 <td>
                   <Button tone="danger" onClick={() => setCfg((c) => { c.typesHabitation.splice(i, 1) })}>✕</Button>
                 </td>
@@ -426,7 +427,7 @@ export function HabitationsParams({ config, setCfg }: TableProps) {
         </table>
       </div>
       <Button onClick={() => setCfg((c) => {
-        c.typesHabitation.push({ type: 'Ville', rang: 'Nouveau rang', cout: '', habitantsRequis: 0, consommation: '', garnison: 0 })
+        c.typesHabitation.push({ type: 'Ville', rang: 'Nouveau rang', cout: '', habitantsRequis: 0, metiersDisponibles: '', domicilesDisponibles: '' })
       })}>+ Ajouter un rang d'habitation</Button>
     </Card>
   )

@@ -11,6 +11,7 @@ import { cfgOf, metierDef, cultureDef, traitDef, type Cfg } from './gameData'
 import { schoolRankOf } from './gameData2'
 import { bump, fullName, isNobleDyn } from './shared'
 import { constructionRef, emplacementsConstructionRef } from './constructions'
+import { metiersDisponiblesRang } from './habitations'
 import { invaliderIndexPopulation } from './naissances'
 
 // ── Professeurs ─────────────────────────────────────────────────────────
@@ -303,27 +304,27 @@ export function designerGouverneurs(state: GameState, C: Cfg = cfgOf(state.confi
   }
 }
 
-// ── Caps de métiers par ville (vague 1 puis 3a) ─────────────────────────
-//  Vague 1 (2026-10-20) : seul le Chasseur est plafonné — capacité
-//  séparée Ville (50) / Château (25, très généreux), paramétrable.
-//  Vague 3a (rework métiers & emplacements, 2026-10-21) : les métiers
-//  deviennent des POSTES À EMPLACEMENTS créés par les aménagements —
-//  le cap d'un métier de production dans une ville = SOMME des
-//  emplacements accordés par les aménagements présents (le Chasseur
-//  garde en plus sa cap par défaut selon le type d'habitation, ses
-//  emplacements venant des Scieries/Séricicultures). Un capParVille
-//  déclaré au référentiel s'AJOUTE aux emplacements. Les rôles non
-//  liés aux emplacements (Garde, Banquier, Troubadour — aucune source
-//  tier 1, attribution manuelle MJ — Professeur, cour, armée) ne sont
-//  PAS plafonnés par ce canal : leurs règles propres s'appliquent.
+// ── Caps de métiers par ville (vagues 1, 3a puis 3b) ───────────────────
+//  Vague 3b (rangs & bâtiments de tier 1, arbitrage 2026-10-22) : les
+//  caps sont CUMULATIVES — cap d'un métier = BASE DU RANG
+//  d'habitation (colonne « Métiers disponibles », ex. Hameau :
+//  50 Chasseurs, 2 Gardes, 1 Commerçant, 1 Gouverneur) + EMPLACEMENTS
+//  des bâtiments ET aménagements présents (Poste de garde : +4 Garde…).
+//  Les paramètres capMetierChasseur* sont supprimés (le cas spécial
+//  Chasseur disparaît). Un capParVille déclaré au référentiel
+//  s'AJOUTE. Les métiers SANS base au rang, sans emplacement et non
+//  productifs (Banquier, Troubadour, rôles de cour, Dirigeant/
+//  Héritier, métiers personnalisés hors référentiel) restent ∞ :
+//  leurs règles propres s'appliquent.
 
-/** Emplacements de `metier` accordés par les aménagements présents
- *  dans la ville (vague 3a : somme des `emplacements` des
- *  constructions de la ville — format référentiel
- *  `emplacements: [{ metier, places }]`). */
+/** Emplacements de `metier` accordés par les bâtiments ET les
+ *  aménagements présents dans la ville (vague 3a : aménagements ;
+ *  vague 3b 2026-10-22 : les BÂTIMENTS comptent aussi, ex. Poste de
+ *  garde +4 Garde — somme des `emplacements` des constructions de la
+ *  ville, format référentiel `emplacements: [{ metier, places }]`). */
 export function emplacementsMetierVille(metier: string, ville: City, C: Cfg = cfgOf()): number {
   let total = 0
-  for (const nom of ville.amenagements ?? []) {
+  for (const nom of [...(ville.batiments ?? []), ...(ville.amenagements ?? [])]) {
     const ref = constructionRef(nom, C.config)
     if (!ref) continue
     for (const e of emplacementsConstructionRef(ref)) {
@@ -336,18 +337,20 @@ export function emplacementsMetierVille(metier: string, ville: City, C: Cfg = cf
 export function capMetierVille(metier: string | null, ville: City, C: Cfg = cfgOf()): number {
   if (!metier) return Number.POSITIVE_INFINITY
   const empl = emplacementsMetierVille(metier, ville, C)
-  if (metier === C.p.metierChasseur) {
-    return (ville.type === 'Château' ? C.p.capMetierChasseurChateau : C.p.capMetierChasseurVille) + empl
-  }
   const td = metierDef(metier, C.config)
   if (td?.capParVille !== undefined) return td.capParVille + empl
-  // Métier de production (gain par tour) : plafonné par les
-  //  emplacements — sans aménagement, cap 0 (la ville ne produit
-  //  quasiment rien par métiers : assumé, arbitrage 3a).
+  // Vague 3b : cap CUMULATIVE = base du RANG d'habitation
+  //  (« Métiers disponibles » du rang — Hameau : 50 Chasseurs,
+  //  2 Gardes, 1 Commerçant, 1 Gouverneur…) + emplacements des
+  //  bâtiments/aménagements.
+  const base = metiersDisponiblesRang(ville, C)[metier] ?? 0
+  // Métier de production (gain par tour) : plafonné même sans base
+  //  au rang — cap = base + emplacements (sans les deux, cap 0 :
+  //  arbitrage 3a assumé).
   const productif = !!td && ((td.ressource1 !== '' && td.valeur1 !== 0) || (td.ressource2 !== '' && td.valeur2 !== 0))
-  if (productif) return empl
-  // Rôles de cour, armée, Professeur, Garde/Banquier/Troubadour et
-  //  métiers personnalisés hors référentiel : non plafonnés ici.
+  if (productif || base > 0 || empl > 0) return base + empl
+  // Rôles de cour, armée, Banquier, Troubadour, Dirigeant/Héritier
+  //  et métiers personnalisés hors référentiel : non plafonnés ici.
   return Number.POSITIVE_INFINITY
 }
 
@@ -363,6 +366,14 @@ function postesLibresVille(vivants: Character[], ville: City, C: Cfg): Array<{ m
   }
   const plafonnes: string[] = []
   for (const t of C.metiers) {
+    // Vague 3b : la réaffectation automatique ne touche PAS aux
+    //  postes nobles (Gouverneur — élu/nommé selon ses propres
+    //  règles), ni aux métiers à attribution Armée / Succession /
+    //  Ville (Professeur : nomination par les écoles) — sinon elle
+    //  créerait des Gouverneurs roturiers ou invaliderait des
+    //  nominations automatiques. Ces postes restent plafonnés (le
+    //  surnombre s'applique), mais jamais ATTRIBUÉS ici.
+    if (t.nobleSeul || t.attribution === 'Armée' || t.attribution === 'Succession' || t.attribution === 'Ville') continue
     if (Number.isFinite(capMetierVille(t.metier, ville, C))) plafonnes.push(t.metier)
   }
   // priorisation : le Chasseur passe en dernier (métier par défaut)

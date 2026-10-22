@@ -23,9 +23,9 @@ export interface MetierDef {
   nobleSeul: boolean
   regleGenre: string
   attribution: string
-  /** Capacité maximale par ville (rework habitants 2026-10-20) :
-   *  absent = illimité (vague 1 : seul le Chasseur est plafonné, via
-   *  les paramètres capMetierChasseurVille / capMetierChasseurChateau). */
+  /** Capacité maximale par ville (rework habitants 2026-10-20, vague
+   *  3b) : absent = illimité — la cap de base vient du rang
+   *  d'habitation, les paramètres capMetierChasseur* sont supprimés. */
   /** Production UNIQUEMENT pendant l'été (vague 3a — ex. Fermier
    *  « +5 Nourriture par tour en été ») : les gains valeur1/ressource1 et
    *  valeur2/ressource2 ne sont crédités qu'en saison d'Été. */
@@ -83,9 +83,10 @@ export interface HabitationDef {
   rang: string
   cout: string
   habitantsRequis: number
-  /** consommation par tour, quantités positives (ex. « 10 Nourriture, 8 Or ») */
-  consommation: string
-  garnison: number
+  /** métiers disponibles à la base du rang (vague 3b, ex. « 50 Chasseurs, 2 Gardes ») */
+  metiersDisponibles: string
+  /** domiciles disponibles (affichage seul, ex. « 50 maisons, 10 Auberge ») */
+  domicilesDisponibles: string
 }
 export interface EventDef {
   nom: string
@@ -826,6 +827,19 @@ export function migrerConstructions(
  *  existante — défauts du classeur si absents ou vides. */
 export function migrerTypesHabitation(list: HabitationDef[] | undefined): HabitationDef[] {
   if (!Array.isArray(list) || list.length === 0) return DEFAULT_CONFIG.typesHabitation
+  // Vague 3b (2026-10-22) : les configs sauvegardées avant le rework
+  //  portent consommation/garnison au lieu de metiersDisponibles/
+  //  domicilesDisponibles — les colonnes manquantes sont complétées
+  //  depuis la ligne du DEFAULT_CONFIG de même (type, rang) ; les
+  //  anciens champs sont ignorés (consommation et garnison de base
+  //  supprimées par arbitrage).
+  for (const d of list) {
+    if (d.metiersDisponibles === undefined || d.domicilesDisponibles === undefined) {
+      const ref = DEFAULT_CONFIG.typesHabitation.find((t) => t.type === d.type && t.rang === d.rang)
+      d.metiersDisponibles = d.metiersDisponibles ?? ref?.metiersDisponibles ?? ''
+      d.domicilesDisponibles = d.domicilesDisponibles ?? ref?.domicilesDisponibles ?? ''
+    }
+  }
   return list
 }
 

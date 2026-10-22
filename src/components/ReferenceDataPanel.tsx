@@ -349,7 +349,7 @@ export function ReferenceDataPanel() {
         <Card title="Wiki — types & rangs d'habitation">
           <div className="table-wrap">
             <table className="tbl small">
-              <thead><tr><th>Type</th><th>Rang</th><th>Coût d'amélioration</th><th>Habitants requis</th><th>Consommation / tour</th><th>Garnison de base</th></tr></thead>
+              <thead><tr><th>Type</th><th>Rang</th><th>Coût d'amélioration</th><th>Habitants requis</th><th>Métiers disponibles</th><th>Domiciles disponibles</th></tr></thead>
               <tbody>
                 {cfg.typesHabitation.map((h, i) => (
                   <tr key={i}>
@@ -357,8 +357,8 @@ export function ReferenceDataPanel() {
                     <td>{h.rang}</td>
                     <td>{h.cout || '—'}</td>
                     <td>{h.habitantsRequis}</td>
-                    <td>{h.consommation || '—'}</td>
-                    <td>{h.garnison}</td>
+                    <td>{h.metiersDisponibles || '—'}</td>
+                    <td>{h.domicilesDisponibles || '—'}</td>
                   </tr>
                 ))}
               </tbody>

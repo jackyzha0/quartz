@@ -1,17 +1,19 @@
 // ═══════════════════════════════════════════════════════════════════════════
 //  TESTS MÉTIERS — caps par ville et réaffectation (rework habitants,
-//  vagues 1 + 3a, 2026-10-20/21)
+//  vagues 1 + 3a + 3b, 2026-10-20/21/22)
 //
 //  Arbitrages actés :
-//   · vague 1 : le Chasseur est plafonné, caps séparées Ville (50) /
-//     Château (25, « très généreux »), paramétrables ;
-//   · vague 3a (rework métiers & emplacements) : les caps des métiers
-//     de production = SOMME des emplacements des aménagements de la
-//     ville (le Chasseur garde sa cap par défaut EN PLUS de ses
-//     emplacements) ; sans aménagement, cap 0 (une ville sans
-//     aménagement ne produit quasi rien par métiers — assumé) ;
-//     Garde/Banquier/Troubadour/Professeur/cour/armée : règles
-//     propres, non plafonnés par ce canal ;
+//   · vague 3b (rangs & bâtiments tier 1, 2026-10-22) : caps
+//     CUMULATIVES — cap d'un métier = BASE DU RANG d'habitation
+//     (colonne « Métiers disponibles », ex. Hameau : 50 Chasseurs,
+//     2 Gardes, 1 Commerçant, 1 Gouverneur) + EMPLACEMENTS des
+//     bâtiments ET aménagements ; les paramètres capMetierChasseur*
+//     sont supprimés ;
+//   · Garde/Commerçant/Gouverneur : plafonnés par la base du rang ;
+//     Banquier/Troubadour/Professeur/cour/armée : règles propres,
+//     non plafonnés par ce canal ; la réaffectation automatique
+//     n'attribue JAMAIS les postes nobles ni les métiers à
+//     attribution Armée/Succession/Ville ;
 //   · surnombre : les PLUS ÂGÉS perdent leur métier (Sans-emploi) ;
 //   · places libres : les Sans-emploi ADULTES prennent un poste,
 //     les plus âgés d'abord, en priorisant un métier AUTRE que
@@ -32,6 +34,7 @@ import { cfgOf } from './gameData'
 import { capMetierVille, reaffecterMetiers, occupationsMetierVille } from './metiers'
 import { invaliderIndexPopulation } from './naissances'
 import { detailGainsVille } from './economie'
+import { consommationsVille, consommationsPays, garnisonBaseVille } from './habitations'
 import { garnisonHabitationVille, detailGarnisonVille } from './regimes'
 
 const SETUP: SetupLine[] = [{
@@ -62,9 +65,12 @@ test('capMetierVille (vague 3a) : Chasseur = cap défaut + emplacements ; métie
   const ville: City = { ...p.villes[0] }
   ville.type = 'Ville'
   ville.amenagements = []
-  assert.equal(capMetierVille(C.p.metierChasseur, ville, C), 50, 'cap Ville par défaut')
+  assert.equal(capMetierVille(C.p.metierChasseur, ville, C), 50, 'cap de BASE du rang Hameau : 50 Chasseurs')
   ville.type = 'Château'
-  assert.equal(capMetierVille(C.p.metierChasseur, ville, C), 25, 'cap Château par défaut (arbitrage « très généreux »)')
+  ville.rang = 'Motte'
+  assert.equal(capMetierVille(C.p.metierChasseur, ville, C), 40, 'cap de BASE du rang Motte : 40 Chasseurs')
+  ville.rang = 'Donjon'
+  assert.equal(capMetierVille(C.p.metierChasseur, ville, C), 20, 'cap de BASE du rang Donjon : 20 Chasseurs')
   // vague 3a : une Scierie ajoute 2 emplacements de Chasseur et 2 de Bûcheron
   const scierie: City = { ...p.villes[0], type: 'Ville', amenagements: ['Scierie'] }
   assert.equal(capMetierVille(C.p.metierChasseur, scierie, C), 52, 'Chasseur : cap défaut 50 + 2 emplacements de la Scierie')
@@ -77,8 +83,14 @@ test('capMetierVille (vague 3a) : Chasseur = cap défaut + emplacements ; métie
   // Fermier (ete) : plafonné comme les productifs — Champ 3, Rizière 4
   const champ: City = { ...p.villes[0], type: 'Ville', amenagements: ['Champ'] }
   assert.equal(capMetierVille('Fermier', champ, C), 3, 'Champ : 3 emplacements de Fermier')
-  // rôles non plafonnés (règles propres) : Garde, Banquier, Troubadour, cour, armée
-  assert.equal(capMetierVille('Garde', ville, C), Number.POSITIVE_INFINITY, 'Garde : garnison statique, hors canal emplacements')
+  // retour au rang Hameau pour les assertions suivantes (ville a été
+  //  mutée en Château/Donjon ci-dessus)
+  ville.type = 'Ville'
+  ville.rang = 'Hameau'
+  // vague 3b : Garde/Commerçant/Gouverneur plafonnés par la base du rang
+  assert.equal(capMetierVille('Garde', ville, C), 2, 'Garde : plafonné par la base du rang Hameau (2)')
+  assert.equal(capMetierVille('Commerçant', ville, C), 1, 'Commerçant : plafonné par la base du rang Hameau (1)')
+  assert.equal(capMetierVille('Gouverneur', ville, C), 1, 'Gouverneur : plafonné par la base du rang Hameau (1), jamais auto-attribué')
   assert.equal(capMetierVille('Banquier', ville, C), Number.POSITIVE_INFINITY)
   assert.equal(capMetierVille('Troubadour', ville, C), Number.POSITIVE_INFINITY)
   assert.equal(capMetierVille('Dirigeant', ville, C), Number.POSITIVE_INFINITY, 'cour : règles propres (succession)')
@@ -91,7 +103,7 @@ test('reaffecterMetiers : surnombre — les plus âgés perdent leur métier, le
   const state = partie()
   const C = cfgOf(state.config)
   const p = state.players[0]
-  C.p.capMetierChasseurVille = 2 // cap de test
+  C.config.typesHabitation[0].metiersDisponibles = '2 Chasseurs' // rang Hameau : cap de test (vague 3b)
   state.population[p.n] = [
     perso('c-50', 50, { metier: C.p.metierChasseur }),
     perso('c-40', 40, { metier: C.p.metierChasseur }),
@@ -117,7 +129,7 @@ test('reaffecterMetiers : places libres — adultes sans emploi deviennent Chass
   const state = partie()
   const C = cfgOf(state.config)
   const p = state.players[0]
-  C.p.capMetierChasseurVille = 3 // 2 chasseurs en place → 1 place libre
+  C.config.typesHabitation[0].metiersDisponibles = '3 Chasseurs' // rang Hameau : 2 chasseurs en place → 1 place libre (vague 3b)
   state.population[p.n] = [
     perso('c-1', 30, { metier: C.p.metierChasseur }),
     perso('c-2', 28, { metier: C.p.metierChasseur }),
@@ -138,8 +150,9 @@ test('reaffecterMetiers : cap Château indépendante de la cap Ville', () => {
   const C = cfgOf(state.config)
   const p = state.players[0]
   p.villes[0].type = 'Château'
-  C.p.capMetierChasseurVille = 50 // laissée haute : c est la cap CHÂTEAU qui mord
-  C.p.capMetierChasseurChateau = 1
+  p.villes[0].rang = 'Motte'
+  // vague 3b : la cap vient du rang Motte (base) — plus de caps Ville/Château séparées
+  C.config.typesHabitation.find((d) => d.type === 'Château')!.metiersDisponibles = '1 Chasseur'
   state.population[p.n] = [
     perso('ch-60', 60, { metier: C.p.metierChasseur }),
     perso('ch-30', 30, { metier: C.p.metierChasseur }),
@@ -199,15 +212,18 @@ test('occupationsMetierVille (vague 3a) : emplacements par aménagement, métier
   assert.ok(fermier && fermier.cap === 0, 'Fermier listé (cap 0 sans Champ/Rizière)')
   // les rôles non plafonnés et inoccupés n'apparaissent pas
   assert.equal(lignes.filter((l) => l.metier === 'Dirigeant').length, 0, 'Dirigeant non listé (illimité, inoccupé)')
-  assert.equal(lignes.filter((l) => l.metier === 'Garde').length, 0, 'Garde non listé (illimité, inoccupé)')
+  // vague 3b : la Garde est plafonnée par la base du rang Hameau (2) → listée même inoccupée
+  const garde = lignes.find((l) => l.metier === 'Garde')
+  assert.ok(garde, 'Garde listé (cap finie = base du rang)')
+  assert.equal(garde!.cap, 2, 'Garde : base du rang Hameau (2)')
   const sans = lignes.find((l) => l.metier === null)
   assert.ok(sans, 'ligne Sans-emploi toujours présente')
   assert.equal(sans!.enPoste, 2, '2 sans-emploi vivants')
   assert.equal(lignes[lignes.length - 1].metier, null, 'Sans-emploi en dernière ligne')
-  // Château : cap 25
-  const chateau: City = { ...p.villes[0], type: 'Château', amenagements: ["Mine d'Or"] }
+  // Château (rang Motte, vague 3b) : cap de base 40 Chasseurs
+  const chateau: City = { ...p.villes[0], type: 'Château', rang: 'Motte', amenagements: ["Mine d'Or"] }
   const lch = occupationsMetierVille(habitants, chateau, C).find((l) => l.metier === C.p.metierChasseur)
-  assert.equal(lch!.cap, 25, 'cap Château 25')
+  assert.equal(lch!.cap, 40, 'cap de base du rang Motte : 40 Chasseurs')
   // ville = null (cité libre) : aucune cap, métier à 0 occupant non listé
   const cite = occupationsMetierVille([], null, C)
   assert.ok(cite.every((l) => !Number.isFinite(l.cap)), 'cité libre : caps toutes infinies')
@@ -232,7 +248,7 @@ test('reaffecterMetiers (vague 3a) : priorisation — un sans-emploi prend un po
   const C = cfgOf(state.config)
   const p = state.players[0]
   p.villes[0].amenagements = ['Bâteau de pêche']
-  C.p.capMetierChasseurVille = 1
+  C.config.typesHabitation[0].metiersDisponibles = '1 Chasseur' // rang Hameau (vague 3b)
   state.population[p.n] = [
     perso('s-40', 40),
     perso('s-30', 30),
@@ -318,7 +334,7 @@ test('reaffecterMetiers (vague 3) : un Marchand qui tient une route n est pas d�
   reaffecterMetiers(state, C)
   const parId = new Map(state.population[p.n].map((c) => [c.id, c]))
   assert.equal(parId.get('m-route')!.metier, 'Marchand', 'le titulaire de la route garde son poste (emplacements Marchand = Mines d Or ET routes, spec vague 3)')
-  assert.equal(parId.get('m-libre')!.metier, C.p.metierChasseur, 'sans Mine d Or ni route : le marchand libre perd son poste (cap 0) puis prend le poste par défaut (Chasseur)')
+  assert.equal(parId.get('m-libre')!.metier, 'Commerçant', 'sans Mine d Or ni route : le marchand libre perd son poste (cap 0) puis prend un poste de la base du rang (Commerçant, priorisé avant Chasseur — vague 3b)')
 })
 
 test('Garde (vague 3a) : +garnisonParGarde Garnison STATIQUE par Garde en poste (valeur d état, jamais un flux)', () => {
@@ -342,4 +358,46 @@ test('Garde (vague 3a) : +garnisonParGarde Garnison STATIQUE par Garde en poste 
   // le Garde ne produit RIEN par tour (« la Garnison n est jamais par tour »)
   const d = detailGainsVille(state, p, ville, C)
   assert.equal(d.metiers['Garnison'], undefined, 'aucune production de Garnison par tour')
+})
+
+// ── Vague 3b (2026-10-22) : base du rang, bâtiments tier 1, rangs sans
+//    consommation ni garnison de base, Ponton ──────────────────────────────
+
+test('vague 3b : caps CUMULATIVES — Poste de garde +4 Garde sur la base du rang ; École élémentaire +1 Professeur/+1 Scientifique', () => {
+  const state = partie()
+  const C = cfgOf(state.config)
+  const p = state.players[0]
+  const ville: City = { ...p.villes[0], type: 'Ville', rang: 'Hameau', batiments: ['Poste de garde'], amenagements: [] }
+  assert.equal(capMetierVille('Garde', ville, C), 6, 'Poste de garde : base Hameau (2 Garde) + 4 emplacements = 6')
+  const donjon: City = { ...p.villes[0], type: 'Château', rang: 'Donjon', batiments: ['Ecole élémentaire'], amenagements: [] }
+  assert.equal(capMetierVille('Professeur', donjon, C), 1, 'École élémentaire : +1 emplacement de Professeur')
+  assert.equal(capMetierVille('Scientifique', donjon, C), 1, 'École élémentaire : +1 emplacement de Scientifique (« chercheur »)')
+})
+
+test('vague 3b : consommation par tour et garnison de base des rangs SUPPRIMÉES (arbitrage « les Gardes font tout »)', () => {
+  const state = partie()
+  const C = cfgOf(state.config)
+  const p = state.players[0]
+  assert.equal(Object.keys(consommationsVille(p.villes[0], C)).length, 0, 'consommationsVille : vide (no-op)')
+  assert.equal(Object.keys(consommationsPays(p, C, state)).length, 0, 'consommationsPays : vide (no-op)')
+  assert.equal(garnisonBaseVille(p.villes[0], C), 0, 'garnisonBaseVille : 0 — la garnison vient des Gardes en poste')
+})
+
+test('vague 3b : Ponton — chaque Pêcheur de la ville produit +0,5 Bétail par tour (gains bruts, avant taxes)', () => {
+  const state = partie()
+  const C = cfgOf(state.config)
+  const p = state.players[0]
+  const ville = p.villes[0]
+  ville.batiments = ['Ponton']
+  state.population[p.n] = [
+    perso('p-30', 30, { metier: 'Pêcheur' }),
+    perso('p-40', 40, { metier: 'Pêcheur' }),
+  ]
+  invaliderIndexPopulation()
+  const detail = detailGainsVille(state, p, ville, C)
+  assert.equal(detail.metiers['Bétail'], 1, '2 Pêcheurs × +0,5 Bétail (Ponton)')
+  // sans Ponton, pas de Bétail des Pêcheurs
+  ville.batiments = []
+  const detail2 = detailGainsVille(state, p, ville, C)
+  assert.equal(detail2.metiers['Bétail'] ?? 0, 0, 'sans Ponton : les Pêcheurs ne produisent pas de Bétail')
 })

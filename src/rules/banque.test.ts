@@ -194,11 +194,14 @@ test('Champ / Rizière (vague 3a) : plus AUCUN flux direct — la production pas
   const fermier = cfgOf(undefined).metiers.find((m) => m.metier === 'Fermier')
   assert.ok(fermier, 'Fermier présent dans le référentiel métiers')
   assert.equal(fermier!.ete, true, 'Fermier : production d été seulement (champ ete)')
-  // le Camp de bûcheron, lui, reste un flux NORMAL (pas marqué été)
+  // vague 3b : le Camp de bûcheron ne porte PLUS de flux — il crée
+  //  2 emplacements de Bûcheron (bâtiment tier 1).
   const camp = refs.find((r) => r.nom === 'Camp de bûcheron')
   assert.ok(camp, 'Camp de bûcheron présent')
   assert.equal(eteSeulementRef(camp), false)
-  assert.ok(Object.keys(effetsConstructionRef(camp)).length > 0, 'Camp de bûcheron : flux attendu')
+  assert.equal(Object.keys(effetsConstructionRef(camp)).length, 0, 'Camp de bûcheron : plus aucun flux (vague 3b)')
+  assert.equal((camp.emplacements ?? []).find((e) => e.metier === 'Bûcheron')?.places ?? 0, 2,
+    'Camp de bûcheron : 2 emplacements de Bûcheron')
 })
 
 test('runTurn fonctionne après création d’une partie (sanity moteur)', () => {

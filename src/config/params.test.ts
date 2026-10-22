@@ -36,12 +36,12 @@ test('mergeParams : la clé NOUVELLE prime sur l ancienne, quel que soit l ordre
   assert.equal(b.metierChasseur, 'Pisteur', 'ancienne clé d abord : elle est écrasée par la nouvelle')
 })
 
-test('défauts v3 : Gompertz 0.0025/0.08/0.9, caps Chasseur 50/25, ageMax rayé', () => {
+test('défauts v3 : Gompertz 0.0025/0.08/0.9, caps Chasseur supprimées (vague 3b), ageMax rayé', () => {
   assert.equal(DEFAULT_PARAMS.maladieBase, 0.0025)
   assert.equal(DEFAULT_PARAMS.maladiePente, 0.08)
   assert.equal(DEFAULT_PARAMS.maladieCap, 0.9)
-  assert.equal(DEFAULT_PARAMS.capMetierChasseurVille, 50)
-  assert.equal(DEFAULT_PARAMS.capMetierChasseurChateau, 25)
+  assert.ok(!('capMetierChasseurVille' in DEFAULT_PARAMS), 'capMetierChasseurVille supprimé (vague 3b : cap = base du rang + emplacements)')
+  assert.ok(!('capMetierChasseurChateau' in DEFAULT_PARAMS), 'capMetierChasseurChateau supprimé (vague 3b)')
   assert.ok(!('ageMaxBase' in DEFAULT_PARAMS), 'ageMaxBase disparaît (mortalité Gompertz seule)')
   assert.ok(!('ageMaxAla' in DEFAULT_PARAMS))
 })

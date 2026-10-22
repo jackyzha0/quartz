@@ -85,11 +85,18 @@ export function detailGainsVille(state: GameState, p: Player, ville: City, C: Cf
   // Vague 3a : les métiers marqués `ete` (Fermier) ne produisent
   //  qu'en saison d'Été ; Sans-emploi (metier null) ne produit rien.
   const metiers: Record<string, number> = {}
+  // Vague 3b (bâtiment tier 1, 2026-10-22) : Ponton (ville côtière)
+  //  — chaque Pêcheur de la ville produit +0,5 Bétail par tour,
+  //  AVANT le calcul des taxes (taxé comme les autres gains).
+  const ponton = (ville.batiments ?? []).includes('Ponton')
   for (const c of vivants) {
     if (!c.metier) continue
     const td = metierDef(c.metier, C.config)
     if (!td) continue
     if (td.ete && state.saison !== 'Été') continue
+    if (ponton && c.metier === 'Pêcheur') {
+      metiers['Bétail'] = (metiers['Bétail'] ?? 0) + 0.5
+    }
     if (td.ressource1 && td.valeur1 !== 0) {
       metiers[td.ressource1] = (metiers[td.ressource1] ?? 0) + td.valeur1
     }

@@ -39,9 +39,11 @@ export interface MetierDef {
   nobleSeul: boolean
   regleGenre: RegleGenre
   attribution: Attribution
-  /** Capacité maximale par ville (rework habitants 2026-10-20) : absent =
-   *  illimité (vague 1 : seul le Chasseur est plafonné, via les paramètres
-   *  capMetierChasseurVille / capMetierChasseurChateau). */
+  /** Capacité maximale par ville (rework habitants 2026-10-20, vague 3b) :
+   *  absent = illimité. Vague 3b : la cap de base d'un métier vient du RANG
+   *  d'habitation (colonne « Métiers disponibles »), les emplacements des
+   *  bâtiments s'y AJOUTENT ; les paramètres capMetierChasseur* sont
+   *  supprimés. */
   capParVille?: number
   /** Production UNIQUEMENT pendant l'été (vague 3a — ex. Fermier
    *  « +5 Nourriture par tour en été ») : les gains valeur1/ressource1 et
@@ -159,10 +161,13 @@ export interface AutreDef {
 /** Ligne de la table « types d'habitation » (feuille Ville du classeur) :
  *  chaque ville est de type Ville (Hameau → Cité → Grande Cité) ou
  *  Château (Motte → Donjon → Forteresse). Chaque rang a un coût
- *  d'amélioration, un nombre d'habitants requis, une consommation
- *  par tour (ex. « 10 Nourriture, 8 Or », débitée du stock par le
- *  moteur) et une garnison de base. Table paramétrable dans les
- *  Référentiels → « Habitations ». */
+ *  d'amélioration, un nombre d'habitants requis, les métiers
+ *  disponibles à la base (ex. « 50 Chasseurs, 2 Gardes, 1 Commerçant,
+ *  1 Gouverneur » — cap de BASE du rang, vague 3b) et les domiciles
+ *  disponibles (affichage seul pour l'instant). Arbitrage vague 3b
+ *  (2026-10-22) : plus NI consommation par tour NI garnison de base
+ *  — les Garnisons viennent des Gardes en poste. Table paramétrable
+ *  dans les Référentiels → « Habitations ». */
 export interface HabitationDef {
   /** « Ville » ou « Château » */
   type: string
@@ -170,9 +175,10 @@ export interface HabitationDef {
   rang: string
   cout: string
   habitantsRequis: number
-  /** consommation par tour, quantités positives (ex. « 10 Nourriture, 8 Or ») */
-  consommation: string
-  garnison: number
+  /** métiers disponibles à la base du rang, ex. « 50 Chasseurs, 2 Gardes » */
+  metiersDisponibles: string
+  /** domiciles disponibles, ex. « 50 maisons, 10 Auberge » (affichage seul) */
+  domicilesDisponibles: string
 }
 
 export interface City {

@@ -45,9 +45,7 @@ export interface GameParams {
   // ── Métiers (caps par habitation, rework habitants 2026-10-20) ──
   /** Capacité maximale de Chasseurs dans une habitation « Ville »
    *  (arbitre 2026-10-20 : caps séparées selon le type). */
-  capMetierChasseurVille: number
   /** Capacité maximale de Chasseurs dans un « Château ». */
-  capMetierChasseurChateau: number
   /** Garnison STATIQUE accordée par un Garde en poste (vague 3a :
    *  « la Garnison n'est jamais par tour » — valeur d'état de la ville,
    *  retirée si le Garde part ou meurt). */
@@ -156,8 +154,6 @@ export const DEFAULT_PARAMS: GameParams = {
   modMaladieEnceinte: 0.03,
   probaGuerison: 0.25,
   modGuerisonAge: 0.003,
-  capMetierChasseurVille: 50,
-  capMetierChasseurChateau: 25,
   garnisonParGarde: 10,
   chanceEducRoturier: 0.08,
   chanceEducNoble: 0.15,
@@ -260,8 +256,6 @@ export const PARAM_META: {
   { key: 'modMaladieEnceinte', label: 'Maladie — modificateur femme enceinte', groupe: 'Maladie' },
   { key: 'probaGuerison', label: 'Probabilité de guérison (base)', groupe: 'Maladie', unite: 'proba' },
   { key: 'modGuerisonAge', label: 'Guérison — modificateur par année d\'âge', groupe: 'Maladie' },
-  { key: 'capMetierChasseurVille', label: 'Capacité Chasseurs par ville « Ville »', groupe: 'Métiers' },
-  { key: 'capMetierChasseurChateau', label: 'Capacité Chasseurs par « Château »', groupe: 'Métiers' },
   { key: 'garnisonParGarde', label: 'Garnison par Garde en poste', groupe: 'Métiers' },
   { key: 'chanceEducRoturier', label: 'Chance d\'éducation — roturier', groupe: 'Éducation', unite: 'proba' },
   { key: 'chanceEducNoble', label: 'Chance d\'éducation — noble', groupe: 'Éducation', unite: 'proba' },
