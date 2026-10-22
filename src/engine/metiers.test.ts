@@ -383,7 +383,7 @@ test('vague 3b : consommation par tour et garnison de base des rangs SUPPRIMÉES
   assert.equal(garnisonBaseVille(p.villes[0], C), 0, 'garnisonBaseVille : 0 — la garnison vient des Gardes en poste')
 })
 
-test('vague 3b : Ponton — chaque Pêcheur de la ville produit +0,5 Bétail par tour (gains bruts, avant taxes)', () => {
+test('vague 3b : Ponton — chaque Pêcheur de la ville produit +0,5 Bétail par tour (ville CÔTIÈRE : Rivière ou Mer, gains bruts avant taxes)', () => {
   const state = partie()
   const C = cfgOf(state.config)
   const p = state.players[0]
@@ -394,10 +394,19 @@ test('vague 3b : Ponton — chaque Pêcheur de la ville produit +0,5 Bétail par
     perso('p-40', 40, { metier: 'Pêcheur' }),
   ]
   invaliderIndexPopulation()
-  const detail = detailGainsVille(state, p, ville, C)
-  assert.equal(detail.metiers['Bétail'], 1, '2 Pêcheurs × +0,5 Bétail (Ponton)')
+  // arbitrage Thibaut 2026-10-22 : côtière = proximité Rivière OU Mer
+  //  (toute proximité autre que « Plaine »).
+  ville.proximite = 'Mer'
+  assert.equal(capMetierVille('Pêcheur', ville, C), 2, 'Mer : Ponton côtier → +2 emplacements de Pêcheur')
+  assert.equal(detailGainsVille(state, p, ville, C).metiers['Bétail'], 1, 'Mer : 2 Pêcheurs × +0,5 Bétail (Ponton)')
+  ville.proximite = 'Rivière'
+  assert.equal(detailGainsVille(state, p, ville, C).metiers['Bétail'], 1, 'Rivière : côtière aussi (même bonus)')
+  // Plaine (ou sans proximité) : le bâtiment n'a AUCUN effet moteur
+  ville.proximite = 'Plaine'
+  assert.equal(capMetierVille('Pêcheur', ville, C), 0, 'Plaine : le Ponton n ouvre aucun poste (bâtiment côtier)')
+  assert.equal(detailGainsVille(state, p, ville, C).metiers['Bétail'] ?? 0, 0, 'Plaine : pas de Bétail des Pêcheurs')
   // sans Ponton, pas de Bétail des Pêcheurs
   ville.batiments = []
-  const detail2 = detailGainsVille(state, p, ville, C)
-  assert.equal(detail2.metiers['Bétail'] ?? 0, 0, 'sans Ponton : les Pêcheurs ne produisent pas de Bétail')
+  ville.proximite = 'Mer'
+  assert.equal(detailGainsVille(state, p, ville, C).metiers['Bétail'] ?? 0, 0, 'sans Ponton : les Pêcheurs ne produisent pas de Bétail')
 })

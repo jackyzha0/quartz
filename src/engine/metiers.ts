@@ -12,6 +12,7 @@ import { schoolRankOf } from './gameData2'
 import { bump, fullName, isNobleDyn } from './shared'
 import { constructionRef, emplacementsConstructionRef } from './constructions'
 import { metiersDisponiblesRang } from './habitations'
+import { villeCotiere } from './villes'
 import { invaliderIndexPopulation } from './naissances'
 
 // ── Professeurs ─────────────────────────────────────────────────────────
@@ -327,6 +328,11 @@ export function emplacementsMetierVille(metier: string, ville: City, C: Cfg = cf
   for (const nom of [...(ville.batiments ?? []), ...(ville.amenagements ?? [])]) {
     const ref = constructionRef(nom, C.config)
     if (!ref) continue
+    // Ponton (vague 3b, arbitrage Thibaut 2026-10-22) : bâtiment
+    //  CÔTIER — ses emplacements ne comptent que si la ville a une
+    //  proximité Rivière ou Mer (villeCotiere, villes.ts) ; hors
+    //  proximité le bâtiment reste affiché mais n'ouvre aucun poste.
+    if (nom === 'Ponton' && !villeCotiere(ville)) continue
     for (const e of emplacementsConstructionRef(ref)) {
       if (e.metier === metier) total += e.places
     }

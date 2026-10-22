@@ -213,6 +213,16 @@ export function bonusProximite(ville: City, C: Cfg): number {
   return 0
 }
 
+/** Ville « côtière » (arbitrage Thibaut 2026-10-22) : proximité
+ *  RIVIÈRE ou MER — toute proximité autre que « Plaine » (ou
+ *  absente). Utilisé par le Ponton (vague 3b) : ses emplacements de
+ *  Pêcheur et le bonus +0,5 Bétail/tour par Pêcheur ne comptent QUE
+ *  dans une ville côtière ; hors proximité, le bâtiment reste
+ *  affiché mais n'a aucun effet moteur. */
+export function villeCotiere(ville: City): boolean {
+  return ville.proximite === 'Rivière' || ville.proximite === 'Mer'
+}
+
 /** Étape moteur (marqueur (y)) : crédite au stock le bonus de
  *  proximité de CHAQUE ville (Rivière +12, Mer +7 Nourriture/tour par
  *  défaut) et retourne les apports par joueur (canal « Proximité » du

@@ -24,6 +24,7 @@ import {
 } from '../../engine/engine'
 import { cultureDef, type Cfg } from '../../engine/gameData'
 import { statutMerveille, pastilleClass } from '../../engine/statutAuto'
+import { villeCotiere } from '../../engine/villes'
 import { effetImmediatMerveille } from '../../engine/merveilles'
 import { reductionAmenagement, reductionBatiment, aTech } from '../../engine/progresAuto'
 import { resynchroniserTourisme } from '../../engine/regimes'
@@ -120,6 +121,16 @@ export function faireConstruire(o: {
         s.log.push({
           turn: s.turn, type: 'Système', joueur: t.n,
           texte: `⚠ ${nom} exige normalement une habitation de rang ${ref.rangMinHabitation} minimum (${ville.nom} est de rang ${rangNiveau(ville, C)}). Construction quand même enregistrée.`,
+        })
+      }
+      // Ponton (vague 3b, arbitrage Thibaut 2026-10-22) : bâtiment
+      //  CÔTIER — proximité Rivière ou Mer requise (garde-fou non
+      //  bloquant, même calibre que le rang d'habitation : le moteur
+      //  ignore de toute façon ses effets hors proximité).
+      if (nom === 'Ponton' && !villeCotiere(ville)) {
+        s.log.push({
+          turn: s.turn, type: 'Système', joueur: t.n,
+          texte: `⚠ Ponton exige normalement une ville côtière (proximité Rivière ou Mer — ${ville.nom} est en Plaine). Construction quand même enregistrée, mais le bâtiment n'y a aucun effet.`,
         })
       }
       // Prérequis de construction (revue 2026-10-16) : « X requis » dans
