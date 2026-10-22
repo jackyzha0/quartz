@@ -1450,9 +1450,10 @@ informatifs attendus), bundle esbuild OK. Les vieux historiques de
 parties portant `rangsHabitation`/un Grand veneur nommé sont lus
 sans erreur (clé ignorée, badge conservé sans effet).
 
-Push en trois commits : A = chore(référentiel) referentiels.json,
-B = refactor(moteur) code+tests+diag, C = docs(ia) ; miroirs v4
-avec blobs identiques.
+Push en quatre commits : A = chore(référentiel) referentiels.json,
+B = refactor(moteur) code+config, C = test+diag, D = docs(ia) ;
+miroirs v4 avec blobs identiques (15/15 md5), CI verte, déployé
+(bundle index-OaE7lVQB.js).
 
 ## Règles d'ingénierie durables (issues d'incidents réels)
 
