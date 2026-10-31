@@ -241,7 +241,16 @@
             "properties": {
               "position": {
                 "type": "string",
-                "enum": ["left", "right", "beforeBody", "afterBody", "body"],
+                "enum": [
+                  "head",
+                  "header",
+                  "beforeBody",
+                  "pageBody",
+                  "afterBody",
+                  "left",
+                  "right",
+                  "footer"
+                ],
                 "description": "Layout position"
               },
               "priority": {
