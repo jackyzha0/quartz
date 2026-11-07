@@ -139,3 +139,8 @@ function setupPopovers() {
 
 document.addEventListener("nav", setupPopovers)
 document.addEventListener("render", setupPopovers)
+window.addEventListener("pageshow", (event) => {
+  if (!event.persisted) return
+  activeAnchor = null
+  document.querySelectorAll(".popover").forEach((popover) => popover.remove())
+})
