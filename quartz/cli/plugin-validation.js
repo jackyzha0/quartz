@@ -13,15 +13,8 @@ export const SOURCE_OBJECT_KEYS = ["repo", "subdir", "ref", "name"]
 /** Keys allowed in a plugin entry's `layout` block. */
 export const LAYOUT_KEYS = ["position", "priority", "display", "condition", "group", "groupOptions"]
 
-export const LAYOUT_POSITIONS = [
-  "header",
-  "left",
-  "right",
-  "beforeBody",
-  "afterBody",
-  "footer",
-  "body",
-]
+/** The slots the config loader fills (see LayoutPosition in plugins/loader/types.ts). */
+export const LAYOUT_POSITIONS = ["header", "beforeBody", "left", "right", "afterBody", "footer"]
 
 export const LAYOUT_DISPLAYS = ["all", "mobile-only", "desktop-only"]
 
