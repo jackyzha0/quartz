@@ -21,7 +21,7 @@ const consumeDelete = async (output: string, changeEvent: ChangeEvent) => {
 
   const ctx = {
     argv: { output },
-    cfg: { plugins: { pageTypes: [] } },
+    cfg: { configuration: { ignorePatterns: [] }, plugins: { pageTypes: [] } },
   } as unknown as BuildCtx
   const emitted = partialEmit(ctx, [], {} as StaticResources, [changeEvent])
   assert(emitted)

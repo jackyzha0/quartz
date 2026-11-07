@@ -94,6 +94,12 @@ export interface GlobalConfiguration {
   drafts?: DraftsConfig | boolean
   /** Built-in content index: `static/contentIndex.json`, sitemap and RSS. */
   contentIndex?: ContentIndexConfig | boolean
+  /**
+   * Controls which assets are copied to public/
+   * - "all": Copy all non-markdown files (backwards compatible, default)
+   * - "referenced": Only copy assets referenced by published pages
+   */
+  publishAssets?: "all" | "referenced"
 }
 
 /** Shared by every built-in: `enabled: false` turns it off (e.g. to replace it with a plugin). */
