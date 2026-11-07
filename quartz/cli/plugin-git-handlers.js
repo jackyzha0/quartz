@@ -19,30 +19,150 @@ import {
   formatSource,
   resolveLockfileName,
   getNameOverrides,
+  readConfigWithDiagnostics,
+  resolvePluginDir,
+  SOURCE_FORMATS_HELP,
 } from "./plugin-data.js"
 import { symlinkOrCopySync } from "./helpers.js"
+import {
+  findConfigEntries,
+  validatePluginOptions,
+  validatePluginEntry,
+  parseOptionPath,
+  setOptionPath,
+  unsetOptionPath,
+  suggestClosest,
+  shortPluginName,
+} from "./plugin-validation.js"
 
 const INTERNAL_EXPORTS = new Set(["manifest", "default"])
 
 const execAsync = promisify(execCb)
 
-async function cloneWithSubdirAsync({ url, ref, subdir, pluginDir }) {
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "quartz-plugin-"))
-  try {
-    if (ref) {
-      await execAsync(`git clone --depth 1 --branch ${ref} "${url}" "${tmpDir}"`)
-    } else {
-      await execAsync(`git clone --depth 1 "${url}" "${tmpDir}"`)
+/** Mark the current CLI invocation as failed (non-zero exit) without aborting. */
+function markFailed() {
+  process.exitCode = 1
+}
+
+/**
+ * Turn a failed git/npm command into a short, actionable message instead of a
+ * dump of the full command line.
+ */
+function describeCommandError(error) {
+  const stderr = String(error?.stderr ?? "").trim()
+  const text = stderr || String(error?.message ?? error)
+  if (
+    /Remote branch .* not found|couldn't find remote ref|not our ref|did not match any/i.test(text)
+  ) {
+    return "the requested branch/tag/commit does not exist on the remote"
+  }
+  if (/Repository not found|repository '.*' not found|404/i.test(text)) {
+    return "repository not found — check the owner/repo spelling, or make sure your git credentials can access it"
+  }
+  if (
+    /Could not resolve host|unable to access|Failed to connect|Network is unreachable/i.test(text)
+  ) {
+    return "network error — could not reach the git host (are you offline?)"
+  }
+  if (/Authentication failed|could not read Username|Permission denied/i.test(text)) {
+    return "authentication failed — the repository may be private"
+  }
+  const lines = text
+    .split("\n")
+    .map((l) => l.trim())
+    .filter((l) => l && !l.startsWith("Command failed:") && !l.startsWith("Cloning into"))
+  return lines.slice(-2).join(" ") || "unknown error"
+}
+
+const nameHelpers = { extractName: extractPluginName, formatSource }
+
+/**
+ * Resolve a user-supplied plugin name against quartz.config.yaml entries.
+ * Accepts the full name, the source string, or the short name
+ * ("explorer" for "@quartz-community/explorer").
+ * Prints an error (with a "did you mean" hint) and returns null when the name
+ * does not identify exactly one entry.
+ */
+function resolveConfigEntryOrReport(json, name) {
+  const { indices, suggestion } = findConfigEntries(json?.plugins ?? [], name, nameHelpers)
+  if (indices.length === 1) {
+    const index = indices[0]
+    return { entry: json.plugins[index], index }
+  }
+  if (indices.length > 1) {
+    console.log(
+      styleText("red", `✗ "${name}" matches ${indices.length} plugins in quartz.config.yaml:`),
+    )
+    for (const i of indices) {
+      console.log(`    ${formatSource(json.plugins[i].source)}`)
     }
+    console.log(styleText("gray", "  Use the full source to pick one."))
+    markFailed()
+    return null
+  }
+  console.log(styleText("red", `✗ Plugin "${name}" not found in quartz.config.yaml`))
+  if (suggestion) console.log(styleText("gray", `  Did you mean "${suggestion}"?`))
+  else console.log(styleText("gray", "  Run 'npx quartz plugin list' to see configured plugins."))
+  markFailed()
+  return null
+}
+
+/** Read the manifest (`quartz` field of package.json) of a configured plugin, if installed. */
+function readEntryManifest(source) {
+  const dir = resolvePluginDir(source)
+  if (!dir) return null
+  return readManifestFromPackageJson(dir)
+}
+
+/** Read the installed package.json of a configured plugin, if any. */
+function readEntryPackageJson(source) {
+  const dir = resolvePluginDir(source)
+  if (!dir) return null
+  try {
+    return JSON.parse(fs.readFileSync(path.join(dir, "package.json"), "utf-8"))
+  } catch {
+    return null
+  }
+}
+
+/** Shallow-clone `url` into `dir`, then move to `commit` if it is not the tip. */
+async function cloneAtCommitAsync({ url, ref, commit, dir }) {
+  const branchArg = ref ? ` --branch ${ref}` : ""
+  await execAsync(`git clone --depth 1${branchArg} "${url}" "${dir}"`)
+  if (commit && commit !== "unknown" && commit !== "local") {
+    const { stdout } = await execAsync("git rev-parse HEAD", { cwd: dir })
+    if (stdout.trim() !== commit) {
+      await execAsync(`git fetch --depth 1 origin ${commit}`, { cwd: dir })
+      await execAsync(`git checkout --quiet ${commit}`, { cwd: dir })
+    }
+  }
+  const { stdout } = await execAsync("git rev-parse HEAD", { cwd: dir })
+  return stdout.trim()
+}
+
+/**
+ * Clone a repository and copy one subdirectory of it into `pluginDir`.
+ * When `commit` is given (lockfile pin) that commit is checked out first.
+ * The copy goes to a temporary sibling first, so a failed clone never leaves
+ * a half-populated or deleted plugin behind.
+ */
+async function cloneWithSubdirAsync({ url, ref, subdir, pluginDir, commit }) {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "quartz-plugin-"))
+  const staging = `${pluginDir}.__staging__`
+  try {
+    const resolvedCommit = await cloneAtCommitAsync({ url, ref, commit, dir: tmpDir })
     const subdirPath = path.join(tmpDir, subdir)
     if (!fs.existsSync(subdirPath)) {
       throw new Error(`Subdirectory "${subdir}" not found in cloned repository`)
     }
-    fs.cpSync(subdirPath, pluginDir, { recursive: true })
-    const { stdout } = await execAsync("git rev-parse HEAD", { cwd: tmpDir })
-    return stdout.trim()
+    fs.rmSync(staging, { recursive: true, force: true })
+    fs.cpSync(subdirPath, staging, { recursive: true })
+    fs.rmSync(pluginDir, { recursive: true, force: true })
+    fs.renameSync(staging, pluginDir)
+    return resolvedCommit
   } finally {
     fs.rmSync(tmpDir, { recursive: true, force: true })
+    fs.rmSync(staging, { recursive: true, force: true })
   }
 }
 
@@ -63,9 +183,21 @@ async function buildPluginAsync(pluginDir, name) {
     }
     await execAsync("npm prune --omit=dev", { cwd: pluginDir })
     linkPeerPlugins(pluginDir)
+    if (!hasLoadableEntryPoint(pluginDir)) {
+      console.log(
+        styleText("red", `  ✗ ${name}: build finished but produced no entry point (dist/ missing)`),
+      )
+      return false
+    }
     return true
   } catch (error) {
-    console.log(styleText("red", `  ✗ ${name}: build failed`))
+    console.log(styleText("red", `  ✗ ${name}: build failed: ${describeCommandError(error)}`))
+    console.log(
+      styleText(
+        "gray",
+        `    Try running 'npm install && npm run build' in ${pluginDir} to see the full error.`,
+      ),
+    )
     return false
   }
 }
@@ -358,6 +490,7 @@ export async function handlePluginInstallUnified({
 } = {}) {
   if (clean && latest) {
     console.log(styleText("red", "✗ --clean and --latest cannot be used together"))
+    markFailed()
     return
   }
 
@@ -367,10 +500,40 @@ export async function handlePluginInstallUnified({
   let lockfile = readLockfile()
 
   if (!fromConfig && !lockfile) {
+    const gitEntries = (pluginsJson?.plugins ?? []).filter((entry) => {
+      try {
+        return !parseGitSource(entry.source).npmPackage
+      } catch {
+        return false
+      }
+    })
+    if (gitEntries.length === 0 && findMissingNpmPlugins(pluginsJson).length === 0) {
+      console.log(
+        styleText(
+          "green",
+          "✓ No Git or local plugins to install (plugins from npm are installed by 'npm install' / 'npm ci')",
+        ),
+      )
+      return
+    }
+    if (dryRun && latest) {
+      console.log(styleText("yellow", "⚠ No quartz.lock.json found — nothing to check yet."))
+      console.log(
+        styleText("gray", "  Run 'npx quartz plugin install' to install and pin plugins."),
+      )
+      return
+    }
     console.log(
-      styleText("yellow", "⚠ No quartz.lock.json found. Run 'npx quartz plugin add <repo>' first."),
+      styleText(
+        "yellow",
+        "⚠ No quartz.lock.json found — installing plugins from quartz.config.yaml instead.",
+      ),
     )
-    return
+    console.log(
+      styleText("gray", "  Commit the generated quartz.lock.json to pin plugin versions."),
+    )
+    console.log()
+    fromConfig = true
   }
 
   const resolvedNames = names
@@ -489,6 +652,32 @@ export async function handlePluginInstallUnified({
     if (!pluginsJson?.plugins || pluginsJson.plugins.length === 0) {
       console.log(styleText("gray", "No plugins configured"))
       return
+    }
+
+    // npm-sourced plugins (e.g. from a template) that are not in node_modules yet
+    const missingNpm = findMissingNpmPlugins(pluginsJson).filter(
+      (pkg) => !nameFilter || nameFilter.has(pkg) || nameFilter.has(shortPluginName(pkg)),
+    )
+    if (missingNpm.length > 0) {
+      console.log(`Found ${missingNpm.length} npm plugin(s) in config that are not installed:\n`)
+      for (const pkg of missingNpm) console.log(`  ${styleText("yellow", pkg)}`)
+      console.log()
+      if (!dryRun) {
+        try {
+          execSync(`npm install ${missingNpm.join(" ")}`, {
+            cwd: process.cwd(),
+            stdio: "inherit",
+            timeout: 600_000,
+          })
+          console.log(styleText("green", `✓ Installed ${missingNpm.length} npm plugin(s)`))
+        } catch {
+          console.log(
+            styleText("red", `✗ npm install failed — run 'npm install ${missingNpm.join(" ")}'`),
+          )
+          markFailed()
+        }
+        console.log()
+      }
     }
 
     if (!lockfile) {
@@ -629,10 +818,17 @@ export async function handlePluginInstallUnified({
           lockfileChanged = true
           console.log(styleText("green", `✓ Linked ${name} (local)`))
         } else {
-          remoteEntries.push({ entry, name, url, ref, subdir, pluginDir })
+          const locked = lockfile.plugins[name]
+          const commit =
+            locked && locked.resolved === url && locked.commit !== "local"
+              ? locked.commit
+              : undefined
+          remoteEntries.push({ entry, name, url, ref, subdir, pluginDir, commit })
         }
       } catch (error) {
-        console.log(styleText("red", `✗ Failed to resolve ${formatSource(entry.source)}: ${error}`))
+        console.log(
+          styleText("red", `✗ Failed to resolve ${formatSource(entry.source)}: ${error.message}`),
+        )
         failed++
       }
     }
@@ -643,12 +839,18 @@ export async function handlePluginInstallUnified({
       await runParallel(
         remoteEntries,
         concurrency,
-        async ({ entry, name, url, ref, subdir, pluginDir }) => {
+        async ({ entry, name, url, ref, subdir, pluginDir, commit: pinned }) => {
           try {
             if (subdir) {
               console.log(styleText("cyan", `→ Cloning ${name} from ${url} (subdir: ${subdir})...`))
               fs.mkdirSync(path.dirname(pluginDir), { recursive: true })
-              const commit = await cloneWithSubdirAsync({ url, ref, subdir, pluginDir })
+              const commit = await cloneWithSubdirAsync({
+                url,
+                ref,
+                subdir,
+                pluginDir,
+                commit: pinned,
+              })
               lockfile.plugins[name] = {
                 source: entry.source,
                 resolved: url,
@@ -665,11 +867,7 @@ export async function handlePluginInstallUnified({
             } else {
               console.log(styleText("cyan", `→ Cloning ${name} from ${url}...`))
 
-              const branchArg = ref ? ` --branch ${ref}` : ""
-              await execAsync(`git clone --depth 1${branchArg} "${url}" "${pluginDir}"`)
-
-              const { stdout } = await execAsync("git rev-parse HEAD", { cwd: pluginDir })
-              const commit = stdout.trim()
+              const commit = await cloneAtCommitAsync({ url, ref, commit: pinned, dir: pluginDir })
               lockfile.plugins[name] = {
                 source: entry.source,
                 resolved: url,
@@ -683,8 +881,12 @@ export async function handlePluginInstallUnified({
               console.log(styleText("green", `✓ Cloned ${name}@${commit.slice(0, 7)}`))
             }
           } catch (error) {
+            fs.rmSync(pluginDir, { recursive: true, force: true })
             console.log(
-              styleText("red", `✗ Failed to resolve ${formatSource(entry.source)}: ${error}`),
+              styleText(
+                "red",
+                `✗ Failed to install ${formatSource(entry.source)}: ${describeCommandError(error)}`,
+              ),
             )
             failed++
           }
@@ -751,6 +953,7 @@ export async function handlePluginInstallUnified({
       console.log(styleText("yellow", `⚠ Resolved ${installed.length} plugin(s), ${failed} failed`))
     }
 
+    if (failed > 0) markFailed()
     return
   }
 
@@ -838,6 +1041,7 @@ export async function handlePluginInstallUnified({
               ref: entry.ref,
               subdir: entry.subdir,
               pluginDir,
+              commit: entry.commit,
             })
           } else {
             console.log(
@@ -846,15 +1050,21 @@ export async function handlePluginInstallUnified({
                 `→ ${name}: cloning ${entry.resolved}@${entry.commit.slice(0, 7)}...`,
               ),
             )
-            const branchArg = entry.ref ? ` --branch ${entry.ref}` : ""
-            await execAsync(`git clone --depth 1${branchArg} "${entry.resolved}" "${pluginDir}"`)
-            await execAsync(`git checkout ${entry.commit}`, { cwd: pluginDir })
+            await cloneAtCommitAsync({
+              url: entry.resolved,
+              ref: entry.ref,
+              commit: entry.commit,
+              dir: pluginDir,
+            })
           }
           console.log(styleText("green", `✓ ${name} restored`))
           restoredPlugins.push({ name, pluginDir })
           installed++
-        } catch {
-          console.log(styleText("red", `✗ ${name}: failed to restore`))
+        } catch (error) {
+          fs.rmSync(pluginDir, { recursive: true, force: true })
+          console.log(
+            styleText("red", `✗ ${name}: failed to restore: ${describeCommandError(error)}`),
+          )
           failed++
         }
       })
@@ -887,6 +1097,7 @@ export async function handlePluginInstallUnified({
       console.log(styleText("green", `✓ Restored ${installed} plugin(s)`))
     } else {
       console.log(styleText("yellow", `⚠ Restored ${installed} plugin(s), ${failed} failed`))
+      markFailed()
     }
     return
   }
@@ -901,7 +1112,12 @@ export async function handlePluginInstallUnified({
     for (const name of pluginsToUpdate) {
       const entry = lockfile.plugins[name]
       if (!entry) {
-        console.log(styleText("yellow", `⚠ ${name} is not installed`))
+        const suggestion = suggestClosest(name, Object.keys(lockfile.plugins))
+        console.log(
+          styleText("yellow", `⚠ ${name} is not installed`) +
+            (suggestion ? styleText("gray", ` — did you mean "${suggestion}"?`) : ""),
+        )
+        markFailed()
         continue
       }
 
@@ -930,8 +1146,6 @@ export async function handlePluginInstallUnified({
           console.log(styleText("cyan", `→ Updating ${name}...`))
 
           if (entry.subdir) {
-            fs.rmSync(pluginDir, { recursive: true })
-            fs.mkdirSync(path.dirname(pluginDir), { recursive: true })
             const newCommit = await cloneWithSubdirAsync({
               url: entry.resolved,
               ref: entry.ref,
@@ -975,7 +1189,10 @@ export async function handlePluginInstallUnified({
             }
           }
         } catch (error) {
-          console.log(styleText("red", `✗ Failed to update ${name}: ${error}`))
+          console.log(
+            styleText("red", `✗ Failed to update ${name}: ${describeCommandError(error)}`),
+          )
+          markFailed()
         }
       })
     }
@@ -985,11 +1202,16 @@ export async function handlePluginInstallUnified({
       console.log()
       console.log(styleText("cyan", "→ Rebuilding updated plugins..."))
       const concurrency = resolvedConcurrency
-      await runParallel(updatedPlugins, concurrency, async ({ name, pluginDir }) => {
-        const ok = await buildPluginAsync(pluginDir, name)
-        if (ok) console.log(styleText("green", `  ✓ ${name} rebuilt`))
-        return ok
-      })
+      const results = await runParallel(
+        updatedPlugins,
+        concurrency,
+        async ({ name, pluginDir }) => {
+          const ok = await buildPluginAsync(pluginDir, name)
+          if (ok) console.log(styleText("green", `  ✓ ${name} rebuilt`))
+          return ok
+        },
+      )
+      if (results.some((ok) => !ok)) markFailed()
       await regeneratePluginIndex()
     }
 
@@ -1008,8 +1230,50 @@ export async function handlePluginInstallUnified({
   const entries = Object.entries(lockfile.plugins).filter(([name]) =>
     nameFilter ? nameFilter.has(name) : true,
   )
+  const unlocked = nameFilter ? [] : findConfiguredButUnlocked(pluginsJson, lockfile)
+  const missingNpm = nameFilter ? [] : findMissingNpmPlugins(pluginsJson)
+  const printUnlockedHint = () => {
+    if (missingNpm.length > 0) {
+      console.log()
+      console.log(
+        styleText(
+          "yellow",
+          `⚠ ${missingNpm.length} npm plugin(s) in quartz.config.yaml are not installed: ${missingNpm.join(", ")}`,
+        ),
+      )
+      console.log(
+        styleText("gray", "  Run 'npx quartz plugin install --from-config' to install them."),
+      )
+    }
+    if (unlocked.length === 0) return
+    console.log()
+    console.log(
+      styleText(
+        "yellow",
+        `⚠ ${unlocked.length} plugin(s) in quartz.config.yaml are not in quartz.lock.json: ${unlocked.join(", ")}`,
+      ),
+    )
+    console.log(
+      styleText("gray", "  Run 'npx quartz plugin install --from-config' to install and pin them."),
+    )
+  }
+  if (nameFilter) {
+    for (const name of nameFilter) {
+      if (!lockfile.plugins[name]) {
+        const suggestion = suggestClosest(name, Object.keys(lockfile.plugins))
+        console.log(
+          styleText("yellow", `⚠ ${name} is not in quartz.lock.json`) +
+            (suggestion ? styleText("gray", ` — did you mean "${suggestion}"?`) : ""),
+        )
+        markFailed()
+      }
+    }
+  }
   if (entries.length === 0) {
-    console.log(styleText("gray", "No plugins installed"))
+    console.log(
+      styleText("gray", nameFilter ? "Nothing to install" : "No plugins in quartz.lock.json"),
+    )
+    printUnlockedHint()
     return
   }
 
@@ -1105,23 +1369,28 @@ export async function handlePluginInstallUnified({
               ref: entry.ref,
               subdir: entry.subdir,
               pluginDir,
+              commit: entry.commit,
             })
           } else {
             console.log(styleText("cyan", `  → ${name}: cloning...`))
-            const branchArg = entry.ref ? ` --branch ${entry.ref}` : ""
-            await execAsync(`git clone --depth 1${branchArg} "${entry.resolved}" "${pluginDir}"`)
-            if (entry.commit !== "unknown") {
-              await execAsync(`git fetch --depth 1 origin ${entry.commit}`, { cwd: pluginDir })
-              await execAsync(`git checkout ${entry.commit}`, { cwd: pluginDir })
-            }
+            await cloneAtCommitAsync({
+              url: entry.resolved,
+              ref: entry.ref,
+              commit: entry.commit,
+              dir: pluginDir,
+            })
           }
           console.log(styleText("green", `  ✓ ${name}@${entry.commit.slice(0, 7)}`))
           pluginsToBuild.push({ name, pluginDir })
           installed++
         }
-      } catch {
+      } catch (error) {
+        if (action !== "update") fs.rmSync(pluginDir, { recursive: true, force: true })
         console.log(
-          styleText("red", `  ✗ ${name}: failed to ${action === "update" ? "update" : "clone"}`),
+          styleText(
+            "red",
+            `  ✗ ${name}: failed to ${action === "update" ? "update" : "clone"}: ${describeCommandError(error)}`,
+          ),
         )
         failed++
       }
@@ -1152,7 +1421,41 @@ export async function handlePluginInstallUnified({
     console.log(styleText("green", `✓ Installed ${installed} plugin(s)`))
   } else {
     console.log(styleText("yellow", `⚠ Installed ${installed} plugin(s), ${failed} failed`))
+    markFailed()
   }
+  printUnlockedHint()
+}
+
+const NPM_NAME_PATTERN = /^@[a-z0-9-~][a-z0-9-._~]*\/[a-z0-9-~][a-z0-9-._~]*$/
+
+/** Enabled npm-sourced plugins whose package is not present in node_modules. */
+function findMissingNpmPlugins(pluginsJson) {
+  const missing = []
+  for (const entry of pluginsJson?.plugins ?? []) {
+    if (!entry?.enabled) continue
+    try {
+      if (!parseGitSource(entry.source).npmPackage) continue
+      const pkg = getSourceUrl(entry.source)
+      if (!NPM_NAME_PATTERN.test(pkg)) continue
+      const dir = resolvePluginDir(entry.source)
+      if (dir && !fs.existsSync(path.join(dir, "package.json"))) missing.push(pkg)
+    } catch {}
+  }
+  return [...new Set(missing)]
+}
+
+/** Names of enabled Git/local plugins in config that have no lockfile entry. */
+function findConfiguredButUnlocked(pluginsJson, lockfile) {
+  const result = []
+  for (const entry of pluginsJson?.plugins ?? []) {
+    if (!entry?.enabled) continue
+    try {
+      const parsed = parseGitSource(entry.source)
+      if (parsed.npmPackage) continue
+      if (!lockfile?.plugins?.[parsed.name]) result.push(parsed.name)
+    } catch {}
+  }
+  return result
 }
 
 export async function handlePluginInstall() {
@@ -1165,10 +1468,12 @@ export async function handlePluginAdd(
 ) {
   if (nameOverride && sources.length > 1) {
     console.log(styleText("red", "✗ --name/--as can only be used when adding a single plugin"))
+    markFailed()
     return
   }
   if (subdirOverride && sources.length > 1) {
     console.log(styleText("red", "✗ --subdir can only be used when adding a single plugin"))
+    markFailed()
     return
   }
 
@@ -1178,12 +1483,28 @@ export async function handlePluginAdd(
   if (!lockfile) {
     lockfile = { version: "1.0.0", plugins: {} }
   }
+  let lockfileChanged = false
 
   if (!fs.existsSync(PLUGINS_DIR)) {
     fs.mkdirSync(PLUGINS_DIR, { recursive: true })
   }
 
+  const pluginsJson = readPluginsJson()
+  const configured = pluginsJson?.plugins ?? []
+
   const addedPlugins = []
+  let hadFailure = false
+
+  /** Existing config entry that is (probably) the same plugin, by name. */
+  const findConfigured = (name) =>
+    configured.find((entry) => {
+      try {
+        const existing = extractPluginName(entry.source)
+        return existing === name || shortPluginName(existing) === shortPluginName(name)
+      } catch {
+        return false
+      }
+    })
 
   // Handle local plugins and collect remote sources to clone
   const remoteSources = []
@@ -1192,11 +1513,21 @@ export async function handlePluginAdd(
       const parsed = parseGitSource(source)
       if (parsed.npmPackage) {
         const name = nameOverride ?? parsed.name
+        const already = findConfigured(name)
+        if (already) {
+          console.log(
+            styleText(
+              "yellow",
+              `⚠ ${name} is already configured (source: ${formatSource(already.source)}) — skipping`,
+            ),
+          )
+          continue
+        }
         console.log(styleText("cyan", `→ Installing ${name} from npm...`))
         execSync(`npm install ${parsed.name}`, { cwd: process.cwd(), stdio: "inherit" })
         const configSource = nameOverride ? { repo: parsed.name, name: nameOverride } : parsed.name
         const pluginDir = path.join(process.cwd(), "node_modules", ...parsed.name.split("/"))
-        addedPlugins.push({ name, pluginDir, source: parsed.name, configSource })
+        addedPlugins.push({ name, pluginDir, source: parsed.name, configSource, npm: true })
         continue
       }
       const name = nameOverride ?? parsed.name
@@ -1213,8 +1544,50 @@ export async function handlePluginAdd(
         if (subdirOverride) configSource.subdir = subdirOverride
       }
 
+      const already = findConfigured(name)
+      if (already) {
+        const same = formatSource(already.source) === formatSource(configSource ?? source)
+        console.log(
+          styleText(
+            "yellow",
+            same
+              ? `⚠ ${name} is already configured — skipping. To update it run 'npx quartz plugin install --latest ${name}'.`
+              : `⚠ A plugin named "${name}" is already configured (source: ${formatSource(already.source)}) — skipping.`,
+          ),
+        )
+        if (!same) {
+          console.log(
+            styleText(
+              "gray",
+              `  To switch sources: 'npx quartz plugin remove ${extractPluginName(already.source)}' first,` +
+                ` or add this one under another name with --as <name>.`,
+            ),
+          )
+        }
+        continue
+      }
+
       if (fs.existsSync(pluginDir)) {
-        console.log(styleText("yellow", `⚠ ${name} already exists. Use 'update' to refresh.`))
+        // Installed on disk (e.g. left over after editing the config by hand)
+        // but not configured: adopt it instead of refusing.
+        console.log(
+          styleText(
+            "yellow",
+            `⚠ ${name} is already installed but not configured — adding it to quartz.config.yaml`,
+          ),
+        )
+        if (!lockfile.plugins[name]) {
+          lockfile.plugins[name] = {
+            source,
+            resolved: local ? path.resolve(url) : url,
+            commit: local ? "local" : getGitCommit(pluginDir),
+            ...(ref && { ref }),
+            ...(subdir && { subdir }),
+            installedAt: new Date().toISOString(),
+          }
+          lockfileChanged = true
+        }
+        addedPlugins.push({ name, pluginDir, source, configSource, skipBuild: true })
         continue
       }
 
@@ -1223,7 +1596,13 @@ export async function handlePluginAdd(
         if (subdir) resolvedPath = path.join(resolvedPath, subdir)
         if (!fs.existsSync(resolvedPath)) {
           console.log(styleText("red", `✗ Local path does not exist: ${resolvedPath}`))
+          hadFailure = true
           continue
+        }
+        if (!fs.existsSync(path.join(resolvedPath, "package.json"))) {
+          console.log(
+            styleText("yellow", `⚠ ${resolvedPath} has no package.json — is this a Quartz plugin?`),
+          )
         }
         console.log(styleText("cyan", `→ Adding ${name} from local path ${resolvedPath}...`))
         fs.mkdirSync(path.dirname(pluginDir), { recursive: true })
@@ -1235,13 +1614,15 @@ export async function handlePluginAdd(
           ...(subdir && { subdir }),
           installedAt: new Date().toISOString(),
         }
+        lockfileChanged = true
         addedPlugins.push({ name, pluginDir, source, configSource })
         console.log(styleText("green", `✓ Added ${name} (local symlink)`))
       } else {
         remoteSources.push({ source, name, url, ref, subdir, pluginDir, configSource })
       }
     } catch (error) {
-      console.log(styleText("red", `✗ Failed to add ${formatSource(source)}: ${error}`))
+      console.log(styleText("red", `✗ Failed to add ${formatSource(source)}: ${error.message}`))
+      hadFailure = true
     }
   }
 
@@ -1265,6 +1646,7 @@ export async function handlePluginAdd(
               subdir,
               installedAt: new Date().toISOString(),
             }
+            lockfileChanged = true
             addedPlugins.push({ name, pluginDir, source, configSource })
             console.log(
               styleText("green", `✓ Added ${name}@${commit.slice(0, 7)} (subdir: ${subdir})`),
@@ -1272,11 +1654,7 @@ export async function handlePluginAdd(
           } else {
             console.log(styleText("cyan", `→ Adding ${name} from ${url}...`))
 
-            const branchArg = ref ? ` --branch ${ref}` : ""
-            await execAsync(`git clone --depth 1${branchArg} "${url}" "${pluginDir}"`)
-
-            const { stdout } = await execAsync("git rev-parse HEAD", { cwd: pluginDir })
-            const commit = stdout.trim()
+            const commit = await cloneAtCommitAsync({ url, ref, dir: pluginDir })
             lockfile.plugins[name] = {
               source,
               resolved: url,
@@ -1284,32 +1662,49 @@ export async function handlePluginAdd(
               ...(ref && { ref }),
               installedAt: new Date().toISOString(),
             }
+            lockfileChanged = true
 
             addedPlugins.push({ name, pluginDir, source, configSource })
             console.log(styleText("green", `✓ Added ${name}@${commit.slice(0, 7)}`))
           }
         } catch (error) {
-          console.log(styleText("red", `✗ Failed to add ${formatSource(source)}: ${error}`))
+          fs.rmSync(pluginDir, { recursive: true, force: true })
+          console.log(
+            styleText(
+              "red",
+              `✗ Failed to add ${formatSource(source)}: ${describeCommandError(error)}`,
+            ),
+          )
+          hadFailure = true
         }
       },
     )
   }
 
-  if (addedPlugins.length > 0) {
+  const toBuild = addedPlugins.filter((p) => !p.skipBuild)
+  if (toBuild.length > 0) {
     console.log()
     console.log(styleText("cyan", "→ Building plugins..."))
     const concurrency = resolvedConcurrency
-    await runParallel(addedPlugins, concurrency, async ({ name, pluginDir }) => {
-      const ok = await buildPluginAsync(pluginDir, name)
-      if (ok) console.log(styleText("green", `  ✓ ${name} built`))
+    await runParallel(toBuild, concurrency, async (plugin) => {
+      const ok = await buildPluginAsync(plugin.pluginDir, plugin.name)
+      if (ok) console.log(styleText("green", `  ✓ ${plugin.name} built`))
+      else {
+        plugin.buildFailed = true
+        hadFailure = true
+      }
       return ok
     })
+  }
+  if (addedPlugins.length > 0) {
     await regeneratePluginIndex()
   }
 
-  writeLockfile(lockfile)
-  const pluginsJson = readPluginsJson()
-  if (pluginsJson?.plugins) {
+  if (lockfileChanged) {
+    writeLockfile(lockfile)
+  }
+
+  if (pluginsJson?.plugins && addedPlugins.length > 0) {
     for (const { pluginDir, source, configSource } of addedPlugins) {
       const manifest = readManifestFromPackageJson(pluginDir)
       const newEntry = {
@@ -1334,164 +1729,318 @@ export async function handlePluginAdd(
       pluginsJson.plugins.push(newEntry)
     }
     writePluginsJson(pluginsJson)
+  } else if (!pluginsJson && addedPlugins.length > 0) {
+    console.log(
+      styleText(
+        "yellow",
+        "⚠ No quartz.config.yaml found — the plugin is installed but not configured.",
+      ),
+    )
   }
+
   console.log()
-  console.log(styleText("gray", "Updated quartz.lock.json"))
+  for (const plugin of addedPlugins) {
+    const manifest = readManifestFromPackageJson(plugin.pluginDir)
+    const configName = extractPluginName(plugin.configSource ?? plugin.source)
+    const state =
+      manifest?.defaultEnabled === false ? "added (disabled by default)" : "added and enabled"
+    console.log(
+      styleText(
+        plugin.buildFailed ? "yellow" : "green",
+        `${plugin.buildFailed ? "⚠" : "✓"} ${configName} ${state}`,
+      ),
+    )
+    if (manifest?.defaultEnabled === false) {
+      console.log(styleText("gray", `  Enable it with 'npx quartz plugin enable ${configName}'.`))
+    }
+    if (plugin.buildFailed) {
+      console.log(
+        styleText(
+          "gray",
+          `  The build step failed; re-run 'npx quartz plugin install ${plugin.name}' after fixing it.`,
+        ),
+      )
+    }
+  }
+  if (lockfileChanged) console.log(styleText("gray", "Updated quartz.lock.json"))
+  if (hadFailure) markFailed()
 }
 
 export async function handlePluginRemove(names) {
-  const lockfile = readLockfile()
-  if (!lockfile) {
-    console.log(styleText("yellow", "⚠ No plugins installed"))
-    return
-  }
-
+  const lockfile = readLockfile() ?? { version: "1.0.0", plugins: {} }
   const pluginsJson = readPluginsJson()
-  let removed = false
-  const resolvedNames = []
-  for (const name of names) {
-    const lockKey = resolveLockfileName(name, lockfile, pluginsJson)
-    resolvedNames.push(lockKey)
-    const pluginDir = path.join(PLUGINS_DIR, lockKey)
+  let lockfileChanged = false
+  let configChanged = false
+  let removedFiles = false
+  const removedSources = []
 
-    if (!lockfile.plugins[lockKey] && !fs.existsSync(pluginDir)) {
-      console.log(styleText("yellow", `⚠ ${name} is not installed`))
+  for (const name of names) {
+    // Prefer the config entry (accepts short names such as "explorer").
+    const { indices } = findConfigEntries(pluginsJson?.plugins ?? [], name, nameHelpers)
+    const configIndex = indices.length === 1 ? indices[0] : -1
+    if (indices.length > 1) {
+      resolveConfigEntryOrReport(pluginsJson, name)
+      continue
+    }
+    const configEntry = configIndex >= 0 ? pluginsJson.plugins[configIndex] : null
+
+    let lockKey = resolveLockfileName(name, lockfile, pluginsJson)
+    let isNpm = false
+    if (configEntry) {
+      try {
+        const parsed = parseGitSource(configEntry.source)
+        isNpm = Boolean(parsed.npmPackage)
+        if (!isNpm && !lockfile.plugins[lockKey]) lockKey = parsed.name
+      } catch {}
+    }
+    const pluginDir = path.join(PLUGINS_DIR, lockKey)
+    const installed = !isNpm && (Boolean(lockfile.plugins[lockKey]) || fs.existsSync(pluginDir))
+
+    if (!configEntry && !installed) {
+      const candidates = [
+        ...Object.keys(lockfile.plugins),
+        ...(pluginsJson?.plugins ?? []).map((e) => {
+          try {
+            return extractPluginName(e.source)
+          } catch {
+            return ""
+          }
+        }),
+      ]
+      const suggestion = suggestClosest(name, candidates)
+      console.log(
+        styleText("yellow", `⚠ ${name} is not installed or configured`) +
+          (suggestion ? styleText("gray", ` — did you mean "${suggestion}"?`) : ""),
+      )
+      markFailed()
       continue
     }
 
-    const displayName = lockKey !== name ? `${name} (${lockKey})` : name
+    const displayName = configEntry ? extractPluginName(configEntry.source) : lockKey
     console.log(styleText("cyan", `→ Removing ${displayName}...`))
 
-    if (fs.existsSync(pluginDir)) {
-      fs.rmSync(pluginDir, { recursive: true })
+    if (installed) {
+      if (fs.existsSync(pluginDir) || fs.lstatSync(pluginDir, { throwIfNoEntry: false })) {
+        fs.rmSync(pluginDir, { recursive: true, force: true })
+        removedFiles = true
+      }
+      if (lockfile.plugins[lockKey]) {
+        delete lockfile.plugins[lockKey]
+        lockfileChanged = true
+      }
     }
-
-    delete lockfile.plugins[lockKey]
+    if (configEntry) {
+      pluginsJson.plugins.splice(pluginsJson.plugins.indexOf(configEntry), 1)
+      configChanged = true
+      removedSources.push(configEntry.source)
+    }
     console.log(styleText("green", `✓ Removed ${displayName}`))
-    removed = true
+    if (isNpm) {
+      console.log(
+        styleText(
+          "gray",
+          `  Removed from quartz.config.yaml. The npm package stays in node_modules` +
+            ` (run 'npm uninstall ${getSourceUrl(configEntry.source)}' if you added it yourself).`,
+        ),
+      )
+    }
   }
 
-  if (removed) {
+  if (removedFiles) {
     await regeneratePluginIndex()
   }
+  if (lockfileChanged) writeLockfile(lockfile)
+  if (configChanged) writePluginsJson(pluginsJson)
 
-  writeLockfile(lockfile)
-  if (pluginsJson?.plugins) {
-    pluginsJson.plugins = pluginsJson.plugins.filter(
-      (plugin) =>
-        !names.includes(extractPluginName(plugin.source)) &&
-        !names.includes(formatSource(plugin.source)) &&
-        !resolvedNames.includes(extractPluginName(plugin.source)),
+  // Warn about remaining plugins that declared a dependency on what was removed.
+  if (removedSources.length > 0 && pluginsJson?.plugins) {
+    const removedKeys = new Set(
+      removedSources.flatMap((src) => [getSourceUrl(src), extractPluginName(src)]),
     )
-    writePluginsJson(pluginsJson)
+    for (const entry of pluginsJson.plugins) {
+      if (!entry.enabled) continue
+      const deps = readEntryManifest(entry.source)?.dependencies ?? []
+      const hit = deps.find(
+        (dep) => removedKeys.has(dep) || removedKeys.has(extractPluginName(dep)),
+      )
+      if (hit) {
+        console.log(
+          styleText(
+            "yellow",
+            `⚠ ${extractPluginName(entry.source)} depends on ${hit}; the build will fail until you add it back or remove/disable ${extractPluginName(entry.source)}.`,
+          ),
+        )
+      }
+    }
   }
-  console.log()
-  console.log(styleText("gray", "Updated quartz.lock.json"))
+
+  if (lockfileChanged || configChanged) {
+    console.log()
+    console.log(
+      styleText(
+        "gray",
+        `Updated ${[configChanged && "quartz.config.yaml", lockfileChanged && "quartz.lock.json"].filter(Boolean).join(" and ")}`,
+      ),
+    )
+  }
+}
+
+async function setEnabled(names, enabled) {
+  const json = readPluginsJson()
+  const verb = enabled ? "enable" : "disable"
+  if (!json) {
+    console.log(styleText("red", `✗ No quartz.config.yaml found. Cannot ${verb} plugins.`))
+    markFailed()
+    return
+  }
+
+  let changed = false
+  for (const name of names) {
+    const resolved = resolveConfigEntryOrReport(json, name)
+    if (!resolved) continue
+    const { entry } = resolved
+    const label = extractPluginName(entry.source)
+    // Mirror the build: only a literal `true` (truthy) value enables a plugin.
+    if (Boolean(entry.enabled) === enabled && typeof entry.enabled === "boolean") {
+      console.log(styleText("gray", `✓ ${label} is already ${verb}d`))
+      continue
+    }
+    entry.enabled = enabled
+    changed = true
+    console.log(styleText("green", `✓ ${enabled ? "Enabled" : "Disabled"} ${label}`))
+    if (
+      enabled &&
+      resolvePluginDir(entry.source) &&
+      !fs.existsSync(resolvePluginDir(entry.source))
+    ) {
+      console.log(
+        styleText(
+          "gray",
+          "  Not installed yet — it will be installed on the next build, or run 'npx quartz plugin install --from-config'.",
+        ),
+      )
+    }
+  }
+
+  if (changed) writePluginsJson(json)
 }
 
 export async function handlePluginEnable(names) {
-  const json = readPluginsJson()
-  if (!json) {
-    console.log(styleText("red", "✗ No quartz.config.yaml found. Cannot enable plugins."))
-    return
-  }
-
-  for (const name of names) {
-    const entry = json.plugins.find(
-      (e) => extractPluginName(e.source) === name || formatSource(e.source) === name,
-    )
-    if (!entry) {
-      console.log(styleText("yellow", `⚠ Plugin "${name}" not found in quartz.config.yaml`))
-      continue
-    }
-    if (entry.enabled) {
-      console.log(styleText("gray", `✓ ${name} is already enabled`))
-      continue
-    }
-    entry.enabled = true
-    console.log(styleText("green", `✓ Enabled ${name}`))
-  }
-
-  writePluginsJson(json)
+  return setEnabled(names, true)
 }
 
 export async function handlePluginDisable(names) {
-  const json = readPluginsJson()
-  if (!json) {
-    console.log(styleText("red", "✗ No quartz.config.yaml found. Cannot disable plugins."))
-    return
-  }
+  return setEnabled(names, false)
+}
 
-  for (const name of names) {
-    const entry = json.plugins.find(
-      (e) => extractPluginName(e.source) === name || formatSource(e.source) === name,
-    )
-    if (!entry) {
-      console.log(styleText("yellow", `⚠ Plugin "${name}" not found in quartz.config.yaml`))
-      continue
-    }
-    if (!entry.enabled) {
-      console.log(styleText("gray", `✓ ${name} is already disabled`))
-      continue
-    }
-    entry.enabled = false
-    console.log(styleText("green", `✓ Disabled ${name}`))
+function parseCliValue(raw) {
+  try {
+    return JSON.parse(raw)
+  } catch {
+    return raw
   }
+}
 
-  writePluginsJson(json)
+function printOptionIssues(issues, label) {
+  for (const issue of issues) {
+    const color = issue.severity === "info" ? "gray" : "yellow"
+    const icon = issue.severity === "info" ? "ℹ" : "⚠"
+    console.log(styleText(color, `${icon} ${label}: ${issue.message}`))
+  }
 }
 
 export async function handlePluginConfig(name, options = {}) {
   const json = readPluginsJson()
   if (!json) {
     console.log(styleText("red", "✗ No quartz.config.yaml found."))
+    markFailed()
     return
   }
 
-  const entry = json.plugins.find(
-    (e) => extractPluginName(e.source) === name || formatSource(e.source) === name,
-  )
-  if (!entry) {
-    console.log(styleText("red", `✗ Plugin "${name}" not found in quartz.config.yaml`))
-    return
-  }
+  const resolved = resolveConfigEntryOrReport(json, name)
+  if (!resolved) return
+  const { entry } = resolved
+  const label = extractPluginName(entry.source)
+  const manifest = readEntryManifest(entry.source)
 
-  if (options.set) {
-    const eqIndex = options.set.indexOf("=")
-    if (eqIndex === -1) {
-      console.log(styleText("red", "✗ Invalid format. Use: --set key=value"))
-      return
+  const sets = [options.set ?? []].flat().filter((v) => v !== undefined)
+  const unsets = [options.unset ?? []].flat().filter((v) => v !== undefined)
+
+  if (sets.length > 0 || unsets.length > 0) {
+    if (!entry.options || typeof entry.options !== "object") entry.options = {}
+    let changed = false
+    for (const assignment of sets) {
+      const eqIndex = String(assignment).indexOf("=")
+      if (eqIndex <= 0) {
+        console.log(styleText("red", `✗ Invalid --set "${assignment}". Use: --set key=value`))
+        markFailed()
+        continue
+      }
+      const keyPath = assignment.slice(0, eqIndex)
+      const segments = parseOptionPath(keyPath)
+      if (segments.length === 0) {
+        console.log(styleText("red", `✗ Invalid option key "${keyPath}"`))
+        markFailed()
+        continue
+      }
+      const value = parseCliValue(assignment.slice(eqIndex + 1))
+      setOptionPath(entry.options, segments, value)
+      changed = true
+      console.log(
+        styleText("green", `✓ Set ${label}.${segments.join(".")} = ${JSON.stringify(value)}`),
+      )
+      const probe = {}
+      setOptionPath(probe, segments, value)
+      printOptionIssues(
+        validatePluginOptions(probe, manifest).filter((i) => i.severity === "warning"),
+        label,
+      )
     }
-    const key = options.set.slice(0, eqIndex)
-    let value = options.set.slice(eqIndex + 1)
+    for (const keyPath of unsets) {
+      const segments = parseOptionPath(String(keyPath))
+      if (unsetOptionPath(entry.options, segments)) {
+        changed = true
+        console.log(
+          styleText("green", `✓ Unset ${label}.${segments.join(".")} (plugin default applies)`),
+        )
+      } else {
+        console.log(styleText("yellow", `⚠ ${label} has no option "${keyPath}" set`))
+      }
+    }
+    if (changed) writePluginsJson(json)
+    return
+  }
 
-    try {
-      value = JSON.parse(value)
-    } catch {}
-
-    if (!entry.options) entry.options = {}
-    entry.options[key] = value
-    writePluginsJson(json)
-    console.log(styleText("green", `✓ Set ${name}.${key} = ${JSON.stringify(value)}`))
+  console.log(styleText("bold", `Plugin: ${label}`))
+  console.log(`  Source: ${formatSource(entry.source)}`)
+  console.log(`  Enabled: ${Boolean(entry.enabled)}`)
+  console.log(`  Order: ${entry.order ?? manifest?.defaultOrder ?? 50}`)
+  if (entry.options && Object.keys(entry.options).length > 0) {
+    console.log(`  Options:`)
+    for (const [k, v] of Object.entries(entry.options)) {
+      console.log(`    ${k}: ${JSON.stringify(v)}`)
+    }
   } else {
-    console.log(styleText("bold", `Plugin: ${name}`))
-    console.log(`  Source: ${formatSource(entry.source)}`)
-    console.log(`  Enabled: ${entry.enabled}`)
-    console.log(`  Order: ${entry.order ?? 50}`)
-    if (entry.options && Object.keys(entry.options).length > 0) {
-      console.log(`  Options:`)
-      for (const [k, v] of Object.entries(entry.options)) {
-        console.log(`    ${k}: ${JSON.stringify(v)}`)
-      }
-    } else {
-      console.log(`  Options: (none)`)
+    console.log(`  Options: (none)`)
+  }
+  const defaults = manifest?.defaultOptions ?? {}
+  const unsetDefaults = Object.keys(defaults).filter((k) => !(k in (entry.options ?? {})))
+  if (unsetDefaults.length > 0) {
+    console.log(`  Defaults (not overridden):`)
+    for (const k of unsetDefaults) {
+      console.log(styleText("gray", `    ${k}: ${JSON.stringify(defaults[k])}`))
     }
-    if (entry.layout) {
-      console.log(`  Layout:`)
-      for (const [k, v] of Object.entries(entry.layout)) {
-        console.log(`    ${k}: ${JSON.stringify(v)}`)
-      }
+  }
+  if (entry.layout) {
+    console.log(`  Layout:`)
+    for (const [k, v] of Object.entries(entry.layout)) {
+      console.log(`    ${k}: ${JSON.stringify(v)}`)
     }
+  }
+  const issues = validatePluginOptions(entry.options, manifest)
+  if (issues.length > 0) {
+    console.log()
+    printOptionIssues(issues, label)
   }
 }
 
@@ -1503,20 +2052,74 @@ export async function handlePluginUpdate(names) {
   return handlePluginInstallUnified({ names, latest: true })
 }
 
+/**
+ * Config entries that are not tracked by quartz.lock.json: npm packages
+ * (versioned by package-lock.json) and Git/local plugins that were added to
+ * the config by hand and not installed yet.
+ */
+function collectUntrackedEntries(pluginsJson, lockfile) {
+  const npm = []
+  const missing = []
+  for (const entry of pluginsJson?.plugins ?? []) {
+    let parsed
+    try {
+      parsed = parseGitSource(entry.source)
+    } catch {
+      continue
+    }
+    if (parsed.npmPackage) {
+      const pkg = readEntryPackageJson(entry.source)
+      npm.push({
+        name: extractPluginName(entry.source),
+        source: getSourceUrl(entry.source),
+        version: pkg?.version ?? null,
+        enabled: Boolean(entry.enabled),
+      })
+    } else if (!lockfile?.plugins?.[parsed.name]) {
+      missing.push({
+        name: parsed.name,
+        source: formatSource(entry.source),
+        enabled: Boolean(entry.enabled),
+      })
+    }
+  }
+  return { npm, missing }
+}
+
 export async function handlePluginList() {
   const lockfile = readLockfile()
-  if (!lockfile || Object.keys(lockfile.plugins).length === 0) {
+  const pluginsJson = readPluginsJson()
+  const { npm, missing } = collectUntrackedEntries(pluginsJson, lockfile)
+  const lockEntries = Object.entries(lockfile?.plugins ?? {})
+
+  if (lockEntries.length === 0 && npm.length === 0 && missing.length === 0) {
     console.log(styleText("gray", "No plugins installed"))
     return
   }
 
-  const pluginsJson = readPluginsJson()
   const nameOverrides = getNameOverrides(lockfile, pluginsJson)
+  const enabledByName = new Map(
+    (pluginsJson?.plugins ?? []).map((entry) => {
+      try {
+        return [parseGitSource(entry.source).name, Boolean(entry.enabled)]
+      } catch {
+        return [String(entry.source), Boolean(entry.enabled)]
+      }
+    }),
+  )
+  const enabledLabel = (name) =>
+    !enabledByName.has(name)
+      ? styleText("yellow", "not in config")
+      : enabledByName.get(name)
+        ? styleText("green", "enabled")
+        : styleText("gray", "disabled")
 
-  console.log(styleText("bold", "Installed Plugins:"))
-  console.log()
+  if (lockEntries.length > 0) {
+    console.log(styleText("bold", "Git / local plugins (quartz.lock.json):"))
+    console.log()
+  }
 
-  for (const [name, entry] of Object.entries(lockfile.plugins)) {
+  for (const [name, entry] of lockEntries) {
     const pluginDir = path.join(PLUGINS_DIR, name)
     const exists = fs.existsSync(pluginDir)
     const overriddenName = nameOverrides.get(name)
@@ -1527,7 +2130,9 @@ export async function handlePluginList() {
     if (entry.commit === "local") {
       const isLinked = exists && fs.lstatSync(pluginDir).isSymbolicLink()
       const status = isLinked ? styleText("green", "✓") : styleText("red", "✗")
-      console.log(`  ${status} ${styleText("bold", displayLabel)}`)
+      console.log(
+        `  ${status} ${styleText("bold", displayLabel)}  ${enabledLabel(overriddenName ?? name)}`,
+      )
       console.log(`    Source: ${formatSource(entry.source)}`)
       console.log(`    Type: local symlink`)
       console.log(`    Target: ${entry.resolved}`)
@@ -1541,37 +2146,71 @@ export async function handlePluginList() {
     if (exists) {
       currentCommit = getGitCommit(pluginDir)
     }
+    // Subdirectory installs have no .git, so their commit cannot be read back.
+    const comparable = exists && currentCommit !== "unknown"
 
     const status = exists
-      ? currentCommit === entry.commit
+      ? !comparable || currentCommit === entry.commit
         ? styleText("green", "✓")
         : styleText("yellow", "⚡")
       : styleText("red", "✗")
 
-    console.log(`  ${status} ${styleText("bold", displayLabel)}`)
+    console.log(
+      `  ${status} ${styleText("bold", displayLabel)}  ${enabledLabel(overriddenName ?? name)}`,
+    )
     console.log(`    Source: ${formatSource(entry.source)}`)
-    console.log(`    Commit: ${entry.commit.slice(0, 7)}`)
-    if (currentCommit !== entry.commit && exists) {
-      console.log(`    Current: ${currentCommit.slice(0, 7)} (modified)`)
+    console.log(`    Commit: ${entry.commit.slice(0, 7)}${entry.ref ? ` (${entry.ref})` : ""}`)
+    if (comparable && currentCommit !== entry.commit) {
+      console.log(
+        `    Current: ${currentCommit.slice(0, 7)} (differs from lockfile — run 'npx quartz plugin install ${name}')`,
+      )
+    }
+    if (!exists) {
+      console.log(`    Not on disk — run 'npx quartz plugin install'`)
     }
     console.log(`    Installed: ${new Date(entry.installedAt).toLocaleDateString()}`)
     console.log()
   }
+
+  if (npm.length > 0) {
+    console.log(styleText("bold", "npm plugins (package.json):"))
+    console.log()
+    const width = Math.max(...npm.map((p) => p.source.length)) + 2
+    for (const p of npm) {
+      const status = p.version ? styleText("green", "✓") : styleText("red", "✗")
+      const version = p.version ? `v${p.version}` : "not installed — run 'npm install'"
+      const enabled = p.enabled ? styleText("green", "enabled") : styleText("gray", "disabled")
+      console.log(`  ${status} ${p.source.padEnd(width)}${version.padEnd(12)} ${enabled}`)
+    }
+    console.log()
+  }
+
+  if (missing.length > 0) {
+    console.log(styleText("bold", "Configured but not installed:"))
+    console.log()
+    for (const p of missing) {
+      console.log(`  ${styleText("red", "✗")} ${p.name}  ${styleText("gray", p.source)}`)
+    }
+    console.log()
+    console.log(styleText("gray", "Run 'npx quartz plugin install --from-config' to install them."))
+  }
 }
 
 export async function handlePluginStatus() {
-  const lockfile = readLockfile()
-  if (!lockfile || Object.keys(lockfile.plugins).length === 0) {
+  const lockfile = readLockfile() ?? { version: "1.0.0", plugins: {} }
+  const pluginsJson = readPluginsJson()
+  const { npm } = collectUntrackedEntries(pluginsJson, lockfile)
+  if (Object.keys(lockfile.plugins).length === 0 && npm.length === 0) {
     console.log(styleText("gray", "No plugins installed"))
     return
   }
 
-  const pluginsJson = readPluginsJson()
   const nameOverrides = getNameOverrides(lockfile, pluginsJson)
+  // Same rule as the build: a plugin runs only when `enabled` is truthy.
   const enabledByName = new Map(
     (pluginsJson?.plugins ?? []).map((entry) => [
       extractPluginName(entry.source),
-      entry.enabled !== false,
+      Boolean(entry.enabled),
     ]),
   )
 
@@ -1581,9 +2220,20 @@ export async function handlePluginStatus() {
     const displayName = nameOverrides.get(name) ?? name
     const sourceLabel = formatSource(entry.source)
     const commitLabel = entry.commit === "local" ? "local" : `@${entry.commit.slice(0, 7)}`
-    const enabled = enabledByName.get(name) ?? false
+    const enabled = enabledByName.get(displayName) ?? enabledByName.get(name) ?? false
     return { name, entry, exists, displayName, sourceLabel, commitLabel, enabled }
   })
+  for (const p of npm) {
+    rows.push({
+      name: p.name,
+      entry: { commit: "npm" },
+      exists: Boolean(p.version),
+      displayName: shortPluginName(p.name),
+      sourceLabel: p.source,
+      commitLabel: p.version ? `v${p.version}` : "missing",
+      enabled: p.enabled,
+    })
+  }
 
   const nameWidth = Math.max(8, ...rows.map((row) => row.displayName.length)) + 2
   const sourceWidth = Math.max(8, ...rows.map((row) => row.sourceLabel.length)) + 2
@@ -1615,6 +2265,8 @@ export async function handlePluginStatus() {
     switch (status) {
       case "local":
         return { text: "— local", label: styleText("gray", "— local") }
+      case "npm":
+        return { text: "— npm", label: styleText("gray", "— npm") }
       case "up_to_date":
         return { text: "✓ up to date", label: styleText("green", "✓ up to date") }
       case "update_available":
@@ -1641,16 +2293,18 @@ export async function handlePluginStatus() {
     console.log()
     for (const row of rows) {
       const display =
-        row.entry.commit === "local" ? updateDisplay("local") : updateDisplay("checking")
+        row.entry.commit === "local" || row.entry.commit === "npm"
+          ? updateDisplay(row.entry.commit)
+          : updateDisplay("checking")
       console.log(formatRow(row, display.label, display.text))
     }
   }
 
   const promises = rows.map((row, index) => {
-    if (row.entry.commit === "local") {
+    if (row.entry.commit === "local" || row.entry.commit === "npm") {
       return Promise.resolve({
         index,
-        status: "local",
+        status: row.entry.commit,
         name: row.displayName,
       })
     }
@@ -1689,8 +2343,17 @@ export async function handlePluginStatus() {
     }
   }
 
+  if (npm.length > 0) {
+    console.log(
+      styleText(
+        "gray",
+        "\nnpm plugins are versioned by package.json — update them with 'npx quartz upgrade' or 'npm update'.",
+      ),
+    )
+  }
+
   if (updatesAvailable.length === 0 && failedChecks.length === 0) {
-    console.log(styleText("green", "\n✓ All plugins up to date"))
+    console.log(styleText("green", "\n✓ All Git plugins up to date"))
     return
   }
 
@@ -1701,7 +2364,298 @@ export async function handlePluginStatus() {
 
   if (failedChecks.length > 0) {
     console.log(styleText("red", `\nChecks failed: ${failedChecks.join(", ")}`))
+    console.log(styleText("gray", "Could not reach the remote — are you offline?"))
   }
+}
+
+/** Same fallback order as getPluginEntryPoint() in plugins/loader/gitLoader.ts. */
+const ENTRY_POINT_FALLBACKS = [
+  "dist/index.js",
+  "dist/index.mjs",
+  "index.js",
+  "index.ts",
+  "src/index.js",
+  "src/index.ts",
+]
+
+function hasLoadableEntryPoint(pluginDir) {
+  let declared = []
+  try {
+    const pkg = JSON.parse(fs.readFileSync(path.join(pluginDir, "package.json"), "utf-8"))
+    const exp = pkg.exports?.["."]
+    declared = [typeof exp === "string" ? exp : (exp?.import ?? exp?.default), pkg.module, pkg.main]
+  } catch {}
+  return [...declared, ...ENTRY_POINT_FALLBACKS]
+    .filter((c) => typeof c === "string")
+    .some((c) => fs.existsSync(path.join(pluginDir, c)))
+}
+
+/**
+ * `quartz plugin doctor`: static health check of quartz.config.yaml,
+ * quartz.lock.json and installed plugins. Exits non-zero when it finds errors.
+ */
+export async function handlePluginDoctor({ verbose = false } = {}) {
+  let errors = 0
+  let warnings = 0
+  const report = (severity, subject, message, hint) => {
+    if (severity === "error") errors++
+    if (severity === "warning") warnings++
+    if (severity === "info" && !verbose) return
+    const icon = { error: "✗", warning: "⚠", info: "ℹ" }[severity]
+    const color = { error: "red", warning: "yellow", info: "gray" }[severity]
+    console.log(styleText(color, `${icon} ${subject ? `${subject}: ` : ""}${message}`))
+    if (hint) console.log(styleText("gray", `    → ${hint}`))
+  }
+
+  const config = readConfigWithDiagnostics()
+  const configLabel = path.basename(config.path)
+  console.log(styleText("bold", "Checking plugins...\n"))
+
+  if (!config.exists) {
+    report(
+      "error",
+      null,
+      "no quartz.config.yaml (or quartz.config.default.yaml) found",
+      "Run 'npx quartz create' first.",
+    )
+    markFailed()
+    return
+  }
+  if (config.error) {
+    report("error", configLabel, `could not be parsed: ${config.error}`)
+    markFailed()
+    return
+  }
+  if (configLabel !== "quartz.config.yaml") {
+    report("info", null, `using ${configLabel} (no quartz.config.yaml yet)`)
+  }
+
+  const plugins = config.data?.plugins
+  if (!Array.isArray(plugins)) {
+    report("error", configLabel, "`plugins` must be a list")
+    markFailed()
+    return
+  }
+
+  const lockfile = readLockfile()
+  if (fs.existsSync(LOCKFILE_PATH) && !lockfile) {
+    report(
+      "error",
+      "quartz.lock.json",
+      "is not valid JSON",
+      "Restore it from git, or delete it and run 'npx quartz plugin install'.",
+    )
+  }
+
+  const seen = new Map()
+  const enabledSources = new Map()
+  let gitPluginCount = 0
+
+  plugins.forEach((entry, index) => {
+    let label = `plugins[${index}]`
+    try {
+      if (entry?.source !== undefined) label = extractPluginName(entry.source)
+    } catch {}
+
+    for (const issue of validatePluginEntry(entry)) report(issue.severity, label, issue.message)
+    if (!entry || typeof entry !== "object" || entry.source === undefined) return
+
+    let parsed
+    try {
+      parsed = parseGitSource(entry.source)
+    } catch (error) {
+      report(
+        "error",
+        label,
+        String(error.message).split(". Supported")[0].split("\n")[0],
+        `Supported formats: ${SOURCE_FORMATS_HELP.map((f) => f.split(/\s{2,}|\[/)[0].trim()).join(", ")}`,
+      )
+      return
+    }
+
+    const key = parsed.npmPackage ? shortPluginName(parsed.name) : parsed.name
+    if (seen.has(key)) {
+      report(
+        "error",
+        label,
+        `configured twice (also as ${formatSource(plugins[seen.get(key)].source)}) — both copies would be loaded`,
+        "Remove one of the entries.",
+      )
+    } else {
+      seen.set(key, index)
+    }
+
+    const enabled = Boolean(entry.enabled)
+    if (enabled) {
+      enabledSources.set(getSourceUrl(entry.source), entry)
+      enabledSources.set(extractPluginName(entry.source), entry)
+    }
+
+    const pluginDir = resolvePluginDir(entry.source)
+    if (parsed.npmPackage) {
+      if (!fs.existsSync(path.join(pluginDir, "package.json"))) {
+        report(
+          enabled ? "error" : "info",
+          label,
+          "npm package is not installed",
+          `Run 'npm install' (or 'npm install ${parsed.name}' if it is not in package.json).`,
+        )
+        return
+      }
+    } else {
+      gitPluginCount++
+      const locked = lockfile?.plugins?.[parsed.name]
+      const onDisk = fs.existsSync(pluginDir)
+      if (!locked && enabled) {
+        report(
+          "warning",
+          label,
+          onDisk
+            ? "installed but not pinned in quartz.lock.json"
+            : "not installed and not pinned — the build will clone the latest commit",
+          "Run 'npx quartz plugin install --from-config' and commit quartz.lock.json.",
+        )
+      }
+      if (!onDisk) {
+        if (locked && enabled) {
+          report(
+            "warning",
+            label,
+            "pinned in quartz.lock.json but not on disk",
+            "Run 'npx quartz plugin install'.",
+          )
+        }
+        return
+      }
+      if (parsed.local && fs.lstatSync(pluginDir).isSymbolicLink()) {
+        try {
+          fs.realpathSync(pluginDir)
+        } catch {
+          report(
+            "error",
+            label,
+            `local plugin link is broken (${fs.readlinkSync(pluginDir)})`,
+            "Fix the path in quartz.config.yaml or re-run 'npx quartz plugin add <path>'.",
+          )
+          return
+        }
+      }
+      if (locked && locked.commit !== "local" && !locked.subdir) {
+        const current = getGitCommit(pluginDir)
+        if (current !== "unknown" && current !== locked.commit) {
+          report(
+            "warning",
+            label,
+            `checked out at ${current.slice(0, 7)} but quartz.lock.json pins ${locked.commit.slice(0, 7)}`,
+            `Run 'npx quartz plugin install ${parsed.name}' to restore the pinned commit.`,
+          )
+        }
+      }
+      if (locked && locked.resolved && !parsed.local && locked.resolved !== parsed.url) {
+        report(
+          "warning",
+          label,
+          `source changed: config points to ${parsed.url}, lockfile to ${locked.resolved}`,
+          `Run 'npx quartz plugin remove ${parsed.name}' then add it again.`,
+        )
+      }
+    }
+
+    if (!hasLoadableEntryPoint(pluginDir)) {
+      report(
+        enabled ? "error" : "info",
+        label,
+        "has no built entry point (dist/ missing)",
+        parsed.npmPackage
+          ? "Reinstall it with 'npm install'."
+          : `Run 'npx quartz plugin install ${parsed.name}' to build it.`,
+      )
+    }
+
+    const manifest = readManifestFromPackageJson(pluginDir)
+    if (!manifest) {
+      report("info", label, "package.json has no `quartz` manifest; options cannot be checked")
+      return
+    }
+    for (const issue of validatePluginOptions(entry.options, manifest)) {
+      report(issue.severity, label, issue.message)
+    }
+    if (enabled) {
+      for (const dep of manifest.dependencies ?? []) {
+        const depEntry =
+          enabledSources.get(dep) ??
+          plugins.find((e) => {
+            try {
+              return (
+                getSourceUrl(e.source) === dep ||
+                extractPluginName(e.source) === extractPluginName(dep)
+              )
+            } catch {
+              return false
+            }
+          })
+        if (!depEntry) {
+          report(
+            "error",
+            label,
+            `requires ${dep}, which is not configured`,
+            `Run 'npx quartz plugin add ${dep}'.`,
+          )
+        } else if (!depEntry.enabled) {
+          report(
+            "warning",
+            label,
+            `depends on ${dep}, which is disabled`,
+            `Run 'npx quartz plugin enable ${extractPluginName(depEntry.source)}'.`,
+          )
+        }
+      }
+    }
+  })
+
+  if (lockfile?.plugins) {
+    const configured = new Set(
+      plugins.flatMap((e) => {
+        try {
+          return [parseGitSource(e.source).name]
+        } catch {
+          return []
+        }
+      }),
+    )
+    const orphans = Object.keys(lockfile.plugins).filter((n) => !configured.has(n))
+    if (orphans.length > 0) {
+      report(
+        "warning",
+        "quartz.lock.json",
+        `${orphans.length} plugin(s) are locked but not configured: ${orphans.join(", ")}`,
+        "Run 'npx quartz plugin prune' to remove them.",
+      )
+    }
+  }
+
+  if (gitPluginCount > 0 && !fs.existsSync(path.join(PLUGINS_DIR, "index.ts"))) {
+    report(
+      "warning",
+      ".quartz/plugins",
+      "plugin index is missing",
+      "Run 'npx quartz plugin install'.",
+    )
+  }
+
+  console.log()
+  if (errors === 0 && warnings === 0) {
+    console.log(styleText("green", `✓ No problems found in ${plugins.length} configured plugin(s)`))
+  } else {
+    console.log(
+      styleText(
+        errors > 0 ? "red" : "yellow",
+        `${errors} error(s), ${warnings} warning(s) in ${plugins.length} configured plugin(s)`,
+      ),
+    )
+    if (!verbose) console.log(styleText("gray", "Run with --verbose for informational notes."))
+  }
+  if (errors > 0) markFailed()
 }
 
 export async function handlePluginRestore() {

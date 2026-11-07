@@ -27,6 +27,7 @@ import {
   handlePluginDisable,
   handlePluginConfig,
   handlePluginPrune,
+  handlePluginDoctor,
 } from "./cli/plugin-git-handlers.js"
 import { CommonArgv, BuildArgv, CreateArgv, SyncArgv } from "./cli/args.js"
 import { version } from "./cli/constants.js"
@@ -194,16 +195,31 @@ yargs(hideBin(process.argv))
           )
           .command(
             "config <name>",
-            "View or set plugin configuration",
+            "View or set plugin options",
             {
               ...CommonArgv,
               set: {
                 string: true,
-                describe: "Set a config value (key=value)",
+                array: true,
+                describe:
+                  "Set an option (key=value; value is parsed as JSON when possible; nested keys with a.b=value). Repeatable",
+              },
+              unset: {
+                string: true,
+                array: true,
+                describe: "Remove an option so the plugin default applies. Repeatable",
               },
             },
             async (argv) => {
-              await handlePluginConfig(argv.name, { set: argv.set })
+              await handlePluginConfig(argv.name, { set: argv.set, unset: argv.unset })
+            },
+          )
+          .command(
+            "doctor",
+            "Check plugin config, lockfile and installs for problems",
+            CommonArgv,
+            async (argv) => {
+              await handlePluginDoctor({ verbose: argv.verbose })
             },
           )
           .command(
@@ -274,6 +290,28 @@ yargs(hideBin(process.argv))
       )
     },
     async (argv) => {
+      if (argv.subcommand !== undefined) {
+        const known = [
+          "install",
+          "add",
+          "remove",
+          "list",
+          "enable",
+          "disable",
+          "config",
+          "prune",
+          "doctor",
+        ]
+        const { suggestClosest } = await import("./cli/plugin-validation.js")
+        const suggestion = suggestClosest(String(argv.subcommand), known)
+        console.error(
+          `Unknown plugin command "${argv.subcommand}".` +
+            (suggestion ? ` Did you mean "quartz plugin ${suggestion}"?` : "") +
+            `\nRun 'npx quartz plugin --help' to see all commands.`,
+        )
+        process.exitCode = 1
+        return
+      }
       if (!argv._.includes("plugin") || argv._.length > 1) return
       await handlePluginStatus()
     },

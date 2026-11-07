@@ -39,6 +39,49 @@ export interface GitPluginSpec {
 export type PluginInstallSource = string | GitPluginSpec
 
 const PLUGINS_CACHE_DIR = path.join(process.cwd(), ".quartz", "plugins")
+const LOCKFILE_PATH = path.join(process.cwd(), "quartz.lock.json")
+const GIT_TIMEOUT_MS = 300_000
+
+/**
+ * Commit pinned for this plugin in quartz.lock.json, if the lock entry still
+ * describes the same repository (and subdirectory) as the spec.
+ */
+export function readLockedCommit(
+  spec: Pick<GitPluginSpec, "name" | "repo" | "subdir">,
+  lockfilePath: string = LOCKFILE_PATH,
+): string | undefined {
+  try {
+    const lock = JSON.parse(fs.readFileSync(lockfilePath, "utf-8"))
+    const entry = lock?.plugins?.[spec.name]
+    if (!entry || typeof entry.commit !== "string") return undefined
+    if (entry.commit === "local" || entry.commit === "unknown") return undefined
+    if (entry.resolved && entry.resolved !== spec.repo) return undefined
+    if ((entry.subdir ?? undefined) !== (spec.subdir ?? undefined)) return undefined
+    return entry.commit
+  } catch {
+    return undefined
+  }
+}
+
+/** Move a fresh shallow clone to the lockfile-pinned commit. Warns (and keeps the tip) on failure. */
+function checkoutLockedCommit(dir: string, commit: string, name: string): void {
+  try {
+    const head = execSync("git rev-parse HEAD", { cwd: dir, encoding: "utf-8" }).trim()
+    if (head === commit) return
+    execSync(`git fetch --depth 1 origin ${commit}`, {
+      cwd: dir,
+      stdio: "pipe",
+      timeout: GIT_TIMEOUT_MS,
+    })
+    execSync(`git checkout --quiet ${commit}`, { cwd: dir, stdio: "pipe", timeout: 60_000 })
+  } catch {
+    console.warn(
+      styleText("yellow", `⚠`) +
+        ` ${name}: could not check out ${commit.slice(0, 7)} pinned in quartz.lock.json; using the latest commit instead.` +
+        ` Run 'npx quartz plugin install' to fix the lockfile.`,
+    )
+  }
+}
 
 /**
  * Check if a source string refers to a local file path.
@@ -143,16 +186,21 @@ export function parsePluginSource(source: PluginSource): GitPluginSpec {
     return { name: source, repo: "", npmPackage: true }
   }
 
-  // Assume it's a plain repo name and try github
-  const parts = source.split("/")
-  if (parts.length === 2) {
+  // Assume it's a plain "owner/repo[#ref]" and try github
+  const [shorthand, shorthandRef] = source.split("#")
+  const parts = shorthand.split("/")
+  if (parts.length === 2 && parts[0] && parts[1]) {
     return {
       name: parts[1],
-      repo: `https://github.com/${source}.git`,
+      repo: `https://github.com/${shorthand}.git`,
+      ref: shorthandRef || undefined,
     }
   }
 
-  throw new Error(`Cannot parse plugin source: ${source}`)
+  throw new Error(
+    `Cannot parse plugin source "${source}". Expected github:owner/repo, owner/repo, ` +
+      `an https:// or git+https:// URL, an @scope/package npm name, or a local path (./path).`,
+  )
 }
 
 function extractRepoName(url: string): string {
@@ -529,7 +577,12 @@ export async function installPlugin(
     }
 
     const branchArg = spec.ref ? ` --branch ${spec.ref}` : ""
-    execSync(`git clone --depth 1${branchArg} "${spec.repo}" "${tmpDir}"`, { stdio: "pipe" })
+    execSync(`git clone --depth 1${branchArg} "${spec.repo}" "${tmpDir}"`, {
+      stdio: "pipe",
+      timeout: GIT_TIMEOUT_MS,
+    })
+    const locked = readLockedCommit(spec)
+    if (locked) checkoutLockedCommit(tmpDir, locked, spec.name)
 
     const subdirPath = path.join(tmpDir, spec.subdir)
     if (!fs.existsSync(subdirPath)) {
@@ -541,7 +594,12 @@ export async function installPlugin(
     fs.rmSync(tmpDir, { recursive: true })
   } else {
     const branchArg = spec.ref ? ` --branch ${spec.ref}` : ""
-    execSync(`git clone --depth 1${branchArg} "${spec.repo}" "${pluginDir}"`, { stdio: "pipe" })
+    execSync(`git clone --depth 1${branchArg} "${spec.repo}" "${pluginDir}"`, {
+      stdio: "pipe",
+      timeout: GIT_TIMEOUT_MS,
+    })
+    const locked = readLockedCommit(spec)
+    if (locked) checkoutLockedCommit(pluginDir, locked, spec.name)
   }
 
   buildInstalledPlugin(pluginDir, spec.name, options.verbose)

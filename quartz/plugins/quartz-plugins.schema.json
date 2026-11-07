@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Quartz Plugins Configuration Schema",
-  "description": "Schema for validating quartz.plugins.json configuration files",
+  "description": "Schema for validating quartz.config.yaml (and legacy quartz.plugins.json) configuration files",
   "type": "object",
   "required": ["configuration", "plugins"],
   "additionalProperties": false,
@@ -241,12 +241,12 @@
             "properties": {
               "position": {
                 "type": "string",
-                "enum": ["left", "right", "beforeBody", "afterBody", "body"],
-                "description": "Layout position"
+                "enum": ["header", "left", "right", "beforeBody", "afterBody", "footer", "body"],
+                "description": "Layout slot the plugin's component renders in"
               },
               "priority": {
                 "type": "number",
-                "description": "Layout priority"
+                "description": "Order within the slot (lower renders first). Defaults to the plugin's defaultPriority, else 50."
               },
               "display": {
                 "type": "string",
@@ -255,7 +255,7 @@
               },
               "condition": {
                 "type": "string",
-                "description": "Conditional display logic"
+                "description": "Render only when this condition holds. Built-in: not-index, has-tags, has-backlinks, has-toc; plugins may register more."
               },
               "group": {
                 "type": "string",
@@ -305,12 +305,20 @@
           "additionalProperties": {
             "type": "object",
             "properties": {
+              "priority": {
+                "type": "number",
+                "description": "Explicit priority for the group (lower renders first). Defaults to the first member's priority."
+              },
               "direction": {
                 "type": "string",
+                "enum": ["row", "row-reverse", "column", "column-reverse"],
                 "description": "Flex direction"
               },
               "wrap": {
-                "type": "boolean",
+                "oneOf": [
+                  { "type": "string", "enum": ["nowrap", "wrap", "wrap-reverse"] },
+                  { "type": "boolean" }
+                ],
                 "description": "Flex wrap"
               },
               "gap": {
@@ -336,7 +344,38 @@
               },
               "positions": {
                 "type": "object",
-                "description": "Position overrides for this page type"
+                "additionalProperties": false,
+                "properties": {
+                  "header": {
+                    "type": "array",
+                    "maxItems": 0
+                  },
+                  "beforeBody": {
+                    "type": "array",
+                    "maxItems": 0
+                  },
+                  "afterBody": {
+                    "type": "array",
+                    "maxItems": 0
+                  },
+                  "left": {
+                    "type": "array",
+                    "maxItems": 0
+                  },
+                  "right": {
+                    "type": "array",
+                    "maxItems": 0
+                  },
+                  "footer": {
+                    "type": "array",
+                    "maxItems": 0
+                  }
+                },
+                "description": "Clear slots for this page type, e.g. right: []"
+              },
+              "template": {
+                "type": "string",
+                "description": "Page frame to use for this page type (e.g. default, full-width, minimal)"
               }
             }
           },
