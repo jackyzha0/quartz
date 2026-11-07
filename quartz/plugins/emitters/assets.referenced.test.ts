@@ -1,130 +1,112 @@
-import test, { describe, before, after } from "node:test"
+import test, { describe } from "node:test"
 import assert from "node:assert"
-import fs from "fs/promises"
-import path from "path"
-import { fileURLToPath } from "url"
-import { spawn } from "child_process"
+import fs from "node:fs"
+import os from "node:os"
+import path from "node:path"
+import { VFile } from "vfile"
+import type { Root, Element } from "hast"
+import { Assets } from "./assets"
+import type { BuildCtx } from "../../util/ctx"
+import type { ProcessedContent } from "../vfile"
+import type { StaticResources } from "../../util/resources"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const el = (tagName: string, properties: Element["properties"]): Element => ({
+  type: "element",
+  tagName,
+  properties,
+  children: [],
+})
 
-// Repo root is 3 levels up from quartz/plugins/emitters/
-const REPO_ROOT = path.join(__dirname, "..", "..", "..")
-const TEST_FIXTURE = path.join(REPO_ROOT, "test", "fixtures", "asset-filtering")
-const OUTPUT_DIR = path.join(TEST_FIXTURE, "public")
-const TEST_CONFIG = path.join(TEST_FIXTURE, "quartz.config.yaml")
-// The CLI always resolves `quartz.config.yaml` relative to process.cwd(),
-// so building the fixture requires temporarily swapping the repo's own
-// config file. This is not parallel-safe against other processes touching
-// that file, but no other test in this suite does.
-const REPO_CONFIG = path.join(REPO_ROOT, "quartz.config.yaml")
-
-async function cleanOutput() {
-  await fs.rm(OUTPUT_DIR, { recursive: true, force: true })
+/** A published page whose rendered tree contains the given elements. */
+function page(slug: string, relativePath: string, ...children: Element[]): ProcessedContent {
+  const tree: Root = { type: "root", children }
+  const file = new VFile("")
+  file.data = { slug, relativePath } as VFile["data"]
+  return [tree as never, file]
 }
 
-function runQuartzBuild(): Promise<{ code: number; stdout: string; stderr: string }> {
-  return new Promise((resolve) => {
-    const child = spawn(
-      process.execPath,
+async function emitReferenced(files: string[], content: ProcessedContent[]) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "quartz-assets-referenced-"))
+  const directory = path.join(root, "content")
+  const output = path.join(root, "public")
+  for (const f of files) {
+    fs.mkdirSync(path.dirname(path.join(directory, f)), { recursive: true })
+    fs.writeFileSync(path.join(directory, f), "x")
+  }
+  const ctx = {
+    argv: { directory, output },
+    cfg: {
+      configuration: { publishAssets: "referenced", ignorePatterns: [] },
+      plugins: { pageTypes: [] },
+    },
+  } as unknown as BuildCtx
+  const written: string[] = []
+  for await (const fp of Assets().emit(ctx, content, {} as StaticResources) as AsyncIterable<
+    Promise<string> | string
+  >) {
+    written.push(
+      path
+        .relative(output, await fp)
+        .split(path.sep)
+        .join("/"),
+    )
+  }
+  fs.rmSync(root, { recursive: true, force: true })
+  return written.sort()
+}
+
+describe('publishAssets: "referenced" (#2531)', () => {
+  test("copies only files published pages reference, however they reference them", async () => {
+    const written = await emitReferenced(
       [
-        path.join(REPO_ROOT, "quartz/bootstrap-cli.mjs"),
-        "build",
-        "-d",
-        "test/fixtures/asset-filtering",
-        "-o",
-        "test/fixtures/asset-filtering/public",
+        "images/my photo.png", // published under its slugified name
+        "diagram.svg",
+        "files/report.pdf",
+        "hero.png",
+        "été.png",
+        "secret.png", // only an unpublished page links to it (not in `content`)
+        "orphan.png",
+        "notes/private.md",
       ],
-      {
-        cwd: REPO_ROOT,
-        stdio: ["ignore", "pipe", "pipe"],
-      },
+      [
+        page(
+          "notes/page",
+          "notes/page.md",
+          el("img", { src: "../images/my-photo.png" }),
+          el("object", { data: "../diagram.svg", type: "image/svg+xml" }), // ofm's SVG embed
+          el("a", { href: "/files/report.pdf" }),
+          el("img", { src: "x", srcSet: "../hero.png 2x, ../hero.png 1x" }),
+          el("img", { src: "../%C3%A9t%C3%A9.png" }),
+          el("a", { href: "https://example.com/orphan.png" }),
+        ),
+      ],
     )
-
-    let stdout = ""
-    let stderr = ""
-
-    child.stdout?.on("data", (data) => {
-      stdout += data.toString()
-    })
-    child.stderr?.on("data", (data) => {
-      stderr += data.toString()
-    })
-
-    child.on("close", (code) => {
-      resolve({ code: code ?? 0, stdout, stderr })
-    })
-
-    child.on("error", (err) => {
-      resolve({ code: 1, stdout, stderr: err.message })
-    })
-  })
-}
-
-describe("Assets emitter with publishAssets config", () => {
-  let originalConfig: string | null = null
-
-  before(async () => {
-    await cleanOutput()
-    originalConfig = await fs.readFile(REPO_CONFIG, "utf-8").catch(() => null)
-    const testConfigContent = await fs.readFile(TEST_CONFIG, "utf-8")
-    await fs.writeFile(REPO_CONFIG, testConfigContent)
+    assert.deepStrictEqual(written, [
+      "diagram.svg",
+      "files/report.pdf",
+      "hero.png",
+      "images/my-photo.png",
+      "été.png",
+    ])
   })
 
-  after(async () => {
-    await cleanOutput()
-    // Restore original config exactly as it was (or remove it if it never existed)
-    if (originalConfig !== null) {
-      await fs.writeFile(REPO_CONFIG, originalConfig)
-    } else {
-      await fs.rm(REPO_CONFIG, { force: true })
+  test('"all" (the default) still copies everything but Markdown', async () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), "quartz-assets-all-"))
+    const directory = path.join(root, "content")
+    fs.mkdirSync(directory, { recursive: true })
+    fs.writeFileSync(path.join(directory, "orphan.png"), "x")
+    fs.writeFileSync(path.join(directory, "page.md"), "# x")
+    const ctx = {
+      argv: { directory, output: path.join(root, "public") },
+      cfg: { configuration: { ignorePatterns: [] }, plugins: { pageTypes: [] } },
+    } as unknown as BuildCtx
+    const written: string[] = []
+    for await (const fp of Assets().emit(ctx, [], {} as StaticResources) as AsyncIterable<
+      Promise<string> | string
+    >) {
+      written.push(path.basename(await fp))
     }
-  })
-
-  test("publishAssets: 'referenced' only copies assets referenced by published pages", async () => {
-    const result = await runQuartzBuild()
-
-    if (result.code !== 0) {
-      console.error("Build failed:", result.stderr)
-      console.error("stdout:", result.stdout)
-    }
-    assert.strictEqual(result.code, 0, "Build should succeed")
-
-    const rawFiles = await fs.readdir(OUTPUT_DIR, { recursive: true })
-    // Normalize to POSIX separators — fs.readdir uses the platform separator
-    // (backslashes on Windows), but the assertions below use forward slashes.
-    const publicFiles = rawFiles.map((f) => f.split(path.sep).join("/"))
-
-    // Should exist: published page + its referenced assets
-    assert.ok(publicFiles.includes("content/published.html"), "published.html should exist")
-    assert.ok(
-      publicFiles.includes("content/diagram.png"),
-      "diagram.png (referenced by published) should exist",
-    )
-    assert.ok(
-      publicFiles.includes("content/assets/nested.png"),
-      "nested.png (referenced by published) should exist",
-    )
-
-    // Should NOT exist: filtered pages + their assets
-    assert.ok(
-      !publicFiles.includes("content/private.html"),
-      "private.html should NOT exist (filtered)",
-    )
-    assert.ok(
-      !publicFiles.includes("content/secret.png"),
-      "secret.png should NOT exist (only referenced by private)",
-    )
-    assert.ok(!publicFiles.includes("content/draft.html"), "draft.html should NOT exist (filtered)")
-    assert.ok(
-      !publicFiles.includes("content/draft-img.png"),
-      "draft-img.png should NOT exist (only referenced by draft)",
-    )
-
-    // Should NOT exist: orphan assets
-    assert.ok(
-      !publicFiles.includes("content/orphan.png"),
-      "orphan.png should NOT exist (unreferenced)",
-    )
+    fs.rmSync(root, { recursive: true, force: true })
+    assert.deepStrictEqual(written, ["orphan.png"])
   })
 })
