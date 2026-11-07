@@ -142,6 +142,20 @@ describe("pluginSourceChanged", () => {
     assert.strictEqual(pluginSourceChanged(priorEntry, "github:owner/repo#new-branch"), true)
   })
 
+  test("object sources compare by content, not identity", () => {
+    const priorEntry = { source: { repo: "github:owner/repo", ref: "main" }, commit: "abc123" }
+    // read from YAML on every run, so never the same object as the lockfile's
+    assert.strictEqual(
+      pluginSourceChanged(priorEntry, { ref: "main", repo: "github:owner/repo" }),
+      false,
+    )
+    assert.strictEqual(
+      pluginSourceChanged(priorEntry, { repo: "github:owner/repo", ref: "dev" }),
+      true,
+    )
+    assert.strictEqual(pluginSourceChanged(priorEntry, "github:owner/repo#main"), true)
+  })
+
   test("is true when the repo itself changed", () => {
     const priorEntry = { source: "github:owner/old-repo", resolved: "...", commit: "abc123" }
     assert.strictEqual(pluginSourceChanged(priorEntry, "github:owner/new-repo"), true)

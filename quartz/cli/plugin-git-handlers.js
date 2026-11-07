@@ -381,7 +381,18 @@ export function linkPeerPlugins(pluginDir) {
  * reused as-is.
  */
 export function pluginSourceChanged(priorEntry, currentSource) {
-  return priorEntry !== undefined && priorEntry.source !== currentSource
+  return (
+    priorEntry !== undefined &&
+    canonicalSource(priorEntry.source) !== canonicalSource(currentSource)
+  )
+}
+
+/** A source as a comparable string: object sources ({ repo, ref, subdir, … }) by content. */
+function canonicalSource(source) {
+  if (source === null || typeof source !== "object") return String(source)
+  return JSON.stringify(
+    Object.fromEntries(Object.entries(source).sort(([a], [b]) => a.localeCompare(b))),
+  )
 }
 
 /**
