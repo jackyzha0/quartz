@@ -14,6 +14,7 @@ import { QuartzLogger } from "../util/log"
 import { trace } from "../util/trace"
 import { BuildCtx, WorkerSerializableBuildCtx } from "../util/ctx"
 import { styleText } from "util"
+import { attributeError, attributePluggables, originOf } from "../util/pluginErrors"
 
 export type QuartzMdProcessor = Processor<MDRoot, MDRoot, MDRoot>
 export type QuartzHtmlProcessor = Processor<undefined, MDRoot, HTMLRoot>
@@ -27,7 +28,9 @@ export function createMdProcessor(ctx: BuildCtx): QuartzMdProcessor {
       .use(remarkParse)
       // MD AST -> MD AST transforms
       .use(
-        transformers.flatMap((plugin) => plugin.markdownPlugins?.(ctx) ?? []),
+        transformers.flatMap((plugin) =>
+          attributePluggables(plugin.markdownPlugins?.(ctx) ?? [], originOf(plugin), "markdown"),
+        ),
       ) as unknown as QuartzMdProcessor
     //  ^ sadly the typing of `use` is not smart enough to infer the correct type from our plugin list
   )
@@ -40,7 +43,11 @@ export function createHtmlProcessor(ctx: BuildCtx): QuartzHtmlProcessor {
       // MD AST -> HTML AST
       .use(remarkRehype, { allowDangerousHtml: true })
       // HTML AST -> HTML AST transforms
-      .use(transformers.flatMap((plugin) => plugin.htmlPlugins?.(ctx) ?? []))
+      .use(
+        transformers.flatMap((plugin) =>
+          attributePluggables(plugin.htmlPlugins?.(ctx) ?? [], originOf(plugin), "html"),
+        ),
+      )
   )
 }
 
@@ -96,7 +103,15 @@ export function createFileParser(ctx: BuildCtx, fps: FilePath[]) {
 
         // Text -> Text transforms
         for (const plugin of cfg.plugins.transformers.filter((p) => p.textTransform)) {
-          file.value = plugin.textTransform!(ctx, file.value.toString())
+          try {
+            file.value = plugin.textTransform!(ctx, file.value.toString())
+          } catch (err) {
+            throw attributeError(err, {
+              origin: originOf(plugin),
+              stage: "textTransform",
+              file: fp,
+            })
+          }
         }
 
         // base data properties that plugins may use

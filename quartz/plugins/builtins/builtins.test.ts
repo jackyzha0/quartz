@@ -11,8 +11,11 @@ import { Frontmatter, normalizeFrontmatter, extractLinksFromValue } from "./fron
 import { Links } from "./links"
 import { Drafts, isDraft } from "./drafts"
 import {
+  ContentIndex,
   applyContentIndexExtensions,
   buildContentIndex,
+  contentIndexOptions,
+  prepareContentIndex,
   serializeContentIndex,
 } from "./contentIndex"
 import type { PluginJsonEntry } from "../loader/types"
@@ -217,7 +220,10 @@ describe("links built-in", () => {
   function run(html: Element[], slug = "folder/page", opts = {}, allSlugs: string[] = []) {
     const tree: Root = { type: "root", children: html }
     const file = new VFile("")
-    file.data = { slug: slug as FullSlug, frontmatterLinks: ["fm-target"] }
+    file.data = {
+      slug: slug as FullSlug,
+      frontmatterLinks: ["fm-target", "https://github.com/quartz-community/graph"],
+    }
     const ctx = { allSlugs } as unknown as BuildCtx
     const [factory] = Links(opts).htmlPlugins!(ctx) as [() => (t: Root, f: VFile) => void]
     factory()(tree, file)
@@ -380,3 +386,57 @@ describe("content index built-in", () => {
 
 // keep remark-rehype import used (parity with the real pipeline: frontmatter nodes are dropped)
 void remarkRehype
+
+describe("ctx.contentIndex", () => {
+  const page = (slug: string): ProcessedContent => {
+    const file = new VFile("")
+    file.data = {
+      slug: slug as FullSlug,
+      relativePath: `${slug}.md`,
+      frontmatter: { title: slug },
+      text: "x",
+    } as unknown as VFile["data"]
+    return [{ type: "root", children: [] }, file]
+  }
+
+  test("prepareContentIndex puts a read-only index on ctx using configuration.contentIndex", () => {
+    const ctx = {
+      cfg: {
+        configuration: { contentIndex: { includeEmptyFiles: false } },
+        plugins: { transformers: [], filters: [], emitters: [], pageTypes: [] },
+      },
+    } as unknown as BuildCtx
+    assert.strictEqual(contentIndexOptions(ctx).includeEmptyFiles, false)
+    assert.strictEqual(contentIndexOptions(ctx).enableRSS, true)
+    const idx = prepareContentIndex(ctx, [page("a"), page("b")])
+    assert.strictEqual(ctx.contentIndex, idx)
+    assert.deepStrictEqual([...ctx.contentIndex!.keys()], ["a", "b"])
+  })
+
+  test("the ContentIndex emitter reuses ctx.contentIndex instead of rebuilding it", async () => {
+    const fs = await import("node:fs/promises")
+    const os = await import("node:os")
+    const path = await import("node:path")
+    const out = await fs.mkdtemp(path.join(os.tmpdir(), "quartz-ci-"))
+    try {
+      const ctx = {
+        argv: { output: out },
+        cfg: {
+          configuration: { pageTitle: "T", locale: "en-US", baseUrl: "example.com" },
+          plugins: { transformers: [], filters: [], emitters: [], pageTypes: [] },
+        },
+      } as unknown as BuildCtx
+      prepareContentIndex(ctx, [page("prepared")])
+      // content passed to emit differs: the prepared index must win
+      await ContentIndex({ enableRSS: false, enableSiteMap: false }).emit(ctx, [page("other")], {
+        css: [],
+        js: [],
+        additionalHead: [],
+      })
+      const json = JSON.parse(await fs.readFile(path.join(out, "static/contentIndex.json"), "utf8"))
+      assert.deepStrictEqual(Object.keys(json), ["prepared"])
+    } finally {
+      await fs.rm(out, { recursive: true, force: true })
+    }
+  })
+})

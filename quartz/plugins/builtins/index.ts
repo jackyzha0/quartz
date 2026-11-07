@@ -32,6 +32,7 @@ import { ContentIndex, contentIndexDefaults } from "./contentIndex"
 import { Drafts } from "./drafts"
 import { Frontmatter, frontmatterDefaults } from "./frontmatter"
 import { Links, legacyCrawlLinksDefaults, linksDefaults } from "./links"
+import { registerPluginOrigin } from "../../util/diagnostics"
 
 export { ContentIndex, Drafts, Frontmatter, Links }
 export {
@@ -293,6 +294,16 @@ export function instantiateBuiltins<C extends BuiltinCategory>(
       .filter((b) => b.enabled && b.spec.category === category)
       // drafts.publish: true → nothing to filter
       .filter((b) => !(b.spec.id === "drafts" && b.options.publish === true))
-      .map((b) => ({ order: b.order, instance: b.spec.create(b.options) }))
+      .map((b) => {
+        const instance = b.spec.create(b.options)
+        registerPluginOrigin(instance, {
+          name: instance.name,
+          displayName: `configuration.${b.spec.configKey}`,
+          source: "built-in",
+          category: b.spec.category,
+          builtin: true,
+        })
+        return { order: b.order, instance }
+      })
   )
 }

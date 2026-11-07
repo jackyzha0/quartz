@@ -35,7 +35,12 @@ import {
   CapabilityPlugin,
 } from "./capabilities"
 import { absorbingBuiltin, BuiltinPlan, instantiateBuiltins, planBuiltins } from "../builtins"
-import { isMainThread } from "node:worker_threads"
+import { registerPluginOrigin, warn } from "../../util/diagnostics"
+import {
+  checkQuartzRequirement,
+  describeRequirementProblem,
+  readQuartzVersion,
+} from "../../cli/compat.js"
 import { collectPluginConfigWarnings, printPluginConfigWarnings } from "./option-validation"
 import { componentRegistry, RegisteredComponent } from "../../components/registry"
 import { frameRegistry } from "../../components/frames/registry"
@@ -246,9 +251,11 @@ async function readManifestFromPackageJson(source: PluginSource): Promise<Plugin
       name: q.name ?? gitSpec.name,
       displayName: q.displayName ?? q.name ?? gitSpec.name,
       description: q.description ?? pkg.description ?? "No description",
-      version: q.version ?? pkg.version ?? "1.0.0",
+      // the package version is the real one; quartz.version is often a stale copy
+      version: pkg.version ?? q.version ?? "1.0.0",
       author: q.author ?? pkg.author,
       homepage: q.homepage ?? pkg.homepage,
+      issues: issuesUrl(pkg),
       category: q.category,
       quartzVersion: q.quartzVersion,
       dependencies: q.dependencies,
@@ -263,6 +270,19 @@ async function readManifestFromPackageJson(source: PluginSource): Promise<Plugin
   } catch {
     return null
   }
+}
+
+/** Where to report bugs for a package: `bugs`, else its GitHub repository's issues page. */
+function issuesUrl(pkg: {
+  bugs?: string | { url?: string }
+  repository?: string | { url?: string }
+}): string | undefined {
+  const bugs = typeof pkg.bugs === "string" ? pkg.bugs : pkg.bugs?.url
+  if (bugs) return bugs
+  const repo = typeof pkg.repository === "string" ? pkg.repository : pkg.repository?.url
+  const match =
+    repo?.match(/github\.com[/:]([^/]+\/[^/#.]+)/) ?? repo?.match(/^github:([^/]+\/[^/#]+)/)
+  return match ? `https://github.com/${match[1].replace(/\.git$/, "")}/issues` : undefined
 }
 
 async function getManifest(source: PluginSource): Promise<PluginManifest | null> {
@@ -333,6 +353,20 @@ export async function loadQuartzConfig(
     }
   }
 
+  // Quartz version requirements (package.json → quartz.quartzVersion), see cli/compat.js
+  const quartzVersion = readQuartzVersion()
+  for (const entry of enabledEntries) {
+    const manifest = manifests.get(sourceKey(entry.source))
+    if (!manifest) continue
+    const name = manifest.name ?? extractPluginName(entry.source)
+    const problem = describeRequirementProblem(
+      name,
+      checkQuartzRequirement(manifest.quartzVersion, quartzVersion),
+      manifest.version,
+    )
+    if (problem) warn({ area: "versions", plugin: name, ...problem })
+  }
+
   // Decide which built-ins (frontmatter, links, drafts, content index) run — see builtins/index.ts
   const builtinPlan = planBuiltins({
     configuration,
@@ -345,6 +379,15 @@ export async function loadQuartzConfig(
   })
   activeBuiltinPlan = builtinPlan
   printBuiltinNotices(builtinPlan)
+  // Expose the effective settings (incl. options migrated from old plugin entries) as
+  // ctx.cfg.configuration.<key>, so plugins and emitters can read e.g. links.markdownLinkResolution.
+  for (const b of builtinPlan.builtins) {
+    ;(configuration as unknown as Record<string, unknown>)[b.spec.configKey] = {
+      ...b.options,
+      enabled: b.enabled,
+      order: b.order,
+    }
+  }
 
   // Validate declared capabilities (quartz.capabilities, opt-in, warnings only — see capabilities.ts)
   const capabilityReport = await validatePluginCapabilities({
@@ -412,6 +455,20 @@ export async function loadQuartzConfig(
       const gitSpec = parsePluginSource(entry.source)
       const isComponentOnly = categories.length > 0 && categories.every((c) => c === "component")
 
+      if (categories.length > 0 || manifest?.components) {
+        registerPluginOrigin(
+          {},
+          {
+            name: manifest?.name ?? extractPluginName(entry.source),
+            displayName: manifest?.name ?? extractPluginName(entry.source),
+            source: formatSourceDisplay(entry.source),
+            version: manifest?.version,
+            category: "component",
+            issues: manifest?.issues,
+            quartzVersion: manifest?.quartzVersion,
+          },
+        )
+      }
       if (isComponentOnly) {
         // Always import the main entry point for component-only plugins.
         // Some plugins (e.g. Bases view registrations) rely on side effects
@@ -547,6 +604,15 @@ export async function loadQuartzConfig(
             component: typeof instance.name === "string" ? instance.name : "Body",
           })
         }
+        registerPluginOrigin(instance, {
+          name: typeof instance.name === "string" ? instance.name : extractPluginName(entry.source),
+          displayName: manifest?.name ?? extractPluginName(entry.source),
+          source: formatSourceDisplay(entry.source),
+          version: manifest?.version,
+          category: expectedCategory,
+          issues: manifest?.issues,
+          quartzVersion: manifest?.quartzVersion,
+        })
         instances.push({ order: entry.order ?? manifest?.defaultOrder ?? 50, instance })
       } catch (err) {
         console.error(
@@ -630,11 +696,10 @@ const printedBuiltinNotices: Set<string> = ((globalThis as Record<symbol, unknow
   Symbol.for("quartz.printedBuiltinNotices")
 ] ??= new Set<string>()) as Set<string>
 function printBuiltinNotices(plan: BuiltinPlan): void {
-  if (!isMainThread || process.env.QUARTZ_CONFIG_QUIET === "1") return
   for (const notice of plan.notices) {
     if (printedBuiltinNotices.has(notice)) continue
     printedBuiltinNotices.add(notice)
-    console.warn(styleText("yellow", "⚠") + ` ${notice}`)
+    warn({ area: "config", message: notice })
   }
 }
 

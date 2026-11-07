@@ -15,6 +15,7 @@ import { WebSocketServer } from "ws"
 import { randomUUID } from "crypto"
 import { Mutex } from "async-mutex"
 import { CreateArgv } from "./args.js"
+import { describeQuartzCheckout } from "./compat.js"
 import { globby } from "globby"
 import {
   exitIfCancel,
@@ -328,7 +329,12 @@ export async function handleBuild(argv) {
     argv.watch = true
   }
 
-  console.log(`\n${styleText(["bgGreen", "black"], ` Quartz v${version} `)} \n`)
+  // " Quartz v5.1.0 " for a release checkout, plus `git describe` (e.g. v5.1.0-3-g1a2b3c4-dirty) otherwise
+  const checkout = describeQuartzCheckout()
+  const describe = checkout.describe && checkout.describe !== `v${version}` ? checkout.describe : ""
+  console.log(
+    `\n${styleText(["bgGreen", "black"], ` Quartz v${version} `)} ${describe ? styleText("gray", describe) : ""}\n`,
+  )
   const ctx = await esbuild.context({
     entryPoints: [fp],
     outfile: cacheFile,

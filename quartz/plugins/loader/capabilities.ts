@@ -19,6 +19,7 @@
 
 import { isMainThread } from "node:worker_threads"
 import { styleText } from "util"
+import { recordDiagnostic } from "../../util/diagnostics"
 
 export const CAPABILITY_KINDS = ["data", "dom", "globals", "events", "files", "cssVars"] as const
 
@@ -345,6 +346,19 @@ const printedWarnings: Set<string> = ((globalThis as Record<symbol, unknown>)[
 
 /** Print capability warnings once per process (main thread only; workers re-load the config). */
 export function printCapabilityWarnings(report: CapabilityReport): void {
+  // Record per plugin (also in workers) so a later error in that plugin can mention it.
+  for (const m of report.missing) {
+    if (!m.required) continue
+    const warning = report.warnings.find(
+      (w) => w.startsWith(`Plugin "${m.plugin}" requires`) && w.includes(`"${m.name}"`),
+    )
+    recordDiagnostic({
+      severity: "warning",
+      area: "capabilities",
+      plugin: m.plugin,
+      message: warning ?? `${m.plugin} requires ${m.kind} "${m.name}", which nothing provides`,
+    })
+  }
   if (!isMainThread || process.env.QUARTZ_CONFIG_QUIET === "1") return
   for (const w of report.warnings) {
     if (printedWarnings.has(w)) continue

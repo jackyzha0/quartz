@@ -49,6 +49,8 @@ export interface PluginManifest {
   version: string
   author?: string
   homepage?: string
+  /** Where to report bugs (from package.json `bugs` / `repository`). */
+  issues?: string
   keywords?: string[]
   category?: PluginCategory | PluginCategory[]
   quartzVersion?: string

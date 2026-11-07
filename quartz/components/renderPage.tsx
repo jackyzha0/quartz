@@ -78,7 +78,7 @@ export function pageResources(
   const contentIndexScript =
     `const fetchData = fetch("${contentIndexPath}")` +
     `.then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json() })` +
-    `.catch(e => { console.warn("[Quartz] Could not load ${contentIndexPath} (" + e.message + "); is the content-index plugin enabled?"); return {} })`
+    `.catch(e => { console.warn("[Quartz] Could not load ${contentIndexPath} (" + e.message + "); is configuration.contentIndex disabled?"); return {} })`
 
   const resources: StaticResources = {
     css: [

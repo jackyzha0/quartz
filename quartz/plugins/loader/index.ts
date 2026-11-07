@@ -1,4 +1,5 @@
 import { styleText } from "util"
+import { checkQuartzRequirement } from "../../cli/compat.js"
 import {
   PluginManifest,
   PluginCategory,
@@ -26,25 +27,9 @@ import {
 const MINIMUM_QUARTZ_VERSION = "4.5.0"
 
 function satisfiesVersion(required: string | undefined, current: string): boolean {
-  if (!required) return true
-
-  const parseVersion = (v: string) => {
-    const parts = v.replace(/^v/, "").split(".")
-    return {
-      major: parseInt(parts[0]) || 0,
-      minor: parseInt(parts[1]) || 0,
-      patch: parseInt(parts[2]) || 0,
-    }
-  }
-
-  const req = parseVersion(required)
-  const cur = parseVersion(current)
-
-  if (cur.major > req.major) return true
-  if (cur.major < req.major) return false
-  if (cur.minor > req.minor) return true
-  if (cur.minor < req.minor) return false
-  return cur.patch >= req.patch
+  // Real semver ranges (">=5.1.0", "^5.0.0"); the old hand-rolled parser read ">=5" as 0.
+  const result = checkQuartzRequirement(required, current)
+  return result.status !== "incompatible"
 }
 
 async function tryImportPlugin(packageName: string): Promise<{

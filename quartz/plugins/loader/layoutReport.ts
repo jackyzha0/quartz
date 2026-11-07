@@ -7,6 +7,7 @@
  * thread only); the full per-slot report is printed by `quartz build --verbose`.
  */
 import { isMainThread } from "node:worker_threads"
+import { recordDiagnostic } from "../../util/diagnostics"
 import { styleText } from "util"
 import type { LayoutPosition } from "./types"
 
@@ -124,6 +125,9 @@ export function getLayoutReport(): LayoutReport {
 
 /** Print layout warnings once per process (main thread only; workers re-load the config). */
 export function printLayoutWarnings(warnings: string[]): void {
+  for (const w of warnings) {
+    recordDiagnostic({ severity: "warning", area: "layout", message: w.replace(/^Layout:\s*/, "") })
+  }
   if (!isMainThread || process.env.QUARTZ_CONFIG_QUIET === "1") return
   for (const w of warnings) {
     if (printedWarnings.has(w)) continue

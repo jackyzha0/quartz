@@ -35,6 +35,13 @@ import {
   shortPluginName,
 } from "./plugin-validation.js"
 import {
+  checkQuartzRequirement,
+  describeQuartzCheckout,
+  describeRequirementProblem,
+  formatQuartzVersion,
+  readQuartzVersion,
+} from "./compat.js"
+import {
   builtinMessage,
   describeBuiltins,
   findBuiltinMigrations,
@@ -1765,6 +1772,15 @@ export async function handlePluginAdd(
     if (manifest?.defaultEnabled === false) {
       console.log(styleText("gray", `  Enable it with 'npx quartz plugin enable ${configName}'.`))
     }
+    const requirement = describeRequirementProblem(
+      configName,
+      checkQuartzRequirement(manifest?.quartzVersion, readQuartzVersion()),
+      manifest?.version,
+    )
+    if (requirement) {
+      console.log(styleText("yellow", `  ⚠ ${requirement.message}`))
+      console.log(styleText("gray", `    ${requirement.hint}`))
+    }
     if (plugin.buildFailed) {
       console.log(
         styleText(
@@ -2439,7 +2455,13 @@ export async function handlePluginDoctor({ verbose = false, fix = false } = {}) 
 
   const config = readConfigWithDiagnostics()
   const configLabel = path.basename(config.path)
-  console.log(styleText("bold", "Checking plugins...\n"))
+  const quartzVersion = readQuartzVersion()
+  console.log(
+    styleText(
+      "bold",
+      `Checking plugins (Quartz ${formatQuartzVersion(quartzVersion, describeQuartzCheckout())})...\n`,
+    ),
+  )
 
   if (!config.exists) {
     report(
@@ -2634,6 +2656,14 @@ export async function handlePluginDoctor({ verbose = false, fix = false } = {}) 
     }
     for (const issue of validatePluginOptions(entry.options, manifest)) {
       report(issue.severity, label, issue.message)
+    }
+    const requirement = describeRequirementProblem(
+      label,
+      checkQuartzRequirement(manifest.quartzVersion, quartzVersion),
+      readEntryPackageJson(entry.source)?.version,
+    )
+    if (requirement) {
+      report(enabled ? "error" : "info", null, requirement.message, requirement.hint)
     }
     if (enabled) {
       for (const dep of manifest.dependencies ?? []) {

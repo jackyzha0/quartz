@@ -1,4 +1,5 @@
 import { styleText } from "util"
+import { recordDiagnostic } from "../../util/diagnostics"
 import { PluginJsonEntry, PluginManifest } from "./types"
 import { validatePluginEntry, validatePluginOptions } from "../../cli/plugin-validation.js"
 
@@ -41,6 +42,14 @@ export function collectPluginConfigWarnings(
 }
 
 export function printPluginConfigWarnings(warnings: PluginConfigWarning[]): void {
+  for (const { plugin, message } of warnings) {
+    recordDiagnostic({
+      severity: "warning",
+      area: "config",
+      plugin,
+      message: `quartz.config.yaml: ${plugin}: ${message}`,
+    })
+  }
   if (process.env.QUARTZ_CONFIG_QUIET === "1") return
   for (const { plugin, message } of warnings) {
     console.warn(

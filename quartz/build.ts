@@ -24,6 +24,8 @@ import { ChangeEvent } from "./plugins/types"
 import { minimatch } from "minimatch"
 import { formatLayoutReport, getLayoutReport } from "./plugins/loader/layoutReport"
 import { getBuiltinPlan } from "./plugins/loader/config-loader"
+import { prepareContentIndex } from "./plugins/builtins/contentIndex"
+import { printDiagnosticsSummary } from "./util/diagnostics"
 
 function reportSlugCollisions(content: ProcessedContent[]): void {
   const collisions = detectSlugCollisions(content)
@@ -118,6 +120,8 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   console.log(
     styleText("green", `Done processing ${markdownPaths.length} files in ${perf.timeSince()}`),
   )
+  // Repeat warnings from config loading (they scrolled away) and notes about the output.
+  printDiagnosticsSummary({ verbose: argv.verbose })
   release()
 
   if (argv.watch) {
@@ -341,6 +345,7 @@ async function rebuild(changes: ChangeEvent[], clientRefresh: () => void, buildD
     // Phase 2: Run all other emitters with content extended by virtual pages
     const contentWithVirtual =
       ctx.virtualPages.length > 0 ? [...processedFiles, ...ctx.virtualPages] : processedFiles
+    prepareContentIndex(ctx, contentWithVirtual)
     for (const emitter of cfg.plugins.emitters) {
       if (emitter.name === "PageTypeDispatcher") continue
       // Try to use partialEmit if available, otherwise assume the output is static

@@ -1,5 +1,7 @@
 import { cloneElement, isValidElement, type VNode } from "preact"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { attributeError } from "../util/pluginErrors"
+import { getPluginOrigin } from "../util/diagnostics"
 
 /**
  * Source attribution for plugin components.
@@ -53,8 +55,25 @@ export function attributeComponent(
   attribution: ComponentAttribution,
 ): QuartzComponent {
   if ((component as unknown as Record<symbol, unknown>)[ATTRIBUTED]) return component
-  const wrapped = ((props: QuartzComponentProps) =>
-    attributeVNode(component(props), attribution)) as QuartzComponent
+  const wrapped = ((props: QuartzComponentProps) => {
+    let rendered
+    try {
+      rendered = component(props)
+    } catch (err) {
+      // name the plugin + component + page instead of "Failed to emit from PageTypeDispatcher"
+      throw attributeError(err, {
+        origin: getPluginOrigin(attribution.plugin) ?? {
+          name: attribution.plugin,
+          displayName: attribution.plugin,
+          source: attribution.plugin,
+        },
+        stage: "render",
+        component: attribution.component,
+        file: props?.fileData?.slug,
+      })
+    }
+    return attributeVNode(rendered, attribution)
+  }) as QuartzComponent
   // Preserve css / beforeDOMLoaded / afterDOMLoaded / displayName and any other statics.
   Object.assign(wrapped, component)
   Object.defineProperty(wrapped, "name", { value: component.name || attribution.component })

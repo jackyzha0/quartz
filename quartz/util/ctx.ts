@@ -1,6 +1,7 @@
 import { QuartzConfig } from "../cfg"
 import { ProcessedContent, QuartzPluginData } from "../plugins/vfile"
 import { FileTrieNode } from "./fileTrie"
+import type { ContentDetails } from "../plugins/types"
 import { FilePath, FullSlug } from "./path"
 
 export interface Argv {
@@ -44,6 +45,14 @@ export interface BuildCtx {
   componentCssMap?: Map<string, string>
   /** Maps inline CSS/JS content to extracted external file paths. Populated by ComponentResources. */
   extractedInlineResources?: Map<string, string>
+  /**
+   * The site's content index (one entry per published page, virtual pages included), exactly as
+   * written to `static/contentIndex.json` plus `date` / `description`. Built once per build,
+   * before the emit phase that runs plugin emitters — so every emitter except ComponentResources
+   * and PageTypeDispatcher can reuse it instead of rebuilding it. Read-only: emitters run in
+   * parallel and share it.
+   */
+  contentIndex?: ReadonlyMap<FullSlug, Readonly<ContentDetails>>
 }
 
 export function trieFromAllFiles(allFiles: QuartzPluginData[]): FileTrieNode<BuildTimeTrieData> {

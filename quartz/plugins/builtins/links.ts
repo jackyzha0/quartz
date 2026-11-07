@@ -185,6 +185,8 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
 
             // links inside frontmatter values (built-in frontmatter) count as outgoing links too
             for (const fmLink of file.data.frontmatterLinks ?? []) {
+              // external URLs (e.g. `repository: "[repo](https://github.com/…)"`) are not pages
+              if (isExternalUrl(fmLink)) continue
               const [targetRaw] = splitAnchor(fmLink)
               if (!targetRaw) continue
               const dest = transformLink(fileSlug, targetRaw, transformOptions)

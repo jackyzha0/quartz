@@ -131,6 +131,25 @@ export function applyContentIndexExtensions(
   return result as ContentDetails
 }
 
+/** Effective content index options from `configuration.contentIndex` (see planBuiltins). */
+export function contentIndexOptions(
+  ctx: BuildCtx,
+): Required<Omit<ContentIndexConfig, "enabled" | "order">> {
+  const raw = ctx.cfg?.configuration?.contentIndex
+  return { ...contentIndexDefaults, ...(raw && typeof raw === "object" ? raw : {}) }
+}
+
+/**
+ * Build the index once and put it on `ctx.contentIndex` for the emitters that follow.
+ * Called by the emit phase (full builds and incremental rebuilds) after page types have
+ * generated their virtual pages.
+ */
+export function prepareContentIndex(ctx: BuildCtx, content: ProcessedContent[]): ContentIndexMap {
+  const index = buildContentIndex(ctx, content, contentIndexOptions(ctx))
+  ctx.contentIndex = index
+  return index
+}
+
 /** Build the index from processed content (also used by tests and potentially other emitters). */
 export function buildContentIndex(
   ctx: BuildCtx,
@@ -236,7 +255,9 @@ export const ContentIndex: QuartzEmitterPlugin<ContentIndexConfig> = (userOpts) 
   const opts = { ...contentIndexDefaults, ...userOpts }
   const emitAll = async (ctx: BuildCtx, content: ProcessedContent[]): Promise<FilePath[]> => {
     const cfg = ctx.cfg.configuration
-    const index = buildContentIndex(ctx, content, opts)
+    // Reuse the index the emit phase prepared for this build (same content), else build it.
+    const index =
+      (ctx.contentIndex as ContentIndexMap | undefined) ?? buildContentIndex(ctx, content, opts)
     const outputs: FilePath[] = []
     if (opts.enableSiteMap) {
       outputs.push(await write(ctx, "sitemap", ".xml", generateSiteMap(cfg, index)))

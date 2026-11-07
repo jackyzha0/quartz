@@ -102,6 +102,15 @@ yargs(hideBin(process.argv))
   .command("build", "Build Quartz into a bundle of static HTML files", BuildArgv, async (argv) => {
     await handleBuild(argv)
   })
+  .command(
+    "info",
+    "Print Quartz version, environment and plugins (paste it into bug reports)",
+    { json: { boolean: true, default: false, describe: "Print JSON instead of Markdown" } },
+    async (argv) => {
+      const { handleInfo } = await import("./cli/info.js")
+      await handleInfo({ json: argv.json })
+    },
+  )
   .command("tui", "Launch interactive plugin manager", CommonArgv, async () => {
     await launchTui()
   })
