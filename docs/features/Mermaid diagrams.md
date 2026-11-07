@@ -19,6 +19,8 @@ plugins:
       diagramRenderer: pele # default: mermaid
 ```
 
+Both renderers only load on pages that contain a Mermaid diagram. Pele is served from your own site (Quartz 5.1+) and only downloads the code for the diagram types on the page; on older Quartz versions it is loaded from jsDelivr. Mermaid.js is always loaded from a CDN.
+
 ## Syntax
 
 To add a Mermaid diagram, create a mermaid code block.

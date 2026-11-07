@@ -614,6 +614,40 @@ Your plugin's `dist/` directory should be committed to the repository:
 
 If `dist/` is missing or gitignored, Quartz falls back to the full install/build cycle (useful during local development with symlinked plugins).
 
+### Shipping Files with Your Plugin
+
+Since Quartz 5.1, `externalResources()` can return `assets`: files or directories that Quartz copies into the site at `static/plugins/<to>`. Client scripts find them through the `window.quartzStaticUrl` page global (the absolute URL of `static/`, valid across SPA navigations).
+
+Use this for large or optional client code instead of an inline script: Quartz serves inline scripts to **every page**, while an asset is only downloaded where your script imports it.
+
+```ts
+import path from "path"
+import { createRequire } from "module"
+
+externalResources() {
+  // resolve a dependency's browser build at build time
+  const pkg = createRequire(import.meta.url).resolve("my-renderer/package.json")
+  return {
+    js: [{ script: loaderScript, loadTime: "afterDOMReady", contentType: "inline", moduleType: "module" }],
+    assets: [{ from: path.join(path.dirname(pkg), "dist", "esm"), to: "my-plugin/renderer" }],
+  }
+}
+```
+
+```ts title="loader.inline.ts"
+document.addEventListener("nav", async () => {
+  const nodes = document.querySelectorAll(".my-widget")
+  if (nodes.length === 0 || !window.quartzStaticUrl) return // nothing to do on this page
+  const url = new URL("plugins/my-plugin/renderer/index.js", window.quartzStaticUrl).href
+  const { render } = await import(url)
+  for (const node of nodes) render(node)
+})
+```
+
+- `to` is relative to `static/plugins/`; use your plugin's name as the first segment. Invalid or conflicting targets and missing sources are reported as build warnings.
+- An ES module build with relative `import()`s keeps working when served this way, so only the chunks a page needs are downloaded.
+- Older Quartz versions ignore `assets` and leave `quartzStaticUrl` undefined. Either require `"quartzVersion": ">=5.1.0"` or fall back (for example to a CDN), as [[ObsidianFlavoredMarkdown]] does for [[Mermaid diagrams|Pele]].
+
 ### Plugins with Native Dependencies
 
 Plugins that require native packages (e.g. `sharp` for image processing) cannot bundle those. For these plugins:

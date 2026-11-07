@@ -2,6 +2,7 @@ import { createHash } from "crypto"
 import { FullSlug, joinSegments } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 
+import { emitStaticAssets } from "./staticAssets"
 // @ts-ignore
 import spaRouterScript from "../../components/scripts/spa.inline"
 // @ts-ignore
@@ -484,6 +485,9 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
       }
 
       ctx.extractedInlineResources = extractedInlineResources
+
+      // Files plugins ship with the site (externalResources().assets) → static/plugins/<to>
+      yield* emitStaticAssets(ctx, resources.assets)
 
       const cssHash = useHashing ? hashContent(cssContent) : null
       const prescriptHash = useHashing ? hashContent(prescript) : null
