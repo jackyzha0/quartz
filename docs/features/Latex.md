@@ -59,14 +59,9 @@ Similarly, inline math can be rendered by delimiting math expression with a sing
 
 ### Escaping symbols
 
-There will be cases where you may have more than one `$` in a paragraph at once which may accidentally trigger MathJax/Katex.
+With [[ObsidianFlavoredMarkdown]], dollar signs follow Obsidian's rules: a `$` followed by a space or a digit after the closing `$` doesn't start or end math, so prices like `I have $1 and you have $2` stay text, as in Obsidian.
 
-To get around this, you can escape the dollar sign by doing `\$` instead.
-
-For example:
-
-- Incorrect: `I have $1 and you have $2` produces I have $1 and you have $2
-- Correct: `I have \$1 and you have \$2` produces I have \$1 and you have \$2
+If a pair of `$` would still be read as math where you don't want it (for example `$a and b$`), escape the dollar sign as `\$`: `\$a and b\$` produces \$a and b\$.
 
 ### Using mhchem
 
