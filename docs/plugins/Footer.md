@@ -1,6 +1,6 @@
 ---
 title: Footer
-description: Page footer with configurable links.
+description: Page footer with configurable links and text.
 tags:
   - plugin/component
 image:
@@ -9,7 +9,7 @@ enabled: true
 required: false
 ---
 
-This plugin renders a footer at the bottom of the page with a "Created with Quartz" message and a set of configurable links.
+This plugin renders a footer at the bottom of the page with a "Created with Quartz" message, an optional message of your own and a set of configurable links.
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
@@ -19,6 +19,9 @@ This plugin renders a footer at the bottom of the page with a "Created with Quar
 This plugin accepts the following configuration options:
 
 - `links`: A map of link labels to their URLs to display in the footer. Defaults to `{}`.
+- `message`: Extra text shown below the "Created with Quartz" line, e.g. a license notice or contact details. HTML is allowed: `'Licensed under <a href="/license">CC BY 4.0</a>'`. Not set by default.
+
+To change the footer further (styles, different markup), see [[customizing components]].
 
 ### Default options
 

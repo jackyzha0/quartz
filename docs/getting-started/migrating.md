@@ -150,6 +150,8 @@ Component layout mapping:
 | `Component.Head()`            | `Component.Head()` (unchanged, internal) |
 | `Component.Spacer()`          | `Plugin.Spacer()`                        |
 
+If you edited a component's source in `quartz/components/` (for example `Footer.tsx`), that no longer works: components are now installed plugins. See [[customizing components]] for the v5 ways to change them.
+
 ## Updating Your CI/CD
 
 Quartz 5 requires plugins to be installed before building. Add a plugin install step and (optionally) caching to your CI pipeline.

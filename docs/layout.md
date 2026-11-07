@@ -314,4 +314,4 @@ Most meaningful style changes like colour scheme and font can be done simply thr
 You can see the base style sheet in `quartz/styles/base.scss` and write your own in `quartz/styles/custom.scss`.
 
 > [!note]
-> Some components may provide their own styling as well! Community plugins bundle their own styles. If you'd like to customize styling for a specific component, double check the component definition to see how its styles are defined.
+> Some components may provide their own styling as well! Community plugins bundle their own styles. If you'd like to customize styling for a specific component, double check the component definition to see how its styles are defined. See also [[customizing components]].

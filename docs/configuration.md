@@ -81,6 +81,18 @@ This part of the configuration concerns anything that can affect the whole site.
     - `textHighlight`: markdown highlighted text background
 - `frontmatter`, `links`, `drafts`, `contentIndex`: options for Quartz's [[built-in processing]] — frontmatter parsing ([[Frontmatter]]), link resolution ([[CrawlLinks]]), draft handling ([[RemoveDrafts]]) and the content index, sitemap and RSS feed ([[ContentIndex]]). They are on by default; set e.g. `links: { markdownLinkResolution: relative }` to change an option or `contentIndex: false` to turn one off.
 
+> [!note] Colors with an Obsidian theme
+> A theme from [quartz-themes](https://github.com/saberzero1/quartz-themes) (the Obsidian and TTRPG [[create#Templates|templates]] enable one) brings its own color scheme and colors the page through Obsidian's CSS variables (`--text-normal` for most text, `--text-muted` for paragraphs, `--background-primary`, `--interactive-accent`, …). The `colors` above then have little or no effect. To change a theme's colors, override its variables in `quartz/styles/custom.scss`:
+>
+> ```scss title="quartz/styles/custom.scss"
+> html[saved-theme="dark"] body {
+>   --text-normal: #e0e0e0;
+>   --text-muted: #a0a0a0;
+> }
+> ```
+>
+> (use `html[saved-theme="light"] body` for light mode), or disable the theme to use the `colors` above.
+
 ## Plugins
 
 You can think of Quartz plugins as a series of transformations over content.
