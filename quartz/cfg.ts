@@ -81,6 +81,63 @@ export interface GlobalConfiguration {
    * Region Codes: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
    */
   locale: ValidLocale
+  /** Built-in frontmatter parsing (title, tags, aliases, dates, …). See docs/features/built-in processing. */
+  frontmatter?: FrontmatterConfig | boolean
+  /** Built-in link resolution (relative hrefs, `file.data.links` for backlinks/graph). */
+  links?: LinksConfig | boolean
+  /** Built-in draft handling: pages with `draft: true` are not published. */
+  drafts?: DraftsConfig | boolean
+  /** Built-in content index: `static/contentIndex.json`, sitemap and RSS. */
+  contentIndex?: ContentIndexConfig | boolean
+}
+
+/** Shared by every built-in: `enabled: false` turns it off (e.g. to replace it with a plugin). */
+interface BuiltinToggle {
+  enabled?: boolean
+  /** Position among plugins of the same category (same scale as plugin `order`). */
+  order?: number
+}
+
+export interface FrontmatterConfig extends BuiltinToggle {
+  /** Frontmatter delimiters. Default `"---"`. */
+  delimiters?: string | [string, string]
+  /** Frontmatter language. Default `"yaml"`. */
+  language?: "yaml" | "toml"
+}
+
+export interface LinksConfig extends BuiltinToggle {
+  /** How to resolve Markdown link paths. Default `"shortest"` (Obsidian's default). */
+  markdownLinkResolution?: "absolute" | "relative" | "shortest"
+  /** Strip folders from link text (`folder/note` → `note`). Default `true`. */
+  prettyLinks?: boolean
+  /** Open external links in a new tab. Default `false`. */
+  openLinksInNewTab?: boolean
+  /** Add `loading="lazy"` to images, videos, audio and iframes. Default `false`. */
+  lazyLoad?: boolean
+  /** Add an icon after external links. Default `true`. */
+  externalLinkIcon?: boolean
+  /** Add a `broken` class to internal links whose target does not exist. Default `false`. */
+  disableBrokenWikilinks?: boolean
+}
+
+export interface DraftsConfig extends BuiltinToggle {
+  /** Publish pages marked `draft: true` anyway. Default `false`. */
+  publish?: boolean
+}
+
+export interface ContentIndexConfig extends BuiltinToggle {
+  /** Emit `sitemap.xml`. Default `true`. */
+  enableSiteMap?: boolean
+  /** Emit an RSS feed. Default `true`. */
+  enableRSS?: boolean
+  /** Maximum number of RSS items. Default `10`. */
+  rssLimit?: number
+  /** Put the full page HTML in RSS items instead of the description. Default `false`. */
+  rssFullHtml?: boolean
+  /** Slug of the RSS feed (`index` → `index.xml`). Default `"index"`. */
+  rssSlug?: string
+  /** Include pages without text content. Default `true`. */
+  includeEmptyFiles?: boolean
 }
 
 export interface QuartzConfig {

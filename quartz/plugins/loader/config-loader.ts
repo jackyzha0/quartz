@@ -28,7 +28,14 @@ import {
 import { loadComponentsFromPackage } from "./componentLoader"
 import { attributeComponentExport, shortPluginName } from "../../components/attribution"
 import { loadFramesFromPackage } from "./frameLoader"
-import { validatePluginCapabilities, printCapabilityWarnings } from "./capabilities"
+import {
+  validatePluginCapabilities,
+  printCapabilityWarnings,
+  parseCapabilities,
+  CapabilityPlugin,
+} from "./capabilities"
+import { absorbingBuiltin, BuiltinPlan, instantiateBuiltins, planBuiltins } from "../builtins"
+import { isMainThread } from "node:worker_threads"
 import { collectPluginConfigWarnings, printPluginConfigWarnings } from "./option-validation"
 import { componentRegistry, RegisteredComponent } from "../../components/registry"
 import { frameRegistry } from "../../components/frames/registry"
@@ -279,7 +286,10 @@ export async function loadQuartzConfig(
     ...configOverrides,
   }
 
-  const enabledEntries = json.plugins.filter((e) => e.enabled)
+  // Entries of official plugins that are now built into core (crawl-links, remove-draft,
+  // content-index) are handled by the built-ins below and never installed or loaded.
+  const pluginEntries = json.plugins.filter((e) => !absorbingBuiltin(e))
+  const enabledEntries = pluginEntries.filter((e) => e.enabled)
   const manifests = new Map<string, PluginManifest>()
 
   // Ensure all plugins are installed and collect native deps
@@ -323,19 +333,33 @@ export async function loadQuartzConfig(
     }
   }
 
+  // Decide which built-ins (frontmatter, links, drafts, content index) run — see builtins/index.ts
+  const builtinPlan = planBuiltins({
+    configuration,
+    entries: json.plugins,
+    nameOf: (entry) =>
+      manifests.get(sourceKey(entry.source))?.name ?? extractPluginName(entry.source),
+    providesOf: (entry) =>
+      parseCapabilities(manifests.get(sourceKey(entry.source))?.capabilities, "").capabilities
+        ?.provides,
+  })
+  activeBuiltinPlan = builtinPlan
+  printBuiltinNotices(builtinPlan)
+
   // Validate declared capabilities (quartz.capabilities, opt-in, warnings only — see capabilities.ts)
   const capabilityReport = await validatePluginCapabilities({
-    entries: json.plugins,
+    entries: pluginEntries,
     nameOf: (entry) => extractPluginName(entry.source),
     manifestFor: (entry) => manifests.get(sourceKey(entry.source)) ?? getManifest(entry.source),
     configuration,
+    builtins: builtinCapabilityPlugins(builtinPlan),
   })
   printCapabilityWarnings(capabilityReport)
 
   // Warn about likely typos in plugin entries/options (warnings only — see option-validation.ts)
   printPluginConfigWarnings(
     collectPluginConfigWarnings(
-      json.plugins,
+      pluginEntries,
       (entry) => manifests.get(sourceKey(entry.source)),
       (entry) => extractPluginName(entry.source),
     ),
@@ -469,7 +493,7 @@ export async function loadQuartzConfig(
     items: { entry: PluginJsonEntry; manifest: PluginManifest | undefined }[],
     expectedCategory: ProcessingCategory,
   ) => {
-    const instances = []
+    const instances: { order: number; instance: any }[] = []
     for (const { entry, manifest } of items) {
       try {
         const spec = parsePluginSource(entry.source)
@@ -523,7 +547,7 @@ export async function loadQuartzConfig(
             component: typeof instance.name === "string" ? instance.name : "Body",
           })
         }
-        instances.push(instance)
+        instances.push({ order: entry.order ?? manifest?.defaultOrder ?? 50, instance })
       } catch (err) {
         console.error(
           styleText("red", `✗`) +
@@ -536,7 +560,6 @@ export async function loadQuartzConfig(
 
   // Import built-in plugins
   const builtinPlugins = await import("../index")
-  const builtinTransformers: unknown[] = []
   const builtinEmitters = [
     builtinPlugins.ComponentResources(),
     builtinPlugins.Assets(),
@@ -544,11 +567,37 @@ export async function loadQuartzConfig(
   ]
   const builtinPageTypes = [builtinPlugins.PageTypes.NotFoundPageType()]
 
+  // Built-in processing steps take their place in plugin order (frontmatter at 0, links at 60 …);
+  // on equal order a built-in runs before plugins (stable sort, built-ins listed first).
+  const withBuiltins = <T>(
+    builtins: { order: number; instance: unknown }[],
+    instances: { order: number; instance: T }[],
+  ): T[] =>
+    [...builtins, ...instances]
+      .map((item, index) => ({ ...item, index }))
+      .sort((a, b) => a.order - b.order || a.index - b.index)
+      .map((item) => item.instance as T)
+
   const plugins: PluginTypes = {
-    transformers: [...builtinTransformers, ...(await instantiate(transformers, "transformer"))],
-    filters: await instantiate(filters, "filter"),
-    emitters: [...builtinEmitters, ...(await instantiate(emitters, "emitter"))],
-    pageTypes: [...(await instantiate(pageTypes, "pageType")), ...builtinPageTypes],
+    transformers: withBuiltins(
+      instantiateBuiltins(builtinPlan, "transformer"),
+      await instantiate(transformers, "transformer"),
+    ),
+    filters: withBuiltins(
+      instantiateBuiltins(builtinPlan, "filter"),
+      await instantiate(filters, "filter"),
+    ),
+    emitters: [
+      ...builtinEmitters,
+      ...withBuiltins(
+        instantiateBuiltins(builtinPlan, "emitter"),
+        await instantiate(emitters, "emitter"),
+      ),
+    ],
+    pageTypes: [
+      ...(await instantiate(pageTypes, "pageType")).map((item) => item.instance),
+      ...builtinPageTypes,
+    ],
   }
 
   // Load layout and add PageTypeDispatcher to emitters.
@@ -568,6 +617,44 @@ export async function loadQuartzConfig(
 }
 
 type ProcessingCategory = "transformer" | "filter" | "emitter" | "pageType"
+
+let activeBuiltinPlan: BuiltinPlan | undefined
+
+/** The built-in plan of the last loaded config (for `quartz build --verbose`, doctor, tests). */
+export function getBuiltinPlan(): BuiltinPlan | undefined {
+  return activeBuiltinPlan
+}
+
+// Process-wide: the config loader can be loaded as several module copies (CLI + bundled build).
+const printedBuiltinNotices: Set<string> = ((globalThis as Record<symbol, unknown>)[
+  Symbol.for("quartz.printedBuiltinNotices")
+] ??= new Set<string>()) as Set<string>
+function printBuiltinNotices(plan: BuiltinPlan): void {
+  if (!isMainThread || process.env.QUARTZ_CONFIG_QUIET === "1") return
+  for (const notice of plan.notices) {
+    if (printedBuiltinNotices.has(notice)) continue
+    printedBuiltinNotices.add(notice)
+    console.warn(styleText("yellow", "⚠") + ` ${notice}`)
+  }
+}
+
+/** Built-ins as capability providers: enabled ones provide, disabled ones are suggested. */
+function builtinCapabilityPlugins(plan: BuiltinPlan): {
+  enabled: CapabilityPlugin[]
+  available: CapabilityPlugin[]
+} {
+  const enabled: CapabilityPlugin[] = []
+  const available: CapabilityPlugin[] = []
+  for (const b of plan.builtins) {
+    const plugin: CapabilityPlugin = {
+      name: b.enabled ? `built-in ${b.spec.id}` : `configuration.${b.spec.configKey}`,
+      aliases: [...b.spec.absorbs, `quartz:${b.spec.id}`],
+      capabilities: b.spec.capabilities,
+    }
+    ;(b.enabled ? enabled : available).push(plugin)
+  }
+  return { enabled, available }
+}
 
 /**
  * Validate that a plugin instance has the required methods for its declared category.

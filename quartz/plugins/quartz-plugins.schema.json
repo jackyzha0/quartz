@@ -166,8 +166,13 @@
         },
         "analytics": {
           "oneOf": [
-            { "type": "null" },
-            { "type": "object", "description": "Analytics configuration" }
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "description": "Analytics configuration"
+            }
           ],
           "description": "Analytics configuration (null to disable)"
         },
@@ -177,6 +182,166 @@
             "type": "string"
           },
           "description": "Patterns to ignore during processing"
+        },
+        "frontmatter": {
+          "description": "Built-in frontmatter parsing: titles, tags, aliases, dates, drafts. Default order 0.",
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Set to false to turn this built-in off (e.g. to replace it with a plugin)."
+                },
+                "order": {
+                  "type": "number",
+                  "description": "Position among plugins of the same category (same scale as plugin `order`)."
+                },
+                "delimiters": {
+                  "description": "Frontmatter delimiters. Default \"---\".",
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  ]
+                },
+                "language": {
+                  "enum": ["yaml", "toml"],
+                  "description": "Frontmatter language. Default yaml."
+                }
+              }
+            }
+          ]
+        },
+        "links": {
+          "description": "Built-in link processing (formerly the crawl-links plugin): relative hrefs, link classes, outgoing links for backlinks and graph. Default order 60.",
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Set to false to turn this built-in off (e.g. to replace it with a plugin)."
+                },
+                "order": {
+                  "type": "number",
+                  "description": "Position among plugins of the same category (same scale as plugin `order`)."
+                },
+                "markdownLinkResolution": {
+                  "enum": ["absolute", "relative", "shortest"],
+                  "description": "How to resolve Markdown link paths. Default shortest."
+                },
+                "prettyLinks": {
+                  "type": "boolean",
+                  "description": "Strip folders from link text. Default true."
+                },
+                "openLinksInNewTab": {
+                  "type": "boolean",
+                  "description": "Open external links in a new tab. Default false."
+                },
+                "lazyLoad": {
+                  "type": "boolean",
+                  "description": "Lazy-load images, videos, audio and iframes. Default false."
+                },
+                "externalLinkIcon": {
+                  "type": "boolean",
+                  "description": "Show an icon after external links. Default true."
+                },
+                "disableBrokenWikilinks": {
+                  "type": "boolean",
+                  "description": "Add a `broken` class to internal links whose target does not exist. Default false."
+                }
+              }
+            }
+          ]
+        },
+        "drafts": {
+          "description": "Built-in draft handling (formerly the remove-draft plugin): pages with `draft: true` are not published.",
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Set to false to turn this built-in off (e.g. to replace it with a plugin)."
+                },
+                "order": {
+                  "type": "number",
+                  "description": "Position among plugins of the same category (same scale as plugin `order`)."
+                },
+                "publish": {
+                  "type": "boolean",
+                  "description": "Publish drafts anyway. Default false."
+                }
+              }
+            }
+          ]
+        },
+        "contentIndex": {
+          "description": "Built-in content index (formerly the content-index plugin): static/contentIndex.json, sitemap.xml and RSS.",
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Set to false to turn this built-in off (e.g. to replace it with a plugin)."
+                },
+                "order": {
+                  "type": "number",
+                  "description": "Position among plugins of the same category (same scale as plugin `order`)."
+                },
+                "enableSiteMap": {
+                  "type": "boolean",
+                  "description": "Emit sitemap.xml. Default true."
+                },
+                "enableRSS": {
+                  "type": "boolean",
+                  "description": "Emit an RSS feed. Default true."
+                },
+                "rssLimit": {
+                  "type": "number",
+                  "description": "Maximum number of RSS items. Default 10."
+                },
+                "rssFullHtml": {
+                  "type": "boolean",
+                  "description": "Full page HTML in RSS items. Default false."
+                },
+                "rssSlug": {
+                  "type": "string",
+                  "description": "RSS feed slug (index \u2192 index.xml). Default index."
+                },
+                "includeEmptyFiles": {
+                  "type": "boolean",
+                  "description": "Include pages without text. Default true."
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -316,8 +481,13 @@
               },
               "wrap": {
                 "oneOf": [
-                  { "type": "string", "enum": ["nowrap", "wrap", "wrap-reverse"] },
-                  { "type": "boolean" }
+                  {
+                    "type": "string",
+                    "enum": ["nowrap", "wrap", "wrap-reverse"]
+                  },
+                  {
+                    "type": "boolean"
+                  }
                 ],
                 "description": "Flex wrap"
               },

@@ -23,6 +23,7 @@ import { randomIdNonSecure } from "./util/random"
 import { ChangeEvent } from "./plugins/types"
 import { minimatch } from "minimatch"
 import { formatLayoutReport, getLayoutReport } from "./plugins/loader/layoutReport"
+import { getBuiltinPlan } from "./plugins/loader/config-loader"
 
 function reportSlugCollisions(content: ProcessedContent[]): void {
   const collisions = detectSlugCollisions(content)
@@ -73,6 +74,15 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
     console.log(`  Filters: ${pluginNames("filters").join(", ")}`)
     console.log(`  Emitters: ${pluginNames("emitters").join(", ")}`)
     console.log(`  PageTypes: ${pluginNames("pageTypes").join(", ")}`)
+    const builtinPlan = getBuiltinPlan()
+    if (builtinPlan) {
+      console.log(`  Built-ins:`)
+      for (const b of builtinPlan.builtins) {
+        const state = b.enabled ? `on (order ${b.order})` : `off — ${b.note ?? "disabled"}`
+        const from = b.absorbed?.enabled ? " · options from its former plugin entry" : ""
+        console.log(`    configuration.${b.spec.configKey}: ${state}${b.enabled ? from : ""}`)
+      }
+    }
     const pageTypes = (cfg.plugins.pageTypes ?? []).map((pt) => {
       const { name, layout, frame } = pt as { name: string; layout?: unknown; frame?: unknown }
       return {

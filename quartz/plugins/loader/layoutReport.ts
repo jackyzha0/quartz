@@ -124,7 +124,7 @@ export function getLayoutReport(): LayoutReport {
 
 /** Print layout warnings once per process (main thread only; workers re-load the config). */
 export function printLayoutWarnings(warnings: string[]): void {
-  if (!isMainThread) return
+  if (!isMainThread || process.env.QUARTZ_CONFIG_QUIET === "1") return
   for (const w of warnings) {
     if (printedWarnings.has(w)) continue
     printedWarnings.add(w)

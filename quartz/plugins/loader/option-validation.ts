@@ -41,6 +41,7 @@ export function collectPluginConfigWarnings(
 }
 
 export function printPluginConfigWarnings(warnings: PluginConfigWarning[]): void {
+  if (process.env.QUARTZ_CONFIG_QUIET === "1") return
   for (const { plugin, message } of warnings) {
     console.warn(
       styleText("yellow", `⚠`) + ` quartz.config.yaml: ${styleText("cyan", plugin)}: ${message}`,

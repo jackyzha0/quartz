@@ -5,7 +5,7 @@
  * query, browser globals, document events, CSS variables and emitted files such as
  * `static/contentIndex.json`. This module lets a plugin *declare* what it provides and what it
  * needs, and checks the enabled plugin set at build time so a missing provider produces a clear
- * warning ("backlinks requires data "links" … enable crawl-links") instead of a silently empty
+ * warning ("backlinks requires data "links" … enable configuration.links") instead of a silently empty
  * component or a runtime TypeError.
  *
  * Fully opt-in and backwards compatible:
@@ -238,7 +238,12 @@ export function checkCapabilities(
           // Named provider enabled → trust it even if it predates capability declarations.
           if (req.from.some((name) => enabledNames.has(name))) continue
 
-          const candidates = new Set<string>(req.from)
+          // A `from` name that is now an (available) built-in is suggested under its new name.
+          const renamed = (name: string) =>
+            parsedAvailable.find(
+              (o) => o.plugin.name === name || (o.plugin.aliases ?? []).includes(name),
+            )?.plugin.name ?? name
+          const candidates = new Set<string>(req.from.map(renamed))
           for (const other of parsedAvailable) {
             const names = other.capabilities?.provides?.[kind] ?? []
             if (names.some((n) => normalize(kind, n) === normalize(kind, req.name))) {
@@ -298,6 +303,8 @@ export async function validatePluginCapabilities<E extends { enabled: boolean }>
     entry: E,
   ) => Promise<ManifestLike | null | undefined> | ManifestLike | null | undefined
   configuration?: { enableSPA?: boolean }
+  /** Built-in processing steps (see plugins/builtins): enabled ones provide, others are suggested. */
+  builtins?: { enabled: CapabilityPlugin[]; available: CapabilityPlugin[] }
 }): Promise<CapabilityReport> {
   const toPlugin = async (entry: E): Promise<CapabilityPlugin> => {
     let manifest: ManifestLike | null | undefined
@@ -316,20 +323,29 @@ export async function validatePluginCapabilities<E extends { enabled: boolean }>
     }
   }
 
-  const enabled = await Promise.all(args.entries.filter((e) => e.enabled).map(toPlugin))
+  const enabled = [
+    ...(args.builtins?.enabled ?? []),
+    ...(await Promise.all(args.entries.filter((e) => e.enabled).map(toPlugin))),
+  ]
   const core = coreCapabilities(args.configuration)
   const first = checkCapabilities(enabled, { core })
   if (first.missing.length === 0) return first
 
-  const available = await Promise.all(args.entries.filter((e) => !e.enabled).map(toPlugin))
+  const available = [
+    ...(args.builtins?.available ?? []),
+    ...(await Promise.all(args.entries.filter((e) => !e.enabled).map(toPlugin))),
+  ]
   return checkCapabilities(enabled, { core, available })
 }
 
-const printedWarnings = new Set<string>()
+// Process-wide: this module can be loaded as several copies (CLI + bundled build).
+const printedWarnings: Set<string> = ((globalThis as Record<symbol, unknown>)[
+  Symbol.for("quartz.printedCapabilityWarnings")
+] ??= new Set<string>()) as Set<string>
 
 /** Print capability warnings once per process (main thread only; workers re-load the config). */
 export function printCapabilityWarnings(report: CapabilityReport): void {
-  if (!isMainThread) return
+  if (!isMainThread || process.env.QUARTZ_CONFIG_QUIET === "1") return
   for (const w of report.warnings) {
     if (printedWarnings.has(w)) continue
     printedWarnings.add(w)
