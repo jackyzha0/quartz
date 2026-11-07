@@ -24,6 +24,10 @@ import { Features, transform } from "lightningcss"
 import { transform as transpile } from "esbuild"
 import { write } from "./helpers"
 
+/**
+ * Content hash for cache-busting file names (`postscript-<hash>.js`). Not a password or security
+ * hash: code scanners flagging a "weak hash" here can be dismissed (#2571).
+ */
 function hashContent(content: string | Buffer): string {
   return createHash("sha256").update(content).digest("hex").slice(0, 8)
 }

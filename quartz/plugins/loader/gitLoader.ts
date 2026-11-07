@@ -1,6 +1,15 @@
 import fs from "fs"
 import path from "path"
-import { execSync } from "child_process"
+import {
+  assertCommit,
+  assertNpmSpec,
+  assertRef,
+  assertRepoUrl,
+  git as runGit,
+  jsString,
+  isIdentifier,
+  npm,
+} from "../../cli/subprocess.js"
 import git from "isomorphic-git"
 import http from "isomorphic-git/http/node"
 import { styleText } from "util"
@@ -63,17 +72,27 @@ export function readLockedCommit(
   }
 }
 
+/** `git clone --depth 1 [--branch <ref>] -- <repo> <dir>`, with ref and repo validated. */
+export function cloneArgs(repo: string, ref: string | undefined, dir: string): string[] {
+  return [
+    "clone",
+    "--depth",
+    "1",
+    ...(ref ? ["--branch", assertRef(ref)] : []),
+    "--",
+    assertRepoUrl(repo),
+    dir,
+  ]
+}
+
 /** Move a fresh shallow clone to the lockfile-pinned commit. Warns (and keeps the tip) on failure. */
 function checkoutLockedCommit(dir: string, commit: string, name: string): void {
   try {
-    const head = execSync("git rev-parse HEAD", { cwd: dir, encoding: "utf-8" }).trim()
+    assertCommit(commit)
+    const head = runGit(["rev-parse", "HEAD"], { cwd: dir }).trim()
     if (head === commit) return
-    execSync(`git fetch --depth 1 origin ${commit}`, {
-      cwd: dir,
-      stdio: "pipe",
-      timeout: GIT_TIMEOUT_MS,
-    })
-    execSync(`git checkout --quiet ${commit}`, { cwd: dir, stdio: "pipe", timeout: 60_000 })
+    runGit(["fetch", "--depth", "1", "origin", commit], { cwd: dir, timeout: GIT_TIMEOUT_MS })
+    runGit(["checkout", "--quiet", commit], { cwd: dir, timeout: 60_000 })
   } catch {
     console.warn(
       styleText("yellow", `⚠`) +
@@ -273,7 +292,7 @@ export function installNativeDeps(
     }
 
     if (uniqueRanges.length === 1) {
-      installArgs.push(`${pkg}@${JSON.stringify(uniqueRanges[0])}`)
+      installArgs.push(assertNpmSpec(`${pkg}@${uniqueRanges[0]}`))
     } else {
       if (options.verbose) {
         console.warn(
@@ -282,7 +301,7 @@ export function installNativeDeps(
         )
       }
       // Use first range; npm will fail if truly incompatible
-      installArgs.push(`${pkg}@${JSON.stringify(uniqueRanges[0])}`)
+      installArgs.push(assertNpmSpec(`${pkg}@${uniqueRanges[0]}`))
     }
   }
 
@@ -296,7 +315,7 @@ export function installNativeDeps(
   }
 
   try {
-    execSync(`npm install --no-save ${installArgs.join(" ")}`, {
+    npm(["install", "--no-save", ...installArgs], {
       cwd: process.cwd(),
       stdio: options.verbose ? "inherit" : "pipe",
       timeout: 120_000,
@@ -434,7 +453,7 @@ function buildInstalledPlugin(pluginDir: string, name: string, verbose?: boolean
     if (verbose) {
       console.log(styleText("cyan", `→`), `${name}: installing dependencies...`)
     }
-    execSync("npm install --ignore-scripts", {
+    npm(["install", "--ignore-scripts"], {
       cwd: pluginDir,
       stdio: verbose ? "inherit" : "pipe",
       timeout: 120_000,
@@ -444,14 +463,14 @@ function buildInstalledPlugin(pluginDir: string, name: string, verbose?: boolean
       if (verbose) {
         console.log(styleText("cyan", `→`), `${name}: building...`)
       }
-      execSync("npm run build", {
+      npm(["run", "build"], {
         cwd: pluginDir,
         stdio: verbose ? "inherit" : "pipe",
         timeout: 120_000,
       })
     }
 
-    execSync("npm prune --omit=dev", {
+    npm(["prune", "--omit=dev"], {
       cwd: pluginDir,
       stdio: verbose ? "inherit" : "pipe",
       timeout: 60_000,
@@ -576,11 +595,7 @@ export async function installPlugin(
       fs.rmSync(tmpDir, { recursive: true })
     }
 
-    const branchArg = spec.ref ? ` --branch ${spec.ref}` : ""
-    execSync(`git clone --depth 1${branchArg} "${spec.repo}" "${tmpDir}"`, {
-      stdio: "pipe",
-      timeout: GIT_TIMEOUT_MS,
-    })
+    runGit(cloneArgs(spec.repo, spec.ref, tmpDir), { timeout: GIT_TIMEOUT_MS })
     const locked = readLockedCommit(spec)
     if (locked) checkoutLockedCommit(tmpDir, locked, spec.name)
 
@@ -593,11 +608,7 @@ export async function installPlugin(
     fs.renameSync(subdirPath, pluginDir)
     fs.rmSync(tmpDir, { recursive: true })
   } else {
-    const branchArg = spec.ref ? ` --branch ${spec.ref}` : ""
-    execSync(`git clone --depth 1${branchArg} "${spec.repo}" "${pluginDir}"`, {
-      stdio: "pipe",
-      timeout: GIT_TIMEOUT_MS,
-    })
+    runGit(cloneArgs(spec.repo, spec.ref, pluginDir), { timeout: GIT_TIMEOUT_MS })
     const locked = readLockedCommit(spec)
     if (locked) checkoutLockedCommit(pluginDir, locked, spec.name)
   }
@@ -1037,7 +1048,11 @@ export async function regeneratePluginIndex(
     const passthrough = named.filter((n) => !isOverridableExport(n, dtsContent))
 
     if (overridable.length > 0 || passthrough.length > 0 || types.length > 0) {
-      pluginExports.set(pluginName, { overridable, passthrough, types })
+      pluginExports.set(pluginName, {
+        overridable: overridable.filter(isIdentifier),
+        passthrough: passthrough.filter(isIdentifier),
+        types: types.filter(isIdentifier),
+      })
       importPath.set(pluginName, `./${pluginName}`)
       for (const n of [...overridable, ...passthrough]) {
         nameCount.set(n, (nameCount.get(n) ?? 0) + 1)
@@ -1095,7 +1110,11 @@ export async function regeneratePluginIndex(
 
     const key = npmPkg.replace(/^@/, "").replace(/\//g, "__")
     if (overridable.length > 0 || passthrough.length > 0 || types.length > 0) {
-      pluginExports.set(key, { overridable, passthrough, types })
+      pluginExports.set(key, {
+        overridable: overridable.filter(isIdentifier),
+        passthrough: passthrough.filter(isIdentifier),
+        types: types.filter(isIdentifier),
+      })
       importPath.set(key, npmPkg)
       for (const n of [...overridable, ...passthrough]) {
         nameCount.set(n, (nameCount.get(n) ?? 0) + 1)
@@ -1111,15 +1130,17 @@ export async function regeneratePluginIndex(
 
   for (const [pluginKey, { types }] of pluginExports) {
     if (types.length > 0) {
-      lines.push(`export type { ${types.join(", ")} } from "${importPath.get(pluginKey)}"`)
+      const safe = types.filter(isIdentifier)
+      if (safe.length > 0)
+        lines.push(`export type { ${safe.join(", ")} } from ${jsString(importPath.get(pluginKey))}`)
     }
   }
 
   for (const [pluginKey, { passthrough }] of pluginExports) {
     if (passthrough.length === 0) continue
-    const unique = passthrough.filter((n) => (nameCount.get(n) ?? 0) === 1)
+    const unique = passthrough.filter((n) => (nameCount.get(n) ?? 0) === 1 && isIdentifier(n))
     if (unique.length > 0) {
-      lines.push(`export { ${unique.join(", ")} } from "${importPath.get(pluginKey)}"`)
+      lines.push(`export { ${unique.join(", ")} } from ${jsString(importPath.get(pluginKey))}`)
     }
   }
   lines.push("")
@@ -1130,11 +1151,10 @@ export async function regeneratePluginIndex(
   )
   for (const [pluginName, { overridable }] of pluginExports) {
     if (overridable.length === 0) continue
-    const escapedName = pluginName.replace(/"/g, '\\"')
-    lines.push(`  "${escapedName}": {`)
+    lines.push(`  ${jsString(pluginName)}: {`)
     for (const n of overridable) {
       lines.push(
-        `    ${n}: (...args: unknown[]) => { componentRegistry.setOptionOverrides("${escapedName}", args[0] as Record<string, unknown>); },`,
+        `    ${n}: (...args: unknown[]) => { componentRegistry.setOptionOverrides(${jsString(pluginName)}, args[0] as Record<string, unknown>); },`,
       )
     }
     lines.push(`  },`)
@@ -1150,9 +1170,8 @@ export async function regeneratePluginIndex(
     const conflicting = overridable.filter((n) => (nameCount.get(n) ?? 0) > 1)
 
     if (unique.length > 0) {
-      const escapedName = pluginName.replace(/"/g, '\\"')
       for (const n of unique) {
-        lines.push(`export const ${n} = plugins["${escapedName}"].${n}`)
+        lines.push(`export const ${n} = plugins[${jsString(pluginName)}].${n}`)
       }
     }
 

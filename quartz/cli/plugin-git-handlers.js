@@ -1,8 +1,7 @@
 import fs from "fs"
 import path from "path"
 import os from "os"
-import { exec as execCb, execSync } from "child_process"
-import { styleText, promisify } from "util"
+import { styleText } from "util"
 import {
   readPluginsJson,
   writePluginsJson,
@@ -43,6 +42,17 @@ import {
   readQuartzVersion,
 } from "./compat.js"
 import {
+  assertCommit,
+  assertNpmSpec,
+  assertRef,
+  assertRepoUrl,
+  gitAsync,
+  isIdentifier,
+  jsString,
+  npm,
+  npmAsync,
+} from "./subprocess.js"
+import {
   builtinMessage,
   describeBuiltins,
   findBuiltinMigrations,
@@ -51,8 +61,6 @@ import {
 } from "./builtin-migration.js"
 
 const INTERNAL_EXPORTS = new Set(["manifest", "default"])
-
-const execAsync = promisify(execCb)
 
 /** Mark the current CLI invocation as failed (non-zero exit) without aborting. */
 function markFailed() {
@@ -140,19 +148,41 @@ function readEntryPackageJson(source) {
   }
 }
 
+/** `git ls-remote <repo> <ref or HEAD>` for a lockfile entry. */
+function lsRemote(entry) {
+  const ref = entry.ref ? `refs/heads/${assertRef(entry.ref)}` : "HEAD"
+  return gitAsync(["ls-remote", assertRepoUrl(entry.resolved), ref])
+}
+
 /** Shallow-clone `url` into `dir`, then move to `commit` if it is not the tip. */
 async function cloneAtCommitAsync({ url, ref, commit, dir }) {
-  const branchArg = ref ? ` --branch ${ref}` : ""
-  await execAsync(`git clone --depth 1${branchArg} "${url}" "${dir}"`)
+  await gitAsync([
+    "clone",
+    "--depth",
+    "1",
+    ...(ref ? ["--branch", assertRef(ref)] : []),
+    "--",
+    assertRepoUrl(url),
+    dir,
+  ])
   if (commit && commit !== "unknown" && commit !== "local") {
-    const { stdout } = await execAsync("git rev-parse HEAD", { cwd: dir })
+    const { stdout } = await gitAsync(["rev-parse", "HEAD"], { cwd: dir })
     if (stdout.trim() !== commit) {
-      await execAsync(`git fetch --depth 1 origin ${commit}`, { cwd: dir })
-      await execAsync(`git checkout --quiet ${commit}`, { cwd: dir })
+      await checkoutPinnedCommitAsync(dir, commit)
     }
   }
-  const { stdout } = await execAsync("git rev-parse HEAD", { cwd: dir })
+  const { stdout } = await gitAsync(["rev-parse", "HEAD"], { cwd: dir })
   return stdout.trim()
+}
+
+/**
+ * Move a shallow clone to a pinned commit. The commit is fetched by SHA (GitHub and most hosts
+ * allow fetching reachable commits), so a pin that is no longer the branch tip works (#2559).
+ */
+async function checkoutPinnedCommitAsync(dir, commit) {
+  assertCommit(commit)
+  await gitAsync(["fetch", "--depth", "1", "origin", commit], { cwd: dir })
+  await gitAsync(["checkout", "--quiet", commit], { cwd: dir })
 }
 
 /**
@@ -191,12 +221,12 @@ async function buildPluginAsync(pluginDir, name) {
   try {
     const skipBuild = !needsBuild(pluginDir)
     console.log(styleText("cyan", `  → ${name}: installing dependencies...`))
-    await execAsync("npm install --ignore-scripts", { cwd: pluginDir })
+    await npmAsync(["install", "--ignore-scripts"], { cwd: pluginDir })
     if (!skipBuild) {
       console.log(styleText("cyan", `  → ${name}: building...`))
-      await execAsync("npm run build", { cwd: pluginDir })
+      await npmAsync(["run", "build"], { cwd: pluginDir })
     }
-    await execAsync("npm prune --omit=dev", { cwd: pluginDir })
+    await npmAsync(["prune", "--omit=dev"], { cwd: pluginDir })
     linkPeerPlugins(pluginDir)
     if (!hasLoadableEntryPoint(pluginDir)) {
       console.log(
@@ -416,7 +446,11 @@ async function regeneratePluginIndex() {
     const passthrough = named.filter((n) => !isOverridableExport(n, dtsContent))
 
     if (overridable.length > 0 || passthrough.length > 0 || types.length > 0) {
-      pluginExports.set(pluginName, { overridable, passthrough, types })
+      pluginExports.set(pluginName, {
+        overridable: overridable.filter(isIdentifier),
+        passthrough: passthrough.filter(isIdentifier),
+        types: types.filter(isIdentifier),
+      })
       for (const n of [...overridable, ...passthrough]) {
         nameCount.set(n, (nameCount.get(n) ?? 0) + 1)
       }
@@ -432,7 +466,7 @@ async function regeneratePluginIndex() {
   // Type re-exports
   for (const [pluginName, { types }] of pluginExports) {
     if (types.length > 0) {
-      lines.push(`export type { ${types.join(", ")} } from "./${pluginName}"`)
+      lines.push(`export type { ${types.join(", ")} } from ${jsString(`./${pluginName}`)}`)
     }
   }
 
@@ -441,7 +475,7 @@ async function regeneratePluginIndex() {
     if (passthrough.length === 0) continue
     const unique = passthrough.filter((n) => (nameCount.get(n) ?? 0) === 1)
     if (unique.length > 0) {
-      lines.push(`export { ${unique.join(", ")} } from "./${pluginName}"`)
+      lines.push(`export { ${unique.join(", ")} } from ${jsString(`./${pluginName}`)}`)
     }
   }
   lines.push("")
@@ -452,11 +486,10 @@ async function regeneratePluginIndex() {
   )
   for (const [pluginName, { overridable }] of pluginExports) {
     if (overridable.length === 0) continue
-    const escapedName = pluginName.replace(/"/g, '\\"')
-    lines.push(`  "${escapedName}": {`)
+    lines.push(`  ${jsString(pluginName)}: {`)
     for (const n of overridable) {
       lines.push(
-        `    ${n}: (...args: unknown[]) => { componentRegistry.setOptionOverrides("${escapedName}", args[0] as Record<string, unknown>); },`,
+        `    ${n}: (...args: unknown[]) => { componentRegistry.setOptionOverrides(${jsString(pluginName)}, args[0] as Record<string, unknown>); },`,
       )
     }
     lines.push(`  },`)
@@ -472,9 +505,8 @@ async function regeneratePluginIndex() {
     const conflicting = overridable.filter((n) => (nameCount.get(n) ?? 0) > 1)
 
     if (unique.length > 0) {
-      const escapedName = pluginName.replace(/"/g, '\\"')
       for (const n of unique) {
-        lines.push(`export const ${n} = plugins["${escapedName}"].${n}`)
+        lines.push(`export const ${n} = plugins[${jsString(pluginName)}].${n}`)
       }
     }
 
@@ -626,8 +658,7 @@ export async function handlePluginInstallUnified({
         })
       }
 
-      const lsRemoteRef = row.entry.ref ? `refs/heads/${row.entry.ref}` : "HEAD"
-      return execAsync(`git ls-remote "${row.entry.resolved}" ${lsRemoteRef}`)
+      return lsRemote(row.entry)
         .then(({ stdout }) => {
           const latestCommit = stdout.split("\t")[0].trim()
           const isCurrent = latestCommit === row.entry.commit
@@ -693,10 +724,9 @@ export async function handlePluginInstallUnified({
       console.log()
       if (!dryRun) {
         try {
-          execSync(`npm install ${missingNpm.join(" ")}`, {
+          npm(["install", ...missingNpm.map(assertNpmSpec)], {
             cwd: process.cwd(),
             stdio: "inherit",
-            timeout: 600_000,
           })
           console.log(styleText("green", `✓ Installed ${missingNpm.length} npm plugin(s)`))
         } catch {
@@ -1198,14 +1228,15 @@ export async function handlePluginInstallUnified({
               console.log(styleText("gray", `✓ ${name} rebuilt (subdir: ${entry.subdir})`))
             }
           } else {
-            const fetchRef = entry.ref || ""
-            const resetTarget = entry.ref ? `origin/${entry.ref}` : "origin/HEAD"
-            await execAsync(`git fetch --depth 1 origin${fetchRef ? " " + fetchRef : ""}`, {
+            const fetchRef = entry.ref ? assertRef(entry.ref) : undefined
+            await gitAsync(["fetch", "--depth", "1", "origin", ...(fetchRef ? [fetchRef] : [])], {
               cwd: pluginDir,
             })
-            await execAsync(`git reset --hard ${resetTarget}`, { cwd: pluginDir })
+            await gitAsync(["reset", "--hard", fetchRef ? `origin/${fetchRef}` : "origin/HEAD"], {
+              cwd: pluginDir,
+            })
 
-            const { stdout } = await execAsync("git rev-parse HEAD", { cwd: pluginDir })
+            const { stdout } = await gitAsync(["rev-parse", "HEAD"], { cwd: pluginDir })
             const newCommit = stdout.trim()
             if (newCommit !== entry.commit) {
               entry.commit = newCommit
@@ -1384,9 +1415,9 @@ export async function handlePluginInstallUnified({
       try {
         if (action === "update") {
           console.log(styleText("cyan", `  → ${name}: updating to ${entry.commit.slice(0, 7)}...`))
-          const fetchRef = entry.ref ? ` ${entry.ref}` : ""
-          await execAsync(`git fetch --depth 1 origin${fetchRef}`, { cwd: pluginDir })
-          await execAsync(`git reset --hard ${entry.commit}`, { cwd: pluginDir })
+          // fetch the pinned commit itself: it need not be the branch tip (#2559)
+          await checkoutPinnedCommitAsync(pluginDir, entry.commit)
+          await gitAsync(["reset", "--hard", entry.commit], { cwd: pluginDir })
           pluginsToBuild.push({ name, pluginDir })
           installed++
         } else {
@@ -1558,7 +1589,7 @@ export async function handlePluginAdd(
           continue
         }
         console.log(styleText("cyan", `→ Installing ${name} from npm...`))
-        execSync(`npm install ${parsed.name}`, { cwd: process.cwd(), stdio: "inherit" })
+        npm(["install", assertNpmSpec(parsed.name)], { cwd: process.cwd(), stdio: "inherit" })
         const configSource = nameOverride ? { repo: parsed.name, name: nameOverride } : parsed.name
         const pluginDir = path.join(process.cwd(), "node_modules", ...parsed.name.split("/"))
         addedPlugins.push({ name, pluginDir, source: parsed.name, configSource, npm: true })
@@ -2375,8 +2406,7 @@ export async function handlePluginStatus() {
       })
     }
 
-    const lsRemoteRef = row.entry.ref ? `refs/heads/${row.entry.ref}` : "HEAD"
-    return execAsync(`git ls-remote "${row.entry.resolved}" ${lsRemoteRef}`)
+    return lsRemote(row.entry)
       .then(({ stdout }) => {
         const latestCommit = stdout.split("\t")[0].trim()
         const status = latestCommit === row.entry.commit ? "up_to_date" : "update_available"

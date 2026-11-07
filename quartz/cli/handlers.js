@@ -17,6 +17,7 @@ import { randomUUID } from "crypto"
 import { Mutex } from "async-mutex"
 import { CreateArgv } from "./args.js"
 import { describeQuartzCheckout } from "./compat.js"
+import { git } from "./subprocess.js"
 import { globby } from "globby"
 import {
   exitIfCancel,
@@ -305,9 +306,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
   await handlePluginResolve()
 
   // setup remote
-  execSync(`git remote show upstream || git remote add upstream ${QUARTZ_SOURCE_REPO}`, {
-    stdio: "ignore",
-  })
+  ensureUpstreamRemote()
 
   outro(`You're all set! Not sure what to do next? Try:
   • Customizing Quartz a bit more by editing \`quartz.config.yaml\`
@@ -611,6 +610,15 @@ export async function handleBuild(argv) {
   }
 }
 
+/** Add the `upstream` remote (the official Quartz repository) unless it exists. */
+function ensureUpstreamRemote() {
+  try {
+    git(["remote", "get-url", UPSTREAM_NAME])
+  } catch {
+    git(["remote", "add", UPSTREAM_NAME, QUARTZ_SOURCE_REPO])
+  }
+}
+
 /**
  * Handles `npx quartz upgrade`
  * Upgrades the Quartz framework itself by pulling latest changes from upstream.
@@ -621,7 +629,7 @@ export async function handleUpgrade(argv) {
   console.log(`\n${styleText(["bgGreen", "black"], ` Quartz v${version} `)} \n`)
   const fromCommit = describeQuartzCheckout().commit
   console.log("Backing up your content")
-  execSync(`git remote show upstream || git remote add upstream ${QUARTZ_SOURCE_REPO}`)
+  ensureUpstreamRemote()
   await stashContentFolder(contentFolder)
 
   const lockfileBackup = LOCKFILE_PATH + ".bak"
@@ -642,7 +650,7 @@ export async function handleUpgrade(argv) {
     if (hasLockfile) {
       try {
         fs.copyFileSync(lockfileBackup, LOCKFILE_PATH)
-        execSync(`git add ${LOCKFILE_PATH}`)
+        git(["add", "--", LOCKFILE_PATH])
         const remaining = execSync("git diff --name-only --diff-filter=U", {
           encoding: "utf-8",
         }).trim()
