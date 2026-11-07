@@ -49,7 +49,17 @@ This part of the configuration concerns anything that can affect the whole site.
 - `theme`: configure how the site looks.
   - `fontOrigin`: where to load fonts from.
     - `"googleFonts"` (default): loads fonts from Google Fonts API. Fastest option, especially with CDN caching enabled.
-    - `"local"`: downloads fonts and serves them from your site. Fully self-contained with no external requests.
+    - `"local"`: Quartz loads no fonts at all; you provide them. The `typography` names are still used as the font families, so declare matching `@font-face` rules in `quartz/styles/custom.scss` and put the font files in `quartz/static/fonts/` (served at `static/fonts/`):
+
+      ```scss title="quartz/styles/custom.scss"
+      @font-face {
+        font-family: "Inter";
+        src: url("static/fonts/Inter.woff2") format("woff2");
+        font-display: swap;
+      }
+      ```
+
+      Use a path relative to the site root like above (no leading `/`) so it also works when the site is served from a subpath. To have Quartz download Google Fonts at build time and serve them from your site instead, use the [[plugins/Fonts|Fonts]] plugin with `fontOrigin: selfHosted`.
   - `cdnCaching`: if `true` (default), use Google CDN to cache the fonts. This will generally be faster. Disable (`false`) this if you want Quartz to download the fonts to be self-contained.
   - `typography`: what fonts to use. Any font available on [Google Fonts](https://fonts.google.com/) works here.
     - `title`: font for the title of the site (optional, same as `header` by default)
