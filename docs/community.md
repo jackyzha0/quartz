@@ -36,7 +36,7 @@ Custom themes, CSS snippets, and starter templates for Quartz sites.
 <!-- Add templates/themes here -->
 <!-- Format: - **[Name](link)** — Brief description -->
 
-_No community templates listed yet._
+- **[Field Notes](https://github.com/oswarren/quartz-field-notes)** — A warm, single-column reading theme with book margins, a designed dark mode, and a one-command installer that can restore your original files.
 
 ## Guides & Tutorials
 
