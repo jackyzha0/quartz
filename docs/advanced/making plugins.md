@@ -61,6 +61,8 @@ my-plugin/
 
 The plugin's `package.json` should declare dependencies on `@quartz-community/types` (for type definitions) and optionally `@quartz-community/utils` (for shared utilities).
 
+If your plugin reads data, DOM elements, globals or files produced by another plugin (or provides them), declare that in `quartz.capabilities` so Quartz can warn when the provider is disabled. See [[plugin capabilities]].
+
 ## Plugin Types
 
 ## Choosing a Plugin Type

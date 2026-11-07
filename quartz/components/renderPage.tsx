@@ -72,7 +72,13 @@ export function pageResources(
   })
 
   const contentIndexPath = joinSegments(baseDir, "static/contentIndex.json")
-  const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`
+  // static/contentIndex.json is emitted by the content-index plugin, which may be disabled.
+  // Resolve to an empty index instead of rejecting so consumers (search, explorer, graph, …)
+  // degrade gracefully rather than throwing uncaught errors on every page.
+  const contentIndexScript =
+    `const fetchData = fetch("${contentIndexPath}")` +
+    `.then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json() })` +
+    `.catch(e => { console.warn("[Quartz] Could not load ${contentIndexPath} (" + e.message + "); is the content-index plugin enabled?"); return {} })`
 
   const resources: StaticResources = {
     css: [
