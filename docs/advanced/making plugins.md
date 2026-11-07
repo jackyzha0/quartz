@@ -447,6 +447,15 @@ emit: async (ctx, content) => {
 
 Built-in settings are available too, with defaults and migrated options applied: `ctx.cfg.configuration.links.markdownLinkResolution`, `ctx.cfg.configuration.contentIndex.enableRSS`, … Both need Quartz 5.1+ — declare `"quartzVersion": ">=5.1.0"` (see [[versioning#For plugin authors]]).
 
+### Components in sidebars
+
+Sidebars have three modes ([[layout#Sidebar modes|`layout.sidebars`]]), set on the sidebar element as `data-sidebar-mode`:
+
+- In `fit` (the default) a sidebar is exactly one screen tall and doesn't scroll. A component that can grow (a list, a tree) must be able to shrink: give it `min-height: 0` and its own scroll area (`overflow-y: auto`), or it pushes the components below it out of reach.
+- In `scroll` and `static`, core gives every sidebar component its natural height (`flex-shrink: 0`); nothing extra is needed.
+
+To behave differently per mode, target it in your stylesheet, e.g. `.sidebar[data-sidebar-mode="fit"] .my-list { max-height: 40vh; }`. Custom frames with sidebars should put the `sidebars` prop on their sidebar elements the same way.
+
 ### Providing Custom Frames
 
 Plugins can ship their own [[layout#Page Frames|page frames]] — custom page layouts that control how the HTML structure (sidebars, header, content area, footer) is arranged. This is useful for page types that need fundamentally different layouts (e.g. a fullscreen canvas, a presentation mode, a dashboard).

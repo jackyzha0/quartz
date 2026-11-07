@@ -339,7 +339,7 @@
                 },
                 "rssSlug": {
                   "type": "string",
-                  "description": "RSS feed slug (index \u2192 index.xml). Default index."
+                  "description": "RSS feed slug (index → index.xml). Default index."
                 },
                 "includeEmptyFiles": {
                   "type": "boolean",
@@ -505,6 +505,21 @@
           },
           "description": "Layout groups configuration"
         },
+        "sidebars": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "How each sidebar handles content taller than the screen: fit (default; one screen tall, components shrink and scroll), scroll (stays in view, scrolls itself), static (scrolls away with the page).",
+          "properties": {
+            "left": {
+              "enum": ["fit", "scroll", "static"],
+              "description": "Left sidebar mode"
+            },
+            "right": {
+              "enum": ["fit", "scroll", "static"],
+              "description": "Right sidebar mode"
+            }
+          }
+        },
         "byPageType": {
           "type": "object",
           "additionalProperties": {
@@ -552,6 +567,21 @@
               "template": {
                 "type": "string",
                 "description": "Page frame to use for this page type (e.g. default, full-width, minimal)"
+              },
+              "sidebars": {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "Sidebar modes for this page type (merged over layout.sidebars).",
+                "properties": {
+                  "left": {
+                    "enum": ["fit", "scroll", "static"],
+                    "description": "Left sidebar mode"
+                  },
+                  "right": {
+                    "enum": ["fit", "scroll", "static"],
+                    "description": "Right sidebar mode"
+                  }
+                }
               }
             }
           },

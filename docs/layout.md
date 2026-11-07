@@ -273,6 +273,23 @@ Frames are applied as a `data-frame` attribute on the `.page` element, which you
 
 Frame CSS should be scoped with `[data-frame="name"]` selectors to avoid conflicts with other frames.
 
+### Sidebar modes
+
+`layout.sidebars` sets how each sidebar handles content taller than the screen:
+
+```yaml title="quartz.config.yaml"
+layout:
+  sidebars:
+    left: static
+    right: fit
+```
+
+- `fit` (default): the sidebar stays in view and is exactly one screen tall. Its components shrink and scroll themselves (the explorer and table of contents get their own scroll area).
+- `scroll`: the sidebar stays in view, and scrolls itself when its components are taller than the screen. Components take their natural height, so nothing can end up out of reach.
+- `static`: the sidebar scrolls away with the page, like most documentation sites. The [[create#Templates|docs template]] uses this for both sidebars.
+
+The modes apply where a sidebar is a column: the left sidebar above mobile width, the right sidebar on desktop. A page type can override them with `byPageType.<type>.sidebars`, merged over `layout.sidebars`.
+
 ### Layout breakpoints
 
 Quartz has different layouts depending on the width the screen viewing the website.

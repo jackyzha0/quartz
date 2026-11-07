@@ -183,11 +183,15 @@ export interface PageTypeLayoutOverride {
   positions?: Partial<Record<LayoutPosition, PluginLayoutDeclaration[]>>
   /** Override the page frame template (e.g. "default", "full-width", "minimal") */
   template?: string
+  /** Override sidebar modes for this page type (merged over `layout.sidebars`) */
+  sidebars?: { left?: string; right?: string }
 }
 
 /** Top-level layout section of quartz.config.yaml */
 export interface LayoutConfig {
   groups?: Record<string, FlexGroupConfig>
+  /** How each sidebar handles content taller than the screen: fit (default), scroll, static */
+  sidebars?: { left?: string; right?: string }
   byPageType?: Record<string, PageTypeLayoutOverride>
 }
 

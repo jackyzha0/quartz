@@ -6,15 +6,15 @@ The `create` command initializes a new Quartz project. It helps you set up your 
 
 ## Flags
 
-| Flag          | Shorthand | Description                                                           |
-| ------------- | --------- | --------------------------------------------------------------------- |
-| `--template`  | `-t`      | Configuration template (`default`, `obsidian`, `ttrpg`, or `blog`)    |
-| `--directory` | `-d`      | The directory where Quartz will be initialized                        |
-| `--source`    | `-s`      | The source directory of your Markdown files                           |
-| `--strategy`  | `-X`      | How to handle the source files (`new`, `copy`, or `symlink`)          |
-| `--links`     | `-l`      | How to resolve internal links (`absolute`, `shortest`, or `relative`) |
-| `--baseUrl`   | `-b`      | Base URL for your site (e.g. `mysite.github.io/quartz`)               |
-| `--verbose`   | `-v`      | Enable detailed logging                                               |
+| Flag          | Shorthand | Description                                                                |
+| ------------- | --------- | -------------------------------------------------------------------------- |
+| `--template`  | `-t`      | Configuration template (`default`, `obsidian`, `ttrpg`, `blog`, or `docs`) |
+| `--directory` | `-d`      | The directory where Quartz will be initialized                             |
+| `--source`    | `-s`      | The source directory of your Markdown files                                |
+| `--strategy`  | `-X`      | How to handle the source files (`new`, `copy`, or `symlink`)               |
+| `--links`     | `-l`      | How to resolve internal links (`absolute`, `shortest`, or `relative`)      |
+| `--baseUrl`   | `-b`      | Base URL for your site (e.g. `mysite.github.io/quartz`)                    |
+| `--verbose`   | `-v`      | Enable detailed logging                                                    |
 
 ## Templates
 
@@ -24,6 +24,7 @@ When you run `quartz create`, you can choose a configuration template that pre-c
 - **Obsidian**: Optimized for Obsidian vaults with full Obsidian Flavored Markdown support (wikilinks, callouts, mermaid diagrams, etc.). Automatically sets link resolution to `shortest` and skips the link resolution prompt.
 - **TTRPG**: Builds on the Obsidian template with the addition of the [Leaflet bases plugin](https://github.com/Requiae/quartz-leaflet-bases-plugin) and [ITS Theme](https://github.com/saberzero1/quartz-themes) (`its-theme.ttrpg-dnd`). Great for D&D and TTRPG wikis. Also skips the link resolution prompt.
 - **Blog**: A blog-focused setup with [recent notes](https://github.com/quartz-community/recent-notes) enabled (showing the 5 most recent posts with tags) and [comments](https://github.com/quartz-community/comments) enabled via giscus. You'll need to fill in the `TODO:` placeholder values in `quartz.config.yaml` with your own giscus repository details.
+- **Documentation**: The default setup with both sidebars set to scroll away with the page ([[layout#Sidebar modes|`layout.sidebars`]]: `static`), so long navigation and tables of contents are never cut off.
 
 ## Base URL
 
@@ -56,7 +57,7 @@ Quartz needs to know how to interpret the internal links in your Markdown files:
 
 If you run `npx quartz create` without any arguments, it will guide you through an interactive setup:
 
-1. **Choose a template**: Select a configuration template (`Default`, `Obsidian`, `TTRPG`, or `Blog`).
+1. **Choose a template**: Select a configuration template (`Default`, `Obsidian`, `TTRPG`, `Blog`, or `Documentation`).
 2. **Select a strategy**: Choose between `new`, `copy`, or `symlink`.
 3. **Enter base URL**: Provide the URL where your site will be hosted.
 4. **Select link resolution**: Choose how your links are formatted (skipped for Obsidian and TTRPG templates).

@@ -36,6 +36,8 @@ export function resolveLayout(
     right: overrides.right ?? sharedDefaults.right ?? [],
     footer: overrides.footer ?? sharedDefaults.footer ?? [],
     frame,
+    // layout.sidebars, with a page type's override merged per side
+    sidebars: { ...sharedDefaults.sidebars, ...overrides.sidebars },
   }
 }
 

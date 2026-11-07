@@ -147,6 +147,11 @@ export async function handleCreate(argv) {
             label: "Blog",
             hint: "recent notes and comments enabled for blogging",
           },
+          {
+            value: "docs",
+            label: "Documentation",
+            hint: "sidebars scroll with the page, for long navigation and tables of contents",
+          },
         ],
       }),
     )

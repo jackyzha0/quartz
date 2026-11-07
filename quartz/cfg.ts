@@ -168,6 +168,21 @@ export interface FullPageLayout {
   footer: QuartzComponent[]
   /** Page frame name (e.g. "default", "full-width", "minimal"). Defaults to "default". */
   frame?: string
+  /** How each sidebar handles content taller than the screen (`layout.sidebars`). */
+  sidebars?: SidebarModes
+}
+
+/**
+ * - `fit` (default): the sidebar stays in view and is exactly one screen tall; components shrink
+ *   and scroll themselves.
+ * - `scroll`: the sidebar stays in view and scrolls itself; components take their natural height.
+ * - `static`: the sidebar scrolls away with the page.
+ */
+export type SidebarMode = "fit" | "scroll" | "static"
+export const SIDEBAR_MODES: readonly SidebarMode[] = ["fit", "scroll", "static"]
+export interface SidebarModes {
+  left?: SidebarMode
+  right?: SidebarMode
 }
 
 export type PageLayout = Pick<FullPageLayout, "beforeBody" | "left" | "right">

@@ -462,7 +462,7 @@ export function createConfigFromDefault() {
   return rest
 }
 
-const VALID_TEMPLATES = ["default", "obsidian", "ttrpg", "blog"]
+const VALID_TEMPLATES = ["default", "obsidian", "ttrpg", "blog", "docs"]
 
 export function createConfigFromTemplate(templateName) {
   if (!VALID_TEMPLATES.includes(templateName)) {

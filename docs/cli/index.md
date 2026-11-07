@@ -20,7 +20,7 @@ You can run the CLI using `npx quartz`.
 
 ## Commands
 
-- [[create|create]]: Initialize a new Quartz project with a choice of templates (default, obsidian, ttrpg, blog) and base URL configuration.
+- [[create|create]]: Initialize a new Quartz project with a choice of templates (default, obsidian, ttrpg, blog, docs) and base URL configuration.
 - [[build|build]]: Build your Quartz site into static HTML. Includes a development server.
 - [[sync|sync]]: Push and pull changes between your local machine and GitHub.
 - [[upgrade|upgrade]]: Upgrade the Quartz framework to the latest version. Also available as `npx quartz update`.

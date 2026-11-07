@@ -4,6 +4,28 @@
 @use "./syntax.scss";
 @use "./callouts.scss";
 
+// layout.sidebars — how a sidebar handles content taller than the screen. `fit` (the default,
+// no rules here) keeps it exactly one screen tall: its components shrink and scroll themselves.
+@mixin sidebar-modes {
+  // stays in view, scrolls itself; components take their natural height
+  &[data-sidebar-mode="scroll"] {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    & > * {
+      flex-shrink: 0;
+    }
+  }
+  // scrolls away with the page
+  &[data-sidebar-mode="static"] {
+    position: static;
+    height: auto;
+    align-self: start;
+    & > * {
+      flex-shrink: 0;
+    }
+  }
+}
+
 html {
   scroll-behavior: smooth;
   text-size-adjust: none;
@@ -267,6 +289,19 @@ a {
         }
       }
     }
+    // sidebar modes apply where a sidebar is a column: the left one above mobile width, the
+    // right one on desktop (narrower layouts turn them into rows)
+    & .sidebar.left {
+      @media all and not ($mobile) {
+        @include sidebar-modes;
+      }
+    }
+    & .sidebar.right {
+      @media all and ($desktop) {
+        @include sidebar-modes;
+      }
+    }
+
     & .page-header,
     & .page-footer {
       margin-top: 1rem;

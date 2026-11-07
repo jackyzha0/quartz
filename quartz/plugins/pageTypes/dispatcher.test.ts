@@ -30,6 +30,17 @@ function makePageType(
 }
 
 describe("resolveLayout", () => {
+  test("sidebar modes: a page type's override is merged per side over the defaults", () => {
+    const pt = makePageType()
+    const result = resolveLayout(
+      pt,
+      { head: StubHead, sidebars: { left: "static", right: "scroll" } },
+      { [pt.layout]: { sidebars: { right: "fit" } } },
+    )
+    assert.deepStrictEqual(result.sidebars, { left: "static", right: "fit" })
+    assert.deepStrictEqual(resolveLayout(pt, { head: StubHead }, {}).sidebars, {})
+  })
+
   test("footer defaults to [] when sharedDefaults omits footer", () => {
     const result = resolveLayout(makePageType(), { head: StubHead }, {})
     assert.deepStrictEqual(result.footer, [])

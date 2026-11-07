@@ -23,7 +23,7 @@ export const CreateArgv = {
   template: {
     string: true,
     alias: ["t"],
-    choices: ["default", "obsidian", "ttrpg", "blog"],
+    choices: ["default", "obsidian", "ttrpg", "blog", "docs"],
     describe: "template to use for initial configuration",
   },
   source: {

@@ -56,7 +56,7 @@ Benefits:
 - **No TypeScript knowledge required** for basic customization
 - **JSON Schema validation** — editors with YAML support show errors inline
 - **Layout defined per-plugin** — each plugin declares its own position and priority
-- **Templates** — `npx quartz create` offers preconfigured templates (default, obsidian, ttrpg, blog)
+- **Templates** — `npx quartz create` offers preconfigured templates (default, obsidian, ttrpg, blog, docs)
 
 For advanced options that need JavaScript (callbacks, custom components), the `quartz.ts` override system provides full programmatic control.
 

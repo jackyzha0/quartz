@@ -57,7 +57,7 @@ npx quartz create
 
 This will prompt you for:
 
-- A **template** (`default`, `obsidian`, `ttrpg`, `blog`) — pick the one closest to your old setup. `obsidian` is recommended if you use an Obsidian vault.
+- A **template** (`default`, `obsidian`, `ttrpg`, `blog`, `docs`) — pick the one closest to your old setup. `obsidian` is recommended if you use an Obsidian vault.
 - A **content strategy** — choose "Copy" and point it to your backed-up content folder.
 
 If you skipped the `create` wizard or need to restore your content manually:

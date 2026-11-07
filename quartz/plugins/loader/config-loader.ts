@@ -3,7 +3,14 @@ import path from "path"
 import YAML from "yaml"
 import { styleText } from "util"
 import { fileURLToPath } from "node:url"
-import { QuartzConfig, GlobalConfiguration, FullPageLayout } from "../../cfg"
+import {
+  QuartzConfig,
+  GlobalConfiguration,
+  FullPageLayout,
+  SIDEBAR_MODES,
+  SidebarMode,
+  SidebarModes,
+} from "../../cfg"
 import { QuartzComponent, QuartzComponentConstructor } from "../../components/types"
 import { PluginTypes } from "../types"
 import {
@@ -928,7 +935,36 @@ function layoutNameAliases(pluginName: string): string[] {
   }
   return [pluginName]
 }
-const PAGE_TYPE_OVERRIDE_KEYS = ["exclude", "positions", "template"]
+const PAGE_TYPE_OVERRIDE_KEYS = ["exclude", "positions", "template", "sidebars"]
+
+/** @internal Exported for testing. Read `layout.sidebars` (or a page type's override): `{ left?, right? }` of fit | scroll | static. */
+export function parseSidebars(
+  raw: unknown,
+  where: string,
+  warn: (message: string) => void,
+): SidebarModes {
+  if (raw === undefined || raw === null) return {}
+  if (typeof raw !== "object" || Array.isArray(raw)) {
+    warn(`${where}: expected { left, right } with fit, scroll or static — ignored.`)
+    return {}
+  }
+  const modes: SidebarModes = {}
+  for (const [side, value] of Object.entries(raw as Record<string, unknown>)) {
+    if (side !== "left" && side !== "right") {
+      warn(`${where}: unknown sidebar "${side}" — use left or right.`)
+      continue
+    }
+    if (!SIDEBAR_MODES.includes(value as SidebarMode)) {
+      const hint = suggest(String(value), [...SIDEBAR_MODES])
+      warn(
+        `${where}.${side}: unknown mode ${JSON.stringify(value)}${hint ? ` (did you mean "${hint}"?)` : ""} — using fit. Modes: ${SIDEBAR_MODES.join(", ")}.`,
+      )
+      continue
+    }
+    modes[side] = value as SidebarMode
+  }
+  return modes
+}
 
 /**
  * Build the layout (defaults + per-page-type overrides) from a parsed
@@ -959,6 +995,8 @@ export function buildQuartzLayout(
   const defaultLayout = buildLayoutForEntries(enabledEntries, layoutConfig, defaultDiag)
   report.defaults = defaultDiag.placements
   defaultDiag.warnings.forEach(warn)
+  const defaultSidebars = parseSidebars(layoutConfig.sidebars, "layout.sidebars", warn)
+  if (Object.keys(defaultSidebars).length > 0) defaultLayout.sidebars = defaultSidebars
 
   const knownPluginNames = allEntries.flatMap((e) => layoutNameAliases(extractPluginName(e.source)))
   const enabledPluginNames = new Set(
@@ -1041,6 +1079,13 @@ export function buildQuartzLayout(
         )
       }
       entry.frame = override.template
+    }
+
+    if (override.sidebars !== undefined) {
+      entry.sidebars = {
+        ...defaultSidebars,
+        ...parseSidebars(override.sidebars, `byPageType.${pageType}.sidebars`, warn),
+      }
     }
 
     byPageType[pageType] = entry

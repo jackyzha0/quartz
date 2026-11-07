@@ -10,7 +10,7 @@ import {
 import { FullSlug, RelativeURL, joinSegments, normalizeHastElement } from "../util/path"
 import { clone } from "../util/clone"
 import { Root, Element, ElementContent } from "hast"
-import { GlobalConfiguration } from "../cfg"
+import { GlobalConfiguration, SidebarModes } from "../cfg"
 import { i18n } from "../i18n"
 import { styleText } from "util"
 import { resolveFrame } from "./frames"
@@ -27,6 +27,7 @@ interface RenderComponents {
   right: QuartzComponent[]
   footer: QuartzComponent[]
   frame?: string
+  sidebars?: SidebarModes
 }
 
 const headerRegex = new RegExp(/h[1-6]/)
@@ -340,6 +341,7 @@ export function renderPage(
     right,
     footer,
     frame: frameName,
+    sidebars,
   } = components
   const Body = BodyConstructor()
   const frame = resolveFrame(frameName)
@@ -370,6 +372,7 @@ export function renderPage(
                 left,
                 right,
                 footer,
+                sidebars: { left: sidebars?.left ?? "fit", right: sidebars?.right ?? "fit" },
               }),
             ]}
           </Body>
