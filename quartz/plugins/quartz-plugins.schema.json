@@ -412,7 +412,7 @@
             "properties": {
               "position": {
                 "type": "string",
-                "enum": ["header", "left", "right", "beforeBody", "afterBody", "footer", "body"],
+                "enum": ["header", "beforeBody", "left", "right", "afterBody", "footer"],
                 "description": "Layout slot the plugin's component renders in"
               },
               "priority": {
