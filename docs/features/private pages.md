@@ -13,7 +13,7 @@ There may be some notes you want to avoid publishing as a website. Quartz suppor
 If you'd like to only publish a select number of notes, you can instead use [[ExplicitPublish]] which will filter out all notes except for any that have `publish: true` in the frontmatter.
 
 > [!warning]
-> Regardless of the filter plugin used, **all non-markdown files will be emitted and available publically in the final build.** This includes files such as images, voice recordings, PDFs, etc.
+> Regardless of the filter plugin used, **all non-markdown files will be emitted and available publicly in the final build.** This includes files such as images, voice recordings, PDFs, etc.
 
 ## `ignorePatterns`
 
