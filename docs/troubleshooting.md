@@ -4,6 +4,13 @@ title: Troubleshooting
 
 Common issues and solutions when working with Quartz.
 
+## Reading build output
+
+- **Errors from plugins** say which plugin failed (name, version, source), what it was doing ("while transforming the Markdown of `notes/x.md`", "component Backlinks while rendering `features/x`"), any problems Quartz already knew about that plugin, and where to report it. To confirm a plugin is the cause, disable it (`npx quartz plugin disable <name>`) and build again.
+- **Warnings** printed while loading the config (plugins that need a newer Quartz, plugins missing data they need, layout typos, plugin entries that are now built in) are repeated in a summary at the end of the build.
+- **Notes** in that summary point out links to pages that are not on your site — including links to [[RemoveDrafts|drafts]], which are the usual cause of "this link 404s". `npx quartz build --verbose` lists every such link, the order plugins run in, the built-ins and the layout of each page type.
+- **Which version am I on?** `npx quartz info` prints your Quartz version, environment and plugins — include it when asking for help (see [[versioning]]).
+
 ## Build Errors
 
 ### `Could not resolve ...` or missing module errors
@@ -178,3 +185,4 @@ npx quartz build --serve --port 3000
 - Check the [GitHub Issues](https://github.com/jackyzha0/quartz/issues) for similar problems
 - Ask in the [Discord Community](https://discord.gg/cRFFHYye7t)
 - Run your command with `--verbose` for more detailed error output
+- Include the output of `npx quartz info` in your question

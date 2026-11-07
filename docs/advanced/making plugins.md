@@ -63,6 +63,8 @@ The plugin's `package.json` should declare dependencies on `@quartz-community/ty
 
 If your plugin reads data, DOM elements, globals or files produced by another plugin (or provides them), declare that in `quartz.capabilities` so Quartz can warn when the provider is disabled. See [[plugin capabilities]].
 
+Declare the oldest Quartz version your plugin works with in `quartz.quartzVersion` (a semver range such as `">=5.1.0"`). Quartz checks it when loading the config and in `plugin add` / `plugin doctor`, and mentions it when your plugin throws. See [[versioning#For plugin authors]].
+
 ## Plugin Types
 
 ## Choosing a Plugin Type
@@ -428,6 +430,22 @@ Rules:
 - Keep it small: `contentIndex.json` is downloaded by every visitor.
 
 Declare the field in your [[plugin capabilities|capabilities]] (`provides.data`) so other plugins can depend on it.
+
+### Reusing the content index in emitters
+
+Emitters don't need to rebuild the index: `ctx.contentIndex` holds it (a read-only `Map` from slug to entry, virtual pages included, with the same fields as `contentIndex.json` plus `date` and `description`). It is built once per build, after page types generated their pages and before plugin emitters run:
+
+```ts
+emit: async (ctx, content) => {
+  const recent = [...(ctx.contentIndex?.values() ?? [])]
+    .filter((entry) => entry.date)
+    .sort((a, b) => b.date!.getTime() - a.date!.getTime())
+    .slice(0, 20)
+  // … write a feed, a JSON API, a search index …
+}
+```
+
+Built-in settings are available too, with defaults and migrated options applied: `ctx.cfg.configuration.links.markdownLinkResolution`, `ctx.cfg.configuration.contentIndex.enableRSS`, … Both need Quartz 5.1+ — declare `"quartzVersion": ">=5.1.0"` (see [[versioning#For plugin authors]]).
 
 ### Providing Custom Frames
 

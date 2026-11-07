@@ -146,6 +146,7 @@ Check your plugin setup without changing anything:
 ```shell
 npx quartz plugin doctor
 npx quartz plugin doctor --verbose   # also show informational notes
+npx quartz plugin doctor --fix       # move settings of plugins that are now built into Quartz
 ```
 
 `doctor` reports, with a suggested fix for each problem:
@@ -156,6 +157,8 @@ npx quartz plugin doctor --verbose   # also show informational notes
 - npm plugins that are not installed, and Git/local plugins that are not installed, not pinned in `quartz.lock.json`, checked out at a different commit than the lockfile pins, or whose source changed
 - broken local plugin symlinks and plugins without a built entry point (`dist/`)
 - option typos and type mismatches, and declared plugin dependencies that are missing or disabled
+- plugins that don't support your Quartz version (their `quartzVersion`, see [[versioning#Plugin compatibility]])
+- entries for plugins that are now [[built-in processing|built into Quartz]] (`crawl-links`, `remove-draft`, `content-index`); `--fix` moves their options into `configuration` and keeps your comments
 - lockfile entries that are no longer configured (clean up with `prune`)
 
 It exits with status 1 when it finds errors, so it can run as a CI check.

@@ -16,6 +16,7 @@ You can run the CLI using `npx quartz`.
 | `upgrade` | Upgrade Quartz to the latest version (alias: `update`)  | `npx quartz upgrade`     |
 | `plugin`  | Manage Quartz plugins (install, add, remove, etc.)      | `npx quartz plugin list` |
 | `tui`     | Launch the interactive plugin manager                   | `npx quartz tui`         |
+| `info`    | Print version, environment and plugins for bug reports  | `npx quartz info`        |
 
 ## Commands
 
