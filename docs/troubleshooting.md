@@ -34,12 +34,20 @@ The default uses all available CPU cores. If you're on a memory-constrained envi
 
 ## Plugin Issues
 
+> [!tip]
+> `npx quartz plugin doctor` checks your whole plugin setup — config typos, plugins that are not installed or not built, lockfile mismatches, option typos — and suggests a fix for each problem. Run it first.
+
 ### Plugin not loading after installation
 
-1. Verify the plugin appears in `quartz.config.yaml` under `plugins:`
-2. Check that `enabled: true` is set
-3. Run `npx quartz plugin list` to confirm it's installed
-4. Run `npx quartz plugin install --latest --dry-run` to verify plugin health
+1. Run `npx quartz plugin doctor`
+2. Verify the plugin appears in `quartz.config.yaml` under `plugins:`
+3. Check that `enabled: true` is set (spelled `enabled`, as a boolean — `enable: true` or `enabled: "true"` do not work as expected)
+4. Run `npx quartz plugin list` to confirm it's installed
+5. Run `npx quartz plugin install --latest --dry-run` to check for updates
+
+### Which plugin rendered this part of the page?
+
+Open your browser's developer tools and inspect the element. Components provided by plugins carry `data-quartz-plugin` (the plugin name) and `data-quartz-component` (the component name) attributes on their root element. Look for the nearest ancestor with these attributes.
 
 ### Plugin options not taking effect
 
@@ -53,7 +61,7 @@ plugins:
       myOption: value # correct: nested under options
 ```
 
-A common mistake is putting options at the wrong indentation level.
+A common mistake is putting options at the wrong indentation level. Misspelled option names are reported as warnings at the start of `npx quartz build` (e.g. `unknown option "folderDefaultStat" — did you mean "folderDefaultState"?`); `npx quartz plugin config <name>` shows the options you set next to the plugin's defaults.
 
 ### `ExternalPlugin.X is not a function`
 

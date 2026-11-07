@@ -109,6 +109,16 @@ Component.css = styles
 > [!warning]
 > Quartz does not use CSS modules so any styles you declare here apply _globally_. If you only want it to apply to your component, make sure you use specific class names and selectors.
 
+#### Source attributes
+
+When Quartz renders a component provided by a plugin, it adds two attributes to the component's root element:
+
+```html
+<div class="graph" data-quartz-plugin="graph" data-quartz-component="Graph">…</div>
+```
+
+They let site owners and theme authors find out which plugin produced a part of the page (use your browser's inspector) and give a stable hook for styling, e.g. `[data-quartz-plugin="graph"] { … }`. The attributes are only added when your component returns a single HTML element; components returning `null`, text, a fragment or another component are rendered unchanged. Existing attributes are never modified.
+
 ### Internationalization
 
 Component plugins should use the i18n pattern for any user-facing strings. See [[making plugins#Internationalization (i18n)]] for the full setup guide.
