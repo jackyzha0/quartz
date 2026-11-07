@@ -2,6 +2,7 @@ import test, { describe } from "node:test"
 import assert from "node:assert"
 import {
   checkQuartzRequirement,
+  describeDeprecation,
   describeRequirementProblem,
   formatQuartzVersion,
   brokenPluginsFailBuild,
@@ -77,6 +78,17 @@ describe("incompatiblePluginsFailBuild", () => {
       brokenPluginsFailBuild({ CI: "true", QUARTZ_ALLOW_INCOMPATIBLE_PLUGINS: "1" }),
       true,
     )
+  })
+})
+
+describe("describeDeprecation", () => {
+  test("turns quartz.deprecated into a warning with a fix", () => {
+    const d = describeDeprecation("hard-line-breaks", "  Use OFM's strictLineBreaks.  ")
+    assert.strictEqual(d.message, "hard-line-breaks is deprecated: Use OFM's strictLineBreaks.")
+    assert.match(d.hint, /npx quartz plugin remove hard-line-breaks/)
+    assert.strictEqual(describeDeprecation("x", undefined), undefined)
+    assert.strictEqual(describeDeprecation("x", ""), undefined)
+    assert.strictEqual(describeDeprecation("x", true), undefined)
   })
 })
 

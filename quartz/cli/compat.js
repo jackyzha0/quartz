@@ -88,6 +88,18 @@ export function isCI(env = process.env) {
   return ci !== undefined && ci !== "" && ci !== "0" && ci.toLowerCase() !== "false"
 }
 
+/**
+ * A plugin's `quartz.deprecated` message (a string, ideally naming its replacement) as a warning
+ * with a fix; undefined when the plugin isn't deprecated.
+ */
+export function describeDeprecation(pluginName, deprecated) {
+  if (typeof deprecated !== "string" || deprecated.trim() === "") return undefined
+  return {
+    message: `${pluginName} is deprecated: ${deprecated.trim()}`,
+    hint: `Remove it when you have switched: npx quartz plugin remove ${pluginName}`,
+  }
+}
+
 function git(root, args) {
   try {
     return execFileSync("git", args, {

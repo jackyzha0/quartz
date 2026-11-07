@@ -46,6 +46,7 @@ and says whether to update Quartz (`npx quartz upgrade`) or the plugin. If an in
 - Prefer a lower bound (`>=5.1.0`) over a caret range: minor Quartz releases don't break plugins, so `^5` would only add an upper bound you'd have to bump at every major release. Add an upper bound when you know a major version breaks you.
 - Raising `quartzVersion` is a breaking change for users on older Quartz versions: release it as a new major (or at least minor) version of your plugin and say so in its changelog.
 - Pre-releases count: Quartz `5.2.0-beta.1` satisfies `>=5.1.0`.
+- To retire a plugin, set `quartz.deprecated` in its `package.json` to a message saying what replaces it (for example `"Line breaks are handled by ObsidianFlavoredMarkdown 2.0+ …"`). Quartz 5.1+ warns when the plugin is enabled (in the build summary, `plugin add` and `plugin doctor`) and suggests removing it; the plugin keeps working.
 
 ## Contributing: changesets
 

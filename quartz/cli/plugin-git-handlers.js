@@ -37,6 +37,7 @@ import {
 import {
   checkQuartzRequirement,
   describeQuartzCheckout,
+  describeDeprecation,
   describeRequirementProblem,
   formatQuartzVersion,
   readQuartzVersion,
@@ -1795,6 +1796,11 @@ export async function handlePluginAdd(
       console.log(styleText("yellow", `  ⚠ ${requirement.message}`))
       console.log(styleText("gray", `    ${requirement.hint}`))
     }
+    const deprecation = describeDeprecation(configName, manifest?.deprecated)
+    if (deprecation) {
+      console.log(styleText("yellow", `  ⚠ ${deprecation.message}`))
+      console.log(styleText("gray", `    ${deprecation.hint}`))
+    }
     if (plugin.buildFailed) {
       console.log(
         styleText(
@@ -2698,6 +2704,8 @@ export async function handlePluginDoctor({ verbose = false, fix = false } = {}) 
     if (requirement) {
       report(enabled ? "error" : "info", null, requirement.message, requirement.hint)
     }
+    const deprecation = describeDeprecation(label, manifest.deprecated)
+    if (deprecation) report("warning", null, deprecation.message, deprecation.hint)
     if (enabled) {
       for (const dep of manifest.dependencies ?? []) {
         const depEntry =

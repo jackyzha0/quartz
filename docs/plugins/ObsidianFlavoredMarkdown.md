@@ -19,6 +19,7 @@ This plugin accepts the following configuration options:
 - `preset`: How Markdown is parsed (via [remark-obsidian](https://github.com/quartz-community/remark-obsidian)).
   - `"legacy"` (default) parses exactly as Obsidian does, so pages render as they do in the app. It replaces Quartz's Markdown parser, so syntax extensions added by other plugins are not consulted, and only YAML (`---`) [[Frontmatter|frontmatter]] is recognized.
   - `"strict"` parses CommonMark and GFM as specified, plus Obsidian's syntax, and keeps other plugins' syntax extensions working. Use it for TOML (`+++`) or custom frontmatter delimiters, or plugins that add Markdown syntax.
+- `strictLineBreaks`: Obsidian's "Strict line breaks" setting. `false` (the default under `preset: "legacy"`) renders a single line break inside a paragraph as a `<br>`, as in Obsidian's default reading view. `true` (the default under `preset: "strict"`) renders it as a space, as CommonMark does. This replaces the deprecated [[HardLineBreaks]] plugin.
 - `comments`: If `true` (default), enables parsing of `%%` style Obsidian comment blocks.
 - `highlight`: If `true` (default), enables parsing of `==` style highlights within content.
 - `wikilinks`:If `true` (default), turns [[wikilinks]] into regular links.
@@ -34,7 +35,7 @@ This plugin accepts the following configuration options:
 - `enableCheckbox`: If `true`, adds support for interactive checkboxes in content, including custom task characters (e.g. `- [?]`, `- [!]`, `- [/]`). Defaults to `false`.
 - `enableObsidianUri`: If `true` (default), marks `obsidian://` protocol links with a CSS class and data attribute for custom styling.
 
-Line breaks follow your settings: a single line break inside a paragraph becomes a `<br>` only when [[HardLineBreaks]] is enabled (Obsidian's default reading view shows them; "Strict line breaks" in Obsidian corresponds to leaving HardLineBreaks off). Inline footnotes (`text^[note]`) are numbered together with regular footnotes.
+Inline footnotes (`text^[note]`) are numbered together with regular footnotes.
 
 > [!note]
 > The `disableBrokenWikilinks` option previously lived on this plugin. It has moved to the built-in [[CrawlLinks|link processing]] (`configuration.links.disableBrokenWikilinks`), which owns link resolution and can honor the configured `markdownLinkResolution` strategy when deciding whether a link is broken. Users upgrading from earlier Quartz v5 betas should move the option from `ObsidianFlavoredMarkdown` to `CrawlLinks`.

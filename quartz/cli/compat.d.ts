@@ -25,6 +25,10 @@ export function describeRequirementProblem(
   result: RequirementResult,
   pluginVersion?: string,
 ): { message: string; hint: string } | undefined
+export function describeDeprecation(
+  pluginName: string,
+  deprecated: unknown,
+): { message: string; hint: string } | undefined
 export function describeQuartzCheckout(root?: string): QuartzCheckout
 export function formatQuartzVersion(version: string | undefined, checkout?: QuartzCheckout): string
 export function incompatiblePluginsFailBuild(env?: Record<string, string | undefined>): boolean

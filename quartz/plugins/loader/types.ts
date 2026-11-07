@@ -54,6 +54,8 @@ export interface PluginManifest {
   keywords?: string[]
   category?: PluginCategory | PluginCategory[]
   quartzVersion?: string
+  /** Set when the plugin is deprecated: why, and what replaces it (warned about at build time). */
+  deprecated?: string
   /** Plugin sources this plugin depends on (e.g., "@quartz-community/crawl-links") */
   dependencies?: string[]
   /** Default numeric execution order (0-100 convention, lower = runs first). Defaults to 50. */

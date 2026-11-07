@@ -89,9 +89,6 @@ plugins:
   - source: "@quartz-community/citations"
     enabled: false
     order: 85
-  - source: "@quartz-community/hard-line-breaks"
-    enabled: false
-    order: 90
   - source: "@quartz-community/ox-hugo"
     enabled: false
     order: 91

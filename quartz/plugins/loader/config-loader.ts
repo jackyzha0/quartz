@@ -39,6 +39,7 @@ import { registerPluginOrigin, reportError, warn } from "../../util/diagnostics"
 import { firstPluginFrame } from "../../util/trace"
 import {
   checkQuartzRequirement,
+  describeDeprecation,
   describeRequirementProblem,
   incompatiblePluginsFailBuild,
   brokenPluginsFailBuild,
@@ -270,6 +271,7 @@ async function readManifestFromPackageJson(source: PluginSource): Promise<Plugin
       issues: issuesUrl(pkg),
       category: q.category,
       quartzVersion: q.quartzVersion,
+      deprecated: q.deprecated,
       dependencies: q.dependencies,
       capabilities: q.capabilities,
       defaultOrder: q.defaultOrder,
@@ -398,6 +400,8 @@ export async function loadQuartzConfig(
     const problem = describeRequirementProblem(name, requirement, manifest.version)
     if (problem) warn({ area: "versions", plugin: name, ...problem })
     if (requirement.status === "incompatible") incompatible.push(name)
+    const deprecation = describeDeprecation(name, manifest.deprecated)
+    if (deprecation) warn({ area: "plugins", plugin: name, ...deprecation })
   }
   // The quiet install-plugins prebuild pass doesn't print, so the real build reports the failure.
   if (
