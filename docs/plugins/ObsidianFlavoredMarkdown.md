@@ -31,7 +31,7 @@ This plugin accepts the following configuration options:
 - `enableObsidianUri`: If `true` (default), marks `obsidian://` protocol links with a CSS class and data attribute for custom styling.
 
 > [!note]
-> The `disableBrokenWikilinks` option previously lived on this plugin. It has moved to [[CrawlLinks]], which owns link resolution and can honor the configured `markdownLinkResolution` strategy when deciding whether a link is broken. Users upgrading from earlier Quartz v5 betas should move the option from `ObsidianFlavoredMarkdown` to `CrawlLinks`.
+> The `disableBrokenWikilinks` option previously lived on this plugin. It has moved to the built-in [[CrawlLinks|link processing]] (`configuration.links.disableBrokenWikilinks`), which owns link resolution and can honor the configured `markdownLinkResolution` strategy when deciding whether a link is broken. Users upgrading from earlier Quartz v5 betas should move the option from `ObsidianFlavoredMarkdown` to `CrawlLinks`.
 
 > [!warning]
 > Don't remove this plugin if you're using [[Obsidian compatibility|Obsidian]] to author the content!

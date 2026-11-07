@@ -117,7 +117,7 @@ If `plugin install` consistently fails near the same plugin with `-c 1`, the iss
 ### Notes not showing up
 
 - Check that the file is in the `content/` folder
-- Check that `draft: true` is not set in the frontmatter (the [[RemoveDrafts]] plugin filters these out)
+- Check that `draft: true` is not set in the frontmatter (drafts are not published — see [[RemoveDrafts|built-in draft handling]]; `configuration.drafts.publish: true` publishes them)
 - If using [[ExplicitPublish]], make sure `publish: true` is set in frontmatter
 - Check your [[configuration]] `ignorePatterns` to make sure the file path is not excluded
 

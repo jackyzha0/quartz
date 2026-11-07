@@ -4,7 +4,7 @@ title: Plugin capabilities
 
 Quartz plugins cooperate through channels the type system can't see:
 
-- `file.data` keys (e.g. [[CrawlLinks|crawl-links]] writes `links`, [[Backlinks|backlinks]] reads it),
+- `file.data` keys (e.g. built-in [[CrawlLinks|link processing]] writes `links`, [[plugins/Backlinks|backlinks]] reads it),
 - DOM classes queried by client scripts (OFM's mermaid script looks for syntax-highlighting's `.clipboard-button`),
 - browser globals and document events (`fetchData`, `addCleanup`, `nav`, `themechange`),
 - emitted files (`static/contentIndex.json`, read by search, explorer and graph),
@@ -13,7 +13,7 @@ Quartz plugins cooperate through channels the type system can't see:
 When the provider of one of these is disabled, the consumer usually breaks _silently_: an empty backlinks list, wikilinks that 404, or — worst — `draft: true` pages being published because no plugin parsed the frontmatter. **Capabilities** let a plugin declare what it provides and needs, so `quartz build` can say what is wrong:
 
 ```
-⚠ Plugin "remove-draft" requires data "frontmatter", but no enabled plugin provides it — enable "note-properties". (frontmatter is not parsed, so pages marked `draft: true` ARE PUBLISHED)
+⚠ Plugin "backlinks" requires data "links", but no enabled plugin provides it — enable "configuration.links". (the backlinks list is always empty)
 ```
 
 > [!note]
@@ -81,7 +81,7 @@ These never need a provider plugin (`coreCapabilities()` in `quartz/plugins/load
 - globals: `fetchData`, `addCleanup`, `spaNavigate`
 - events: `nav` (always), `prenav` (only with `enableSPA`)
 
-Note that `fetchData` is a promise for `static/contentIndex.json`, which is emitted by the [[ContentIndex|content-index]] plugin. Declare `files: ["static/contentIndex.json"]` if you read it. Since this release `fetchData` resolves to `{}` (with a console warning) when the file is missing, instead of rejecting.
+Note that `fetchData` is a promise for `static/contentIndex.json`, which Quartz emits by default ([[ContentIndex|built-in content index]]). Declare `files: ["static/contentIndex.json"]` if you read it. Since this release `fetchData` resolves to `{}` (with a console warning) when the file is missing, instead of rejecting.
 
 ## How the check works
 
@@ -102,23 +102,29 @@ Declaring a requirement is not a substitute for handling its absence. For `optio
 - Default data: `file.data.links ?? []`, `fileData.dates?.created`.
 - Wrap `await fetchData` in `try`/`catch` and accept an empty object.
 
+## Built-ins as providers
+
+Quartz's [[built-in processing]] steps take part in the check like plugins: when enabled, built-in frontmatter provides `frontmatter`, `aliases` and `frontmatterLinks`, built-in links provides `links`, and the built-in content index provides `static/contentIndex.json`. When one is turned off, warnings suggest `configuration.<key>` (and a `from: "crawl-links"` hint is shown as `configuration.links`).
+
+The same declarations decide replacement: an enabled plugin that `provides` `data: ["frontmatter"]`, `data: ["links"]` or `files: ["static/contentIndex.json"]` replaces the matching built-in.
+
 ## Migration path
 
 1. **Now (this change):** core checker + declarations on a representative set of first-party plugins: `note-properties`, `crawl-links`, `backlinks`, `description`, `content-index`, `syntax-highlighting`, `obsidian-flavored-markdown`, `remove-draft`, `search`.
 2. **Next, first-party plugins** — drafts derived from the workspace catalog (`just catalog show <plugin>` in the dev-mode workspace lists data read/written, DOM classes and scripts):
 
-   | Plugin                                      | Draft                                                                                                     |
-   | ------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-   | `explicit-publish`                          | requires data `frontmatter` from note-properties (otherwise nothing is published)                         |
-   | `graph`, `explorer`                         | requires files `static/contentIndex.json` from content-index; optional events `themechange` from darkmode |
-   | `recent-notes`, `content-meta`              | optional data `dates` from created-modified-date                                                          |
-   | `alias-redirects`                           | requires data `aliases` from note-properties                                                              |
-   | `table-of-contents`                         | provides data `toc`, `collapseToc`                                                                        |
-   | `created-modified-date`                     | provides data `dates`, `defaultDateType`                                                                  |
-   | `unlisted-pages`, `encrypted-pages`         | provide data `unlisted` (encrypted-pages also `encrypted`, events `render`, `content-index-updated`)      |
-   | `darkmode`                                  | provides events `themechange`                                                                             |
-   | `og-image`, `folder-page`, `tag-page`       | optional data `description` from description, `dates` from created-modified-date                          |
-   | `canvas-page`, `obsidian-plugin-excalidraw` | optional dom `.explorer` (they style it) from explorer                                                    |
+   | Plugin                                      | Draft                                                                                                |
+   | ------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+   | `explicit-publish`                          | requires data `frontmatter` (built in)                                                               |
+   | `graph`, `explorer`                         | requires files `static/contentIndex.json` (built in); optional events `themechange` from darkmode    |
+   | `recent-notes`, `content-meta`              | optional data `dates` from created-modified-date                                                     |
+   | `alias-redirects`                           | requires data `aliases` (built in)                                                                   |
+   | `table-of-contents`                         | provides data `toc`, `collapseToc`                                                                   |
+   | `created-modified-date`                     | provides data `dates`, `defaultDateType`                                                             |
+   | `unlisted-pages`, `encrypted-pages`         | provide data `unlisted` (encrypted-pages also `encrypted`, events `render`, `content-index-updated`) |
+   | `darkmode`                                  | provides events `themechange`                                                                        |
+   | `og-image`, `folder-page`, `tag-page`       | optional data `description` from description, `dates` from created-modified-date                     |
+   | `canvas-page`, `obsidian-plugin-excalidraw` | optional dom `.explorer` (they style it) from explorer                                               |
 
 3. **Third-party plugins:** add declarations at their own pace; nothing changes for them otherwise.
 4. **Later (proposals, not implemented):** print `optional` infos with `quartz build --verbose`; a `strictCapabilities` option that turns warnings into errors; ordering checks for `data` between transformers (needs a `phase` per provided key); option-aware provides; a `transforms` kind for "rewrites links" style contracts (OFM currently uses crawl-links' `.internal` class as a proxy); exporting these types from `@quartz-community/types`.

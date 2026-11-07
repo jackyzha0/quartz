@@ -46,4 +46,4 @@ First, make sure you've [[installation#Setting Up Your GitHub Repository|set up 
 
 ## Customization
 
-Frontmatter parsing for `title`, `tags`, `aliases` and `cssclasses` is a functionality of the [[Frontmatter]] plugin, `date` is handled by the [[CreatedModifiedDate]] plugin and `description` by the [[Description]] plugin. See the plugin pages for customization options.
+Frontmatter parsing for `title`, `tags`, `aliases` and `cssclasses` is built into Quartz (see [[Frontmatter]]), `date` is handled by the [[CreatedModifiedDate]] plugin and `description` by the [[Description]] plugin. See the plugin pages for customization options.

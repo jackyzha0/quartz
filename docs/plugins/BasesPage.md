@@ -41,7 +41,7 @@ This plugin provides support for [Obsidian Bases](https://obsidian.md/changelog/
 This plugin accepts the following configuration options:
 
 - `defaultViewType`: The default view type when none is specified in the `.base` file. Defaults to `"table"`.
-- `linkResolution`: How to resolve internal links in view renderers. Should match the `markdownLinkResolution` setting of the [[CrawlLinks]] plugin. Can be `"absolute"`, `"relative"`, or `"shortest"`. Defaults to `"shortest"`.
+- `linkResolution`: How to resolve internal links in view renderers. Should match `configuration.links.markdownLinkResolution` (built-in [[CrawlLinks|link processing]]). Can be `"absolute"`, `"relative"`, or `"shortest"`. Defaults to `"shortest"`.
 - `customViews`: A map of custom view renderers. Keys are view type names. These override built-in renderers for the same type, or add new view types. Requires a TS override.
 
 ### Default options

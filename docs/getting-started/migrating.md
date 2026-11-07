@@ -117,15 +117,15 @@ Mapping v4 plugin names to v5 equivalents:
 
 | v4                                  | v5                                          | Type                  |
 | ----------------------------------- | ------------------------------------------- | --------------------- |
-| `Plugin.FrontMatter()`              | `ExternalPlugin.NoteProperties()`           | Community             |
+| `Plugin.FrontMatter()`              | built in (`configuration.frontmatter`)      | Internal              |
 | `Plugin.CreatedModifiedDate()`      | `ExternalPlugin.CreatedModifiedDate()`      | Community             |
 | `Plugin.SyntaxHighlighting()`       | `ExternalPlugin.SyntaxHighlighting()`       | Community             |
 | `Plugin.ObsidianFlavoredMarkdown()` | `ExternalPlugin.ObsidianFlavoredMarkdown()` | Community             |
 | `Plugin.GitHubFlavoredMarkdown()`   | `ExternalPlugin.GitHubFlavoredMarkdown()`   | Community             |
-| `Plugin.CrawlLinks()`               | `ExternalPlugin.CrawlLinks()`               | Community             |
+| `Plugin.CrawlLinks()`               | built in (`configuration.links`)            | Internal              |
 | `Plugin.Description()`              | `ExternalPlugin.Description()`              | Community             |
 | `Plugin.Latex()`                    | `ExternalPlugin.Latex()`                    | Community             |
-| `Plugin.RemoveDrafts()`             | `ExternalPlugin.RemoveDrafts()`             | Community             |
+| `Plugin.RemoveDrafts()`             | built in (`configuration.drafts`)           | Internal              |
 | `Plugin.ContentPage()`              | `ExternalPlugin.ContentPage()`              | Community (pageTypes) |
 | `Plugin.FolderPage()`               | `ExternalPlugin.FolderPage()`               | Community (pageTypes) |
 | `Plugin.TagPage()`                  | `ExternalPlugin.TagPage()`                  | Community (pageTypes) |
@@ -134,7 +134,7 @@ Mapping v4 plugin names to v5 equivalents:
 | `Plugin.Assets()`                   | `Plugin.Assets()` (unchanged)               | Internal              |
 | `Plugin.Static()`                   | `Plugin.Static()` (unchanged)               | Internal              |
 | `Plugin.AliasRedirects()`           | `ExternalPlugin.AliasRedirects()`           | Community             |
-| `Plugin.ContentIndex()`             | `ExternalPlugin.ContentIndex()`             | Community             |
+| `Plugin.ContentIndex()`             | built in (`configuration.contentIndex`)     | Internal              |
 
 Component layout mapping:
 

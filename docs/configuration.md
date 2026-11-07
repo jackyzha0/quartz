@@ -66,6 +66,7 @@ This part of the configuration concerns anything that can affect the whole site.
     - `tertiary`: hover states and visited [[graph view|graph]] nodes
     - `highlight`: internal link background, highlighted text, [[syntax highlighting|highlighted lines of code]]
     - `textHighlight`: markdown highlighted text background
+- `frontmatter`, `links`, `drafts`, `contentIndex`: options for Quartz's [[built-in processing]] — frontmatter parsing ([[Frontmatter]]), link resolution ([[CrawlLinks]]), draft handling ([[RemoveDrafts]]) and the content index, sitemap and RSS feed ([[ContentIndex]]). They are on by default; set e.g. `links: { markdownLinkResolution: relative }` to change an option or `contentIndex: false` to turn one off.
 
 ## Plugins
 

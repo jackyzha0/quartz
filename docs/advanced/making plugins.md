@@ -255,7 +255,7 @@ export type QuartzFilterPluginInstance = {
 
 A filter plugin must define a `name` field and a `shouldPublish` function that takes in a piece of content that has been processed by all the transformers and returns a `true` or `false` depending on whether it should be passed to the emitter plugins or not.
 
-For example, here is the built-in plugin for removing drafts:
+For example, here is a filter that removes drafts (Quartz has this [[RemoveDrafts|built in]]):
 
 ```ts
 import { QuartzFilterPlugin } from "@quartz-community/types"
@@ -393,6 +393,41 @@ export interface QuartzPageTypePluginInstance {
 - `layout`: The layout configuration key (e.g. `"content"`, `"folder"`, `"tag"`). This determines which `byPageType` entry in `quartz.config.yaml` provides the layout overrides for this page type.
 - `frame`: The [[layout#Page Frames|page frame]] to use for this page type. Controls the overall HTML structure (e.g. `"default"`, `"full-width"`, `"minimal"`, or a custom frame provided by your plugin). If not set, defaults to `"default"`. Can be overridden per-page-type via `layout.byPageType.<name>.template` in `quartz.config.yaml`.
 - `body`: The Quartz component constructor that renders the page body content.
+
+### Extending the content index
+
+Quartz [[ContentIndex|builds `static/contentIndex.json`]] itself — the file search, the explorer, the graph and other client-side components read. Any plugin (transformer, filter, emitter or page type) can add fields to every page's entry by defining `extendContentIndex` on its plugin instance:
+
+```ts
+import { QuartzTransformerPlugin } from "@quartz-community/types"
+
+export const ReadingTime: QuartzTransformerPlugin = () => ({
+  name: "ReadingTime",
+  markdownPlugins: () => [/* … sets file.data.readingTime … */],
+  // called once per page when contentIndex.json is written
+  extendContentIndex({ fileData, entry }) {
+    return { readingTime: fileData.readingTime as number | undefined }
+  },
+})
+```
+
+Client-side code then finds the field next to the core ones:
+
+```ts
+const index = await fetchData
+index["some/page"].readingTime
+```
+
+Rules:
+
+- Return a plain object of JSON-serialisable values, or `undefined` to add nothing. `undefined` values are skipped.
+- Core fields (`slug`, `filePath`, `title`, `links`, `tags`, `content`, `richContent`, `date`, `description`) cannot be overridden.
+- If two plugins add the same key, the first one in plugin order keeps it; a warning names both. Prefer distinctive or namespaced keys (`"readingTime"`, `"myPlugin:score"` or one nested object).
+- `entry` is a read-only copy of the core fields; `fileData` is the page's `file.data`.
+- Errors thrown by the hook are reported as a warning and the page keeps its core entry.
+- Keep it small: `contentIndex.json` is downloaded by every visitor.
+
+Declare the field in your [[plugin capabilities|capabilities]] (`provides.data`) so other plugins can depend on it.
 
 ### Providing Custom Frames
 
