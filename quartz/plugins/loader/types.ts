@@ -5,6 +5,7 @@ import {
   QuartzPageTypePlugin,
 } from "../types"
 import { BuildCtx } from "../../util/ctx"
+import type { PluginCapabilities } from "./capabilities"
 
 export type PluginCategory = "transformer" | "filter" | "emitter" | "pageType" | "component"
 
@@ -67,6 +68,8 @@ export interface PluginManifest {
   frames?: Record<string, { exportName: string }>
   /** Whether the plugin requires `npm install` after cloning (e.g. for native dependencies like sharp). */
   requiresInstall?: boolean
+  /** Declared provided / required capabilities (data keys, DOM, globals, events, files, CSS vars). See capabilities.ts. */
+  capabilities?: PluginCapabilities
 }
 
 /**

@@ -14,6 +14,8 @@ import {
   LayoutConfig,
   PluginLayoutDeclaration,
   FlexGroupConfig,
+  LayoutPosition,
+  PageTypeLayoutOverride,
 } from "./types"
 import {
   parsePluginSource,
@@ -24,9 +26,24 @@ import {
   isLocalSource,
 } from "./gitLoader"
 import { loadComponentsFromPackage } from "./componentLoader"
+import { attributeComponentExport, shortPluginName } from "../../components/attribution"
 import { loadFramesFromPackage } from "./frameLoader"
-import { componentRegistry } from "../../components/registry"
-import { getCondition } from "./conditions"
+import { validatePluginCapabilities, printCapabilityWarnings } from "./capabilities"
+import { collectPluginConfigWarnings, printPluginConfigWarnings } from "./option-validation"
+import { componentRegistry, RegisteredComponent } from "../../components/registry"
+import { frameRegistry } from "../../components/frames/registry"
+import { getCondition, getAllConditionNames } from "./conditions"
+import {
+  LAYOUT_SLOTS,
+  LayoutDiagnostics,
+  LayoutPlacement,
+  LayoutReport,
+  emptyLayoutReport,
+  isLayoutSlot,
+  printLayoutWarnings,
+  setLayoutReport,
+  suggest,
+} from "./layoutReport"
 import Flex from "../../components/Flex"
 import MobileOnly from "../../components/MobileOnly"
 import DesktopOnly from "../../components/DesktopOnly"
@@ -228,6 +245,7 @@ async function readManifestFromPackageJson(source: PluginSource): Promise<Plugin
       category: q.category,
       quartzVersion: q.quartzVersion,
       dependencies: q.dependencies,
+      capabilities: q.capabilities,
       defaultOrder: q.defaultOrder,
       defaultEnabled: q.defaultEnabled,
       defaultOptions: q.defaultOptions,
@@ -304,6 +322,24 @@ export async function loadQuartzConfig(
       )
     }
   }
+
+  // Validate declared capabilities (quartz.capabilities, opt-in, warnings only — see capabilities.ts)
+  const capabilityReport = await validatePluginCapabilities({
+    entries: json.plugins,
+    nameOf: (entry) => extractPluginName(entry.source),
+    manifestFor: (entry) => manifests.get(sourceKey(entry.source)) ?? getManifest(entry.source),
+    configuration,
+  })
+  printCapabilityWarnings(capabilityReport)
+
+  // Warn about likely typos in plugin entries/options (warnings only — see option-validation.ts)
+  printPluginConfigWarnings(
+    collectPluginConfigWarnings(
+      json.plugins,
+      (entry) => manifests.get(sourceKey(entry.source)),
+      (entry) => extractPluginName(entry.source),
+    ),
+  )
 
   // Validate dependencies
   const validation = validateDependencies(enabledEntries, manifests)
@@ -479,6 +515,14 @@ export async function loadQuartzConfig(
           )
           continue
         }
+        // Page-type bodies (e.g. the content page article) get the same
+        // data-quartz-plugin / data-quartz-component attribution as layout components.
+        if (expectedCategory === "pageType" && typeof instance.body === "function") {
+          instance.body = attributeComponentExport(instance.body, {
+            plugin: shortPluginName(extractPluginName(entry.source)),
+            component: typeof instance.name === "string" ? instance.name : "Body",
+          })
+        }
         instances.push(instance)
       } catch (err) {
         console.error(
@@ -510,6 +554,7 @@ export async function loadQuartzConfig(
   // Load layout and add PageTypeDispatcher to emitters.
   // This must happen after plugin instantiation so the component registry is populated.
   const layout = await loadQuartzLayout()
+  activeLayout = layout
   plugins.emitters.push(
     builtinPlugins.PageTypes.PageTypeDispatcher({
       defaults: layout.defaults,
@@ -632,13 +677,193 @@ function detectCategoryFromModule(module: unknown): ProcessingCategory | null {
   return null
 }
 
-export async function loadQuartzLayout(layoutOverrides?: {
+export interface LayoutOverrides {
   defaults?: Partial<FullPageLayout>
   byPageType?: Record<string, Partial<FullPageLayout>>
-}): Promise<{
+}
+
+export interface QuartzLayout {
   defaults: Partial<FullPageLayout>
   byPageType: Record<string, Partial<FullPageLayout>>
-}> {
+}
+
+/**
+ * The layout object handed to the PageTypeDispatcher by loadQuartzConfig().
+ * A later `loadQuartzLayout(overrides)` call from quartz.ts updates it in place,
+ * so TypeScript layout overrides actually reach the renderer.
+ */
+let activeLayout: QuartzLayout | undefined
+
+function replaceContents(target: object, source: object): void {
+  const t = target as Record<string, unknown>
+  for (const key of Object.keys(t)) delete t[key]
+  Object.assign(t, source)
+}
+
+const BUILTIN_FRAME_NAMES = ["default", "full-width", "minimal"]
+
+/**
+ * Names a plugin may be referred to by in layout config (e.g. byPageType
+ * `exclude`): the name derived from its source and, for scoped npm specifiers
+ * ("@quartz-community/reader-mode"), the bare package name ("reader-mode").
+ */
+function layoutNameAliases(pluginName: string): string[] {
+  const slash = pluginName.indexOf("/")
+  if (pluginName.startsWith("@") && slash > 0) {
+    return [pluginName, pluginName.slice(slash + 1)]
+  }
+  return [pluginName]
+}
+const PAGE_TYPE_OVERRIDE_KEYS = ["exclude", "positions", "template"]
+
+/**
+ * Build the layout (defaults + per-page-type overrides) from a parsed
+ * quartz.config.yaml. Pure apart from the component registry lookups.
+ *
+ * Precedence per slot, highest first: quartz.ts `byPageType` override →
+ * YAML `layout.byPageType` changes (exclude / cleared positions) → quartz.ts
+ * `defaults` override → layout built from plugin `layout:` blocks.
+ *
+ * @internal Exported for testing only.
+ */
+export function buildQuartzLayout(
+  json: QuartzPluginsJson,
+  head: QuartzComponent,
+  layoutOverrides?: LayoutOverrides,
+): { layout: QuartzLayout; report: LayoutReport } {
+  const report = emptyLayoutReport()
+  const warn = (w: string) => {
+    if (!report.warnings.includes(w)) report.warnings.push(w)
+  }
+
+  const allEntries = Array.isArray(json.plugins) ? json.plugins : []
+  const enabledEntries = allEntries.filter((e) => e.enabled)
+  const layoutConfig = json.layout ?? {}
+
+  // Build default layout for all page types
+  const defaultDiag = new LayoutDiagnostics()
+  const defaultLayout = buildLayoutForEntries(enabledEntries, layoutConfig, defaultDiag)
+  report.defaults = defaultDiag.placements
+  defaultDiag.warnings.forEach(warn)
+
+  const knownPluginNames = allEntries.flatMap((e) => layoutNameAliases(extractPluginName(e.source)))
+  const enabledPluginNames = new Set(
+    enabledEntries.flatMap((e) => layoutNameAliases(extractPluginName(e.source))),
+  )
+  const isExcluded = (exclude: string[], pluginName: string) =>
+    layoutNameAliases(pluginName).some((alias) => exclude.includes(alias))
+
+  // Build per-page-type overrides. Only slots that actually differ from the
+  // defaults are stored, so unchanged slots fall back to the (possibly
+  // TS-overridden) defaults in resolveLayout().
+  const byPageType: Record<string, Partial<FullPageLayout>> = {}
+  for (const [pageType, rawOverride] of Object.entries(layoutConfig.byPageType ?? {})) {
+    const override = (rawOverride ?? {}) as PageTypeLayoutOverride
+    for (const key of Object.keys(override)) {
+      if (!PAGE_TYPE_OVERRIDE_KEYS.includes(key)) {
+        const hint = suggest(key, PAGE_TYPE_OVERRIDE_KEYS)
+        warn(
+          `byPageType.${pageType}: unknown key "${key}"${hint ? ` (did you mean "${hint}"?)` : ""} — ignored. Supported: ${PAGE_TYPE_OVERRIDE_KEYS.join(", ")}.`,
+        )
+      }
+    }
+
+    const exclude = Array.isArray(override.exclude) ? override.exclude : []
+    for (const name of exclude) {
+      if (!knownPluginNames.includes(name)) {
+        const hint = suggest(name, knownPluginNames)
+        warn(
+          `byPageType.${pageType}.exclude: no plugin named "${name}"${hint ? ` (did you mean "${hint}"?)` : ""} — nothing excluded.`,
+        )
+      }
+    }
+    const filteredEntries = enabledEntries.filter(
+      (e) => !isExcluded(exclude, extractPluginName(e.source)),
+    )
+
+    const ptDiag = new LayoutDiagnostics()
+    const ptLayout = buildLayoutForEntries(filteredEntries, layoutConfig, ptDiag)
+    ptDiag.warnings.forEach(warn)
+
+    const customized = new Set<LayoutPosition>()
+    for (const p of report.defaults) {
+      if (isExcluded(exclude, p.plugin)) customized.add(p.slot)
+    }
+
+    // Position overrides: only `[]` (clear the slot) is supported
+    const cleared: LayoutPosition[] = []
+    for (const [pos, components] of Object.entries(override.positions ?? {})) {
+      if (!isLayoutSlot(pos)) {
+        const hint = suggest(pos, LAYOUT_SLOTS)
+        warn(
+          `byPageType.${pageType}.positions: unknown position "${pos}"${hint ? ` (did you mean "${hint}"?)` : ""} — ignored. Valid positions: ${LAYOUT_SLOTS.join(", ")}.`,
+        )
+        continue
+      }
+      if (Array.isArray(components) && components.length === 0) {
+        ;(ptLayout as Record<string, unknown>)[pos] = []
+        cleared.push(pos)
+        customized.add(pos)
+      } else {
+        warn(
+          `byPageType.${pageType}.positions.${pos}: only an empty list ([]) is supported (clears the slot) — ignored. To move a component on this page type, use exclude plus the plugin's layout block.`,
+        )
+      }
+    }
+
+    const entry: Partial<FullPageLayout> = {}
+    for (const slot of customized) {
+      ;(entry as Record<string, unknown>)[slot] = (ptLayout as Record<string, unknown>)[slot]
+    }
+
+    if (override.template) {
+      if (
+        !BUILTIN_FRAME_NAMES.includes(override.template) &&
+        !frameRegistry.has(override.template)
+      ) {
+        const available = [...BUILTIN_FRAME_NAMES, ...frameRegistry.getAll().keys()]
+        warn(
+          `byPageType.${pageType}.template: unknown frame "${override.template}" — pages will use "default". Available: ${available.join(", ")}.`,
+        )
+      }
+      entry.frame = override.template
+    }
+
+    byPageType[pageType] = entry
+    report.byPageType[pageType] = {
+      exclude: exclude.filter((n) => enabledPluginNames.has(n)),
+      cleared,
+      template: override.template,
+      customizedSlots: LAYOUT_SLOTS.filter((s) => customized.has(s)),
+      placements: ptDiag.placements.filter((p) => !cleared.includes(p.slot)),
+    }
+  }
+
+  // Apply structural defaults
+  defaultLayout.head = head
+  defaultLayout.header = defaultLayout.header ?? []
+  defaultLayout.footer = defaultLayout.footer ?? []
+
+  const tsDefaults = layoutOverrides?.defaults ?? {}
+  report.tsOverrides.defaults = Object.keys(tsDefaults)
+  const mergedDefaults = { ...defaultLayout, ...tsDefaults }
+  const mergedByPageType = { ...byPageType }
+  for (const [pageType, overrideLayout] of Object.entries(layoutOverrides?.byPageType ?? {})) {
+    mergedByPageType[pageType] = { ...mergedByPageType[pageType], ...overrideLayout }
+    report.tsOverrides.byPageType[pageType] = Object.keys(overrideLayout ?? {})
+  }
+
+  return { layout: { defaults: mergedDefaults, byPageType: mergedByPageType }, report }
+}
+
+/**
+ * Build the page layout from quartz.config.yaml.
+ *
+ * Called by loadQuartzConfig() (which wires the result into the page renderer)
+ * and optionally from quartz.ts with TypeScript `layoutOverrides`; in that case
+ * the renderer's layout is updated in place with the overrides applied.
+ */
+export async function loadQuartzLayout(layoutOverrides?: LayoutOverrides): Promise<QuartzLayout> {
   const json = readPluginsJson()
 
   if (!json) {
@@ -647,93 +872,80 @@ export async function loadQuartzLayout(layoutOverrides?: {
     return oldLayout.layout
   }
 
-  const enabledWithLayout = json.plugins.filter((e) => e.enabled)
-  const layoutConfig = json.layout ?? {}
-
-  // Build default layout for all page types
-  const defaultLayout = buildLayoutForEntries(enabledWithLayout, layoutConfig)
-
-  // Build per-page-type overrides
-  const byPageType: Record<string, Partial<FullPageLayout>> = {}
-  if (layoutConfig.byPageType) {
-    for (const [pageType, override] of Object.entries(layoutConfig.byPageType)) {
-      let filteredEntries = enabledWithLayout
-
-      // Apply exclusions
-      if (override.exclude?.length) {
-        filteredEntries = filteredEntries.filter((e) => {
-          const name = extractPluginName(e.source)
-          return !override.exclude!.includes(name)
-        })
-      }
-
-      const ptLayout = buildLayoutForEntries(filteredEntries, layoutConfig)
-
-      // Apply position overrides (empty array = clear position)
-      if (override.positions) {
-        for (const [pos, components] of Object.entries(override.positions)) {
-          if (Array.isArray(components) && components.length === 0) {
-            const key = pos as keyof Pick<
-              FullPageLayout,
-              "header" | "left" | "right" | "beforeBody" | "afterBody" | "footer"
-            >
-            if (key in ptLayout) {
-              ;(ptLayout as Record<string, unknown>)[key] = []
-            }
-          }
-        }
-      }
-
-      // Apply frame template override
-      if (override.template) {
-        ptLayout.frame = override.template
-      }
-
-      byPageType[pageType] = ptLayout
-    }
-  }
-
   const HeadModule = await import("../../components/Head")
   const head = HeadModule.default()
 
-  // Apply structural defaults
-  defaultLayout.head = head
-  defaultLayout.header = defaultLayout.header ?? []
-  defaultLayout.footer = defaultLayout.footer ?? []
+  const { layout, report } = buildQuartzLayout(json, head, layoutOverrides)
+  setLayoutReport(report)
+  printLayoutWarnings(report.warnings)
 
-  // Ensure all byPageType entries inherit structural slots
-  for (const pageType of Object.keys(byPageType)) {
-    const pt = byPageType[pageType]
-    if (!pt.head) pt.head = head
-    if (!pt.header) pt.header = defaultLayout.header
-    if (!pt.footer) pt.footer = defaultLayout.footer
+  if (layoutOverrides && activeLayout) {
+    replaceContents(activeLayout.defaults, layout.defaults)
+    replaceContents(activeLayout.byPageType, layout.byPageType)
+    return activeLayout
   }
-
-  const mergedDefaults = { ...defaultLayout, ...layoutOverrides?.defaults }
-  const mergedByPageType = { ...byPageType }
-  if (layoutOverrides?.byPageType) {
-    for (const [pageType, overrideLayout] of Object.entries(layoutOverrides.byPageType)) {
-      mergedByPageType[pageType] = { ...mergedByPageType[pageType], ...overrideLayout }
-    }
-  }
-
-  return { defaults: mergedDefaults, byPageType: mergedByPageType }
+  return layout
 }
 
-/** @internal Exported for testing only. */
+type SlotItem = {
+  component: QuartzComponent
+  priority: number
+  group?: string
+  groupOptions?: PluginLayoutDeclaration["groupOptions"]
+  placement: LayoutPlacement
+  rank: number
+  seq: number
+}
+
+function lookupRegisteredComponent(entry: PluginJsonEntry): RegisteredComponent | undefined {
+  const name = extractPluginName(entry.source)
+  const pascalName = name
+    .split("-")
+    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+    .join("")
+  return (
+    componentRegistry.get(name) ??
+    componentRegistry.get(`${formatSourceDisplay(entry.source)}/${name}`) ??
+    componentRegistry.get(pascalName)
+  )
+}
+
+function instantiateRegistered(
+  reg: RegisteredComponent,
+  name: string,
+  entry: PluginJsonEntry,
+): QuartzComponent {
+  if (typeof reg.component === "function" && !("displayName" in reg.component)) {
+    // It's a constructor — use registry cache to avoid duplicate instances
+    // (and duplicate afterDOMLoaded scripts) across page-type layouts
+    const tsOverrides = componentRegistry.getOptionOverrides(name)
+    const opts = { ...entry.options, ...tsOverrides }
+    const optsArg = Object.keys(opts).length > 0 ? opts : undefined
+    return componentRegistry.instantiate(reg.component as QuartzComponentConstructor, optsArg)
+  }
+  return reg.component as QuartzComponent
+}
+
+/**
+ * Place every enabled component plugin into its layout slot.
+ *
+ * Position/priority come from the entry's `layout:` block, falling back to
+ * the plugin manifest's `defaultPosition` / `defaultPriority` (so a layout
+ * block may set only e.g. `condition` or `display`). Problems (unknown
+ * positions, display modes or conditions, unregistered components, duplicate
+ * entries) are reported to `diag` instead of being silently dropped.
+ *
+ * Within a slot, components sort by priority; ties keep config order, with
+ * explicit `layout:` entries before plugins placed by their manifest default.
+ *
+ * @internal Exported for testing only.
+ */
 export function buildLayoutForEntries(
   entries: PluginJsonEntry[],
   layoutConfig: LayoutConfig,
+  diag: LayoutDiagnostics = new LayoutDiagnostics(),
 ): Partial<FullPageLayout> {
-  const positions: Record<
-    string,
-    {
-      component: QuartzComponent
-      priority: number
-      group?: string
-      groupOptions?: PluginLayoutDeclaration["groupOptions"]
-    }[]
-  > = {
+  const positions: Record<LayoutPosition, SlotItem[]> = {
     header: [],
     left: [],
     right: [],
@@ -742,111 +954,103 @@ export function buildLayoutForEntries(
     footer: [],
   }
 
-  for (const entry of entries) {
-    if (!entry.layout) continue
-
-    const layout = entry.layout
-    const name = extractPluginName(entry.source)
-
-    // Look up component from registry
-    const registered =
-      componentRegistry.get(name) ??
-      componentRegistry.get(`${formatSourceDisplay(entry.source)}/${name}`)
-    if (!registered) {
-      // Try common naming patterns
-      const pascalName = name
-        .split("-")
-        .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-        .join("")
-      const altRegistered = componentRegistry.get(pascalName)
-      if (!altRegistered) continue
-    }
-
-    const reg =
-      registered ??
-      componentRegistry.get(
-        name
-          .split("-")
-          .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-          .join(""),
-      )
-    if (!reg) continue
-
-    let component: QuartzComponent
-    if (typeof reg.component === "function" && !("displayName" in reg.component)) {
-      // It's a constructor — use registry cache to avoid duplicate instances
-      // (and duplicate afterDOMLoaded scripts) across page-type layouts
-      const tsOverrides = componentRegistry.getOptionOverrides(name)
-      const opts = { ...entry.options, ...tsOverrides }
-      const optsArg = Object.keys(opts).length > 0 ? opts : undefined
-      component = componentRegistry.instantiate(
-        reg.component as QuartzComponentConstructor,
-        optsArg,
-      )
-    } else {
-      component = reg.component as QuartzComponent
-    }
-
-    // Apply display modifier
-    if (layout.display && layout.display !== "all") {
-      component = applyDisplayWrapper(component, layout.display)
-    }
-
-    // Apply condition
-    if (layout.condition) {
-      component = applyConditionWrapper(component, layout.condition)
-    }
-
-    const posArray = positions[layout.position]
-    if (posArray) {
-      posArray.push({
-        component,
-        priority: layout.priority,
-        group: layout.group,
-        groupOptions: layout.groupOptions,
-      })
-    }
-  }
+  const placedPlugins = new Set<string>()
+  let seq = 0
 
   for (const entry of entries) {
-    if (!entry.enabled || entry.layout) continue
+    if (!entry.enabled) continue
 
     const name = extractPluginName(entry.source)
-    const registered =
-      componentRegistry.get(name) ??
-      componentRegistry.get(`${formatSourceDisplay(entry.source)}/${name}`)
-    const pascalName = name
-      .split("-")
-      .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-      .join("")
-    const reg = registered ?? componentRegistry.get(pascalName)
-    if (!reg) continue
-
-    const layoutDefaults = reg.manifest
-    const defaultPosition = layoutDefaults?.defaultPosition
-    if (!defaultPosition) continue
-
-    const posArray = positions[defaultPosition]
-    if (!posArray) {
+    const layout = (entry.layout ?? undefined) as Partial<PluginLayoutDeclaration> | undefined
+    const reg = lookupRegisteredComponent(entry)
+    if (!reg) {
+      if (layout) {
+        diag.warn(
+          `plugin "${name}" has a layout block but no component is registered for it — not placed. (Does the plugin provide a component, and did it load?)`,
+        )
+      }
       continue
     }
 
-    let component: QuartzComponent
-    if (typeof reg.component === "function" && !("displayName" in reg.component)) {
-      const tsOverrides = componentRegistry.getOptionOverrides(name)
-      const opts = { ...entry.options, ...tsOverrides }
-      const optsArg = Object.keys(opts).length > 0 ? opts : undefined
-      component = componentRegistry.instantiate(
-        reg.component as QuartzComponentConstructor,
-        optsArg,
+    const manifest = reg.manifest
+    const fromConfig = layout?.position !== undefined && layout?.position !== null
+    const position = fromConfig ? layout!.position : manifest?.defaultPosition
+    if (position === undefined || position === null) {
+      if (layout) {
+        diag.warn(
+          `plugin "${name}": layout block has no position and the plugin declares no defaultPosition — not placed. Add layout.position (${LAYOUT_SLOTS.join(", ")}).`,
+        )
+      }
+      continue
+    }
+    if (!isLayoutSlot(position)) {
+      const hint = suggest(String(position), LAYOUT_SLOTS)
+      diag.warn(
+        fromConfig
+          ? `plugin "${name}": unknown layout position "${position}"${hint ? ` (did you mean "${hint}"?)` : ""} — not placed. Valid positions: ${LAYOUT_SLOTS.join(", ")}.`
+          : `plugin "${name}" declares unsupported defaultPosition "${position}" — not placed. Set layout.position in quartz.config.yaml to show it.`,
       )
-    } else {
-      component = reg.component as QuartzComponent
+      continue
     }
 
-    posArray.push({
+    let priority = layout?.priority ?? manifest?.defaultPriority ?? 50
+    if (typeof priority !== "number" || Number.isNaN(priority)) {
+      diag.warn(`plugin "${name}": layout priority "${priority}" is not a number — using 50.`)
+      priority = 50
+    }
+
+    if (placedPlugins.has(name)) {
+      diag.warn(
+        `plugin "${name}" is listed more than once in quartz.config.yaml — its component is rendered once per entry.`,
+      )
+    }
+    placedPlugins.add(name)
+
+    let component = instantiateRegistered(reg, name, entry)
+    const placement: LayoutPlacement = {
+      plugin: name,
+      component: component.displayName ?? reg.manifest?.displayName,
+      slot: position,
+      priority,
+      origin: layout ? "config" : "manifest",
+    }
+
+    // Apply display modifier
+    const display = layout?.display
+    if (display === "mobile-only" || display === "desktop-only") {
+      component = applyDisplayWrapper(component, display)
+      placement.display = display
+    } else if (display !== undefined && display !== null && display !== "all") {
+      diag.warn(
+        `plugin "${name}": unknown display "${display}" — ignored (shown everywhere). Valid: all, mobile-only, desktop-only.`,
+      )
+    }
+
+    // Apply condition
+    if (layout?.condition) {
+      placement.condition = layout.condition
+      const wrapped = applyConditionWrapper(component, layout.condition)
+      if (wrapped === component) {
+        placement.conditionUnknown = true
+        const known = getAllConditionNames()
+        const hint = suggest(layout.condition, known)
+        diag.warn(
+          `plugin "${name}": unknown condition "${layout.condition}"${hint ? ` (did you mean "${hint}"?)` : ""} — component will always render. Known conditions: ${known.join(", ")}.`,
+        )
+      }
+      component = wrapped
+    }
+
+    if (layout?.group) placement.group = layout.group
+
+    positions[position].push({
       component,
-      priority: layoutDefaults?.defaultPriority ?? 50,
+      priority,
+      group: layout?.group,
+      groupOptions: layout?.groupOptions,
+      placement,
+      rank: layout ? 0 : 1,
+      seq: seq++,
     })
   }
 
@@ -854,14 +1058,11 @@ export function buildLayoutForEntries(
   const result: Partial<FullPageLayout> = {}
 
   for (const [position, items] of Object.entries(positions)) {
-    items.sort((a, b) => a.priority - b.priority)
+    items.sort((a, b) => a.priority - b.priority || a.rank - b.rank || a.seq - b.seq)
+    for (const item of items) diag.place(item.placement)
 
     const resolved = resolveGroups(items, layoutConfig.groups ?? {})
-    const key = position as keyof Pick<
-      FullPageLayout,
-      "header" | "left" | "right" | "beforeBody" | "afterBody" | "footer"
-    >
-    ;(result as Record<string, QuartzComponent[]>)[key] = resolved
+    ;(result as Record<string, QuartzComponent[]>)[position] = resolved
   }
 
   return result
@@ -961,13 +1162,8 @@ function applyDisplayWrapper(
 
 function applyConditionWrapper(component: QuartzComponent, conditionName: string): QuartzComponent {
   const predicate = getCondition(conditionName)
-  if (!predicate) {
-    console.warn(
-      styleText("yellow", `⚠`) +
-        ` Unknown condition "${conditionName}". Component will always render.`,
-    )
-    return component
-  }
+  // Unknown conditions are reported by buildLayoutForEntries (deduplicated)
+  if (!predicate) return component
 
   return ConditionalRender({
     component,

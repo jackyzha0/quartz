@@ -22,6 +22,7 @@ import { getStaticResourcesFromPlugins } from "./plugins"
 import { randomIdNonSecure } from "./util/random"
 import { ChangeEvent } from "./plugins/types"
 import { minimatch } from "minimatch"
+import { formatLayoutReport, getLayoutReport } from "./plugins/loader/layoutReport"
 
 function reportSlugCollisions(content: ProcessedContent[]): void {
   const collisions = detectSlugCollisions(content)
@@ -72,6 +73,15 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
     console.log(`  Filters: ${pluginNames("filters").join(", ")}`)
     console.log(`  Emitters: ${pluginNames("emitters").join(", ")}`)
     console.log(`  PageTypes: ${pluginNames("pageTypes").join(", ")}`)
+    const pageTypes = (cfg.plugins.pageTypes ?? []).map((pt) => {
+      const { name, layout, frame } = pt as { name: string; layout?: unknown; frame?: unknown }
+      return {
+        name,
+        layout: typeof layout === "string" ? layout : name,
+        frame: typeof frame === "string" ? frame : undefined,
+      }
+    })
+    console.log(formatLayoutReport(getLayoutReport(), pageTypes))
   }
 
   const release = await mut.acquire()

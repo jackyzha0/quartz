@@ -38,4 +38,16 @@ describe("resolveFrame", () => {
     const result = resolveFrame("totally-unknown")
     assert.strictEqual(result, DefaultFrame)
   })
+
+  test("warns about an unknown frame once, not once per page", () => {
+    const original = console.warn
+    const calls: unknown[][] = []
+    console.warn = (...args: unknown[]) => calls.push(args)
+    try {
+      for (let i = 0; i < 5; i++) resolveFrame("warn-once-frame")
+    } finally {
+      console.warn = original
+    }
+    assert.strictEqual(calls.length, 1)
+  })
 })
