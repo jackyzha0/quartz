@@ -4,6 +4,7 @@ import {
   checkQuartzRequirement,
   describeRequirementProblem,
   formatQuartzVersion,
+  incompatiblePluginsFailBuild,
   readQuartzVersion,
 } from "./compat.js"
 import { redactRemote, formatInfoMarkdown } from "./info.js"
@@ -47,6 +48,20 @@ describe("describeRequirementProblem", () => {
     assert.strictEqual(
       describeRequirementProblem("graph", checkQuartzRequirement(">=5.0.0", "5.0.0")),
       undefined,
+    )
+  })
+})
+
+describe("incompatiblePluginsFailBuild", () => {
+  test("fails in CI, warns locally, can be overridden", () => {
+    assert.strictEqual(incompatiblePluginsFailBuild({}), false)
+    assert.strictEqual(incompatiblePluginsFailBuild({ CI: "true" }), true)
+    assert.strictEqual(incompatiblePluginsFailBuild({ CI: "1" }), true)
+    assert.strictEqual(incompatiblePluginsFailBuild({ CI: "false" }), false)
+    assert.strictEqual(incompatiblePluginsFailBuild({ CI: "0" }), false)
+    assert.strictEqual(
+      incompatiblePluginsFailBuild({ CI: "true", QUARTZ_ALLOW_INCOMPATIBLE_PLUGINS: "1" }),
+      false,
     )
   })
 })

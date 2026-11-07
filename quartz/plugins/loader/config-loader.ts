@@ -39,6 +39,7 @@ import { registerPluginOrigin, warn } from "../../util/diagnostics"
 import {
   checkQuartzRequirement,
   describeRequirementProblem,
+  incompatiblePluginsFailBuild,
   readQuartzVersion,
 } from "../../cli/compat.js"
 import { collectPluginConfigWarnings, printPluginConfigWarnings } from "./option-validation"
@@ -354,17 +355,28 @@ export async function loadQuartzConfig(
   }
 
   // Quartz version requirements (package.json → quartz.quartzVersion), see cli/compat.js
+  // Locally a mismatch only warns; in CI it fails the build (incompatiblePluginsFailBuild).
   const quartzVersion = readQuartzVersion()
+  const incompatible: string[] = []
   for (const entry of enabledEntries) {
     const manifest = manifests.get(sourceKey(entry.source))
     if (!manifest) continue
     const name = manifest.name ?? extractPluginName(entry.source)
-    const problem = describeRequirementProblem(
-      name,
-      checkQuartzRequirement(manifest.quartzVersion, quartzVersion),
-      manifest.version,
-    )
+    const requirement = checkQuartzRequirement(manifest.quartzVersion, quartzVersion)
+    const problem = describeRequirementProblem(name, requirement, manifest.version)
     if (problem) warn({ area: "versions", plugin: name, ...problem })
+    if (requirement.status === "incompatible") incompatible.push(name)
+  }
+  // The quiet install-plugins prebuild pass doesn't print, so the real build reports the failure.
+  if (
+    incompatible.length > 0 &&
+    incompatiblePluginsFailBuild() &&
+    process.env.QUARTZ_CONFIG_QUIET !== "1"
+  ) {
+    throw new Error(
+      `${incompatible.length} enabled plugin${incompatible.length === 1 ? " does" : "s do"} not support Quartz ${quartzVersion}: ${incompatible.join(", ")} (see above). ` +
+        `Builds in CI fail on this; locally it is a warning. Set QUARTZ_ALLOW_INCOMPATIBLE_PLUGINS=1 to build anyway.`,
+    )
   }
 
   // Decide which built-ins (frontmatter, links, drafts, content index) run — see builtins/index.ts

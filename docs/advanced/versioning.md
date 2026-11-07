@@ -35,7 +35,7 @@ Plugins declare the Quartz versions they work with in their `package.json`:
 
 Any [npm semver range](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies) works (`>=5.1.0`, `^5.1.0`, `>=5.1.0 <7`). Quartz checks it
 
-- when the build loads your config (a warning, repeated in the end-of-build summary),
+- when the build loads your config: locally a warning (repeated in the end-of-build summary); in CI (when the `CI` environment variable is set, as on GitHub Actions, GitLab CI, Netlify, Vercel or Cloudflare Pages) the build fails, so an incompatible plugin doesn't get deployed. Set `QUARTZ_ALLOW_INCOMPATIBLE_PLUGINS=1` to build anyway,
 - in `npx quartz plugin add` and `npx quartz plugin doctor` (an error for enabled plugins),
 
 and says whether to update Quartz (`npx quartz upgrade`) or the plugin. If an incompatible plugin later fails, the error message mentions the version mismatch as a likely cause.

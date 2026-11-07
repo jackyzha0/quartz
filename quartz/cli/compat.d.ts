@@ -27,3 +27,4 @@ export function describeRequirementProblem(
 ): { message: string; hint: string } | undefined
 export function describeQuartzCheckout(root?: string): QuartzCheckout
 export function formatQuartzVersion(version: string | undefined, checkout?: QuartzCheckout): string
+export function incompatiblePluginsFailBuild(env?: Record<string, string | undefined>): boolean

@@ -63,6 +63,17 @@ export function describeRequirementProblem(pluginName, result, pluginVersion) {
   }
 }
 
+/**
+ * Whether incompatible plugins fail the build: in CI (`CI` set, as GitHub Actions, GitLab CI,
+ * Netlify, Vercel, Cloudflare Pages… do) unless QUARTZ_ALLOW_INCOMPATIBLE_PLUGINS=1. Locally they
+ * only warn, so a site keeps building while you sort out versions.
+ */
+export function incompatiblePluginsFailBuild(env = process.env) {
+  if (env.QUARTZ_ALLOW_INCOMPATIBLE_PLUGINS === "1") return false
+  const ci = env.CI
+  return ci !== undefined && ci !== "" && ci !== "0" && ci.toLowerCase() !== "false"
+}
+
 function git(root, args) {
   try {
     return execFileSync("git", args, {
