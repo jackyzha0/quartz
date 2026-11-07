@@ -14,7 +14,7 @@ const source = ts.createSourceFile(
 )
 let template: ts.TemplateExpression | undefined
 function findTemplate(node: ts.Node) {
-  if (ts.isTemplateExpression(node) && node.head.text.includes("const goatcounterScriptPre")) {
+  if (ts.isTemplateExpression(node) && node.head.text.includes("window.goatcounter = {")) {
     assert.equal(template, undefined, "expected a single GoatCounter script")
     template = node
   }
@@ -63,7 +63,9 @@ function setup(
   })
   const context = createContext({ document, location })
   context.window = context
-  const script = runInNewContext(template!.getText(source), { cfg: { analytics } })
+  // the emitter writes config values with this helper (JSON string literals)
+  const js = (value: unknown) => JSON.stringify(String(value)).replace(/</g, "\\u003c")
+  const script = runInNewContext(template!.getText(source), { analytics, js })
   runInContext(script, context)
 
   return {
@@ -140,5 +142,13 @@ describe("GoatCounter pageviews", () => {
     assert.equal(script.attributes["data-goatcounter"], "https://garden.stats.example.com/count")
     counter.load()
     assert.equal(counter.context.goatcounter.endpoint, "https://garden.stats.example.com/count")
+  })
+
+  test("config values stay data: quotes and template syntax can't break out (#2571)", () => {
+    const hostile = 'x"; globalThis.pwned = 1; "`${globalThis.pwned2 = 1}</script>'
+    const counter = setup({ websiteId: hostile, host: undefined, scriptSrc: hostile })
+    assert.equal(counter.context.pwned, undefined)
+    assert.equal(counter.context.pwned2, undefined)
+    assert.equal(counter.scripts.find((script) => script.src)!.src, hostile)
   })
 })
