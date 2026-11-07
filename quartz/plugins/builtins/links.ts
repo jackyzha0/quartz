@@ -10,11 +10,14 @@ import {
   RelativeURL,
   SimpleSlug,
   TransformOptions,
+  resolveRelative,
   simplifySlug,
+  slugifyFilePath,
   splitAnchor,
   stripSlashes,
   transformLink,
 } from "../../util/path"
+import { permalinkTargets } from "../../util/permalinks"
 
 /**
  * Built-in link processing (formerly `@quartz-community/crawl-links`).
@@ -73,6 +76,24 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
               allSlugs: ctx.allSlugs,
             }
 
+            // Permalinks: links are written relative to the note's file, and resolved by file
+            // path (as in Obsidian). Resolve against the file's path slug, then point at where
+            // the target is published (its permalink) from where this page is published.
+            const targets = permalinkTargets(ctx.permalinks)
+            const pathSlug = file.data.relativePath
+              ? slugifyFilePath(file.data.relativePath)
+              : fileSlug
+            const rebase = targets.size > 0 || pathSlug !== fileSlug
+            const resolveLink = (raw: string): RelativeURL => {
+              const rel = transformLink(pathSlug, raw, transformOptions)
+              if (!rebase) return rel
+              const hash = rel.indexOf("#")
+              const anchor = hash === -1 ? "" : rel.slice(hash)
+              const target = canonicalSlug(rel, simplifySlug(pathSlug))
+              return (resolveRelative(fileSlug, targets.get(target) ?? target) +
+                anchor) as RelativeURL
+            }
+
             visit(tree, "element", (node: Element) => {
               if (
                 node.tagName === "a" &&
@@ -124,7 +145,7 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
 
                 const isInternal = !(isExternal || dest.startsWith("#"))
                 if (isInternal) {
-                  dest = node.properties.href = transformLink(fileSlug, dest, transformOptions)
+                  dest = node.properties.href = resolveLink(dest)
                   const full = canonicalSlug(dest, curSlug)
                   outgoing.add(simplifySlug(full))
                   node.properties["data-slug"] = full
@@ -155,11 +176,7 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
               ) {
                 if (opts.lazyLoad) node.properties.loading = "lazy"
                 if (!isExternalUrl(node.properties.src)) {
-                  node.properties.src = transformLink(
-                    fileSlug,
-                    node.properties.src as RelativeURL,
-                    transformOptions,
-                  )
+                  node.properties.src = resolveLink(node.properties.src as RelativeURL)
                 }
               }
 
@@ -174,11 +191,7 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
                   !value.startsWith("#") &&
                   !isExternalUrl(value)
                 ) {
-                  node.properties[resourceAttr] = transformLink(
-                    fileSlug,
-                    value as RelativeURL,
-                    transformOptions,
-                  )
+                  node.properties[resourceAttr] = resolveLink(value as RelativeURL)
                 }
               }
             })
@@ -189,7 +202,7 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
               if (isExternalUrl(fmLink)) continue
               const [targetRaw] = splitAnchor(fmLink)
               if (!targetRaw) continue
-              const dest = transformLink(fileSlug, targetRaw, transformOptions)
+              const dest = resolveLink(targetRaw)
               outgoing.add(simplifySlug(canonicalSlug(dest, curSlug)))
             }
 

@@ -210,9 +210,10 @@ describe("frontmatter built-in", () => {
     )
   })
 
-  test("normalizeFrontmatter registers permalink as an alias slug", () => {
-    const data: Record<string, unknown> = { permalink: "short" }
-    assert.deepStrictEqual(normalizeFrontmatter(data, "x").aliases, ["short"])
+  test("a permalink is the page's address, not an alias (Obsidian Publish)", () => {
+    const data: Record<string, unknown> = { permalink: "short", aliases: ["old-name"] }
+    assert.deepStrictEqual(normalizeFrontmatter(data, "x").aliases, ["old-name"])
+    assert.strictEqual(data.permalink, "short")
   })
 })
 
@@ -238,6 +239,38 @@ describe("links built-in", () => {
     tagName: "a",
     properties: { href },
     children: [{ type: "text", value: text }],
+  })
+
+  test("permalinks: links resolve by file path and point at the permalink", () => {
+    // folder/page.md has permalink "home"; folder/target.md has permalink "t"
+    const tree: Root = {
+      type: "root",
+      children: [
+        a("target", "Target"),
+        a("./sibling"),
+        {
+          type: "element",
+          tagName: "img",
+          properties: { src: "img.png" },
+          children: [],
+        },
+      ],
+    }
+    const file = new VFile("")
+    file.data = { slug: "home" as FullSlug, relativePath: "folder/page.md" as never }
+    const ctx = {
+      allSlugs: ["folder/page", "folder/target", "folder/sibling", "folder/img.png", "home", "t"],
+      permalinks: { "folder/page.md": "home", "folder/target.md": "t" },
+    } as unknown as BuildCtx
+    const [factory] = Links({ markdownLinkResolution: "shortest" }).htmlPlugins!(ctx) as [
+      () => (t: Root, f: VFile) => void,
+    ]
+    factory()(tree, file)
+    const [target, sibling, img] = tree.children as Element[]
+    assert.strictEqual(target.properties.href, "./t") // the target's permalink, from /home
+    assert.strictEqual(sibling.properties.href, "./folder/sibling") // relative to the file
+    assert.strictEqual(img.properties.src, "./folder/img.png")
+    assert.deepStrictEqual(file.data.links?.sort(), ["folder/sibling", "t"])
   })
 
   test("makes internal links relative, records outgoing links, marks external ones", () => {

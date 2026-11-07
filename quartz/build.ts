@@ -1,6 +1,7 @@
 import sourceMapSupport from "source-map-support"
 sourceMapSupport.install(options)
 import path from "path"
+import fs from "fs"
 import { PerfTimer } from "./util/perf"
 import { rm, readdir } from "fs/promises"
 import { GlobbyFilterFunction, isGitIgnored } from "globby"
@@ -25,9 +26,40 @@ import { minimatch } from "minimatch"
 import { formatLayoutReport, getLayoutReport } from "./plugins/loader/layoutReport"
 import { getBuiltinPlan } from "./plugins/loader/config-loader"
 import { prepareContentIndex } from "./plugins/builtins/contentIndex"
-import { printDiagnosticsSummary } from "./util/diagnostics"
+import { printDiagnosticsSummary, warn } from "./util/diagnostics"
+import { collectPermalinks } from "./util/permalinks"
+import { readFrontmatterData } from "./plugins/builtins/frontmatter"
 import { ChangeRecord, clearChangeRecord } from "./util/incremental"
 import { diffContentFiles, pollingEnabled } from "./util/contentWatcher"
+
+/**
+ * Every page's address: permalinks (frontmatter `permalink`, read up front so links can resolve
+ * to them) and the slugified paths of all files. A permalinked note's file path stays in
+ * `allSlugs`: it becomes a redirect to the permalink.
+ */
+function updateSlugs(ctx: BuildCtx, allFiles: string[]): void {
+  const frontmatter = ctx.cfg.configuration.frontmatter
+  const enabled =
+    frontmatter !== false && (typeof frontmatter !== "object" || frontmatter.enabled !== false)
+  const options = typeof frontmatter === "object" ? frontmatter : {}
+  ctx.permalinks = enabled
+    ? collectPermalinks({
+        files: allFiles.filter((fp) => fp.endsWith(".md")),
+        permalinkOf: (fp) => {
+          const source = fs.readFileSync(path.join(ctx.argv.directory, fp))
+          if (!source.includes("permalink")) return undefined
+          try {
+            return readFrontmatterData(source, options).permalink
+          } catch {
+            return undefined // reported when the file is parsed
+          }
+        },
+        warn: (message) => warn({ area: "permalinks", message }),
+      })
+    : {}
+  const pathSlugs = allFiles.map((fp) => slugifyFilePath(fp as FilePath))
+  ctx.allSlugs = [...new Set([...pathSlugs, ...Object.values(ctx.permalinks)])]
+}
 
 function reportSlugCollisions(content: ProcessedContent[]): void {
   const collisions = detectSlugCollisions(content)
@@ -119,7 +151,7 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
 
   const filePaths = markdownPaths.map((fp) => joinSegments(argv.directory, fp) as FilePath)
   ctx.allFiles = allFiles
-  ctx.allSlugs = allFiles.map((fp) => slugifyFilePath(fp as FilePath))
+  updateSlugs(ctx, allFiles)
 
   const parsedFiles = await parseMarkdown(ctx, filePaths)
   reportSlugCollisions(parsedFiles)
@@ -374,7 +406,7 @@ async function rebuild(changes: ChangeEvent[], clientRefresh: () => void, buildD
 
     // update allFiles and then allSlugs with the consistent view of content map
     ctx.allFiles = Array.from(contentMap.keys())
-    ctx.allSlugs = ctx.allFiles.map((fp) => slugifyFilePath(fp as FilePath))
+    updateSlugs(ctx, ctx.allFiles)
 
     const markdownContent = Array.from(contentMap.values())
       .filter((file) => file.type === "markdown")

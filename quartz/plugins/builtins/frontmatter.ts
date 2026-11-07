@@ -105,9 +105,9 @@ export function normalizeFrontmatter(
     aliasSlugs.push(...getAliasSlugs(aliases))
   }
 
+  // The page's address (Obsidian Publish semantics); applied before parsing, see util/permalinks.ts
   if (data.permalink != null && data.permalink.toString() !== "") {
     data.permalink = data.permalink.toString()
-    aliasSlugs.push(data.permalink as FullSlug)
   }
 
   const cssclasses = coerceToArray(coalesceAliases(data, ["cssclasses", "cssclass"]))
@@ -130,6 +130,22 @@ export function normalizeFrontmatter(
   return { aliases: aliasSlugs }
 }
 
+/** Parse a file's frontmatter with the configured delimiters and language (`{}` when it has none). */
+export function readFrontmatterData(
+  source: Buffer | string,
+  options: Pick<FrontmatterConfig, "delimiters" | "language"> = {},
+): Record<string, unknown> {
+  const { data } = matter(Buffer.isBuffer(source) ? source : Buffer.from(source), {
+    delimiters: options.delimiters ?? frontmatterDefaults.delimiters,
+    language: options.language ?? frontmatterDefaults.language,
+    engines: {
+      yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object,
+      toml: (s) => toml.parse(s) as object,
+    },
+  })
+  return data
+}
+
 export const Frontmatter: QuartzTransformerPlugin<FrontmatterConfig> = (userOpts) => {
   const opts = { ...frontmatterDefaults, ...userOpts }
   return {
@@ -140,16 +156,15 @@ export const Frontmatter: QuartzTransformerPlugin<FrontmatterConfig> = (userOpts
         [remarkFrontmatter, ["yaml", "toml"]],
         () => {
           return (_, file) => {
-            const { data } = matter(Buffer.from(file.value as Uint8Array), {
-              delimiters: opts.delimiters,
-              language: opts.language,
-              engines: {
-                yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object,
-                toml: (s) => toml.parse(s) as object,
-              },
-            })
+            const data = readFrontmatterData(Buffer.from(file.value as Uint8Array), opts)
 
             const { aliases } = normalizeFrontmatter(data, file.stem ?? "Untitled")
+            // With a permalink the page lives at the permalink (set in parse.ts); its file path
+            // becomes an extra address that redirects there (like an alias).
+            const pathSlug = file.data.relativePath
+              ? slugifyFilePath(file.data.relativePath)
+              : undefined
+            if (pathSlug && file.data.slug && file.data.slug !== pathSlug) aliases.push(pathSlug)
             if (aliases.length > 0) {
               file.data.aliases = aliases
               allSlugs.push(...aliases)
