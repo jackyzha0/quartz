@@ -1,8 +1,17 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
-import { collectComponents, resolveLayout } from "./dispatcher"
+import fs from "fs"
+import os from "os"
+import path from "path"
+import {
+  collectComponents,
+  pageOutputPath,
+  removeStalePageOutput,
+  resolveLayout,
+} from "./dispatcher"
 import { QuartzPageTypePluginInstance } from "../types"
 import { QuartzComponent } from "../../components/types"
+import { FilePath, FullSlug } from "../../util/path"
 
 const StubA: QuartzComponent = (() => null) as unknown as QuartzComponent
 const StubB: QuartzComponent = (() => null) as unknown as QuartzComponent
@@ -140,5 +149,54 @@ describe("collectComponents", () => {
 
     const result = collectComponents(pageTypes, sharedDefaults, byPageType)
     assert.ok(result.every((component) => component))
+  })
+})
+
+describe("incremental page deletion", () => {
+  test("maps Markdown sources to their emitted HTML paths", () => {
+    const cases: Array<[FilePath, string]> = [
+      ["note.md" as FilePath, "public/note.html"],
+      ["index.md" as FilePath, "public/index.html"],
+      ["folder/index.md" as FilePath, "public/folder/index.html"],
+      ["folder/folder.md" as FilePath, "public/folder/index.html"],
+    ]
+
+    for (const [sourcePath, expected] of cases) {
+      assert.strictEqual(pageOutputPath("public", sourcePath), expected)
+    }
+  })
+
+  test("removes stale output and tolerates an already-missing file", async (t) => {
+    const outputDir = await fs.promises.mkdtemp(path.join(os.tmpdir(), "quartz-page-delete-"))
+    t.after(() => fs.promises.rm(outputDir, { recursive: true, force: true }))
+
+    const sourcePath = "folder/folder.md" as FilePath
+    const outputPath = pageOutputPath(outputDir, sourcePath)
+    await fs.promises.mkdir(path.dirname(outputPath), { recursive: true })
+    await fs.promises.writeFile(outputPath, "stale")
+
+    const removed = await removeStalePageOutput(outputDir, sourcePath, new Set<FullSlug>())
+    assert.strictEqual(removed, outputPath)
+    await assert.rejects(fs.promises.access(outputPath), { code: "ENOENT" })
+
+    await removeStalePageOutput(outputDir, sourcePath, new Set<FullSlug>())
+  })
+
+  test("preserves output when another source still owns the slug", async (t) => {
+    const outputDir = await fs.promises.mkdtemp(path.join(os.tmpdir(), "quartz-page-delete-"))
+    t.after(() => fs.promises.rm(outputDir, { recursive: true, force: true }))
+
+    const sourcePath = "folder/folder.md" as FilePath
+    const outputPath = pageOutputPath(outputDir, sourcePath)
+    await fs.promises.mkdir(path.dirname(outputPath), { recursive: true })
+    await fs.promises.writeFile(outputPath, "current")
+
+    const removed = await removeStalePageOutput(
+      outputDir,
+      sourcePath,
+      new Set(["folder/index" as FullSlug]),
+    )
+    assert.strictEqual(removed, undefined)
+    assert.strictEqual(await fs.promises.readFile(outputPath, "utf8"), "current")
   })
 })
