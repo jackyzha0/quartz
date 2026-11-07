@@ -4,6 +4,7 @@ import {
   checkQuartzRequirement,
   describeRequirementProblem,
   formatQuartzVersion,
+  brokenPluginsFailBuild,
   incompatiblePluginsFailBuild,
   readQuartzVersion,
 } from "./compat.js"
@@ -62,6 +63,19 @@ describe("incompatiblePluginsFailBuild", () => {
     assert.strictEqual(
       incompatiblePluginsFailBuild({ CI: "true", QUARTZ_ALLOW_INCOMPATIBLE_PLUGINS: "1" }),
       false,
+    )
+  })
+
+  test("broken plugins have their own override", () => {
+    assert.strictEqual(brokenPluginsFailBuild({}), false)
+    assert.strictEqual(brokenPluginsFailBuild({ CI: "true" }), true)
+    assert.strictEqual(
+      brokenPluginsFailBuild({ CI: "true", QUARTZ_ALLOW_BROKEN_PLUGINS: "1" }),
+      false,
+    )
+    assert.strictEqual(
+      brokenPluginsFailBuild({ CI: "true", QUARTZ_ALLOW_INCOMPATIBLE_PLUGINS: "1" }),
+      true,
     )
   })
 })

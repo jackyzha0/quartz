@@ -10,8 +10,10 @@ import {
   knownProblemsFor,
   recordFiltered,
   getDiagnostics,
+  reportError,
+  printDiagnosticsSummary,
 } from "./diagnostics"
-import { describePluginError } from "./trace"
+import { describePluginError, firstPluginFrame } from "./trace"
 import { findUnresolvedLinks, reportUnresolvedLinks } from "./linkReport"
 import type { BuildCtx } from "./ctx"
 import type { ProcessedContent } from "../plugins/vfile"
@@ -174,5 +176,46 @@ describe("unresolved links report", () => {
       notes[0].message,
       /2 links in 1 page .*index → secret \(removed by filter Drafts\)/,
     )
+  })
+})
+
+describe("plugin load failures", () => {
+  beforeEach(() => resetDiagnostics())
+
+  test("firstPluginFrame prefers frames inside plugin packages", () => {
+    const err = new Error("boom")
+    err.stack = [
+      "Error: boom",
+      "    at load (node:internal/modules/esm/loader:1:1)",
+      "    at file:///site/node_modules/unified/lib/index.js:5:1",
+      "    at init (file:///site/node_modules/@quartz-community/graph/dist/index.js:12:5)",
+      "    at loadQuartzConfig (file:///site/quartz/plugins/loader/config-loader.ts:400:1)",
+    ].join("\n")
+    assert.strictEqual(
+      firstPluginFrame(err),
+      "/site/node_modules/@quartz-community/graph/dist/index.js:12:5",
+    )
+    assert.strictEqual(firstPluginFrame("not an error"), undefined)
+  })
+
+  test("errors are recorded as known problems and lead the summary", (t) => {
+    const lines: string[] = []
+    t.mock.method(console, "error", () => {})
+    t.mock.method(console, "log", (text: string) => lines.push(text))
+    reportError({
+      area: "plugins",
+      plugin: "graph",
+      message: "graph@1.0.0 failed to load its entry module: boom",
+      hint: "at /x/graph/dist/index.js:1:7\nsource: @quartz-community/graph",
+    })
+    recordDiagnostic({ severity: "warning", area: "config", message: "some warning" })
+    assert.deepStrictEqual(knownProblemsFor({ name: "graph", displayName: "graph" }), [
+      "graph@1.0.0 failed to load its entry module: boom",
+    ])
+    printDiagnosticsSummary()
+    const text = lines.join("\n").replace(/\x1b\[[0-9;]*m/g, "")
+    assert.match(text, /1 error — the build continued/)
+    assert.match(text, /→ at \/x\/graph\/dist\/index\.js:1:7\n.*→ source: @quartz-community\/graph/)
+    assert.ok(text.indexOf("failed to load") < text.indexOf("some warning"))
   })
 })

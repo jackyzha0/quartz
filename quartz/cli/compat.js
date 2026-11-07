@@ -70,6 +70,20 @@ export function describeRequirementProblem(pluginName, result, pluginVersion) {
  */
 export function incompatiblePluginsFailBuild(env = process.env) {
   if (env.QUARTZ_ALLOW_INCOMPATIBLE_PLUGINS === "1") return false
+  return isCI(env)
+}
+
+/**
+ * Whether plugins that fail to load fail the build: in CI unless QUARTZ_ALLOW_BROKEN_PLUGINS=1.
+ * Locally the build continues without them (and says so), so the rest of the site can be checked.
+ */
+export function brokenPluginsFailBuild(env = process.env) {
+  if (env.QUARTZ_ALLOW_BROKEN_PLUGINS === "1") return false
+  return isCI(env)
+}
+
+/** `CI` set to anything but "", "0" or "false". */
+export function isCI(env = process.env) {
   const ci = env.CI
   return ci !== undefined && ci !== "" && ci !== "0" && ci.toLowerCase() !== "false"
 }

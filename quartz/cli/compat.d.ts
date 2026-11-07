@@ -28,3 +28,5 @@ export function describeRequirementProblem(
 export function describeQuartzCheckout(root?: string): QuartzCheckout
 export function formatQuartzVersion(version: string | undefined, checkout?: QuartzCheckout): string
 export function incompatiblePluginsFailBuild(env?: Record<string, string | undefined>): boolean
+export function brokenPluginsFailBuild(env?: Record<string, string | undefined>): boolean
+export function isCI(env?: Record<string, string | undefined>): boolean

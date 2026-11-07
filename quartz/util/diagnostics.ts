@@ -14,7 +14,7 @@ import { isMainThread } from "node:worker_threads"
  * copies (CLI + bundled build). Worker threads have their own store; they only need plugin origins.
  */
 
-export type DiagnosticSeverity = "warning" | "info"
+export type DiagnosticSeverity = "error" | "warning" | "info"
 
 export interface Diagnostic {
   severity: DiagnosticSeverity
@@ -75,7 +75,7 @@ export function recordDiagnostic(diagnostic: Diagnostic): boolean {
   if (s.keys.has(key)) return false
   s.keys.add(key)
   s.diagnostics.push(diagnostic)
-  if (diagnostic.plugin && diagnostic.severity === "warning") {
+  if (diagnostic.plugin && diagnostic.severity !== "info") {
     const list = s.knownProblems.get(diagnostic.plugin) ?? []
     list.push(diagnostic.message)
     s.knownProblems.set(diagnostic.plugin, list)
@@ -141,15 +141,42 @@ export function warn(diagnostic: Omit<Diagnostic, "severity">): void {
   if (diagnostic.hint) console.warn(styleText("gray", `    → ${diagnostic.hint}`))
 }
 
-/** Print the end-of-build summary of warnings (and infos with --verbose). */
+/**
+ * Record an error and print it right away (main thread, once). Used for plugins that could not be
+ * loaded: the build continues without them locally, so the error is repeated in the summary.
+ */
+export function reportError(diagnostic: Omit<Diagnostic, "severity">): void {
+  const fresh = recordDiagnostic({ ...diagnostic, severity: "error" })
+  if (!fresh || !isMainThread || process.env.QUARTZ_CONFIG_QUIET === "1") return
+  console.error(styleText("red", "✗") + ` ${diagnostic.message}`)
+  for (const line of diagnostic.hint?.split("\n") ?? [])
+    console.error(styleText("gray", `    → ${line}`))
+}
+
+function pushDiagnostic(lines: string[], d: Diagnostic) {
+  lines.push(`  ${styleText("gray", `[${d.area}]`)} ${d.message}`)
+  for (const line of d.hint?.split("\n") ?? []) lines.push(styleText("gray", `      → ${line}`))
+}
+
+/** Print the end-of-build summary of errors, warnings (and infos with --verbose). */
 export function printDiagnosticsSummary(options: { verbose?: boolean } = {}): void {
   if (!isMainThread || process.env.QUARTZ_CONFIG_QUIET === "1") return
   const all = getDiagnostics()
+  const errors = all.filter((d) => d.severity === "error")
   const warnings = all.filter((d) => d.severity === "warning")
   const infos = all.filter((d) => d.severity === "info")
-  if (warnings.length === 0 && infos.length === 0) return
+  if (errors.length === 0 && warnings.length === 0 && infos.length === 0) return
 
   const lines: string[] = [""]
+  if (errors.length > 0) {
+    lines.push(
+      styleText(
+        "red",
+        `✗ ${errors.length} error${errors.length === 1 ? "" : "s"} — the build continued, but parts of the site may be missing:`,
+      ),
+    )
+    for (const d of errors) pushDiagnostic(lines, d)
+  }
   if (warnings.length > 0) {
     lines.push(
       styleText(
@@ -157,10 +184,7 @@ export function printDiagnosticsSummary(options: { verbose?: boolean } = {}): vo
         `⚠ Build finished with ${warnings.length} warning${warnings.length === 1 ? "" : "s"}:`,
       ),
     )
-    for (const d of warnings.slice(0, 15)) {
-      lines.push(`  ${styleText("gray", `[${d.area}]`)} ${d.message}`)
-      if (d.hint) lines.push(styleText("gray", `      → ${d.hint}`))
-    }
+    for (const d of warnings.slice(0, 15)) pushDiagnostic(lines, d)
     if (warnings.length > 15) lines.push(styleText("gray", `  … and ${warnings.length - 15} more`))
   }
   for (const d of options.verbose ? infos : infos.slice(0, 5)) {

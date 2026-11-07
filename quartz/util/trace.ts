@@ -18,6 +18,24 @@ const STAGE_LABEL: Record<PluginErrorInfo["stage"], string> = {
   config: "loading the configuration",
 }
 
+/**
+ * The most useful stack frame of an error thrown while loading a plugin: the first frame inside a
+ * plugin package, else the first frame outside node_modules. Returns e.g. "…/graph/dist/index.js:12:5".
+ */
+export function firstPluginFrame(err: unknown): string | undefined {
+  if (!(err instanceof Error) || !err.stack) return undefined
+  const frames = err.stack
+    .split("\n")
+    .slice(1)
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith("at "))
+  const frame =
+    frames.find((l) => pluginFrame.test(l)) ?? frames.find((l) => !l.includes("node_modules"))
+  if (!frame) return undefined
+  const location = frame.match(/\(([^)]+)\)$/)?.[1] ?? frame.slice(3)
+  return location.replace(/^file:\/\//, "")
+}
+
 /** Lines explaining which plugin failed, why it might have, and where to report it. */
 export function describePluginError(info: PluginErrorInfo): string[] {
   const { origin } = info
