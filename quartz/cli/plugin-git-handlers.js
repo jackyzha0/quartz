@@ -34,6 +34,13 @@ import {
   suggestClosest,
   shortPluginName,
 } from "./plugin-validation.js"
+import {
+  builtinMessage,
+  describeBuiltins,
+  findBuiltinMigrations,
+  migrateBuiltinEntries,
+  officialPluginName,
+} from "./builtin-migration.js"
 
 const INTERNAL_EXPORTS = new Set(["manifest", "default"])
 
@@ -1509,6 +1516,11 @@ export async function handlePluginAdd(
   // Handle local plugins and collect remote sources to clone
   const remoteSources = []
   for (const source of sources) {
+    const builtin = builtinMessage(source)
+    if (builtin) {
+      console.log(styleText("yellow", `⚠ ${builtin}`))
+      continue
+    }
     try {
       const parsed = parseGitSource(source)
       if (parsed.npmPackage) {
@@ -1896,6 +1908,12 @@ async function setEnabled(names, enabled) {
 
   let changed = false
   for (const name of names) {
+    const builtin = builtinMessage(name)
+    if (builtin && !(json.plugins ?? []).some((e) => officialPluginName(e.source) === name)) {
+      console.log(styleText("yellow", `⚠ ${builtin}`))
+      markFailed()
+      continue
+    }
     const resolved = resolveConfigEntryOrReport(json, name)
     if (!resolved) continue
     const { entry } = resolved
@@ -2061,6 +2079,8 @@ function collectUntrackedEntries(pluginsJson, lockfile) {
   const npm = []
   const missing = []
   for (const entry of pluginsJson?.plugins ?? []) {
+    // built into core now — handled by configuration.<key>, never installed
+    if (builtinMessage(entry.source)) continue
     let parsed
     try {
       parsed = parseGitSource(entry.source)
@@ -2171,6 +2191,16 @@ export async function handlePluginList() {
     console.log(`    Installed: ${new Date(entry.installedAt).toLocaleDateString()}`)
     console.log()
   }
+
+  console.log(styleText("bold", "Built into Quartz (configuration.<key>):"))
+  console.log()
+  for (const b of describeBuiltins(pluginsJson?.configuration)) {
+    const status = b.enabled ? styleText("green", "enabled") : styleText("gray", "disabled")
+    console.log(
+      `  ${styleText("green", "✓")} ${b.key.padEnd(14)}${status.padEnd(18)} ${styleText("gray", b.description)}`,
+    )
+  }
+  console.log()
 
   if (npm.length > 0) {
     console.log(styleText("bold", "npm plugins (package.json):"))
@@ -2394,7 +2424,7 @@ function hasLoadableEntryPoint(pluginDir) {
  * `quartz plugin doctor`: static health check of quartz.config.yaml,
  * quartz.lock.json and installed plugins. Exits non-zero when it finds errors.
  */
-export async function handlePluginDoctor({ verbose = false } = {}) {
+export async function handlePluginDoctor({ verbose = false, fix = false } = {}) {
   let errors = 0
   let warnings = 0
   const report = (severity, subject, message, hint) => {
@@ -2430,12 +2460,37 @@ export async function handlePluginDoctor({ verbose = false } = {}) {
     report("info", null, `using ${configLabel} (no quartz.config.yaml yet)`)
   }
 
-  const plugins = config.data?.plugins
-  if (!Array.isArray(plugins)) {
+  if (!Array.isArray(config.data?.plugins)) {
     report("error", configLabel, "`plugins` must be a list")
     markFailed()
     return
   }
+
+  // Plugins that are now built into core (crawl-links, remove-draft, content-index, and
+  // note-properties' frontmatter options): the build maps them on the fly; --fix rewrites the file.
+  const migrations = findBuiltinMigrations(config.data)
+  if (migrations.length > 0 && fix) {
+    const { data: migrated, changes } = migrateBuiltinEntries(config.data)
+    writePluginsJson(migrated)
+    for (const change of changes) console.log(styleText("green", `✓ ${change}`))
+    console.log()
+    config.data = migrated
+  } else {
+    for (const { name, key } of migrations) {
+      report(
+        "warning",
+        name,
+        name === "note-properties"
+          ? `frontmatter options (delimiters, language) belong in configuration.${key} now`
+          : `is built into Quartz now (configuration.${key}); this entry is applied automatically`,
+        "Run 'npx quartz plugin doctor --fix' to update quartz.config.yaml (comments are kept).",
+      )
+    }
+  }
+  const absorbed = new Set(
+    migrations.filter((m) => m.name !== "note-properties").map((m) => m.entry),
+  )
+  const plugins = config.data.plugins.filter((entry) => !absorbed.has(entry))
 
   const lockfile = readLockfile()
   if (fs.existsSync(LOCKFILE_PATH) && !lockfile) {

@@ -35,7 +35,6 @@ import {
   createConfigFromTemplate,
   readPluginsJson,
   writePluginsJson,
-  extractPluginName,
   updateGlobalConfig,
   LOCKFILE_PATH,
 } from "./plugin-data.js"
@@ -283,19 +282,18 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     console.log(styleText("green", "Created quartz.config.yaml from defaults"))
   }
 
-  // Update markdownLinkResolution in the crawl-links plugin options via YAML config
+  // Link resolution is built into Quartz (configuration.links)
   const json = readPluginsJson()
-  if (json?.plugins) {
-    const crawlLinksIndex = json.plugins.findIndex(
-      (p) => extractPluginName(p.source) === "crawl-links",
-    )
-    if (crawlLinksIndex !== -1) {
-      json.plugins[crawlLinksIndex].options = {
-        ...json.plugins[crawlLinksIndex].options,
-        markdownLinkResolution: linkResolutionStrategy,
-      }
-      writePluginsJson(json)
+  if (json) {
+    const links =
+      json.configuration?.links && typeof json.configuration.links === "object"
+        ? json.configuration.links
+        : {}
+    json.configuration = {
+      ...json.configuration,
+      links: { ...links, markdownLinkResolution: linkResolutionStrategy },
     }
+    writePluginsJson(json)
   }
 
   // Update baseUrl in configuration

@@ -217,9 +217,17 @@ yargs(hideBin(process.argv))
           .command(
             "doctor",
             "Check plugin config, lockfile and installs for problems",
-            CommonArgv,
+            {
+              ...CommonArgv,
+              fix: {
+                boolean: true,
+                default: false,
+                describe:
+                  "Rewrite quartz.config.yaml for plugins that are now built into Quartz (keeps comments)",
+              },
+            },
             async (argv) => {
-              await handlePluginDoctor({ verbose: argv.verbose })
+              await handlePluginDoctor({ verbose: argv.verbose, fix: argv.fix })
             },
           )
           .command(
