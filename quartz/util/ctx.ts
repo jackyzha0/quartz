@@ -2,7 +2,7 @@ import { QuartzConfig } from "../cfg"
 import { ProcessedContent, QuartzPluginData } from "../plugins/vfile"
 import { FileTrieNode } from "./fileTrie"
 import type { ContentDetails } from "../plugins/types"
-import { FilePath, FullSlug } from "./path"
+import { FilePath, FullSlug, slugifyFilePath } from "./path"
 
 export interface Argv {
   directory: string
@@ -64,12 +64,16 @@ export function trieFromAllFiles(allFiles: QuartzPluginData[]): FileTrieNode<Bui
   const trie = new FileTrieNode<BuildTimeTrieData>([])
   allFiles.forEach((file) => {
     if (file.frontmatter) {
-      trie.add({
-        ...file,
-        slug: file.slug!,
-        title: file.frontmatter.title,
-        filePath: file.filePath!,
-      })
+      trie.add(
+        {
+          ...file,
+          slug: file.slug!,
+          title: file.frontmatter.title,
+          filePath: file.filePath!,
+        },
+        // placed by file path (permalinked notes stay in their folder), linked by slug
+        file.relativePath ? slugifyFilePath(file.relativePath) : file.slug!,
+      )
     }
   })
 
