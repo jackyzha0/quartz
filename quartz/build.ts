@@ -26,6 +26,7 @@ import { formatLayoutReport, getLayoutReport } from "./plugins/loader/layoutRepo
 import { getBuiltinPlan } from "./plugins/loader/config-loader"
 import { prepareContentIndex } from "./plugins/builtins/contentIndex"
 import { printDiagnosticsSummary } from "./util/diagnostics"
+import { ChangeRecord, clearChangeRecord } from "./util/incremental"
 
 function reportSlugCollisions(content: ProcessedContent[]): void {
   const collisions = detectSlugCollisions(content)
@@ -49,7 +50,7 @@ type BuildData = {
   ignored: GlobbyFilterFunction
   mut: Mutex
   contentMap: ContentMap
-  changesSinceLastBuild: Record<FilePath, ChangeEvent["type"]>
+  changesSinceLastBuild: ChangeRecord
   lastBuildMs: number
 }
 
@@ -385,6 +386,7 @@ async function rebuild(changes: ChangeEvent[], clientRefresh: () => void, buildD
       `Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince("rebuild")}`,
     )
     console.log(styleText("green", `Done rebuilding in ${perf.timeSince()}`))
+    clearChangeRecord(changesSinceLastBuild)
     changes.splice(0, numChangesInBuild)
     clientRefresh()
   } finally {
