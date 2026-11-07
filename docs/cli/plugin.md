@@ -158,7 +158,7 @@ npx quartz plugin doctor --fix       # move settings of plugins that are now bui
 - broken local plugin symlinks and plugins without a built entry point (`dist/`)
 - option typos and type mismatches, and declared plugin dependencies that are missing or disabled
 - plugins that don't support your Quartz version (their `quartzVersion`, see [[versioning#Plugin compatibility]])
-- entries for plugins that are now [[built-in processing|built into Quartz]] (`crawl-links`, `remove-draft`, `content-index`); `--fix` moves their options into `configuration` and keeps your comments
+- entries for plugins that are now [[built-in processing|built into Quartz]] (`crawl-links`, `remove-draft`, `content-index`); `--fix` moves their options into `configuration` (keeping your comments) and removes their now unused pins from `quartz.lock.json`
 - lockfile entries that are no longer configured (clean up with `prune`)
 
 It exits with status 1 when it finds errors, so it can run as a CI check.

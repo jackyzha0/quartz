@@ -9,6 +9,7 @@ import { rm } from "fs/promises"
 import chokidar from "chokidar"
 import prettyBytes from "pretty-bytes"
 import { execSync, spawnSync } from "child_process"
+import { pathToFileURL } from "url"
 import http from "http"
 import serveHandler from "serve-handler"
 import { WebSocketServer } from "ws"
@@ -618,6 +619,7 @@ export async function handleBuild(argv) {
 export async function handleUpgrade(argv) {
   const contentFolder = resolveContentPath(argv.directory)
   console.log(`\n${styleText(["bgGreen", "black"], ` Quartz v${version} `)} \n`)
+  const fromCommit = describeQuartzCheckout().commit
   console.log("Backing up your content")
   execSync(`git remote show upstream || git remote add upstream ${QUARTZ_SOURCE_REPO}`)
   await stashContentFolder(contentFolder)
@@ -672,15 +674,6 @@ export async function handleUpgrade(argv) {
 
   await popContentFolder(contentFolder)
 
-  // Read the new version after pulling
-  const newPkg = JSON.parse(fs.readFileSync("./package.json").toString())
-  const newVersion = newPkg.version
-  if (newVersion !== version) {
-    console.log(styleText("cyan", `Upgraded Quartz: v${version} → v${newVersion}`))
-  } else {
-    console.log(styleText("gray", `Quartz is already up to date (v${version})`))
-  }
-
   console.log("Ensuring dependencies are up to date")
 
   /*
@@ -710,11 +703,35 @@ export async function handleUpgrade(argv) {
     )
   }
 
-  console.log("Restoring plugins from lockfile...")
-  await handlePluginRestore()
-
-  console.log("Checking plugin compatibility...")
-  await handlePluginCheck()
+  // Finish with the *new* code (release notes, plugin restore, doctor) — see cli/upgrade.js.
+  // This process is still running the Quartz that was checked out before the pull.
+  const finishScript = path.resolve("quartz/cli/upgrade.js")
+  if (fs.existsSync(finishScript)) {
+    const script =
+      `import(${JSON.stringify(pathToFileURL(finishScript).href)})` +
+      `.then((m) => m.finishUpgrade(${JSON.stringify({ fromVersion: version, fromCommit })}))` +
+      `.catch((err) => { console.error(err); process.exitCode = 1 })`
+    const res = spawnSync(process.execPath, ["--input-type=module", "-e", script], {
+      stdio: "inherit",
+      timeout: 15 * 60 * 1000,
+    })
+    if (res.status !== 0) {
+      console.log(
+        styleText("yellow", "Some checks reported problems (see above).") +
+          " Run `npx quartz plugin doctor` after fixing them.",
+      )
+      process.exitCode = 1
+      return
+    }
+  } else {
+    // Upgraded to a Quartz without cli/upgrade.js (e.g. a downgrade): use this version's steps.
+    const newVersion = JSON.parse(fs.readFileSync("./package.json").toString()).version
+    console.log(styleText("cyan", `Quartz v${version} → v${newVersion}`))
+    console.log("Restoring plugins from lockfile...")
+    await handlePluginRestore()
+    console.log("Checking plugin compatibility...")
+    await handlePluginCheck()
+  }
 
   console.log(styleText("green", "Done!"))
 }

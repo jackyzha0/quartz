@@ -140,6 +140,8 @@ export function migrateBuiltinEntries(input) {
  * source), the configuration key to point the user to; otherwise undefined.
  */
 export function builtinKeyFor(nameOrSource) {
+  // object sources: { repo: "github:quartz-community/crawl-links", … }
+  if (typeof nameOrSource?.repo === "string") nameOrSource = nameOrSource.repo
   if (typeof nameOrSource !== "string") return undefined
   const name = officialPluginName(nameOrSource) ?? nameOrSource
   return ABSORBED[name]?.key
@@ -149,6 +151,7 @@ export function builtinKeyFor(nameOrSource) {
 export function builtinMessage(nameOrSource) {
   const key = builtinKeyFor(nameOrSource)
   if (!key) return undefined
+  if (typeof nameOrSource?.repo === "string") nameOrSource = nameOrSource.repo
   const name = officialPluginName(nameOrSource) ?? nameOrSource
   const toggle = key === "drafts" ? "publish: true" : "enabled: false"
   return (

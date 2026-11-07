@@ -510,8 +510,22 @@ export async function handlePluginInstallUnified({
 
   const resolvedConcurrency = Math.max(1, concurrencyOption ?? os.cpus().length)
 
-  const pluginsJson = readPluginsJson()
+  // Plugins that are built into core now (crawl-links, remove-draft, content-index) are never
+  // cloned or built, even if the config or the lockfile still lists them.
+  const rawPluginsJson = readPluginsJson()
+  const pluginsJson = rawPluginsJson && {
+    ...rawPluginsJson,
+    plugins: (rawPluginsJson.plugins ?? []).filter((entry) => !builtinMessage(entry.source)),
+  }
   let lockfile = readLockfile()
+  if (lockfile) {
+    lockfile = {
+      ...lockfile,
+      plugins: Object.fromEntries(
+        Object.entries(lockfile.plugins ?? {}).filter(([name]) => !builtinMessage(name)),
+      ),
+    }
+  }
 
   if (!fromConfig && !lockfile) {
     const gitEntries = (pluginsJson?.plugins ?? []).filter((entry) => {
@@ -2523,6 +2537,25 @@ export async function handlePluginDoctor({ verbose = false, fix = false } = {}) 
       "Restore it from git, or delete it and run 'npx quartz plugin install'.",
     )
   }
+  // Pins of plugins that are built into core now are unused (never installed or loaded).
+  const builtinPins = Object.keys(lockfile?.plugins ?? {}).filter((name) => builtinMessage(name))
+  if (builtinPins.length > 0 && fix) {
+    for (const name of builtinPins) delete lockfile.plugins[name]
+    writeLockfile(lockfile)
+    console.log(
+      styleText(
+        "green",
+        `✓ Removed unused quartz.lock.json pins (built in now): ${builtinPins.join(", ")}`,
+      ),
+    )
+  } else if (builtinPins.length > 0) {
+    report(
+      "warning",
+      "quartz.lock.json",
+      `pins plugins that are built into Quartz now (unused): ${builtinPins.join(", ")}`,
+      "Run 'npx quartz plugin doctor --fix' to remove them.",
+    )
+  }
 
   const seen = new Map()
   const enabledSources = new Map()
@@ -2708,7 +2741,9 @@ export async function handlePluginDoctor({ verbose = false, fix = false } = {}) 
         }
       }),
     )
-    const orphans = Object.keys(lockfile.plugins).filter((n) => !configured.has(n))
+    const orphans = Object.keys(lockfile.plugins).filter(
+      (n) => !configured.has(n) && !builtinPins.includes(n),
+    )
     if (orphans.length > 0) {
       report(
         "warning",
