@@ -46,4 +46,9 @@ export interface PageFrame {
   render: (props: PageFrameProps) => JSX.Element
   /** Optional CSS string to include when this frame is active */
   css?: string
+  /**
+   * Whether pages using this frame load Quartz's stylesheets (`index.css` and component CSS). Defaults
+   * to `true`; set it to `false` when the frame brings its own theme. Plugin CSS loads either way.
+   */
+  quartzStyles?: boolean
 }

@@ -54,6 +54,7 @@ export function pageResources(
   baseDir: FullSlug | RelativeURL,
   staticResources: StaticResources,
   ctx?: BuildCtx,
+  quartzStyles = true,
 ): StaticResources {
   const hashedNames = ctx?.hashedResourceNames
   const cssFile = hashedNames?.["index.css"] ?? "index.css"
@@ -61,7 +62,7 @@ export function pageResources(
   const postscriptFile = hashedNames?.["postscript.js"] ?? "postscript.js"
 
   const componentCssResources: CSSResource[] = []
-  if (ctx?.componentCssMap) {
+  if (quartzStyles && ctx?.componentCssMap) {
     const seen = new Set<string>()
     for (const filename of ctx.componentCssMap.values()) {
       if (seen.has(filename)) continue
@@ -105,9 +106,7 @@ export function pageResources(
 
   const resources: StaticResources = {
     css: [
-      {
-        content: joinSegments(baseDir, cssFile),
-      },
+      ...(quartzStyles ? [{ content: joinSegments(baseDir, cssFile) }] : []),
       ...componentCssResources,
       ...resolvedCss,
     ],
