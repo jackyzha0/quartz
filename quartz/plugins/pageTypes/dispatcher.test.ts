@@ -5,6 +5,7 @@ import os from "os"
 import path from "path"
 import {
   collectComponents,
+  folderTrie,
   generateVirtualPages,
   pageOutputPath,
   removeStalePageOutput,
@@ -14,6 +15,7 @@ import { QuartzPageTypePluginInstance } from "../types"
 import { QuartzComponent } from "../../components/types"
 import { FilePath, FullSlug } from "../../util/path"
 import { BuildCtx } from "../../util/ctx"
+import { defaultProcessedContent } from "../vfile"
 
 const StubA: QuartzComponent = (() => null) as unknown as QuartzComponent
 const StubB: QuartzComponent = (() => null) as unknown as QuartzComponent
@@ -275,5 +277,91 @@ describe("generateVirtualPages", () => {
       ),
       /boom/,
     )
+  })
+})
+
+describe("folders of virtual pages (#2576)", () => {
+  const makeCtx = () => ({ cfg: { configuration: {} }, virtualPages: [] }) as unknown as BuildCtx
+  const page = (slug: string) => ({ slug: slug as FullSlug, title: slug, data: {} })
+  const note = (slug: string) =>
+    defaultProcessedContent({
+      slug: slug as FullSlug,
+      relativePath: `${slug}.md` as FilePath,
+      filePath: `content/${slug}.md` as FilePath,
+      frontmatter: { title: slug },
+    })[1].data
+
+  test("a page type sees the virtual pages of higher-priority page types in ctx.virtualPages", async () => {
+    const ctx = makeCtx()
+    let seen: string[] = []
+    await generateVirtualPages(
+      [
+        makePageType({ name: "bases", generate: () => [page("trips/map.base")] }),
+        makePageType({
+          name: "folders",
+          generate: ({ ctx }) => {
+            seen = ctx.virtualPages.map(([, vfile]) => vfile.data.slug!)
+            return []
+          },
+        }),
+      ],
+      [],
+      ctx,
+      { head: StubHead },
+      {},
+    )
+    assert.deepStrictEqual(seen, ["trips/map.base"])
+  })
+
+  test("only pages of page types that render files are file-backed", async () => {
+    const entries = await generateVirtualPages(
+      [
+        makePageType({
+          name: "bases",
+          fileExtensions: [".base"],
+          generate: () => [page("trips/map.base")],
+        }),
+        makePageType({ name: "tags", generate: () => [page("tags/a")] }),
+      ],
+      [],
+      makeCtx(),
+      { head: StubHead },
+      {},
+    )
+    assert.deepStrictEqual(
+      entries.map((e) => [e.vpSlug, e.fileBacked]),
+      [
+        ["trips/map.base", true],
+        ["tags/a", false],
+      ],
+    )
+  })
+
+  test("the folder trie holds file-backed virtual pages, not tag or folder pages", async () => {
+    const entries = await generateVirtualPages(
+      [
+        makePageType({
+          name: "bases",
+          fileExtensions: [".base"],
+          generate: () => [page("trips/map.base"), page("mixed/board.base")],
+        }),
+        makePageType({ name: "tags", generate: () => [page("tags/a")] }),
+        makePageType({ name: "folders", generate: () => [page("trips/index")] }),
+      ],
+      [],
+      makeCtx(),
+      { head: StubHead },
+      {},
+    )
+    const trie = folderTrie([note("mixed/note")], entries)
+    const children = (folder: string) =>
+      trie
+        .findNode([folder, "index"])
+        ?.children.map((c) => c.slug)
+        .sort()
+    assert.deepStrictEqual(children("trips"), ["trips/map.base"])
+    assert.deepStrictEqual(children("mixed"), ["mixed/board.base", "mixed/note"])
+    assert.strictEqual(trie.findNode(["tags", "index"]), undefined)
+    assert.strictEqual(trie.findNode(["trips", "index"])?.data, null)
   })
 })
