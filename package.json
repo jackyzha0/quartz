@@ -67,7 +67,7 @@
     "@quartz-community/graph": "^1.0.0",
     "@quartz-community/hard-line-breaks": "^1.0.0",
     "@quartz-community/latex": "^1.0.0",
-    "@quartz-community/note-properties": "^1.0.0",
+    "@quartz-community/note-properties": "^1.1.1",
     "@quartz-community/obsidian-flavored-markdown": "^2.0.0",
     "@quartz-community/og-image": "^1.0.0",
     "@quartz-community/ox-hugo": "^1.0.0",
