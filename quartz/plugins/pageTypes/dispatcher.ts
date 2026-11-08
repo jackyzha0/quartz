@@ -2,7 +2,7 @@ import {
   ChangeEvent,
   QuartzEmitterPlugin,
   QuartzPageTypePluginInstance,
-  TreeTransform
+  TreeTransform,
 } from "../types"
 import { QuartzComponent, QuartzComponentProps } from "../../components"
 import { pageResources, renderPage } from "../../components/renderPage"
@@ -238,13 +238,11 @@ async function* _emit(
   const allFiles = content.map((c) => c[1].data)
 
   // Collect tree transforms from all page type plugins
-  const treeTransforms: TreeTransform[] = pageTypes.flatMap(
-    (pt) => pt.treeTransforms?.(ctx) ?? [],
-  )
+  const treeTransforms: TreeTransform[] = pageTypes.flatMap((pt) => pt.treeTransforms?.(ctx) ?? [])
 
-  let currentSlugs = new Set<FullSlug>();
+  let currentSlugs = new Set<FullSlug>()
   const changedSlugs = new Set<string>()
-  if (!changeEvents){
+  if (!changeEvents) {
     // Ensure trie is available for components that need folder hierarchy (e.g. FolderContent)
     ctx.trie ??= trieFromAllFiles(allFiles)
   } else {
@@ -266,7 +264,6 @@ async function* _emit(
     }
   }
 
-
   // Phase 1: Generate all virtual pages first so their data is available in allFiles
   // if full: for transclude resolution in renderPage (e.g. ![[file.canvas]], ![[file.base]])
   const virtualEntries = await generateVirtualPages(pageTypes, content, ctx, defaults, byPageType)
@@ -286,7 +283,6 @@ async function* _emit(
   for (const [tree, file] of content) {
     const slug = file.data.slug!
 
-    
     if (changeEvents && !changedSlugs.has(slug)) continue
 
     const fileData = file.data
@@ -302,7 +298,7 @@ async function* _emit(
           layout,
           resources,
           treeTransforms,
-        );
+        )
         break
       }
     }
@@ -319,7 +315,7 @@ async function* _emit(
       ve.layout,
       resources,
       treeTransforms,
-    );
+    )
   }
 }
 

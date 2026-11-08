@@ -224,7 +224,6 @@ describe("generateVirtualPages", () => {
   const note = (slug: string) => defaultProcessedContent({ slug: slug as FullSlug })
   const slugs = (content: ProcessedContent[]) => content.map(([, vfile]) => vfile.data.slug)
 
-
   test("accepts sync and async generate, in page type order (#2575)", async () => {
     const ctx = makeCtx()
     const entries = await generateVirtualPages(
@@ -303,7 +302,13 @@ describe("generateVirtualPages", () => {
   test("a folder holding only virtual pages gets a folder page", async () => {
     const base = makePageType({ generate: () => [{ slug: "trips/map", title: "Map", data: {} }] })
     const folderPage = FolderPage() as unknown as QuartzPageTypePluginInstance
-    const entries = await generateVirtualPages([base, folderPage], [], makeCtx(), { head: StubHead }, {})
+    const entries = await generateVirtualPages(
+      [base, folderPage],
+      [],
+      makeCtx(),
+      { head: StubHead },
+      {},
+    )
     assert.ok(entries.some((entry) => entry.vpSlug === "trips/index"))
   })
 })
