@@ -1,7 +1,7 @@
 import { styleText } from "util"
 import process from "process"
 import { isMainThread } from "workerpool"
-import { pluginErrorInfo, PluginErrorInfo } from "./pluginErrors"
+import { isContentError, pluginErrorInfo, PluginErrorInfo } from "./pluginErrors"
 import { knownProblemsFor } from "./diagnostics"
 
 const rootFile = /.*at file:/
@@ -96,13 +96,20 @@ export function trace(msg: string, err: Error) {
       styleText("red", ` ${msg}`) +
       (err.message.length > 0 ? `: ${err.message}` : ""),
   )
-  if (info) {
+  const contentError = isContentError(err)
+  if (contentError) {
+    // the file needs fixing, not Quartz or a plugin: no plugin details or stack trace
+    lines.push("")
+    lines.push(
+      styleText("gray", " This is a problem in the file's content: fix it and build again."),
+    )
+  } else if (info) {
     lines.push("")
     lines.push(...describePluginError(info))
   }
   lines.push("")
 
-  let reachedEndOfLegibleTrace = false
+  let reachedEndOfLegibleTrace = contentError
   for (const line of stack.split("\n").slice(1)) {
     if (reachedEndOfLegibleTrace) {
       break

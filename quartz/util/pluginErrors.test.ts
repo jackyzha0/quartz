@@ -3,7 +3,13 @@ import assert from "node:assert"
 import { unified, type Plugin } from "unified"
 import remarkParse from "remark-parse"
 import { VFile } from "vfile"
-import { attributePluggables, pluginErrorInfo, PluginError } from "./pluginErrors"
+import {
+  attributePluggables,
+  pluginErrorInfo,
+  PluginError,
+  ContentError,
+  isContentError,
+} from "./pluginErrors"
 import {
   recordDiagnostic,
   resetDiagnostics,
@@ -130,6 +136,19 @@ describe("describePluginError", () => {
     }).join("\n")
     assert.match(text, /Quartz built-in/)
     assert.match(text, /jackyzha0\/quartz\/issues/)
+  })
+})
+
+describe("content errors", () => {
+  test("are recognised through a plugin attribution", () => {
+    const origin = { builtin: true, displayName: "frontmatter", source: "frontmatter" }
+    const wrapped = new PluginError(new ContentError("Invalid frontmatter: bad"), {
+      origin,
+      stage: "markdown",
+    } as never)
+    assert.strictEqual(isContentError(wrapped), true)
+    assert.strictEqual(isContentError(new PluginError(new Error("x"), { origin } as never)), false)
+    assert.strictEqual(isContentError(undefined), false)
   })
 })
 

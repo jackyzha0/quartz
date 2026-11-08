@@ -7,8 +7,14 @@ import { VFile } from "vfile"
 import { Element, Root } from "hast"
 import { visit } from "unist-util-visit"
 import { BUILTINS, instantiateBuiltins, officialPluginName, planBuiltins, PlanInput } from "."
-import { Frontmatter, normalizeFrontmatter, extractLinksFromValue } from "./frontmatter"
+import {
+  Frontmatter,
+  normalizeFrontmatter,
+  extractLinksFromValue,
+  readFrontmatterData,
+} from "./frontmatter"
 import { Links } from "./links"
+import { isContentError } from "../../util/pluginErrors"
 import { Drafts, isDraft } from "./drafts"
 import {
   ContentIndex,
@@ -207,6 +213,32 @@ describe("frontmatter built-in", () => {
     assert.deepStrictEqual(
       extractLinksFromValue({ related: ["[[My Note#Part]]", "see [x](other.md)"], n: 1 }),
       ["my-note#part", "other.md"],
+    )
+  })
+
+  test("refuses JavaScript frontmatter instead of executing it", async () => {
+    const g = globalThis as { __quartzFrontmatterRan?: boolean }
+    delete g.__quartzFrontmatterRan
+    for (const lang of ["js", "javascript"]) {
+      const source = `---${lang}\n{ title: "x", ran: (globalThis.__quartzFrontmatterRan = true) }\n---\nbody\n`
+      assert.throws(() => readFrontmatterData(source), /JavaScript frontmatter/)
+      await assert.rejects(parse(source), /JavaScript frontmatter/)
+      // also when a site sets `language: js` (the type allows only yaml/toml, a YAML config does not)
+      assert.throws(
+        () =>
+          readFrontmatterData(`---\n{ ran: (globalThis.__quartzFrontmatterRan = true) }\n---\n`, {
+            language: lang as "yaml",
+          }),
+        /JavaScript frontmatter/,
+      )
+    }
+    assert.strictEqual(g.__quartzFrontmatterRan, undefined)
+  })
+
+  test("invalid frontmatter is reported as a content error", () => {
+    assert.throws(
+      () => readFrontmatterData("---\ntitle: [unclosed\n---\nbody\n"),
+      (err: Error) => isContentError(err) && err.message.startsWith("Invalid frontmatter: "),
     )
   })
 

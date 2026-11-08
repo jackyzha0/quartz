@@ -38,6 +38,28 @@ export class PluginError extends Error {
   }
 }
 
+/**
+ * An error in a file's content (e.g. invalid frontmatter), not in Quartz or a plugin: `trace()` tells
+ * the user to fix the file instead of reporting a bug. `quartzContent` survives module copies.
+ */
+export class ContentError extends Error {
+  readonly quartzContent = true
+  constructor(message: string, options?: { cause?: unknown }) {
+    super(message, options)
+    this.name = "ContentError"
+  }
+}
+
+/** Whether `err` or one of its causes (e.g. inside a {@link PluginError}) is a {@link ContentError}. */
+export function isContentError(err: unknown): boolean {
+  let e = err
+  for (let depth = 0; depth < 10 && e && typeof e === "object"; depth++) {
+    if ((e as { quartzContent?: unknown }).quartzContent === true) return true
+    e = (e as { cause?: unknown }).cause
+  }
+  return false
+}
+
 export function pluginErrorInfo(err: unknown): PluginErrorInfo | undefined {
   const info = (err as { quartzPlugin?: PluginErrorInfo } | null)?.quartzPlugin
   return info && typeof info === "object" && info.origin ? info : undefined
