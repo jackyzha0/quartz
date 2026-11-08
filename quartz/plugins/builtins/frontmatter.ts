@@ -5,6 +5,7 @@ import toml from "toml"
 import { QuartzTransformerPlugin } from "../types"
 import { QuartzPluginData } from "../vfile"
 import { FrontmatterConfig } from "../../cfg"
+import { ContentError } from "../../util/pluginErrors"
 import {
   FilePath,
   FullSlug,
@@ -130,20 +131,39 @@ export function normalizeFrontmatter(
   return { aliases: aliasSlugs }
 }
 
+/**
+ * gray-matter adds custom engines to its defaults, which include a `javascript`/`js` engine that
+ * `eval`s the frontmatter (`---js`). Content is data, not code: refuse those languages.
+ */
+const refuseJavaScript = (): never => {
+  throw new ContentError(
+    "JavaScript frontmatter (---js / ---javascript) is not supported: Quartz does not execute code from content. Use YAML or TOML frontmatter.",
+  )
+}
+
 /** Parse a file's frontmatter with the configured delimiters and language (`{}` when it has none). */
 export function readFrontmatterData(
   source: Buffer | string,
   options: Pick<FrontmatterConfig, "delimiters" | "language"> = {},
 ): Record<string, unknown> {
-  const { data } = matter(Buffer.isBuffer(source) ? source : Buffer.from(source), {
-    delimiters: options.delimiters ?? frontmatterDefaults.delimiters,
-    language: options.language ?? frontmatterDefaults.language,
-    engines: {
-      yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object,
-      toml: (s) => toml.parse(s) as object,
-    },
-  })
-  return data
+  try {
+    const { data } = matter(Buffer.isBuffer(source) ? source : Buffer.from(source), {
+      delimiters: options.delimiters ?? frontmatterDefaults.delimiters,
+      language: options.language ?? frontmatterDefaults.language,
+      engines: {
+        yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object,
+        toml: (s) => toml.parse(s) as object,
+        javascript: refuseJavaScript,
+        js: refuseJavaScript,
+      },
+    })
+    return data
+  } catch (err) {
+    if (err instanceof ContentError) throw err
+    throw new ContentError(`Invalid frontmatter: ${err instanceof Error ? err.message : err}`, {
+      cause: err,
+    })
+  }
 }
 
 export const Frontmatter: QuartzTransformerPlugin<FrontmatterConfig> = (userOpts) => {
