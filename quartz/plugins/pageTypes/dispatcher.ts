@@ -87,7 +87,8 @@ interface DispatcherOptions {
   byPageType: Record<string, Partial<FullPageLayout>>
 }
 
-async function emitPage(
+/** @internal Exported for testing only. */
+export async function emitPage(
   ctx: BuildCtx,
   slug: FullSlug,
   tree: ProcessedContent[0],
