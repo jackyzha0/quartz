@@ -5,6 +5,7 @@ import os from "os"
 import path from "path"
 import {
   collectComponents,
+  generateVirtualPages,
   pageOutputPath,
   removeStalePageOutput,
   resolveLayout,
@@ -12,6 +13,7 @@ import {
 import { QuartzPageTypePluginInstance } from "../types"
 import { QuartzComponent } from "../../components/types"
 import { FilePath, FullSlug } from "../../util/path"
+import { BuildCtx } from "../../util/ctx"
 
 const StubA: QuartzComponent = (() => null) as unknown as QuartzComponent
 const StubB: QuartzComponent = (() => null) as unknown as QuartzComponent
@@ -209,5 +211,69 @@ describe("incremental page deletion", () => {
     )
     assert.strictEqual(removed, undefined)
     assert.strictEqual(await fs.promises.readFile(outputPath, "utf8"), "current")
+  })
+})
+
+describe("generateVirtualPages", () => {
+  const makeCtx = () => ({ cfg: { configuration: {} }, virtualPages: [] }) as unknown as BuildCtx
+  const page = (slug: string) => ({ slug: slug as FullSlug, title: slug, data: {} })
+
+  test("accepts sync and async generate, in page type order (#2575)", async () => {
+    const ctx = makeCtx()
+    const entries = await generateVirtualPages(
+      [
+        makePageType({ name: "sync", generate: () => [page("tags/a")] }),
+        makePageType({
+          name: "async",
+          generate: async () => {
+            await new Promise((resolve) => setTimeout(resolve, 5))
+            return [page("mdx/b")]
+          },
+        }),
+        makePageType({ name: "none" }),
+      ],
+      [],
+      ctx,
+      { head: StubHead },
+      {},
+    )
+    assert.deepStrictEqual(
+      entries.map((e) => e.vpSlug),
+      ["tags/a", "mdx/b"],
+    )
+    assert.strictEqual(entries[1].vfile.data.slug, "mdx/b")
+    assert.strictEqual(ctx.virtualPages.length, 2)
+  })
+
+  test("keeps the 404 page out of ctx.virtualPages", async () => {
+    const ctx = makeCtx()
+    const entries = await generateVirtualPages(
+      [makePageType({ generate: async () => [page("404")] })],
+      [],
+      ctx,
+      { head: StubHead },
+      {},
+    )
+    assert.strictEqual(entries.length, 1)
+    assert.strictEqual(ctx.virtualPages.length, 0)
+  })
+
+  test("a failing async generate rejects instead of being skipped", async () => {
+    await assert.rejects(
+      generateVirtualPages(
+        [
+          makePageType({
+            generate: async () => {
+              throw new Error("boom")
+            },
+          }),
+        ],
+        [],
+        makeCtx(),
+        { head: StubHead },
+        {},
+      ),
+      /boom/,
+    )
   })
 })
