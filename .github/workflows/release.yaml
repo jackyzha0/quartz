@@ -60,8 +60,8 @@ jobs:
             echo "CHANGELOG.md has no section for $VERSION — not tagging."
             exit 0
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag -a "$TAG" -m "Quartz $VERSION"
-          git push origin "$TAG"
-          gh release create "$TAG" --title "Quartz $VERSION" --notes-file release-notes.md
+          # GitHub creates the tag, on the commit this push brought (the merged release PR). A tag
+          # made here with `git tag -a` is an unsigned tag object, which GitHub marks "Unverified"
+          # (jackyzha0/quartz#2455). This one points straight at the commit, which shows as verified
+          # because GitHub signs the commits it merges. `git describe --tags` sees it all the same.
+          gh release create "$TAG" --target "$GITHUB_SHA" --title "Quartz $VERSION" --notes-file release-notes.md
