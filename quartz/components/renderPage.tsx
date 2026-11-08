@@ -31,6 +31,25 @@ interface RenderComponents {
 }
 
 const headerRegex = new RegExp(/h[1-6]/)
+
+/**
+ * Whether a heading answers to `id`: its own id, or the id of a `span.heading-alias` inside it.
+ * GitHubFlavoredMarkdown adds that alias when the anchor Obsidian writes for a heading (`:`, `|`,
+ * `^`, `#` and `\` become spaces) slugs differently, e.g. `![[note#Colon unspaced]]` for
+ * `## Colon:unspaced`.
+ */
+function headingHasId(heading: Element, id: string): boolean {
+  if (heading.properties?.id === id) return true
+  const hasAlias = (el: Element): boolean =>
+    el.children.some(
+      (child) =>
+        child.type === "element" &&
+        ((child.properties?.id === id &&
+          ([] as unknown[]).concat(child.properties?.className ?? []).includes("heading-alias")) ||
+          hasAlias(child)),
+    )
+  return hasAlias(heading)
+}
 export function pageResources(
   baseDir: FullSlug | RelativeURL,
   staticResources: StaticResources,
@@ -231,7 +250,7 @@ export function renderTranscludes(
           const depth = Number(htmlEl.tagName.substring(1))
 
           if (startIdx === undefined || startDepth === undefined) {
-            if (htmlEl.properties?.id === blockRef) {
+            if (headingHasId(htmlEl, blockRef)) {
               startIdx = i
               startDepth = depth
             }
