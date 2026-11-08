@@ -15,7 +15,12 @@ import { QuartzLogger } from "../util/log"
 import { trace } from "../util/trace"
 import { BuildCtx, WorkerSerializableBuildCtx } from "../util/ctx"
 import { styleText } from "util"
-import { attributeError, attributePluggables, originOf } from "../util/pluginErrors"
+import {
+  attributeError,
+  attributePluggables,
+  originOf,
+  unreadableFileError,
+} from "../util/pluginErrors"
 
 export type QuartzMdProcessor = Processor<MDRoot, MDRoot, MDRoot>
 export type QuartzHtmlProcessor = Processor<undefined, MDRoot, HTMLRoot>
@@ -90,6 +95,19 @@ async function transpileWorkerScript() {
   })
 }
 
+/**
+ * Read a content file. A file that can't be read (no permission, removed during the build, …) is a
+ * problem with the content, not a Quartz bug.
+ * @internal Exported for testing.
+ */
+export async function readContentFile(fp: FilePath) {
+  try {
+    return await read(fp)
+  } catch (err) {
+    throw unreadableFileError(err, path.basename(fp)) ?? err
+  }
+}
+
 export function createFileParser(ctx: BuildCtx, fps: FilePath[]) {
   const { argv, cfg } = ctx
   return async (processor: QuartzMdProcessor) => {
@@ -97,7 +115,7 @@ export function createFileParser(ctx: BuildCtx, fps: FilePath[]) {
     for (const fp of fps) {
       try {
         const perf = new PerfTimer()
-        const file = await read(fp)
+        const file = await readContentFile(fp)
 
         // strip leading and trailing whitespace
         file.value = file.value.toString().trim()

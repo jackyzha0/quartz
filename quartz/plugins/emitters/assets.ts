@@ -5,6 +5,7 @@ import path from "path"
 import fs from "fs"
 import { glob } from "../../util/glob"
 import { Argv, BuildCtx } from "../../util/ctx"
+import { unreadableFileError } from "../../util/pluginErrors"
 import { QuartzConfig } from "../../cfg"
 import { visit } from "unist-util-visit"
 import { Element } from "hast"
@@ -99,8 +100,23 @@ const copyFile = async (argv: Argv, fp: FilePath) => {
   const dir = path.dirname(dest) as FilePath
   await fs.promises.mkdir(dir, { recursive: true })
 
-  await fs.promises.copyFile(src, dest)
+  try {
+    await fs.promises.copyFile(src, dest)
+  } catch (err) {
+    throw await unreadableSource(err, src, fp)
+  }
   return dest
+}
+
+/** A content file Quartz can't read (no permission, …) is a content problem, not a Quartz bug. */
+async function unreadableSource(err: unknown, src: FilePath, fp: FilePath): Promise<unknown> {
+  if ((err as NodeJS.ErrnoException | null)?.code === "ENOENT") return err
+  try {
+    await fs.promises.access(src, fs.constants.R_OK)
+    return err // the source is readable: the output side failed
+  } catch {
+    return unreadableFileError(err, fp) ?? err
+  }
 }
 
 export const Assets: QuartzEmitterPlugin = () => {

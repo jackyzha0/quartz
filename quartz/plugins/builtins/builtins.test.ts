@@ -242,6 +242,18 @@ describe("frontmatter built-in", () => {
     )
   })
 
+  test("frontmatter holding a single value instead of properties is a content error", () => {
+    for (const source of ["---\nhello\n---\nbody\n", "---\n42\n---\n"]) {
+      assert.throws(
+        () => readFrontmatterData(source),
+        (err: Error) => isContentError(err) && /expected properties/.test(err.message),
+      )
+    }
+    // empty frontmatter and lists keep working as before
+    assert.deepStrictEqual(readFrontmatterData("---\n---\nbody\n"), {})
+    assert.deepStrictEqual(readFrontmatterData("---\nnull\n---\n"), {})
+  })
+
   test("a permalink is the page's address, not an alias (Obsidian Publish)", () => {
     const data: Record<string, unknown> = { permalink: "short", aliases: ["old-name"] }
     assert.deepStrictEqual(normalizeFrontmatter(data, "x").aliases, ["old-name"])
