@@ -138,18 +138,57 @@ export async function removeStalePageOutput(
   return outputPath
 }
 
+export type VirtualEntry = {
+  tree: ProcessedContent[0]
+  vfile: ProcessedContent[1]
+  layout: FullPageLayout
+  vpSlug: FullSlug
+}
+
+/**
+ * Run every page type's `generate` and turn the virtual pages it returns into processed
+ * content. `generate` may be async (Quartz 5.1+), e.g. to run the transformer chain or
+ * esbuild; page types run one after another in priority order, as before. Virtual pages
+ * (except the 404 page) are added to `ctx.virtualPages`.
+ */
+export async function generateVirtualPages(
+  pageTypes: QuartzPageTypePluginInstance[],
+  content: ProcessedContent[],
+  ctx: BuildCtx,
+  defaults: Partial<FullPageLayout>,
+  byPageType: Record<string, Partial<FullPageLayout>>,
+): Promise<VirtualEntry[]> {
+  const cfg = ctx.cfg.configuration
+  const virtualEntries: VirtualEntry[] = []
+  for (const pt of pageTypes) {
+    if (!pt.generate) continue
+    const virtualPages = await pt.generate({ content, cfg, ctx })
+    const layout = resolveLayout(pt, defaults, byPageType)
+    for (const vp of virtualPages) {
+      const vpSlug = vp.slug as FullSlug
+      const vpRelativePath = (vpSlug + ".md") as FilePath
+      const [tree, vfile] = defaultProcessedContent({
+        slug: vpSlug,
+        relativePath: vpRelativePath,
+        frontmatter: { title: vp.title, tags: [] },
+        ...vp.data,
+      })
+      if (vpSlug !== "404") {
+        ctx.virtualPages.push([tree, vfile])
+      }
+      virtualEntries.push({ tree, vfile, layout, vpSlug })
+    }
+  }
+  return virtualEntries
+}
+
 /**
  * Render each virtual page's Body component to HTML and parse it to a hast tree,
  * populating both the ProcessedContent tree and vfile.data.htmlAst so that
  * transclusion (e.g. ![[file.canvas]]) can inline the virtual page's content.
  */
 function populateVirtualPageHtmlAst(
-  virtualEntries: Array<{
-    tree: ProcessedContent[0]
-    vfile: ProcessedContent[1]
-    layout: FullPageLayout
-    vpSlug: FullSlug
-  }>,
+  virtualEntries: VirtualEntry[],
   ctx: BuildCtx,
   allFiles: ProcessedContent[1]["data"][],
   resources: StaticResources,
@@ -203,31 +242,13 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
 
       // Phase 1: Generate all virtual pages first so their data is available in allFiles
       // for transclude resolution in renderPage (e.g. ![[file.canvas]], ![[file.base]])
-      const virtualEntries: Array<{
-        tree: ProcessedContent[0]
-        vfile: ProcessedContent[1]
-        layout: FullPageLayout
-        vpSlug: FullSlug
-      }> = []
-      for (const pt of pageTypes) {
-        if (!pt.generate) continue
-        const virtualPages = pt.generate({ content, cfg, ctx })
-        const layout = resolveLayout(pt, defaults, byPageType)
-        for (const vp of virtualPages) {
-          const vpSlug = vp.slug as FullSlug
-          const vpRelativePath = (vpSlug + ".md") as FilePath
-          const [tree, vfile] = defaultProcessedContent({
-            slug: vpSlug,
-            relativePath: vpRelativePath,
-            frontmatter: { title: vp.title, tags: [] },
-            ...vp.data,
-          })
-          if (vpSlug !== "404") {
-            ctx.virtualPages.push([tree, vfile])
-          }
-          virtualEntries.push({ tree, vfile, layout, vpSlug })
-        }
-      }
+      const virtualEntries = await generateVirtualPages(
+        pageTypes,
+        content,
+        ctx,
+        defaults,
+        byPageType,
+      )
 
       // Merge virtual page data into allFiles before populating htmlAst so that
       // Body components rendered during populateVirtualPageHtmlAst can resolve
@@ -305,31 +326,13 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
       }
 
       // Phase 1: Generate all virtual pages first so their data is available in allFiles
-      const virtualEntries: Array<{
-        tree: ProcessedContent[0]
-        vfile: ProcessedContent[1]
-        layout: FullPageLayout
-        vpSlug: FullSlug
-      }> = []
-      for (const pt of pageTypes) {
-        if (!pt.generate) continue
-        const virtualPages = pt.generate({ content, cfg, ctx })
-        const layout = resolveLayout(pt, defaults, byPageType)
-        for (const vp of virtualPages) {
-          const vpSlug = vp.slug as FullSlug
-          const vpRelativePath = (vpSlug + ".md") as FilePath
-          const [tree, vfile] = defaultProcessedContent({
-            slug: vpSlug,
-            relativePath: vpRelativePath,
-            frontmatter: { title: vp.title, tags: [] },
-            ...vp.data,
-          })
-          if (vpSlug !== "404") {
-            ctx.virtualPages.push([tree, vfile])
-          }
-          virtualEntries.push({ tree, vfile, layout, vpSlug })
-        }
-      }
+      const virtualEntries = await generateVirtualPages(
+        pageTypes,
+        content,
+        ctx,
+        defaults,
+        byPageType,
+      )
 
       const allFilesWithVirtual = [...allFiles, ...virtualEntries.map((ve) => ve.vfile.data)]
 

@@ -391,7 +391,7 @@ export interface QuartzPageTypePluginInstance {
 - `priority`: Controls matching order when multiple page types could match a slug. Higher priority page types are checked first. Default: `0`.
 - `fileExtensions`: Array of file extensions this page type handles (e.g. `[".canvas"]`, `[".base"]`). Content files (`.md`) are handled by the default content page type.
 - `match`: A function that determines whether a given slug/file should be rendered by this page type.
-- `generate`: An optional function that produces virtual pages (pages not backed by files on disk, such as folder listings or tag indices).
+- `generate`: An optional function that produces virtual pages (pages not backed by files on disk, such as folder listings or tag indices). It receives `{ content, cfg, ctx }` and returns the pages, or (Quartz 5.1+) a promise of them, so it can do async work such as running content through the site's transformers or bundling with esbuild. Page types generate one after another, in priority order. A plugin with an async `generate` should declare `"quartzVersion": ">=5.1.0"`, since older versions don't wait for it.
 - `layout`: The layout configuration key (e.g. `"content"`, `"folder"`, `"tag"`). This determines which `byPageType` entry in `quartz.config.yaml` provides the layout overrides for this page type.
 - `frame`: The [[layout#Page Frames|page frame]] to use for this page type. Controls the overall HTML structure (e.g. `"default"`, `"full-width"`, `"minimal"`, or a custom frame provided by your plugin). If not set, defaults to `"default"`. Can be overridden per-page-type via `layout.byPageType.<name>.template` in `quartz.config.yaml`.
 - `body`: The Quartz component constructor that renders the page body content.
