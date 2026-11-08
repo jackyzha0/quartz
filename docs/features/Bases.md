@@ -4,7 +4,7 @@ tags:
   - component
 ---
 
-Quartz supports rendering [Obsidian Bases](https://obsidian.md/changelog/2025-04-15-desktop-v1.8.0/) (`.base` files) as interactive database-like views. Bases files define queries over your vault's notes and display the results in configurable views such as tables, lists, cards, galleries, and boards.
+Quartz supports rendering [Obsidian Bases](https://obsidian.md/help/bases) (`.base` files) as interactive database-like views. Bases files define queries over your vault's notes and display the results in configurable views such as tables, lists, cards, galleries, and boards.
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.

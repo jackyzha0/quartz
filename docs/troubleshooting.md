@@ -4,6 +4,14 @@ title: Troubleshooting
 
 Common issues and solutions when working with Quartz.
 
+## Reading build output
+
+- **Errors from plugins** say which plugin failed (name, version, source), what it was doing ("while transforming the Markdown of `notes/x.md`", "component Backlinks while rendering `features/x`"), any problems Quartz already knew about that plugin, and where to report it. To confirm a plugin is the cause, disable it (`npx quartz plugin disable <name>`) and build again.
+- **Plugins that fail to load** (can't be installed, their code throws on import, no plugin found in the package) are marked `✗` with the file and line where it failed. Locally the build continues without them so you can check the rest of the site; they are listed again at the top of the end-of-build summary. In CI (`CI` set, e.g. GitHub Actions, Netlify, Vercel, Cloudflare Pages) the build fails instead, so a site with a missing feature isn't deployed — set `QUARTZ_ALLOW_BROKEN_PLUGINS=1` to deploy anyway.
+- **Warnings** printed while loading the config (plugins that need a newer Quartz, plugins missing data they need, layout typos, plugin entries that are now built in) are repeated in a summary at the end of the build.
+- **Notes** in that summary point out links to pages that are not on your site — including links to [[RemoveDrafts|drafts]], which are the usual cause of "this link 404s". `npx quartz build --verbose` lists every such link, the order plugins run in, the built-ins and the layout of each page type.
+- **Which version am I on?** `npx quartz info` prints your Quartz version, environment and plugins — include it when asking for help (see [[versioning]]).
+
 ## Build Errors
 
 ### `Could not resolve ...` or missing module errors
@@ -34,12 +42,20 @@ The default uses all available CPU cores. If you're on a memory-constrained envi
 
 ## Plugin Issues
 
+> [!tip]
+> `npx quartz plugin doctor` checks your whole plugin setup — config typos, plugins that are not installed or not built, lockfile mismatches, option typos — and suggests a fix for each problem. Run it first.
+
 ### Plugin not loading after installation
 
-1. Verify the plugin appears in `quartz.config.yaml` under `plugins:`
-2. Check that `enabled: true` is set
-3. Run `npx quartz plugin list` to confirm it's installed
-4. Run `npx quartz plugin install --latest --dry-run` to verify plugin health
+1. Run `npx quartz plugin doctor`
+2. Verify the plugin appears in `quartz.config.yaml` under `plugins:`
+3. Check that `enabled: true` is set (spelled `enabled`, as a boolean — `enable: true` or `enabled: "true"` do not work as expected)
+4. Run `npx quartz plugin list` to confirm it's installed
+5. Run `npx quartz plugin install --latest --dry-run` to check for updates
+
+### Which plugin rendered this part of the page?
+
+Open your browser's developer tools and inspect the element. Components provided by plugins carry `data-quartz-plugin` (the plugin name) and `data-quartz-component` (the component name) attributes on their root element. Look for the nearest ancestor with these attributes.
 
 ### Plugin options not taking effect
 
@@ -53,7 +69,7 @@ plugins:
       myOption: value # correct: nested under options
 ```
 
-A common mistake is putting options at the wrong indentation level.
+A common mistake is putting options at the wrong indentation level. Misspelled option names are reported as warnings at the start of `npx quartz build` (e.g. `unknown option "folderDefaultStat" — did you mean "folderDefaultState"?`); `npx quartz plugin config <name>` shows the options you set next to the plugin's defaults.
 
 ### `ExternalPlugin.X is not a function`
 
@@ -109,7 +125,7 @@ If `plugin install` consistently fails near the same plugin with `-c 1`, the iss
 ### Notes not showing up
 
 - Check that the file is in the `content/` folder
-- Check that `draft: true` is not set in the frontmatter (the [[RemoveDrafts]] plugin filters these out)
+- Check that `draft: true` is not set in the frontmatter (drafts are not published — see [[RemoveDrafts|built-in draft handling]]; `configuration.drafts.publish: true` publishes them)
 - If using [[ExplicitPublish]], make sure `publish: true` is set in frontmatter
 - Check your [[configuration]] `ignorePatterns` to make sure the file path is not excluded
 
@@ -155,7 +171,28 @@ If you want to start over, run `npx quartz restore` to recover your content from
 
 - Make sure you're using `--serve` mode: `npx quartz build --serve`
 - Check that port 3001 (WebSocket) is not blocked — this is the default `--wsPort` used for hot reload notifications
-- If developing remotely, use `--remoteDevHost` to set the correct WebSocket URL
+- If developing remotely, use `--remoteDevHost` to set the WebSocket hostname (the protocol follows the page: `wss` on HTTPS, `ws` otherwise)
+
+### Changes on mounted or network content are not detected
+
+Some network filesystems and Docker bind mounts do not forward directory change events. Enable
+Chokidar polling so Quartz watches existing content files directly and periodically scans for added
+or deleted files:
+
+```shell
+CHOKIDAR_USEPOLLING=true CHOKIDAR_INTERVAL=1000 npx quartz build --serve
+```
+
+In PowerShell:
+
+```powershell
+$env:CHOKIDAR_USEPOLLING = "true"
+$env:CHOKIDAR_INTERVAL = "1000"
+npx quartz build --serve
+```
+
+Polling uses more CPU and filesystem I/O than native events. Increase `CHOKIDAR_INTERVAL` when
+watching a large content directory or when immediate updates are not required.
 
 ### Port already in use
 
@@ -170,3 +207,4 @@ npx quartz build --serve --port 3000
 - Check the [GitHub Issues](https://github.com/jackyzha0/quartz/issues) for similar problems
 - Ask in the [Discord Community](https://discord.gg/cRFFHYye7t)
 - Run your command with `--verbose` for more detailed error output
+- Include the output of `npx quartz info` in your question

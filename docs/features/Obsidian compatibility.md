@@ -8,9 +8,9 @@ Quartz was originally designed as a tool to publish Obsidian vaults as websites.
 
 By default, Quartz ships with the [[ObsidianFlavoredMarkdown]] plugin, which is a transformer plugin that adds support for [Obsidian Flavored Markdown](https://help.obsidian.md/Editing+and+formatting/Obsidian+Flavored+Markdown). This includes support for features like [[wikilinks]] and [[Mermaid diagrams]].
 
-It also ships with support for [frontmatter parsing](https://help.obsidian.md/Editing+and+formatting/Properties) with the same fields that Obsidian uses through the [[Frontmatter]] transformer plugin.
+It also ships with support for [frontmatter parsing](https://help.obsidian.md/Editing+and+formatting/Properties) with the same fields that Obsidian uses through its built-in [[Frontmatter]] transformer plugin.
 
-Finally, Quartz also provides [[CrawlLinks]] plugin, which allows you to customize Quartz's link resolution behaviour to match Obsidian.
+Finally, Quartz's built-in [[CrawlLinks|link processing]] (`configuration.links`) lets you customize link resolution to match Obsidian.
 
 ## Supported Features
 
@@ -123,7 +123,7 @@ Each custom character is preserved as a `data-task` attribute on the rendered el
 
 ### Mermaid Diagrams
 
-[[Mermaid diagrams|Mermaid]] code blocks are rendered as diagrams:
+[[Mermaid diagrams|Mermaid]] code blocks render as diagrams. Default is Mermaid.js; set `diagramRenderer: pele` for [Pele](https://pele.run):
 
 ````markdown
 ```mermaid
@@ -220,4 +220,4 @@ Quartz focuses on supporting Obsidian's core features. Functionality from Obsidi
 
 ## Configuration
 
-This functionality is provided by the [[ObsidianFlavoredMarkdown]], [[Frontmatter]] and [[CrawlLinks]] plugins. See the plugin pages for customization options.
+This functionality is provided by the [[ObsidianFlavoredMarkdown]] plugin and Quartz's built-in [[Frontmatter|frontmatter parsing]] and [[CrawlLinks|link processing]]. See those pages for customization options.

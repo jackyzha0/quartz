@@ -68,8 +68,16 @@ async function _navigate(url: URL, isBack: boolean = false) {
   isNavigating = true
   startLoading()
   p = p || new DOMParser()
+  // Where the page really came from: a redirect (e.g. `folder` → `folder/`, or an alias page's
+  // canonical link) changes the base its relative links resolve against, and the address bar
+  // should show it too. fetch() drops the #hash, so keep the requested one.
+  let finalUrl = url
   const contents = await fetchCanonical(url)
     .then((res) => {
+      if (res.url) {
+        finalUrl = new URL(res.url)
+        finalUrl.hash = url.hash
+      }
       const contentType = res.headers.get("content-type")
       if (contentType?.startsWith("text/html")) {
         return res.text()
@@ -92,7 +100,7 @@ async function _navigate(url: URL, isBack: boolean = false) {
   cleanupFns.clear()
 
   const html = p.parseFromString(contents, "text/html")
-  normalizeRelativeURLs(html, url)
+  normalizeRelativeURLs(html, finalUrl)
 
   let title = html.querySelector("title")?.textContent
   if (title) {
@@ -129,7 +137,7 @@ async function _navigate(url: URL, isBack: boolean = false) {
   // delay setting the url until now
   // at this point everything is loaded so changing the url should resolve to the correct addresses
   if (!isBack) {
-    history.pushState({}, "", url)
+    history.pushState({}, "", finalUrl)
   }
 
   notifyNav(getFullSlug(window))

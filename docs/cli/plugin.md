@@ -4,13 +4,20 @@ title: quartz plugin
 
 The `plugin` command is the heart of the Quartz v5 plugin management system. it allows you to install, configure, and update plugins directly from the command line.
 
-All plugins are stored in the `.quartz/plugins/` directory, and their versions are tracked in `quartz.lock.json`.
+Quartz plugins come from two kinds of sources:
+
+- **npm packages** (`@quartz-community/explorer`) — the default plugins. They are installed into `node_modules/` by `npm install` / `npm ci` and versioned by `package.json` and `package-lock.json`.
+- **Git repositories and local directories** (`github:owner/repo`, `./my-plugin`) — cloned or symlinked into `.quartz/plugins/`. Their exact commits are pinned in `quartz.lock.json`.
+
+Wherever a command takes a plugin name you can use the full name (`@quartz-community/explorer`), the source as written in `quartz.config.yaml`, or the short name (`explorer`). Misspelled names get a "did you mean" suggestion.
+
+Every subcommand exits with a non-zero status when something fails (a clone, a build, an unknown plugin name), so `npx quartz plugin install && npx quartz build` stops in CI instead of building a site with missing plugins.
 
 ## Subcommands
 
 ### list
 
-List all currently installed plugins and their versions.
+List all configured plugins: Git/local plugins with their pinned commit, npm plugins with their installed version, and any plugins that are in `quartz.config.yaml` but not installed yet.
 
 ```shell
 npx quartz plugin list
@@ -18,10 +25,11 @@ npx quartz plugin list
 
 ### add
 
-Add a new plugin from a Git repository.
+Add a new plugin from a Git repository. The plugin is installed, pinned in `quartz.lock.json`, and added to `quartz.config.yaml` with its default options — enabled unless the plugin is disabled by default.
 
 ```shell
 npx quartz plugin add github:username/repo
+npx quartz plugin add username/repo   # same as github:username/repo
 ```
 
 To install from a specific branch or ref, append `#ref` to the source:
@@ -44,30 +52,40 @@ Local plugins are symlinked into `.quartz/plugins/`, so any changes you make to 
 
 When a branch is specified, it is stored in the lockfile. All subsequent commands (`install`, `prune`) will respect that branch automatically. Use `install --latest` to fetch the latest commit from that branch.
 
+`plugin add` will not create duplicate entries: if a plugin with the same name is already configured (for example `@quartz-community/graph` when you add `github:someone/graph`), it is skipped with a hint. Remove the existing plugin first, or use `--as <name>` to install the second one under a different name. If the plugin is already present in `.quartz/plugins/` but missing from the config (e.g. after you deleted its entry by hand), `add` adds it back to the config without re-cloning.
+
 > [!tip]
 > `plugin add` also accepts `--concurrency` / `-c` to limit how many remote repositories are cloned and built at the same time. This is the same flag documented under [[#install]] and is useful when adding several plugins at once on low-end hardware.
 
 ### remove
 
-Remove an installed plugin.
+Remove a plugin: deletes its entry from `quartz.config.yaml`, and for Git/local plugins also its directory in `.quartz/plugins/` and its lockfile entry.
 
 ```shell
 npx quartz plugin remove plugin-name
+npx quartz plugin remove explorer        # short name of @quartz-community/explorer
 ```
+
+For npm plugins the package stays in `node_modules/` (most of them ship with Quartz). If another configured plugin declares a dependency on the one you removed, a warning tells you so.
 
 ### install
 
-Install plugins for your Quartz project. By default, this installs all plugins listed in your `quartz.lock.json` file.
+Install plugins for your Quartz project. By default, this installs all plugins listed in your `quartz.lock.json` file, at exactly the pinned commits (including plugins installed from a repository subdirectory).
 
 ```shell
 npx quartz plugin install
 ```
 
+If there is no `quartz.lock.json` yet, `install` falls back to installing the Git/local plugins from `quartz.config.yaml` and writes the lockfile — commit it to pin those versions. If only npm plugins are configured there is nothing to do and the command says so. When `quartz.config.yaml` lists Git plugins that are missing from the lockfile, `install` prints them with a hint to run `install --from-config`.
+
+> [!note]
+> `npx quartz build` also installs any configured Git plugin that is missing from `.quartz/plugins/`, and checks out the commit pinned in `quartz.lock.json` when there is one. Running `plugin install` first is still recommended in CI, because it fails loudly when a plugin cannot be installed.
+
 #### Flags
 
 - `--from-config`: Synchronize plugins with `quartz.config.yaml` instead of the lockfile. This will install missing plugins and prune orphaned ones.
 - `--latest`: Fetch the latest version of plugins from their remote sources instead of using the version in the lockfile.
-- `--clean`: Skip existing directories and perform a fresh installation.
+- `--clean`: Only restore plugins whose directory is missing; existing directories are left untouched.
 - `--dry-run`: Preview the changes without actually installing or removing any files.
 - `--concurrency`, `-c`: Maximum number of plugins to clone, fetch, and build in parallel. Defaults to the number of CPU cores. Lower this (e.g. `-c 1` or `-c 2`) on memory- or CPU-constrained machines where the default parallelism causes failures, OOMs, or hangs. See [[#Installing on low-end hardware]] below.
 
@@ -92,17 +110,58 @@ npx quartz plugin enable plugin-name
 npx quartz plugin disable plugin-name
 ```
 
+The CLI edits `quartz.config.yaml` in place: your comments, quoting and key order are preserved, and the file is only rewritten when something actually changed.
+
 ### config
 
-View or modify the configuration for a specific plugin.
+View or modify the options of a specific plugin.
 
 ```shell
-# View config
-npx quartz plugin config plugin-name
+# View the options you set, plus the plugin defaults you have not overridden
+npx quartz plugin config explorer
 
-# Set a value
-npx quartz plugin config plugin-name --set key=value
+# Set values (repeatable; values are parsed as JSON when possible)
+npx quartz plugin config explorer --set folderDefaultState=open --set useSavedState=false
+
+# Nested option keys use dots
+npx quartz plugin config graph --set localGraph.depth=2
+
+# Remove an option so the plugin default applies again
+npx quartz plugin config explorer --unset folderDefaultState
 ```
+
+Options are checked against the plugin's documented defaults (the `defaultOptions` and optional `configSchema` in its manifest). A likely typo or a value of the wrong type prints a warning, for example:
+
+```
+⚠ @quartz-community/explorer: unknown option "folderDefaultStat" — did you mean "folderDefaultState"?
+⚠ @quartz-community/explorer: option "useSavedState" should be a boolean (default: true), got string "yes"
+```
+
+The same warnings are printed at the start of `npx quartz build`, along with misspelled entry keys such as `enable:` instead of `enabled:`. They never stop the build.
+
+### doctor
+
+Check your plugin setup without changing anything:
+
+```shell
+npx quartz plugin doctor
+npx quartz plugin doctor --verbose   # also show informational notes
+npx quartz plugin doctor --fix       # move settings of plugins that are now built into Quartz
+```
+
+`doctor` reports, with a suggested fix for each problem:
+
+- YAML syntax errors in `quartz.config.yaml`
+- misspelled or invalid entry keys (`enable:`, `option:`, `layout.positon`), non-boolean `enabled` values, and entries without `enabled` (treated as disabled)
+- unparseable sources and plugins configured twice
+- npm plugins that are not installed, and Git/local plugins that are not installed, not pinned in `quartz.lock.json`, checked out at a different commit than the lockfile pins, or whose source changed
+- broken local plugin symlinks and plugins without a built entry point (`dist/`)
+- option typos and type mismatches, and declared plugin dependencies that are missing or disabled
+- plugins that don't support your Quartz version (their `quartzVersion`, see [[versioning#Plugin compatibility]])
+- entries for plugins that are now [[built-in processing|built into Quartz]] (`crawl-links`, `remove-draft`, `content-index`); `--fix` moves their options into `configuration` (keeping your comments) and removes their now unused pins from `quartz.lock.json`
+- lockfile entries that are no longer configured (clean up with `prune`)
+
+It exits with status 1 when it finds errors, so it can run as a CI check.
 
 ### prune
 
@@ -125,10 +184,20 @@ npx quartz plugin prune --dry-run
 
 ### Adding and Enabling a Plugin
 
-To add a new plugin and start using it:
+`plugin add` installs the plugin and enables it right away (unless the plugin is disabled by default — the command then tells you how to enable it):
 
-1. Add the plugin: `npx quartz plugin add github:quartz-community/example`
-2. Enable it: `npx quartz plugin enable example`
+```shell
+npx quartz plugin add github:quartz-community/example
+npx quartz plugin enable example   # only needed for plugins that are disabled by default
+```
+
+### Something is not working
+
+Start with:
+
+```shell
+npx quartz plugin doctor
+```
 
 ### Updating Everything
 
@@ -266,7 +335,6 @@ See [[configuration#Advanced Source Options|Advanced Source Options]] for the fu
 | `npx quartz plugin check`             | `npx quartz plugin install --latest --dry-run`      |
 | `npx quartz plugin resolve`           | `npx quartz plugin install --from-config`           |
 | `npx quartz plugin resolve --dry-run` | `npx quartz plugin install --from-config --dry-run` |
-| `npx quartz update`                   | `npx quartz plugin install --latest`                |
 
 The old commands still work as hidden aliases but will print a deprecation warning.
 
@@ -278,4 +346,4 @@ Running the plugin command without any subcommand shows a status dashboard of al
 npx quartz plugin
 ```
 
-This displays each plugin with its source, commit, enabled/disabled status, and checks for available updates in parallel. For the full interactive management interface, use [[tui|npx quartz tui]] instead.
+This displays each plugin with its source, commit (or npm version), enabled/disabled status, and checks Git plugins for available updates in parallel. npm plugins are updated together with Quartz (`npx quartz upgrade`). A misspelled subcommand (e.g. `npx quartz plugin lst`) is reported as an error with a suggestion instead of falling back to this dashboard. For the full interactive management interface, use [[tui|npx quartz tui]] instead.

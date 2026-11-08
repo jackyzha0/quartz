@@ -4,6 +4,28 @@
 @use "./syntax.scss";
 @use "./callouts.scss";
 
+// layout.sidebars — how a sidebar handles content taller than the screen. `fit` (the default,
+// no rules here) keeps it exactly one screen tall: its components shrink and scroll themselves.
+@mixin sidebar-modes {
+  // stays in view, scrolls itself; components take their natural height
+  &[data-sidebar-mode="scroll"] {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    & > * {
+      flex-shrink: 0;
+    }
+  }
+  // scrolls away with the page
+  &[data-sidebar-mode="static"] {
+    position: static;
+    height: auto;
+    align-self: start;
+    & > * {
+      flex-shrink: 0;
+    }
+  }
+}
+
 html {
   scroll-behavior: smooth;
   text-size-adjust: none;
@@ -257,6 +279,10 @@ a {
         height: unset;
         width: 100%;
         flex-direction: row;
+        // Wrap what does not fit side by side: on a phone the graph and backlinks are each about
+        // 180px at their narrowest, and a row that cannot wrap pushed the page wider than the
+        // screen (horizontal scroll).
+        flex-wrap: wrap;
         padding: 0;
         & > * {
           flex: 1;
@@ -267,6 +293,19 @@ a {
         }
       }
     }
+    // sidebar modes apply where a sidebar is a column: the left one above mobile width, the
+    // right one on desktop (narrower layouts turn them into rows)
+    & .sidebar.left {
+      @media all and not ($mobile) {
+        @include sidebar-modes;
+      }
+    }
+    & .sidebar.right {
+      @media all and ($desktop) {
+        @include sidebar-modes;
+      }
+    }
+
     & .page-header,
     & .page-footer {
       margin-top: 1rem;
@@ -552,6 +591,23 @@ code {
   border-radius: 5px;
   padding: 0.1rem 0.2rem;
   background: var(--lightgray);
+}
+
+// Long words break only where they would not fit, so a phone does not scroll sideways: a page
+// title such as "ObsidianFlavoredMarkdown", or `configuration.links.disableBrokenWikilinks` in a
+// callout. Inline code takes `anywhere`, which also lets the box around it shrink (with
+// `break-word` the callout widened to the identifier instead). Code blocks keep scrolling.
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+:not(pre) > code {
+  overflow-wrap: anywhere;
 }
 
 tbody,

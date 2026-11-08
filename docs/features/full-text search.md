@@ -16,7 +16,7 @@ To search content by tags, you can either press `⌘`/`ctrl` + `shift` + `K` or 
 This component is also keyboard accessible: Tab and Shift+Tab will cycle forward and backward through search results and Enter will navigate to the highlighted result (first result by default). You are also able to navigate search results using `ArrowUp` and `ArrowDown`.
 
 > [!info]
-> Search requires the `ContentIndex` emitter plugin to be present in the [[configuration]].
+> Search reads `contentIndex.json`, which Quartz emits by default (see [[ContentIndex]]). It has no data if `configuration.contentIndex` is disabled.
 
 ### Indexing Behaviour
 

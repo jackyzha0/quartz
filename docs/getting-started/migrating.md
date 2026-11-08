@@ -57,7 +57,7 @@ npx quartz create
 
 This will prompt you for:
 
-- A **template** (`default`, `obsidian`, `ttrpg`, `blog`) — pick the one closest to your old setup. `obsidian` is recommended if you use an Obsidian vault.
+- A **template** (`default`, `obsidian`, `ttrpg`, `blog`, `docs`) — pick the one closest to your old setup. `obsidian` is recommended if you use an Obsidian vault.
 - A **content strategy** — choose "Copy" and point it to your backed-up content folder.
 
 If you skipped the `create` wizard or need to restore your content manually:
@@ -117,15 +117,15 @@ Mapping v4 plugin names to v5 equivalents:
 
 | v4                                  | v5                                          | Type                  |
 | ----------------------------------- | ------------------------------------------- | --------------------- |
-| `Plugin.FrontMatter()`              | `ExternalPlugin.NoteProperties()`           | Community             |
+| `Plugin.FrontMatter()`              | built in (`configuration.frontmatter`)      | Internal              |
 | `Plugin.CreatedModifiedDate()`      | `ExternalPlugin.CreatedModifiedDate()`      | Community             |
 | `Plugin.SyntaxHighlighting()`       | `ExternalPlugin.SyntaxHighlighting()`       | Community             |
 | `Plugin.ObsidianFlavoredMarkdown()` | `ExternalPlugin.ObsidianFlavoredMarkdown()` | Community             |
 | `Plugin.GitHubFlavoredMarkdown()`   | `ExternalPlugin.GitHubFlavoredMarkdown()`   | Community             |
-| `Plugin.CrawlLinks()`               | `ExternalPlugin.CrawlLinks()`               | Community             |
+| `Plugin.CrawlLinks()`               | built in (`configuration.links`)            | Internal              |
 | `Plugin.Description()`              | `ExternalPlugin.Description()`              | Community             |
 | `Plugin.Latex()`                    | `ExternalPlugin.Latex()`                    | Community             |
-| `Plugin.RemoveDrafts()`             | `ExternalPlugin.RemoveDrafts()`             | Community             |
+| `Plugin.RemoveDrafts()`             | built in (`configuration.drafts`)           | Internal              |
 | `Plugin.ContentPage()`              | `ExternalPlugin.ContentPage()`              | Community (pageTypes) |
 | `Plugin.FolderPage()`               | `ExternalPlugin.FolderPage()`               | Community (pageTypes) |
 | `Plugin.TagPage()`                  | `ExternalPlugin.TagPage()`                  | Community (pageTypes) |
@@ -134,7 +134,7 @@ Mapping v4 plugin names to v5 equivalents:
 | `Plugin.Assets()`                   | `Plugin.Assets()` (unchanged)               | Internal              |
 | `Plugin.Static()`                   | `Plugin.Static()` (unchanged)               | Internal              |
 | `Plugin.AliasRedirects()`           | `ExternalPlugin.AliasRedirects()`           | Community             |
-| `Plugin.ContentIndex()`             | `ExternalPlugin.ContentIndex()`             | Community             |
+| `Plugin.ContentIndex()`             | built in (`configuration.contentIndex`)     | Internal              |
 
 Component layout mapping:
 
@@ -149,6 +149,8 @@ Component layout mapping:
 | `Component.TableOfContents()` | `Plugin.TableOfContents()`               |
 | `Component.Head()`            | `Component.Head()` (unchanged, internal) |
 | `Component.Spacer()`          | `Plugin.Spacer()`                        |
+
+If you edited a component's source in `quartz/components/` (for example `Footer.tsx`), that no longer works: components are now installed plugins. See [[customizing components]] for the v5 ways to change them.
 
 ## Updating Your CI/CD
 

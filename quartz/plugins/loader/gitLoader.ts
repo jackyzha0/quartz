@@ -1,10 +1,17 @@
 import fs from "fs"
 import path from "path"
-import { execSync } from "child_process"
+import {
+  assertCommit,
+  assertNpmSpec,
+  assertRef,
+  assertRepoUrl,
+  git as runGit,
+  npm,
+} from "../../cli/subprocess.js"
+import { writePluginIndex } from "../../cli/plugin-index.js"
 import git from "isomorphic-git"
 import http from "isomorphic-git/http/node"
 import { styleText } from "util"
-import { fileURLToPath } from "node:url"
 import { pathToFileURL } from "url"
 import { PluginSource } from "./types"
 
@@ -39,6 +46,59 @@ export interface GitPluginSpec {
 export type PluginInstallSource = string | GitPluginSpec
 
 const PLUGINS_CACHE_DIR = path.join(process.cwd(), ".quartz", "plugins")
+const LOCKFILE_PATH = path.join(process.cwd(), "quartz.lock.json")
+const GIT_TIMEOUT_MS = 300_000
+
+/**
+ * Commit pinned for this plugin in quartz.lock.json, if the lock entry still
+ * describes the same repository (and subdirectory) as the spec.
+ */
+export function readLockedCommit(
+  spec: Pick<GitPluginSpec, "name" | "repo" | "subdir">,
+  lockfilePath: string = LOCKFILE_PATH,
+): string | undefined {
+  try {
+    const lock = JSON.parse(fs.readFileSync(lockfilePath, "utf-8"))
+    const entry = lock?.plugins?.[spec.name]
+    if (!entry || typeof entry.commit !== "string") return undefined
+    if (entry.commit === "local" || entry.commit === "unknown") return undefined
+    if (entry.resolved && entry.resolved !== spec.repo) return undefined
+    if ((entry.subdir ?? undefined) !== (spec.subdir ?? undefined)) return undefined
+    return entry.commit
+  } catch {
+    return undefined
+  }
+}
+
+/** `git clone --depth 1 [--branch <ref>] -- <repo> <dir>`, with ref and repo validated. */
+export function cloneArgs(repo: string, ref: string | undefined, dir: string): string[] {
+  return [
+    "clone",
+    "--depth",
+    "1",
+    ...(ref ? ["--branch", assertRef(ref)] : []),
+    "--",
+    assertRepoUrl(repo),
+    dir,
+  ]
+}
+
+/** Move a fresh shallow clone to the lockfile-pinned commit. Warns (and keeps the tip) on failure. */
+function checkoutLockedCommit(dir: string, commit: string, name: string): void {
+  try {
+    assertCommit(commit)
+    const head = runGit(["rev-parse", "HEAD"], { cwd: dir }).trim()
+    if (head === commit) return
+    runGit(["fetch", "--depth", "1", "origin", commit], { cwd: dir, timeout: GIT_TIMEOUT_MS })
+    runGit(["checkout", "--quiet", commit], { cwd: dir, timeout: 60_000 })
+  } catch {
+    console.warn(
+      styleText("yellow", `⚠`) +
+        ` ${name}: could not check out ${commit.slice(0, 7)} pinned in quartz.lock.json; using the latest commit instead.` +
+        ` Run 'npx quartz plugin install' to fix the lockfile.`,
+    )
+  }
+}
 
 /**
  * Check if a source string refers to a local file path.
@@ -143,16 +203,21 @@ export function parsePluginSource(source: PluginSource): GitPluginSpec {
     return { name: source, repo: "", npmPackage: true }
   }
 
-  // Assume it's a plain repo name and try github
-  const parts = source.split("/")
-  if (parts.length === 2) {
+  // Assume it's a plain "owner/repo[#ref]" and try github
+  const [shorthand, shorthandRef] = source.split("#")
+  const parts = shorthand.split("/")
+  if (parts.length === 2 && parts[0] && parts[1]) {
     return {
       name: parts[1],
-      repo: `https://github.com/${source}.git`,
+      repo: `https://github.com/${shorthand}.git`,
+      ref: shorthandRef || undefined,
     }
   }
 
-  throw new Error(`Cannot parse plugin source: ${source}`)
+  throw new Error(
+    `Cannot parse plugin source "${source}". Expected github:owner/repo, owner/repo, ` +
+      `an https:// or git+https:// URL, an @scope/package npm name, or a local path (./path).`,
+  )
 }
 
 function extractRepoName(url: string): string {
@@ -225,7 +290,7 @@ export function installNativeDeps(
     }
 
     if (uniqueRanges.length === 1) {
-      installArgs.push(`${pkg}@${JSON.stringify(uniqueRanges[0])}`)
+      installArgs.push(assertNpmSpec(`${pkg}@${uniqueRanges[0]}`))
     } else {
       if (options.verbose) {
         console.warn(
@@ -234,7 +299,7 @@ export function installNativeDeps(
         )
       }
       // Use first range; npm will fail if truly incompatible
-      installArgs.push(`${pkg}@${JSON.stringify(uniqueRanges[0])}`)
+      installArgs.push(assertNpmSpec(`${pkg}@${uniqueRanges[0]}`))
     }
   }
 
@@ -248,7 +313,7 @@ export function installNativeDeps(
   }
 
   try {
-    execSync(`npm install --no-save ${installArgs.join(" ")}`, {
+    npm(["install", "--no-save", ...installArgs], {
       cwd: process.cwd(),
       stdio: options.verbose ? "inherit" : "pipe",
       timeout: 120_000,
@@ -329,7 +394,8 @@ function trySymlink(target: string, linkPath: string): void {
   }
 }
 
-function linkPeerDependencies(pluginDir: string): void {
+/** @internal Exported for testing only. */
+export function linkPeerDependencies(pluginDir: string): void {
   const pkgPath = path.join(pluginDir, "package.json")
   if (!fs.existsSync(pkgPath)) return
 
@@ -338,16 +404,37 @@ function linkPeerDependencies(pluginDir: string): void {
 
   const quartzRoot = path.resolve(pluginDir, "..", "..", "..")
   const hostNodeModules = path.join(quartzRoot, "node_modules")
+  // a local plugin is a symlink; relative links made through it would dangle
+  const realDir = fs.realpathSync(pluginDir)
+  const local = fs.lstatSync(pluginDir).isSymbolicLink()
 
   for (const peerName of Object.keys(peers)) {
-    const peerNodeModulesPath = path.join(pluginDir, "node_modules", ...peerName.split("/"))
-    if (fs.existsSync(peerNodeModulesPath)) continue
+    const peerNodeModulesPath = path.join(realDir, "node_modules", ...peerName.split("/"))
+    const hostPeerPath = path.join(hostNodeModules, ...peerName.split("/"))
+    if (fs.existsSync(peerNodeModulesPath)) {
+      if (!local || peerName.startsWith("@quartz-community/") || !fs.existsSync(hostPeerPath)) {
+        continue
+      }
+      if (fs.realpathSync(peerNodeModulesPath) === fs.realpathSync(hostPeerPath)) continue
+      // a second copy breaks singletons like Preact's hooks; replace a link, never a directory
+      if (!fs.lstatSync(peerNodeModulesPath).isSymbolicLink()) {
+        console.warn(
+          styleText("yellow", `⚠`),
+          `${peerName} is installed in ${realDir}, so it will not share Quartz's copy`,
+        )
+        continue
+      }
+      fs.unlinkSync(peerNodeModulesPath)
+    } else if (fs.lstatSync(peerNodeModulesPath, { throwIfNoEntry: false })?.isSymbolicLink()) {
+      // dangling
+      fs.unlinkSync(peerNodeModulesPath)
+    }
 
     if (peerName.startsWith("@quartz-community/")) {
       const siblingPlugin = findPluginByPackageName(peerName)
       if (!siblingPlugin) continue
 
-      const scopeDir = path.join(pluginDir, "node_modules", peerName.split("/")[0])
+      const scopeDir = path.join(realDir, "node_modules", peerName.split("/")[0])
       fs.mkdirSync(scopeDir, { recursive: true })
 
       const target = path.relative(scopeDir, siblingPlugin)
@@ -355,15 +442,14 @@ function linkPeerDependencies(pluginDir: string): void {
       continue
     }
 
-    const hostPeerPath = path.join(hostNodeModules, ...peerName.split("/"))
     if (!fs.existsSync(hostPeerPath)) continue
 
     const parts = peerName.split("/")
     if (parts.length > 1) {
-      const scopeDir = path.join(pluginDir, "node_modules", parts[0])
+      const scopeDir = path.join(realDir, "node_modules", parts[0])
       fs.mkdirSync(scopeDir, { recursive: true })
     } else {
-      fs.mkdirSync(path.join(pluginDir, "node_modules"), { recursive: true })
+      fs.mkdirSync(path.join(realDir, "node_modules"), { recursive: true })
     }
 
     const target = path.relative(path.dirname(peerNodeModulesPath), hostPeerPath)
@@ -386,7 +472,9 @@ function buildInstalledPlugin(pluginDir: string, name: string, verbose?: boolean
     if (verbose) {
       console.log(styleText("cyan", `→`), `${name}: installing dependencies...`)
     }
-    execSync("npm install --ignore-scripts", {
+    // Quartz's .npmrc reaches a nested npm only when npm started Quartz; without it, npm installs
+    // the peers a dependency declares, and the plugin keeps its own Preact
+    npm(["install", "--ignore-scripts", "--legacy-peer-deps"], {
       cwd: pluginDir,
       stdio: verbose ? "inherit" : "pipe",
       timeout: 120_000,
@@ -396,14 +484,14 @@ function buildInstalledPlugin(pluginDir: string, name: string, verbose?: boolean
       if (verbose) {
         console.log(styleText("cyan", `→`), `${name}: building...`)
       }
-      execSync("npm run build", {
+      npm(["run", "build"], {
         cwd: pluginDir,
         stdio: verbose ? "inherit" : "pipe",
         timeout: 120_000,
       })
     }
 
-    execSync("npm prune --omit=dev", {
+    npm(["prune", "--omit=dev", "--legacy-peer-deps"], {
       cwd: pluginDir,
       stdio: verbose ? "inherit" : "pipe",
       timeout: 60_000,
@@ -440,16 +528,19 @@ export async function installPlugin(
 
     if (!options.force && fs.existsSync(pluginDir)) {
       // Check if existing entry is already a symlink to the right place
+      let linked = false
       try {
         const stat = fs.lstatSync(pluginDir)
-        if (stat.isSymbolicLink() && fs.realpathSync(pluginDir) === fs.realpathSync(spec.repo)) {
-          if (options.verbose) {
-            console.log(styleText("cyan", `→`), `Plugin ${spec.name} already linked`)
-          }
-          return { pluginDir, nativeDeps: collectNativeDeps(pluginDir) }
-        }
+        linked = stat.isSymbolicLink() && fs.realpathSync(pluginDir) === fs.realpathSync(spec.repo)
       } catch {
         // stat failed, recreate
+      }
+      if (linked) {
+        if (options.verbose) {
+          console.log(styleText("cyan", `→`), `Plugin ${spec.name} already linked`)
+        }
+        linkPeerDependencies(pluginDir)
+        return { pluginDir, nativeDeps: collectNativeDeps(pluginDir) }
       }
     }
 
@@ -479,6 +570,7 @@ export async function installPlugin(
       console.log(styleText("green", `✓`), `Linked ${spec.name}`)
     }
 
+    linkPeerDependencies(pluginDir)
     return { pluginDir, nativeDeps: collectNativeDeps(pluginDir) }
   }
 
@@ -528,8 +620,9 @@ export async function installPlugin(
       fs.rmSync(tmpDir, { recursive: true })
     }
 
-    const branchArg = spec.ref ? ` --branch ${spec.ref}` : ""
-    execSync(`git clone --depth 1${branchArg} "${spec.repo}" "${tmpDir}"`, { stdio: "pipe" })
+    runGit(cloneArgs(spec.repo, spec.ref, tmpDir), { timeout: GIT_TIMEOUT_MS })
+    const locked = readLockedCommit(spec)
+    if (locked) checkoutLockedCommit(tmpDir, locked, spec.name)
 
     const subdirPath = path.join(tmpDir, spec.subdir)
     if (!fs.existsSync(subdirPath)) {
@@ -540,8 +633,9 @@ export async function installPlugin(
     fs.renameSync(subdirPath, pluginDir)
     fs.rmSync(tmpDir, { recursive: true })
   } else {
-    const branchArg = spec.ref ? ` --branch ${spec.ref}` : ""
-    execSync(`git clone --depth 1${branchArg} "${spec.repo}" "${pluginDir}"`, { stdio: "pipe" })
+    runGit(cloneArgs(spec.repo, spec.ref, pluginDir), { timeout: GIT_TIMEOUT_MS })
+    const locked = readLockedCommit(spec)
+    if (locked) checkoutLockedCommit(pluginDir, locked, spec.name)
   }
 
   buildInstalledPlugin(pluginDir, spec.name, options.verbose)
@@ -920,254 +1014,13 @@ export function validatePluginExternals(
 export async function regeneratePluginIndex(
   options: { verbose?: boolean; npmPackages?: string[] } = {},
 ): Promise<void> {
-  if (!fs.existsSync(PLUGINS_CACHE_DIR)) {
-    fs.mkdirSync(PLUGINS_CACHE_DIR, { recursive: true })
-  }
-
-  const pluginDirs = fs.readdirSync(PLUGINS_CACHE_DIR).filter((name) => {
-    const pluginPath = path.join(PLUGINS_CACHE_DIR, name)
-    return fs.statSync(pluginPath).isDirectory()
+  // shared with `quartz plugin …` commands, see cli/plugin-index.js
+  const entries = writePluginIndex({
+    pluginsDir: PLUGINS_CACHE_DIR,
+    npmPackages: options.npmPackages ?? [],
+    verbose: options.verbose,
   })
-
-  // Phase 1: Collect all exports per plugin, detect conflicts
-  // importPath maps plugin key → the import specifier used in generated index.ts
-  const pluginExports = new Map<
-    string,
-    { overridable: string[]; passthrough: string[]; types: string[] }
-  >()
-  const importPath = new Map<string, string>()
-  const nameCount = new Map<string, number>()
-
-  for (const pluginName of pluginDirs) {
-    const pluginDir = path.join(PLUGINS_CACHE_DIR, pluginName)
-    const distIndex = path.join(pluginDir, "dist", "index.d.ts")
-
-    if (!fs.existsSync(distIndex)) {
-      if (options.verbose) {
-        console.log(styleText("yellow", `⚠`), `Skipping ${pluginName}: no dist/index.d.ts found`)
-      }
-      continue
-    }
-
-    const dtsContent = fs.readFileSync(distIndex, "utf-8")
-    const exportedNames = parseExportsFromDts(dtsContent)
-    const dtsTypes = exportedNames.filter((e) => e.startsWith("type ")).map((e) => e.slice(5))
-    const dtsNamed = exportedNames.filter((e) => !e.startsWith("type "))
-
-    const jsIndex = path.join(pluginDir, "dist", "index.js")
-    let jsExports = new Set<string>()
-    if (fs.existsSync(jsIndex)) {
-      const jsContent = fs.readFileSync(jsIndex, "utf-8")
-      const jsExportMatches = jsContent.matchAll(/export\s*{\s*([^}]+)\s*}/g)
-      for (const m of jsExportMatches) {
-        for (const n of m[1].split(",")) {
-          const clean = n
-            .trim()
-            .split(/\s+as\s+/)
-            .pop()
-            ?.trim()
-          if (clean) jsExports.add(clean)
-        }
-      }
-    }
-
-    const named = jsExports.size > 0 ? dtsNamed.filter((n) => jsExports.has(n)) : dtsNamed
-    const extraTypes = jsExports.size > 0 ? dtsNamed.filter((n) => !jsExports.has(n)) : []
-    const types = [...dtsTypes, ...extraTypes]
-
-    const overridable = named.filter((n) => isOverridableExport(n, dtsContent))
-    const passthrough = named.filter((n) => !isOverridableExport(n, dtsContent))
-
-    if (overridable.length > 0 || passthrough.length > 0 || types.length > 0) {
-      pluginExports.set(pluginName, { overridable, passthrough, types })
-      importPath.set(pluginName, `./${pluginName}`)
-      for (const n of [...overridable, ...passthrough]) {
-        nameCount.set(n, (nameCount.get(n) ?? 0) + 1)
-      }
-    }
-  }
-
-  for (const npmPkg of options.npmPackages ?? []) {
-    let distIndex: string | undefined
-    try {
-      const pkgJsonPath = fileURLToPath(import.meta.resolve(`${npmPkg}/package.json`))
-      distIndex = path.join(path.dirname(pkgJsonPath), "dist", "index.d.ts")
-    } catch {
-      if (options.verbose) {
-        console.log(styleText("yellow", `⚠`), `Skipping npm package ${npmPkg}: not found`)
-      }
-      continue
-    }
-
-    if (!distIndex || !fs.existsSync(distIndex)) {
-      if (options.verbose) {
-        console.log(styleText("yellow", `⚠`), `Skipping npm package ${npmPkg}: no dist/index.d.ts`)
-      }
-      continue
-    }
-
-    const dtsContent = fs.readFileSync(distIndex, "utf-8")
-    const exportedNames = parseExportsFromDts(dtsContent)
-    const dtsTypes = exportedNames.filter((e) => e.startsWith("type ")).map((e) => e.slice(5))
-    const dtsNamed = exportedNames.filter((e) => !e.startsWith("type "))
-
-    const jsIndex = path.join(path.dirname(distIndex), "index.js")
-    let jsExports = new Set<string>()
-    if (fs.existsSync(jsIndex)) {
-      const jsContent = fs.readFileSync(jsIndex, "utf-8")
-      const jsExportMatches = jsContent.matchAll(/export\s*{\s*([^}]+)\s*}/g)
-      for (const m of jsExportMatches) {
-        for (const n of m[1].split(",")) {
-          const clean = n
-            .trim()
-            .split(/\s+as\s+/)
-            .pop()
-            ?.trim()
-          if (clean) jsExports.add(clean)
-        }
-      }
-    }
-
-    const named = jsExports.size > 0 ? dtsNamed.filter((n) => jsExports.has(n)) : dtsNamed
-    const extraTypes = jsExports.size > 0 ? dtsNamed.filter((n) => !jsExports.has(n)) : []
-    const types = [...dtsTypes, ...extraTypes]
-
-    const overridable = named.filter((n) => isOverridableExport(n, dtsContent))
-    const passthrough = named.filter((n) => !isOverridableExport(n, dtsContent))
-
-    const key = npmPkg.replace(/^@/, "").replace(/\//g, "__")
-    if (overridable.length > 0 || passthrough.length > 0 || types.length > 0) {
-      pluginExports.set(key, { overridable, passthrough, types })
-      importPath.set(key, npmPkg)
-      for (const n of [...overridable, ...passthrough]) {
-        nameCount.set(n, (nameCount.get(n) ?? 0) + 1)
-      }
-    }
-  }
-
-  // Phase 2: Generate index with registry import, plugin map, and conditional top-level exports
-  const lines: string[] = []
-
-  lines.push(`import { componentRegistry } from "../../quartz/components/registry"`)
-  lines.push("")
-
-  for (const [pluginKey, { types }] of pluginExports) {
-    if (types.length > 0) {
-      lines.push(`export type { ${types.join(", ")} } from "${importPath.get(pluginKey)}"`)
-    }
-  }
-
-  for (const [pluginKey, { passthrough }] of pluginExports) {
-    if (passthrough.length === 0) continue
-    const unique = passthrough.filter((n) => (nameCount.get(n) ?? 0) === 1)
-    if (unique.length > 0) {
-      lines.push(`export { ${unique.join(", ")} } from "${importPath.get(pluginKey)}"`)
-    }
-  }
-  lines.push("")
-
-  // Generate the plugins map with override wrappers (overridable exports only)
-  lines.push(
-    `export const plugins: Record<string, Record<string, (...args: unknown[]) => void>> = {`,
-  )
-  for (const [pluginName, { overridable }] of pluginExports) {
-    if (overridable.length === 0) continue
-    const escapedName = pluginName.replace(/"/g, '\\"')
-    lines.push(`  "${escapedName}": {`)
-    for (const n of overridable) {
-      lines.push(
-        `    ${n}: (...args: unknown[]) => { componentRegistry.setOptionOverrides("${escapedName}", args[0] as Record<string, unknown>); },`,
-      )
-    }
-    lines.push(`  },`)
-  }
-  lines.push(`}`)
-  lines.push("")
-
-  // Top-level exports for overridable names: alias to the plugins map wrapper
-  for (const [pluginName, { overridable }] of pluginExports) {
-    if (overridable.length === 0) continue
-
-    const unique = overridable.filter((n) => (nameCount.get(n) ?? 0) === 1)
-    const conflicting = overridable.filter((n) => (nameCount.get(n) ?? 0) > 1)
-
-    if (unique.length > 0) {
-      const escapedName = pluginName.replace(/"/g, '\\"')
-      for (const n of unique) {
-        lines.push(`export const ${n} = plugins["${escapedName}"].${n}`)
-      }
-    }
-
-    if (conflicting.length > 0 && options.verbose) {
-      for (const n of conflicting) {
-        console.warn(
-          styleText("yellow", `⚠`),
-          `Export "${n}" conflicts across plugins — use plugins["${pluginName}"].${n} in quartz.ts`,
-        )
-      }
-    }
-  }
-
-  lines.push("")
-
-  const indexContent = lines.join("\n")
-  const indexPath = path.join(PLUGINS_CACHE_DIR, "index.ts")
-
-  fs.writeFileSync(indexPath, indexContent)
-
   if (options.verbose) {
-    console.log(
-      styleText("green", `✓`),
-      `Regenerated plugin index with ${pluginDirs.length} plugins`,
-    )
+    console.log(styleText("green", `✓`), `Regenerated plugin index with ${entries.size} plugins`)
   }
-}
-
-const INTERNAL_EXPORTS = new Set(["manifest", "default"])
-
-const PLUGIN_TYPE_PATTERN =
-  /Quartz(?:Emitter|Transformer|Filter|PageType)Plugin|QuartzComponentConstructor|\(.*\)\s*=>\s*QuartzComponent\b/
-
-function resolveOriginalName(exportName: string, dtsContent: string): string {
-  const aliasPattern = new RegExp(`(\\w+)\\s+as\\s+${exportName}\\b`)
-  const match = dtsContent.match(aliasPattern)
-  return match ? match[1] : exportName
-}
-
-function isOverridableExport(name: string, dtsContent: string): boolean {
-  const declName = resolveOriginalName(name, dtsContent)
-  const declPattern = new RegExp(`declare\\s+const\\s+${declName}\\s*:\\s*(.+?)(?:;|$)`, "m")
-  const match = dtsContent.match(declPattern)
-  if (!match) return false
-  return PLUGIN_TYPE_PATTERN.test(match[1])
-}
-
-function parseExportsFromDts(content: string): string[] {
-  const exports: string[] = []
-
-  const exportMatches = content.matchAll(/export\s*{\s*([^}]+)\s*}(?:\s*from\s*['"]([^'"]+)['"])?/g)
-  for (const match of exportMatches) {
-    const fromModule = match[2]
-    if (fromModule?.startsWith("@")) {
-      continue
-    }
-
-    const names = match[1]
-      .split(",")
-      .map((n) => n.trim())
-      .filter(Boolean)
-    for (const name of names) {
-      const cleanName = name.split(" as ").pop()?.trim() || name.trim()
-      if (cleanName && !cleanName.startsWith("_") && !INTERNAL_EXPORTS.has(cleanName)) {
-        const finalName = cleanName.replace(/^type\s+/, "")
-        if (name.includes("type ")) {
-          exports.push(`type ${finalName}`)
-        } else {
-          exports.push(finalName)
-        }
-      }
-    }
-  }
-
-  return exports
 }

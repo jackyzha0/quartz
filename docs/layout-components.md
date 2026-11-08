@@ -57,11 +57,14 @@ The `groupOptions` field on each plugin entry supports the following flex item p
 
 The top-level `layout.groups` section configures the flex container itself:
 
-| Option      | Type                                                           | Description                               |
-| ----------- | -------------------------------------------------------------- | ----------------------------------------- |
-| `direction` | `"row"` \| `"row-reverse"` \| `"column"` \| `"column-reverse"` | Flex direction                            |
-| `wrap`      | `"nowrap"` \| `"wrap"` \| `"wrap-reverse"`                     | Flex wrap behavior                        |
-| `gap`       | `string`                                                       | Gap between flex items (e.g., `"0.5rem"`) |
+| Option      | Type                                                           | Description                                                                       |
+| ----------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `direction` | `"row"` \| `"row-reverse"` \| `"column"` \| `"column-reverse"` | Flex direction                                                                    |
+| `wrap`      | `"nowrap"` \| `"wrap"` \| `"wrap-reverse"`                     | Flex wrap behavior                                                                |
+| `gap`       | `string`                                                       | Gap between flex items (e.g., `"0.5rem"`)                                         |
+| `priority`  | `number`                                                       | Position of the whole group in its slot (defaults to its first member's priority) |
+
+Groups work in the `header`, `beforeBody`, `afterBody`, `left` and `right` slots. Groups are formed per slot: members with different `position`s end up in separate groups. Avoid groups in the `footer` slot — the frames place footer components directly in the page grid, and a group wrapper is not assigned to the footer area.
 
 ### TS Override
 
@@ -127,11 +130,13 @@ plugins:
 
 Available `display` values:
 
-| Value          | Description                           |
-| -------------- | ------------------------------------- |
-| `all`          | Visible on all screen sizes (default) |
-| `mobile-only`  | Only visible on mobile devices        |
-| `desktop-only` | Only visible on desktop devices       |
+| Value          | Description                                                                 |
+| -------------- | --------------------------------------------------------------------------- |
+| `all`          | Visible on all screen sizes (default)                                       |
+| `mobile-only`  | Only visible below the `mobile` breakpoint (800px by default)               |
+| `desktop-only` | Hidden below the `mobile` breakpoint (visible on tablet and desktop widths) |
+
+Any other value is ignored with a build warning.
 
 ### TS Override
 
@@ -174,14 +179,28 @@ Available built-in conditions:
 
 ### TS Override
 
-For custom conditions that aren't covered by the built-in presets, use `Component.ConditionalRender()` in `quartz.ts`:
+For custom conditions that aren't covered by the built-in presets, import the internal component utilities and the component you want to wrap in `quartz.ts`. Place `Component.ConditionalRender()` in the layout slot where the wrapped component should appear. For example, this renders Search in the left sidebar only for pages under `notes/`:
 
 ```ts title="quartz.ts (override)"
-Component.ConditionalRender({
-  component: Plugin.Search(),
-  condition: (props) => props.displayClass !== "fullpage",
+import { loadQuartzConfig, loadQuartzLayout } from "./quartz/plugins/loader/config-loader"
+import * as Component from "./quartz/components"
+import { Search } from "./.quartz/plugins/search"
+
+const config = await loadQuartzConfig()
+export default config
+export const layout = await loadQuartzLayout({
+  defaults: {
+    left: [
+      Component.ConditionalRender({
+        component: Search(),
+        condition: (props) => props.fileData.slug?.startsWith("notes/") ?? false,
+      }),
+    ],
+  },
 })
 ```
+
+The wrapped plugin must be installed and enabled in `quartz.config.yaml`. A TypeScript layout override replaces the selected slot, so include any other components you want to keep in that slot alongside the conditional component.
 
 ```typescript
 type ConditionalRenderConfig = {

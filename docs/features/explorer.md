@@ -37,7 +37,7 @@ Display names for folders get determined by the `title` frontmatter field in `fo
 > [!info]
 > The explorer uses local storage by default to save the state of your explorer. This is done to ensure a smooth experience when navigating to different pages.
 >
-> To clear/delete the explorer state from local storage, delete the `fileTree` entry (guide on how to delete a key from local storage in chromium based browsers can be found [here](https://docs.devolutions.net/kb/general-knowledge-base/clear-browser-local-storage/clear-chrome-local-storage/)). You can disable this by passing `useSavedState: false` as an argument.
+> To clear/delete the explorer state from local storage, delete the `fileTree` entry (guide on how to delete a key from local storage in chromium based browsers can be found [here](https://developer.chrome.com/docs/devtools/storage/localstorage)). You can disable this by passing `useSavedState: false` as an argument.
 
 ## Customization
 

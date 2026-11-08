@@ -16,15 +16,16 @@ You can run the CLI using `npx quartz`.
 | `upgrade` | Upgrade Quartz to the latest version (alias: `update`)  | `npx quartz upgrade`     |
 | `plugin`  | Manage Quartz plugins (install, add, remove, etc.)      | `npx quartz plugin list` |
 | `tui`     | Launch the interactive plugin manager                   | `npx quartz tui`         |
+| `info`    | Print version, environment and plugins for bug reports  | `npx quartz info`        |
 
 ## Commands
 
-- [[create|create]]: Initialize a new Quartz project with a choice of templates (default, obsidian, ttrpg, blog) and base URL configuration.
+- [[create|create]]: Initialize a new Quartz project with a choice of templates (default, obsidian, ttrpg, blog, docs) and base URL configuration.
 - [[build|build]]: Build your Quartz site into static HTML. Includes a development server.
 - [[sync|sync]]: Push and pull changes between your local machine and GitHub.
 - [[upgrade|upgrade]]: Upgrade the Quartz framework to the latest version. Also available as `npx quartz update`.
 - [[restore|restore]]: Recover your content folder from the local cache.
-- [[cli/plugin|plugin]]: Install, add, remove, prune, and configure plugins. Use `plugin install` with flags for lockfile/config sync, updates, and checks.
+- [[cli/plugin|plugin]]: Install, add, remove, prune, and configure plugins. Use `plugin install` with flags for lockfile/config sync, updates, and checks, and `plugin doctor` to diagnose plugin problems.
 - [[tui|tui]]: Use a terminal interface to manage plugins and layout.
 
 ## Global Flags

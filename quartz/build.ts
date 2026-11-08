@@ -1,8 +1,9 @@
 import sourceMapSupport from "source-map-support"
 sourceMapSupport.install(options)
 import path from "path"
+import fs from "fs"
 import { PerfTimer } from "./util/perf"
-import { rm } from "fs/promises"
+import { rm, readdir } from "fs/promises"
 import { GlobbyFilterFunction, isGitIgnored } from "globby"
 import { styleText } from "util"
 import { parseMarkdown } from "./processors/parse"
@@ -22,6 +23,43 @@ import { getStaticResourcesFromPlugins } from "./plugins"
 import { randomIdNonSecure } from "./util/random"
 import { ChangeEvent } from "./plugins/types"
 import { minimatch } from "minimatch"
+import { formatLayoutReport, getLayoutReport } from "./plugins/loader/layoutReport"
+import { getBuiltinPlan } from "./plugins/loader/config-loader"
+import { prepareContentIndex } from "./plugins/builtins/contentIndex"
+import { printDiagnosticsSummary, warn } from "./util/diagnostics"
+import { collectPermalinks } from "./util/permalinks"
+import { readFrontmatterData } from "./plugins/builtins/frontmatter"
+import { ChangeRecord, clearChangeRecord } from "./util/incremental"
+import { diffContentFiles, pollingEnabled } from "./util/contentWatcher"
+
+/**
+ * Every page's address: permalinks (frontmatter `permalink`, read up front so links can resolve
+ * to them) and the slugified paths of all files. A permalinked note's file path stays in
+ * `allSlugs`: it becomes a redirect to the permalink.
+ */
+function updateSlugs(ctx: BuildCtx, allFiles: string[]): void {
+  const frontmatter = ctx.cfg.configuration.frontmatter
+  const enabled =
+    frontmatter !== false && (typeof frontmatter !== "object" || frontmatter.enabled !== false)
+  const options = typeof frontmatter === "object" ? frontmatter : {}
+  ctx.permalinks = enabled
+    ? collectPermalinks({
+        files: allFiles.filter((fp) => fp.endsWith(".md")),
+        permalinkOf: (fp) => {
+          const source = fs.readFileSync(path.join(ctx.argv.directory, fp))
+          if (!source.includes("permalink")) return undefined
+          try {
+            return readFrontmatterData(source, options).permalink
+          } catch {
+            return undefined // reported when the file is parsed
+          }
+        },
+        warn: (message) => warn({ area: "permalinks", message }),
+      })
+    : {}
+  const pathSlugs = allFiles.map((fp) => slugifyFilePath(fp as FilePath))
+  ctx.allSlugs = [...new Set([...pathSlugs, ...Object.values(ctx.permalinks)])]
+}
 
 function reportSlugCollisions(content: ProcessedContent[]): void {
   const collisions = detectSlugCollisions(content)
@@ -45,7 +83,7 @@ type BuildData = {
   ignored: GlobbyFilterFunction
   mut: Mutex
   contentMap: ContentMap
-  changesSinceLastBuild: Record<FilePath, ChangeEvent["type"]>
+  changesSinceLastBuild: ChangeRecord
   lastBuildMs: number
 }
 
@@ -72,11 +110,36 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
     console.log(`  Filters: ${pluginNames("filters").join(", ")}`)
     console.log(`  Emitters: ${pluginNames("emitters").join(", ")}`)
     console.log(`  PageTypes: ${pluginNames("pageTypes").join(", ")}`)
+    const builtinPlan = getBuiltinPlan()
+    if (builtinPlan) {
+      console.log(`  Built-ins:`)
+      for (const b of builtinPlan.builtins) {
+        const state = b.enabled ? `on (order ${b.order})` : `off — ${b.note ?? "disabled"}`
+        const from = b.absorbed?.enabled ? " · options from its former plugin entry" : ""
+        console.log(`    configuration.${b.spec.configKey}: ${state}${b.enabled ? from : ""}`)
+      }
+    }
+    const pageTypes = (cfg.plugins.pageTypes ?? []).map((pt) => {
+      const { name, layout, frame } = pt as { name: string; layout?: unknown; frame?: unknown }
+      return {
+        name,
+        layout: typeof layout === "string" ? layout : name,
+        frame: typeof frame === "string" ? frame : undefined,
+      }
+    })
+    console.log(formatLayoutReport(getLayoutReport(), pageTypes))
   }
 
   const release = await mut.acquire()
   perf.addEvent("clean")
-  await rm(output, { recursive: true, force: true })
+  try {
+    const entries = await readdir(output)
+    await Promise.all(
+      entries.map((e) => rm(path.join(output, e), { recursive: true, force: true })),
+    )
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException).code !== "ENOENT") throw err
+  }
   console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`)
 
   perf.addEvent("glob")
@@ -88,7 +151,7 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
 
   const filePaths = markdownPaths.map((fp) => joinSegments(argv.directory, fp) as FilePath)
   ctx.allFiles = allFiles
-  ctx.allSlugs = allFiles.map((fp) => slugifyFilePath(fp as FilePath))
+  updateSlugs(ctx, allFiles)
 
   const parsedFiles = await parseMarkdown(ctx, filePaths)
   reportSlugCollisions(parsedFiles)
@@ -98,6 +161,8 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   console.log(
     styleText("green", `Done processing ${markdownPaths.length} files in ${perf.timeSince()}`),
   )
+  // Repeat warnings from config loading (they scrolled away) and notes about the output.
+  printDiagnosticsSummary({ verbose: argv.verbose })
   release()
 
   if (argv.watch) {
@@ -157,10 +222,16 @@ async function startWatching(
     lastBuildMs: 0,
   }
 
-  const watcher = chokidar.watch(".", {
+  const contentRoot = path.resolve(argv.directory)
+  const usePerFilePolling = pollingEnabled(process.env.CHOKIDAR_USEPOLLING)
+  const knownFiles = new Set(allFiles.map((fp) => toPosixPath(fp.toString()) as FilePath))
+  const watcherTargets = usePerFilePolling
+    ? Array.from(knownFiles, (fp) => path.resolve(contentRoot, fp))
+    : ["."]
+  const watcher = chokidar.watch(watcherTargets, {
     awaitWriteFinish: { stabilityThreshold: 250 },
     persistent: true,
-    cwd: argv.directory,
+    ...(usePerFilePolling ? {} : { cwd: argv.directory }),
     ignoreInitial: true,
   })
 
@@ -175,27 +246,79 @@ async function startWatching(
       })
     }, 100)
   }
+
+  const recordChange = (fp: string, type: ChangeEvent["type"]) => {
+    const relativePath = toPosixPath(
+      path.isAbsolute(fp) ? path.relative(contentRoot, fp) : fp,
+    ) as FilePath
+    if (relativePath.startsWith("../") || buildData.ignored(relativePath)) return
+
+    if (type === "add") knownFiles.add(relativePath)
+    if (type === "delete") knownFiles.delete(relativePath)
+    changes.push({ path: relativePath, type })
+    scheduleRebuild()
+  }
+
   watcher
     .on("add", (fp) => {
-      fp = toPosixPath(fp)
-      if (buildData.ignored(fp)) return
-      changes.push({ path: fp as FilePath, type: "add" })
-      scheduleRebuild()
+      recordChange(fp, "add")
     })
     .on("change", (fp) => {
-      fp = toPosixPath(fp)
-      if (buildData.ignored(fp)) return
-      changes.push({ path: fp as FilePath, type: "change" })
-      scheduleRebuild()
+      recordChange(fp, "change")
     })
     .on("unlink", (fp) => {
-      fp = toPosixPath(fp)
-      if (buildData.ignored(fp)) return
-      changes.push({ path: fp as FilePath, type: "delete" })
-      scheduleRebuild()
+      recordChange(fp, "delete")
     })
 
+  let discoveryTimer: ReturnType<typeof setInterval> | undefined
+  if (usePerFilePolling) {
+    if (watcherTargets.length > 0) {
+      await new Promise<void>((resolve, reject) => {
+        watcher.once("ready", resolve)
+        watcher.once("error", reject)
+      })
+    }
+
+    const configuredInterval = Number.parseInt(process.env.CHOKIDAR_INTERVAL ?? "", 10)
+    const discoveryInterval = Math.max(
+      Number.isFinite(configuredInterval) && configuredInterval > 0 ? configuredInterval : 100,
+      1000,
+    )
+    let scanInProgress = false
+    const reconcileFileList = async () => {
+      if (scanInProgress) return
+      scanInProgress = true
+      try {
+        const scannedFiles = await glob("**/*.*", argv.directory, cfg.configuration.ignorePatterns)
+        const currentFiles = new Set(scannedFiles)
+        const { added, deleted } = diffContentFiles(knownFiles, currentFiles)
+
+        for (const fp of added) {
+          watcher.add(path.resolve(contentRoot, fp))
+          recordChange(fp, "add")
+        }
+
+        for (const fp of deleted) {
+          await watcher.unwatch(path.resolve(contentRoot, fp))
+          recordChange(fp, "delete")
+        }
+      } finally {
+        scanInProgress = false
+      }
+    }
+
+    discoveryTimer = setInterval(() => {
+      reconcileFileList().catch((err) => {
+        console.error(styleText("red", "Content scan failed:"), err.message ?? err)
+      })
+    }, discoveryInterval)
+    console.log(
+      `Watching ${knownFiles.size} content files in \`${contentRoot}\` using polling (ready)`,
+    )
+  }
+
   return async () => {
+    if (discoveryTimer) clearInterval(discoveryTimer)
     await watcher.close()
   }
 }
@@ -283,7 +406,7 @@ async function rebuild(changes: ChangeEvent[], clientRefresh: () => void, buildD
 
     // update allFiles and then allSlugs with the consistent view of content map
     ctx.allFiles = Array.from(contentMap.keys())
-    ctx.allSlugs = ctx.allFiles.map((fp) => slugifyFilePath(fp as FilePath))
+    updateSlugs(ctx, ctx.allFiles)
 
     const markdownContent = Array.from(contentMap.values())
       .filter((file) => file.type === "markdown")
@@ -321,6 +444,7 @@ async function rebuild(changes: ChangeEvent[], clientRefresh: () => void, buildD
     // Phase 2: Run all other emitters with content extended by virtual pages
     const contentWithVirtual =
       ctx.virtualPages.length > 0 ? [...processedFiles, ...ctx.virtualPages] : processedFiles
+    prepareContentIndex(ctx, contentWithVirtual)
     for (const emitter of cfg.plugins.emitters) {
       if (emitter.name === "PageTypeDispatcher") continue
       // Try to use partialEmit if available, otherwise assume the output is static
@@ -353,6 +477,7 @@ async function rebuild(changes: ChangeEvent[], clientRefresh: () => void, buildD
       `Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince("rebuild")}`,
     )
     console.log(styleText("green", `Done rebuilding in ${perf.timeSince()}`))
+    clearChangeRecord(changesSinceLastBuild)
     changes.splice(0, numChangesInBuild)
     clientRefresh()
   } finally {

@@ -16,6 +16,9 @@ This plugin filters content based on an explicit `publish` flag in the frontmatt
 
 This plugin has no configuration options.
 
+> [!tip]
+> Images and other files are copied to your site whether or not a published page uses them. Set `configuration.publishAssets: referenced` to only publish the files that published pages link to or embed.
+
 ## API
 
 - Category: Filter

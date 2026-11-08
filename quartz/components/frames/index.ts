@@ -24,6 +24,8 @@ const builtinFrames: Record<string, PageFrame> = {
   minimal: MinimalFrame,
 }
 
+const warnedUnknownFrames = new Set<string>()
+
 /**
  * Resolve a frame by name. Checks plugin-registered frames first,
  * then built-in frames, then falls back to DefaultFrame.
@@ -42,6 +44,9 @@ export function resolveFrame(name: string | undefined): PageFrame {
   // Fall back to built-in frames
   const frame = builtinFrames[name]
   if (!frame) {
+    // Called once per rendered page: warn once per unknown name, not per page
+    if (warnedUnknownFrames.has(name)) return DefaultFrame
+    warnedUnknownFrames.add(name)
     const allFrameNames = [...Object.keys(builtinFrames), ...[...frameRegistry.getAll().keys()]]
     console.warn(
       `Unknown page frame "${name}", falling back to "default". Available frames: ${allFrameNames.join(", ")}`,

@@ -1,6 +1,6 @@
 import test, { describe, afterEach } from "node:test"
 import assert from "node:assert"
-import { buildLayoutForEntries, resolveGroups } from "./config-loader"
+import { buildLayoutForEntries, isExcluded, resolveGroups } from "./config-loader"
 import { componentRegistry } from "../../components/registry"
 import type { QuartzComponent, QuartzComponentConstructor } from "../../components/types"
 import { PluginJsonEntry, LayoutPosition } from "./types"
@@ -301,5 +301,23 @@ describe("buildLayoutForEntries with constructors", () => {
       {},
     )
     assert.strictEqual(result.right?.length, 1)
+  })
+})
+
+describe("isExcluded", () => {
+  test("matches an npm source by its bare name, as the docs write it", () => {
+    assert.ok(isExcluded("@quartz-community/reader-mode", ["reader-mode"]))
+  })
+
+  test("matches an npm source by its full name", () => {
+    assert.ok(isExcluded("@quartz-community/reader-mode", ["@quartz-community/reader-mode"]))
+  })
+
+  test("matches a GitHub source by its repository name", () => {
+    assert.ok(isExcluded("github:quartz-community/reader-mode", ["reader-mode"]))
+  })
+
+  test("does not match another plugin", () => {
+    assert.ok(!isExcluded("@quartz-community/explorer", ["reader-mode"]))
   })
 })

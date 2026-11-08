@@ -1,7 +1,7 @@
 import fs from "fs"
 import path from "path"
 import { execSync } from "child_process"
-import YAML from "yaml"
+import YAML, { isMap, isNode, isScalar, isSeq } from "yaml"
 
 const LOCKFILE_PATH = path.join(process.cwd(), "quartz.lock.json")
 const PLUGINS_DIR = path.join(process.cwd(), ".quartz", "plugins")
@@ -39,23 +39,163 @@ function readFileAsData(filePath) {
   }
 }
 
-function writeDataToFile(filePath, data) {
+const YAML_SCHEMA_HEADER =
+  "# yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json\n"
+
+function isPlainObject(value) {
+  return value !== null && typeof value === "object" && !Array.isArray(value)
+}
+
+/** Identity used to match plugin entries between the old and new document. */
+function sequenceItemKey(value) {
+  if (isPlainObject(value) && "source" in value) return JSON.stringify(value.source)
+  return null
+}
+
+function pairKey(pair) {
+  return isScalar(pair.key) ? pair.key.value : pair.key
+}
+
+/**
+ * Update an existing YAML node in place so that it represents `value`, keeping
+ * comments, quoting style and key order of everything that did not change.
+ * Returns the node to use (a new node when the shape changed).
+ */
+function syncYamlNode(doc, node, value) {
+  if (isPlainObject(value) && isMap(node)) {
+    for (const pair of [...node.items]) {
+      const key = pairKey(pair)
+      if (!Object.prototype.hasOwnProperty.call(value, key) || value[key] === undefined) {
+        node.delete(key)
+      }
+    }
+    for (const [key, child] of Object.entries(value)) {
+      if (child === undefined) continue
+      const pair = node.items.find((p) => pairKey(p) === key)
+      if (pair) {
+        pair.value = syncYamlNode(doc, pair.value, child)
+      } else {
+        node.add(doc.createPair(key, child))
+      }
+    }
+    return node
+  }
+
+  if (Array.isArray(value) && isSeq(node)) {
+    const oldItems = [...node.items]
+    const oldKeys = oldItems.map((item) => sequenceItemKey(isNode(item) ? item.toJS(doc) : item))
+    const newKeys = value.map(sequenceItemKey)
+    if (oldKeys.every((k) => k !== null) && newKeys.every((k) => k !== null)) {
+      // Plugin-entry style lists: match by `source` so removals/insertions
+      // keep the comments attached to the surviving entries.
+      const used = new Set()
+      node.items = value.map((child, i) => {
+        const idx = oldKeys.findIndex((k, j) => k === newKeys[i] && !used.has(j))
+        if (idx === -1) return doc.createNode(child)
+        used.add(idx)
+        return syncYamlNode(doc, oldItems[idx], child)
+      })
+      return node
+    }
+    node.items = value.map((child, i) =>
+      i < oldItems.length ? syncYamlNode(doc, oldItems[i], child) : doc.createNode(child),
+    )
+    return node
+  }
+
+  if (isScalar(node) && !isPlainObject(value) && !Array.isArray(value) && node.value === value) {
+    return node
+  }
+
+  const created = doc.createNode(value)
+  if (isNode(node)) {
+    if (node.comment) created.comment = node.comment
+    if (node.commentBefore) created.commentBefore = node.commentBefore
+  }
+  return created
+}
+
+/**
+ * Serialize `data` as YAML. When `existingRaw` (the current file contents) is
+ * given, the existing document is updated in place so user comments and
+ * formatting survive CLI edits.
+ */
+export function stringifyConfigYaml(data, existingRaw) {
+  if (typeof existingRaw === "string" && existingRaw.trim() !== "") {
+    const doc = YAML.parseDocument(existingRaw)
+    if (doc.errors.length === 0 && isMap(doc.contents)) {
+      doc.contents = syncYamlNode(doc, doc.contents, data)
+      const out = doc.toString({ lineWidth: 120 })
+      return out.includes("yaml-language-server:") ? out : YAML_SCHEMA_HEADER + out
+    }
+  }
+  return YAML_SCHEMA_HEADER + YAML.stringify(data, { lineWidth: 120 })
+}
+
+function writeDataToFile(filePath, data, baseRaw) {
   if (filePath.endsWith(".yaml") || filePath.endsWith(".yml")) {
-    const header = "# yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json\n"
-    fs.writeFileSync(filePath, header + YAML.stringify(data, { lineWidth: 120 }))
+    fs.writeFileSync(filePath, stringifyConfigYaml(data, baseRaw))
   } else {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + "\n")
   }
 }
 
+let reportedParseError = false
+
 export function readPluginsJson() {
   const configPath = resolveConfigPath()
-  return readFileAsData(configPath)
+  const data = readFileAsData(configPath)
+  if (data === null && fs.existsSync(configPath) && !reportedParseError) {
+    // Don't let a syntax error masquerade as "no config found".
+    const { error } = readConfigWithDiagnostics()
+    if (error) {
+      reportedParseError = true
+      console.error(`✗ Could not parse ${path.basename(configPath)}: ${error}`)
+      process.exitCode = 1
+    }
+  }
+  return data
+}
+
+/** Path of the config file the CLI reads from (may be a default/legacy file). */
+export function getConfigReadPath() {
+  return resolveConfigPath()
+}
+
+/**
+ * Parse the config file and report YAML/JSON syntax errors instead of
+ * swallowing them. Returns { path, exists, data, error }.
+ */
+export function readConfigWithDiagnostics() {
+  const configPath = resolveConfigPath()
+  if (!fs.existsSync(configPath))
+    return { path: configPath, exists: false, data: null, error: null }
+  const raw = fs.readFileSync(configPath, "utf-8")
+  try {
+    if (configPath.endsWith(".yaml") || configPath.endsWith(".yml")) {
+      const doc = YAML.parseDocument(raw)
+      if (doc.errors.length > 0) {
+        return { path: configPath, exists: true, data: null, error: doc.errors[0].message }
+      }
+      return { path: configPath, exists: true, data: doc.toJS(), error: null }
+    }
+    return { path: configPath, exists: true, data: JSON.parse(raw), error: null }
+  } catch (err) {
+    return { path: configPath, exists: true, data: null, error: String(err?.message ?? err) }
+  }
 }
 
 export function writePluginsJson(data) {
   const { $schema, ...rest } = data
-  writeDataToFile(CONFIG_YAML_PATH, rest)
+  // Edit the user's file in place; when it does not exist yet, start from the
+  // file we read the config from (e.g. quartz.config.default.yaml) so its
+  // comments carry over.
+  let baseRaw
+  const basePath = fs.existsSync(CONFIG_YAML_PATH) ? CONFIG_YAML_PATH : resolveConfigPath()
+  if (fs.existsSync(basePath) && (basePath.endsWith(".yaml") || basePath.endsWith(".yml"))) {
+    baseRaw = fs.readFileSync(basePath, "utf-8")
+  }
+  writeDataToFile(CONFIG_YAML_PATH, rest, baseRaw)
 }
 
 function readDefaultPluginsJson() {
@@ -149,7 +289,42 @@ export function extractPluginName(source) {
     const match = cleaned.match(/\/([^/]+?)(?:\.git)?(?:#|$)/)
     return match?.[1] ?? url
   }
+  if (isGithubShorthand(url)) {
+    return url.split("#")[0].split("/")[1]
+  }
   return url
+}
+
+/** "owner/repo" or "owner/repo#ref" (GitHub shorthand without the `github:` prefix). */
+function isGithubShorthand(url) {
+  return /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+(#.+)?$/.test(url) && !url.startsWith(".")
+}
+
+/** Valid source formats, used in error messages. */
+export const SOURCE_FORMATS_HELP = [
+  "github:owner/repo[#ref]   (or just owner/repo)",
+  "https://host/owner/repo.git[#ref]",
+  "git+https://host/owner/repo.git[#ref]",
+  "@scope/package            (npm package)",
+  "./path, ../path, /abs/path (local directory)",
+]
+
+/**
+ * Directory a configured plugin lives in: node_modules for npm packages,
+ * .quartz/plugins/<name> for everything else. Returns null when unparseable.
+ */
+export function resolvePluginDir(source) {
+  let parsed
+  try {
+    parsed = parseGitSource(source)
+  } catch {
+    return null
+  }
+  if (parsed.npmPackage) {
+    const pkgName = getSourceUrl(source)
+    return path.join(process.cwd(), "node_modules", ...pkgName.split("/"))
+  }
+  return path.join(PLUGINS_DIR, parsed.name)
 }
 
 export function readManifestFromPackageJson(pluginDir) {
@@ -166,36 +341,47 @@ export function readManifestFromPackageJson(pluginDir) {
 export function parseGitSource(source) {
   const url = getSourceUrl(source)
   const subdir = getSourceSubdir(source)
+  // Object sources may pin a ref with a dedicated `ref` field (takes precedence over #ref).
+  const objectRef =
+    typeof source === "object" && source !== null && typeof source.ref === "string"
+      ? source.ref
+      : undefined
   if (isLocalSource(url)) {
     const resolved = path.resolve(url)
     const name = typeof source === "object" && source.name ? source.name : path.basename(resolved)
     return { name, url: resolved, ref: undefined, local: true, subdir }
   }
-  if (url.startsWith("github:")) {
+  if (url.startsWith("github:") || isGithubShorthand(url)) {
     const [repoPath, ref] = url.replace("github:", "").split("#")
     const [owner, repo] = repoPath.split("/")
+    if (!owner || !repo) {
+      throw new Error(`Invalid GitHub source "${url}". Expected github:owner/repo`)
+    }
     const name = typeof source === "object" && source.name ? source.name : repo
-    return { name, url: `https://github.com/${owner}/${repo}.git`, ref, subdir }
+    return { name, url: `https://github.com/${owner}/${repo}.git`, ref: objectRef ?? ref, subdir }
   }
   if (url.startsWith("git+")) {
     const raw = url.replace("git+", "")
     const [parsed, ref] = raw.split("#")
     const name =
       typeof source === "object" && source.name ? source.name : path.basename(parsed, ".git")
-    return { name, url: parsed, ref, subdir }
+    return { name, url: parsed, ref: objectRef ?? ref, subdir }
   }
   if (url.startsWith("https://")) {
     const [parsed, ref] = url.split("#")
     const name =
       typeof source === "object" && source.name ? source.name : path.basename(parsed, ".git")
-    return { name, url: parsed, ref, subdir }
+    return { name, url: parsed, ref: objectRef ?? ref, subdir }
   }
   // Handle npm scoped packages
   if (typeof url === "string" && url.startsWith("@") && url.includes("/") && !url.includes(":")) {
     const name = typeof source === "object" && source.name ? source.name : url
     return { name, url: "", npmPackage: true, subdir }
   }
-  throw new Error(`Cannot parse plugin source: ${formatSource(source)}`)
+  throw new Error(
+    `Cannot parse plugin source "${formatSource(source)}". Supported formats:\n` +
+      SOURCE_FORMATS_HELP.map((f) => `    ${f}`).join("\n"),
+  )
 }
 
 export function getGitCommit(pluginDir) {
@@ -276,7 +462,7 @@ export function createConfigFromDefault() {
   return rest
 }
 
-const VALID_TEMPLATES = ["default", "obsidian", "ttrpg", "blog"]
+const VALID_TEMPLATES = ["default", "obsidian", "ttrpg", "blog", "docs"]
 
 export function createConfigFromTemplate(templateName) {
   if (!VALID_TEMPLATES.includes(templateName)) {

@@ -18,6 +18,9 @@ You need these tools installed before continuing:
 > - **Windows**: When installing Git, make sure **"Git from the command line and also from 3rd-party software"** is selected so that `git` is available in your terminal. If `node -v` or `git -v` shows "command not found", restart your terminal or check your PATH.
 > - **macOS**: The Xcode command-line tools include Git (`xcode-select --install`). For Node.js, [nvm](https://github.com/nvm-sh/nvm) or the [official installer](https://nodejs.org/) both work.
 
+> [!tip] Using Bun
+> Quartz runs on Node.js, but you can install its dependencies with [Bun](https://bun.sh/) (`bun install`). Bun does not link a package's own commands the way npm does, so `bunx quartz` fails with "could not determine executable to run". Use `bun run quartz` instead, followed by the command, wherever these docs say `npx quartz`: `bun run quartz create`, `bun run quartz build --serve`.
+
 ## Setup Steps
 
 Follow these in order:

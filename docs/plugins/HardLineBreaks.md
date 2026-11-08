@@ -9,7 +9,10 @@ enabled: false
 required: false
 ---
 
-This plugin automatically converts single line breaks in Markdown text into hard line breaks in the HTML output. This plugin is not enabled by default as this doesn't follow the semantics of actual Markdown but you may enable it if you'd like parity with [[Obsidian compatibility|Obsidian]].
+> [!warning] Deprecated
+> Line breaks are handled by [[ObsidianFlavoredMarkdown]] 2.0+: a single line break renders as a `<br>` by default (`preset: "legacy"`), as in Obsidian. Set its `strictLineBreaks` option to `true` to render it as a space instead. Remove this plugin (`npx quartz plugin remove hard-line-breaks`) unless your site doesn't use ObsidianFlavoredMarkdown; Quartz warns while it is enabled.
+
+This plugin converts single line breaks in Markdown text into hard line breaks in the HTML output.
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.

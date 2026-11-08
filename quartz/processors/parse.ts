@@ -7,13 +7,15 @@ import { Root as HTMLRoot } from "hast"
 import { MarkdownContent, ProcessedContent } from "../plugins/vfile"
 import { PerfTimer } from "../util/perf"
 import { read } from "to-vfile"
-import { FilePath, QUARTZ, slugifyFilePath } from "../util/path"
+import { FilePath, QUARTZ } from "../util/path"
+import { slugForFile } from "../util/permalinks"
 import path from "path"
 import workerpool, { Promise as WorkerPromise } from "workerpool"
 import { QuartzLogger } from "../util/log"
 import { trace } from "../util/trace"
 import { BuildCtx, WorkerSerializableBuildCtx } from "../util/ctx"
 import { styleText } from "util"
+import { attributeError, attributePluggables, originOf } from "../util/pluginErrors"
 
 export type QuartzMdProcessor = Processor<MDRoot, MDRoot, MDRoot>
 export type QuartzHtmlProcessor = Processor<undefined, MDRoot, HTMLRoot>
@@ -27,7 +29,9 @@ export function createMdProcessor(ctx: BuildCtx): QuartzMdProcessor {
       .use(remarkParse)
       // MD AST -> MD AST transforms
       .use(
-        transformers.flatMap((plugin) => plugin.markdownPlugins?.(ctx) ?? []),
+        transformers.flatMap((plugin) =>
+          attributePluggables(plugin.markdownPlugins?.(ctx) ?? [], originOf(plugin), "markdown"),
+        ),
       ) as unknown as QuartzMdProcessor
     //  ^ sadly the typing of `use` is not smart enough to infer the correct type from our plugin list
   )
@@ -40,7 +44,11 @@ export function createHtmlProcessor(ctx: BuildCtx): QuartzHtmlProcessor {
       // MD AST -> HTML AST
       .use(remarkRehype, { allowDangerousHtml: true })
       // HTML AST -> HTML AST transforms
-      .use(transformers.flatMap((plugin) => plugin.htmlPlugins?.(ctx) ?? []))
+      .use(
+        transformers.flatMap((plugin) =>
+          attributePluggables(plugin.htmlPlugins?.(ctx) ?? [], originOf(plugin), "html"),
+        ),
+      )
   )
 }
 
@@ -96,13 +104,22 @@ export function createFileParser(ctx: BuildCtx, fps: FilePath[]) {
 
         // Text -> Text transforms
         for (const plugin of cfg.plugins.transformers.filter((p) => p.textTransform)) {
-          file.value = plugin.textTransform!(ctx, file.value.toString())
+          try {
+            file.value = plugin.textTransform!(ctx, file.value.toString())
+          } catch (err) {
+            throw attributeError(err, {
+              origin: originOf(plugin),
+              stage: "textTransform",
+              file: fp,
+            })
+          }
         }
 
         // base data properties that plugins may use
         file.data.filePath = file.path as FilePath
         file.data.relativePath = path.posix.relative(argv.directory, file.path) as FilePath
-        file.data.slug = slugifyFilePath(file.data.relativePath)
+        // a frontmatter permalink is the page's address (util/permalinks.ts)
+        file.data.slug = slugForFile(file.data.relativePath, ctx.permalinks)
 
         const ast = processor.parse(file)
         const newAst = await processor.run(ast, file)

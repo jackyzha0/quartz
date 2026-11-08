@@ -9,12 +9,15 @@ import { rm } from "fs/promises"
 import chokidar from "chokidar"
 import prettyBytes from "pretty-bytes"
 import { execSync, spawnSync } from "child_process"
+import { pathToFileURL } from "url"
 import http from "http"
 import serveHandler from "serve-handler"
 import { WebSocketServer } from "ws"
 import { randomUUID } from "crypto"
 import { Mutex } from "async-mutex"
 import { CreateArgv } from "./args.js"
+import { describeQuartzCheckout } from "./compat.js"
+import { git } from "./subprocess.js"
 import { globby } from "globby"
 import {
   exitIfCancel,
@@ -35,7 +38,6 @@ import {
   createConfigFromTemplate,
   readPluginsJson,
   writePluginsJson,
-  extractPluginName,
   updateGlobalConfig,
   LOCKFILE_PATH,
 } from "./plugin-data.js"
@@ -144,6 +146,11 @@ export async function handleCreate(argv) {
             value: "blog",
             label: "Blog",
             hint: "recent notes and comments enabled for blogging",
+          },
+          {
+            value: "docs",
+            label: "Documentation",
+            hint: "sidebars scroll with the page, for long navigation and tables of contents",
           },
         ],
       }),
@@ -283,19 +290,18 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     console.log(styleText("green", "Created quartz.config.yaml from defaults"))
   }
 
-  // Update markdownLinkResolution in the crawl-links plugin options via YAML config
+  // Link resolution is built into Quartz (configuration.links)
   const json = readPluginsJson()
-  if (json?.plugins) {
-    const crawlLinksIndex = json.plugins.findIndex(
-      (p) => extractPluginName(p.source) === "crawl-links",
-    )
-    if (crawlLinksIndex !== -1) {
-      json.plugins[crawlLinksIndex].options = {
-        ...json.plugins[crawlLinksIndex].options,
-        markdownLinkResolution: linkResolutionStrategy,
-      }
-      writePluginsJson(json)
+  if (json) {
+    const links =
+      json.configuration?.links && typeof json.configuration.links === "object"
+        ? json.configuration.links
+        : {}
+    json.configuration = {
+      ...json.configuration,
+      links: { ...links, markdownLinkResolution: linkResolutionStrategy },
     }
+    writePluginsJson(json)
   }
 
   // Update baseUrl in configuration
@@ -305,9 +311,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
   await handlePluginResolve()
 
   // setup remote
-  execSync(`git remote show upstream || git remote add upstream ${QUARTZ_SOURCE_REPO}`, {
-    stdio: "ignore",
-  })
+  ensureUpstreamRemote()
 
   outro(`You're all set! Not sure what to do next? Try:
   • Customizing Quartz a bit more by editing \`quartz.config.yaml\`
@@ -330,7 +334,12 @@ export async function handleBuild(argv) {
     argv.watch = true
   }
 
-  console.log(`\n${styleText(["bgGreen", "black"], ` Quartz v${version} `)} \n`)
+  // " Quartz v5.1.0 " for a release checkout, plus `git describe` (e.g. v5.1.0-3-g1a2b3c4-dirty) otherwise
+  const checkout = describeQuartzCheckout()
+  const describe = checkout.describe && checkout.describe !== `v${version}` ? checkout.describe : ""
+  console.log(
+    `\n${styleText(["bgGreen", "black"], ` Quartz v${version} `)} ${describe ? styleText("gray", describe) : ""}\n`,
+  )
   const ctx = await esbuild.context({
     entryPoints: [fp],
     outfile: cacheFile,
@@ -606,6 +615,15 @@ export async function handleBuild(argv) {
   }
 }
 
+/** Add the `upstream` remote (the official Quartz repository) unless it exists. */
+function ensureUpstreamRemote() {
+  try {
+    git(["remote", "get-url", UPSTREAM_NAME])
+  } catch {
+    git(["remote", "add", UPSTREAM_NAME, QUARTZ_SOURCE_REPO])
+  }
+}
+
 /**
  * Handles `npx quartz upgrade`
  * Upgrades the Quartz framework itself by pulling latest changes from upstream.
@@ -614,8 +632,9 @@ export async function handleBuild(argv) {
 export async function handleUpgrade(argv) {
   const contentFolder = resolveContentPath(argv.directory)
   console.log(`\n${styleText(["bgGreen", "black"], ` Quartz v${version} `)} \n`)
+  const fromCommit = describeQuartzCheckout().commit
   console.log("Backing up your content")
-  execSync(`git remote show upstream || git remote add upstream ${QUARTZ_SOURCE_REPO}`)
+  ensureUpstreamRemote()
   await stashContentFolder(contentFolder)
 
   const lockfileBackup = LOCKFILE_PATH + ".bak"
@@ -636,7 +655,7 @@ export async function handleUpgrade(argv) {
     if (hasLockfile) {
       try {
         fs.copyFileSync(lockfileBackup, LOCKFILE_PATH)
-        execSync(`git add ${LOCKFILE_PATH}`)
+        git(["add", "--", LOCKFILE_PATH])
         const remaining = execSync("git diff --name-only --diff-filter=U", {
           encoding: "utf-8",
         }).trim()
@@ -668,15 +687,6 @@ export async function handleUpgrade(argv) {
 
   await popContentFolder(contentFolder)
 
-  // Read the new version after pulling
-  const newPkg = JSON.parse(fs.readFileSync("./package.json").toString())
-  const newVersion = newPkg.version
-  if (newVersion !== version) {
-    console.log(styleText("cyan", `Upgraded Quartz: v${version} → v${newVersion}`))
-  } else {
-    console.log(styleText("gray", `Quartz is already up to date (v${version})`))
-  }
-
   console.log("Ensuring dependencies are up to date")
 
   /*
@@ -706,11 +716,35 @@ export async function handleUpgrade(argv) {
     )
   }
 
-  console.log("Restoring plugins from lockfile...")
-  await handlePluginRestore()
-
-  console.log("Checking plugin compatibility...")
-  await handlePluginCheck()
+  // Finish with the *new* code (release notes, plugin restore, doctor) — see cli/upgrade.js.
+  // This process is still running the Quartz that was checked out before the pull.
+  const finishScript = path.resolve("quartz/cli/upgrade.js")
+  if (fs.existsSync(finishScript)) {
+    const script =
+      `import(${JSON.stringify(pathToFileURL(finishScript).href)})` +
+      `.then((m) => m.finishUpgrade(${JSON.stringify({ fromVersion: version, fromCommit })}))` +
+      `.catch((err) => { console.error(err); process.exitCode = 1 })`
+    const res = spawnSync(process.execPath, ["--input-type=module", "-e", script], {
+      stdio: "inherit",
+      timeout: 15 * 60 * 1000,
+    })
+    if (res.status !== 0) {
+      console.log(
+        styleText("yellow", "Some checks reported problems (see above).") +
+          " Run `npx quartz plugin doctor` after fixing them.",
+      )
+      process.exitCode = 1
+      return
+    }
+  } else {
+    // Upgraded to a Quartz without cli/upgrade.js (e.g. a downgrade): use this version's steps.
+    const newVersion = JSON.parse(fs.readFileSync("./package.json").toString()).version
+    console.log(styleText("cyan", `Quartz v${version} → v${newVersion}`))
+    console.log("Restoring plugins from lockfile...")
+    await handlePluginRestore()
+    console.log("Checking plugin compatibility...")
+    await handlePluginCheck()
+  }
 
   console.log(styleText("green", "Done!"))
 }

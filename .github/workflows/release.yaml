@@ -1,0 +1,67 @@
+name: Release
+
+# Versioning with changesets (see .changeset/README.md):
+# 1. While .changeset/*.md files are pending on v5, keep a "chore: release Quartz" PR open that
+#    bumps package.json and writes CHANGELOG.md.
+# 2. When that PR is merged (no pending changesets left), tag the commit vX.Y.Z and publish a
+#    GitHub release with the CHANGELOG section. Quartz is not published to npm.
+
+on:
+  push:
+    branches:
+      - v5
+  workflow_dispatch:
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    if: ${{ github.repository == 'jackyzha0/quartz' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - run: npm install
+
+      - name: Create or update the release PR
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: npm run version-packages
+          title: "chore: release Quartz"
+          commit: "chore: release Quartz"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tag and publish the GitHub release
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TAG="v$VERSION"
+          if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+            echo "$TAG already exists — nothing to release."
+            exit 0
+          fi
+          # Only versions produced by `changeset version` are released (guards against tagging
+          # an arbitrary commit with a version that was never released through this workflow).
+          awk -v v="## $VERSION" '$0 == v {found=1; next} found && /^## / {exit} found' CHANGELOG.md > release-notes.md || true
+          if [ ! -s release-notes.md ]; then
+            echo "CHANGELOG.md has no section for $VERSION — not tagging."
+            exit 0
+          fi
+          # GitHub creates the tag, on the commit this push brought (the merged release PR). A tag
+          # made here with `git tag -a` is an unsigned tag object, which GitHub marks "Unverified"
+          # (jackyzha0/quartz#2455). This one points straight at the commit, which shows as verified
+          # because GitHub signs the commits it merges. `git describe --tags` sees it all the same.
+          gh release create "$TAG" --target "$GITHUB_SHA" --title "Quartz $VERSION" --notes-file release-notes.md

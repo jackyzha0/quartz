@@ -11,7 +11,7 @@ enabled: true
 required: false
 ---
 
-This plugin provides support for [Obsidian Bases](https://obsidian.md/changelog/2025-04-15-desktop-v1.8.0/) (`.base` files) in Quartz. It reads `.base` files from your vault, resolves matching notes based on the query definition, and renders them as interactive database-like views with support for tables, lists, cards, and maps. It uses the `default` [[layout#Page Frames|page frame]] (three-column layout with sidebars).
+This plugin provides support for [Obsidian Bases](https://obsidian.md/help/bases) (`.base` files) in Quartz. It reads `.base` files from your vault, resolves matching notes based on the query definition, and renders them as interactive database-like views with support for tables, lists, cards, and maps. It uses the `default` [[layout#Page Frames|page frame]] (three-column layout with sidebars).
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
@@ -41,7 +41,7 @@ This plugin provides support for [Obsidian Bases](https://obsidian.md/changelog/
 This plugin accepts the following configuration options:
 
 - `defaultViewType`: The default view type when none is specified in the `.base` file. Defaults to `"table"`.
-- `linkResolution`: How to resolve internal links in view renderers. Should match the `markdownLinkResolution` setting of the [[CrawlLinks]] plugin. Can be `"absolute"`, `"relative"`, or `"shortest"`. Defaults to `"shortest"`.
+- `linkResolution`: How to resolve internal links in view renderers. Should match `configuration.links.markdownLinkResolution` (built-in [[CrawlLinks|link processing]]). Can be `"absolute"`, `"relative"`, or `"shortest"`. Defaults to `"shortest"`.
 - `customViews`: A map of custom view renderers. Keys are view type names. These override built-in renderers for the same type, or add new view types. Requires a TS override.
 
 ### Default options

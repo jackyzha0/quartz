@@ -61,6 +61,10 @@ my-plugin/
 
 The plugin's `package.json` should declare dependencies on `@quartz-community/types` (for type definitions) and optionally `@quartz-community/utils` (for shared utilities).
 
+If your plugin reads data, DOM elements, globals or files produced by another plugin (or provides them), declare that in `quartz.capabilities` so Quartz can warn when the provider is disabled. See [[plugin capabilities]].
+
+Declare the oldest Quartz version your plugin works with in `quartz.quartzVersion` (a semver range such as `">=5.1.0"`). Quartz checks it when loading the config and in `plugin add` / `plugin doctor`, and mentions it when your plugin throws. See [[versioning#For plugin authors]].
+
 ## Plugin Types
 
 ## Choosing a Plugin Type
@@ -253,7 +257,7 @@ export type QuartzFilterPluginInstance = {
 
 A filter plugin must define a `name` field and a `shouldPublish` function that takes in a piece of content that has been processed by all the transformers and returns a `true` or `false` depending on whether it should be passed to the emitter plugins or not.
 
-For example, here is the built-in plugin for removing drafts:
+For example, here is a filter that removes drafts (Quartz has this [[RemoveDrafts|built in]]):
 
 ```ts
 import { QuartzFilterPlugin } from "@quartz-community/types"
@@ -391,6 +395,66 @@ export interface QuartzPageTypePluginInstance {
 - `layout`: The layout configuration key (e.g. `"content"`, `"folder"`, `"tag"`). This determines which `byPageType` entry in `quartz.config.yaml` provides the layout overrides for this page type.
 - `frame`: The [[layout#Page Frames|page frame]] to use for this page type. Controls the overall HTML structure (e.g. `"default"`, `"full-width"`, `"minimal"`, or a custom frame provided by your plugin). If not set, defaults to `"default"`. Can be overridden per-page-type via `layout.byPageType.<name>.template` in `quartz.config.yaml`.
 - `body`: The Quartz component constructor that renders the page body content.
+
+### Extending the content index
+
+Quartz [[ContentIndex|builds `static/contentIndex.json`]] itself — the file search, the explorer, the graph and other client-side components read. Any plugin (transformer, filter, emitter or page type) can add fields to every page's entry by defining `extendContentIndex` on its plugin instance:
+
+```ts
+import { QuartzTransformerPlugin } from "@quartz-community/types"
+
+export const ReadingTime: QuartzTransformerPlugin = () => ({
+  name: "ReadingTime",
+  markdownPlugins: () => [/* … sets file.data.readingTime … */],
+  // called once per page when contentIndex.json is written
+  extendContentIndex({ fileData, entry }) {
+    return { readingTime: fileData.readingTime as number | undefined }
+  },
+})
+```
+
+Client-side code then finds the field next to the core ones:
+
+```ts
+const index = await fetchData
+index["some/page"].readingTime
+```
+
+Rules:
+
+- Return a plain object of JSON-serialisable values, or `undefined` to add nothing. `undefined` values are skipped.
+- Core fields (`slug`, `filePath`, `title`, `links`, `tags`, `content`, `richContent`, `date`, `description`) cannot be overridden.
+- If two plugins add the same key, the first one in plugin order keeps it; a warning names both. Prefer distinctive or namespaced keys (`"readingTime"`, `"myPlugin:score"` or one nested object).
+- `entry` is a read-only copy of the core fields; `fileData` is the page's `file.data`.
+- Errors thrown by the hook are reported as a warning and the page keeps its core entry.
+- Keep it small: `contentIndex.json` is downloaded by every visitor.
+
+Declare the field in your [[plugin capabilities|capabilities]] (`provides.data`) so other plugins can depend on it.
+
+### Reusing the content index in emitters
+
+Emitters don't need to rebuild the index: `ctx.contentIndex` holds it (a read-only `Map` from slug to entry, virtual pages included, with the same fields as `contentIndex.json` plus `date` and `description`). It is built once per build, after page types generated their pages and before plugin emitters run:
+
+```ts
+emit: async (ctx, content) => {
+  const recent = [...(ctx.contentIndex?.values() ?? [])]
+    .filter((entry) => entry.date)
+    .sort((a, b) => b.date!.getTime() - a.date!.getTime())
+    .slice(0, 20)
+  // … write a feed, a JSON API, a search index …
+}
+```
+
+Built-in settings are available too, with defaults and migrated options applied: `ctx.cfg.configuration.links.markdownLinkResolution`, `ctx.cfg.configuration.contentIndex.enableRSS`, … Both need Quartz 5.1+ — declare `"quartzVersion": ">=5.1.0"` (see [[versioning#For plugin authors]]).
+
+### Components in sidebars
+
+Sidebars have three modes ([[layout#Sidebar modes|`layout.sidebars`]]), set on the sidebar element as `data-sidebar-mode`:
+
+- In `fit` (the default) a sidebar is exactly one screen tall and doesn't scroll. A component that can grow (a list, a tree) must be able to shrink: give it `min-height: 0` and its own scroll area (`overflow-y: auto`), or it pushes the components below it out of reach.
+- In `scroll` and `static`, core gives every sidebar component its natural height (`flex-shrink: 0`); nothing extra is needed.
+
+To behave differently per mode, target it in your stylesheet, e.g. `.sidebar[data-sidebar-mode="fit"] .my-list { max-height: 40vh; }`. Custom frames with sidebars should put the `sidebars` prop on their sidebar elements the same way.
 
 ### Providing Custom Frames
 
@@ -558,6 +622,40 @@ Your plugin's `dist/` directory should be committed to the repository:
 3. The CI workflow verifies `dist/` is up to date on every push
 
 If `dist/` is missing or gitignored, Quartz falls back to the full install/build cycle (useful during local development with symlinked plugins).
+
+### Shipping Files with Your Plugin
+
+Since Quartz 5.1, `externalResources()` can return `assets`: files or directories that Quartz copies into the site at `static/plugins/<to>`. Client scripts find them through the `window.quartzStaticUrl` page global (the absolute URL of `static/`, valid across SPA navigations).
+
+Use this for large or optional client code instead of an inline script: Quartz serves inline scripts to **every page**, while an asset is only downloaded where your script imports it.
+
+```ts
+import path from "path"
+import { createRequire } from "module"
+
+externalResources() {
+  // resolve a dependency's browser build at build time
+  const pkg = createRequire(import.meta.url).resolve("my-renderer/package.json")
+  return {
+    js: [{ script: loaderScript, loadTime: "afterDOMReady", contentType: "inline", moduleType: "module" }],
+    assets: [{ from: path.join(path.dirname(pkg), "dist", "esm"), to: "my-plugin/renderer" }],
+  }
+}
+```
+
+```ts title="loader.inline.ts"
+document.addEventListener("nav", async () => {
+  const nodes = document.querySelectorAll(".my-widget")
+  if (nodes.length === 0 || !window.quartzStaticUrl) return // nothing to do on this page
+  const url = new URL("plugins/my-plugin/renderer/index.js", window.quartzStaticUrl).href
+  const { render } = await import(url)
+  for (const node of nodes) render(node)
+})
+```
+
+- `to` is relative to `static/plugins/`; use your plugin's name as the first segment. Invalid or conflicting targets and missing sources are reported as build warnings.
+- An ES module build with relative `import()`s keeps working when served this way, so only the chunks a page needs are downloaded.
+- Older Quartz versions ignore `assets` and leave `quartzStaticUrl` undefined. Either require `"quartzVersion": ">=5.1.0"` or fall back (for example to a CDN), as [[ObsidianFlavoredMarkdown]] does for [[Mermaid diagrams|Pele]].
 
 ### Plugins with Native Dependencies
 

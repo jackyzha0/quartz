@@ -1,4 +1,4 @@
-import type { ContentDetails } from "@quartz-community/content-index"
+import type { ContentDetails } from "../plugins/types"
 import { FullSlug, joinSegments } from "./path"
 
 interface FileTrieData {
@@ -90,8 +90,13 @@ export class FileTrieNode<T extends FileTrieData = ContentDetails> {
   }
 
   // Add new file to trie
-  add(file: T) {
-    this.insert(file.slug.split("/"), file)
+  /**
+   * Add a page at `position` (its slug by default). The build passes the page's slugified file
+   * path, so a note with a permalink stays in its folder for navigation (explorer, folder pages,
+   * breadcrumbs) while `data.slug` — what links point at — is its permalink.
+   */
+  add(file: T, position: string = file.slug) {
+    this.insert(position.split("/"), file)
   }
 
   findNode(path: string[]): FileTrieNode<T> | undefined {

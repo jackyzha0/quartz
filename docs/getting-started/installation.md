@@ -58,7 +58,7 @@ npx quartz create
 
 This will prompt you for:
 
-- A **template** (`default`, `obsidian`, `ttrpg`, `blog`) — pick the one that matches your use case. See [[create#Templates]] for details on each.
+- A **template** (`default`, `obsidian`, `ttrpg`, `blog`, `docs`) — pick the one that matches your use case. See [[create#Templates]] for details on each.
 - A **content strategy** — choose how to populate the `content/` folder:
   - **new**: Start with an empty folder
   - **copy**: Copy files from an existing folder (e.g. your Obsidian vault)

@@ -31,9 +31,9 @@ This part of the configuration concerns anything that can affect the whole site.
   - `null`: don't use analytics;
   - `{ provider: 'google', tagId: '<your-google-tag>' }`: use Google Analytics;
   - `{ provider: 'plausible' }` (managed) or `{ provider: 'plausible', host: 'https://<your-plausible-host>' }` (self-hosted, make sure to include the `https://` protocol prefix): use [Plausible](https://plausible.io/);
-  - `{ provider: 'umami', host: '<your-umami-host>', websiteId: '<your-umami-website-id>' }`: use [Umami](https://umami.is/);
+  - `{ provider: 'umami', host: '<your-umami-host>', websiteId: '<your-umami-website-id>', script: '<your-script-name.js>' }`: use [Umami](https://umami.is/);
   - `{ provider: 'goatcounter', websiteId: 'my-goatcounter-id' }` (managed) or `{ provider: 'goatcounter', websiteId: 'my-goatcounter-id', host: 'my-goatcounter-domain.com', scriptSrc: 'https://my-url.to/counter.js' }` (self-hosted) use [GoatCounter](https://goatcounter.com);
-  - `{ provider: 'posthog', apiKey: '<your-posthog-project-apiKey>', host: '<your-posthog-host>' }`: use [Posthog](https://posthog.com/);
+  - `{ provider: 'posthog', apiKey: '<your-posthog-project-apiKey>' }` (managed) or `{ provider: 'posthog', apiKey: '<your-posthog-project-apiKey>', apiHost: '<your-posthog-api-host>', uiHost: '<your-posthog-ui-host>', personProfiles: 'identified_only' }` (self-hosted/reverse proxy): use [PostHog](https://posthog.com/). `uiHost` is required when `apiHost` is a reverse proxy. The legacy `host` option is an alias for `apiHost`;
   - `{ provider: 'tinylytics', siteId: '<your-site-id>' }`: use [Tinylytics](https://tinylytics.app/);
   - `{ provider: 'cabin' }` or `{ provider: 'cabin', host: 'https://cabin.example.com' }` (custom domain): use [Cabin](https://withcabin.com);
   - `{provider: 'clarity', projectId: '<your-clarity-id-code' }`: use [Microsoft clarity](https://clarity.microsoft.com/). The project id can be found on top of the overview page.
@@ -45,11 +45,24 @@ This part of the configuration concerns anything that can affect the whole site.
   - You will be prompted to set this during [[create|`npx quartz create`]]. The CLI automatically strips any `https://` or `http://` protocol prefixes and trailing slashes for you.
   - This should also include the subpath if you are [[hosting]] on GitHub pages without a custom domain. For example, if my repository is `jackyzha0/quartz`, GitHub pages would deploy to `https://jackyzha0.github.io/quartz` and the `baseUrl` would be `jackyzha0.github.io/quartz`.
   - Note that Quartz 5 will avoid using this as much as possible and use relative URLs whenever it can to make sure your site works no matter _where_ you end up actually deploying it.
+- `publishAssets`: which non-Markdown files (images, PDFs, …) from `content` are copied to the site.
+  - `"all"` (default): every file that isn't ignored.
+  - `"referenced"`: only files a published page links to or embeds. Use this with [[ExplicitPublish]] or [[private pages|drafts]], so that files only unpublished notes use stay private.
 - `ignorePatterns`: a list of [glob](<https://en.wikipedia.org/wiki/Glob_(programming)>) patterns that Quartz should ignore and not search through when looking for files inside the `content` folder. See [[private pages]] for more details.
 - `theme`: configure how the site looks.
   - `fontOrigin`: where to load fonts from.
     - `"googleFonts"` (default): loads fonts from Google Fonts API. Fastest option, especially with CDN caching enabled.
-    - `"local"`: downloads fonts and serves them from your site. Fully self-contained with no external requests.
+    - `"local"`: Quartz loads no fonts at all; you provide them. The `typography` names are still used as the font families, so declare matching `@font-face` rules in `quartz/styles/custom.scss` and put the font files in `quartz/static/fonts/` (served at `static/fonts/`):
+
+      ```scss title="quartz/styles/custom.scss"
+      @font-face {
+        font-family: "Inter";
+        src: url("static/fonts/Inter.woff2") format("woff2");
+        font-display: swap;
+      }
+      ```
+
+      Use a path relative to the site root like above (no leading `/`) so it also works when the site is served from a subpath. To have Quartz download Google Fonts at build time and serve them from your site instead, use the [[plugins/Fonts|Fonts]] plugin with `fontOrigin: selfHosted`.
   - `cdnCaching`: if `true` (default), use Google CDN to cache the fonts. This will generally be faster. Disable (`false`) this if you want Quartz to download the fonts to be self-contained.
   - `typography`: what fonts to use. Any font available on [Google Fonts](https://fonts.google.com/) works here.
     - `title`: font for the title of the site (optional, same as `header` by default)
@@ -66,6 +79,19 @@ This part of the configuration concerns anything that can affect the whole site.
     - `tertiary`: hover states and visited [[graph view|graph]] nodes
     - `highlight`: internal link background, highlighted text, [[syntax highlighting|highlighted lines of code]]
     - `textHighlight`: markdown highlighted text background
+- `frontmatter`, `links`, `drafts`, `contentIndex`: options for Quartz's [[built-in processing]] — frontmatter parsing ([[Frontmatter]]), link resolution ([[CrawlLinks]]), draft handling ([[RemoveDrafts]]) and the content index, sitemap and RSS feed ([[ContentIndex]]). They are on by default; set e.g. `links: { markdownLinkResolution: relative }` to change an option or `contentIndex: false` to turn one off.
+
+> [!note] Colors with an Obsidian theme
+> A theme from [quartz-themes](https://github.com/saberzero1/quartz-themes) (the Obsidian and TTRPG [[create#Templates|templates]] enable one) brings its own color scheme and colors the page through Obsidian's CSS variables (`--text-normal` for most text, `--text-muted` for paragraphs, `--background-primary`, `--interactive-accent`, …). The `colors` above then have little or no effect. To change a theme's colors, override its variables in `quartz/styles/custom.scss`:
+>
+> ```scss title="quartz/styles/custom.scss"
+> html[saved-theme="dark"] body {
+>   --text-normal: #e0e0e0;
+>   --text-muted: #a0a0a0;
+> }
+> ```
+>
+> (use `html[saved-theme="light"] body` for light mode), or disable the theme to use the `colors` above.
 
 ## Plugins
 

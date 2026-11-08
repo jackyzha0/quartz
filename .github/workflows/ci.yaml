@@ -58,6 +58,13 @@ jobs:
       - name: Ensure Quartz builds, check bundle info
         run: npx quartz build --bundleInfo -d docs
 
+      - name: Check for a changeset
+        if: ${{ github.event_name == 'pull_request' && matrix.os == 'ubuntu-latest' }}
+        # Non-blocking: docs-only or internal changes don't need one.
+        run: |
+          npx changeset status --since=origin/v5 >/dev/null 2>&1 \
+            || echo "::warning::No changeset in this PR. If it changes how Quartz behaves, run 'npx changeset' (see .changeset/README.md)."
+
   publish-tag:
     if: ${{ github.repository == 'jackyzha0/quartz' && github.ref == 'refs/heads/v5' }}
     runs-on: ubuntu-latest

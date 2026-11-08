@@ -25,7 +25,7 @@ This plugin accepts the following configuration options:
 > [!warning]
 > While you can use this together with [[ObsidianFlavoredMarkdown]], it's not recommended because it might mutate the file in unexpected ways. Use with caution.
 >
-> If you use `toml` frontmatter, make sure to configure the [[Frontmatter]] plugin accordingly. See [[OxHugo compatibility]] for an example.
+> If you use `toml` frontmatter, make sure to set `configuration.frontmatter` accordingly (see [[Frontmatter]]). See [[OxHugo compatibility]] for an example.
 
 ## API
 

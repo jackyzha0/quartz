@@ -6,7 +6,7 @@ import {
   QuartzComponentConstructor,
   QuartzComponentProps,
 } from "../components/types"
-import { FilePath, FullSlug } from "../util/path"
+import { FilePath, FullSlug, SimpleSlug } from "../util/path"
 import { BuildCtx } from "../util/ctx"
 import { GlobalConfiguration } from "../cfg"
 import { VFile } from "vfile"
@@ -21,10 +21,42 @@ export interface PluginTypes {
 
 type OptionType = object | undefined
 type ExternalResourcesFn = (ctx: BuildCtx) => Partial<StaticResources> | undefined
+
+/** One page's entry in `static/contentIndex.json` (built-in content index). */
+export type ContentDetails = {
+  slug: FullSlug
+  filePath: FilePath
+  title: string
+  links: SimpleSlug[]
+  tags: string[]
+  content: string
+  richContent?: string
+  /** RSS / sitemap only — not written to contentIndex.json. */
+  date?: Date
+  /** RSS / sitemap only — not written to contentIndex.json. */
+  description?: string
+  /** Fields added by plugins through `extendContentIndex`. */
+  [extra: string]: unknown
+}
+
+/**
+ * Optional hook available on every plugin instance: return extra JSON-serialisable fields for a
+ * page's entry in `static/contentIndex.json`. Core fields cannot be overridden.
+ * See quartz/plugins/builtins/contentIndex.ts.
+ */
+export type ContentIndexExtension = (args: {
+  ctx: BuildCtx
+  fileData: QuartzPluginData
+  entry: Readonly<ContentDetails>
+}) => Record<string, unknown> | undefined | void
+
+interface PluginHooks {
+  extendContentIndex?: ContentIndexExtension
+}
 export type QuartzTransformerPlugin<Options extends OptionType = undefined> = (
   opts?: Options,
 ) => QuartzTransformerPluginInstance
-export type QuartzTransformerPluginInstance = {
+export type QuartzTransformerPluginInstance = PluginHooks & {
   name: string
   textTransform?: (ctx: BuildCtx, src: string) => string
   markdownPlugins?: (ctx: BuildCtx) => PluggableList
@@ -35,7 +67,7 @@ export type QuartzTransformerPluginInstance = {
 export type QuartzFilterPlugin<Options extends OptionType = undefined> = (
   opts?: Options,
 ) => QuartzFilterPluginInstance
-export type QuartzFilterPluginInstance = {
+export type QuartzFilterPluginInstance = PluginHooks & {
   name: string
   shouldPublish(ctx: BuildCtx, content: ProcessedContent): boolean
 }
@@ -49,7 +81,7 @@ export type ChangeEvent = {
 export type QuartzEmitterPlugin<Options extends OptionType = undefined> = (
   opts?: Options,
 ) => QuartzEmitterPluginInstance
-export type QuartzEmitterPluginInstance = {
+export type QuartzEmitterPluginInstance = PluginHooks & {
   name: string
   emit: (
     ctx: BuildCtx,
@@ -106,7 +138,7 @@ export type QuartzPageTypePlugin<Options extends OptionType = undefined> = (
   opts?: Options,
 ) => QuartzPageTypePluginInstance
 
-export interface QuartzPageTypePluginInstance {
+export interface QuartzPageTypePluginInstance extends PluginHooks {
   name: string
   priority?: number
   fileExtensions?: string[]

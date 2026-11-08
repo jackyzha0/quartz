@@ -3,10 +3,11 @@ title: Frontmatter
 aliases:
   - note-properties
   - Note Properties
-description: Parses frontmatter and displays note properties in a collapsible panel.
+description: Built-in frontmatter parsing, plus the note-properties plugin that displays properties in a collapsible panel.
 tags:
   - plugin/transformer
   - plugin/component
+  - built-in
 publish: true
 enableToc: true
 image:
@@ -15,24 +16,37 @@ enabled: true
 required: true
 ---
 
-This plugin parses the frontmatter of the page using the [gray-matter](https://github.com/jonschlinkert/gray-matter) library and optionally displays selected properties in a collapsible panel. See [[authoring content#Syntax]], [[Obsidian compatibility]] and [[OxHugo compatibility]] for more information.
+Frontmatter parsing is [[built-in processing|built into Quartz]]: every page's frontmatter is parsed with [gray-matter](https://github.com/jonschlinkert/gray-matter) and normalised (see [[#Supported frontmatter]]). Displaying properties on the page is done by the optional `note-properties` plugin ([[#Properties panel]]). See [[authoring content#Syntax]], [[Obsidian compatibility]] and [[OxHugo compatibility]] for more information.
+
+## Parsing (built-in)
+
+Configure it under `configuration.frontmatter` in `quartz.config.yaml`:
+
+- `delimiters`: the delimiters to use for the frontmatter. Can have one value (e.g. `"---"`) or separate values for opening and closing delimiters (e.g. `["---", "~~~"]`). Defaults to `"---"`.
+- `language`: the language to use for parsing the frontmatter. Can be `yaml` (default) or `toml`.
+- `enabled`: set to `false` to turn parsing off — only useful when a plugin replaces it (see [[built-in processing#Replacing a built-in]]).
+
+```yaml title="quartz.config.yaml"
+configuration:
+  frontmatter:
+    language: toml
+    delimiters: "+++"
+```
+
+> [!note]
+> These two options used to be set on the note-properties plugin. If they are still there, they are applied automatically; `npx quartz plugin doctor --fix` moves them.
+
+## Properties panel plugin (note-properties)
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
 
-> [!warning]
-> This plugin must not be removed, otherwise Quartz will break.
+The `note-properties` plugin accepts the following configuration options:
 
-## Configuration
-
-This plugin accepts the following configuration options:
-
-- `delimiters`: the delimiters to use for the frontmatter. Can have one value (e.g. `"---"`) or separate values for opening and closing delimiters (e.g. `["---", "~~~"]`). Defaults to `"---"`.
-- `language`: the language to use for parsing the frontmatter. Can be `yaml` (default) or `toml`.
 - `includeAll`: include all frontmatter properties in the properties panel. When `false`, only `includedProperties` are shown. Defaults to `false`.
 - `includedProperties`: properties to include when `includeAll` is `false`. Defaults to `["description", "tags", "aliases"]`.
 - `excludedProperties`: properties to always exclude from display, even when `includeAll` is `true`. Defaults to `[]`.
-- `hidePropertiesView`: hide the visual properties panel while still processing frontmatter. Useful if you only need frontmatter parsing without the UI. Defaults to `false`.
+- `hidePropertiesView`: hide the visual properties panel by default (it can still be shown per note, see [[#Per-note overrides]]). Defaults to `false`. To never show it, disable the plugin — frontmatter is parsed either way.
 
 ### Default options
 
@@ -47,8 +61,6 @@ This plugin accepts the following configuration options:
       - aliases
     excludedProperties: []
     hidePropertiesView: false
-    delimiters: "---"
-    language: yaml
 ```
 
 ## Properties panel
@@ -90,7 +102,7 @@ Quartz supports the following frontmatter fields. Where multiple keys are listed
 | Description        | `description`                                     | Page description for metadata and search.                                                                                                                                                                                          |
 | Tags               | `tags`, `tag`                                     | Categorization tags. Slugified the same way as file paths: spaces become `-`, `&` becomes `-and-`, `%` becomes `-percent`, and tags are lowercased so that `#MyTag` and `#mytag` resolve to the same tag page (matching Obsidian). |
 | Aliases            | `aliases`, `alias`                                | Alternative names for the page, used for link resolution.                                                                                                                                                                          |
-| Permalink          | `permalink`                                       | Custom URL slug. Also added to aliases.                                                                                                                                                                                            |
+| Permalink          | `permalink`                                       | The page's address (Obsidian Publish): published at this path; its file path redirects there.                                                                                                                                      |
 | CSS classes        | `cssclasses`, `cssclass`                          | CSS classes applied to the page body.                                                                                                                                                                                              |
 | Social image       | `socialImage`, `image`, `cover`                   | Image used for social media previews.                                                                                                                                                                                              |
 | Social description | `socialDescription`                               | Description used specifically for social media previews.                                                                                                                                                                           |
@@ -105,7 +117,7 @@ Quartz supports the following frontmatter fields. Where multiple keys are listed
 
 ## API
 
-- Category: Transformer, Component
-- Function name: `ExternalPlugin.NoteProperties()`.
+- Parsing: built-in transformer, [`quartz/plugins/builtins/frontmatter.ts`](https://github.com/jackyzha0/quartz/blob/v5/quartz/plugins/builtins/frontmatter.ts)
+- Properties panel: Transformer, Component — `ExternalPlugin.NoteProperties()`.
 - Source: [`quartz-community/note-properties`](https://github.com/quartz-community/note-properties)
 - Install: `npx quartz plugin add github:quartz-community/note-properties`

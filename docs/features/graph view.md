@@ -38,7 +38,7 @@ By default, the node radius is proportional to the total number of incoming and 
 Additionally, similar to how browsers highlight visited links a different colour, the graph view will also show nodes that you have visited in a different colour.
 
 > [!info]
-> Graph View requires the `ContentIndex` emitter plugin to be present in the [[configuration]].
+> Graph View reads `contentIndex.json`, which Quartz emits by default (see [[ContentIndex]]). It is empty if `configuration.contentIndex` is disabled.
 
 ## Customization
 

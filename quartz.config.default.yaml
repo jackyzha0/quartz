@@ -40,6 +40,11 @@ configuration:
         tertiary: "#84a59d"
         highlight: rgba(143, 159, 169, 0.15)
         textHighlight: "#b3aa0288"
+  links:
+    markdownLinkResolution: shortest
+  contentIndex:
+    enableSiteMap: true
+    enableRSS: true
 plugins:
   - source: "@quartz-community/created-modified-date"
     enabled: true
@@ -58,14 +63,14 @@ plugins:
         dark: github-dark
       keepBackground: false
     order: 20
+  - source: "@quartz-community/github-flavored-markdown"
+    enabled: true
+    order: 30
   - source: "@quartz-community/obsidian-flavored-markdown"
     enabled: true
     options:
       enableInHtmlEmbed: false
       enableCheckbox: true
-    order: 30
-  - source: "@quartz-community/github-flavored-markdown"
-    enabled: true
     order: 40
   - source: "@quartz-community/table-of-contents"
     enabled: true
@@ -73,11 +78,6 @@ plugins:
     layout:
       position: right
       priority: 30
-  - source: "@quartz-community/crawl-links"
-    enabled: true
-    options:
-      markdownLinkResolution: shortest
-    order: 60
   - source: "@quartz-community/description"
     enabled: true
     order: 70
@@ -89,9 +89,6 @@ plugins:
   - source: "@quartz-community/citations"
     enabled: false
     order: 85
-  - source: "@quartz-community/hard-line-breaks"
-    enabled: false
-    order: 90
   - source: "@quartz-community/ox-hugo"
     enabled: false
     order: 91
@@ -105,17 +102,10 @@ plugins:
     options:
       theme: tokyo-night
       mode: both
-  - source: "@quartz-community/remove-draft"
-    enabled: true
   - source: "@quartz-community/explicit-publish"
     enabled: false
   - source: "@quartz-community/alias-redirects"
     enabled: true
-  - source: "@quartz-community/content-index"
-    enabled: true
-    options:
-      enableSiteMap: true
-      enableRSS: true
   - source: "@quartz-community/favicon"
     enabled: true
   - source: "@quartz-community/og-image"
@@ -232,8 +222,6 @@ plugins:
         - aliases
       excludedProperties: []
       hidePropertiesView: false
-      delimiters: ---
-      language: yaml
     order: 5
     layout:
       position: beforeBody

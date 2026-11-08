@@ -27,6 +27,7 @@ import {
   handlePluginDisable,
   handlePluginConfig,
   handlePluginPrune,
+  handlePluginDoctor,
 } from "./cli/plugin-git-handlers.js"
 import { CommonArgv, BuildArgv, CreateArgv, SyncArgv } from "./cli/args.js"
 import { version } from "./cli/constants.js"
@@ -39,8 +40,9 @@ async function launchTui() {
 
   if (!existsSync(tuiPath)) {
     console.error(
+      // installed from GitHub into .quartz/plugins (it is not published to npm)
       "TUI plugin not installed. Install with:\n" +
-        "  npx quartz plugin add @quartz-community/tui\n",
+        "  npx quartz plugin add github:quartz-community/tui\n",
     )
     process.exit(1)
   }
@@ -101,6 +103,15 @@ yargs(hideBin(process.argv))
   .command("build", "Build Quartz into a bundle of static HTML files", BuildArgv, async (argv) => {
     await handleBuild(argv)
   })
+  .command(
+    "info",
+    "Print Quartz version, environment and plugins (paste it into bug reports)",
+    { json: { boolean: true, default: false, describe: "Print JSON instead of Markdown" } },
+    async (argv) => {
+      const { handleInfo } = await import("./cli/info.js")
+      await handleInfo({ json: argv.json })
+    },
+  )
   .command("tui", "Launch interactive plugin manager", CommonArgv, async () => {
     await launchTui()
   })
@@ -194,16 +205,39 @@ yargs(hideBin(process.argv))
           )
           .command(
             "config <name>",
-            "View or set plugin configuration",
+            "View or set plugin options",
             {
               ...CommonArgv,
               set: {
                 string: true,
-                describe: "Set a config value (key=value)",
+                array: true,
+                describe:
+                  "Set an option (key=value; value is parsed as JSON when possible; nested keys with a.b=value). Repeatable",
+              },
+              unset: {
+                string: true,
+                array: true,
+                describe: "Remove an option so the plugin default applies. Repeatable",
               },
             },
             async (argv) => {
-              await handlePluginConfig(argv.name, { set: argv.set })
+              await handlePluginConfig(argv.name, { set: argv.set, unset: argv.unset })
+            },
+          )
+          .command(
+            "doctor",
+            "Check plugin config, lockfile and installs for problems",
+            {
+              ...CommonArgv,
+              fix: {
+                boolean: true,
+                default: false,
+                describe:
+                  "Rewrite quartz.config.yaml for plugins that are now built into Quartz (keeps comments)",
+              },
+            },
+            async (argv) => {
+              await handlePluginDoctor({ verbose: argv.verbose, fix: argv.fix })
             },
           )
           .command(
@@ -274,6 +308,28 @@ yargs(hideBin(process.argv))
       )
     },
     async (argv) => {
+      if (argv.subcommand !== undefined) {
+        const known = [
+          "install",
+          "add",
+          "remove",
+          "list",
+          "enable",
+          "disable",
+          "config",
+          "prune",
+          "doctor",
+        ]
+        const { suggestClosest } = await import("./cli/plugin-validation.js")
+        const suggestion = suggestClosest(String(argv.subcommand), known)
+        console.error(
+          `Unknown plugin command "${argv.subcommand}".` +
+            (suggestion ? ` Did you mean "quartz plugin ${suggestion}"?` : "") +
+            `\nRun 'npx quartz plugin --help' to see all commands.`,
+        )
+        process.exitCode = 1
+        return
+      }
       if (!argv._.includes("plugin") || argv._.length > 1) return
       await handlePluginStatus()
     },

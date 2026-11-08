@@ -4,6 +4,16 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    # Plugins declare these as peer dependencies (preact by 42 plugins, vfile by 15), so a
+    # major bump here passes `npm ci` but breaks plugins at runtime (#2586). Upgrade them
+    # deliberately, together with the plugins.
+    ignore:
+      - dependency-name: "preact"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "vfile"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "unified"
+        update-types: ["version-update:semver-major"]
     groups:
       # Separated so a risky third-party major cannot block ecosystem updates.
       quartz-ecosystem:

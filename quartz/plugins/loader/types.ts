@@ -5,6 +5,7 @@ import {
   QuartzPageTypePlugin,
 } from "../types"
 import { BuildCtx } from "../../util/ctx"
+import type { PluginCapabilities } from "./capabilities"
 
 export type PluginCategory = "transformer" | "filter" | "emitter" | "pageType" | "component"
 
@@ -48,9 +49,13 @@ export interface PluginManifest {
   version: string
   author?: string
   homepage?: string
+  /** Where to report bugs (from package.json `bugs` / `repository`). */
+  issues?: string
   keywords?: string[]
   category?: PluginCategory | PluginCategory[]
   quartzVersion?: string
+  /** Set when the plugin is deprecated: why, and what replaces it (warned about at build time). */
+  deprecated?: string
   /** Plugin sources this plugin depends on (e.g., "@quartz-community/crawl-links") */
   dependencies?: string[]
   /** Default numeric execution order (0-100 convention, lower = runs first). Defaults to 50. */
@@ -67,6 +72,8 @@ export interface PluginManifest {
   frames?: Record<string, { exportName: string }>
   /** Whether the plugin requires `npm install` after cloning (e.g. for native dependencies like sharp). */
   requiresInstall?: boolean
+  /** Declared provided / required capabilities (data keys, DOM, globals, events, files, CSS vars). See capabilities.ts. */
+  capabilities?: PluginCapabilities
 }
 
 /**
@@ -176,11 +183,15 @@ export interface PageTypeLayoutOverride {
   positions?: Partial<Record<LayoutPosition, PluginLayoutDeclaration[]>>
   /** Override the page frame template (e.g. "default", "full-width", "minimal") */
   template?: string
+  /** Override sidebar modes for this page type (merged over `layout.sidebars`) */
+  sidebars?: { left?: string; right?: string }
 }
 
 /** Top-level layout section of quartz.config.yaml */
 export interface LayoutConfig {
   groups?: Record<string, FlexGroupConfig>
+  /** How each sidebar handles content taller than the screen: fit (default), scroll, static */
+  sidebars?: { left?: string; right?: string }
   byPageType?: Record<string, PageTypeLayoutOverride>
 }
 
