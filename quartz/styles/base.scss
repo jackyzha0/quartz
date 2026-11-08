@@ -279,6 +279,10 @@ a {
         height: unset;
         width: 100%;
         flex-direction: row;
+        // Wrap what does not fit side by side: on a phone the graph and backlinks are each about
+        // 180px at their narrowest, and a row that cannot wrap pushed the page wider than the
+        // screen (horizontal scroll).
+        flex-wrap: wrap;
         padding: 0;
         & > * {
           flex: 1;
@@ -587,6 +591,23 @@ code {
   border-radius: 5px;
   padding: 0.1rem 0.2rem;
   background: var(--lightgray);
+}
+
+// Long words break only where they would not fit, so a phone does not scroll sideways: a page
+// title such as "ObsidianFlavoredMarkdown", or `configuration.links.disableBrokenWikilinks` in a
+// callout. Inline code takes `anywhere`, which also lets the box around it shrink (with
+// `break-word` the callout widened to the identifier instead). Code blocks keep scrolling.
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+:not(pre) > code {
+  overflow-wrap: anywhere;
 }
 
 tbody,
