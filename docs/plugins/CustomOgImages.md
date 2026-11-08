@@ -59,15 +59,18 @@ ExternalPlugin.CustomOgImages({
 
 ### Configuration Options
 
-| Option               | Type      | Default                   | Description                                                       |
-| -------------------- | --------- | ------------------------- | ----------------------------------------------------------------- |
-| `colorScheme`        | string    | "lightMode"               | Theme to use for generating images ("darkMode" or "lightMode")    |
-| `width`              | number    | 1200                      | Width of the generated image in pixels                            |
-| `height`             | number    | 630                       | Height of the generated image in pixels                           |
-| `excludeRoot`        | boolean   | false                     | Whether to exclude the root index page from auto-generated images |
-| `defaultTitle`       | string    | "Untitled"                | Fallback title when a page has no title                           |
-| `defaultDescription` | string    | "No description provided" | Fallback description when a page has no description               |
-| `imageStructure`     | component | defaultImage              | Custom component to use for image generation                      |
+| Option                    | Type      | Default                   | Description                                                                                                                                                       |
+| ------------------------- | --------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `colorScheme`             | string    | "lightMode"               | Theme to use for generating images ("darkMode" or "lightMode")                                                                                                    |
+| `width`                   | number    | 1200                      | Width of the generated image in pixels                                                                                                                            |
+| `height`                  | number    | 630                       | Height of the generated image in pixels                                                                                                                           |
+| `excludeRoot`             | boolean   | false                     | Whether to exclude the root index page from auto-generated images                                                                                                 |
+| `defaultTitle`            | string    | "Untitled"                | Fallback title when a page has no title                                                                                                                           |
+| `defaultDescription`      | string    | "No description provided" | Fallback description when a page has no description                                                                                                               |
+| `useGeneratedDescription` | boolean   | true                      | Use a generated description (the [[Description]] plugin's excerpt of the page) when the frontmatter has none. Set to `false` to show `defaultDescription` instead |
+| `imageStructure`          | component | defaultImage              | Custom component to use for image generation                                                                                                                      |
+
+The description on an image is, in order: the frontmatter's `socialDescription`, its `description`, the generated description (unless `useGeneratedDescription` is `false`), and finally `defaultDescription`. With the [[Description]] plugin enabled, every page with text has a generated description, so `defaultDescription` mostly shows with `useGeneratedDescription: false`.
 
 ## Frontmatter Properties
 
