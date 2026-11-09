@@ -12,6 +12,7 @@
  */
 import fs from "node:fs"
 import path from "node:path"
+import { fileURLToPath } from "node:url"
 import { styleText } from "node:util"
 import { isIdentifier, jsString } from "./subprocess.js"
 
@@ -135,8 +136,8 @@ export function collectPluginExports({ pluginsDir, npmPackages = [], verbose = f
   for (const pkg of npmPackages) {
     let distIndex
     try {
-      const pkgJson = new URL(import.meta.resolve(`${pkg}/package.json`)).pathname
-      distIndex = path.join(path.dirname(decodeURIComponent(pkgJson)), "dist", "index.d.ts")
+      const pkgJson = fileURLToPath(import.meta.resolve(`${pkg}/package.json`))
+      distIndex = path.join(path.dirname(pkgJson), "dist", "index.d.ts")
     } catch {
       if (verbose) console.log(styleText("yellow", `⚠`), `Skipping npm package ${pkg}: not found`)
       continue
