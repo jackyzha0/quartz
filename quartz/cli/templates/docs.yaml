@@ -71,10 +71,10 @@ plugins:
     options:
       enableInHtmlEmbed: false
       enableCheckbox: true
-    order: 30
+    order: 40
   - source: "@quartz-community/github-flavored-markdown"
     enabled: true
-    order: 40
+    order: 30
   - source: "@quartz-community/table-of-contents"
     enabled: true
     order: 50

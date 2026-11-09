@@ -75,16 +75,15 @@ plugins:
       callouts: true
       mermaid: true
       parseTags: true
-      parseArrows: true
       parseBlockReferences: true
       enableInHtmlEmbed: false
       enableYouTubeEmbed: true
       enableVideoEmbed: true
       enableCheckbox: true
-    order: 30
+    order: 40
   - source: "@quartz-community/github-flavored-markdown"
     enabled: true
-    order: 40
+    order: 30
   - source: "@quartz-community/table-of-contents"
     enabled: true
     order: 50
