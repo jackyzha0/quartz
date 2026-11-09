@@ -166,7 +166,8 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
                     !textChild.value.startsWith("#") &&
                     !classes.includes("alias")
                   ) {
-                    textChild.value = path.basename(textChild.value)
+                    // link text is not an OS path: path.posix, or Windows would also cut at a backslash
+                    textChild.value = path.posix.basename(textChild.value)
                   }
                 }
               }

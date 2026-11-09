@@ -4,7 +4,7 @@ import { unified } from "unified"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
 import { VFile } from "vfile"
-import { Element, Root } from "hast"
+import { Element, Root, Text } from "hast"
 import { visit } from "unist-util-visit"
 import { BUILTINS, instantiateBuiltins, officialPluginName, planBuiltins, PlanInput } from "."
 import {
@@ -393,6 +393,17 @@ describe("links built-in", () => {
     assert.deepStrictEqual(
       els.map((e) => e.properties.alt),
       ["missing pic.png", "alt", undefined, undefined],
+    )
+  })
+
+  test("pretty links keep the last /-separated part of the link text, on every OS", () => {
+    const { els } = run([a("folder/note"), a("a\\b")], "page", { prettyLinks: true }, [
+      "folder/note",
+      "a\\b",
+    ])
+    assert.deepStrictEqual(
+      els.filter((e) => e.tagName === "a").map((e) => (e.children[0] as Text).value),
+      ["note", "a\\b"],
     )
   })
 
