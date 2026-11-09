@@ -9,6 +9,7 @@ import {
   PluginError,
   ContentError,
   isContentError,
+  unreadableFileError,
 } from "./pluginErrors"
 import {
   recordDiagnostic,
@@ -236,5 +237,21 @@ describe("plugin load failures", () => {
     assert.match(text, /1 error — the build continued/)
     assert.match(text, /→ at \/x\/graph\/dist\/index\.js:1:7\n.*→ source: @quartz-community\/graph/)
     assert.ok(text.indexOf("failed to load") < text.indexOf("some warning"))
+  })
+})
+
+describe("unreadableFileError", () => {
+  test("turns a file-system error into a content error naming the file", () => {
+    const fsError = Object.assign(new Error("EACCES: permission denied, open 'x'"), {
+      code: "EACCES",
+    })
+    const err = unreadableFileError(fsError, "notes/x.md")
+    assert.ok(err && isContentError(err))
+    assert.strictEqual(err.message, "Cannot read `notes/x.md`: permission denied (EACCES)")
+    assert.strictEqual(err.cause, fsError)
+  })
+
+  test("leaves other errors alone", () => {
+    assert.strictEqual(unreadableFileError(new TypeError("boom"), "x.md"), undefined)
   })
 })

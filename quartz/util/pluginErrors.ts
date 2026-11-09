@@ -50,6 +50,24 @@ export class ContentError extends Error {
   }
 }
 
+const fileErrorReasons: Record<string, string> = {
+  EACCES: "permission denied",
+  EPERM: "permission denied",
+  EISDIR: "it is a directory",
+  ENOENT: "it no longer exists",
+}
+
+/**
+ * A {@link ContentError} for a content file that can't be read (`err` from `fs`), or `undefined`
+ * when `err` is not a file-system error.
+ */
+export function unreadableFileError(err: unknown, file: string): ContentError | undefined {
+  const code = (err as NodeJS.ErrnoException | null)?.code
+  if (typeof code !== "string") return undefined
+  const reason = fileErrorReasons[code] ?? (err as Error).message
+  return new ContentError(`Cannot read \`${file}\`: ${reason} (${code})`, { cause: err })
+}
+
 /** Whether `err` or one of its causes (e.g. inside a {@link PluginError}) is a {@link ContentError}. */
 export function isContentError(err: unknown): boolean {
   let e = err

@@ -583,6 +583,18 @@ Each view registration includes:
 
 The `ViewRegistry` is a global singleton (via `Symbol.for`) ensuring all copies of the module share the same registry.
 
+### Reporting problems in content
+
+When your plugin fails because of a file's content rather than a bug in your code — a `.canvas` file that isn't valid JSON, a property with a value your plugin can't use, a file it can't read — throw an `Error` with `quartzContent` set to `true` and a message that names the problem:
+
+```ts
+const err = new Error(`Invalid canvas: ${parseError.message}`)
+;(err as Error & { quartzContent?: boolean }).quartzContent = true
+throw err
+```
+
+Quartz then reports it as a problem in the file's content ("fix it and build again") instead of asking the user to report a bug in your plugin, and leaves out the stack trace. Errors from transformers name the file being processed; from an emitter or a page type's `generate`, put the file's path in your message. Quartz checks the property, not the class, so plugins don't need to import anything from Quartz; it also finds the property on an error's `cause`. Only use it when the content is at fault — a wrong guess sends users looking for a problem in their notes that isn't there.
+
 ## Building and Distribution
 
 Quartz v5 plugins ship pre-built `dist/` in their repositories. When a user installs your plugin, Quartz detects the pre-built output and skips the install/build cycle entirely — making installation near-instant.

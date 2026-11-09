@@ -46,7 +46,12 @@ function updateSlugs(ctx: BuildCtx, allFiles: string[]): void {
     ? collectPermalinks({
         files: allFiles.filter((fp) => fp.endsWith(".md")),
         permalinkOf: (fp) => {
-          const source = fs.readFileSync(path.join(ctx.argv.directory, fp))
+          let source: Buffer
+          try {
+            source = fs.readFileSync(path.join(ctx.argv.directory, fp))
+          } catch {
+            return undefined // an unreadable file is reported when the file is parsed
+          }
           if (!source.includes("permalink")) return undefined
           try {
             return readFrontmatterData(source, options).permalink

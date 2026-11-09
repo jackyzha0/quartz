@@ -229,7 +229,7 @@ describe("frontmatter built-in", () => {
           readFrontmatterData(`---\n{ ran: (globalThis.__quartzFrontmatterRan = true) }\n---\n`, {
             language: lang as "yaml",
           }),
-        /JavaScript frontmatter/,
+        /unsupported `language` option/,
       )
     }
     assert.strictEqual(g.__quartzFrontmatterRan, undefined)
@@ -240,6 +240,31 @@ describe("frontmatter built-in", () => {
       () => readFrontmatterData("---\ntitle: [unclosed\n---\nbody\n"),
       (err: Error) => isContentError(err) && err.message.startsWith("Invalid frontmatter: "),
     )
+  })
+
+  test("an unsupported language option is a configuration error, not a content error", () => {
+    assert.throws(
+      () => readFrontmatterData("---\ntitle: a\n---\n", { language: "json" as "yaml" }),
+      (err: Error) =>
+        !isContentError(err) && /unsupported `language` option "json"/.test(err.message),
+    )
+  })
+
+  test("frontmatter holding a single value or a list instead of properties is a content error", () => {
+    for (const source of [
+      "---\nhello\n---\nbody\n",
+      "---\n42\n---\n",
+      "---\n- a\n- b\n---\nbody\n",
+    ]) {
+      assert.throws(
+        () => readFrontmatterData(source),
+        (err: Error) => isContentError(err) && /expected properties/.test(err.message),
+      )
+    }
+    // empty frontmatter keeps working
+    assert.deepStrictEqual(readFrontmatterData("---\n---\nbody\n"), {})
+    assert.deepStrictEqual(readFrontmatterData("---\n# just a comment\n---\nbody\n"), {})
+    assert.deepStrictEqual(readFrontmatterData("---\nnull\n---\n"), {})
   })
 
   test("a permalink is the page's address, not an alias (Obsidian Publish)", () => {

@@ -146,10 +146,17 @@ export function readFrontmatterData(
   source: Buffer | string,
   options: Pick<FrontmatterConfig, "delimiters" | "language"> = {},
 ): Record<string, unknown> {
+  const language = options.language ?? frontmatterDefaults.language
+  if (language !== "yaml" && language !== "toml") {
+    // a configuration mistake, not a problem in the file: no ContentError
+    throw new Error(
+      `Frontmatter: unsupported \`language\` option ${JSON.stringify(language)} (use "yaml" or "toml")`,
+    )
+  }
   try {
     const { data } = matter(Buffer.isBuffer(source) ? source : Buffer.from(source), {
       delimiters: options.delimiters ?? frontmatterDefaults.delimiters,
-      language: options.language ?? frontmatterDefaults.language,
+      language,
       engines: {
         yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object,
         toml: (s) => toml.parse(s) as object,
@@ -157,6 +164,14 @@ export function readFrontmatterData(
         js: refuseJavaScript,
       },
     })
+    // YAML/TOML can hold a single value (`--- hello ---`) or a list (`- a`); properties are
+    // key/value pairs
+    if (typeof data !== "object" || data === null || Array.isArray(data)) {
+      const kind = Array.isArray(data) ? "list" : typeof data
+      throw new ContentError(
+        `Invalid frontmatter: expected properties (\`key: value\` lines), got a ${kind} (${JSON.stringify(data)})`,
+      )
+    }
     return data
   } catch (err) {
     if (err instanceof ContentError) throw err
