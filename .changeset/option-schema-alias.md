@@ -2,4 +2,4 @@
 "@jackyzha0/quartz": patch
 ---
 
-Plugin option checks use the plugin's schema when it is declared as `quartz.optionSchema`, the name first-party plugins and Quartz Syncer use, as well as `quartz.configSchema`. Before, only `configSchema` was read, so the checks for misspelled options or wrong values never used the schemas of first-party plugins.
+Plugin option checks use the option schemas first-party plugins ship. These are declared as `quartz.optionSchema`, the name Quartz Syncer reads, as a flat map of option to type (`{ limit: { type: "number" }, mode: { type: "enum", values: [...] } }`). Before, only a JSON Schema in `quartz.configSchema` was read, so no first-party plugin's schema was used. A misspelled option, an enum value that isn't allowed, or a value of the wrong type is now a warning. A value of the same type as the plugin's default is always accepted, even where a schema disagrees.
