@@ -7,6 +7,8 @@ import { emitStaticAssets } from "./staticAssets"
 import spaRouterScript from "../../components/scripts/spa.inline"
 // @ts-ignore
 import popoverScript from "../../components/scripts/popover.inline"
+// @ts-ignore
+import prefetchScript from "../../components/scripts/prefetch.inline"
 import baseStyles from "../../styles/base.scss"
 import customStyles from "../../styles/custom.scss"
 import popoverStyle from "../../components/styles/popover.scss"
@@ -268,6 +270,18 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
 
       document.head.appendChild(rybbitScript);
     `)
+  }
+
+  // Prefetching (before the router or the no-SPA shim: both dispatch the first `nav`). Its
+  // settings lead the same script, since the other scripts load in parallel.
+  // (`prefetch: false` in YAML means off as well)
+  const prefetch = (cfg.prefetch as unknown) === false ? "off" : (cfg.prefetch ?? "viewport")
+  if (prefetch !== "off") {
+    componentResources.afterDOMLoaded.push(
+      `window.__quartzPrefetchMode = ${js(prefetch)};\n` +
+        `window.__quartzSpa = ${cfg.enableSPA ? "true" : "false"};\n` +
+        prefetchScript,
+    )
   }
 
   if (cfg.enableSPA) {
