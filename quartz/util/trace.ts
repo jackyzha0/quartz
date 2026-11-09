@@ -1,5 +1,6 @@
 import { styleText } from "util"
 import process from "process"
+import esbuild from "esbuild"
 import { isMainThread } from "workerpool"
 import { isContentError, pluginErrorInfo, PluginErrorInfo } from "./pluginErrors"
 import { knownProblemsFor } from "./diagnostics"
@@ -130,6 +131,17 @@ export function trace(msg: string, err: Error) {
   } else {
     // print and exit
     console.error(traceMsg)
-    process.exit(1)
+    exitBuild(1)
   }
+}
+
+/**
+ * Exit the build process. esbuild's service is a child process that shares our stderr; exiting
+ * while it has requests in flight (bundling component scripts, the CLI's build context) left it
+ * running without its parent, and it printed "fatal error: all goroutines are asleep - deadlock!"
+ * and a goroutine dump after Quartz's error. Stop it first.
+ */
+export function exitBuild(code: number): never {
+  void esbuild.stop()
+  process.exit(code)
 }
