@@ -8,6 +8,7 @@ import { LinksConfig } from "../../cfg"
 import {
   FullSlug,
   RelativeURL,
+  linkPathDecodes,
   SimpleSlug,
   TransformOptions,
   resolveRelative,
@@ -46,7 +47,9 @@ export const legacyCrawlLinksDefaults: Partial<LinksConfig> = {
 }
 
 const isAbsolute = isAbsoluteUrl as (url: string, options?: { httpOnly?: boolean }) => boolean
-const isExternalUrl = (url: string) => isAbsolute(url, { httpOnly: false })
+// As in Obsidian: a URL with a scheme (`x:y`, but not `../x:y`), or a link whose path is not valid
+// percent-encoding (`%zz`, `a%E2.md`), which names no file
+const isExternalUrl = (url: string) => isAbsolute(url, { httpOnly: false }) || !linkPathDecodes(url)
 
 const EXTERNAL_ICON_PATH =
   "M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"
@@ -175,8 +178,20 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
                 typeof node.properties.src === "string"
               ) {
                 if (opts.lazyLoad) node.properties.loading = "lazy"
-                if (!isExternalUrl(node.properties.src)) {
-                  node.properties.src = resolveLink(node.properties.src as RelativeURL)
+                const src = node.properties.src
+                if (!isExternalUrl(src)) {
+                  node.properties.src = resolveLink(src as RelativeURL)
+                  // An embed of a file the site doesn't have: Obsidian shows its path, percent-decoded
+                  // (`![](missing%20pic.png)` → “missing pic.png”). The image shows its alt text, so
+                  // an image without one gets the path; an author's alt text is kept.
+                  const target =
+                    node.tagName === "img" && !node.properties.alt && !src.startsWith("#")
+                      ? canonicalSlug(node.properties.src as string, curSlug)
+                      : undefined
+                  // (quartz/static is served at static/ but holds no content files)
+                  if (target && !target.startsWith("static/") && !ctx.allSlugs.includes(target)) {
+                    node.properties.alt = decodeURI(splitAnchor(src)[0])
+                  }
                 }
               }
 

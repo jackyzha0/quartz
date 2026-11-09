@@ -20,6 +20,7 @@ export {
   splitAnchor,
   slugTag,
   transformInternalLink,
+  linkPathDecodes,
   transformLink,
   normalizeHastElement,
 } from "@quartz-community/utils"
