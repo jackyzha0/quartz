@@ -68,6 +68,12 @@ export interface GlobalConfiguration {
   enableSPA: boolean
   /** Whether to display Wikipedia-style popovers when hovering over links */
   enablePopovers: boolean
+  /**
+   * Fetch pages before their links are followed, so they open at once (works with and without
+   * SPA routing). `viewport` (default): links on screen, while the browser is idle, and links
+   * pointed at. `hover`: only links pointed at, focused or touched. `off`: never.
+   */
+  prefetch?: "viewport" | "hover" | "off"
   /** Analytics mode */
   analytics: Analytics
   /** Glob patterns to not search */

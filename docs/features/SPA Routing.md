@@ -11,3 +11,5 @@ Under the hood, this is done by hijacking page navigations and instead fetching 
 ## Configuration
 
 - Disable SPA Routing: set the `enableSPA` field of the [[configuration]] in `quartz.config.yaml` to be `false`.
+
+Pages are fetched ahead of a click by [[prefetching]], which the router uses to show them at once.

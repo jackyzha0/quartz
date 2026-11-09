@@ -72,22 +72,35 @@ async function _navigate(url: URL, isBack: boolean = false) {
   // canonical link) changes the base its relative links resolve against, and the address bar
   // should show it too. fetch() drops the #hash, so keep the requested one.
   let finalUrl = url
-  const contents = await fetchCanonical(url)
-    .then((res) => {
-      if (res.url) {
-        finalUrl = new URL(res.url)
-        finalUrl.hash = url.hash
-      }
-      const contentType = res.headers.get("content-type")
-      if (contentType?.startsWith("text/html")) {
-        return res.text()
-      } else {
-        window.location.assign(url)
-      }
-    })
-    .catch(() => {
-      window.location.assign(url)
-    })
+  // A page fetched ahead (prefetch.inline.ts) is shown at once; one still loading is awaited.
+  const prefetched = await window.quartzPrefetch?.load(url)
+  if (prefetched && prefetched.text === undefined) {
+    // not a page (e.g. a file served without an extension): let the browser open it
+    window.location.assign(url)
+    return
+  }
+  if (prefetched) {
+    finalUrl = new URL(prefetched.url)
+    finalUrl.hash = url.hash
+  }
+  const contents = prefetched
+    ? prefetched.text
+    : await fetchCanonical(url)
+        .then((res) => {
+          if (res.url) {
+            finalUrl = new URL(res.url)
+            finalUrl.hash = url.hash
+          }
+          const contentType = res.headers.get("content-type")
+          if (contentType?.startsWith("text/html")) {
+            return res.text()
+          } else {
+            window.location.assign(url)
+          }
+        })
+        .catch(() => {
+          window.location.assign(url)
+        })
 
   if (!contents) return
 

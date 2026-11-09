@@ -31,6 +31,12 @@
           "type": "boolean",
           "description": "Enable hover popovers for links"
         },
+        "prefetch": {
+          "type": "string",
+          "enum": ["viewport", "hover", "off"],
+          "default": "viewport",
+          "description": "Fetch pages before their links are followed: links on screen and pointed at (viewport), only links pointed at (hover), or never (off)"
+        },
         "locale": {
           "type": "string",
           "description": "Locale code for the site"
