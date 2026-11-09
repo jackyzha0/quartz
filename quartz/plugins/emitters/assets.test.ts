@@ -70,9 +70,10 @@ describe("Assets.emit", () => {
     tempDirs.push(dir)
     return dir
   }
-  const isRoot = process.getuid?.() === 0
+  // chmod can't take read/write access away from root, and Windows ignores POSIX permission bits
+  const noPermissions = process.getuid?.() === 0 || process.platform === "win32"
 
-  test("an unreadable asset is a content error", { skip: isRoot }, async () => {
+  test("an unreadable asset is a content error", { skip: noPermissions }, async () => {
     const content = await tempDir()
     const output = await tempDir()
     const asset = path.join(content, "secret.png")
@@ -90,7 +91,7 @@ describe("Assets.emit", () => {
     }
   })
 
-  test("an unwritable output is not a content error", { skip: isRoot }, async () => {
+  test("an unwritable output is not a content error", { skip: noPermissions }, async () => {
     const content = await tempDir()
     const output = await tempDir()
     await fs.promises.writeFile(path.join(content, "image.png"), "x")
