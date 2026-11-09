@@ -229,7 +229,7 @@ describe("frontmatter built-in", () => {
           readFrontmatterData(`---\n{ ran: (globalThis.__quartzFrontmatterRan = true) }\n---\n`, {
             language: lang as "yaml",
           }),
-        /JavaScript frontmatter/,
+        /unsupported `language` option/,
       )
     }
     assert.strictEqual(g.__quartzFrontmatterRan, undefined)
@@ -239,6 +239,14 @@ describe("frontmatter built-in", () => {
     assert.throws(
       () => readFrontmatterData("---\ntitle: [unclosed\n---\nbody\n"),
       (err: Error) => isContentError(err) && err.message.startsWith("Invalid frontmatter: "),
+    )
+  })
+
+  test("an unsupported language option is a configuration error, not a content error", () => {
+    assert.throws(
+      () => readFrontmatterData("---\ntitle: a\n---\n", { language: "json" as "yaml" }),
+      (err: Error) =>
+        !isContentError(err) && /unsupported `language` option "json"/.test(err.message),
     )
   })
 

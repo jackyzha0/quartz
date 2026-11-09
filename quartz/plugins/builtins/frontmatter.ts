@@ -146,10 +146,17 @@ export function readFrontmatterData(
   source: Buffer | string,
   options: Pick<FrontmatterConfig, "delimiters" | "language"> = {},
 ): Record<string, unknown> {
+  const language = options.language ?? frontmatterDefaults.language
+  if (language !== "yaml" && language !== "toml") {
+    // a configuration mistake, not a problem in the file: no ContentError
+    throw new Error(
+      `Frontmatter: unsupported \`language\` option ${JSON.stringify(language)} (use "yaml" or "toml")`,
+    )
+  }
   try {
     const { data } = matter(Buffer.isBuffer(source) ? source : Buffer.from(source), {
       delimiters: options.delimiters ?? frontmatterDefaults.delimiters,
-      language: options.language ?? frontmatterDefaults.language,
+      language,
       engines: {
         yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object,
         toml: (s) => toml.parse(s) as object,
