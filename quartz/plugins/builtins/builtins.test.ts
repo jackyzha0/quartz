@@ -361,6 +361,41 @@ describe("links built-in", () => {
     assert.strictEqual(els[1].properties.src, "../../media/a.mp4")
   })
 
+  // Obsidian 1.15.0 (remark-obsidian 2.2.1's triage, re-probed): a path that is not valid
+  // percent-encoding names no file, so the link is external; `x:y` has a scheme, `../x:y` doesn't
+  test("links Obsidian reads as external", () => {
+    const { els } = run([a("%zz"), a("a%E2.md"), a("x:y"), a("../x:y")], "sub/note", {}, ["xy"])
+    const classes = els.filter((e) => e.tagName === "a").map((e) => e.properties.className)
+    assert.deepStrictEqual(
+      classes.map((c) => (c as string[])[0]),
+      ["external", "external", "external", "internal"],
+    )
+  })
+
+  test("an image of a missing file without alt text shows its decoded path", () => {
+    const img = (src: string, alt?: string): Element => ({
+      type: "element",
+      tagName: "img",
+      properties: alt === undefined ? { src } : { src, alt },
+      children: [],
+    })
+    const { els } = run(
+      [
+        img("missing%20pic.png"),
+        img("missing%20image.png", "alt"),
+        img("pic.png"),
+        img("/static/x.png"),
+      ],
+      "page",
+      { markdownLinkResolution: "absolute" },
+      ["page", "pic.png"],
+    )
+    assert.deepStrictEqual(
+      els.map((e) => e.properties.alt),
+      ["missing pic.png", "alt", undefined, undefined],
+    )
+  })
+
   test("disableBrokenWikilinks adds a broken class to missing targets", () => {
     const { els } = run([a("missing")], "page", { disableBrokenWikilinks: true }, ["page"])
     assert.ok((els[0].properties.className as string[]).includes("broken"))
