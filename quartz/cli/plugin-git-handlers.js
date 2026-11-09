@@ -52,6 +52,7 @@ import {
 } from "./subprocess.js"
 import { writePluginIndex } from "./plugin-index.js"
 import {
+  builtinKeyFor,
   builtinMessage,
   describeBuiltins,
   findBuiltinMigrations,
@@ -2662,6 +2663,23 @@ export async function handlePluginDoctor({ verbose = false, fix = false } = {}) 
     if (deprecation) report("warning", null, deprecation.message, deprecation.hint)
     if (enabled) {
       for (const dep of manifest.dependencies ?? []) {
+        // A plugin that is built into core now (crawl-links → configuration.links, …) is
+        // satisfied by the built-in: its entries were absorbed above.
+        const builtinKey = builtinKeyFor(dep)
+        if (builtinKey) {
+          const builtin = describeBuiltins(config.data.configuration).find(
+            (b) => b.key === builtinKey,
+          )
+          if (builtin && !builtin.enabled) {
+            report(
+              "warning",
+              label,
+              `depends on ${dep}, which is built into Quartz now as configuration.${builtinKey} and is disabled`,
+              `Enable configuration.${builtinKey} in quartz.config.yaml.`,
+            )
+          }
+          continue
+        }
         const depEntry =
           enabledSources.get(dep) ??
           plugins.find((e) => {
