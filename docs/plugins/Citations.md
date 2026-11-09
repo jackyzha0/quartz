@@ -26,4 +26,4 @@ This plugin accepts the following configuration options:
 - Category: Transformer
 - Function name: `ExternalPlugin.Citations()`.
 - Source: [`quartz-community/citations`](https://github.com/quartz-community/citations)
-- Install: `npx quartz plugin add github:quartz-community/citations`
+- Install: `npx quartz plugin add @quartz-community/citations`

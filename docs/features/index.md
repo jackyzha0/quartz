@@ -16,7 +16,8 @@ Quartz comes with a wide variety of features out of the box. Most features are p
 - [[Roam Research compatibility]] — Support for Roam Research syntax
 - [[features/Citations|Citations]] — Academic citation support
 - [[Canvas]] — Render Obsidian Canvas files as interactive pages
-- [[Bases]] — Database-like views for your notes (tables, cards, galleries, and more)
+- [[Bases]] — Database-like views for your notes (tables, cards, lists, boards, galleries)
+- [[built-in processing]] — Frontmatter, link resolution, drafts and the content index, built into Quartz
 
 ## Navigation & Discovery
 
@@ -29,14 +30,14 @@ Quartz comes with a wide variety of features out of the box. Most features are p
 - [[folder and tag listings]] — Browse notes by folder or tag
 - [[recent notes]] — Display recently modified notes
 - [[popover previews]] — Hover previews for internal links
-- [[StackedPages|stacked pages]] — Andy Matuschak-style stacked sliding panes for tracing note connections
+- [[StackedPages|stacked pages]] — Open linked notes as binder-style stacked tabs for tracing note connections
 - [[EncryptedPages|encrypted pages]] — Password-protect individual pages with client-side encryption
 
 ## Appearance & Reading
 
 - [[features/darkmode]] — Light and dark mode toggle
 - [[reader mode]] — Distraction-free reading experience
-- [[features/comments|comments]] — Add comments via Giscus, Utterances, or other providers
+- [[features/comments|comments]] — Add comments via Giscus
 - [[social images]] — Auto-generated Open Graph images for social sharing
 
 ## Publishing & Deployment
@@ -44,5 +45,6 @@ Quartz comes with a wide variety of features out of the box. Most features are p
 - [[RSS Feed]] — RSS feed generation for content syndication
 - [[private pages]] — Control which pages are published
 - [[SPA Routing]] — Single-page app navigation
+- [[prefetching]] — Fetch pages before their links are followed, so they open at once
 - [[Docker Support]] — Build and deploy with Docker
 - [[i18n]] — Internationalization with 30+ supported locales

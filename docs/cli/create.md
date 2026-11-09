@@ -9,7 +9,7 @@ The `create` command initializes a new Quartz project. It helps you set up your 
 | Flag          | Shorthand | Description                                                                |
 | ------------- | --------- | -------------------------------------------------------------------------- |
 | `--template`  | `-t`      | Configuration template (`default`, `obsidian`, `ttrpg`, `blog`, or `docs`) |
-| `--directory` | `-d`      | The directory where Quartz will be initialized                             |
+| `--directory` | `-d`      | The content folder to set up (default: `content`)                          |
 | `--source`    | `-s`      | The source directory of your Markdown files                                |
 | `--strategy`  | `-X`      | How to handle the source files (`new`, `copy`, or `symlink`)               |
 | `--links`     | `-l`      | How to resolve internal links (`absolute`, `shortest`, or `relative`)      |

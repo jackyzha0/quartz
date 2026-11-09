@@ -56,4 +56,4 @@ layout:
 - Category: Page Type
 - Function name: `ExternalPlugin.CanvasPage()`.
 - Source: [`quartz-community/canvas-page`](https://github.com/quartz-community/canvas-page)
-- Install: `npx quartz plugin add github:quartz-community/canvas-page`
+- Install: `npx quartz plugin add @quartz-community/canvas-page` (included in the default configuration)

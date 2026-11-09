@@ -18,5 +18,5 @@ This plugin has no configuration options.
 ## API
 
 - Category: Emitter
-- Function name: `Plugin.Static()` (internal plugin).
+- Internal plugin: always runs and has no entry in `quartz.config.yaml`.
 - Source: [`quartz/plugins/emitters/static.ts`](https://github.com/jackyzha0/quartz/blob/v5/quartz/plugins/emitters/static.ts).

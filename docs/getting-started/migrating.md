@@ -70,11 +70,7 @@ cp -r /tmp/quartz-content/* content/
 Copy-Item -Recurse $env:TEMP\quartz-content\* content\
 ```
 
-After running `create`, install all plugins referenced in the generated config:
-
-```bash
-npx quartz plugin install --from-config
-```
+`create` also installs the plugins the chosen template references, so there is no separate install step.
 
 ## What Changed in v5
 
@@ -83,11 +79,13 @@ Quartz 5 introduces a community plugin system that fundamentally changes how plu
 Key changes:
 
 - **Configuration format**: TypeScript (`quartz.config.ts`, `quartz.layout.ts`) → YAML (`quartz.config.yaml`)
-- **Plugin system**: Plugins are now standalone Git repositories, installed via `npx quartz plugin add`
+- **Plugin system**: Plugins are now standalone packages. The default ones are npm packages that ship with Quartz; others are added with `npx quartz plugin add`
 - **Import pattern**: Community plugins use `ExternalPlugin.X()` (from `.quartz/plugins`) instead of `Plugin.X()` (from `./quartz/plugins`)
 - **Layout structure**: `quartz.layout.ts` is gone — layout position is now a per-plugin property in `quartz.config.yaml`
 - **Page types**: A new plugin category for page rendering (content, folder, tag pages)
 - **URL casing**: All generated URLs are now lowercased and hyphenated (e.g. `My Notes/Hello World.md` → `/my-notes/hello-world`). In v4, the original casing of file and folder names was preserved in URLs.
+- **Line breaks**: a single line break inside a paragraph renders as `<br>`, as in Obsidian (v4 rendered a space). Set `strictLineBreaks: true` in the [[ObsidianFlavoredMarkdown]] options for the v4 behaviour.
+- **Heading ids**: heading ids follow GitHub, so some differ from v4 (`## Range 1--2` → `#range-1--2`, was `#range-12`). Links that hard-code an old id need updating; `[[page#Range 1--2]]` keeps working.
 
 ### URL Casing and SEO
 
@@ -136,19 +134,19 @@ Mapping v4 plugin names to v5 equivalents:
 | `Plugin.AliasRedirects()`           | `ExternalPlugin.AliasRedirects()`           | Community             |
 | `Plugin.ContentIndex()`             | built in (`configuration.contentIndex`)     | Internal              |
 
-Component layout mapping:
+Component layout mapping (`ExternalPlugin` is imported from `./.quartz/plugins` in `quartz.ts`):
 
 | v4 Layout                     | v5 Layout                                |
 | ----------------------------- | ---------------------------------------- |
-| `Component.Explorer()`        | `Plugin.Explorer()`                      |
-| `Component.Graph()`           | `Plugin.Graph()`                         |
-| `Component.Search()`          | `Plugin.Search()`                        |
-| `Component.Backlinks()`       | `Plugin.Backlinks()`                     |
-| `Component.Darkmode()`        | `Plugin.Darkmode()`                      |
-| `Component.Footer()`          | `Plugin.Footer()`                        |
-| `Component.TableOfContents()` | `Plugin.TableOfContents()`               |
+| `Component.Explorer()`        | `ExternalPlugin.Explorer()`              |
+| `Component.Graph()`           | `ExternalPlugin.Graph()`                 |
+| `Component.Search()`          | `ExternalPlugin.Search()`                |
+| `Component.Backlinks()`       | `ExternalPlugin.Backlinks()`             |
+| `Component.Darkmode()`        | `ExternalPlugin.Darkmode()`              |
+| `Component.Footer()`          | `ExternalPlugin.Footer()`                |
+| `Component.TableOfContents()` | `ExternalPlugin.TableOfContents()`       |
 | `Component.Head()`            | `Component.Head()` (unchanged, internal) |
-| `Component.Spacer()`          | `Plugin.Spacer()`                        |
+| `Component.Spacer()`          | `ExternalPlugin.Spacer()`                |
 
 If you edited a component's source in `quartz/components/` (for example `Footer.tsx`), that no longer works: components are now installed plugins. See [[customizing components]] for the v5 ways to change them.
 

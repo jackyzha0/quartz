@@ -8,7 +8,7 @@ Quartz can also dynamically generate and use new cover images for every page to 
 
 ## Showcase
 
-After enabling the [[CustomOgImages]] emitter plugin, the social media link preview for [[authoring content | Authoring Content]] looks like this:
+With the [[CustomOgImages]] emitter plugin (enabled by default), the social media link preview for [[authoring content | Authoring Content]] looks like this:
 
 | Light                               | Dark                               |
 | ----------------------------------- | ---------------------------------- |

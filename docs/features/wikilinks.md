@@ -6,9 +6,16 @@ Wikilinks were pioneered by earlier internet wikis to make it easier to write li
 
 Quartz supports Wikilinks by default and these links are resolved by Quartz's built-in [[CrawlLinks|link processing]]. See the [Obsidian Help page on Internal Links](https://help.obsidian.md/Linking+notes+and+files/Internal+links) for more information on Wikilink syntax.
 
-This is enabled as a part of [[Obsidian compatibility]] and can be configured and enabled/disabled from that plugin.
+Parsing wikilinks is part of [[Obsidian compatibility]] ([[ObsidianFlavoredMarkdown]]). How links are resolved (`markdownLinkResolution`, pretty link text, broken-link styling, …) is configured under `configuration.links` (see [[CrawlLinks]]).
 
 Wikilink matching is case-insensitive to mirror Obsidian: `[[My Note]]`, `[[my note]]`, and `[[MY NOTE]]` all resolve to the same file. The generated URL is lowercased (e.g. `my-note`).
+
+Links behave as in Obsidian in a few more ways:
+
+- Link paths are NFC-normalized, so a link spelled with a decomposed `é` reaches `café.md`.
+- A short link to an Obsidian folder note (`[[Topic]]` for `Topic/Topic.md`) reaches the folder page.
+- A Markdown link whose path is not valid percent-encoding (`[x](%zz)`) is treated as an external link.
+- An image without alt text gets its path as alt text, as Obsidian names an embed: `![[pic.png]]` gets `pic.png`, and a Markdown image of a file the site doesn't have gets its decoded path (`![](missing%20pic.png)` → "missing pic.png").
 
 ## Syntax
 
@@ -16,6 +23,12 @@ Wikilink matching is case-insensitive to mirror Obsidian: `[[My Note]]`, `[[my n
 - `[[Path to file | Here's the title override]]`: produces a link to `Path to file.md` with the text `Here's the title override`
 - `[[Path to file#Anchor]]`: produces a link to the anchor `Anchor` in the file `Path to file.md`
 - `[[Path to file#^block-ref]]`: produces a link to the specific block `block-ref` in the file `Path to file.md`
+
+A `^id` at the end of a wikilink's text stays part of the link text (`[[note|a ^id]]` shows `a ^id`); it doesn't turn the paragraph into a block with that id.
+
+### Heading anchors
+
+Heading ids are slugs of the heading text, the same ones GitHub uses: `## My Heading` → `#my-heading`, `## Range 1--2` → `#range-1--2`. Heading links, embeds and the [[table of contents]] use the same slugs. Obsidian replaces `:`, `|`, `^`, `#` and `\` in a heading with spaces when it writes a link to it (`[[note#Colon unspaced]]` for `## Colon:unspaced`); such links and embeds reach the heading too.
 
 ### Embeds
 

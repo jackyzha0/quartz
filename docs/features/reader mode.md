@@ -15,17 +15,17 @@ Reader Mode is enabled by default. To disable it, set `enabled: false` in your `
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/reader-mode
+  - source: "@quartz-community/reader-mode"
     enabled: false
 ```
 
 Or remove the plugin entirely:
 
 ```bash
-npx quartz plugin remove github:quartz-community/reader-mode
+npx quartz plugin remove reader-mode
 ```
 
-- Install: `npx quartz plugin add github:quartz-community/reader-mode`
+- Install: `npx quartz plugin add @quartz-community/reader-mode`
 - Source: [`quartz-community/reader-mode`](https://github.com/quartz-community/reader-mode)
 
 ## Usage

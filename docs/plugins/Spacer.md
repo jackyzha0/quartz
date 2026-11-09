@@ -22,4 +22,4 @@ This plugin has no configuration options.
 - Category: Component
 - Function name: `ExternalPlugin.Spacer()`.
 - Source: [`quartz-community/spacer`](https://github.com/quartz-community/spacer)
-- Install: `npx quartz plugin add github:quartz-community/spacer`
+- Install: `npx quartz plugin add @quartz-community/spacer` (included in the default configuration)

@@ -14,19 +14,21 @@ Dark mode toggle.
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
 
-See [[plugins/Darkmode]] for detailed usage information.
+See [[features/darkmode|Darkmode]] for detailed usage information.
 
 ## Configuration
 
-This plugin accepts the following configuration options:
-
-- `enabled`: Whether to enable the dark mode toggle. Defaults to `true`.
+This plugin has no configuration options. To remove the toggle, set `enabled: false` on its entry.
 
 ### Default options
 
 ```yaml title="quartz.config.yaml"
-- source: github:quartz-community/darkmode
+- source: "@quartz-community/darkmode"
   enabled: true
+  layout:
+    position: left
+    priority: 30
+    group: toolbar
 ```
 
 ## API
@@ -34,4 +36,4 @@ This plugin accepts the following configuration options:
 - Category: Component
 - Function name: `ExternalPlugin.Darkmode()`.
 - Source: [`quartz-community/darkmode`](https://github.com/quartz-community/darkmode)
-- Install: `npx quartz plugin add github:quartz-community/darkmode`
+- Install: `npx quartz plugin add @quartz-community/darkmode`

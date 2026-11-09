@@ -63,6 +63,8 @@ A plugin can take over a built-in by declaring that it provides the same thing i
 
 When such a plugin is enabled, the built-in steps aside (`quartz build --verbose` shows `off — replaced by plugin "…"`). Set `enabled: true` on the built-in to run both.
 
+Drafts can't be replaced: a filter plugin runs in addition to the built-in.
+
 ## Upgrading from the plugins
 
 Existing `quartz.config.yaml` files keep working: entries for `@quartz-community/crawl-links`, `@quartz-community/remove-draft` and `@quartz-community/content-index` are applied to the matching built-in (options, `order` and `enabled: false` carry over) and the packages are no longer loaded. The build prints a notice for each.
@@ -83,5 +85,6 @@ The [[Frontmatter#Properties panel|properties panel]] is still a plugin (`note-p
 ## For plugin authors
 
 - The data the built-ins produce is unchanged: `file.data.frontmatter`, `aliases`, `frontmatterLinks`, `links`, and the same `contentIndex.json` format. Plugins that read them need no changes.
-- Built-ins count as providers for [[plugin capabilities]], so a requirement such as `requires: { data: ["links"] }` is satisfied without any plugin.
+- Built-ins count as providers for [[plugin capabilities]], so a requirement such as `requires: { data: ["links"] }` is satisfied without any plugin. Built-in links also provides the classes it puts on links: `.internal`, `.external` and `.broken` (`dom` capabilities). In `from`, name the built-ins `quartz:frontmatter`, `quartz:links`, `quartz:drafts` and `quartz:contentIndex`.
+- Don't list `@quartz-community/crawl-links`, `remove-draft` or `content-index` in your manifest's [[plugin manifest#dependencies|`dependencies`]]: Quartz 5.1 treats them as satisfied by the built-ins, but Quartz 5.0 fails the build when the plugin isn't in the config. To run after built-in links, set a `defaultOrder` above 60 (a transformer with a lower order that depends on `crawl-links` fails the build).
 - Plugins can add their own fields to `contentIndex.json` — see [[making plugins#Extending the content index]].

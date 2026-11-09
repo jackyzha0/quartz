@@ -26,4 +26,4 @@ Files without frontmatter — `.base`, `.canvas` and `.excalidraw` files — can
 - Category: Filter
 - Function name: `ExternalPlugin.ExplicitPublish()`.
 - Source: [`quartz-community/explicit-publish`](https://github.com/quartz-community/explicit-publish)
-- Install: `npx quartz plugin add github:quartz-community/explicit-publish`
+- Install: `npx quartz plugin add @quartz-community/explicit-publish`

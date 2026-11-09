@@ -19,15 +19,19 @@ See [[reader mode]] for detailed usage information.
 
 ## Configuration
 
-This plugin accepts the following configuration options:
+This plugin has no options. Use the entry's `enabled` field to turn it on or off, and `layout` to place the toggle button.
 
-- `enabled`: Whether to enable reader mode. Defaults to `true`.
+On [[layout#Per-page-type overrides|folder and tag pages]] the default config leaves the button out (`layout.byPageType.folder.exclude: [reader-mode]`).
 
 ### Default options
 
 ```yaml title="quartz.config.yaml"
-- source: github:quartz-community/reader-mode
+- source: "@quartz-community/reader-mode"
   enabled: true
+  layout:
+    position: left
+    priority: 35
+    group: toolbar
 ```
 
 ## API
@@ -35,4 +39,4 @@ This plugin accepts the following configuration options:
 - Category: Component
 - Function name: `ExternalPlugin.ReaderMode()`.
 - Source: [`quartz-community/reader-mode`](https://github.com/quartz-community/reader-mode)
-- Install: `npx quartz plugin add github:quartz-community/reader-mode`
+- Install: `npx quartz plugin add @quartz-community/reader-mode` (included in the default configuration)

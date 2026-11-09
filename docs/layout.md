@@ -42,47 +42,47 @@ Layout components are configured in the `layout` section of `quartz.config.yaml`
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/explorer
+  - source: "@quartz-community/explorer"
     enabled: true
     layout:
       position: left
       priority: 50
-  - source: github:quartz-community/graph
+  - source: "@quartz-community/graph"
     enabled: true
     layout:
       position: right
       priority: 10
-  - source: github:quartz-community/search
+  - source: "@quartz-community/search"
     enabled: true
     layout:
       position: left
       priority: 20
-  - source: github:quartz-community/backlinks
+  - source: "@quartz-community/backlinks"
     enabled: true
     layout:
       position: right
       priority: 30
-  - source: github:quartz-community/article-title
+  - source: "@quartz-community/article-title"
     enabled: true
     layout:
       position: beforeBody
       priority: 10
-  - source: github:quartz-community/content-meta
+  - source: "@quartz-community/content-meta"
     enabled: true
     layout:
       position: beforeBody
       priority: 20
-  - source: github:quartz-community/tag-list
+  - source: "@quartz-community/tag-list"
     enabled: true
     layout:
       position: beforeBody
       priority: 30
-  - source: github:quartz-community/darkmode
+  - source: "@quartz-community/darkmode"
     enabled: true
     layout:
       position: header
       priority: 10
-  - source: github:quartz-community/footer
+  - source: "@quartz-community/footer"
     enabled: true
     options:
       links:
@@ -122,7 +122,7 @@ Plugins can specify a `condition` in their layout block to control when they app
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/breadcrumbs
+  - source: "@quartz-community/breadcrumbs"
     enabled: true
     layout:
       position: beforeBody
@@ -165,6 +165,7 @@ Components with equal priority keep the order in which they appear in `quartz.co
 | `exclude`   | Plugins to leave out on this page type. Use the plugin name (`reader-mode`); the full source (`@quartz-community/reader-mode`, `github:…/reader-mode`) works too. |
 | `positions` | Clear slots: `right: []` removes everything from the right sidebar. Only empty lists are supported.                                                               |
 | `template`  | The [[#Page Frames\|page frame]] to use, e.g. `full-width` or `minimal`.                                                                                          |
+| `sidebars`  | [[#Sidebar modes\|Sidebar modes]] for this page type (`left`/`right`: `fit`, `scroll` or `static`), merged over `layout.sidebars`.                                |
 
 Slots that a page type does not change follow the defaults.
 
@@ -215,7 +216,7 @@ export const layout = await loadQuartzLayout({
 3. `defaults` in `quartz.ts`
 4. the layout built from each plugin's `layout` block
 
-Community component plugins are installed via `npx quartz plugin add github:quartz-community/<name>`. See [[layout-components]] for built-in layout utilities (Flex, MobileOnly, DesktopOnly, etc.).
+Component plugins are installed via `npx quartz plugin add @quartz-community/<name>` (or a `github:org/repo` source). See [[layout-components]] for built-in layout utilities (Flex, MobileOnly, DesktopOnly, etc.).
 
 You can also checkout the guide on [[creating components]] if you're interested in further customizing the behaviour of Quartz.
 

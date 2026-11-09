@@ -18,17 +18,35 @@ This plugin generates a table of contents (TOC) for Markdown documents. See [[ta
 This plugin accepts the following configuration options:
 
 - `maxDepth`: Limits the depth of headings included in the TOC, ranging from `1` (top level headings only) to `6` (all heading levels). Default is `3`.
-- `minEntries`: The minimum number of heading entries required for the TOC to be displayed. Default is `1`.
-- `showByDefault`: If `true` (default), the TOC should be displayed by default. Can be overridden by frontmatter settings.
+- `minEntries`: The TOC is only shown when it has more than this many entries. Default is `1` (a page needs at least two headings).
+- `showByDefault`: If `true` (default), the TOC should be displayed by default. Can be overridden per page with the `enableToc` frontmatter key.
 - `collapseByDefault`: If `true`, the TOC will start in a collapsed state. Default is `false`.
 - `layout`: The visual layout of the TOC component. Can be `"modern"` or `"legacy"`. Default is `"modern"`.
 
-> [!warning]
-> This plugin needs the `Plugin.TableOfContents` component in `quartz.config.yaml` to determine where to display the TOC. Without it, nothing will be displayed. They should always be added or removed together.
+As in Obsidian's outline, headings inside blockquotes and callouts are left out. Entries link to the heading ids that [[GitHubFlavoredMarkdown]] gives the headings (read from the rendered headings, with the same slug function as a fallback), so they always match, including for repeated headings (`-1`, `-2`).
+
+One plugin entry provides both the transformer that collects the headings and the component that displays them; its `layout` places the component:
+
+### Default options
+
+```yaml title="quartz.config.yaml"
+- source: "@quartz-community/table-of-contents"
+  enabled: true
+  options:
+    maxDepth: 3
+    minEntries: 1
+    showByDefault: true
+    collapseByDefault: false
+    layout: modern
+  order: 50
+  layout:
+    position: right
+    priority: 30
+```
 
 ## API
 
 - Category: Transformer, Component
-- Function name: `ExternalPlugin.TableOfContentsTransformer()`.
+- Function names: `ExternalPlugin.TableOfContents()` (component), `ExternalPlugin.TableOfContentsTransformer()` (transformer).
 - Source: [`quartz-community/table-of-contents`](https://github.com/quartz-community/table-of-contents)
-- Install: `npx quartz plugin add github:quartz-community/table-of-contents`
+- Install: `npx quartz plugin add @quartz-community/table-of-contents` (included in the default configuration)

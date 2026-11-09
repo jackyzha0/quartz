@@ -15,5 +15,5 @@ This plugin has no configuration options.
 ## API
 
 - Category: Page Type
-- Function name: `Plugin.NotFoundPage()` (internal plugin).
+- Internal plugin: always runs and has no entry in `quartz.config.yaml`. Its layout can be changed under `layout.byPageType.404` (see [[layout#Per-page-type overrides]]).
 - Source: [`quartz/plugins/pageTypes/404.ts`](https://github.com/jackyzha0/quartz/blob/v5/quartz/plugins/pageTypes/404.ts)

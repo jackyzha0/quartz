@@ -27,6 +27,7 @@ You can run the CLI using `npx quartz`.
 - [[restore|restore]]: Recover your content folder from the local cache.
 - [[cli/plugin|plugin]]: Install, add, remove, prune, and configure plugins. Use `plugin install` with flags for lockfile/config sync, updates, and checks, and `plugin doctor` to diagnose plugin problems.
 - [[tui|tui]]: Use a terminal interface to manage plugins and layout.
+- `info`: Print your Quartz version (with its git state), Node/npm/OS, the config file, built-ins and every plugin with its version, source and compatibility, as a Markdown block to paste into bug reports. See [[versioning]].
 
 ## Global Flags
 
@@ -34,7 +35,7 @@ These flags are accepted by every Quartz command:
 
 | Flag            | Shorthand | Description                                                                                             | Default        |
 | --------------- | --------- | ------------------------------------------------------------------------------------------------------- | -------------- |
-| `--directory`   | `-d`      | The directory containing your Quartz project                                                            | `content`      |
+| `--directory`   | `-d`      | The content folder (relative to your Quartz project)                                                    | `content`      |
 | `--verbose`     | `-v`      | Enable detailed logging for debugging                                                                   | `false`        |
 | `--concurrency` | `-c`      | Max parallel workers for operations that run in parallel (e.g. `build`, `plugin install`, `plugin add`) | CPU core count |
 

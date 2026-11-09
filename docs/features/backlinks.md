@@ -13,5 +13,5 @@ A backlink for a note is a link from another note to that note. Links in the bac
 
 - Removing backlinks: remove the `backlinks` entry from `quartz.config.yaml` or set `enabled: false`.
 - Hide when empty: hide `Backlinks` if given page doesn't contain any backlinks (default to `true`). To disable this, set `hideWhenEmpty: false` in the plugin options in `quartz.config.yaml`.
-- Install: `npx quartz plugin add github:quartz-community/backlinks`
+- Install: `npx quartz plugin add @quartz-community/backlinks`
 - Source: [`quartz-community/backlinks`](https://github.com/quartz-community/backlinks)

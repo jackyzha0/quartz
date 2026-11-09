@@ -8,12 +8,12 @@ Quartz supports [Mermaid](https://mermaid.js.org) for diagrams and charts in you
 
 Default renderer is Mermaid.js. Set `diagramRenderer: pele` on [[ObsidianFlavoredMarkdown]] to use [Pele](https://pele.run) instead. Mermaid.js is deprecated; Pele will become the default later.
 
-> [!warning]
-> Wondering why Mermaid diagrams may not be showing up even if you have them enabled? You may need to reorder your plugins so that [[ObsidianFlavoredMarkdown]] is _after_ [[SyntaxHighlighting]].
+> [!note]
+> In the default config [[ObsidianFlavoredMarkdown]] (`order: 40`) runs after [[SyntaxHighlighting]] (`order: 20`). If Mermaid diagrams don't show up and you changed either `order`, restore that sequence.
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/obsidian-flavored-markdown
+  - source: "@quartz-community/obsidian-flavored-markdown"
     options:
       mermaid: true
       diagramRenderer: pele # default: mermaid

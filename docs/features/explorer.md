@@ -11,17 +11,17 @@ Quartz features an explorer that allows you to navigate all files and folders on
 
 ## Installation
 
-The Explorer is available as a community plugin from GitHub:
+The Explorer is part of the default `quartz.config.yaml`. If your config doesn't have it, add it with:
 
 ```bash
-npm install github:quartz-community/explorer --legacy-peer-deps
+npx quartz plugin add @quartz-community/explorer
 ```
 
-Then add it to your `quartz.config.yaml`:
+This adds an entry like this to your `quartz.config.yaml`:
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/explorer
+  - source: "@quartz-community/explorer"
     enabled: true
     layout:
       position: left
@@ -41,17 +41,17 @@ Display names for folders get determined by the `title` frontmatter field in `fo
 
 ## Customization
 
-Most configuration can be done by passing in options to `Explorer()`.
+Most configuration can be done through the plugin's `options`.
 
 For example, here's what the default configuration looks like:
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/explorer
+  - source: "@quartz-community/explorer"
     enabled: true
     options:
-      title: Explorer
-      folderClickBehavior: collapse # "link" to navigate or "collapse" to toggle
+      title: Explorer # defaults to the translated "Explorer"
+      folderClickBehavior: link # "link" to navigate or "collapse" to toggle
       folderDefaultState: collapsed # "collapsed" or "open"
       useSavedState: true
     layout:
@@ -171,7 +171,7 @@ Using this example, the explorer will alphabetically sort everything.
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/explorer
+  - source: "@quartz-community/explorer"
     enabled: true
     options:
       # Simple options go in YAML

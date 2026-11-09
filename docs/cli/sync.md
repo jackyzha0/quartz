@@ -6,32 +6,34 @@ The `sync` command automates the process of pushing your local changes to GitHub
 
 ## Flags
 
-| Flag          | Shorthand | Description                          | Default           |
-| ------------- | --------- | ------------------------------------ | ----------------- |
-| `--directory` | `-d`      | The directory of your Quartz project | Current directory |
-| `--verbose`   | `-v`      | Enable detailed logging              | `false`           |
-| `--commit`    |           | Whether to commit changes            | `true`            |
-| `--no-commit` |           | Skip committing changes              | `false`           |
-| `--message`   | `-m`      | Custom commit message                | `update content`  |
-| `--push`      |           | Whether to push changes to remote    | `true`            |
-| `--no-push`   |           | Skip pushing changes                 | `false`           |
-| `--pull`      |           | Whether to pull changes from remote  | `true`            |
-| `--no-pull`   |           | Skip pulling changes                 | `false`           |
+| Flag          | Shorthand | Description                         | Default                    |
+| ------------- | --------- | ----------------------------------- | -------------------------- |
+| `--directory` | `-d`      | The content folder                  | `content`                  |
+| `--verbose`   | `-v`      | Enable detailed logging             | `false`                    |
+| `--commit`    |           | Whether to commit changes           | `true`                     |
+| `--no-commit` |           | Skip committing changes             | `false`                    |
+| `--message`   | `-m`      | Custom commit message               | `Quartz sync: <date time>` |
+| `--push`      |           | Whether to (force-)push to remote   | `true`                     |
+| `--no-push`   |           | Skip pushing changes                | `false`                    |
+| `--pull`      |           | Whether to pull changes from remote | `true`                     |
+| `--no-pull`   |           | Skip pulling changes                | `false`                    |
 
 ## Workflow
 
 When you run `npx quartz sync`, Quartz performs the following steps:
 
-1. **Pull**: It fetches and merges changes from your remote GitHub repository.
-2. **Add**: It stages all new and modified files in your project.
-3. **Commit**: It creates a new commit with your changes.
-4. **Push**: It sends your new commit to GitHub.
+1. **Commit**: It stages all new and modified files in your project (`git add .`) and commits them.
+2. **Pull**: It merges the `v5` branch of your repository (`origin`) into your branch.
+3. **Push**: It force-pushes your current branch to `origin` (`git push -uf`).
+
+> [!warning] `sync` force-pushes
+> The push overwrites the remote branch with your local one. If you skip the pull (`--no-pull`) while the remote has commits you don't have — for example from another device or a GitHub edit — those commits are lost on the remote.
 
 ## Common Workflows
 
 ### Regular Sync
 
-The most common usage is to simply run the command with no flags. This pulls, commits, and pushes everything.
+The most common usage is to simply run the command with no flags. This commits, pulls, and pushes everything.
 
 ```shell
 npx quartz sync
@@ -69,6 +71,6 @@ If you have a very large number of changes, Git might occasionally fail due to b
 
 ### Autostash
 
-Quartz uses `git pull --rebase --autostash` internally. This means if you have unstaged changes when you run `sync`, Quartz will temporarily hide them, pull the remote changes, and then bring your changes back. If a conflict occurs during this process, you will need to resolve it manually using standard Git tools.
+Quartz pulls with `git pull --no-rebase --autostash --no-edit --allow-unrelated-histories`: remote changes are merged (not rebased) without opening an editor, and uncommitted changes (e.g. with `--no-commit`) are set aside during the pull and brought back afterwards. If a conflict occurs, resolve it with standard Git tools, commit, and run `npx quartz sync --no-pull`.
 
 For more information on initial setup, see [[installation]].

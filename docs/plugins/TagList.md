@@ -21,4 +21,4 @@ This plugin has no configuration options.
 - Category: Component
 - Function name: `ExternalPlugin.TagList()`.
 - Source: [`quartz-community/tag-list`](https://github.com/quartz-community/tag-list)
-- Install: `npx quartz plugin add github:quartz-community/tag-list`
+- Install: `npx quartz plugin add @quartz-community/tag-list`

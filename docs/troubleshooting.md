@@ -9,7 +9,7 @@ Common issues and solutions when working with Quartz.
 - **Errors from plugins** say which plugin failed (name, version, source), what it was doing ("while transforming the Markdown of `notes/x.md`", "component Backlinks while rendering `features/x`"), any problems Quartz already knew about that plugin, and where to report it. To confirm a plugin is the cause, disable it (`npx quartz plugin disable <name>`) and build again.
 - **Problems in a file's content** (frontmatter that isn't valid YAML/TOML, a file Quartz can't read) name the file and say "This is a problem in the file's content": fix the file and build again — it's not a bug in Quartz or a plugin.
 - **Plugins that fail to load** (can't be installed, their code throws on import, no plugin found in the package) are marked `✗` with the file and line where it failed. Locally the build continues without them so you can check the rest of the site; they are listed again at the top of the end-of-build summary. In CI (`CI` set, e.g. GitHub Actions, Netlify, Vercel, Cloudflare Pages) the build fails instead, so a site with a missing feature isn't deployed — set `QUARTZ_ALLOW_BROKEN_PLUGINS=1` to deploy anyway.
-- **Warnings** printed while loading the config (plugins that need a newer Quartz, plugins missing data they need, layout typos, plugin entries that are now built in) are repeated in a summary at the end of the build.
+- **Warnings** printed while loading the config (plugins that need a newer Quartz, plugins missing data they need, deprecated plugins, layout typos, plugin entries that are now built in) are repeated in a summary at the end of the build. In CI, plugins that need a newer Quartz fail the build instead — update Quartz or the plugin, or set `QUARTZ_ALLOW_INCOMPATIBLE_PLUGINS=1` to build anyway.
 - **Notes** in that summary point out links to pages that are not on your site — including links to [[RemoveDrafts|drafts]], which are the usual cause of "this link 404s". `npx quartz build --verbose` lists every such link, the order plugins run in, the built-ins and the layout of each page type.
 - **Which version am I on?** `npx quartz info` prints your Quartz version, environment and plugins — include it when asking for help (see [[versioning]]).
 
@@ -133,14 +133,21 @@ If `plugin install` consistently fails near the same plugin with `-c 1`, the iss
 ### Wikilinks not resolving
 
 - Make sure the [[ObsidianFlavoredMarkdown]] plugin is enabled
-- Verify the target note exists in your content folder
+- Make sure link resolution is on: it is [[CrawlLinks|built in]] as `configuration.links` and can be disabled there
+- Check `configuration.links.markdownLinkResolution` (`shortest`, the default and Obsidian's, `absolute` or `relative`) matches how your links are written
+- Verify the target note exists in your content folder and is published (links to [[RemoveDrafts|drafts]] are listed in the end-of-build summary)
 - Check for case sensitivity issues in filenames
+
+### Heading links broken after upgrading
+
+Quartz 5.1 changed some heading ids to match GitHub: a heading containing `--` (`## Range 1--2`) now has the id `range-1--2` instead of `range-12`. Update links that hard-code the old id (`page#range-12`); wikilinks with the heading text (`[[page#Range 1--2]]`) keep working.
 
 ### Images not displaying
 
 - Ensure images are in a folder that Quartz processes (typically `content/` or a subfolder)
 - Check that the image path in your Markdown matches the actual file location
 - The [[Assets]] emitter must be enabled (it is by default)
+- With `publishAssets: referenced` in your [[configuration]], only files that published pages link to or embed are copied: an image used only by an unpublished note (a draft, or one [[ExplicitPublish]] leaves out) is omitted
 
 ## GitHub Sync Issues
 

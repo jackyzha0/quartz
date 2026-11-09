@@ -24,4 +24,4 @@ This plugin has no configuration options.
 - Category: Transformer
 - Function name: `ExternalPlugin.HardLineBreaks()`.
 - Source: [`quartz-community/hard-line-breaks`](https://github.com/quartz-community/hard-line-breaks)
-- Install: `npx quartz plugin add github:quartz-community/hard-line-breaks`
+- Install: `npx quartz plugin add @quartz-community/hard-line-breaks`

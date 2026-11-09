@@ -21,4 +21,4 @@ This plugin has no configuration options.
 - Category: Component
 - Function name: `ExternalPlugin.ArticleTitle()`.
 - Source: [`quartz-community/article-title`](https://github.com/quartz-community/article-title)
-- Install: `npx quartz plugin add github:quartz-community/article-title`
+- Install: `npx quartz plugin add @quartz-community/article-title` (included in the default configuration)

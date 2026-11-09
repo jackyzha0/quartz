@@ -24,7 +24,8 @@ Configure it under `configuration.frontmatter` in `quartz.config.yaml`:
 
 - `delimiters`: the delimiters to use for the frontmatter. Can have one value (e.g. `"---"`) or separate values for opening and closing delimiters (e.g. `["---", "~~~"]`). Defaults to `"---"`.
 - `language`: the language to use for parsing the frontmatter. Can be `yaml` (default) or `toml`.
-- `enabled`: set to `false` to turn parsing off — only useful when a plugin replaces it (see [[built-in processing#Replacing a built-in]]).
+- `enabled`: set to `false` (or use the shorthand `frontmatter: false`) to turn parsing off — only useful when a plugin replaces it (see [[built-in processing#Replacing a built-in]]).
+- `order`: where parsing runs among the transformers. Defaults to `0` (first).
 
 ```yaml title="quartz.config.yaml"
 configuration:
@@ -32,6 +33,11 @@ configuration:
     language: toml
     delimiters: "+++"
 ```
+
+> [!warning]
+> With [[ObsidianFlavoredMarkdown]]'s default `preset: "legacy"`, only YAML frontmatter between `---` lines is recognized as frontmatter by the Markdown parser; any other block would show up in the page. For TOML (`+++`) or custom delimiters, also set `preset: "strict"` on ObsidianFlavoredMarkdown.
+
+Frontmatter is data, never code: JavaScript frontmatter (`---js`, `---javascript`) is refused with an error naming the file. Frontmatter that can't be parsed (broken YAML, or a single value or list instead of `key: value` properties) is reported as a problem in that file, so fix the file and build again.
 
 > [!note]
 > These two options used to be set on the note-properties plugin. If they are still there, they are applied automatically; `npx quartz plugin doctor --fix` moves them.
@@ -45,13 +51,14 @@ The `note-properties` plugin accepts the following configuration options:
 
 - `includeAll`: include all frontmatter properties in the properties panel. When `false`, only `includedProperties` are shown. Defaults to `false`.
 - `includedProperties`: properties to include when `includeAll` is `false`. Defaults to `["description", "tags", "aliases"]`.
-- `excludedProperties`: properties to always exclude from display, even when `includeAll` is `true`. Defaults to `[]`.
+- `excludedProperties`: properties to always exclude from display, whether they come from `includeAll` or `includedProperties`. Defaults to `[]`.
 - `hidePropertiesView`: hide the visual properties panel by default (it can still be shown per note, see [[#Per-note overrides]]). Defaults to `false`. To never show it, disable the plugin — frontmatter is parsed either way.
+- `collapsed`: start the panel collapsed (it can still be expanded, and set per note). Defaults to `false`.
 
 ### Default options
 
 ```yaml title="quartz.config.yaml"
-- source: github:quartz-community/note-properties
+- source: "@quartz-community/note-properties"
   enabled: true
   options:
     includeAll: false
@@ -61,6 +68,11 @@ The `note-properties` plugin accepts the following configuration options:
       - aliases
     excludedProperties: []
     hidePropertiesView: false
+  order: 5
+  layout:
+    position: beforeBody
+    priority: 15
+    display: all
 ```
 
 ## Properties panel
@@ -120,4 +132,4 @@ Quartz supports the following frontmatter fields. Where multiple keys are listed
 - Parsing: built-in transformer, [`quartz/plugins/builtins/frontmatter.ts`](https://github.com/jackyzha0/quartz/blob/v5/quartz/plugins/builtins/frontmatter.ts)
 - Properties panel: Transformer, Component — `ExternalPlugin.NoteProperties()`.
 - Source: [`quartz-community/note-properties`](https://github.com/quartz-community/note-properties)
-- Install: `npx quartz plugin add github:quartz-community/note-properties`
+- Install: `npx quartz plugin add @quartz-community/note-properties` (included in the default configuration)

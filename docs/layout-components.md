@@ -74,10 +74,10 @@ For full programmatic control, use the `Component.Flex()` wrapper in `quartz.ts`
 Component.Flex({
   components: [
     {
-      Component: Plugin.Search(),
+      Component: ExternalPlugin.Search(),
       grow: true, // Search will grow to fill available space
     },
-    { Component: Plugin.Darkmode() }, // Darkmode keeps its natural size
+    { Component: ExternalPlugin.Darkmode() }, // Darkmode keeps its natural size
   ],
   direction: "row",
   gap: "1rem",
@@ -147,7 +147,7 @@ Component.MobileOnly(Component.Spacer())
 ```
 
 ```ts title="quartz.ts (override)"
-Component.DesktopOnly(Plugin.TableOfContents())
+Component.DesktopOnly(ExternalPlugin.TableOfContents())
 ```
 
 ## `ConditionalRender` Component
@@ -184,7 +184,7 @@ For custom conditions that aren't covered by the built-in presets, import the in
 ```ts title="quartz.ts (override)"
 import { loadQuartzConfig, loadQuartzLayout } from "./quartz/plugins/loader/config-loader"
 import * as Component from "./quartz/components"
-import { Search } from "./.quartz/plugins/search"
+import * as ExternalPlugin from "./.quartz/plugins"
 
 const config = await loadQuartzConfig()
 export default config
@@ -192,7 +192,7 @@ export const layout = await loadQuartzLayout({
   defaults: {
     left: [
       Component.ConditionalRender({
-        component: Search(),
+        component: ExternalPlugin.Search(),
         condition: (props) => props.fileData.slug?.startsWith("notes/") ?? false,
       }),
     ],
@@ -200,7 +200,7 @@ export const layout = await loadQuartzLayout({
 })
 ```
 
-The wrapped plugin must be installed and enabled in `quartz.config.yaml`. A TypeScript layout override replaces the selected slot, so include any other components you want to keep in that slot alongside the conditional component.
+`./.quartz/plugins` is the generated index of all installed plugins, npm and Git alike (importing a single plugin from `./.quartz/plugins/<name>` only works for plugins installed from Git). The wrapped plugin must be installed and enabled in `quartz.config.yaml`. A TypeScript layout override replaces the selected slot, so include any other components you want to keep in that slot alongside the conditional component.
 
 ```typescript
 type ConditionalRenderConfig = {
@@ -210,4 +210,4 @@ type ConditionalRenderConfig = {
 ```
 
 > [!tip]
-> You can also register custom conditions for use in YAML by calling `registerCondition()` in a plugin's initialization code. See [[making plugins]] for more details.
+> You can also register custom conditions for use in YAML: call `registerCondition(name, (props) => boolean)` from `./quartz/plugins/loader/conditions` at the top of `quartz.ts`, before `loadQuartzConfig()`, then use `condition: <name>` in a layout block.

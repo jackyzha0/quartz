@@ -85,6 +85,10 @@ A stealth page:
 
 Use stealth pages for "secret door" content that should only reach users who already know the exact URL: private notes linked from an external wiki, personal pages you send to specific people, or anything you never want to show up in a site-internal search even to authenticated readers.
 
+### Bases, canvases and drawings
+
+With Quartz 5.1 and encrypted-pages 1.1, pages rendered from files (`.base`, `.canvas`, Excalidraw drawings) are encrypted too. A drawing stored as Markdown uses the `password` in its frontmatter. A `.base`, `.canvas` or `.excalidraw` file has no frontmatter, so it is encrypted with the password of the encrypted published note that links to it (the first by slug when several do); linked only from unencrypted pages, it stays unencrypted.
+
 ## Configuration
 
 This plugin provides a transformer, an emitter, and a component. All options are set on a single config entry and shared between the transformer and the emitter — Quartz instantiates both automatically.
@@ -101,17 +105,18 @@ This plugin provides a transformer, an emitter, and a component. All options are
 ### Default options
 
 ```yaml title="quartz.config.yaml"
-- source: github:quartz-community/encrypted-pages
+- source: "@quartz-community/encrypted-pages"
   enabled: true
   options:
     iterations: 600000
     passwordField: password
     unlistWhenEncrypted: false
     outputPath: static/encryptedContentIndex.json
+  order: 900
 ```
 
 > [!warning]
-> The `EncryptedPages` transformer replaces the entire HAST tree of an encrypted page with an opaque ciphertext container. Any transformer that needs to read the real HTML — in particular [[CrawlLinks]], which populates the links used by backlinks and the shadow content index — must run **before** `EncryptedPages`. Use the `order` field in `quartz.config.yaml` to control this.
+> The `EncryptedPages` transformer replaces the entire HAST tree of an encrypted page with an opaque ciphertext container. Any transformer that needs to read the real HTML must run **before** `EncryptedPages`. Quartz's built-in [[CrawlLinks|link processing]] (`configuration.links`), which populates the links used by backlinks and the shadow content index, runs at order 60, and `EncryptedPages` defaults to order 900, so this holds out of the box. If you add other transformers that read page HTML, give them an `order` below `EncryptedPages`'.
 
 ## Security
 
@@ -126,4 +131,4 @@ This plugin provides a transformer, an emitter, and a component. All options are
 - Category: Transformer, Emitter
 - Function name: `ExternalPlugin.EncryptedPages()`, `ExternalPlugin.EncryptedContentIndex()`.
 - Source: [`quartz-community/encrypted-pages`](https://github.com/quartz-community/encrypted-pages)
-- Install: `npx quartz plugin add github:quartz-community/encrypted-pages`
+- Install: `npx quartz plugin add @quartz-community/encrypted-pages`

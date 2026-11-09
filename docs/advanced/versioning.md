@@ -42,7 +42,7 @@ and says whether to update Quartz (`npx quartz upgrade`) or the plugin. If an in
 
 ### For plugin authors
 
-- Set `quartzVersion` to the **oldest Quartz version your plugin works with**. Raise it when you start using a newer API — for example a plugin that relies on [[built-in processing]] (core-parsed frontmatter, `ctx.contentIndex`, `extendContentIndex`) needs `">=5.1.0"`.
+- Set `quartzVersion` to the **oldest Quartz version your plugin works with**. Raise it when you start using a newer API — for example a plugin that relies on [[built-in processing]] (core-parsed frontmatter, `ctx.contentIndex`, `extendContentIndex`), an async page type `generate`, `virtualPageHtmlPlugins`, `assets` or `window.quartzStaticUrl` needs `">=5.1.0"`. The [plugin template](https://github.com/quartz-community/plugin-template) starts with `">=5.0.0"`.
 - Prefer a lower bound (`>=5.1.0`) over a caret range: minor Quartz releases don't break plugins, so `^5` would only add an upper bound you'd have to bump at every major release. Add an upper bound when you know a major version breaks you.
 - Raising `quartzVersion` is a breaking change for users on older Quartz versions: release it as a new major (or at least minor) version of your plugin and say so in its changelog.
 - Pre-releases count: Quartz `5.2.0-beta.1` satisfies `>=5.1.0`.

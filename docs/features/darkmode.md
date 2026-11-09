@@ -12,7 +12,7 @@ Quartz supports darkmode out of the box that respects the user's theme preferenc
 ## Customization
 
 - Removing darkmode: remove the `darkmode` entry from `quartz.config.yaml` or set `enabled: false`.
-- Install: `npx quartz plugin add github:quartz-community/darkmode`
+- Install: `npx quartz plugin add @quartz-community/darkmode`
 - Source: [`quartz-community/darkmode`](https://github.com/quartz-community/darkmode)
 
 You can also listen to the `themechange` event to perform any custom logic when the theme changes.

@@ -15,7 +15,7 @@ Luckily, we can mimic nominal typing using [brands](https://www.typescriptlang.o
 type FullSlug = string
 
 // we do
-type FullSlug = string & { __brand: "full" }
+type FullSlug = string & { _brand: "FullSlug" }
 
 // that way, the following will fail typechecking
 const slug: FullSlug = "some random string"
@@ -25,7 +25,7 @@ While this prevents most typing mistakes _within_ our nominal typing system (e.g
 
 Thus, we still need to be careful when casting from a string to one of these nominal types in the 'entrypoints', illustrated with hexagon shapes in the diagram below.
 
-The following diagram draws the relationships between all the path sources, nominal path types, and what functions in `quartz/path.ts` convert between them.
+The following diagram draws the relationships between all the path sources, nominal path types, and what functions convert between them. In Quartz core they live in `quartz/util/path.ts`; plugins import the same functions from `@quartz-community/utils` (the types `FilePath`, `FullSlug` and `SimpleSlug` from `@quartz-community/types`).
 
 ```mermaid
 graph LR
@@ -49,3 +49,21 @@ Here are the main types of slugs with a rough description of each type of path:
 - `RelativeURL`: must start with `.` or `..` to indicate it's a relative URL. Shouldn't have `/index` as an ending or a file extension but can contain a trailing slash.
 
 To get a clearer picture of how these relate to each other, take a look at the path tests in `quartz/util/path.test.ts`.
+
+## A page's slug
+
+`slugifyFilePath()` lowercases, replaces spaces with `-` and normalizes Unicode to NFC (so `café.md` written in NFD, as macOS does, gets the same slug). But a page isn't always published at the slug of its file path: a note with a `permalink` in its frontmatter is published at that address instead (see [[built-in processing]]). Always use `file.data.slug` (or `fileData.slug` in components) for a page's address, and `file.data.relativePath` / `filePath` for its file; don't recompute the slug from the path.
+
+## Links
+
+To resolve a link the way Quartz does, use `transformLink(src, target, { strategy, allSlugs })`: `src` is the current page's slug, `strategy` is the site's `configuration.links.markdownLinkResolution` (`absolute`, `relative` or `shortest`) and `allSlugs` is `ctx.allSlugs`. It decodes percent-encoding, applies the same slug rules as `slugifyFilePath()` and resolves folder notes. A Markdown link whose path doesn't percent-decode (`[x](%zz)`) is external in Obsidian and in Quartz; check with `linkPathDecodes(link)` before treating a link as internal. `splitAnchor(link)` splits off the `#anchor` and slugs it as a heading anchor.
+
+## Headings and anchors
+
+Heading ids follow the GitHub rule (`github-slugger`, as `rehype-slug` and the table of contents use): lowercase, punctuation removed, spaces replaced by `-`, other letters and digits kept. Plugins that give headings ids or link to headings must use the helpers from `@quartz-community/utils`, so ids and anchors match:
+
+- `slugHeading(text)`: the id of a heading with this text;
+- `HeadingSlugger`: slugs all headings of one page in order and numbers repeats (`foo`, `foo-1`, …) — create one per page;
+- `obsidianHeadingAnchor(text)`: the anchor Obsidian writes for a heading (it replaces `:`, `|`, `^`, `#` and `\` with spaces); slug it with `slugHeading` and add it as an extra id when it differs;
+- `resolveAnchorHref(href, ids)`: points a same-page `#anchor` at an id that exists on the page (an id as written, a block reference `#^name`, or a heading's text);
+- `slugTag(tag)`: the slug of a tag, as used for tag pages.
