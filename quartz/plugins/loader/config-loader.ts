@@ -215,6 +215,8 @@ export function validateDependencies(
         warnings.push(
           `Plugin "${pluginName}" depends on "${depName}" which is disabled. "${pluginName}" may not function correctly.`,
         )
+        // it doesn't run, so its order doesn't matter (and its manifest isn't loaded)
+        continue
       }
 
       const depManifest = manifests.get(dep)
@@ -506,7 +508,9 @@ export async function loadQuartzConfig(
   )
 
   // Validate dependencies
-  const validation = validateDependencies(enabledEntries, manifests, builtinPlan.builtins)
+  // all entries: a dependency that is configured but disabled is a warning, not "missing"
+  // (validateDependencies skips disabled plugins itself)
+  const validation = validateDependencies(pluginEntries, manifests, builtinPlan.builtins)
   for (const warning of validation.warnings) {
     console.warn(styleText("yellow", `⚠`) + ` ${warning}`)
   }
