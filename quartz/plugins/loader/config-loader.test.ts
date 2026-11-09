@@ -1,6 +1,13 @@
 import test, { describe, afterEach } from "node:test"
 import assert from "node:assert"
-import { buildLayoutForEntries, isExcluded, resolveGroups } from "./config-loader"
+import {
+  buildLayoutForEntries,
+  isExcluded,
+  resolveGroups,
+  validateDependencies,
+} from "./config-loader"
+import { planBuiltins } from "../builtins"
+import type { PluginManifest } from "./types"
 import { componentRegistry } from "../../components/registry"
 import type { QuartzComponent, QuartzComponentConstructor } from "../../components/types"
 import { PluginJsonEntry, LayoutPosition } from "./types"
@@ -319,5 +326,50 @@ describe("isExcluded", () => {
 
   test("does not match another plugin", () => {
     assert.ok(!isExcluded("@quartz-community/explorer", ["reader-mode"]))
+  })
+})
+
+// crawl-links, remove-draft and content-index are built into core in 5.1: their entries are
+// absorbed before dependencies are checked, so a plugin depending on one must be satisfied by the
+// built-in (a community plugin depending on crawl-links failed every 5.1 build).
+describe("dependencies on plugins that are built in now", () => {
+  const source = "github:someone/cloudflare-media"
+  const check = (configuration: Record<string, unknown>, order?: number) => {
+    const entry: PluginJsonEntry = { source, enabled: true, options: {}, order }
+    const manifest = {
+      name: "cloudflare-media",
+      category: "transformer",
+      defaultOrder: 65,
+      dependencies: ["@quartz-community/crawl-links"],
+    } as unknown as PluginManifest
+    const plan = planBuiltins({
+      configuration,
+      entries: [],
+      nameOf: () => "",
+      providesOf: () => undefined,
+    })
+    return validateDependencies([entry], new Map([[source, manifest]]), plan.builtins)
+  }
+
+  test("are satisfied by the enabled built-in", () => {
+    assert.deepStrictEqual(check({}), { errors: [], warnings: [] })
+  })
+
+  test("warn when the built-in is disabled", () => {
+    const { errors, warnings } = check({ links: false })
+    assert.deepStrictEqual(errors, [])
+    assert.match(warnings[0], /built into Quartz now as configuration\.links and is disabled/)
+  })
+
+  test("must still run after the built-in in the same stage", () => {
+    const { errors } = check({}, 50)
+    assert.match(errors[0], /order: 50.*configuration\.links, order: 60/)
+  })
+
+  test("other missing dependencies still fail", () => {
+    const entry: PluginJsonEntry = { source, enabled: true, options: {} }
+    const manifest = { dependencies: ["@quartz-community/explorer"] } as unknown as PluginManifest
+    const { errors } = validateDependencies([entry], new Map([[source, manifest]]), [])
+    assert.match(errors[0], /requires "@quartz-community\/explorer"/)
   })
 })
