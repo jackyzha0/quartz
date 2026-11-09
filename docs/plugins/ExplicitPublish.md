@@ -16,6 +16,8 @@ This plugin filters content based on an explicit `publish` flag in the frontmatt
 
 This plugin has no configuration options.
 
+Files without frontmatter — `.base`, `.canvas` and `.excalidraw` files — can't be marked `publish: true`. They are published when a published page links to them (`[[Board.canvas]]`, or an embed such as `![[Board.canvas]]`), like Obsidian Publish adding the files a published note links to, and not otherwise. A base embedded in a published note renders inside it without a page of its own. A drawing stored as Markdown (`.excalidraw.md`) follows its own `publish:` like a note. (Quartz 5.1+.)
+
 > [!tip]
 > Images and other files are copied to your site whether or not a published page uses them. Set `configuration.publishAssets: referenced` to only publish the files that published pages link to or embed.
 

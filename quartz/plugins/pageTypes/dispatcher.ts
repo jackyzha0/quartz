@@ -2,7 +2,15 @@ import { QuartzEmitterPlugin, QuartzPageTypePluginInstance, TreeTransform } from
 import { QuartzComponent, QuartzComponentProps } from "../../components/types"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { FullPageLayout } from "../../cfg"
-import { FilePath, FullSlug, joinSegments, pathToRoot, slugifyFilePath } from "../../util/path"
+import {
+  FilePath,
+  FullSlug,
+  SimpleSlug,
+  joinSegments,
+  pathToRoot,
+  simplifySlug,
+  slugifyFilePath,
+} from "../../util/path"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { write } from "../emitters/helpers"
 import { BuildCtx, trieFromAllFiles } from "../../util/ctx"
@@ -10,6 +18,12 @@ import { StaticResources } from "../../util/resources"
 import { render } from "preact-render-to-string"
 import { fromHtml } from "hast-util-from-html"
 import { Root as HtmlRoot } from "hast"
+import { toHtml } from "hast-util-to-html"
+import { unified } from "unified"
+import { htmlToJsx } from "../../util/jsx"
+import { trace } from "../../util/trace"
+import { attributeError, originOf } from "../../util/pluginErrors"
+import { rejectingFilter } from "../../processors/filter"
 import fs from "fs"
 import path from "path"
 
@@ -155,6 +169,10 @@ export type VirtualEntry = {
  * content. `generate` may be async (Quartz 5.1+), e.g. to run the transformer chain or
  * esbuild; page types run one after another in priority order, as before. Virtual pages
  * (except the 404 page) are added to `ctx.virtualPages`.
+ *
+ * Pages of page types that render files (`fileExtensions`: `.base`, `.canvas`, …) go through the
+ * site's filters first, with `file.data.referencedBy` set; a page a filter rejects is dropped, so
+ * it is neither emitted nor listed (content index, folder pages, explorer, search) nor embeddable.
  */
 export async function generateVirtualPages(
   pageTypes: QuartzPageTypePluginInstance[],
@@ -165,6 +183,7 @@ export async function generateVirtualPages(
 ): Promise<VirtualEntry[]> {
   const cfg = ctx.cfg.configuration
   const virtualEntries: VirtualEntry[] = []
+  let references: Map<SimpleSlug, FullSlug[]> | undefined
   for (const pt of pageTypes) {
     if (!pt.generate) continue
     const virtualPages = await pt.generate({ content, cfg, ctx })
@@ -179,6 +198,14 @@ export async function generateVirtualPages(
         frontmatter: { title: vp.title, tags: [] },
         ...vp.data,
       })
+      if (fileBacked) {
+        // A page that stands for a file is published on the same terms as a note: the site's
+        // filters decide, seeing the frontmatter the page type gives it (an `.excalidraw.md`
+        // drawing's own) and which published pages link to it (bases-page#11).
+        references ??= referencesByTarget(content)
+        vfile.data.referencedBy = references.get(simplifySlug(vpSlug)) ?? []
+        if (rejectingFilter(ctx, [tree, vfile]) !== undefined) continue
+      }
       if (vpSlug !== "404") {
         ctx.virtualPages.push([tree, vfile])
       }
@@ -186,6 +213,26 @@ export async function generateVirtualPages(
     }
   }
   return virtualEntries
+}
+
+/**
+ * @internal Exported for testing only.
+ *
+ * For each link target, the published pages that link to or embed it (`file.data.links`), in
+ * content order.
+ */
+export function referencesByTarget(content: ProcessedContent[]): Map<SimpleSlug, FullSlug[]> {
+  const references = new Map<SimpleSlug, FullSlug[]>()
+  for (const [, file] of content) {
+    const slug = file.data.slug
+    if (!slug) continue
+    for (const target of new Set(file.data.links ?? [])) {
+      const from = references.get(target)
+      if (from) from.push(slug)
+      else references.set(target, [slug])
+    }
+  }
+  return references
 }
 
 /**
@@ -210,18 +257,71 @@ export function folderTrie(
   return trieFromAllFiles([...allFiles, ...fileBacked])
 }
 
+/** Renders a page's (already rendered and processed) tree as its body. */
+const RenderedBody: QuartzComponent = ({ fileData, tree }: QuartzComponentProps) =>
+  htmlToJsx((fileData.filePath ?? fileData.relativePath ?? fileData.slug) as FilePath, tree)
+
+/**
+ * @internal Exported for testing only.
+ *
+ * Run the transformers' `virtualPageHtmlPlugins` on the rendered body (`file.data.htmlAst`) of a
+ * page that stands for a file — e.g. encrypted-pages encrypting a canvas. When they change the
+ * tree, the page shows the changed tree instead of rendering its body again. A page whose body
+ * failed to render, or that a plugin throws on, is left unpublished: emitting it unprocessed could
+ * publish what the plugin protects.
+ */
+export function processVirtualPageHtml(
+  ve: VirtualEntry,
+  ctx: BuildCtx,
+  content: ProcessedContent[],
+): boolean {
+  if (!ve.fileBacked) return true
+  const transformers = (ctx.cfg.plugins?.transformers ?? []).filter((t) => t.virtualPageHtmlPlugins)
+  if (transformers.length === 0) return true
+  // its body failed to render: there is nothing to process, and it can't be emitted processed
+  const htmlAst = ve.vfile.data.htmlAst
+  if (!htmlAst) return false
+
+  const before = toHtml(htmlAst, { allowDangerousHtml: true })
+  for (const transformer of transformers) {
+    try {
+      const processor = unified().use(transformer.virtualPageHtmlPlugins!(ctx, content))
+      ve.vfile.data.htmlAst = processor.runSync(ve.vfile.data.htmlAst!, ve.vfile) as HtmlRoot
+    } catch (err) {
+      const file = ve.vfile.data.relativePath ?? ve.vpSlug
+      trace(
+        `Failed to process the HTML of \`${file}\``,
+        attributeError(err, { origin: originOf(transformer), stage: "html", file }) as Error,
+      )
+      return false
+    }
+  }
+  const processed = ve.vfile.data.htmlAst!
+  if (toHtml(processed, { allowDangerousHtml: true }) !== before) {
+    ve.tree = processed
+    ve.layout = { ...ve.layout, pageBody: RenderedBody }
+    // emitters that run later (content index, assets, …) read the page from ctx.virtualPages
+    const item = ctx.virtualPages.find(([, vfile]) => vfile === ve.vfile)
+    if (item) item[0] = processed
+  }
+  return true
+}
+
 /**
  * Render each virtual page's Body component to HTML and parse it to a hast tree,
- * populating both the ProcessedContent tree and vfile.data.htmlAst so that
- * transclusion (e.g. ![[file.canvas]]) can inline the virtual page's content.
+ * populating vfile.data.htmlAst so that transclusion (e.g. ![[file.canvas]]) can inline the
+ * virtual page's content, then run `virtualPageHtmlPlugins` on it (pages that stand for files).
+ * Returns the entries to emit: those whose processing failed are removed from `ctx.virtualPages`.
  */
 function populateVirtualPageHtmlAst(
   virtualEntries: VirtualEntry[],
   ctx: BuildCtx,
   allFiles: ProcessedContent[1]["data"][],
   resources: StaticResources,
-) {
+  content: ProcessedContent[],
+): VirtualEntry[] {
   const cfg = ctx.cfg.configuration
+  const failed = new Set<VirtualEntry>()
   for (const ve of virtualEntries) {
     const BodyComponent = ve.layout.pageBody
     const externalResources = pageResources(pathToRoot(ve.vpSlug), resources, ctx)
@@ -242,7 +342,16 @@ function populateVirtualPageHtmlAst(
       // Body rendering failed — leave htmlAst empty so transclusion falls
       // back to the default title-only display.
     }
+    // processed right after rendering, so later bodies that embed this page see the result
+    if (!processVirtualPageHtml(ve, ctx, content)) {
+      failed.add(ve)
+      ve.vfile.data.htmlAst = undefined
+    }
   }
+  if (failed.size === 0) return virtualEntries
+  const failedData = new Set([...failed].map((ve) => ve.vfile.data))
+  ctx.virtualPages = ctx.virtualPages.filter(([, vfile]) => !failedData.has(vfile.data))
+  return virtualEntries.filter((ve) => !failed.has(ve))
 }
 
 export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>> = (userOpts) => {
@@ -290,7 +399,13 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
       const allFilesWithVirtual = [...allFiles, ...virtualEntries.map((ve) => ve.vfile.data)]
 
       // Render Body components to populate htmlAst for transclusion
-      populateVirtualPageHtmlAst(virtualEntries, ctx, allFilesWithVirtual, resources)
+      const entriesToEmit = populateVirtualPageHtmlAst(
+        virtualEntries,
+        ctx,
+        allFilesWithVirtual,
+        resources,
+        content,
+      )
 
       // Phase 2: Emit regular pages (with virtual page data available for transclusion)
       for (const [tree, file] of content) {
@@ -315,7 +430,7 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
       }
 
       // Phase 3: Emit virtual pages
-      for (const ve of virtualEntries) {
+      for (const ve of entriesToEmit) {
         yield emitPage(
           ctx,
           ve.vpSlug,
@@ -371,7 +486,13 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
       const allFilesWithVirtual = [...allFiles, ...virtualEntries.map((ve) => ve.vfile.data)]
 
       // Render Body components to populate htmlAst for transclusion
-      populateVirtualPageHtmlAst(virtualEntries, ctx, allFilesWithVirtual, resources)
+      const entriesToEmit = populateVirtualPageHtmlAst(
+        virtualEntries,
+        ctx,
+        allFilesWithVirtual,
+        resources,
+        content,
+      )
 
       // Phase 2: Emit changed regular pages
       for (const [tree, file] of content) {
@@ -398,7 +519,7 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
       }
 
       // Phase 3: Emit virtual pages
-      for (const ve of virtualEntries) {
+      for (const ve of entriesToEmit) {
         yield emitPage(
           ctx,
           ve.vpSlug,
@@ -411,5 +532,16 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
         )
       }
     },
+  }
+}
+
+declare module "vfile" {
+  interface DataMap {
+    /**
+     * On a page that stands for a file (`.base`, `.canvas`, …): the published pages that link to
+     * or embed it. Set before the site's filters see the page, e.g. so explicit-publish can publish
+     * a file that has no frontmatter when a published note links to it.
+     */
+    referencedBy: FullSlug[]
   }
 }

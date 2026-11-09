@@ -96,6 +96,7 @@ export type QuartzTransformerPluginInstance = {
   textTransform?: (ctx: BuildCtx, src: string) => string
   markdownPlugins?: (ctx: BuildCtx) => PluggableList
   htmlPlugins?: (ctx: BuildCtx) => PluggableList
+  virtualPageHtmlPlugins?: (ctx: BuildCtx, content: ProcessedContent[]) => PluggableList
   externalResources?: (ctx: BuildCtx) => Partial<StaticResources>
 }
 ```
@@ -105,6 +106,7 @@ All transformer plugins must define at least a `name` field to register the plug
 - `textTransform` performs a text-to-text transformation _before_ a file is parsed into the [Markdown AST](https://github.com/syntax-tree/mdast).
 - `markdownPlugins` defines a list of [remark plugins](https://github.com/remarkjs/remark/blob/main/doc/plugins.md). `remark` is a tool that transforms Markdown to Markdown in a structured way.
 - `htmlPlugins` defines a list of [rehype plugins](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md). Similar to how `remark` works, `rehype` is a tool that transforms HTML to HTML in a structured way.
+- `virtualPageHtmlPlugins` (Quartz 5.1+) defines rehype plugins for the pages that page types render from files (`.base`, `.canvas`, Excalidraw drawings). Those pages are rendered when emitting and never pass through `htmlPlugins`, so a plugin that should also act on them (e.g. encryption) registers its rehype plugin here too. They run on the page's rendered body, with the page's vfile (`file.data.frontmatter`, `file.data.referencedBy`), after the filters published the page; the page then shows the resulting tree. `content` is the published content.
 - `externalResources` defines any external resources the plugin may need to load on the client-side for it to work properly.
 
 Normally for both `remark` and `rehype`, you can find existing plugins that you can use. If you'd like to create your own `remark` or `rehype` plugin, checkout the [guide to creating a plugin](https://unifiedjs.com/learn/guide/create-a-plugin/) using `unified` (the underlying AST parser and transformer library).
@@ -257,6 +259,8 @@ export type QuartzFilterPluginInstance = {
 
 A filter plugin must define a `name` field and a `shouldPublish` function that takes in a piece of content that has been processed by all the transformers and returns a `true` or `false` depending on whether it should be passed to the emitter plugins or not.
 
+Filters also see the pages that page types render from files (Quartz 5.1+; page types that declare `fileExtensions`, e.g. `.base` and `.canvas` pages), with the frontmatter the page type gives them and `file.data.referencedBy`: the published pages that link to them. A page a filter rejects is not emitted, listed or embeddable. Such files may have no frontmatter (`.base`, `.canvas`): [[ExplicitPublish]] publishes them when a published page links to them.
+
 For example, here is a filter that removes drafts (Quartz has this [[RemoveDrafts|built in]]):
 
 ```ts
@@ -389,7 +393,7 @@ export interface QuartzPageTypePluginInstance {
 
 - `name`: A unique identifier for this page type.
 - `priority`: Controls matching order when multiple page types could match a slug. Higher priority page types are checked first. Default: `0`.
-- `fileExtensions`: Array of file extensions this page type handles (e.g. `[".canvas"]`, `[".base"]`). Content files (`.md`) are handled by the default content page type.
+- `fileExtensions`: Array of file extensions this page type handles (e.g. `[".canvas"]`, `[".base"]`). Content files (`.md`) are handled by the default content page type. The pages of such a page type stand for files: Quartz runs the site's filters on them (Quartz 5.1+), so give each page the file's `filePath` / `relativePath` and, if the file has frontmatter, that frontmatter.
 - `match`: A function that determines whether a given slug/file should be rendered by this page type.
 - `generate`: An optional function that produces virtual pages (pages not backed by files on disk, such as folder listings or tag indices). It receives `{ content, cfg, ctx }` and returns the pages, or (Quartz 5.1+) a promise of them, so it can do async work such as running content through the site's transformers or bundling with esbuild. Page types generate one after another, in priority order. A plugin with an async `generate` should declare `"quartzVersion": ">=5.1.0"`, since older versions don't wait for it.
 - `layout`: The layout configuration key (e.g. `"content"`, `"folder"`, `"tag"`). This determines which `byPageType` entry in `quartz.config.yaml` provides the layout overrides for this page type.
