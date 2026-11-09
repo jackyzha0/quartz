@@ -428,6 +428,8 @@ export async function handleBuild(argv) {
         `${styleText("red", "Failed to build Quartz.")} Check for syntax errors in your configuration or plugins.`,
       )
       console.log(`Reason: ${styleText("gray", err.message ?? String(err))}`)
+      // stop esbuild's child process first: it shares our stderr and outlives us otherwise
+      void esbuild.stop()
       process.exit(1)
     })
     release()
