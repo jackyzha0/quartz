@@ -8,12 +8,15 @@ import {
   folderTrie,
   generateVirtualPages,
   pageOutputPath,
+  processVirtualPageHtml,
+  referencesByTarget,
   removeStalePageOutput,
   resolveLayout,
 } from "./dispatcher"
 import { QuartzPageTypePluginInstance } from "../types"
 import { QuartzComponent } from "../../components/types"
-import { FilePath, FullSlug } from "../../util/path"
+import { FilePath, FullSlug, SimpleSlug } from "../../util/path"
+import { Root as HtmlRoot } from "hast"
 import { BuildCtx } from "../../util/ctx"
 import { defaultProcessedContent } from "../vfile"
 
@@ -363,5 +366,145 @@ describe("folders of virtual pages (#2576)", () => {
     assert.deepStrictEqual(children("mixed"), ["mixed/board.base", "mixed/note"])
     assert.strictEqual(trie.findNode(["tags", "index"]), undefined)
     assert.strictEqual(trie.findNode(["trips", "index"])?.data, null)
+  })
+})
+
+describe("publish filters on pages that stand for files (bases-page#11)", () => {
+  const note = (slug: string, links: string[], frontmatter: Record<string, unknown> = {}) =>
+    defaultProcessedContent({
+      slug: slug as FullSlug,
+      relativePath: `${slug}.md` as FilePath,
+      links: links as SimpleSlug[],
+      frontmatter: { title: slug, ...frontmatter },
+    })
+  const page = (slug: string, data: Record<string, unknown> = {}) => ({
+    slug: slug as FullSlug,
+    title: slug,
+    data: { relativePath: slug as FilePath, ...data },
+  })
+  // publishes notes with `publish: true`, and files a published page links to
+  const explicitPublish = {
+    name: "ExplicitPublish",
+    shouldPublish: (_ctx: BuildCtx, [, vfile]: ReturnType<typeof note>) =>
+      vfile.data.frontmatter?.publish === true || (vfile.data.referencedBy?.length ?? 0) > 0,
+  }
+  const makeCtx = (plugins: Record<string, unknown[]> = {}) =>
+    ({
+      cfg: { configuration: {}, plugins: { filters: [explicitPublish], ...plugins } },
+      argv: {},
+      virtualPages: [],
+    }) as unknown as BuildCtx
+
+  test("referencesByTarget lists the pages linking to each target", () => {
+    const refs = referencesByTarget([
+      note("a", ["board.canvas", "b"]),
+      note("b", ["board.canvas", "board.canvas"]),
+    ])
+    assert.deepStrictEqual(refs.get("board.canvas" as SimpleSlug), ["a", "b"])
+    assert.deepStrictEqual(refs.get("b" as SimpleSlug), ["a"])
+  })
+
+  test("file-backed pages go through the filters, with referencedBy; listings do not", async () => {
+    const ctx = makeCtx()
+    const entries = await generateVirtualPages(
+      [
+        makePageType({
+          name: "canvas",
+          fileExtensions: [".canvas"],
+          generate: () => [page("linked.canvas"), page("secret.canvas")],
+        }),
+        makePageType({
+          name: "excalidraw",
+          fileExtensions: [".excalidraw.md"],
+          generate: () => [
+            page("drawing.excalidraw", { frontmatter: { title: "drawing", publish: true } }),
+          ],
+        }),
+        makePageType({ name: "tags", generate: () => [page("tags/a")] }),
+      ],
+      [note("index", ["linked.canvas"], { publish: true })],
+      ctx,
+      { head: StubHead },
+      {},
+    )
+    assert.deepStrictEqual(
+      entries.map((e) => e.vpSlug),
+      ["linked.canvas", "drawing.excalidraw", "tags/a"],
+    )
+    assert.deepStrictEqual(entries[0].vfile.data.referencedBy, ["index"])
+    assert.deepStrictEqual(entries[1].vfile.data.referencedBy, [])
+    assert.strictEqual(entries[2].vfile.data.referencedBy, undefined)
+    assert.deepStrictEqual(
+      ctx.virtualPages.map(([, vfile]) => vfile.data.slug),
+      ["linked.canvas", "drawing.excalidraw", "tags/a"],
+    )
+  })
+
+  const rendered = (ctx: BuildCtx) => {
+    const [tree, vfile] = defaultProcessedContent({
+      slug: "board.canvas" as FullSlug,
+      relativePath: "board.canvas" as FilePath,
+      frontmatter: { title: "board", password: "pw" },
+      htmlAst: {
+        type: "root",
+        children: [{ type: "element", tagName: "p", properties: {}, children: [] }],
+      } as HtmlRoot,
+    })
+    const layout = resolveLayout(makePageType(), { head: StubHead }, {})
+    ctx.virtualPages.push([tree, vfile])
+    return {
+      ve: { tree, vfile, layout, vpSlug: "board.canvas" as FullSlug, fileBacked: true },
+      ctx,
+    }
+  }
+
+  test("virtualPageHtmlPlugins process the rendered body, which the page then shows", () => {
+    const seen: unknown[] = []
+    const { ve, ctx } = rendered(
+      makeCtx({
+        transformers: [
+          {
+            name: "Encrypt",
+            virtualPageHtmlPlugins: (_ctx: BuildCtx, content: unknown[]) => {
+              seen.push(content)
+              return [
+                () => (tree: HtmlRoot, file: { data: Record<string, unknown> }) => {
+                  tree.children = [{ type: "text", value: "encrypted" }]
+                  file.data.encrypted = true
+                },
+              ]
+            },
+          },
+        ],
+      }),
+    )
+    const Body = ve.layout.pageBody
+    assert.strictEqual(processVirtualPageHtml(ve, ctx, []), true)
+    assert.deepStrictEqual(seen, [[]])
+    assert.deepStrictEqual(ve.tree.children, [{ type: "text", value: "encrypted" }])
+    assert.strictEqual(ve.vfile.data.htmlAst, ve.tree)
+    assert.strictEqual((ve.vfile.data as Record<string, unknown>).encrypted, true)
+    assert.strictEqual(ctx.virtualPages[0][0], ve.tree)
+    assert.notStrictEqual(ve.layout.pageBody, Body)
+  })
+
+  test("a page whose processing leaves the tree alone keeps its body", () => {
+    const { ve, ctx } = rendered(
+      makeCtx({ transformers: [{ name: "Noop", virtualPageHtmlPlugins: () => [() => () => {}] }] }),
+    )
+    const Body = ve.layout.pageBody
+    assert.strictEqual(processVirtualPageHtml(ve, ctx, []), true)
+    assert.strictEqual(ve.layout.pageBody, Body)
+    assert.strictEqual(ve.tree.children.length, 0)
+  })
+
+  test("a page whose body failed to render is not published unprocessed", () => {
+    const { ve, ctx } = rendered(
+      makeCtx({ transformers: [{ name: "Encrypt", virtualPageHtmlPlugins: () => [] }] }),
+    )
+    ve.vfile.data.htmlAst = undefined
+    assert.strictEqual(processVirtualPageHtml(ve, ctx, []), false)
+    // without such plugins nothing changes
+    assert.strictEqual(processVirtualPageHtml(ve, makeCtx(), []), true)
   })
 })
