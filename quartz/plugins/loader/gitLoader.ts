@@ -111,6 +111,10 @@ export function isLocalSource(source: PluginSource): boolean {
   if (source.startsWith("./") || source.startsWith("../") || source.startsWith("/")) {
     return true
   }
+  // Windows relative paths (.\plugin, ..\plugin)
+  if (source.startsWith(".\\") || source.startsWith("..\\")) {
+    return true
+  }
   // Windows absolute paths (e.g. C:\ or D:/)
   if (/^[A-Za-z]:[\\/]/.test(source)) {
     return true
