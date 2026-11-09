@@ -498,7 +498,7 @@ Key requirements:
 - `name`: A unique string identifier. This is what page types and YAML config reference.
 - `render()`: Receives all layout slots (header, sidebars, content, footer) and returns JSX for the inner page structure. Note that `footer` is a `QuartzComponent[]` (an array) — frames should iterate over it with `.map()` to render all footer components.
 - `css` (optional): Frame-specific CSS. Scope it with `.page[data-frame="my-frame"]` selectors to avoid conflicts.
-- `quartzStyles` (optional): Defaults to `true`. Set it to `false` and pages using this frame skip `index.css` and all component CSS, so the frame starts from unstyled HTML. Plugin CSS still loads.
+- `quartzStyles` (optional): Defaults to `true`. Set it to `false` and pages using this frame skip `index.css` and all component CSS, so the frame starts from unstyled HTML. That includes popover styles and the site's `custom.scss`, so the frame has to style popovers itself. Plugin CSS still loads.
 
 **2. Re-export the frame:**
 
