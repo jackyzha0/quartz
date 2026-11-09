@@ -183,6 +183,46 @@ describe("renderTranscludes", () => {
     assert.ok(!secondText.includes("Circular transclusion"), "should not show circular warning")
   })
 
+  test("a header transclusion matches a heading's Obsidian-anchor alias", () => {
+    const root: Root = {
+      type: "root",
+      children: [makeTranscludeBlockquote("target", "#colon-unspaced")],
+    }
+    const targetHtml: Root = {
+      type: "root",
+      children: [
+        {
+          type: "element",
+          tagName: "h2",
+          properties: { id: "colonunspaced" },
+          children: [
+            {
+              type: "element",
+              tagName: "span",
+              properties: { id: "colon-unspaced", className: ["heading-alias"] },
+              children: [],
+            },
+            { type: "text", value: "Colon:unspaced" },
+          ],
+        },
+        {
+          type: "element",
+          tagName: "p",
+          properties: {},
+          children: [{ type: "text", value: "Section text" }],
+        },
+      ],
+    }
+    renderTranscludes(
+      root,
+      cfg,
+      "current" as FullSlug,
+      makeComponentData([makePageData("target", targetHtml)]) as QuartzComponentProps,
+      new Set<FullSlug>(["current" as FullSlug]),
+    )
+    assert.ok(JSON.stringify((root.children[0] as Element).children).includes("Section text"))
+  })
+
   test("detects actual circular transclusion (A -> B -> A)", () => {
     // Page A embeds B, and B's htmlAst contains a transclusion of A
     const bTranscludesA = makeTranscludeBlockquote("pageA")
