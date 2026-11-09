@@ -7,9 +7,26 @@ aliases:
 
 Quartz 5 is a ground-up rearchitecture of Quartz focused on extensibility, performance, and Obsidian compatibility. If you're coming from v4, see [[migrating|Migrating to Quartz 5]] for the upgrade path.
 
+## New in 5.1
+
+Upgrading from 5.0? See [[upgrading#Upgrading from 5.0 to 5.1|Upgrading from 5.0 to 5.1]] for the steps and the changes you may notice.
+
+- **[[prefetching|Prefetching]]** — pages are fetched before their links are followed, so they open at once (`configuration.prefetch`, default `viewport`). Works with and without SPA routing.
+- **[[built-in processing|Built-in processing]]** — frontmatter, link resolution, drafts and the content index are built into Quartz (`configuration.frontmatter`, `links`, `drafts`, `contentIndex`) instead of plugins that broke the site when disabled.
+- **`publishAssets: referenced`** — only copy the images and files that published pages use.
+- **Permalinks as addresses** — `permalink: page` publishes a note at `/page`, as in Obsidian Publish.
+- **Sidebar modes** — [[layout#Sidebar modes|`layout.sidebars`]] (`fit`, `scroll`, `static`) and a new `docs` template (`npx quartz create --template docs`).
+- **Markdown as in Obsidian** — [[ObsidianFlavoredMarkdown]] 2.0 parses with Obsidian's own parser: single line breaks render as `<br>`, inline footnotes (`text^[note]`), image sizes on Markdown images (`![alt|300](image.png)`), themed Mermaid diagrams. [[GitHubFlavoredMarkdown]] now runs first, and headings get the same ids as on GitHub.
+- **Bases as in Obsidian 1.15** — [[BasesPage]] 1.2: durations, nested tags, `file.name`/`file.fullname`, Obsidian's card layout. Pages rendered from `.base`, `.canvas` and Excalidraw files follow your publish filters.
+- **`npx quartz info`** — prints your Quartz version, environment and plugins for bug reports.
+- **`npx quartz plugin doctor`** — checks your config, lockfile and installed plugins, and `--fix` migrates entries of plugins that are now built in. `npx quartz upgrade` shows the release notes and runs these checks.
+- **Clearer errors** — plugin errors name the plugin, what it was doing and the file; problems in content say so; broken or incompatible plugins fail CI builds. `--verbose` prints a layout report.
+- **Plugin compatibility** — a plugin's required Quartz version is checked (a warning locally, an error in CI), and deprecated plugins are flagged.
+- **Fixes** — Windows (npm plugins in `.quartz/plugins/index.ts`, local plugin paths, aliases, git dates), no sideways scrolling on phones, SPA navigation across redirects, and JavaScript frontmatter (`---js`) is no longer executed.
+
 ## Plugin Ecosystem
 
-The biggest change in v5 is the move to a **community plugin ecosystem**. Plugins are now standalone packages maintained in the [quartz-community](https://github.com/quartz-community) GitHub organization and installed via git:
+The biggest change in v5 is the move to a **community plugin ecosystem**. Plugins are now standalone packages maintained in the [quartz-community](https://github.com/quartz-community) GitHub organization. The default plugins are npm packages (`@quartz-community/explorer`) that ship with Quartz; others can be added from npm, git or a local folder:
 
 ```bash
 npx quartz plugin add github:quartz-community/explorer
@@ -41,10 +58,13 @@ configuration:
       body: Source Sans Pro
       code: IBM Plex Mono
 plugins:
-  - source: github:quartz-community/obsidian-flavored-markdown
+  - source: "@quartz-community/github-flavored-markdown"
     enabled: true
     order: 30
-  - source: github:quartz-community/explorer
+  - source: "@quartz-community/obsidian-flavored-markdown"
+    enabled: true
+    order: 40
+  - source: "@quartz-community/explorer"
     enabled: true
     layout:
       position: left
@@ -76,7 +96,7 @@ Quartz 5 aims for full compatibility with Obsidian's core features:
 - **Video/audio embeds** — full format support (mp4, webm, ogv, mov, mkv, avi, flac, aac, etc.)
 - **Canvas files** — rendered as interactive, pannable pages via the canvas-page plugin
 - **Obsidian URI links** — marked with CSS class for custom styling
-- **Footnotes** — via the GitHub Flavored Markdown plugin
+- **Footnotes** — including inline footnotes (`text^[note]`), parsed by the Obsidian Flavored Markdown plugin
 
 See [[Obsidian compatibility]] for the full list.
 
@@ -98,11 +118,11 @@ The layout system is now declarative. Plugins declare their position (`left`, `r
 
 ```yaml
 plugins:
-  - source: github:quartz-community/explorer
+  - source: "@quartz-community/explorer"
     layout:
       position: left
       priority: 50
-  - source: github:quartz-community/graph
+  - source: "@quartz-community/graph"
     layout:
       position: right
       priority: 10
@@ -127,16 +147,18 @@ Additional features:
 
 The CLI is simpler and more helpful:
 
-| Command                          | Description                             |
-| -------------------------------- | --------------------------------------- |
-| `npx quartz create`              | Interactive setup wizard with templates |
-| `npx quartz build --serve`       | Build and serve with hot reload         |
-| `npx quartz sync`                | Commit and push to GitHub               |
-| `npx quartz upgrade`             | Pull latest Quartz updates              |
-| `npx quartz plugin install`      | Install plugins from lockfile           |
-| `npx quartz plugin add <source>` | Add a new plugin                        |
-| `npx quartz plugin list`         | List installed plugins                  |
-| `npx quartz plugin prune`        | Remove unused plugins                   |
+| Command                          | Description                               |
+| -------------------------------- | ----------------------------------------- |
+| `npx quartz create`              | Interactive setup wizard with templates   |
+| `npx quartz build --serve`       | Build and serve with hot reload           |
+| `npx quartz sync`                | Commit and push to GitHub                 |
+| `npx quartz upgrade`             | Pull latest Quartz updates                |
+| `npx quartz plugin install`      | Install plugins from lockfile             |
+| `npx quartz plugin add <source>` | Add a new plugin                          |
+| `npx quartz plugin list`         | List installed plugins                    |
+| `npx quartz plugin prune`        | Remove unused plugins                     |
+| `npx quartz plugin doctor`       | Diagnose plugin problems                  |
+| `npx quartz info`                | Print version and plugins for bug reports |
 
 Other improvements:
 

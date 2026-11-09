@@ -48,7 +48,7 @@ In every case, the page's HTML is still emitted and accessible by direct URL.
 Zero options. Just enable it.
 
 ```yaml title="quartz.config.yaml"
-- source: github:quartz-community/unlisted-pages
+- source: "@quartz-community/unlisted-pages"
   enabled: true
 ```
 
@@ -65,4 +65,4 @@ The [[EncryptedPages]] plugin also sets `file.data.unlisted` when its `unlistWhe
 - Category: Transformer
 - Function name: `ExternalPlugin.UnlistedPages()`.
 - Source: [`quartz-community/unlisted-pages`](https://github.com/quartz-community/unlisted-pages)
-- Install: `npx quartz plugin add github:quartz-community/unlisted-pages`
+- Install: `npx quartz plugin add @quartz-community/unlisted-pages` (included in the default configuration)

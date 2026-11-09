@@ -1,6 +1,6 @@
 ---
 title: ContentMeta
-description: Displays creation date and reading time.
+description: Displays the page date and reading time.
 tags:
   - plugin/component
 image:
@@ -9,7 +9,9 @@ enabled: true
 required: false
 ---
 
-This plugin displays content metadata below the article title, such as the creation date and estimated reading time.
+This plugin displays content metadata below the article title: the page's date and the estimated reading time.
+
+The date shown is the one selected by the `defaultDateType` option of [[CreatedModifiedDate]] (`modified` by default), so no date is shown when that plugin is disabled. Pages without text content show no metadata.
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
@@ -24,11 +26,14 @@ This plugin accepts the following configuration options:
 ### Default options
 
 ```yaml title="quartz.config.yaml"
-- source: github:quartz-community/content-meta
+- source: "@quartz-community/content-meta"
   enabled: true
   options:
     showReadingTime: true
     showComma: true
+  layout:
+    position: beforeBody
+    priority: 20
 ```
 
 ## API
@@ -36,4 +41,4 @@ This plugin accepts the following configuration options:
 - Category: Component
 - Function name: `ExternalPlugin.ContentMeta()`.
 - Source: [`quartz-community/content-meta`](https://github.com/quartz-community/content-meta)
-- Install: `npx quartz plugin add github:quartz-community/content-meta`
+- Install: `npx quartz plugin add @quartz-community/content-meta`

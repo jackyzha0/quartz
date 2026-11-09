@@ -16,8 +16,8 @@ This plugin provides support for [ox-hugo](https://github.com/kaushalmodi/ox-hug
 
 This plugin accepts the following configuration options:
 
-- `wikilinks`: If `true` (default), converts Hugo `{{ relref }}` shortcodes to Quartz [[wikilinks]].
-- `removePredefinedAnchor`: If `true` (default), strips predefined anchors from headings.
+- `wikilinks`: If `true` (default), converts Hugo `{{< relref >}}` links (`[text]({{< relref "page" >}})`) to regular Markdown links (`[text](page)`).
+- `removePredefinedAnchor`: If `true` (default), strips predefined anchors (`{#id}`) from headings.
 - `removeHugoShortcode`: If `true` (default), removes Hugo shortcode syntax (`{{}}`) from the content.
 - `replaceFigureWithMdImg`: If `true` (default), replaces `<figure/>` with `![]()`.
 - `replaceOrgLatex`: If `true` (default), converts Org-mode [[features/Latex|Latex]] fragments to Quartz-compatible LaTeX wrapped in `$` (for inline) and `$$` (for block equations).
@@ -27,9 +27,25 @@ This plugin accepts the following configuration options:
 >
 > If you use `toml` frontmatter, make sure to set `configuration.frontmatter` accordingly (see [[Frontmatter]]). See [[OxHugo compatibility]] for an example.
 
+### Default options
+
+The default config has a disabled entry for this plugin. Set `enabled: true` to use it:
+
+```yaml title="quartz.config.yaml"
+- source: "@quartz-community/ox-hugo"
+  enabled: true
+  options:
+    wikilinks: true
+    removePredefinedAnchor: true
+    removeHugoShortcode: true
+    replaceFigureWithMdImg: true
+    replaceOrgLatex: true
+  order: 91
+```
+
 ## API
 
 - Category: Transformer
-- Function name: `ExternalPlugin.OxHugoFlavoredMarkdown()`.
+- Function name: `ExternalPlugin.OxHugoFlavouredMarkdown()` (British spelling).
 - Source: [`quartz-community/ox-hugo`](https://github.com/quartz-community/ox-hugo)
-- Install: `npx quartz plugin add github:quartz-community/ox-hugo`
+- Install: `npx quartz plugin add @quartz-community/ox-hugo`

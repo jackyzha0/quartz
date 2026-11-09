@@ -14,17 +14,17 @@ Quartz features a graph-view that can show both a local graph view and a global 
 
 ## Installation
 
-The Graph View is available as a community plugin from GitHub:
+The Graph View is part of the default `quartz.config.yaml`. If your config doesn't have it, add it with:
 
 ```bash
-npm install github:quartz-community/graph --legacy-peer-deps
+npx quartz plugin add @quartz-community/graph
 ```
 
-Then add it to your `quartz.config.yaml`:
+This adds an entry like this to your `quartz.config.yaml`:
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/graph
+  - source: "@quartz-community/graph"
     enabled: true
     layout:
       position: right
@@ -42,13 +42,13 @@ Additionally, similar to how browsers highlight visited links a different colour
 
 ## Customization
 
-Most configuration can be done by passing in options to `Graph()`.
+Most configuration can be done through the plugin's `options`.
 
 For example, here's what the default configuration looks like:
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/graph
+  - source: "@quartz-community/graph"
     enabled: true
     options:
       localGraph:
@@ -63,6 +63,7 @@ plugins:
         opacityScale: 1
         removeTags: []
         showTags: true
+        focusOnHover: false
         enableRadial: false
       globalGraph:
         drag: true
@@ -70,7 +71,7 @@ plugins:
         depth: -1
         scale: 0.9
         repelForce: 0.5
-        centerForce: 0.3
+        centerForce: 0.2
         linkDistance: 30
         fontSize: 0.6
         opacityScale: 1

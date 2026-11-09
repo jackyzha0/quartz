@@ -68,15 +68,13 @@ This will prompt you for:
 
 For non-interactive usage and more details, see the [[create|`quartz create` CLI reference]].
 
-## 4. Install Plugins
+## 4. Plugins
 
-The template you chose references community plugins that need to be installed:
+`npx quartz create` already installed the plugins your template uses: the default plugins are npm packages installed by `npm i`, and any Git plugins the template references are downloaded into `.quartz/plugins/`. If you later add Git plugins to `quartz.config.yaml` by hand, install them with:
 
 ```bash
 npx quartz plugin install --from-config
 ```
-
-This downloads and builds all plugins listed in `quartz.config.yaml` into `.quartz/plugins/`.
 
 > [!tip]
 > If some plugins fail to build, try refreshing them to their latest versions:
@@ -151,7 +149,8 @@ npx quartz sync
 > - `-d` or `--directory`: the content folder. This is normally just `content`
 > - `-v` or `--verbose`: print out extra logging information
 > - `--commit` or `--no-commit`: whether to make a `git` commit for your changes
-> - `--push` or `--no-push`: whether to push updates to your GitHub fork of Quartz
+> - `-m` or `--message`: the commit message (default: `Quartz sync: <date and time>`)
+> - `--push` or `--no-push`: whether to force-push updates to your GitHub fork of Quartz
 > - `--pull` or `--no-pull`: whether to try and pull in any updates from your GitHub fork (i.e. from other devices) before pushing
 
 ## Next Steps

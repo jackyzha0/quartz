@@ -9,7 +9,7 @@ enabled: true
 required: false
 ---
 
-This plugin emits a `CNAME` record that points your subdomain to the default domain of your site.
+This plugin writes a `CNAME` file to the root of the output folder containing the hostname of `configuration.baseUrl` (for `baseUrl: quartz.example.com/docs` that is `quartz.example.com`). Hosts such as GitHub Pages read this file to serve the site on a custom domain. If `baseUrl` is not set, the plugin warns and writes nothing.
 
 If you want to use a custom domain name like `quartz.example.com` for the site, then this is needed.
 
@@ -25,4 +25,4 @@ This plugin has no configuration options.
 - Category: Emitter
 - Function name: `ExternalPlugin.CNAME()`.
 - Source: [`quartz-community/cname`](https://github.com/quartz-community/cname)
-- Install: `npx quartz plugin add github:quartz-community/cname`
+- Install: `npx quartz plugin add @quartz-community/cname`

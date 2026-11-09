@@ -13,7 +13,7 @@ To fetch the latest Quartz updates, simply run
 npx quartz upgrade
 ```
 
-As Quartz uses [git](https://git-scm.com/) under the hood for versioning, upgrading effectively 'pulls' in the updates from the official Quartz GitHub repository. Merge conflicts in `quartz.lock.json` are handled automatically — Quartz backs up your lockfile before pulling and restores it afterward. For other files with local changes that conflict with the updates, you may need to resolve these manually yourself (or, pull manually using `git pull origin upstream`).
+As Quartz uses [git](https://git-scm.com/) under the hood for versioning, upgrading effectively 'pulls' in the updates from the official Quartz GitHub repository. Merge conflicts in `quartz.lock.json` are handled automatically — Quartz backs up your lockfile before pulling and restores it afterward. For other files with local changes that conflict with the updates, you may need to resolve these manually yourself (or pull manually with `git pull upstream v5`).
 
 > [!hint]
 > Quartz will try to cache your content before upgrading to try and prevent merge conflicts. If you get a conflict mid-merge, you can stop the merge and then run `npx quartz restore` to restore your content from the cache.
@@ -27,6 +27,35 @@ npx quartz plugin install --latest
 ```
 
 See the [[upgrade|CLI reference for upgrade]] for more details on available flags.
+
+## Upgrading from 5.0 to 5.1
+
+Run the upgrade, then let `plugin doctor` update your config:
+
+```bash
+npx quartz upgrade
+npx quartz plugin doctor --fix
+```
+
+`upgrade` shows the release notes since your version and runs `plugin doctor` for you. `--fix` moves the entries of plugins that are now [[built-in processing|built into Quartz]] (`crawl-links`, `remove-draft`, `content-index`, and note-properties' `delimiters`/`language` options) into `configuration.links`, `drafts`, `contentIndex` and `frontmatter`, and removes their unused pins from `quartz.lock.json`. Until you run it, those entries keep working and are applied automatically.
+
+### Changes you may notice
+
+- **Line breaks**: a single line break inside a paragraph now renders as `<br>`, as in Obsidian's reading view ([[ObsidianFlavoredMarkdown]] 2.0). Set `strictLineBreaks: true` in its options to keep the old behaviour (a space). The [[HardLineBreaks]] plugin is deprecated and no longer in the default config; Quartz warns while it is enabled.
+- **Plugin order**: [[GitHubFlavoredMarkdown]] now runs before ObsidianFlavoredMarkdown (`order` 30, then 40). If your config sets `order` for either, keep GitHubFlavoredMarkdown first. Strikethrough (`~~`) now follows Obsidian's rules.
+- **Heading ids**: a heading containing `--` gets the same id as on GitHub (`## Range 1--2` → `#range-1--2`, was `#range-12`). Links that hard-code an old id need updating; `[[page#Range 1--2]]` keeps working.
+- **Bases** behave as in Obsidian 1.15 ([[BasesPage]] 1.2): `file.name` of a Markdown note has no extension (`Note`; `file.fullname` has it), `file.tags` keeps `#` and the original case, nested tags match (`#project` finds `#project/x`), the cards' `imageAspectRatio` is height/width (it was inverted), a base opens on its first view, and subtracting dates gives a duration (`(due - today()).days`).
+- **Permalinks** are now the page's address: `permalink: page` publishes the note at `/page`, and its file path redirects there. Before, the permalink only redirected to the file path. See [[authoring-content|frontmatter fields]].
+- **Frontmatter**: `---js` / `---javascript` frontmatter is refused, and invalid frontmatter (e.g. broken YAML) stops the build with an error naming the file.
+- **Plugins in CI**: builds with `CI` set (GitHub Actions, Cloudflare Pages, Netlify, Vercel, …) fail on plugins that fail to load or need a newer Quartz. Set `QUARTZ_ALLOW_BROKEN_PLUGINS=1` or `QUARTZ_ALLOW_INCOMPATIBLE_PLUGINS=1` to deploy anyway. See [[troubleshooting#Reading build output]].
+
+### New options
+
+- `configuration.prefetch` (default `viewport`): pages are fetched before their links are followed. See [[prefetching]].
+- `configuration.publishAssets: referenced` copies only the files published pages use, so files used only by unpublished notes stay private (default `all`).
+- `layout.sidebars`: how sidebars taller than the screen behave (`fit`, `scroll`, `static`). See [[layout#Sidebar modes]].
+
+See [[whats-new#New in 5.1|What's new in 5.1]] for everything else.
 
 ### Layout System Changes
 
@@ -104,17 +133,7 @@ plugins:
 > [!important]
 > The `@` scoped name must be quoted in YAML. Use double quotes around the source value.
 
-Then install the packages:
-
-```bash
-npm install @quartz-community/syntax-highlighting
-```
-
-Or install all default plugins at once:
-
-```bash
-npm install @quartz-community/created-modified-date @quartz-community/syntax-highlighting @quartz-community/obsidian-flavored-markdown @quartz-community/github-flavored-markdown @quartz-community/table-of-contents @quartz-community/description @quartz-community/latex @quartz-community/quartz-fonts @quartz-community/alias-redirects @quartz-community/favicon @quartz-community/og-image @quartz-community/cname @quartz-community/canvas-page @quartz-community/content-page @quartz-community/folder-page @quartz-community/tag-page @quartz-community/explorer @quartz-community/graph @quartz-community/search @quartz-community/backlinks @quartz-community/article-title @quartz-community/content-meta @quartz-community/page-title @quartz-community/darkmode @quartz-community/reader-mode @quartz-community/breadcrumbs @quartz-community/footer @quartz-community/spacer @quartz-community/bases-page @quartz-community/note-properties @quartz-community/unlisted-pages @quartz-community/encrypted-pages
-```
+The default plugins are already dependencies in Quartz's `package.json`, so `npm i` installs them — no separate install step is needed. For other npm plugins, use `npx quartz plugin add "@scope/plugin-name"`, which installs the package and adds the entry for you.
 
 ### Do I Have to Switch?
 

@@ -25,9 +25,10 @@ npx quartz plugin list
 
 ### add
 
-Add a new plugin from a Git repository. The plugin is installed, pinned in `quartz.lock.json`, and added to `quartz.config.yaml` with its default options — enabled unless the plugin is disabled by default.
+Add a new plugin from npm or a Git repository. The plugin is installed (Git plugins are pinned in `quartz.lock.json`, npm packages recorded in `package.json`), and added to `quartz.config.yaml` with its default options — enabled unless the plugin is disabled by default.
 
 ```shell
+npx quartz plugin add @quartz-community/graph   # an npm package, as the default config uses
 npx quartz plugin add github:username/repo
 npx quartz plugin add username/repo   # same as github:username/repo
 ```
@@ -158,7 +159,8 @@ npx quartz plugin doctor --fix       # move settings of plugins that are now bui
 - broken local plugin symlinks and plugins without a built entry point (`dist/`)
 - option typos and type mismatches, and declared plugin dependencies that are missing or disabled
 - plugins that don't support your Quartz version (their `quartzVersion`, see [[versioning#Plugin compatibility]])
-- entries for plugins that are now [[built-in processing|built into Quartz]] (`crawl-links`, `remove-draft`, `content-index`); `--fix` moves their options into `configuration` (keeping your comments) and removes their now unused pins from `quartz.lock.json`
+- deprecated plugins (their `quartz.deprecated` message names the replacement)
+- entries for plugins that are now [[built-in processing|built into Quartz]] (`crawl-links`, `remove-draft`, `content-index`) and note-properties' `delimiters`/`language` options; `--fix` moves them into `configuration` (`links`, `drafts`, `contentIndex`, `frontmatter`), keeping your comments, and removes the now unused pins from `quartz.lock.json`
 - lockfile entries that are no longer configured (clean up with `prune`)
 
 It exits with status 1 when it finds errors, so it can run as a CI check.

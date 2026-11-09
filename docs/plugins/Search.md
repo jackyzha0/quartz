@@ -26,7 +26,7 @@ This plugin accepts the following configuration options:
 ### Default options
 
 ```yaml title="quartz.config.yaml"
-- source: github:quartz-community/search
+- source: "@quartz-community/search"
   enabled: true
   options:
     enablePreview: true
@@ -41,4 +41,4 @@ This plugin accepts the following configuration options:
 - Category: Component
 - Function name: `ExternalPlugin.Search()`.
 - Source: [`quartz-community/search`](https://github.com/quartz-community/search)
-- Install: `npx quartz plugin add github:quartz-community/search`
+- Install: `npx quartz plugin add @quartz-community/search` (included in the default configuration)

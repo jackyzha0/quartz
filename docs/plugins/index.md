@@ -8,17 +8,22 @@ Quartz's functionality is provided by a collection of first-party community plug
 > [!info] Internal vs Community Plugins
 > Quartz has two kinds of plugins:
 >
-> - **Community plugins** are standalone repositories under [`quartz-community`](https://github.com/quartz-community). In TS overrides, they use `ExternalPlugin.X()` (imported from `.quartz/plugins`).
+> - **Community plugins** are standalone repositories under [`quartz-community`](https://github.com/quartz-community), published to npm. In TS overrides, they use `ExternalPlugin.X()` (imported from `./.quartz/plugins`).
 > - **Internal plugins** are built into Quartz core (Assets, Static, ComponentResources, NotFoundPage). In TS overrides, they use `Plugin.X()` (imported from `./quartz/plugins`).
+>
+> Frontmatter parsing, link processing, drafts and the content index are [[built-in processing]], configured under `configuration` rather than listed as plugins.
 
 ## Plugin types
 
 Quartz plugins fall into several categories:
 
-- **Transformers** process content during the build, e.g. parsing frontmatter, highlighting syntax, or resolving links.
+- **Transformers** process content during the build, e.g. highlighting syntax, rendering math, or adding Obsidian syntax.
 - **Filters** decide which content files to include or exclude from the output.
+- **Emitters** write other output files, e.g. alias redirects, social images, or a `CNAME` file.
 - **Page Types** generate HTML pages — one per content file, folder, tag, canvas, or bases view.
 - **Components** render UI elements in the page layout (sidebars, headers, footers, etc.).
+
+To write your own, see [[making plugins]].
 
 ## First-party plugins
 

@@ -4,7 +4,7 @@ tags:
   - feature/transformer
 ---
 
-Quartz uses [Katex](https://katex.org/) by default to typeset both inline and block math expressions at build time.
+Quartz uses [Katex](https://katex.org/) by default to typeset both inline and block math expressions at build time. [MathJax](https://www.mathjax.org/) and [Typst](https://typst.app/) are available with the [[plugins/Latex|Latex]] plugin's `renderEngine` option (`katex`, `mathjax` or `typst`).
 
 ## Syntax
 

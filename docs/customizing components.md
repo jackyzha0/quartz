@@ -2,7 +2,7 @@
 title: Customizing Components
 ---
 
-In Quartz v4, components such as the footer lived in `quartz/components/` and you customized them by editing their source. In v5, most components are [[configuration#Plugins|community plugins]]: Quartz installs them into `.quartz/plugins/` and runs their **built** code (`dist/`). Editing the files in `.quartz/plugins/` therefore has no effect, and is overwritten the next time the plugin is installed or updated.
+In Quartz v4, components such as the footer lived in `quartz/components/` and you customized them by editing their source. In v5, most components are [[configuration#Plugins|community plugins]], and Quartz runs their **built** code (`dist/`). The default plugins are npm packages in `node_modules/@quartz-community/`; plugins installed from Git live in `.quartz/plugins/`. Editing either copy is the wrong approach: changes to the source have no effect until it is rebuilt, and both are overwritten the next time the plugin is installed or updated.
 
 There are four ways to change a component, from least to most effort. Try them in this order.
 

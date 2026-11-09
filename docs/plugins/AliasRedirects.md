@@ -67,4 +67,4 @@ This plugin accepts the following configuration options:
 - Category: Emitter
 - Function name: `ExternalPlugin.AliasRedirects()`.
 - Source: [`quartz-community/alias-redirects`](https://github.com/quartz-community/alias-redirects)
-- Install: `npx quartz plugin add github:quartz-community/alias-redirects`
+- Install: `npx quartz plugin add @quartz-community/alias-redirects` (included in the default configuration)

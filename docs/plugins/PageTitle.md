@@ -21,4 +21,4 @@ This plugin has no configuration options. The displayed title is controlled by t
 - Category: Component
 - Function name: `ExternalPlugin.PageTitle()`.
 - Source: [`quartz-community/page-title`](https://github.com/quartz-community/page-title)
-- Install: `npx quartz plugin add github:quartz-community/page-title`
+- Install: `npx quartz plugin add @quartz-community/page-title` (included in the default configuration)

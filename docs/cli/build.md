@@ -8,19 +8,19 @@ The `build` command transforms your Markdown content into a static HTML website.
 
 ## Flags
 
-| Flag              | Shorthand | Description                                               | Default           |
-| ----------------- | --------- | --------------------------------------------------------- | ----------------- |
-| `--directory`     | `-d`      | The directory containing your Quartz project              | Current directory |
-| `--verbose`       | `-v`      | Enable detailed logging for debugging                     | `false`           |
-| `--output`        | `-o`      | The directory where the built site will be saved          | `public`          |
-| `--serve`         |           | Start a local development server                          | `false`           |
-| `--watch`         |           | Rebuild the site when files change                        | `false`           |
-| `--port`          |           | The port for the development server                       | `8080`            |
-| `--wsPort`        |           | The port for the WebSocket hot-reload server              | `3001`            |
-| `--baseDir`       |           | Set a base directory for the site (e.g. for GitHub Pages) | `/`               |
-| `--remoteDevHost` |           | The hostname to use for the development server            | `localhost`       |
-| `--bundleInfo`    |           | Output a JSON file with bundle size information           | `false`           |
-| `--concurrency`   | `-c`      | Number of worker threads to use for building              | CPU core count    |
+| Flag              | Shorthand | Description                                                                        | Default            |
+| ----------------- | --------- | ---------------------------------------------------------------------------------- | ------------------ |
+| `--directory`     | `-d`      | The content folder                                                                 | `content`          |
+| `--verbose`       | `-v`      | Print detailed build information (see [[#Verbose output]])                         | `false`            |
+| `--output`        | `-o`      | The directory where the built site will be saved                                   | `public`           |
+| `--serve`         |           | Start a local development server                                                   | `false`            |
+| `--watch`         |           | Rebuild the site when files change                                                 | `false`            |
+| `--port`          |           | The port for the development server                                                | `8080`             |
+| `--wsPort`        |           | The port for the WebSocket hot-reload server                                       | `3001`             |
+| `--baseDir`       |           | Base path the development server serves the site under                             | `""` (none)        |
+| `--remoteDevHost` |           | Hostname for the hot-reload WebSocket when not developing on localhost             | `""` (`localhost`) |
+| `--bundleInfo`    |           | Print an analysis of Quartz's own esbuild bundle (files and sizes) to the terminal | `false`            |
+| `--concurrency`   | `-c`      | Number of worker threads to use for building                                       | CPU core count     |
 
 ## Examples
 
@@ -55,6 +55,20 @@ If you have a very large vault, you can limit the number of concurrent workers t
 ```shell
 npx quartz build --concurrency 2
 ```
+
+### Verbose output
+
+`npx quartz build --verbose` also prints:
+
+- the plugins loaded, in the order they run (transformers, filters, emitters, page types)
+- the [[built-in processing|built-ins]] and whether each is on (with its order) or off, and why
+- a layout report: which components each page type renders in each slot (see [[layout#Checking your layout]])
+- every link to a page that is not on the site (including links to drafts) — without `--verbose` the end-of-build summary counts them and shows a few examples
+- every file each emitter writes
+
+### In CI
+
+When the `CI` environment variable is set (GitHub Actions, Cloudflare Pages, Netlify, Vercel, … set it), the build fails on plugins that fail to load or that need a newer Quartz, instead of warning. Set `QUARTZ_ALLOW_BROKEN_PLUGINS=1` or `QUARTZ_ALLOW_INCOMPATIBLE_PLUGINS=1` to build anyway. See [[troubleshooting#Reading build output]].
 
 ## Serve vs Watch
 

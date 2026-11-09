@@ -22,4 +22,4 @@ This plugin has no configuration options.
 - Category: Emitter
 - Function name: `ExternalPlugin.Favicon()`.
 - Source: [`quartz-community/favicon`](https://github.com/quartz-community/favicon)
-- Install: `npx quartz plugin add github:quartz-community/favicon`
+- Install: `npx quartz plugin add @quartz-community/favicon` (included in the default configuration)

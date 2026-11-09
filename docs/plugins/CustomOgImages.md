@@ -26,49 +26,51 @@ The Custom OG Images emitter plugin generates social media preview images for yo
 
 > [!info] Info
 >
-> The `baseUrl` property in your [[configuration]] must be set properly for social images to work correctly, as they require absolute paths.
+> The `baseUrl` property in your [[configuration]] must be set properly for social images to work correctly, as they require absolute URLs. Without `baseUrl`, no image meta tags are emitted.
+
+Each page gets an image at `<slug>-og-image.webp`; pages with a `socialImage` in their frontmatter are skipped.
 
 This plugin accepts the following configuration options:
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/og-image
+  - source: "@quartz-community/og-image"
     enabled: true
     options:
       colorScheme: lightMode # "lightMode" or "darkMode"
       width: 1200
       height: 630
-      excludeRoot: false
+      defaultTitle: Untitled
+      defaultDescription: No description provided
+      useGeneratedDescription: true
 ```
 
-For the TS override approach (needed for custom `imageStructure`):
+The options that take functions (`imageStructure`, `readingTimeText`) need the TS override approach:
 
 ```ts title="quartz.ts (override)"
 import * as ExternalPlugin from "./.quartz/plugins"
-import { defaultImage } from "./quartz/plugins/emitters/ogImage"
+import { myImage } from "./socialImage"
 
 // Must be placed before loadQuartzConfig()
 ExternalPlugin.CustomOgImages({
   colorScheme: "lightMode",
-  width: 1200,
-  height: 630,
-  excludeRoot: false,
-  imageStructure: defaultImage,
+  imageStructure: myImage, // omit to keep the built-in design
+  readingTimeText: (minutes) => `${minutes} min read`,
 })
 ```
 
 ### Configuration Options
 
-| Option                    | Type      | Default                   | Description                                                                                                                                                       |
-| ------------------------- | --------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `colorScheme`             | string    | "lightMode"               | Theme to use for generating images ("darkMode" or "lightMode")                                                                                                    |
-| `width`                   | number    | 1200                      | Width of the generated image in pixels                                                                                                                            |
-| `height`                  | number    | 630                       | Height of the generated image in pixels                                                                                                                           |
-| `excludeRoot`             | boolean   | false                     | Whether to exclude the root index page from auto-generated images                                                                                                 |
-| `defaultTitle`            | string    | "Untitled"                | Fallback title when a page has no title                                                                                                                           |
-| `defaultDescription`      | string    | "No description provided" | Fallback description when a page has no description                                                                                                               |
-| `useGeneratedDescription` | boolean   | true                      | Use a generated description (the [[Description]] plugin's excerpt of the page) when the frontmatter has none. Set to `false` to show `defaultDescription` instead |
-| `imageStructure`          | component | defaultImage              | Custom component to use for image generation                                                                                                                      |
+| Option                    | Type      | Default                     | Description                                                                                                                                                       |
+| ------------------------- | --------- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `colorScheme`             | string    | "lightMode"                 | Theme to use for generating images ("darkMode" or "lightMode")                                                                                                    |
+| `width`                   | number    | 1200                        | Width of the generated image in pixels                                                                                                                            |
+| `height`                  | number    | 630                         | Height of the generated image in pixels                                                                                                                           |
+| `defaultTitle`            | string    | "Untitled"                  | Fallback title when a page has no title                                                                                                                           |
+| `defaultDescription`      | string    | "No description provided"   | Fallback description when a page has no description                                                                                                               |
+| `useGeneratedDescription` | boolean   | true                        | Use a generated description (the [[Description]] plugin's excerpt of the page) when the frontmatter has none. Set to `false` to show `defaultDescription` instead |
+| `readingTimeText`         | function  | `` `${minutes} min read` `` | Formats the reading time shown by the built-in design (TS override only)                                                                                          |
+| `imageStructure`          | component | built-in design             | Custom component to use for image generation (TS override only)                                                                                                   |
 
 The description on an image is, in order: the frontmatter's `socialDescription`, its `description`, the generated description (unless `useGeneratedDescription` is `false`), and finally `defaultDescription`. With the [[Description]] plugin enabled, every page with text has a generated description, so `defaultDescription` mostly shows with `useGeneratedDescription: false`.
 
@@ -93,100 +95,59 @@ The `socialImage` property should contain a link to an image either relative to 
 
 You can fully customize how the images being generated look by passing your own component to `imageStructure`. This component takes JSX + some page metadata/config options and converts it to an image using [satori](https://github.com/vercel/satori). Vercel provides an [online playground](https://og-playground.vercel.app/) that can be used to preview how your JSX looks like as a picture. This is ideal for prototyping your custom design.
 
+The component receives a single object:
+
+| Property      | Description                                                                   |
+| ------------- | ----------------------------------------------------------------------------- |
+| `cfg`         | The global configuration (`cfg.theme.colors`, `cfg.baseUrl`, `cfg.locale`, …) |
+| `userOpts`    | The plugin options (`colorScheme`, `width`, `height`, …)                      |
+| `title`       | The page title (or `defaultTitle`) followed by `pageTitleSuffix`              |
+| `description` | The description (see above)                                                   |
+| `fonts`       | The fonts loaded for satori                                                   |
+| `fileData`    | Page data: `slug`, `frontmatter`, `description`, `text`, `filePath`, `dates`  |
+| `iconBase64`  | `quartz/static/icon.png` as a data URL, if present                            |
+
 ### Fonts
 
-You will also be passed an array containing a header and a body font (where the first entry is header and the second is body). The fonts matches the ones selected in `theme.typography.header` and `theme.typography.body` from `quartz.config.yaml` and will be passed in the format required by [`satori`](https://github.com/vercel/satori). To use them in CSS, use the `.name` property (e.g. `fontFamily: fonts[1].name` to use the "body" font family).
+`fonts` contains the header font followed by the body font, matching `theme.typography.header` and `theme.typography.body` from `quartz.config.yaml`, in the format required by [`satori`](https://github.com/vercel/satori). They are downloaded from Google Fonts (cached in `.quartz-cache/fonts`); if that fails, a system font is used, and if no font is available at all, image generation is skipped with a warning. To use them in CSS, use the `.name` property (e.g. `fontFamily: fonts[1].name` to use the "body" font family).
 
 An example of a component using the header font could look like this:
 
 ```tsx title="socialImage.tsx"
-export const myImage: SocialImageOptions["imageStructure"] = (...) => {
+import type { SocialImageOptions } from "@quartz-community/og-image"
+
+export const myImage: SocialImageOptions["imageStructure"] = ({ fonts }) => {
   return <p style={{ fontFamily: fonts[0].name }}>Cool Header!</p>
 }
 ```
 
-> [!example]- Local fonts
->
-> For cases where you use a local fonts under `static` folder, make sure to set the correct `@font-face` in `custom.scss`
->
-> ```scss title="custom.scss"
-> @font-face {
->   font-family: "Newsreader";
->   font-style: normal;
->   font-weight: normal;
->   font-display: swap;
->   src: url("/static/Newsreader.woff2") format("woff2");
-> }
-> ```
->
-> Then in `quartz/util/og.tsx`, you can load the Satori fonts like so:
->
-> ```tsx title="quartz/util/og.tsx"
-> import { joinSegments, QUARTZ } from "../path"
-> import fs from "fs"
-> import path from "path"
->
-> const newsreaderFontPath = joinSegments(QUARTZ, "static", "Newsreader.woff2")
-> export async function getSatoriFonts(headerFont: FontSpecification, bodyFont: FontSpecification) {
->   // ... rest of implementation remains same
->   const fonts: SatoriOptions["fonts"] = [
->     ...headerFontData.map((data, idx) => ({
->       name: headerFontName,
->       data,
->       weight: headerWeights[idx],
->       style: "normal" as const,
->     })),
->     ...bodyFontData.map((data, idx) => ({
->       name: bodyFontName,
->       data,
->       weight: bodyWeights[idx],
->       style: "normal" as const,
->     })),
->     {
->       name: "Newsreader",
->       data: await fs.promises.readFile(path.resolve(newsreaderFontPath)),
->       weight: 400,
->       style: "normal" as const,
->     },
->   ]
->
->   return fonts
-> }
-> ```
->
-> This font then can be used with your custom structure.
-
 ## Examples
 
-Here are some example image components you can use as a starting point:
-
-### Basic Example
-
-This example will generate images that look as follows:
+Here is an example image component you can use as a starting point. It generates images that look as follows:
 
 | Light                                      | Dark                                      |
 | ------------------------------------------ | ----------------------------------------- |
 | ![[custom-social-image-preview-light.png]] | ![[custom-social-image-preview-dark.png]] |
 
-```tsx
-import { SatoriOptions } from "satori/wasm"
-import { GlobalConfiguration } from "../cfg"
-import { SocialImageOptions, UserOpts } from "./imageHelper"
-import { QuartzPluginData } from "../plugins/vfile"
+```tsx title="socialImage.tsx"
+import type { SocialImageOptions } from "@quartz-community/og-image"
 
-export const customImage: SocialImageOptions["imageStructure"] = (
-  cfg: GlobalConfiguration,
-  userOpts: UserOpts,
-  title: string,
-  description: string,
-  fonts: SatoriOptions["fonts"],
-  fileData: QuartzPluginData,
-) => {
+export const customImage: SocialImageOptions["imageStructure"] = ({
+  cfg,
+  userOpts,
+  title,
+  description,
+  fonts,
+}) => {
   // How many characters are allowed before switching to smaller font
   const fontBreakPoint = 22
   const useSmallerFont = title.length > fontBreakPoint
 
   const { colorScheme } = userOpts
+  // `cfg.theme` is typed `unknown` in @quartz-community/types
+  const colors = (cfg.theme as { colors: Record<string, Record<string, string>> }).colors[
+    colorScheme
+  ]
   return (
     <div
       style={{
@@ -205,7 +166,7 @@ export const customImage: SocialImageOptions["imageStructure"] = (
           justifyContent: "center",
           height: "100%",
           width: "100%",
-          backgroundColor: cfg.theme.colors[colorScheme].light,
+          backgroundColor: colors.light,
           flexDirection: "column",
           gap: "2.5rem",
           paddingTop: "2rem",
@@ -214,7 +175,7 @@ export const customImage: SocialImageOptions["imageStructure"] = (
       >
         <p
           style={{
-            color: cfg.theme.colors[colorScheme].dark,
+            color: colors.dark,
             fontSize: useSmallerFont ? 70 : 82,
             marginLeft: "4rem",
             textAlign: "center",
@@ -226,7 +187,7 @@ export const customImage: SocialImageOptions["imageStructure"] = (
         </p>
         <p
           style={{
-            color: cfg.theme.colors[colorScheme].dark,
+            color: colors.dark,
             fontSize: 44,
             marginLeft: "8rem",
             marginRight: "8rem",
@@ -242,7 +203,7 @@ export const customImage: SocialImageOptions["imageStructure"] = (
           height: "100%",
           width: "2vw",
           position: "absolute",
-          backgroundColor: cfg.theme.colors[colorScheme].tertiary,
+          backgroundColor: colors.tertiary,
           opacity: 0.85,
         }}
       />
@@ -251,136 +212,11 @@ export const customImage: SocialImageOptions["imageStructure"] = (
 }
 ```
 
-### Advanced Example
-
-The following example includes a customized social image with a custom background and formatted date:
-
-```typescript title="custom-og.tsx"
-export const og: SocialImageOptions["Component"] = (
-  cfg: GlobalConfiguration,
-  fileData: QuartzPluginData,
-  { colorScheme }: Options,
-  title: string,
-  description: string,
-  fonts: SatoriOptions["fonts"],
-) => {
-  let created: string | undefined
-  let reading: string | undefined
-  if (fileData.dates) {
-    created = formatDate(getDate(cfg, fileData)!, cfg.locale)
-  }
-  const { minutes, text: _timeTaken, words: _words } = readingTime(fileData.text!)
-  reading = i18n(cfg.locale).components.contentMeta.readingTime({
-    minutes: Math.ceil(minutes),
-  })
-
-  const Li = [created, reading]
-
-  return (
-    <div
-      style={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "flex-start",
-        height: "100%",
-        width: "100%",
-        backgroundImage: `url("https://${cfg.baseUrl}/static/og-image.jpeg")`,
-        backgroundSize: "100% 100%",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: "radial-gradient(circle at center, transparent, rgba(0, 0, 0, 0.4) 70%)",
-        }}
-      />
-      <div
-        style={{
-          display: "flex",
-          height: "100%",
-          width: "100%",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          alignItems: "flex-start",
-          gap: "1.5rem",
-          paddingTop: "4rem",
-          paddingBottom: "4rem",
-          marginLeft: "4rem",
-        }}
-      >
-        <img
-          src={`"https://${cfg.baseUrl}/static/icon.jpeg"`}
-          style={{
-            position: "relative",
-            backgroundClip: "border-box",
-            borderRadius: "6rem",
-          }}
-          width={80}
-        />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            textAlign: "left",
-            fontFamily: fonts[0].name,
-          }}
-        >
-          <h2
-            style={{
-              color: cfg.theme.colors[colorScheme].light,
-              fontSize: "3rem",
-              fontWeight: 700,
-              marginRight: "4rem",
-              fontFamily: fonts[0].name,
-            }}
-          >
-            {title}
-          </h2>
-          <ul
-            style={{
-              color: cfg.theme.colors[colorScheme].gray,
-              gap: "1rem",
-              fontSize: "1.5rem",
-              fontFamily: fonts[1].name,
-            }}
-          >
-            {Li.map((item, index) => {
-              if (item) {
-                return <li key={index}>{item}</li>
-              }
-            })}
-          </ul>
-        </div>
-        <p
-          style={{
-            color: cfg.theme.colors[colorScheme].light,
-            fontSize: "1.5rem",
-            overflow: "hidden",
-            marginRight: "8rem",
-            textOverflow: "ellipsis",
-            display: "-webkit-box",
-            WebkitLineClamp: 7,
-            WebkitBoxOrient: "vertical",
-            lineClamp: 7,
-            fontFamily: fonts[1].name,
-          }}
-        >
-          {description}
-        </p>
-      </div>
-    </div>
-  )
-}
-```
+Page dates are available as `fileData.dates?.created` / `modified` / `published` (with [[CreatedModifiedDate]]) and the page text as `fileData.text`, for example to show a date or reading time.
 
 ## API
 
 - Category: Emitter
 - Function name: `ExternalPlugin.CustomOgImages()`.
 - Source: [`quartz-community/og-image`](https://github.com/quartz-community/og-image)
-- Install: `npx quartz plugin add github:quartz-community/og-image`
+- Install: `npx quartz plugin add @quartz-community/og-image`

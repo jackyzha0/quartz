@@ -24,13 +24,19 @@ type QuartzPluginInstance =
 The following sections will go into detail for what methods can be implemented for each plugin type. Before we do that, let's clarify a few more ambiguous types:
 
 - `BuildCtx` is defined in `@quartz-community/types`. It consists of
-  - `argv`: The command line arguments passed to the Quartz [[build]] command
-  - `cfg`: The full Quartz [[configuration]]
+  - `buildId`: a random id for this build
+  - `argv`: The command line arguments passed to the Quartz [[build]] command (`argv.output` is the output folder)
+  - `cfg`: The full Quartz [[configuration]]; `cfg.configuration` holds the `configuration` section of `quartz.config.yaml`
   - `allSlugs`: a list of all the valid content slugs (see [[paths]] for more information on what a slug is)
+  - `allFiles`: the paths of all files in the content folder, relative to it
+  - `incremental`: `true` while `quartz build --serve` rebuilds after a change
+  - `contentIndex` (Quartz 5.1+): the site's content index, see [[#Reusing the content index in emitters]]
+- Quartz's own `BuildCtx` has more fields that `@quartz-community/types` doesn't declare: `virtualPages` (the pages page types generated, see [[#Page Types]]), `trie` (the folder tree, set by the page-type dispatcher) and `permalinks` (content file → slug for notes with a `permalink` in their frontmatter). Read them through a cast and expect them to be missing.
 - `StaticResources` is defined in `@quartz-community/types`. It consists of
   - `css`: a list of CSS style definitions that should be loaded. A CSS style is described with the `CSSResource` type. It accepts either a source URL or the inline content of the stylesheet.
   - `js`: a list of scripts that should be loaded. A script is described with the `JSResource` type. It allows you to define a load time (either before or after the DOM has been loaded), whether it should be a module, and either the source URL or the inline content of the script.
   - `additionalHead`: a list of JSX elements or functions that return JSX elements to be added to the `<head>` tag of the page. Functions receive the page's data as an argument and can conditionally render elements.
+  - `assets` (Quartz 5.1+): files and directories to copy into the site, see [[#Shipping Files with Your Plugin]].
 
 ## Getting Started
 
@@ -44,7 +50,7 @@ cd my-plugin
 npm install
 ```
 
-The template provides the build configuration (`tsup.config.ts`), TypeScript setup, and correct package structure.
+The template provides the build configuration (`tsup.config.ts`), TypeScript setup, and correct package structure. It depends on `@quartz-community/types` and `@quartz-community/utils`; the examples on this page need types 1.3.0 and utils 1.2.0 or later.
 
 ## Plugin Structure
 
@@ -59,17 +65,21 @@ my-plugin/
 └── tsconfig.json          # TypeScript configuration
 ```
 
+Component plugins also have `src/components/index.ts` (built to the `./components` export) and plugins with frames `src/frames/index.ts` (`./frames`).
+
 The plugin's `package.json` should declare dependencies on `@quartz-community/types` (for type definitions) and optionally `@quartz-community/utils` (for shared utilities).
 
-If your plugin reads data, DOM elements, globals or files produced by another plugin (or provides them), declare that in `quartz.capabilities` so Quartz can warn when the provider is disabled. See [[plugin capabilities]].
+Its `quartz` field — the **manifest** — tells Quartz what the plugin is: its category, where it runs (`defaultOrder`), its default options and option schema, the components and frames it ships, the plugins it depends on, and the Quartz versions it works with. Every field is described in the [[plugin manifest]] reference. In particular:
 
-Declare the oldest Quartz version your plugin works with in `quartz.quartzVersion` (a semver range such as `">=5.1.0"`). Quartz checks it when loading the config and in `plugin add` / `plugin doctor`, and mentions it when your plugin throws. See [[versioning#For plugin authors]].
+- Declare the oldest Quartz version your plugin works with in `quartz.quartzVersion` (a semver range such as `">=5.1.0"`). Quartz checks it when loading the config and in `plugin add` / `plugin doctor`, and mentions it when your plugin throws. See [[versioning#For plugin authors]].
+- If your plugin reads data, DOM elements, globals or files produced by another plugin (or provides them), declare that in `quartz.capabilities` so Quartz can warn when the provider is disabled. See [[plugin capabilities]].
+- If your plugin must run after another one, set `defaultOrder` (and `dependencies` for a plugin that must be installed); see [[plugin manifest#defaultOrder|the order table]].
 
-## Plugin Types
+A plugin that fails to load (can't be installed, throws on import, exports no plugin) is reported as an error naming the plugin and where it failed. Locally the build continues without it; in CI the build fails unless `QUARTZ_ALLOW_BROKEN_PLUGINS=1` is set. To retire a plugin, set `quartz.deprecated` (see [[plugin manifest#deprecated]]).
 
 ## Choosing a Plugin Type
 
-Quartz supports six plugin capabilities. A single plugin can combine multiple types.
+Quartz has four processing plugin types — transformers, filters, emitters and page types — and plugins can also provide components, frames and Bases views. A single plugin can combine several of them.
 
 | I want to...                                     | Plugin Type |
 | ------------------------------------------------ | ----------- |
@@ -82,7 +92,7 @@ Quartz supports six plugin capabilities. A single plugin can combine multiple ty
 
 These are **not mutually exclusive**. For example:
 
-- `obsidian-flavored-markdown` is both a **transformer** (processes OFM syntax) and provides **components** (mermaid rendering)
+- `table-of-contents` is both a **transformer** (collects the headings) and provides a **component** (renders them)
 - `canvas-page` is a **page type** that also provides a custom **frame**
 - A plugin could be a **transformer** that adds metadata AND a **component** that displays it
 
@@ -97,7 +107,8 @@ export type QuartzTransformerPluginInstance = {
   markdownPlugins?: (ctx: BuildCtx) => PluggableList
   htmlPlugins?: (ctx: BuildCtx) => PluggableList
   virtualPageHtmlPlugins?: (ctx: BuildCtx, content: ProcessedContent[]) => PluggableList
-  externalResources?: (ctx: BuildCtx) => Partial<StaticResources>
+  externalResources?: (ctx: BuildCtx) => Partial<StaticResources> | undefined
+  extendContentIndex?: ContentIndexExtension // any plugin type, see below
 }
 ```
 
@@ -109,15 +120,17 @@ All transformer plugins must define at least a `name` field to register the plug
 - `virtualPageHtmlPlugins` (Quartz 5.1+) defines rehype plugins for the pages that page types render from files (`.base`, `.canvas`, Excalidraw drawings). Those pages are rendered when emitting and never pass through `htmlPlugins`, so a plugin that should also act on them (e.g. encryption) registers its rehype plugin here too. They run on the page's rendered body, with the page's vfile (`file.data.frontmatter`, `file.data.referencedBy`), after the filters published the page; the page then shows the resulting tree. `content` is the published content.
 - `externalResources` defines any external resources the plugin may need to load on the client-side for it to work properly.
 
+Transformers run in plugin order (see [[plugin manifest#defaultOrder]]); the built-in frontmatter parsing runs at order 0 and the built-in link processing, which sets `file.data.links`, at 60.
+
 Normally for both `remark` and `rehype`, you can find existing plugins that you can use. If you'd like to create your own `remark` or `rehype` plugin, checkout the [guide to creating a plugin](https://unifiedjs.com/learn/guide/create-a-plugin/) using `unified` (the underlying AST parser and transformer library).
 
-A good example of a transformer plugin that borrows from the `remark` and `rehype` ecosystems is the [[plugins/Latex|Latex]] plugin:
+A good example of a transformer plugin that borrows from the `remark` and `rehype` ecosystems is the [[plugins/Latex|Latex]] plugin (simplified):
 
 ```ts
 import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
 import rehypeMathjax from "rehype-mathjax/svg"
-import { QuartzTransformerPlugin } from "@quartz-community/types"
+import type { QuartzTransformerPlugin } from "@quartz-community/types"
 
 interface Options {
   renderEngine: "katex" | "mathjax"
@@ -145,13 +158,13 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
           css: [
             {
               // base css
-              content: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css",
+              content: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css",
             },
           ],
           js: [
             {
               // fix copy behaviour: https://github.com/KaTeX/KaTeX/blob/main/contrib/copy-tex/README.md
-              src: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js",
+              src: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js",
               loadTime: "afterDOMReady",
               contentType: "external",
             },
@@ -166,7 +179,7 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
 Another common thing that transformer plugins will do is parse a file and add extra data for that file:
 
 ```ts
-import { QuartzTransformerPlugin } from "@quartz-community/types"
+import type { QuartzTransformerPlugin } from "@quartz-community/types"
 
 export const AddWordCount: QuartzTransformerPlugin = () => {
   return {
@@ -174,11 +187,11 @@ export const AddWordCount: QuartzTransformerPlugin = () => {
     markdownPlugins() {
       return [
         () => {
-          return (tree, file) => {
-            // tree is an `mdast` root element
-            // file is a `vfile`
-            const text = file.value
-            const words = text.split(" ").length
+          return (_tree, file) => {
+            // _tree is an `mdast` root element
+            // file is a `vfile`; its value is a string or a Uint8Array
+            const text = file.toString()
+            const words = text.split(/\s+/).filter(Boolean).length
             file.data.wordcount = words
           }
         },
@@ -199,10 +212,10 @@ declare module "vfile" {
 Finally, you can also perform transformations over Markdown or HTML ASTs using the `visit` function from the `unist-util-visit` package or the `findAndReplace` function from the `mdast-util-find-and-replace` package.
 
 ```ts
-import { visit } from "unist-util-visit"
+import { SKIP, visit } from "unist-util-visit"
 import { findAndReplace } from "mdast-util-find-and-replace"
-import { QuartzTransformerPlugin } from "@quartz-community/types"
-import { Link } from "mdast"
+import type { QuartzTransformerPlugin } from "@quartz-community/types"
+import type { Root } from "mdast"
 
 export const TextTransforms: QuartzTransformerPlugin = () => {
   return {
@@ -210,27 +223,30 @@ export const TextTransforms: QuartzTransformerPlugin = () => {
     markdownPlugins() {
       return [
         () => {
-          return (tree, file) => {
+          return (tree: Root) => {
             // replace _text_ with the italics version
-            findAndReplace(tree, /_(.+)_/, (_value: string, ...capture: string[]) => {
-              // inner is the text inside of the () of the regex
-              const [inner] = capture
-              // return an mdast node
-              // https://github.com/syntax-tree/mdast
-              return {
-                type: "emphasis",
-                children: [{ type: "text", value: inner }],
-              }
-            })
+            findAndReplace(tree, [
+              /_(.+?)_/g,
+              (_value: string, inner: string) => {
+                // inner is the text inside of the () of the regex
+                // return an mdast node
+                // https://github.com/syntax-tree/mdast
+                return {
+                  type: "emphasis",
+                  children: [{ type: "text", value: inner }],
+                }
+              },
+            ])
 
-            // remove all links (replace with just the link content)
+            // remove all links (replace each with its content)
             // match by 'type' field on an mdast node
             // https://github.com/syntax-tree/mdast#link in this example
-            visit(tree, "link", (link: Link) => {
-              return {
-                type: "paragraph",
-                children: [{ type: "text", value: link.title }],
-              }
+            visit(tree, "link", (link, index, parent) => {
+              if (parent === undefined || index === undefined) return
+              // the visitor's return value controls traversal; to change the
+              // tree, mutate the parent
+              parent.children.splice(index, 1, ...link.children)
+              return [SKIP, index]
             })
           }
         },
@@ -257,21 +273,21 @@ export type QuartzFilterPluginInstance = {
 }
 ```
 
-A filter plugin must define a `name` field and a `shouldPublish` function that takes in a piece of content that has been processed by all the transformers and returns a `true` or `false` depending on whether it should be passed to the emitter plugins or not.
+A filter plugin must define a `name` field and a `shouldPublish` function that takes in a piece of content that has been processed by all the transformers and returns a `true` or `false` depending on whether it should be passed to the emitter plugins or not. A page is published only if every filter returns `true`.
 
 Filters also see the pages that page types render from files (Quartz 5.1+; page types that declare `fileExtensions`, e.g. `.base` and `.canvas` pages), with the frontmatter the page type gives them and `file.data.referencedBy`: the published pages that link to them. A page a filter rejects is not emitted, listed or embeddable. Such files may have no frontmatter (`.base`, `.canvas`): [[ExplicitPublish]] publishes them when a published page links to them.
 
-For example, here is a filter that removes drafts (Quartz has this [[RemoveDrafts|built in]]):
+For example, here is a filter that removes drafts. Quartz has this [[RemoveDrafts|built in]], and a plugin can't replace it (it would run in addition); the built-in is configured under `configuration.drafts`.
 
 ```ts
-import { QuartzFilterPlugin } from "@quartz-community/types"
+import type { QuartzFilterPlugin } from "@quartz-community/types"
 
-export const RemoveDrafts: QuartzFilterPlugin<{}> = () => ({
+export const RemoveDrafts: QuartzFilterPlugin = () => ({
   name: "RemoveDrafts",
   shouldPublish(_ctx, [_tree, vfile]) {
-    // uses frontmatter parsed from transformers
-    const draftFlag: boolean = vfile.data?.frontmatter?.draft ?? false
-    return !draftFlag
+    // uses frontmatter parsed by Quartz; `draft` may be a boolean or a string
+    const draft = vfile.data.frontmatter?.draft
+    return !(draft === true || draft === "true")
   },
 })
 ```
@@ -298,83 +314,73 @@ export type QuartzEmitterPluginInstance = {
     resources: StaticResources,
     changeEvents: ChangeEvent[],
   ): Promise<FilePath[]> | AsyncGenerator<FilePath> | null
-  getQuartzComponents(ctx: BuildCtx): QuartzComponent[]
+  getQuartzComponents?(ctx: BuildCtx): QuartzComponent[]
+  externalResources?(ctx: BuildCtx): Partial<StaticResources> | undefined
+  extendContentIndex?: ContentIndexExtension // see below
 }
 ```
 
-An emitter plugin must define a `name` field, an `emit` function, and a `getQuartzComponents` function. It can optionally implement a `partialEmit` function for incremental builds.
+An emitter plugin must define a `name` field and an `emit` function. Everything else is optional.
 
-- `emit` is responsible for looking at all the parsed and filtered content and then appropriately creating files and returning a list of paths to files the plugin created.
-- `partialEmit` is an optional function that enables incremental builds. It receives information about which files have changed (`changeEvents`) and can selectively rebuild only the necessary files. This is useful for optimizing build times in development mode. If `partialEmit` is undefined, it will default to the `emit` function.
-- `getQuartzComponents` declares which Quartz components the emitter uses to construct its pages.
+- `emit` is responsible for looking at all the parsed and filtered content and then appropriately creating files and returning a list of paths to files the plugin created (or yielding them one by one from an async generator).
+- `partialEmit` enables incremental rebuilds in `quartz build --serve`. It receives information about which files have changed (`changeEvents`) and can selectively rebuild only the necessary files. If `partialEmit` is undefined, Quartz calls `emit` again.
+- `getQuartzComponents` declares Quartz components the emitter uses, so their CSS and scripts are included in the site.
+- `externalResources` adds CSS, scripts or [[#Shipping Files with Your Plugin|assets]] to every page, like a transformer's.
 
-Creating new files can be done via regular Node [fs module](https://nodejs.org/api/fs.html) (i.e. `fs.cp` or `fs.writeFile`) or via the `write` function in `@quartz-community/utils` if you are creating files that contain text. `write` has the following signature:
+`content` holds the published pages, including the virtual pages that [[#Page Types|page types]] generated (folder and tag pages, `.base` and `.canvas` pages, …). Emitters run after the page types have rendered their pages, **in parallel**, so don't rely on another emitter's output, and treat `ctx` and `content` as read-only. `ctx.contentIndex` is ready by then ([[#Reusing the content index in emitters|see below]]).
+
+Create files with Node's [fs module](https://nodejs.org/api/fs.html) and write them below `ctx.argv.output`. `@quartz-community/utils` has no `write` helper, so plugins define a small one, as in this emitter that writes a JSON list of all pages:
 
 ```ts
-export type WriteOptions = (data: {
-  // the build context
-  ctx: BuildCtx
-  // the name of the file to emit (not including the file extension)
-  slug: FullSlug
-  // the file extension
-  ext: `.${string}` | ""
-  // the file content to add
-  content: string
-}) => Promise<FilePath>
-```
+import path from "node:path"
+import fs from "node:fs/promises"
+import type {
+  BuildCtx,
+  FilePath,
+  FullSlug,
+  ProcessedContent,
+  QuartzEmitterPlugin,
+} from "@quartz-community/types"
+import { joinSegments } from "@quartz-community/types"
 
-This is a thin wrapper around writing to the appropriate output folder and ensuring that intermediate directories exist. If you choose to use the native Node `fs` APIs, ensure you emit to the `argv.output` folder as well.
+// write a text file below the output folder, creating directories as needed
+const write = async (
+  ctx: BuildCtx,
+  slug: FullSlug,
+  ext: `.${string}` | "",
+  content: string,
+): Promise<FilePath> => {
+  const fp = joinSegments(ctx.argv.output, slug + ext)
+  await fs.mkdir(path.dirname(fp), { recursive: true })
+  await fs.writeFile(fp, content)
+  return fp
+}
 
-If you are creating an emitter plugin that needs to render components, there are three more things to be aware of:
+interface Options {
+  slug: string
+}
 
-- Your component should use `getQuartzComponents` to declare a list of `QuartzComponents` that it uses to construct the page. See the page on [[creating components]] for more information.
-- You can use the `renderPage` function defined in `@quartz-community/utils` to render Quartz components into HTML.
-- If you need to render an HTML AST to JSX, you can use the `htmlToJsx` function from `@quartz-community/utils`.
-
-For example, the following is a simplified version of the content page plugin that renders every single page.
-
-```tsx
-import { QuartzEmitterPlugin, FullPageLayout, QuartzComponentProps } from "@quartz-community/types"
-import { renderPage, canonicalizeServer, pageResources, write } from "@quartz-community/utils"
-
-export const ContentPage: QuartzEmitterPlugin = () => {
+export const PageList: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
+  const slug = (opts?.slug ?? "pages") as FullSlug
+  const emitList = async (ctx: BuildCtx, content: ProcessedContent[]) => {
+    const pages = content.map(([_tree, file]) => ({
+      slug: file.data.slug,
+      title: file.data.frontmatter?.title,
+    }))
+    return [await write(ctx, slug, ".json", JSON.stringify(pages))]
+  }
   return {
-    name: "ContentPage",
-    getQuartzComponents(ctx) {
-      const { head, header, beforeBody, pageBody, afterBody, left, right, footer } = ctx.cfg.layout
-      return [head, ...header, ...beforeBody, pageBody, ...afterBody, ...left, ...right, footer]
-    },
-    async emit(ctx, content, resources): Promise<FilePath[]> {
-      const cfg = ctx.cfg.configuration
-      const fps: FilePath[] = []
-      const allFiles = content.map((c) => c[1].data)
-      for (const [tree, file] of content) {
-        const slug = canonicalizeServer(file.data.slug!)
-        const externalResources = pageResources(slug, file.data, resources)
-        const componentData: QuartzComponentProps = {
-          fileData: file.data,
-          externalResources,
-          cfg,
-          children: [],
-          tree,
-          allFiles,
-        }
-
-        const content = renderPage(cfg, slug, componentData, {}, externalResources)
-        const fp = await write({
-          ctx,
-          content,
-          slug: file.data.slug!,
-          ext: ".html",
-        })
-
-        fps.push(fp)
-      }
-      return fps
-    },
+    name: "PageList",
+    emit: (ctx, content) => emitList(ctx, content),
+    // rebuild the whole file on every change in `quartz build --serve`
+    partialEmit: (ctx, content) => emitList(ctx, content),
   }
 }
 ```
+
+An emitter that wants to render HTML pages with the site's layout should be a [[#Page Types|page type]] instead: Quartz's page renderer isn't exported to plugins. To turn an HTML AST into JSX (e.g. inside a component), use `htmlToJsx` from `@quartz-community/utils`.
+
+### Page Types
 
 Page types define how a category of pages is rendered. They are the primary way to add support for new file types or virtual pages in Quartz.
 
@@ -388,6 +394,7 @@ export interface QuartzPageTypePluginInstance {
   layout: string
   frame?: string
   body: QuartzComponentConstructor
+  treeTransforms?: (ctx: BuildCtx) => TreeTransform[]
 }
 ```
 
@@ -395,26 +402,83 @@ export interface QuartzPageTypePluginInstance {
 - `priority`: Controls matching order when multiple page types could match a slug. Higher priority page types are checked first. Default: `0`.
 - `fileExtensions`: Array of file extensions this page type handles (e.g. `[".canvas"]`, `[".base"]`). Content files (`.md`) are handled by the default content page type. The pages of such a page type stand for files: Quartz runs the site's filters on them (Quartz 5.1+), so give each page the file's `filePath` / `relativePath` and, if the file has frontmatter, that frontmatter.
 - `match`: A function that determines whether a given slug/file should be rendered by this page type.
-- `generate`: An optional function that produces virtual pages (pages not backed by files on disk, such as folder listings or tag indices). It receives `{ content, cfg, ctx }` and returns the pages, or (Quartz 5.1+) a promise of them, so it can do async work such as running content through the site's transformers or bundling with esbuild. Page types generate one after another, in priority order. A plugin with an async `generate` should declare `"quartzVersion": ">=5.1.0"`, since older versions don't wait for it.
+- `generate`: An optional function that produces virtual pages (pages not backed by files on disk, such as folder listings or tag indices). It receives `{ content, cfg, ctx }` and returns the pages, or (Quartz 5.1+) a promise of them, so it can do async work such as running content through the site's transformers or bundling with esbuild. Page types generate one after another, in priority order, and while one generates, `ctx.virtualPages` (a Quartz field not declared in `@quartz-community/types`) holds the virtual pages of the page types before it. A plugin with an async `generate` should declare `"quartzVersion": ">=5.1.0"`, since older versions don't wait for it.
 - `layout`: The layout configuration key (e.g. `"content"`, `"folder"`, `"tag"`). This determines which `byPageType` entry in `quartz.config.yaml` provides the layout overrides for this page type.
 - `frame`: The [[layout#Page Frames|page frame]] to use for this page type. Controls the overall HTML structure (e.g. `"default"`, `"full-width"`, `"minimal"`, or a custom frame provided by your plugin). If not set, defaults to `"default"`. Can be overridden per-page-type via `layout.byPageType.<name>.template` in `quartz.config.yaml`.
 - `body`: The Quartz component constructor that renders the page body content.
+- `treeTransforms`: Optional functions `(root, slug, componentData) => void` that change a page's HTML tree when it is rendered, when all pages (`componentData.allFiles`) are known — e.g. to resolve embeds. Quartz applies the transforms of every page type to every page it renders, so check that a node is yours before changing it.
+
+`match` is only asked about content files; a virtual page is rendered by the page type that generated it. All page types run inside one built-in emitter, the page-type dispatcher, which runs before the plugins' emitters. A minimal page type that adds one page per author:
+
+```tsx
+import type {
+  FullSlug,
+  QuartzComponent,
+  QuartzComponentConstructor,
+  QuartzPageTypePlugin,
+  VirtualPage,
+} from "@quartz-community/types"
+import { slugifyPath } from "@quartz-community/utils"
+
+const AuthorBody: QuartzComponentConstructor = () => {
+  const Body: QuartzComponent = ({ fileData, allFiles }) => {
+    const author = fileData.author as string
+    const pages = allFiles.filter((f) => f.frontmatter?.author === author)
+    return (
+      <ul>
+        {pages.map((f) => (
+          <li>{f.frontmatter?.title}</li>
+        ))}
+      </ul>
+    )
+  }
+  return Body
+}
+
+export const AuthorPage: QuartzPageTypePlugin = () => ({
+  name: "AuthorPage",
+  // checked before the content page type (priority 0)
+  priority: 10,
+  // notes you write under authors/ are rendered by this page type too
+  match: ({ slug }) => slug.startsWith("authors/"),
+  generate({ content }) {
+    const authors = new Set<string>()
+    for (const [, file] of content) {
+      const author = file.data.frontmatter?.author
+      if (typeof author === "string") authors.add(author)
+    }
+    return [...authors].map((author): VirtualPage => ({
+      slug: `authors/${slugifyPath(author)}` as FullSlug,
+      title: author,
+      data: { author },
+    }))
+  },
+  layout: "author", // layout.byPageType.author in quartz.config.yaml
+  body: AuthorBody,
+})
+```
 
 ### Extending the content index
 
 Quartz [[ContentIndex|builds `static/contentIndex.json`]] itself — the file search, the explorer, the graph and other client-side components read. Any plugin (transformer, filter, emitter or page type) can add fields to every page's entry by defining `extendContentIndex` on its plugin instance:
 
 ```ts
-import { QuartzTransformerPlugin } from "@quartz-community/types"
+import type { QuartzTransformerPlugin } from "@quartz-community/types"
 
 export const ReadingTime: QuartzTransformerPlugin = () => ({
   name: "ReadingTime",
   markdownPlugins: () => [/* … sets file.data.readingTime … */],
   // called once per page when contentIndex.json is written
-  extendContentIndex({ fileData, entry }) {
-    return { readingTime: fileData.readingTime as number | undefined }
+  extendContentIndex({ fileData }) {
+    return { readingTime: fileData.readingTime }
   },
 })
+
+declare module "vfile" {
+  interface DataMap {
+    readingTime: number
+  }
+}
 ```
 
 Client-side code then finds the field next to the core ones:
@@ -449,7 +513,15 @@ emit: async (ctx, content) => {
 }
 ```
 
-Built-in settings are available too, with defaults and migrated options applied: `ctx.cfg.configuration.links.markdownLinkResolution`, `ctx.cfg.configuration.contentIndex.enableRSS`, … Both need Quartz 5.1+ — declare `"quartzVersion": ">=5.1.0"` (see [[versioning#For plugin authors]]).
+Built-in settings are available too, with defaults and migrated options applied: Quartz 5.1 sets `ctx.cfg.configuration.links`, `.frontmatter`, `.drafts` and `.contentIndex` to objects with every option (`enabled`, `order`, `markdownLinkResolution`, `enableRSS`, …). Their type also allows `boolean` (what a user may write in YAML) and `undefined` (older Quartz), so narrow before reading an option:
+
+```ts
+const links = ctx.cfg.configuration.links
+const resolution =
+  (typeof links === "object" ? links.markdownLinkResolution : undefined) ?? "shortest"
+```
+
+Both need Quartz 5.1+ — declare `"quartzVersion": ">=5.1.0"` (see [[versioning#For plugin authors]]).
 
 ### Components in sidebars
 
@@ -481,12 +553,10 @@ export const MyFrame: PageFrame = {
 }
 `,
   render({ componentData, pageBody: Content, footer: Footers }: PageFrameProps): unknown {
-    const renderSlot = (C: (props: typeof componentData) => unknown): ComponentChildren =>
-      C(componentData) as ComponentChildren
     return (
       <div class="center">
-        {(Content as any)(componentData)}
-        {Footers.map((Footer) => (Footer as any)(componentData))}
+        {Content(componentData) as ComponentChildren}
+        {Footers.map((Footer) => Footer(componentData) as ComponentChildren)}
       </div>
     )
   },
@@ -533,7 +603,10 @@ The `"frames"` field in the `"quartz"` manifest maps export names to frame metad
 
 ```ts title="tsup.config.ts"
 export default defineConfig({
-  entry: ["src/index.ts", "src/frames/index.ts"],
+  entry: {
+    index: "src/index.ts",
+    "frames/index": "src/frames/index.ts",
+  },
   // ...
 })
 ```
@@ -557,22 +630,23 @@ When a user installs your plugin, Quartz automatically loads the frame from the 
 
 The `bases-page` plugin provides a database-like view system similar to Obsidian Bases. Other plugins can register custom view types via the `ViewRegistry`:
 
-```ts
-import { viewRegistry } from "@quartz-community/bases-page";
-import type { ViewTypeRegistration } from "@quartz-community/bases-page";
+```tsx
+import { viewRegistry } from "@quartz-community/bases-page"
 
 viewRegistry.register({
   id: "timeline",
   name: "Timeline",
   icon: "git-branch",
-  render: ({ entries, view, slug, allSlugs }) => (
+  render: ({ entries }) => (
     <div class="bases-timeline">
-      {entries.map(entry => <div>{entry.properties.title}</div>)}
+      {entries.map((entry) => (
+        <div>{entry.title}</div>
+      ))}
     </div>
   ),
   css: `.bases-timeline { display: flex; flex-direction: column; }`,
   afterDOMLoaded: `document.addEventListener("nav", () => { /* setup */ })`,
-});
+})
 ```
 
 Each view registration includes:
@@ -621,13 +695,29 @@ const SINGLETON_EXTERNALS = [
 ]
 
 export default defineConfig({
+  entry: {
+    index: "src/index.ts",
+    types: "src/types.ts",
+    "components/index": "src/components/index.ts",
+  },
   // ...
   noExternal: [/.*/], // Bundle everything
   external: SINGLETON_EXTERNALS, // Except singletons
+  esbuildOptions(options) {
+    options.jsx = "automatic"
+    options.jsxImportSource = "preact"
+    // noExternal: [/.*/] overrides `external`, so set it on esbuild directly
+    options.external = SINGLETON_EXTERNALS
+  },
 })
 ```
 
-This means your plugin's `dist/index.js` is self-contained — no `npm install` needed at install time.
+This means your plugin's `dist/` is self-contained — no `npm install` needed at install time. The three entries build the `.`, `./types` and `./components` exports of the template's `package.json`; Quartz loads components from `./components` (see [[creating components]]).
+
+The singletons are left out so that every plugin uses the same copy. List `preact` (and `vfile` if you use it) in `peerDependencies`, as the template does: Quartz links a plugin's peer dependencies to the site's own `node_modules`, so all plugins share Quartz's Preact and hooks and context work across components of different plugins.
+
+> [!warning] Plugins made from an older template
+> Before Quartz 5.1, the template's `tsup.config.ts` set only `external`, which `noExternal: [/.*/]` overrides: those plugins bundle their own Preact, and a component using `preact/hooks` can crash next to other plugins' components. Copy the `esbuildOptions` above (`options.external = SINGLETON_EXTERNALS`) from the current [plugin template](https://github.com/quartz-community/plugin-template), move `preact` to `peerDependencies` and rebuild.
 
 ### Shipping Pre-built Output
 
@@ -635,7 +725,8 @@ Your plugin's `dist/` directory should be committed to the repository:
 
 1. **Do NOT add `dist/` to `.gitignore`**
 2. Run `npm run build` before committing
-3. The CI workflow verifies `dist/` is up to date on every push
+
+The template's CI workflow runs typecheck, lint, format check, tests and a build, then checks `dist/index.js` for imports of packages that are neither bundled, built into Node, shared singletons nor peer dependencies (they would fail at runtime). It does not check that the committed `dist/` matches the source, so rebuild before every commit.
 
 If `dist/` is missing or gitignored, Quartz falls back to the full install/build cycle (useful during local development with symlinked plugins).
 
@@ -646,14 +737,16 @@ Since Quartz 5.1, `externalResources()` can return `assets`: files or directorie
 Use this for large or optional client code instead of an inline script: Quartz serves inline scripts to **every page**, while an asset is only downloaded where your script imports it.
 
 ```ts
-import path from "path"
-import { createRequire } from "module"
+import path from "node:path"
+import { createRequire } from "node:module"
 
 externalResources() {
   // resolve a dependency's browser build at build time
   const pkg = createRequire(import.meta.url).resolve("my-renderer/package.json")
   return {
-    js: [{ script: loaderScript, loadTime: "afterDOMReady", contentType: "inline", moduleType: "module" }],
+    js: [
+      { script: loaderScript, loadTime: "afterDOMReady", contentType: "inline", moduleType: "module" },
+    ],
     assets: [{ from: path.join(path.dirname(pkg), "dist", "esm"), to: "my-plugin/renderer" }],
   }
 }
@@ -661,13 +754,15 @@ externalResources() {
 
 ```ts title="loader.inline.ts"
 document.addEventListener("nav", async () => {
-  const nodes = document.querySelectorAll(".my-widget")
+  const nodes = document.querySelectorAll<HTMLElement>(".my-widget")
   if (nodes.length === 0 || !window.quartzStaticUrl) return // nothing to do on this page
   const url = new URL("plugins/my-plugin/renderer/index.js", window.quartzStaticUrl).href
   const { render } = await import(url)
   for (const node of nodes) render(node)
 })
 ```
+
+`window.quartzStaticUrl` is declared in the browser globals of `@quartz-community/types` from 1.3.1 on; the template's `types/globals.d.ts` references them (`/// <reference path="../node_modules/@quartz-community/types/globals.d.ts" />`).
 
 - `to` is relative to `static/plugins/`; use your plugin's name as the first segment. Invalid or conflicting targets and missing sources are reported as build warnings.
 - An ES module build with relative `import()`s keeps working when served this way, so only the chunks a page needs are downloaded.
@@ -679,7 +774,7 @@ Plugins that require native packages (e.g. `sharp` for image processing) cannot 
 
 1. Set `"requiresInstall": true` in your `package.json` quartz manifest
 2. Declare the native package as a `peerDependency`
-3. Quartz will install it into the host project at build time
+3. Quartz installs it into the site when it installs your plugin from Git
 
 ```shell
 # Build the plugin
@@ -690,19 +785,26 @@ npx tsup
 
 ## What to Import from Where
 
-| You need...                                                            | Import from                                                       |
-| ---------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Type definitions (`QuartzTransformerPlugin`, `QuartzComponent`, etc.)  | `@quartz-community/types`                                         |
-| Path utilities (`simplifySlug`, `resolveRelative`, `pathToRoot`)       | `@quartz-community/utils/path`                                    |
-| DOM utilities (`removeAllChildren`, `registerEscapeHandler`)           | `@quartz-community/utils/dom`                                     |
-| JSX conversion (`htmlToJsx`)                                           | `@quartz-community/utils/jsx`                                     |
-| Language utilities (`classNames`, `capitalize`)                        | `@quartz-community/utils/lang`                                    |
-| Date/sort utilities (`formatDate`, `getDate`, `byDateAndAlphabetical`) | `@quartz-community/utils/date` and `@quartz-community/utils/sort` |
-| HTML escaping (`escapeHTML`, `unescapeHTML`)                           | `@quartz-community/utils/escape`                                  |
-| Emoji utilities (`getIconCode`)                                        | `@quartz-community/utils/emoji`                                   |
-| Browser runtime (`onNav`, `onRender`, `fetchContentIndex`)             | `@quartz-community/runtime`                                       |
+| You need...                                                                                                             | Import from                                                       |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Type definitions (`QuartzTransformerPlugin`, `QuartzComponent`, `BuildCtx`, `FilePath`, etc.)                           | `@quartz-community/types`                                         |
+| Browser globals (`fetchData`, `window.addCleanup`, `window.quartzStaticUrl`, the `nav` / `render` events, …)            | `@quartz-community/types/globals.d.ts` (types only, see above)    |
+| Path utilities (`simplifySlug`, `resolveRelative`, `pathToRoot`, `slugifyFilePath`, `joinSegments`)                     | `@quartz-community/utils/path`                                    |
+| Links: `transformLink` (resolve a link like Quartz does), `splitAnchor`, `linkPathDecodes`                              | `@quartz-community/utils/path`                                    |
+| Heading ids and anchors: `slugHeading`, `HeadingSlugger`, `obsidianHeadingAnchor`, `resolveAnchorHref`; tags: `slugTag` | `@quartz-community/utils/path`                                    |
+| DOM utilities (`removeAllChildren`, `registerEscapeHandler`, `normalizeRelativeURLs`)                                   | `@quartz-community/utils/dom`                                     |
+| JSX conversion (`htmlToJsx`)                                                                                            | `@quartz-community/utils/jsx`                                     |
+| Language utilities (`classNames`, `capitalize`)                                                                         | `@quartz-community/utils/lang`                                    |
+| Date/sort utilities (`formatDate`, `getDate`, `byDateAndAlphabetical`)                                                  | `@quartz-community/utils/date` and `@quartz-community/utils/sort` |
+| HTML escaping (`escapeHTML`, `unescapeHTML`)                                                                            | `@quartz-community/utils/escape`                                  |
+| Emoji utilities (`getIconCode`)                                                                                         | `@quartz-community/utils/emoji`                                   |
+| Browser runtime (`onNav`, `onRender`, `fetchContentIndex`)                                                              | `@quartz-community/runtime`                                       |
 
-Do **not** import from `@jackyzha0/quartz` or from `vfile` directly. Use the community packages instead.
+All utilities are also exported from `@quartz-community/utils` itself. The tables assume `@quartz-community/types` 1.3.0+ and `@quartz-community/utils` 1.2.0+.
+
+A plugin that gives headings ids, or writes links to headings, must use the heading helpers: they make the same ids as GitHub Flavored Markdown and the table of contents (`HeadingSlugger` numbers repeated headings `foo`, `foo-1`, …), so anchors written in Obsidian resolve. See [[paths#Headings and anchors]].
+
+Do **not** import from `@jackyzha0/quartz`: plugins run against whichever Quartz version the site uses. Use the community packages instead. Import `vfile` only for types, such as the `declare module "vfile"` block that adds your `file.data` fields; it is a shared package, so list it in `peerDependencies` rather than bundling it.
 
 ## Internationalization (i18n)
 
@@ -853,10 +955,10 @@ npx quartz plugin prune --dry-run
 ```
 
 > [!tip]
-> Both `resolve` and `prune` fall back to `quartz.config.default.yaml` if no `quartz.config.yaml` is present. This is useful for CI environments where the default config is the source of truth. See [[cli/plugin#prune|prune]] and [[cli/plugin#resolve|resolve]] for full details.
+> Both `install --from-config` and `prune` fall back to `quartz.config.default.yaml` if no `quartz.config.yaml` is present. This is useful for CI environments where the default config is the source of truth. See [[cli/plugin#install|install]] and [[cli/plugin#prune|prune]] for full details.
 
 ## Component Plugins
 
 For plugins that provide visual components (like Explorer, Graph, Search), see the [[creating components|creating component plugins]] guide.
 
-Component-only plugins (those with `"category": ["component"]` in their manifest) are loaded via side-effect import rather than a factory function. If your component-only plugin needs to receive user options from `quartz.config.yaml`, export an `init(options)` function — see [[creating components#Receiving YAML Options in Component-Only Plugins|receiving YAML options]] for details.
+Quartz loads components from your package's `./components` export by the names listed in `quartz.components` (see [[plugin manifest#components]]). Component-only plugins (those with `"category": ["component"]` in their manifest) are loaded via side-effect import rather than a factory function. If your component-only plugin needs to receive user options from `quartz.config.yaml`, export an `init(options)` function — see [[creating components#Receiving YAML Options in Component-Only Plugins|receiving YAML options]] for details.

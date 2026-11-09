@@ -31,14 +31,18 @@ Add `capabilities` to the `quartz` field of your plugin's `package.json`:
       "provides": {},
       "requires": {
         "data": [
-          { "name": "links", "from": "crawl-links", "reason": "the backlinks list is always empty" }
+          {
+            "name": "links",
+            "from": "quartz:links",
+            "reason": "the backlinks list is always empty"
+          }
         ]
       },
       "optional": {
         "data": [
           {
             "name": "frontmatter",
-            "from": "note-properties",
+            "from": "quartz:frontmatter",
             "reason": "titles fall back to file names"
           }
         ]
@@ -67,7 +71,7 @@ Each section maps a **kind** to a list:
 
 A requirement is either a name, or `{ "name", "from"?, "reason"? }`:
 
-- `from` — plugin name(s) (the manifest `name`, e.g. `"crawl-links"`) known to provide it. It is used for the "enable …" hint, **and** a requirement counts as satisfied whenever a plugin named in `from` is enabled, even if that plugin predates capability declarations. Always set `from` for first-party providers: it keeps new consumers working with old providers.
+- `from` — plugin name(s) (the manifest `name`, e.g. `"syntax-highlighting"`) known to provide it. It is used for the "enable …" hint, **and** a requirement counts as satisfied whenever a plugin named in `from` is enabled, even if that plugin predates capability declarations. Always set `from` for first-party providers: it keeps new consumers working with old providers. [[built-in processing|Built-ins]] are named `quartz:frontmatter`, `quartz:links`, `quartz:drafts` and `quartz:contentIndex` (the names of the plugins they replaced, `crawl-links`, `remove-draft` and `content-index`, work too).
 - `reason` — what breaks without it, appended to the warning.
 
 Names are matched exactly (after trimming). Unknown kinds or malformed entries are ignored and reported, never fatal.
@@ -78,10 +82,10 @@ These never need a provider plugin (`coreCapabilities()` in `quartz/plugins/load
 
 - data: `slug`, `filePath`, `relativePath`
 - dom: `#quartz-body`, `.page`, `.center`, `article`, `.popover-hint`, `.sidebar`
-- globals: `fetchData`, `addCleanup`, `spaNavigate`
+- globals: `fetchData`, `addCleanup`, `spaNavigate`, `quartzStaticUrl`, `quartzPrefetch` (the last is only set while [[prefetching]] is on)
 - events: `nav` (always), `prenav` (only with `enableSPA`)
 
-Note that `fetchData` is a promise for `static/contentIndex.json`, which Quartz emits by default ([[ContentIndex|built-in content index]]). Declare `files: ["static/contentIndex.json"]` if you read it. Since this release `fetchData` resolves to `{}` (with a console warning) when the file is missing, instead of rejecting.
+Note that `fetchData` is a promise for `static/contentIndex.json`, which Quartz emits by default ([[ContentIndex|built-in content index]]). Declare `files: ["static/contentIndex.json"]` if you read it. Since Quartz 5.1, `fetchData` resolves to `{}` (with a console warning) when the file is missing, instead of rejecting.
 
 ## How the check works
 
@@ -92,7 +96,7 @@ Note that `fetchData` is a promise for `static/contentIndex.json`, which Quartz 
 3. Only if something is missing, also read the manifests of **disabled** entries in `quartz.config.yaml` to suggest which one to enable.
 4. Warnings are printed once per process (main thread only).
 
-The check is static: it cannot see option-dependent behaviour (e.g. `syntax-highlighting` with `clipboard: false` still "provides" `.clipboard-button`) or pipeline order (see the `dependencies` / `defaultOrder` checks for that).
+The check is static: it cannot see option-dependent behaviour (e.g. `syntax-highlighting` with `clipboard: false` still "provides" `.clipboard-button`) or pipeline order: for that, set [[plugin manifest#defaultOrder|`defaultOrder`]] (and [[plugin manifest#dependencies|`dependencies`]]: a missing dependency or one ordered after your plugin fails the build, a disabled one is a warning).
 
 ## Writing robust consumers
 
@@ -104,27 +108,12 @@ Declaring a requirement is not a substitute for handling its absence. For `optio
 
 ## Built-ins as providers
 
-Quartz's [[built-in processing]] steps take part in the check like plugins: when enabled, built-in frontmatter provides `frontmatter`, `aliases` and `frontmatterLinks`, built-in links provides `links`, and the built-in content index provides `static/contentIndex.json`. When one is turned off, warnings suggest `configuration.<key>` (and a `from: "crawl-links"` hint is shown as `configuration.links`).
+Quartz's [[built-in processing]] steps take part in the check like plugins: when enabled, built-in frontmatter provides `frontmatter`, `aliases` and `frontmatterLinks`, built-in links provides `links`, and the built-in content index provides `static/contentIndex.json`. Built-in links also provides the DOM classes `.internal`, `.external` and `.broken`, and the content index `sitemap.xml`. When one is turned off, warnings suggest `configuration.<key>` (a `from: "crawl-links"` or `"quartz:links"` hint is shown as `configuration.links`).
 
-The same declarations decide replacement: an enabled plugin that `provides` `data: ["frontmatter"]`, `data: ["links"]` or `files: ["static/contentIndex.json"]` replaces the matching built-in.
+The same declarations decide replacement: an enabled plugin that `provides` `data: ["frontmatter"]`, `data: ["links"]` or `files: ["static/contentIndex.json"]` replaces the matching built-in. Built-in drafts can't be replaced.
 
-## Migration path
+## Who declares capabilities
 
-1. **Now (this change):** core checker + declarations on a representative set of first-party plugins: `note-properties`, `crawl-links`, `backlinks`, `description`, `content-index`, `syntax-highlighting`, `obsidian-flavored-markdown`, `remove-draft`, `search`.
-2. **Next, first-party plugins** — drafts derived from the workspace catalog (`just catalog show <plugin>` in the dev-mode workspace lists data read/written, DOM classes and scripts):
+In Quartz 5.1, these first-party plugins declare capabilities: `backlinks`, `description`, `syntax-highlighting`, `obsidian-flavored-markdown` and `search` (and the plugins replaced by built-ins: `note-properties`, `crawl-links`, `remove-draft`, `content-index`). Plugins without declarations are never checked and never cause warnings, so third-party plugins can add them at their own pace.
 
-   | Plugin                                      | Draft                                                                                                |
-   | ------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-   | `explicit-publish`                          | requires data `frontmatter` (built in)                                                               |
-   | `graph`, `explorer`                         | requires files `static/contentIndex.json` (built in); optional events `themechange` from darkmode    |
-   | `recent-notes`, `content-meta`              | optional data `dates` from created-modified-date                                                     |
-   | `alias-redirects`                           | requires data `aliases` (built in)                                                                   |
-   | `table-of-contents`                         | provides data `toc`, `collapseToc`                                                                   |
-   | `created-modified-date`                     | provides data `dates`, `defaultDateType`                                                             |
-   | `unlisted-pages`, `encrypted-pages`         | provide data `unlisted` (encrypted-pages also `encrypted`, events `render`, `content-index-updated`) |
-   | `darkmode`                                  | provides events `themechange`                                                                        |
-   | `og-image`, `folder-page`, `tag-page`       | optional data `description` from description, `dates` from created-modified-date                     |
-   | `canvas-page`, `obsidian-plugin-excalidraw` | optional dom `.explorer` (they style it) from explorer                                               |
-
-3. **Third-party plugins:** add declarations at their own pace; nothing changes for them otherwise.
-4. **Later (proposals, not implemented):** print `optional` infos with `quartz build --verbose`; a `strictCapabilities` option that turns warnings into errors; ordering checks for `data` between transformers (needs a `phase` per provided key); option-aware provides; a `transforms` kind for "rewrites links" style contracts (OFM currently uses crawl-links' `.internal` class as a proxy); exporting these types from `@quartz-community/types`.
+Not implemented (yet): printing unsatisfied `optional` requirements, turning warnings into errors, ordering checks between transformers, and option-aware `provides`. The capability types are not exported from `@quartz-community/types`; the schema above is the contract.

@@ -25,7 +25,7 @@ You need these tools installed before continuing:
 
 Follow these in order:
 
-1. **[[installation|Installation]]** — Get Quartz (via GitHub template or clone), install dependencies, run the setup wizard (`npx quartz create`), install plugins, and preview your site locally
+1. **[[installation|Installation]]** — Get Quartz (via GitHub template or clone), install dependencies, run the setup wizard (`npx quartz create`, which also installs plugins), and preview your site locally
 2. **[[authoring-content|Authoring Content]]** — Write and organize your Markdown notes in the `content/` folder
 3. **[[installation#Setting Up Your GitHub Repository|Push to GitHub]]** — Create a repository and push your site with `npx quartz sync`
 4. **[[hosting|Deploy]]** — Host your site for free on GitHub Pages, Cloudflare, Netlify, or Vercel

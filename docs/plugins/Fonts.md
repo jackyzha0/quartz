@@ -10,7 +10,7 @@ enabled: true
 required: false
 ---
 
-This plugin provides fine-grained control over fonts in your Quartz site. It supports per-heading font families, automatic theme font discovery when used with [Quartz Themes](https://github.com/saberzero1/quartz-themes), Google Fonts integration with automatic weight and italic loading, and falls back to Obsidian's default system font stacks.
+This plugin provides fine-grained control over fonts in your Quartz site. It supports per-heading font families, automatic theme font discovery when used with [[ThemesCore|Quartz Themes]], Google Fonts integration with automatic weight and italic loading, and otherwise falls back to the fonts set in `configuration.theme.typography`.
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
@@ -46,18 +46,18 @@ This plugin accepts the following configuration options:
 | Option          | Type                | Default          | Description                                                                                                            |
 | --------------- | ------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | `title`         | `FontSpecification` | `header` value   | Font family for the site title.                                                                                        |
-| `body`          | `FontSpecification` | Obsidian default | Font family for body text.                                                                                             |
-| `header`        | `FontSpecification` | Obsidian default | Default font family for all headings (h1-h6).                                                                          |
-| `code`          | `FontSpecification` | Obsidian default | Font family for code and monospace elements.                                                                           |
+| `body`          | `FontSpecification` | see below        | Font family for body text.                                                                                             |
+| `header`        | `FontSpecification` | see below        | Default font family for all headings (h1-h6).                                                                          |
+| `code`          | `FontSpecification` | see below        | Font family for code and monospace elements.                                                                           |
 | `interface`     | `FontSpecification` | Obsidian default | Font family for UI elements.                                                                                           |
 | `h1` – `h6`     | `FontSpecification` | `header` value   | Per-heading font family overrides.                                                                                     |
-| `useThemeFonts` | `boolean`           | `true`           | Use fonts from [Quartz Themes](https://github.com/saberzero1/quartz-themes) as defaults when it is installed.          |
+| `useThemeFonts` | `boolean`           | `true`           | Use fonts from [[ThemesCore\|Quartz Themes]] as defaults when it is enabled.                                           |
 | `fontOrigin`    | `string`            | `"googleFonts"`  | `"googleFonts"` to load from Google Fonts CDN, `"selfHosted"` to download and serve locally, `"local"` for no loading. |
 
 ### Default options
 
 ```yaml title="quartz.config.yaml"
-- source: github:quartz-community/fonts
+- source: "@quartz-community/quartz-fonts"
   enabled: true
   options:
     useThemeFonts: true
@@ -69,26 +69,31 @@ This plugin accepts the following configuration options:
 Fonts are resolved using a priority chain:
 
 ```
-User config (plugin options)
-  → Theme fonts (from Quartz Themes, if installed)
-    → Obsidian defaults (system font stacks)
+Plugin option
+  → Theme font (from Quartz Themes, if enabled and useThemeFonts is on)
+    → configuration.theme.typography (header, body, code, title)
+      → Quartz defaults (Schibsted Grotesk, Source Sans Pro, IBM Plex Mono)
 ```
 
 For individual headings:
 
 ```
-h1 option → header option → theme --h1-font → theme font → Obsidian default
+h1 option → theme --h1-font → header option → theme body font → resolved header font
 ```
 
 For the site title:
 
 ```
-title option → header option → theme font → Obsidian default
+title option → configuration.theme.typography.title → resolved header font
 ```
+
+The `interface` font comes from the option, then the theme's `--font-interface`, then Obsidian's default sans-serif stack.
+
+With `fontOrigin: googleFonts` or `selfHosted`, the header, body, code and title fonts are loaded from Google Fonts: the plugin options if set, otherwise `configuration.theme.typography`, otherwise the Quartz defaults.
 
 ## Usage with Quartz Themes
 
-When [Quartz Themes](https://github.com/saberzero1/quartz-themes) is installed and enabled, Fonts automatically discovers the theme's font metadata and uses it as defaults. Any options you explicitly set in Fonts will override the theme fonts.
+When [[ThemesCore|Quartz Themes]] is enabled, Fonts automatically discovers the theme's font metadata and uses it as defaults. Any options you explicitly set in Fonts will override the theme fonts.
 
 Fonts must run **after** Quartz Themes. This is handled automatically by plugin ordering (Quartz Themes = 10, Fonts = 60).
 
@@ -97,23 +102,23 @@ Fonts must run **after** Quartz Themes. This is handled automatically by plugin 
 
 ## Usage without Quartz Themes
 
-Fonts works standalone. Without a theme, it falls back to Obsidian's default system font stacks. You can set fonts explicitly via the plugin options.
+Fonts works standalone. Without a theme, it uses `configuration.theme.typography` (or the Quartz defaults). You can set fonts explicitly via the plugin options.
 
 ## Examples
 
 ```yaml title="quartz.config.yaml"
 # Use theme fonts automatically (default behavior)
-- source: github:quartz-community/fonts
+- source: "@quartz-community/quartz-fonts"
   enabled: true
 
 # Override just the heading font
-- source: github:quartz-community/fonts
+- source: "@quartz-community/quartz-fonts"
   enabled: true
   options:
     header: '"Playfair Display", serif'
 
 # Full control with per-heading fonts
-- source: github:quartz-community/fonts
+- source: "@quartz-community/quartz-fonts"
   enabled: true
   options:
     body: '"Inter", sans-serif'
@@ -123,7 +128,7 @@ Fonts works standalone. Without a theme, it falls back to Obsidian's default sys
     h2: '"Lora", serif'
 
 # Load from Google Fonts automatically
-- source: github:quartz-community/fonts
+- source: "@quartz-community/quartz-fonts"
   enabled: true
   options:
     fontOrigin: googleFonts
@@ -132,7 +137,7 @@ Fonts works standalone. Without a theme, it falls back to Obsidian's default sys
     code: JetBrains Mono
 
 # Google Fonts with weight/italic control
-- source: github:quartz-community/fonts
+- source: "@quartz-community/quartz-fonts"
   enabled: true
   options:
     fontOrigin: googleFonts
@@ -148,7 +153,7 @@ Fonts works standalone. Without a theme, it falls back to Obsidian's default sys
       weights: [400]
 
 # Custom title font (separate from header)
-- source: github:quartz-community/fonts
+- source: "@quartz-community/quartz-fonts"
   enabled: true
   options:
     fontOrigin: googleFonts
@@ -158,7 +163,7 @@ Fonts works standalone. Without a theme, it falls back to Obsidian's default sys
     code: JetBrains Mono
 
 # Self-hosted fonts (downloaded at build time, no external requests)
-- source: github:quartz-community/fonts
+- source: "@quartz-community/quartz-fonts"
   enabled: true
   options:
     fontOrigin: selfHosted
@@ -167,7 +172,7 @@ Fonts works standalone. Without a theme, it falls back to Obsidian's default sys
     code: JetBrains Mono
 
 # Ignore theme fonts entirely
-- source: github:quartz-community/fonts
+- source: "@quartz-community/quartz-fonts"
   enabled: true
   options:
     useThemeFonts: false
@@ -185,15 +190,11 @@ At build time, the plugin:
 3. Writes the font files to `static/fonts/` in your build output
 4. Generates a `quartz-fonts.css` file with `@font-face` rules pointing to the local files
 
-> [!note]
-> Self-hosted fonts require `baseUrl` to be set in your Quartz configuration, since font URLs in the CSS need an absolute path.
+The stylesheet is linked relative to each page and the font files relative to the stylesheet, so self-hosted fonts work on `localhost`, on any host and under a base path; `baseUrl` is not needed.
 
 ```yaml title="quartz.config.yaml"
-configuration:
-  baseUrl: "example.com"
-
 plugins:
-  - source: github:quartz-community/fonts
+  - source: "@quartz-community/quartz-fonts"
     enabled: true
     options:
       fontOrigin: selfHosted
@@ -223,4 +224,4 @@ Validation warnings are logged to the console but do not block the build.
 - Category: Transformer, Emitter
 - Function name: `ExternalPlugin.Fonts()` (transformer), `ExternalPlugin.FontsEmitter()` (emitter).
 - Source: [`quartz-community/fonts`](https://github.com/quartz-community/fonts)
-- Install: `npx quartz plugin add github:quartz-community/fonts`
+- Install: `npx quartz plugin add @quartz-community/quartz-fonts` (included in the default configuration)
