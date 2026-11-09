@@ -87,14 +87,25 @@ export interface CapabilityReport {
  * Capabilities Quartz core itself always provides (independent of plugins).
  * Kept deliberately small: only things core code sets or renders unconditionally.
  */
-export function coreCapabilities(configuration?: { enableSPA?: boolean }): CapabilityList {
+export function coreCapabilities(configuration?: {
+  enableSPA?: boolean
+  prefetch?: string | boolean
+}): CapabilityList {
+  const prefetch = configuration?.prefetch !== "off" && configuration?.prefetch !== false
   return {
     // quartz/processors/parse.ts
     data: ["slug", "filePath", "relativePath"],
     // renderPage.tsx / frames
     dom: ["#quartz-body", ".page", ".center", "article", ".popover-hint", ".sidebar"],
-    // renderPage.tsx (fetchData), componentResources.ts (spaNavigate/addCleanup, SPA or not)
-    globals: ["fetchData", "addCleanup", "spaNavigate"],
+    // renderPage.tsx (fetchData, quartzStaticUrl), componentResources.ts (spaNavigate/addCleanup,
+    // SPA or not; quartzPrefetch unless prefetching is off)
+    globals: [
+      "fetchData",
+      "addCleanup",
+      "spaNavigate",
+      "quartzStaticUrl",
+      ...(prefetch ? ["quartzPrefetch"] : []),
+    ],
     // componentResources.ts dispatches "nav" in both modes; spa.inline.ts adds "prenav"
     events: configuration?.enableSPA === false ? ["nav"] : ["nav", "prenav"],
   }
@@ -303,7 +314,7 @@ export async function validatePluginCapabilities<E extends { enabled: boolean }>
   manifestFor: (
     entry: E,
   ) => Promise<ManifestLike | null | undefined> | ManifestLike | null | undefined
-  configuration?: { enableSPA?: boolean }
+  configuration?: { enableSPA?: boolean; prefetch?: string | boolean }
   /** Built-in processing steps (see plugins/builtins): enabled ones provide, others are suggested. */
   builtins?: { enabled: CapabilityPlugin[]; available: CapabilityPlugin[] }
 }): Promise<CapabilityReport> {

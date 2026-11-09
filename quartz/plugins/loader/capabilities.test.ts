@@ -197,3 +197,12 @@ describe("validatePluginCapabilities", () => {
     assert.deepStrictEqual(report.warnings, [])
   })
 })
+
+describe("core globals", () => {
+  test("quartzStaticUrl always, quartzPrefetch unless prefetching is off", () => {
+    assert.ok(coreCapabilities().globals?.includes("quartzStaticUrl"))
+    assert.ok(coreCapabilities().globals?.includes("quartzPrefetch"))
+    assert.ok(coreCapabilities({ prefetch: "hover" }).globals?.includes("quartzPrefetch"))
+    assert.ok(!coreCapabilities({ prefetch: "off" }).globals?.includes("quartzPrefetch"))
+  })
+})
