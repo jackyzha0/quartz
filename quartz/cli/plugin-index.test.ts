@@ -46,6 +46,20 @@ function fakeSite() {
 }
 
 describe("plugin index", () => {
+  // npm plugins are found through import.meta.resolve, which returns a file: URL. Its pathname
+  // is not a path on Windows (`/C:/…`), so every npm plugin was skipped there (#2616).
+  test("npm plugins are found through their package.json", () => {
+    const pluginsDir = fs.mkdtempSync(path.join(os.tmpdir(), "quartz-plugin-index-npm-"))
+    const entry = collectPluginExports({
+      pluginsDir,
+      npmPackages: ["@quartz-community/explorer"],
+    }).get("quartz-community__explorer")
+    assert.ok(entry, "@quartz-community/explorer was skipped")
+    assert.ok(entry.overridable.includes("Explorer"))
+    assert.strictEqual(entry.importPath, "@quartz-community/explorer")
+    fs.rmSync(pluginsDir, { recursive: true, force: true })
+  })
+
   test("component constructors re-exported from a sub-module are wrapped (#2565)", () => {
     const { root, pluginsDir } = fakeSite()
     const entry = collectPluginExports({ pluginsDir }).get("my-widget")!
