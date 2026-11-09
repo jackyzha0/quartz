@@ -242,15 +242,20 @@ describe("frontmatter built-in", () => {
     )
   })
 
-  test("frontmatter holding a single value instead of properties is a content error", () => {
-    for (const source of ["---\nhello\n---\nbody\n", "---\n42\n---\n"]) {
+  test("frontmatter holding a single value or a list instead of properties is a content error", () => {
+    for (const source of [
+      "---\nhello\n---\nbody\n",
+      "---\n42\n---\n",
+      "---\n- a\n- b\n---\nbody\n",
+    ]) {
       assert.throws(
         () => readFrontmatterData(source),
         (err: Error) => isContentError(err) && /expected properties/.test(err.message),
       )
     }
-    // empty frontmatter and lists keep working as before
+    // empty frontmatter keeps working
     assert.deepStrictEqual(readFrontmatterData("---\n---\nbody\n"), {})
+    assert.deepStrictEqual(readFrontmatterData("---\n# just a comment\n---\nbody\n"), {})
     assert.deepStrictEqual(readFrontmatterData("---\nnull\n---\n"), {})
   })
 

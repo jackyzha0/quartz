@@ -157,10 +157,12 @@ export function readFrontmatterData(
         js: refuseJavaScript,
       },
     })
-    // YAML/TOML can hold a single value (`--- hello ---`); properties are key/value pairs
-    if (typeof data !== "object" || data === null) {
+    // YAML/TOML can hold a single value (`--- hello ---`) or a list (`- a`); properties are
+    // key/value pairs
+    if (typeof data !== "object" || data === null || Array.isArray(data)) {
+      const kind = Array.isArray(data) ? "list" : typeof data
       throw new ContentError(
-        `Invalid frontmatter: expected properties (\`key: value\` lines), got a ${typeof data} (${JSON.stringify(data)})`,
+        `Invalid frontmatter: expected properties (\`key: value\` lines), got a ${kind} (${JSON.stringify(data)})`,
       )
     }
     return data
