@@ -137,6 +137,51 @@ describe("validatePluginOptions", () => {
     assert.strictEqual(issues[0].suggestion, "dark")
     assert.strictEqual(issues[1].severity, "warning")
   })
+
+  // first-party plugins (and Quartz Syncer) name the field optionSchema, as a flat map
+  test("reads a flat optionSchema, with type enum + values", () => {
+    const manifest = {
+      defaultOptions: { limit: 3 },
+      optionSchema: {
+        limit: { type: "number" },
+        mode: { type: "enum", values: ["light", "dark"] },
+        show: { type: "boolean" },
+      },
+    }
+    const issues = validatePluginOptions({ mode: "drak", limit: "5", shwo: true }, manifest)
+    assert.deepStrictEqual(
+      issues.map((i) => [i.path, i.severity, i.suggestion]),
+      [
+        ["mode", "warning", "dark"],
+        ["limit", "warning", undefined],
+        ["shwo", "warning", "show"],
+      ],
+    )
+    assert.deepStrictEqual(validatePluginOptions({ mode: "dark", show: false }, manifest), [])
+  })
+
+  test("accepts a value of the default's type when the schema disagrees", () => {
+    const manifest = {
+      defaultOptions: { linkToMore: false },
+      optionSchema: { linkToMore: { type: "string" } },
+    }
+    assert.deepStrictEqual(validatePluginOptions({ linkToMore: false }, manifest), [])
+    assert.deepStrictEqual(validatePluginOptions({ linkToMore: "tags/" }, manifest), [])
+    assert.strictEqual(validatePluginOptions({ linkToMore: 3 }, manifest)[0]?.severity, "warning")
+  })
+
+  test("reads optionSchema as the same schema", () => {
+    const issues = validatePluginOptions(
+      { mode: "drak" },
+      {
+        optionSchema: {
+          type: "object",
+          properties: { mode: { type: "string", enum: ["light", "dark"] } },
+        },
+      },
+    )
+    assert.strictEqual(issues[0]?.suggestion, "dark")
+  })
 })
 
 describe("validatePluginEntry", () => {

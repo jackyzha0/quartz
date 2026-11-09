@@ -373,3 +373,19 @@ describe("dependencies on plugins that are built in now", () => {
     assert.match(errors[0], /requires "@quartz-community\/explorer"/)
   })
 })
+
+describe("a dependency that is configured but disabled", () => {
+  test("is a warning, not a missing plugin", () => {
+    const dep = "@quartz-community/explorer"
+    const entries: PluginJsonEntry[] = [
+      { source: "github:someone/x", enabled: true, options: {} },
+      { source: dep, enabled: false, options: {} },
+    ]
+    const manifests = new Map<string, PluginManifest>([
+      ["github:someone/x", { dependencies: [dep] } as unknown as PluginManifest],
+    ])
+    const { errors, warnings } = validateDependencies(entries, manifests, [])
+    assert.deepStrictEqual(errors, [])
+    assert.match(warnings[0], /depends on "@quartz-community\/explorer" which is disabled/)
+  })
+})

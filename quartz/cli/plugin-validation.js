@@ -138,13 +138,37 @@ export function findConfigEntries(plugins, query, { extractName, formatSource })
 }
 
 /**
+ * The JSON Schema of a plugin's options: `configSchema`, or `optionSchema`, the name first-party
+ * plugins (and Quartz Syncer) use. An `optionSchema` is usually a flat map of option name to
+ * property schema (`{ limit: { type: "number" }, mode: { type: "enum", values: [...] } }`); it is
+ * read as `{ type: "object", properties: … }`, with `type: "enum"` + `values` as a JSON `enum`.
+ *
+ * @param {{ configSchema?: any, optionSchema?: any }} manifest
+ * @returns {any | null}
+ */
+export function optionsSchemaOf(manifest) {
+  const declared = manifest.configSchema ?? manifest.optionSchema
+  if (!isPlainObject(declared)) return null
+  if (isPlainObject(declared.properties) || declared.type === "object") return declared
+  const properties = {}
+  for (const [key, prop] of Object.entries(declared)) {
+    if (!isPlainObject(prop)) continue
+    properties[key] =
+      prop.type === "enum" && Array.isArray(prop.values)
+        ? { ...prop, type: undefined, enum: prop.values }
+        : prop
+  }
+  return { type: "object", properties }
+}
+
+/**
  * Validate a plugin's options against its manifest (`defaultOptions` and, when
- * present, `configSchema`). Unknown keys are only flagged as warnings when they
+ * present, `configSchema`, or its alias `optionSchema`). Unknown keys are only flagged as warnings when they
  * look like a typo of a known key (or the schema forbids extra keys), because
  * many plugins accept options that have no default.
  *
  * @param {unknown} options
- * @param {{ defaultOptions?: Record<string, unknown>, configSchema?: any } | null | undefined} manifest
+ * @param {{ defaultOptions?: Record<string, unknown>, configSchema?: any, optionSchema?: any } | null | undefined} manifest
  * @param {string} [prefix]
  * @returns {Array<{ severity: "warning" | "info", path: string, message: string, suggestion?: string }>}
  */
@@ -153,7 +177,7 @@ export function validatePluginOptions(options, manifest, prefix = "") {
   if (!isPlainObject(options) || !manifest) return issues
 
   const defaults = isPlainObject(manifest.defaultOptions) ? manifest.defaultOptions : {}
-  const schema = isPlainObject(manifest.configSchema) ? manifest.configSchema : null
+  const schema = optionsSchemaOf(manifest)
   const schemaProps = schema && isPlainObject(schema.properties) ? schema.properties : {}
   const known = new Set([...Object.keys(defaults), ...Object.keys(schemaProps)])
   if (known.size === 0) return issues
@@ -211,7 +235,14 @@ export function validatePluginOptions(options, manifest, prefix = "") {
           ? describeType(defaults[key])
           : null
     const actual = describeType(value)
-    if (expected && expected !== actual) {
+    // a value of the default's own type is fine even when the schema says otherwise (schemas
+    // can lag behind: recent-notes' `linkToMore` is typed string, its default is false)
+    const matchesDefault =
+      key in defaults &&
+      defaults[key] !== null &&
+      defaults[key] !== undefined &&
+      describeType(defaults[key]) === actual
+    if (expected && expected !== actual && !matchesDefault) {
       const shown = key in defaults ? ` (default: ${JSON.stringify(defaults[key])})` : ""
       issues.push({
         severity: "warning",
