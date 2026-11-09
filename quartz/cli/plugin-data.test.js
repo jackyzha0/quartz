@@ -1,7 +1,12 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
 import YAML from "yaml"
-import { stringifyConfigYaml, parseGitSource, extractPluginName } from "./plugin-data.js"
+import {
+  stringifyConfigYaml,
+  parseGitSource,
+  extractPluginName,
+  isLocalSource,
+} from "./plugin-data.js"
 
 const ORIGINAL = `# yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
@@ -90,5 +95,25 @@ describe("parseGitSource", () => {
   test("explains supported formats for unknown sources", () => {
     assert.throws(() => parseGitSource("explorer"), /Supported formats/)
     assert.throws(() => parseGitSource("github:onlyowner"), /Expected github:owner\/repo/)
+  })
+})
+
+describe("isLocalSource", () => {
+  test("recognises local paths in POSIX and Windows spellings", () => {
+    for (const source of [
+      "./p",
+      "../p",
+      "/p",
+      ".\\p",
+      "..\\a\\p",
+      "C:\\a\\p",
+      "D:/p",
+      { repo: ".\\p" },
+    ]) {
+      assert.ok(isLocalSource(source), JSON.stringify(source))
+    }
+    for (const source of ["github:a/b", "a/b", "https://github.com/a/b.git"]) {
+      assert.ok(!isLocalSource(source), source)
+    }
   })
 })

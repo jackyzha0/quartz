@@ -3,7 +3,7 @@ import assert from "node:assert"
 import fs from "fs"
 import os from "os"
 import path from "path"
-import { parsePluginSource, readLockedCommit } from "./gitLoader"
+import { isLocalSource, parsePluginSource, readLockedCommit } from "./gitLoader"
 
 describe("parsePluginSource", () => {
   test("owner/repo shorthand supports #ref", () => {
@@ -11,6 +11,25 @@ describe("parsePluginSource", () => {
     assert.strictEqual(spec.name, "spacer")
     assert.strictEqual(spec.repo, "https://github.com/quartz-community/spacer.git")
     assert.strictEqual(spec.ref, "dev")
+  })
+
+  test("local sources are recognised in POSIX and Windows spellings", () => {
+    for (const source of [
+      "./plugin",
+      "../plugin",
+      "/abs/plugin",
+      ".\\plugin",
+      "..\\plugins\\x",
+      "C:\\sites\\plugin",
+      "D:/plugin",
+      { repo: ".\\plugin" },
+    ]) {
+      assert.ok(isLocalSource(source), JSON.stringify(source))
+    }
+    for (const source of ["github:a/b", "a/b", "https://github.com/a/b.git", "@scope/pkg"]) {
+      assert.ok(!isLocalSource(source), source)
+    }
+    assert.strictEqual(parsePluginSource(".\\plugin").local, true)
   })
 
   test("unknown sources get an explanatory error", () => {

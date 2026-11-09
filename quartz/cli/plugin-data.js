@@ -264,6 +264,10 @@ export function isLocalSource(source) {
   if (url.startsWith("./") || url.startsWith("../") || url.startsWith("/")) {
     return true
   }
+  // Windows relative paths (.\plugin, ..\plugin)
+  if (url.startsWith(".\\") || url.startsWith("..\\")) {
+    return true
+  }
   // Windows absolute paths (e.g. C:\ or D:/)
   if (/^[A-Za-z]:[\\/]/.test(url)) {
     return true
