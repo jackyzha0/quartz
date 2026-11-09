@@ -325,7 +325,8 @@ async function readManifestFromPackageJson(source: PluginSource): Promise<Plugin
       defaultOrder: q.defaultOrder,
       defaultEnabled: q.defaultEnabled,
       defaultOptions: q.defaultOptions,
-      configSchema: q.configSchema,
+      // first-party plugins (and Quartz Syncer) call it optionSchema
+      configSchema: q.configSchema ?? q.optionSchema,
       components: q.components,
       frames: q.frames,
     }

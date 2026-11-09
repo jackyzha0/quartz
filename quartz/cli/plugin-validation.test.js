@@ -137,6 +137,20 @@ describe("validatePluginOptions", () => {
     assert.strictEqual(issues[0].suggestion, "dark")
     assert.strictEqual(issues[1].severity, "warning")
   })
+
+  // first-party plugins (and Quartz Syncer) name the field optionSchema
+  test("reads optionSchema as the same schema", () => {
+    const issues = validatePluginOptions(
+      { mode: "drak" },
+      {
+        optionSchema: {
+          type: "object",
+          properties: { mode: { type: "string", enum: ["light", "dark"] } },
+        },
+      },
+    )
+    assert.strictEqual(issues[0]?.suggestion, "dark")
+  })
 })
 
 describe("validatePluginEntry", () => {

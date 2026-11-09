@@ -139,12 +139,12 @@ export function findConfigEntries(plugins, query, { extractName, formatSource })
 
 /**
  * Validate a plugin's options against its manifest (`defaultOptions` and, when
- * present, `configSchema`). Unknown keys are only flagged as warnings when they
+ * present, `configSchema`, or its alias `optionSchema`). Unknown keys are only flagged as warnings when they
  * look like a typo of a known key (or the schema forbids extra keys), because
  * many plugins accept options that have no default.
  *
  * @param {unknown} options
- * @param {{ defaultOptions?: Record<string, unknown>, configSchema?: any } | null | undefined} manifest
+ * @param {{ defaultOptions?: Record<string, unknown>, configSchema?: any, optionSchema?: any } | null | undefined} manifest
  * @param {string} [prefix]
  * @returns {Array<{ severity: "warning" | "info", path: string, message: string, suggestion?: string }>}
  */
@@ -153,7 +153,9 @@ export function validatePluginOptions(options, manifest, prefix = "") {
   if (!isPlainObject(options) || !manifest) return issues
 
   const defaults = isPlainObject(manifest.defaultOptions) ? manifest.defaultOptions : {}
-  const schema = isPlainObject(manifest.configSchema) ? manifest.configSchema : null
+  // `optionSchema` is the name first-party plugins (and Quartz Syncer) use for the same field
+  const declared = manifest.configSchema ?? manifest.optionSchema
+  const schema = isPlainObject(declared) ? declared : null
   const schemaProps = schema && isPlainObject(schema.properties) ? schema.properties : {}
   const known = new Set([...Object.keys(defaults), ...Object.keys(schemaProps)])
   if (known.size === 0) return issues
