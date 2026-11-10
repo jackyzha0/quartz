@@ -8,7 +8,14 @@ on:
     branches: [v5]
     paths:
       - .github/workflows/docker-build-push.yaml
+      - .dockerignore
+      - Dockerfile
       - quartz/**
+      - package*.json
+      - quartz*
+      - globals.d.ts
+      - index.d.ts
+      - tsconfig.json
   workflow_dispatch:
 
 jobs:
@@ -85,4 +92,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags || steps.meta-pr.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels || steps.meta-pr.outputs.labels }}
           cache-from: type=gha
-          cache-to: type=gha
+          cache-to: type=gha,mode=max
