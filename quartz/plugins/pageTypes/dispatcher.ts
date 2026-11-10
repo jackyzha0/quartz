@@ -1,6 +1,7 @@
 import { QuartzEmitterPlugin, QuartzPageTypePluginInstance, TreeTransform } from "../types"
 import { QuartzComponent, QuartzComponentProps } from "../../components/types"
 import { pageResources, renderPage } from "../../components/renderPage"
+import { resolveFrame } from "../../components/frames"
 import { FullPageLayout } from "../../cfg"
 import {
   FilePath,
@@ -86,7 +87,8 @@ interface DispatcherOptions {
   byPageType: Record<string, Partial<FullPageLayout>>
 }
 
-async function emitPage(
+/** @internal Exported for testing only. */
+export async function emitPage(
   ctx: BuildCtx,
   slug: FullSlug,
   tree: ProcessedContent[0],
@@ -108,7 +110,12 @@ async function emitPage(
           ? "/"
           : new URL(`https://${cfg.baseUrl ?? "example.com"}`).pathname) as FullSlug)
       : pathToRoot(slug)
-  const externalResources = pageResources(baseDir, resources, ctx)
+  const externalResources = pageResources(
+    baseDir,
+    resources,
+    ctx,
+    resolveFrame(layout.frame).quartzStyles ?? true,
+  )
   const componentData: QuartzComponentProps = {
     ctx,
     fileData,

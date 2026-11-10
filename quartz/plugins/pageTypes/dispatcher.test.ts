@@ -5,6 +5,7 @@ import os from "os"
 import path from "path"
 import {
   collectComponents,
+  emitPage,
   folderTrie,
   generateVirtualPages,
   pageOutputPath,
@@ -18,6 +19,8 @@ import { QuartzComponent } from "../../components/types"
 import { FilePath, FullSlug, SimpleSlug } from "../../util/path"
 import { Root as HtmlRoot } from "hast"
 import { BuildCtx } from "../../util/ctx"
+import { StaticResources } from "../../util/resources"
+import { frameRegistry } from "../../components/frames/registry"
 import { defaultProcessedContent } from "../vfile"
 
 const StubA: QuartzComponent = (() => null) as unknown as QuartzComponent
@@ -506,5 +509,39 @@ describe("publish filters on pages that stand for files (bases-page#11)", () => 
     assert.strictEqual(processVirtualPageHtml(ve, ctx, []), false)
     // without such plugins nothing changes
     assert.strictEqual(processVirtualPageHtml(ve, makeCtx(), []), true)
+  })
+})
+
+describe("emitPage", () => {
+  test("a frame with quartzStyles false gets no Quartz stylesheets in its head", async (t) => {
+    const output = await fs.promises.mkdtemp(path.join(os.tmpdir(), "quartz-emit-page-"))
+    t.after(() => fs.promises.rm(output, { recursive: true, force: true }))
+    const frame = { name: "unstyled-test", render: () => null as never, quartzStyles: false }
+    frameRegistry.register(frame.name, frame, "test")
+
+    let css: string[] = []
+    const Head = ((props: { externalResources: StaticResources }) => {
+      css = props.externalResources.css.map((c) => c.content)
+      return null
+    }) as unknown as QuartzComponent
+    const ctx = {
+      argv: { output },
+      cfg: { configuration: {} },
+      componentCssMap: new Map([[".a{}", "component-a.css"]]),
+    } as unknown as BuildCtx
+    const layout = { ...resolveLayout(makePageType(), { head: Head }, {}), frame: frame.name }
+    const resources = { css: [{ content: "plugin.css" }], js: [], additionalHead: [] }
+    const tree = { type: "root", children: [] } as never
+    await emitPage(
+      ctx,
+      "page" as FullSlug,
+      tree,
+      { slug: "page" as FullSlug },
+      [],
+      layout,
+      resources,
+    )
+
+    assert.deepStrictEqual(css, ["plugin.css"])
   })
 })

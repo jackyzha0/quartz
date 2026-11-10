@@ -6,6 +6,7 @@ import { FullSlug } from "../util/path"
 import { GlobalConfiguration } from "../cfg"
 import { QuartzComponentProps } from "./types"
 import { StaticResources } from "../util/resources"
+import { BuildCtx } from "../util/ctx"
 
 function makeTranscludeBlockquote(targetSlug: string, block?: string): Element {
   return {
@@ -345,6 +346,28 @@ describe("pageResources", () => {
         )
       }
     }
+  })
+
+  test("quartzStyles false drops core and component stylesheets but keeps plugin ones", () => {
+    const ctx = {
+      componentCssMap: new Map([
+        [".a{}", "component-a.css"],
+        [".b{}", "component-a.css"],
+        [".c{}", "component-c.css"],
+      ]),
+    } as unknown as BuildCtx
+    const resources: StaticResources = { ...emptyResources, css: [{ content: "plugin.css" }] }
+
+    const all = pageResources("." as FullSlug, resources, ctx).css.map((c) => c.content)
+    assert.deepStrictEqual(all, [
+      "./index.css",
+      "./component-a.css",
+      "./component-c.css",
+      "plugin.css",
+    ])
+
+    const own = pageResources("." as FullSlug, resources, ctx, false).css.map((c) => c.content)
+    assert.deepStrictEqual(own, ["plugin.css"])
   })
 
   test("contentIndex path reflects baseDir", () => {
