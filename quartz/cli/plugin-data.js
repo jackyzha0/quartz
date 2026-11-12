@@ -274,6 +274,27 @@ export function isLocalSource(source) {
   }
   return false
 }
+
+/**
+ * Path to store for a local plugin in quartz.lock.json.
+ * Relative to the repo root (posix) so the lockfile can be committed and used on another machine.
+ * A path that cannot be expressed relatively (another Windows drive) stays absolute.
+ */
+export function lockfileLocalPath(absoluteOrRelative) {
+  const absolute = path.resolve(absoluteOrRelative)
+  const relative = path.relative(process.cwd(), absolute)
+  if (!relative || path.isAbsolute(relative)) return absolute
+  return relative.split(path.sep).join("/")
+}
+
+/**
+ * Absolute path of a local plugin recorded in the lockfile.
+ * Older lockfiles stored an absolute path; those still resolve as themselves.
+ */
+export function resolveLockfileLocalPath(stored) {
+  return path.isAbsolute(stored) ? stored : path.resolve(process.cwd(), stored)
+}
+
 export function extractPluginName(source) {
   if (typeof source === "object" && source !== null && typeof source.name === "string") {
     return source.name

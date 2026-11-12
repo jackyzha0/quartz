@@ -3,7 +3,7 @@ import assert from "node:assert"
 import fs from "fs"
 import path from "path"
 import os from "os"
-import { symlinkOrCopySync, symlinkOrCopy } from "./helpers.js"
+import { localLinkMatches, symlinkOrCopySync, symlinkOrCopy } from "./helpers.js"
 
 function makeTmpDir() {
   return fs.mkdtempSync(path.join(os.tmpdir(), "quartz-symlink-test-"))
@@ -15,6 +15,34 @@ function makeTarget(tmpDir) {
   fs.writeFileSync(path.join(target, "marker.txt"), "hello")
   return target
 }
+
+describe("localLinkMatches", () => {
+  let tmpDir
+
+  beforeEach(() => {
+    tmpDir = makeTmpDir()
+  })
+
+  afterEach(() => {
+    fs.rmSync(tmpDir, { recursive: true, force: true })
+  })
+
+  test("matches an absolute link target and a target relative to the link", () => {
+    const target = makeTarget(tmpDir)
+    const linkPath = path.join(tmpDir, "link")
+    fs.symlinkSync(target, linkPath, "dir")
+    assert.strictEqual(localLinkMatches(linkPath, target), true)
+
+    fs.unlinkSync(linkPath)
+    fs.symlinkSync(path.basename(target), linkPath, "dir")
+    assert.strictEqual(localLinkMatches(linkPath, target), true)
+    assert.strictEqual(localLinkMatches(linkPath, path.join(tmpDir, "elsewhere")), false)
+  })
+
+  test("returns false when the path is not a link", () => {
+    assert.strictEqual(localLinkMatches(path.join(tmpDir, "missing"), tmpDir), false)
+  })
+})
 
 describe("symlinkOrCopySync", () => {
   let tmpDir

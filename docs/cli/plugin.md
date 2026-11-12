@@ -282,7 +282,7 @@ For local plugin development or airgapped environments, you can add a plugin fro
 npx quartz plugin add ./my-local-plugin
 ```
 
-Local plugins are symlinked into `.quartz/plugins/`, so changes reflect immediately. When you run `install --latest`, local plugins are rebuilt (npm install + npm run build) without any git operations.
+Local plugins are symlinked into `.quartz/plugins/`, so changes reflect immediately. `quartz.lock.json` records the plugin directory relative to the repo root (an absolute path only when it cannot be expressed that way, such as another Windows drive). Install resolves that path before creating the symlink, and lockfiles that already store an absolute path still work. When you run `install --latest`, local plugins are rebuilt (npm install + npm run build) without any git operations.
 
 > [!note]
 > Local symlinked plugins typically use this build-on-install fallback because the `dist/` directory is usually gitignored during development.

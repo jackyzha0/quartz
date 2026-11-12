@@ -55,6 +55,23 @@ export async function popContentFolder(contentFolder) {
 }
 
 /**
+ * Whether an existing symlink or junction already points at the absolute plugin directory.
+ * readlink may return a path relative to the link's parent, so both sides are resolved first.
+ */
+export function localLinkMatches(linkPath, expectedAbsolute) {
+  let target
+  try {
+    target = fs.readlinkSync(linkPath)
+  } catch {
+    return false
+  }
+  const actual = path.resolve(path.dirname(linkPath), target)
+  const expected = path.resolve(expectedAbsolute)
+  if (process.platform === "win32") return actual.toLowerCase() === expected.toLowerCase()
+  return actual === expected
+}
+
+/**
  * Create a directory symlink with Windows fallback.
  *
  * On Windows, creating symlinks requires Developer Mode or admin privileges.

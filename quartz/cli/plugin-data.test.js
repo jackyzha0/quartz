@@ -1,11 +1,14 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
 import YAML from "yaml"
+import path from "path"
 import {
   stringifyConfigYaml,
   parseGitSource,
   extractPluginName,
   isLocalSource,
+  lockfileLocalPath,
+  resolveLockfileLocalPath,
 } from "./plugin-data.js"
 
 const ORIGINAL = `# yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
@@ -95,6 +98,40 @@ describe("parseGitSource", () => {
   test("explains supported formats for unknown sources", () => {
     assert.throws(() => parseGitSource("explorer"), /Supported formats/)
     assert.throws(() => parseGitSource("github:onlyowner"), /Expected github:owner\/repo/)
+  })
+})
+
+describe("lockfile local paths", () => {
+  test("stores an in-repo path relative to the repo root", () => {
+    const absolute = path.join(process.cwd(), "vendor", "og-image")
+    assert.strictEqual(lockfileLocalPath(absolute), "vendor/og-image")
+    assert.strictEqual(lockfileLocalPath(path.join("vendor", "og-image")), "vendor/og-image")
+  })
+
+  test("stores a plugin outside the repo as a parent-relative path", () => {
+    const absolute = path.resolve(process.cwd(), "..", "other-plugin")
+    assert.strictEqual(lockfileLocalPath(absolute), "../other-plugin")
+  })
+
+  test("keeps the repo root itself absolute", () => {
+    assert.strictEqual(lockfileLocalPath(process.cwd()), path.resolve(process.cwd()))
+  })
+
+  test("resolves a stored relative path and leaves an absolute path unchanged", () => {
+    const absolute = path.resolve(process.cwd(), "vendor", "og-image")
+    assert.strictEqual(resolveLockfileLocalPath("vendor/og-image"), absolute)
+    assert.strictEqual(
+      resolveLockfileLocalPath("../other-plugin"),
+      path.resolve(process.cwd(), "..", "other-plugin"),
+    )
+    assert.strictEqual(resolveLockfileLocalPath(absolute), absolute)
+  })
+
+  test("keeps a path on another drive absolute", { skip: process.platform !== "win32" }, () => {
+    const cwdDrive = path.parse(process.cwd()).root
+    const otherDrive = cwdDrive.toUpperCase().startsWith("C:") ? "D:\\" : "C:\\"
+    const other = path.join(otherDrive, "plugins", "og-image")
+    assert.strictEqual(lockfileLocalPath(other), path.resolve(other))
   })
 })
 

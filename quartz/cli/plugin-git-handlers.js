@@ -14,6 +14,8 @@ import {
   PLUGINS_DIR,
   LOCKFILE_PATH,
   isLocalSource,
+  lockfileLocalPath,
+  resolveLockfileLocalPath,
   getSourceUrl,
   formatSource,
   resolveLockfileName,
@@ -22,7 +24,7 @@ import {
   resolvePluginDir,
   SOURCE_FORMATS_HELP,
 } from "./plugin-data.js"
-import { symlinkOrCopySync } from "./helpers.js"
+import { localLinkMatches, symlinkOrCopySync } from "./helpers.js"
 import {
   findConfigEntries,
   validatePluginOptions,
@@ -756,7 +758,7 @@ export async function handlePluginInstallUnified({
             )
             lockfile.plugins[name] = {
               source: entry.source,
-              resolved: url,
+              resolved: lockfileLocalPath(url),
               commit: "local",
               ...(subdir && { subdir }),
               installedAt: new Date().toISOString(),
@@ -793,7 +795,7 @@ export async function handlePluginInstallUnified({
           symlinkOrCopySync(resolvedPath, pluginDir)
           lockfile.plugins[name] = {
             source: entry.source,
-            resolved: resolvedPath,
+            resolved: lockfileLocalPath(resolvedPath),
             commit: "local",
             ...(subdir && { subdir }),
             installedAt: new Date().toISOString(),
@@ -987,13 +989,14 @@ export async function handlePluginInstallUnified({
 
       if (entry.commit === "local") {
         try {
-          if (!fs.existsSync(entry.resolved)) {
-            console.log(styleText("red", `  ✗ ${name}: local path missing: ${entry.resolved}`))
+          const localPath = resolveLockfileLocalPath(entry.resolved)
+          if (!fs.existsSync(localPath)) {
+            console.log(styleText("red", `  ✗ ${name}: local path missing: ${localPath}`))
             failed++
             continue
           }
           fs.mkdirSync(path.dirname(pluginDir), { recursive: true })
-          symlinkOrCopySync(entry.resolved, pluginDir)
+          symlinkOrCopySync(localPath, pluginDir)
           console.log(styleText("green", `✓ ${name} restored (local symlink)`))
           restoredPlugins.push({ name, pluginDir })
           installed++
@@ -1274,9 +1277,10 @@ export async function handlePluginInstallUnified({
 
     if (entry.commit === "local") {
       try {
+        const localPath = resolveLockfileLocalPath(entry.resolved)
         if (fs.existsSync(pluginDir)) {
           const stat = fs.lstatSync(pluginDir)
-          if (stat.isSymbolicLink() && fs.readlinkSync(pluginDir) === entry.resolved) {
+          if (stat.isSymbolicLink() && localLinkMatches(pluginDir, localPath)) {
             console.log(styleText("gray", `  ✓ ${name} (local) already linked`))
             installed++
             continue
@@ -1284,13 +1288,13 @@ export async function handlePluginInstallUnified({
           if (stat.isSymbolicLink()) fs.unlinkSync(pluginDir)
           else fs.rmSync(pluginDir, { recursive: true })
         }
-        if (!fs.existsSync(entry.resolved)) {
-          console.log(styleText("red", `  ✗ ${name}: local path missing: ${entry.resolved}`))
+        if (!fs.existsSync(localPath)) {
+          console.log(styleText("red", `  ✗ ${name}: local path missing: ${localPath}`))
           failed++
           continue
         }
         fs.mkdirSync(path.dirname(pluginDir), { recursive: true })
-        symlinkOrCopySync(entry.resolved, pluginDir)
+        symlinkOrCopySync(localPath, pluginDir)
         console.log(styleText("green", `  ✓ ${name} (local) linked`))
         pluginsToBuild.push({ name, pluginDir })
         installed++
@@ -1569,7 +1573,7 @@ export async function handlePluginAdd(
         if (!lockfile.plugins[name]) {
           lockfile.plugins[name] = {
             source,
-            resolved: local ? path.resolve(url) : url,
+            resolved: local ? lockfileLocalPath(url) : url,
             commit: local ? "local" : getGitCommit(pluginDir),
             ...(ref && { ref }),
             ...(subdir && { subdir }),
@@ -1599,7 +1603,7 @@ export async function handlePluginAdd(
         symlinkOrCopySync(resolvedPath, pluginDir)
         lockfile.plugins[name] = {
           source,
-          resolved: resolvedPath,
+          resolved: lockfileLocalPath(resolvedPath),
           commit: "local",
           ...(subdir && { subdir }),
           installedAt: new Date().toISOString(),
