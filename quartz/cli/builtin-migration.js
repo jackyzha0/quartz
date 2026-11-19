@@ -5,6 +5,7 @@
  *   @quartz-community/crawl-links    → configuration.links
  *   @quartz-community/remove-draft   → configuration.drafts
  *   @quartz-community/content-index  → configuration.contentIndex
+ *   @quartz-community/quartz-fonts   → configuration.fonts
  *   note-properties `delimiters` / `language` options → configuration.frontmatter
  *
  * Pure: takes the parsed config, returns a migrated copy and a list of human-readable changes.
@@ -21,6 +22,8 @@ const ABSORBED = {
   },
   "remove-draft": { key: "drafts", defaultOrder: 50, legacyDefaults: {} },
   "content-index": { key: "contentIndex", defaultOrder: 50, legacyDefaults: {} },
+  "quartz-fonts": { key: "fonts", defaultOrder: 60, legacyDefaults: {} },
+  fonts: { key: "fonts", defaultOrder: 60, legacyDefaults: {} },
 }
 
 const FRONTMATTER_DEFAULTS = { delimiters: "---", language: "yaml" }
@@ -167,6 +170,7 @@ export function describeBuiltins(configuration = {}) {
     ["links", "link resolution, backlinks/graph data (was crawl-links)"],
     ["drafts", "hides `draft: true` pages (was remove-draft)"],
     ["contentIndex", "contentIndex.json, sitemap, RSS (was content-index)"],
+    ["fonts", "font loading, per-heading fonts (was quartz-fonts)"],
   ]
   return rows.map(([key, description]) => {
     const value = configuration?.[key]

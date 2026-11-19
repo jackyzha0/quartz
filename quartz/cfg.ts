@@ -1,3 +1,4 @@
+import type { FontSpecification } from "./util/theme"
 import { QuartzComponent } from "./components/types"
 import { ValidLocale } from "./i18n"
 import { PluginSpecifier } from "./plugins/loader/types"
@@ -100,6 +101,8 @@ export interface GlobalConfiguration {
   drafts?: DraftsConfig | boolean
   /** Built-in content index: `static/contentIndex.json`, sitemap and RSS. */
   contentIndex?: ContentIndexConfig | boolean
+  /** Built-in font loading (Google Fonts, self-hosted or local) and per-heading fonts. */
+  fonts?: FontsConfig | boolean
   /**
    * Controls which assets are copied to public/
    * - "all": Copy all non-markdown files (backwards compatible, default)
@@ -140,6 +143,31 @@ export interface LinksConfig extends BuiltinToggle {
 export interface DraftsConfig extends BuiltinToggle {
   /** Publish pages marked `draft: true` anyway. Default `false`. */
   publish?: boolean
+}
+
+export type { FontSpecification }
+
+export interface FontsConfig extends BuiltinToggle {
+  /** Override `theme.typography.title`. */
+  title?: FontSpecification
+  /** Override `theme.typography.body`. */
+  body?: FontSpecification
+  /** Override `theme.typography.header`. */
+  header?: FontSpecification
+  /** Override `theme.typography.code`. */
+  code?: FontSpecification
+  /** Font for interface elements (Obsidian's `--font-interface`). */
+  interface?: FontSpecification
+  h1?: FontSpecification
+  h2?: FontSpecification
+  h3?: FontSpecification
+  h4?: FontSpecification
+  h5?: FontSpecification
+  h6?: FontSpecification
+  /** Use fonts registered by a theme plugin (e.g. @quartz-themes/core). Default `true`. */
+  useThemeFonts?: boolean
+  /** Where fonts load from. Default `"googleFonts"`. */
+  fontOrigin?: "googleFonts" | "local" | "selfHosted"
 }
 
 export interface ContentIndexConfig extends BuiltinToggle {

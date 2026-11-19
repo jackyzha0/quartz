@@ -14,6 +14,7 @@ import {
   readFrontmatterData,
 } from "./frontmatter"
 import { Links } from "./links"
+import { buildLayeredCSS, buildUnlayeredCSS, resolveFonts } from "./fonts"
 import { isContentError } from "../../util/pluginErrors"
 import { Drafts, isDraft } from "./drafts"
 import {
@@ -573,6 +574,51 @@ describe("ctx.contentIndex", () => {
       assert.deepStrictEqual(Object.keys(json), ["prepared"])
     } finally {
       await fs.rm(out, { recursive: true, force: true })
+    }
+  })
+})
+
+describe("fonts built-in", () => {
+  test("absorbs a @quartz-community/quartz-fonts entry with its options", () => {
+    const fonts = entry("@quartz-community/quartz-fonts", {
+      options: { h1: "Lora", fontOrigin: "local" },
+    })
+    const p = plan([fonts])
+    assert.strictEqual(byId(p, "fonts").enabled, true)
+    assert.strictEqual(byId(p, "fonts").options.h1, "Lora")
+    assert.strictEqual(byId(p, "fonts").options.fontOrigin, "local")
+    assert.ok(p.absorbedEntries.has(fonts))
+  })
+
+  test("a disabled plugin entry turns the built-in off", () => {
+    const p = plan([entry("@quartz-community/quartz-fonts", { enabled: false })])
+    assert.strictEqual(byId(p, "fonts").enabled, false)
+  })
+
+  test("without a theme, configured heading fonts are forced and Obsidian's variables set", () => {
+    delete (globalThis as Record<string, unknown>).__quartzFonts
+    const opts = { header: "Lora" }
+    const fonts = resolveFonts(opts, {})
+    assert.match(buildLayeredCSS(fonts, opts, false), /--h1-font: Lora;/)
+    assert.match(buildUnlayeredCSS(fonts, opts, false), /h1 \{ font-family: Lora; \}/)
+  })
+
+  test("with a theme, its fonts are left alone unless configured explicitly", () => {
+    ;(globalThis as Record<string, unknown>).__quartzFonts = {
+      themeName: "Minimal",
+      fonts: { "--font-text": "Inter" },
+    }
+    try {
+      const fonts = resolveFonts({}, {})
+      assert.strictEqual(fonts.body, "Inter")
+      assert.doesNotMatch(buildLayeredCSS(fonts, {}, true), /--h1-font|--font-text/)
+      assert.strictEqual(buildUnlayeredCSS(fonts, {}, true), "")
+      assert.match(
+        buildUnlayeredCSS(resolveFonts({ h2: "Lora" }, {}), { h2: "Lora" }, true),
+        /^h2 \{ font-family: Lora; \}$/,
+      )
+    } finally {
+      delete (globalThis as Record<string, unknown>).__quartzFonts
     }
   })
 })

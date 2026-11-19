@@ -8,6 +8,7 @@
  * | links         | `configuration.links`        | crawl-links                          |
  * | drafts        | `configuration.drafts`       | remove-draft                         |
  * | contentIndex  | `configuration.contentIndex` | content-index                        |
+ * | fonts         | `configuration.fonts`        | quartz-fonts                         |
  *
  * Each built-in:
  * - is configured under `configuration.<key>` and can be turned off with `enabled: false`;
@@ -32,9 +33,10 @@ import { ContentIndex, contentIndexDefaults } from "./contentIndex"
 import { Drafts } from "./drafts"
 import { Frontmatter, frontmatterDefaults } from "./frontmatter"
 import { Links, legacyCrawlLinksDefaults, linksDefaults } from "./links"
+import { Fonts, fontsDefaults } from "./fonts"
 import { registerPluginOrigin } from "../../util/diagnostics"
 
-export { ContentIndex, Drafts, Frontmatter, Links }
+export { ContentIndex, Drafts, Fonts, Frontmatter, Links }
 export {
   buildContentIndex,
   applyContentIndexExtensions,
@@ -42,14 +44,14 @@ export {
   serializeContentIndex,
 } from "./contentIndex"
 
-export type BuiltinId = "frontmatter" | "links" | "drafts" | "contentIndex"
+export type BuiltinId = "frontmatter" | "links" | "drafts" | "contentIndex" | "fonts"
 type BuiltinCategory = "transformer" | "filter" | "emitter"
 type BuiltinInstance =
   QuartzTransformerPluginInstance | QuartzFilterPluginInstance | QuartzEmitterPluginInstance
 
 export interface BuiltinSpec {
   id: BuiltinId
-  configKey: "frontmatter" | "links" | "drafts" | "contentIndex"
+  configKey: "frontmatter" | "links" | "drafts" | "contentIndex" | "fonts"
   category: BuiltinCategory
   /** Position among plugins of the same category (same scale as plugin `defaultOrder`). */
   order: number
@@ -128,6 +130,19 @@ export const BUILTINS: BuiltinSpec[] = [
       provides: { files: ["static/contentIndex.json", "sitemap.xml"] },
     },
     create: (o) => ContentIndex(o),
+  },
+  {
+    id: "fonts",
+    configKey: "fonts",
+    // An emitter: it provides the CSS/head links (externalResources) and, for
+    // `fontOrigin: "selfHosted"`, writes the downloaded font files.
+    category: "emitter",
+    order: 60,
+    defaults: fontsDefaults,
+    absorbs: ["quartz-fonts", "fonts"],
+    replacedBy: { files: ["static/fonts/quartz-fonts.css"] },
+    capabilities: { provides: { files: ["static/fonts/quartz-fonts.css"] } },
+    create: (o) => Fonts(o),
   },
 ]
 

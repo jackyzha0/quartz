@@ -68,7 +68,7 @@ This part of the configuration concerns anything that can affect the whole site.
       }
       ```
 
-      Use a path relative to the site root like above (no leading `/`) so it also works when the site is served from a subpath. To have Quartz download Google Fonts at build time and serve them from your site instead, use the [[plugins/Fonts|Fonts]] plugin with `fontOrigin: selfHosted`.
+      Use a path relative to the site root like above (no leading `/`) so it also works when the site is served from a subpath. To have Quartz download Google Fonts at build time and serve them from your site instead, set `configuration.fonts.fontOrigin: selfHosted` (see [[plugins/Fonts|Fonts]]).
   - `cdnCaching`: if `true` (default), use Google CDN to cache the fonts. This will generally be faster. Disable (`false`) this if you want Quartz to download the fonts to be self-contained.
   - `typography`: what fonts to use. Any font available on [Google Fonts](https://fonts.google.com/) works here.
     - `title`: font for the title of the site (optional, same as `header` by default)
@@ -362,4 +362,4 @@ export const layout = await loadQuartzLayout()
 ```
 
 > [!tip]
-> For per-heading font control, self-hosted fonts, or Obsidian theme font bridging, see the [[plugins/Fonts|Fonts]] plugin. It can download Google Fonts at build time and serve them locally with `fontOrigin: selfHosted`, making your site fully self-contained.
+> For per-heading fonts and self-hosted fonts, see [[plugins/Fonts|Fonts]] (`configuration.fonts`). With `fontOrigin: selfHosted`, Quartz downloads Google Fonts at build time and serves them from your site, making it fully self-contained.

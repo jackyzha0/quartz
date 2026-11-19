@@ -127,6 +127,7 @@ describe("built-in helpers", () => {
   test("builtinKeyFor / builtinMessage recognise names and official sources", () => {
     assert.strictEqual(builtinKeyFor("crawl-links"), "links")
     assert.strictEqual(builtinKeyFor("@quartz-community/content-index"), "contentIndex")
+    assert.strictEqual(builtinKeyFor("@quartz-community/quartz-fonts"), "fonts")
     assert.strictEqual(builtinKeyFor("graph"), undefined)
     assert.match(builtinMessage("remove-draft"), /configuration\.drafts.*publish: true/)
     assert.strictEqual(builtinKeyFor({ repo: "github:quartz-community/crawl-links" }), "links")
@@ -146,6 +147,7 @@ describe("built-in helpers", () => {
         ["links", false],
         ["drafts", false],
         ["contentIndex", true],
+        ["fonts", true],
       ],
     )
   })

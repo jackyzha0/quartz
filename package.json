@@ -1,6 +1,6 @@
 {
   "name": "@jackyzha0/quartz",
-  "description": "🌱 publish your digital garden and notes as a website",
+  "description": "\ud83c\udf31 publish your digital garden and notes as a website",
   "private": true,
   "version": "5.1.0",
   "type": "module",
@@ -72,7 +72,6 @@
     "@quartz-community/og-image": "^1.1.1",
     "@quartz-community/ox-hugo": "^1.0.1",
     "@quartz-community/page-title": "^1.0.2",
-    "@quartz-community/quartz-fonts": "^1.0.2",
     "@quartz-community/reader-mode": "^1.0.2",
     "@quartz-community/recent-notes": "^1.0.3",
     "@quartz-community/roam": "^1.1.0",
