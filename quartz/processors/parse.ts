@@ -212,6 +212,7 @@ export async function parseMarkdown(ctx: BuildCtx, fps: FilePath[]): Promise<Pro
       allSlugs: ctx.allSlugs,
       allFiles: ctx.allFiles,
       incremental: ctx.incremental,
+      permalinks: ctx.permalinks,
       virtualPages: [],
     }
 
