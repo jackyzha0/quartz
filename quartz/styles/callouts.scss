@@ -2,6 +2,8 @@
 @use "sass:color";
 
 .callout {
+  margin: 1rem 0;
+  transition: border-color 0.2s ease;
   border: 1px solid var(--border);
   background-color: var(--bg);
   border-radius: 5px;

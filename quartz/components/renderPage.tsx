@@ -157,13 +157,12 @@ export function renderTranscludes(
       if (child?.type !== "element") continue
       const el = child as Element
 
-      if (el.tagName !== "blockquote") {
-        walk(el)
-        continue
-      }
-
+      // Transclusions are <div class="transclude"> (Quartz 5.2+; <blockquote> before).
       const classNames = (el.properties?.className ?? []) as string[]
-      if (!classNames.includes("transclude")) {
+      if (
+        (el.tagName !== "div" && el.tagName !== "blockquote") ||
+        !classNames.includes("transclude")
+      ) {
         walk(el)
         continue
       }
