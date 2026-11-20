@@ -5,6 +5,7 @@ import {
   isExcluded,
   resolveGroups,
   validateDependencies,
+  detectCategoryFromModule,
 } from "./config-loader"
 import { planBuiltins } from "../builtins"
 import type { PluginManifest } from "./types"
@@ -387,5 +388,28 @@ describe("a dependency that is configured but disabled", () => {
     const { errors, warnings } = validateDependencies(entries, manifests, [])
     assert.deepStrictEqual(errors, [])
     assert.match(warnings[0], /depends on "@quartz-community\/explorer" which is disabled/)
+  })
+})
+
+describe("async plugin factories", () => {
+  test("category detection gives up on an async factory without an unhandled rejection", async () => {
+    let rejected = false
+    const factory = () =>
+      Promise.reject(new Error("network")).catch((e) => {
+        rejected = true
+        throw e
+      })
+    // No manifest category and no static marker: detection must give up, not throw
+    // or leave an unhandled rejection.
+    assert.strictEqual(detectCategoryFromModule({ default: factory }), null)
+    await new Promise((r) => setTimeout(r, 0))
+    assert.strictEqual(rejected, true)
+  })
+
+  test("a static category marker still wins for async factories", () => {
+    const factory = Object.assign(async () => ({ name: "x", markdownPlugins: () => [] }), {
+      quartzCategory: "transformer",
+    })
+    assert.strictEqual(detectCategoryFromModule({ default: factory }), "transformer")
   })
 })

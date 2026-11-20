@@ -678,7 +678,8 @@ export async function loadQuartzConfig(
         }
         const pluginOverrides = componentRegistry.getOptionOverrides(spec.name)
         const options = { ...manifest?.defaultOptions, ...entry.options, ...pluginOverrides }
-        const instance = factory(Object.keys(options).length > 0 ? options : undefined)
+        // Factories may be async (e.g. a plugin that fetches remote data before the build).
+        const instance = await factory(Object.keys(options).length > 0 ? options : undefined)
         if (!instance || typeof instance !== "object") {
           pluginLoadFailed(
             entry,
@@ -897,7 +898,7 @@ function findFactory(
   return null
 }
 
-function detectCategoryFromModule(module: unknown): ProcessingCategory | null {
+export function detectCategoryFromModule(module: unknown): ProcessingCategory | null {
   if (!module || typeof module !== "object") return null
   const mod = module as Record<string, unknown>
 
@@ -915,6 +916,12 @@ function detectCategoryFromModule(module: unknown): ProcessingCategory | null {
   if (typeof factory === "function") {
     try {
       const instance = factory()
+      // An async factory can't be inspected without running it; such plugins must declare
+      // their category in the manifest. Swallow its rejection so discovery has no side effects.
+      if (instance instanceof Promise) {
+        instance.catch(() => {})
+        return null
+      }
       if (instance && typeof instance === "object") {
         if ("match" in instance && "body" in instance && "layout" in instance) return "pageType"
         if ("emit" in instance) return "emitter"

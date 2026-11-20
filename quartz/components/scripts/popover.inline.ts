@@ -71,9 +71,10 @@ async function mouseEnterHandler(
 
   const popoverElement = document.createElement("div")
   popoverElement.id = popoverId
-  popoverElement.classList.add("popover")
+  // `hover-popover` / `markdown-embed` mirror Obsidian's popover markup so Obsidian themes apply.
+  popoverElement.classList.add("popover", "hover-popover")
   const popoverInner = document.createElement("div")
-  popoverInner.classList.add("popover-inner")
+  popoverInner.classList.add("popover-inner", "markdown-embed")
   popoverInner.dataset.contentType = contentType ?? undefined
   popoverElement.appendChild(popoverInner)
 

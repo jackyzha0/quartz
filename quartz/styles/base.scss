@@ -85,15 +85,16 @@ path[class~="typst-shape"] {
 }
 
 article {
+  // callouts are <div class="callout"> since obsidian-flavored-markdown 2.3, <blockquote> before
   > mjx-container.MathJax,
-  blockquote > div > mjx-container.MathJax {
+  :is(blockquote, .callout) > div > mjx-container.MathJax {
     display: flex;
     > svg {
       margin-left: auto;
       margin-right: auto;
     }
   }
-  blockquote > div > mjx-container.MathJax > svg {
+  :is(blockquote, .callout) > div > mjx-container.MathJax > svg {
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
@@ -427,7 +428,8 @@ input[type="checkbox"] {
   }
 }
 
-blockquote {
+blockquote,
+.transclude {
   margin: 1rem 0;
   border-left: 3px solid var(--secondary);
   padding-left: 1rem;
