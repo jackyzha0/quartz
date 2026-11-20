@@ -46,4 +46,10 @@ export interface PageFrame {
   render: (props: PageFrameProps) => JSX.Element
   /** Optional CSS string to include when this frame is active */
   css?: string
+  /**
+   * Whether pages using this frame load Quartz's stylesheets: `index.css` (theme variables, base and
+   * popover styles, the site's `custom.scss`) and every component's CSS. Defaults to `true`; set it to
+   * `false` when the frame brings its own theme. Plugin CSS loads either way.
+   */
+  quartzStyles?: boolean
 }
