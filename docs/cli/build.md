@@ -11,6 +11,7 @@ The `build` command transforms your Markdown content into a static HTML website.
 | Flag              | Shorthand | Description                                                                        | Default            |
 | ----------------- | --------- | ---------------------------------------------------------------------------------- | ------------------ |
 | `--directory`     | `-d`      | The content folder                                                                 | `content`          |
+| `--config`        | `-C`      | Path to the config file to load (see [[#Custom config file]])                      | quartz.config.yaml |
 | `--verbose`       | `-v`      | Print detailed build information (see [[#Verbose output]])                         | `false`            |
 | `--output`        | `-o`      | The directory where the built site will be saved                                   | `public`           |
 | `--serve`         |           | Start a local development server                                                   | `false`            |
@@ -55,6 +56,17 @@ If you have a very large vault, you can limit the number of concurrent workers t
 ```shell
 npx quartz build --concurrency 2
 ```
+
+### Custom config file
+
+By default Quartz loads `quartz.config.yaml` from the current working directory. Use `--config` (or `-C`) to point at a config file elsewhere — for example when the config lives alongside your content rather than inside the Quartz install.
+
+```shell
+npx quartz build --config ../my-vault/quartz.config.yaml
+```
+
+> [!note]
+> The shorthand for `--config` is an uppercase `-C`. A lowercase `-c` is the shorthand for `--concurrency`, so the two are distinct.
 
 ### Verbose output
 
