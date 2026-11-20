@@ -7,6 +7,7 @@ import type { PluginSource, QuartzPluginsJson } from "./types.js"
 import { absorbingBuiltin } from "../builtins/index.js"
 
 function resolveConfigPath(): string {
+  if (process.env.QUARTZ_CONFIG_PATH) return path.resolve(process.env.QUARTZ_CONFIG_PATH)
   const configYamlPath = path.join(process.cwd(), "quartz.config.yaml")
   const defaultConfigYamlPath = path.join(process.cwd(), "quartz.config.default.yaml")
   const legacyPluginsJsonPath = path.join(process.cwd(), "quartz.plugins.json")

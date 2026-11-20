@@ -1,8 +1,10 @@
 import test, { describe, afterEach } from "node:test"
 import assert from "node:assert"
+import path from "path"
 import {
   buildLayoutForEntries,
   isExcluded,
+  resolveConfigPath,
   resolveGroups,
   validateDependencies,
 } from "./config-loader"
@@ -11,6 +13,23 @@ import type { PluginManifest } from "./types"
 import { componentRegistry } from "../../components/registry"
 import type { QuartzComponent, QuartzComponentConstructor } from "../../components/types"
 import { PluginJsonEntry, LayoutPosition } from "./types"
+
+describe("resolveConfigPath", () => {
+  afterEach(() => {
+    delete process.env.QUARTZ_CONFIG_PATH
+  })
+
+  test("QUARTZ_CONFIG_PATH overrides the default lookup", () => {
+    const custom = path.join("some", "dir", "quartz.config.yaml")
+    process.env.QUARTZ_CONFIG_PATH = custom
+    assert.strictEqual(resolveConfigPath(), path.resolve(custom))
+  })
+
+  test("falls back to the cwd default when QUARTZ_CONFIG_PATH is unset", () => {
+    delete process.env.QUARTZ_CONFIG_PATH
+    assert.notStrictEqual(resolveConfigPath(), path.resolve("some", "dir", "quartz.config.yaml"))
+  })
+})
 
 const makeComponent = (name: string): QuartzComponent => {
   const c = (() => null) as unknown as QuartzComponent
