@@ -408,6 +408,27 @@ describe("links built-in", () => {
     )
   })
 
+  test("pretty links shorten a link whose text is its percent-decoded href (#2643)", () => {
+    const { els } = run(
+      [
+        a("Folder/Name%20With%20Space", "Folder/Name With Space"),
+        a("Ordner/%C3%9Cbersicht", "Ordner/Übersicht"),
+        a("Folder/Name%20With%20Space", "own text"),
+      ],
+      "page",
+      { prettyLinks: true },
+    )
+    const links = els.filter((e) => e.tagName === "a")
+    assert.deepStrictEqual(
+      links.map((e) => (e.children[0] as Text).value),
+      ["Name With Space", "Übersicht", "own text"],
+    )
+    assert.deepStrictEqual(
+      links.map((e) => (e.properties.className as string[]).includes("alias")),
+      [false, false, true],
+    )
+  })
+
   test("disableBrokenWikilinks adds a broken class to missing targets", () => {
     const { els } = run([a("missing")], "page", { disableBrokenWikilinks: true }, ["page"])
     assert.ok((els[0].properties.className as string[]).includes("broken"))
