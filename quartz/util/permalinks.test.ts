@@ -19,6 +19,25 @@ describe("permalinks (Obsidian Publish semantics)", () => {
     assert.strictEqual(normalizePermalink(2024), "2024")
   })
 
+  test("collectPermalinks ignores permalinks with a . or .. segment", () => {
+    const fm: Record<string, unknown> = {
+      "a.md": "../escaped",
+      "b.md": "x/../../escaped",
+      "c.md": "./c",
+      "d.md": "/../../d/",
+      "e.md": "..\\..\\e",
+      "f.md": "fine..name/ok",
+    }
+    const warnings: string[] = []
+    const permalinks = collectPermalinks({
+      files: Object.keys(fm),
+      permalinkOf: (f) => fm[f],
+      warn: (m) => warnings.push(m),
+    })
+    assert.deepStrictEqual(permalinks, { "f.md": "fine..name/ok" })
+    assert.strictEqual(warnings.length, 5)
+  })
+
   test("collectPermalinks maps files to their permalink; the address can't be taken twice", () => {
     const fm: Record<string, unknown> = {
       "folder/note.md": "page",
