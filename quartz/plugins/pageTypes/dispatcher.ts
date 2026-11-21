@@ -1,4 +1,9 @@
-import { QuartzEmitterPlugin, QuartzPageTypePluginInstance, TreeTransform } from "../types"
+import {
+  PageTreeTransforms,
+  QuartzEmitterPlugin,
+  QuartzPageTypePluginInstance,
+  TreeTransform,
+} from "../types"
 import { QuartzComponent, QuartzComponentProps } from "../../components/types"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { FullPageLayout } from "../../cfg"
@@ -86,6 +91,26 @@ interface DispatcherOptions {
   byPageType: Record<string, Partial<FullPageLayout>>
 }
 
+/**
+ * @internal Exported for testing only.
+ *
+ * The render-time transforms of every page: the transformers' `renderTransforms` (`before` and
+ * `after`, in plugin order) around the page types' `treeTransforms`.
+ */
+export function collectTreeTransforms(
+  ctx: BuildCtx,
+  pageTypes: { treeTransforms?: (ctx: BuildCtx) => TreeTransform[] }[],
+): PageTreeTransforms {
+  const render = (ctx.cfg.plugins?.transformers ?? []).flatMap((transformer) =>
+    transformer.renderTransforms ? [transformer.renderTransforms(ctx)] : [],
+  )
+  return {
+    before: render.flatMap((transforms) => transforms.before ?? []),
+    treeTransforms: pageTypes.flatMap((pt) => pt.treeTransforms?.(ctx) ?? []),
+    after: render.flatMap((transforms) => transforms.after ?? []),
+  }
+}
+
 async function emitPage(
   ctx: BuildCtx,
   slug: FullSlug,
@@ -94,7 +119,7 @@ async function emitPage(
   allFiles: ProcessedContent[1]["data"][],
   layout: FullPageLayout,
   resources: StaticResources,
-  treeTransforms?: TreeTransform[],
+  treeTransforms?: PageTreeTransforms,
 ) {
   const cfg = ctx.cfg.configuration
   // For the 404 page, use an absolute base path so assets resolve correctly
@@ -369,10 +394,8 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
       const cfg = ctx.cfg.configuration
       const allFiles = content.map((c) => c[1].data)
 
-      // Collect tree transforms from all page type plugins
-      const treeTransforms: TreeTransform[] = pageTypes.flatMap(
-        (pt) => pt.treeTransforms?.(ctx) ?? [],
-      )
+      // Collect render-time transforms: transformers' renderTransforms and page types' treeTransforms
+      const treeTransforms = collectTreeTransforms(ctx, pageTypes)
 
       // Ensure trie is available for components that need folder hierarchy (e.g. FolderContent)
       ctx.trie ??= trieFromAllFiles(allFiles)
@@ -448,10 +471,8 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
       const cfg = ctx.cfg.configuration
       const allFiles = content.map((c) => c[1].data)
 
-      // Collect tree transforms from all page type plugins
-      const treeTransforms: TreeTransform[] = pageTypes.flatMap(
-        (pt) => pt.treeTransforms?.(ctx) ?? [],
-      )
+      // Collect render-time transforms: transformers' renderTransforms and page types' treeTransforms
+      const treeTransforms = collectTreeTransforms(ctx, pageTypes)
 
       // Rebuild trie on partial emit to reflect file changes
       ctx.trie = trieFromAllFiles(allFiles)

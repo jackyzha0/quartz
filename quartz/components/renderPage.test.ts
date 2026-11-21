@@ -1,6 +1,7 @@
 import test, { describe } from "node:test"
+import { toHtml } from "hast-util-to-html"
 import assert from "node:assert"
-import { renderTranscludes, pageResources } from "./renderPage"
+import { renderTranscludes, pageResources, transformPageContent } from "./renderPage"
 import { Root, Element } from "hast"
 import { FullSlug } from "../util/path"
 import { GlobalConfiguration } from "../cfg"
@@ -305,6 +306,62 @@ describe("renderTranscludes", () => {
     const bq = root.children[0] as Element
     const text = JSON.stringify(bq.children)
     assert.ok(text.includes("Circular transclusion"), "self-reference should be blocked")
+  })
+})
+
+describe("transformPageContent (render-time transforms)", () => {
+  const text = (root: Root) => toHtml(root)
+  const target: Root = {
+    type: "root",
+    children: [
+      {
+        type: "element",
+        tagName: "p",
+        properties: {},
+        children: [{ type: "text", value: "Target content" }],
+      },
+    ],
+  }
+
+  test("runs before, then transclusions, then treeTransforms, then after, on a copy", () => {
+    const page: Root = { type: "root", children: [makeTranscludeBlockquote("target")] }
+    const data = makeComponentData([makePageData("target", target)]) as QuartzComponentProps
+    data.tree = page
+    const seen: string[] = []
+    const root = transformPageContent(cfg, "current" as FullSlug, data, {
+      before: [(r) => seen.push(`before:${text(r).includes("Target content")}`)],
+      treeTransforms: [(r) => seen.push(`tree:${text(r).includes("Target content")}`)],
+      after: [
+        (r) => {
+          seen.push(`after:${text(r).includes("Target content")}`)
+          r.children = [{ type: "text", value: "replaced" }]
+        },
+      ],
+    })
+    assert.deepStrictEqual(seen, ["before:false", "tree:true", "after:true"])
+    assert.strictEqual(text(root), "replaced")
+    // the page's own tree is untouched
+    assert.ok(text(page).includes("transclude"))
+  })
+
+  test("a before transform can swap in content that then gets transclusions inlined", () => {
+    const data = makeComponentData([makePageData("target", target)]) as QuartzComponentProps
+    data.tree = { type: "root", children: [{ type: "text", value: "placeholder" }] } as Root
+    const root = transformPageContent(cfg, "current" as FullSlug, data, {
+      before: [(r) => (r.children = [makeTranscludeBlockquote("target")])],
+      treeTransforms: [],
+      after: [],
+    })
+    assert.ok(text(root).includes("Target content"))
+  })
+
+  test("a plain list is the page types' treeTransforms", () => {
+    const data = makeComponentData([]) as QuartzComponentProps
+    data.tree = { type: "root", children: [] } as Root
+    const root = transformPageContent(cfg, "current" as FullSlug, data, [
+      (r) => r.children.push({ type: "text", value: "x" }),
+    ])
+    assert.strictEqual(text(root), "x")
   })
 })
 

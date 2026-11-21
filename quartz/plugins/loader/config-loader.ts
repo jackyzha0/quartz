@@ -845,7 +845,11 @@ function validateCategory(
       return "shouldPublish" in instance
     case "transformer":
       return (
-        "textTransform" in instance || "markdownPlugins" in instance || "htmlPlugins" in instance
+        "textTransform" in instance ||
+        "markdownPlugins" in instance ||
+        "htmlPlugins" in instance ||
+        "virtualPageHtmlPlugins" in instance ||
+        "renderTransforms" in instance
       )
   }
 }
@@ -929,7 +933,9 @@ export function detectCategoryFromModule(module: unknown): ProcessingCategory | 
         if (
           "textTransform" in instance ||
           "markdownPlugins" in instance ||
-          "htmlPlugins" in instance
+          "htmlPlugins" in instance ||
+          "virtualPageHtmlPlugins" in instance ||
+          "renderTransforms" in instance
         )
           return "transformer"
       }

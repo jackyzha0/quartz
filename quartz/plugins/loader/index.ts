@@ -62,9 +62,13 @@ function detectPluginType(
 
   const hasPageTypeProps = ["match", "body", "layout"].every((key) => key in mod)
 
-  const hasTransformerProps = ["textTransform", "markdownPlugins", "htmlPlugins"].some(
-    (key) => key in mod && (typeof mod[key] === "function" || mod[key] === undefined),
-  )
+  const hasTransformerProps = [
+    "textTransform",
+    "markdownPlugins",
+    "htmlPlugins",
+    "virtualPageHtmlPlugins",
+    "renderTransforms",
+  ].some((key) => key in mod && (typeof mod[key] === "function" || mod[key] === undefined))
 
   const hasFilterProps = ["shouldPublish"].some(
     (key) => key in mod && typeof mod[key] === "function",

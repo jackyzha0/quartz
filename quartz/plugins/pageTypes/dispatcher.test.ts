@@ -5,6 +5,7 @@ import os from "os"
 import path from "path"
 import {
   collectComponents,
+  collectTreeTransforms,
   folderTrie,
   generateVirtualPages,
   pageOutputPath,
@@ -130,6 +131,33 @@ describe("resolveLayout frame resolution", () => {
   test("defaults to 'default' when byPageType entry exists but has no frame", () => {
     const result = resolveLayout(makePageType(), { head: StubHead }, { content: { left: [StubA] } })
     assert.strictEqual(result.frame, "default")
+  })
+})
+
+describe("collectTreeTransforms", () => {
+  test("transformers' renderTransforms wrap the page types' treeTransforms, in plugin order", () => {
+    const t = (name: string) => Object.assign(() => {}, { tname: name })
+    const ctx = {
+      cfg: {
+        plugins: {
+          transformers: [
+            {
+              name: "a",
+              renderTransforms: () => ({ before: [t("a-before")], after: [t("a-after")] }),
+            },
+            { name: "b", htmlPlugins: () => [] },
+            { name: "c", renderTransforms: () => ({ after: [t("c-after")] }) },
+          ],
+        },
+      },
+    } as unknown as BuildCtx
+    const result = collectTreeTransforms(ctx, [
+      makePageType({ treeTransforms: () => [t("page") as never] }),
+    ])
+    const names = (list: unknown[]) => list.map((f) => (f as { tname: string }).tname)
+    assert.deepStrictEqual(names(result.before), ["a-before"])
+    assert.deepStrictEqual(names(result.treeTransforms), ["page"])
+    assert.deepStrictEqual(names(result.after), ["a-after", "c-after"])
   })
 })
 
