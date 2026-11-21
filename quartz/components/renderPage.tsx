@@ -14,7 +14,7 @@ import { GlobalConfiguration, SidebarModes } from "../cfg"
 import { i18n } from "../i18n"
 import { styleText } from "util"
 import { resolveFrame } from "./frames"
-import type { TreeTransform } from "../plugins/types"
+import type { PageTreeTransforms, TreeTransform } from "../plugins/types"
 import type { BuildCtx } from "../util/ctx"
 
 interface RenderComponents {
@@ -325,26 +325,48 @@ export function renderTranscludes(
   walk(root)
 }
 
+/**
+ * A page's content as it is rendered: a copy of its tree with the transformers' `before`
+ * transforms applied, transclusions inlined, then the page types' `treeTransforms` and the
+ * transformers' `after` transforms applied.
+ */
+export function transformPageContent(
+  cfg: GlobalConfiguration,
+  slug: FullSlug,
+  componentData: QuartzComponentProps,
+  transforms?: TreeTransform[] | PageTreeTransforms,
+): Root {
+  const { before, treeTransforms, after } = Array.isArray(transforms)
+    ? { before: [], treeTransforms: transforms, after: [] }
+    : (transforms ?? { before: [], treeTransforms: [], after: [] })
+
+  // make a deep copy of the tree so we don't remove the transclusion references
+  // for the file cached in contentMap in build.ts
+  const root = clone(componentData.tree) as Root
+
+  // transformers' render-time transforms that need the content before it is filled in
+  for (const transform of before) transform(root, slug, componentData)
+
+  const visited = new Set<FullSlug>([slug])
+  renderTranscludes(root, cfg, slug, componentData, visited)
+
+  // Run plugin-provided tree transforms (e.g. resolving inline bases codeblocks)
+  for (const transform of treeTransforms) transform(root, slug, componentData)
+
+  // transformers' render-time transforms of the finished content (e.g. encrypting it)
+  for (const transform of after) transform(root, slug, componentData)
+  return root
+}
+
 export function renderPage(
   cfg: GlobalConfiguration,
   slug: FullSlug,
   componentData: QuartzComponentProps,
   components: RenderComponents,
   pageResources: StaticResources,
-  treeTransforms?: TreeTransform[],
+  transforms?: TreeTransform[] | PageTreeTransforms,
 ): string {
-  // make a deep copy of the tree so we don't remove the transclusion references
-  // for the file cached in contentMap in build.ts
-  const root = clone(componentData.tree) as Root
-  const visited = new Set<FullSlug>([slug])
-  renderTranscludes(root, cfg, slug, componentData, visited)
-
-  // Run plugin-provided tree transforms (e.g. resolving inline bases codeblocks)
-  if (treeTransforms) {
-    for (const transform of treeTransforms) {
-      transform(root, slug, componentData)
-    }
-  }
+  const root = transformPageContent(cfg, slug, componentData, transforms)
 
   // set componentData.tree to the edited html that has transclusions rendered
   componentData.tree = root

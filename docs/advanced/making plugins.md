@@ -107,6 +107,7 @@ export type QuartzTransformerPluginInstance = {
   markdownPlugins?: (ctx: BuildCtx) => PluggableList
   htmlPlugins?: (ctx: BuildCtx) => PluggableList
   virtualPageHtmlPlugins?: (ctx: BuildCtx, content: ProcessedContent[]) => PluggableList
+  renderTransforms?: (ctx: BuildCtx) => { before?: TreeTransform[]; after?: TreeTransform[] }
   externalResources?: (ctx: BuildCtx) => Partial<StaticResources> | undefined
   extendContentIndex?: ContentIndexExtension // any plugin type, see below
 }
@@ -118,6 +119,7 @@ All transformer plugins must define at least a `name` field to register the plug
 - `markdownPlugins` defines a list of [remark plugins](https://github.com/remarkjs/remark/blob/main/doc/plugins.md). `remark` is a tool that transforms Markdown to Markdown in a structured way.
 - `htmlPlugins` defines a list of [rehype plugins](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md). Similar to how `remark` works, `rehype` is a tool that transforms HTML to HTML in a structured way.
 - `virtualPageHtmlPlugins` (Quartz 5.1+) defines rehype plugins for the pages that page types render from files (`.base`, `.canvas`, Excalidraw drawings). Those pages are rendered when emitting and never pass through `htmlPlugins`, so a plugin that should also act on them (e.g. encryption) registers its rehype plugin here too. They run on the page's rendered body, with the page's vfile (`file.data.frontmatter`, `file.data.referencedBy`), after the filters published the page; the page then shows the resulting tree. `content` is the published content.
+- `renderTransforms` (Quartz 5.2+) defines transforms of a page's content tree when the page is rendered, when other pages' content and `allFiles` are available. Each is a function `(root, slug, componentData) => void` that changes `root`, a copy of the page's tree. `before` transforms run before transclusions are inlined and page types' `treeTransforms` run (bases are filled in, for example); `after` transforms run on the finished content. [encrypted-pages](https://github.com/quartz-community/encrypted-pages) uses both: `before` puts its page's content back, `after` encrypts the finished content, transclusions and bases included. Something that only needs the finished content, such as rewriting all links in it, needs only `after`.
 - `externalResources` defines any external resources the plugin may need to load on the client-side for it to work properly.
 
 Transformers run in plugin order (see [[plugin manifest#defaultOrder]]); the built-in frontmatter parsing runs at order 0 and the built-in link processing, which sets `file.data.links`, at 60.
