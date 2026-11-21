@@ -15,6 +15,7 @@ import { i18n } from "../i18n"
 import { styleText } from "util"
 import { resolveFrame } from "./frames"
 import type { PageTreeTransforms, TreeTransform } from "../plugins/types"
+import { createIdScopes, scopeTranscludedIds, sliceWithFootnotes } from "./transcludeScope"
 import type { BuildCtx } from "../util/ctx"
 
 interface RenderComponents {
@@ -146,6 +147,9 @@ export function renderTranscludes(
   componentData: QuartzComponentProps,
   visited: Set<FullSlug>,
 ) {
+  // a prefix per transclusion, unique on the page, for the ids inside it
+  const scopeFor = createIdScopes()
+
   // Walk the tree manually instead of using visit() so we can track the
   // ancestor chain for cycle detection. visit() runs the callback before
   // descending into replaced children, so a Set-based guard there falsely
@@ -265,8 +269,8 @@ export function renderTranscludes(
         }
 
         el.children = [
-          ...(page.htmlAst.children.slice(startIdx, endIdx) as ElementContent[]).map((c) =>
-            normalizeHastElement(c as Element, slug, transcludeTarget),
+          ...sliceWithFootnotes(page.htmlAst.children as ElementContent[], startIdx, endIdx).map(
+            (c) => normalizeHastElement(c as Element, slug, transcludeTarget),
           ),
           {
             type: "element",
@@ -318,6 +322,8 @@ export function renderTranscludes(
       // Recurse into the replaced children to resolve nested transclusions,
       // then remove from visited so sibling embeds of the same target work.
       walk(el)
+      // its ids (headings, footnotes) are unique on the page, and links inside it go to them
+      scopeTranscludedIds(el, scopeFor(transcludeTarget), inner.properties?.href as string)
       visited.delete(transcludeTarget)
     }
   }
