@@ -334,6 +334,17 @@ export async function handleBuild(argv) {
     argv.watch = true
   }
 
+  // Let `--config <path>` override the default ./quartz.config.yaml. Passed down
+  // via env so it reaches the esbuild-bundled build code and worker threads.
+  if (argv.config) {
+    const resolved = path.resolve(argv.config)
+    if (!fs.existsSync(resolved)) {
+      console.error(`Config file not found: ${resolved}`)
+      process.exit(1)
+    }
+    process.env.QUARTZ_CONFIG_PATH = resolved
+  }
+
   // " Quartz v5.1.0 " for a release checkout, plus `git describe` (e.g. v5.1.0-3-g1a2b3c4-dirty) otherwise
   const checkout = describeQuartzCheckout()
   const describe = checkout.describe && checkout.describe !== `v${version}` ? checkout.describe : ""
@@ -607,8 +618,9 @@ export async function handleBuild(argv) {
       "quartz.config.yaml",
       "quartz.config.default.yaml",
     ])
+    const extraWatch = process.env.QUARTZ_CONFIG_PATH ? [process.env.QUARTZ_CONFIG_PATH] : []
     chokidar
-      .watch(paths, { ignoreInitial: true })
+      .watch([...paths, ...extraWatch], { ignoreInitial: true })
       .on("add", () => build(clientRefresh))
       .on("change", () => build(clientRefresh))
       .on("unlink", () => build(clientRefresh))

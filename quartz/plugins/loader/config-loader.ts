@@ -83,7 +83,9 @@ const DEFAULT_CONFIG_YAML_PATH = path.join(process.cwd(), "quartz.config.default
 const LEGACY_PLUGINS_JSON_PATH = path.join(process.cwd(), "quartz.plugins.json")
 const LEGACY_DEFAULT_PLUGINS_JSON_PATH = path.join(process.cwd(), "quartz.plugins.default.json")
 
-function resolveConfigPath(): string {
+/** @internal Exported for testing only. Honors QUARTZ_CONFIG_PATH, else falls back to cwd. */
+export function resolveConfigPath(): string {
+  if (process.env.QUARTZ_CONFIG_PATH) return path.resolve(process.env.QUARTZ_CONFIG_PATH)
   if (fs.existsSync(CONFIG_YAML_PATH)) return CONFIG_YAML_PATH
   if (fs.existsSync(LEGACY_PLUGINS_JSON_PATH)) return LEGACY_PLUGINS_JSON_PATH
   if (fs.existsSync(DEFAULT_CONFIG_YAML_PATH)) return DEFAULT_CONFIG_YAML_PATH
