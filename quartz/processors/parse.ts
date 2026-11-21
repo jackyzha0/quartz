@@ -13,7 +13,7 @@ import path from "path"
 import workerpool, { Promise as WorkerPromise } from "workerpool"
 import { QuartzLogger } from "../util/log"
 import { trace } from "../util/trace"
-import { BuildCtx, WorkerSerializableBuildCtx } from "../util/ctx"
+import { BuildCtx, workerCtx } from "../util/ctx"
 import { styleText } from "util"
 import {
   attributeError,
@@ -206,14 +206,7 @@ export async function parseMarkdown(ctx: BuildCtx, fps: FilePath[]): Promise<Pro
       maxWorkers: concurrency,
       workerType: "thread",
     })
-    const serializableCtx: WorkerSerializableBuildCtx = {
-      buildId: ctx.buildId,
-      argv: ctx.argv,
-      allSlugs: ctx.allSlugs,
-      allFiles: ctx.allFiles,
-      incremental: ctx.incremental,
-      virtualPages: [],
-    }
+    const serializableCtx = workerCtx(ctx)
 
     try {
       const textToMarkdownPromises: WorkerPromise<MarkdownContent[]>[] = []

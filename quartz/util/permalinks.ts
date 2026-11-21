@@ -46,6 +46,11 @@ export function collectPermalinks({
   for (const file of files) {
     const slug = normalizePermalink(permalinkOf(file))
     if (!slug) continue
+    if (slug.split("/").some((segment) => segment === "." || segment === "..")) {
+      // a "." or ".." segment would be written outside the output directory (../x.html)
+      warn(`${file}: permalink "${slug}" contains a "." or ".." segment and is ignored.`)
+      continue
+    }
     const own = slugifyFilePath(file as FilePath)
     if (slug === own) continue // the note's own path: nothing to do
     const owner = pathSlugs.get(slug) ?? taken.get(slug)

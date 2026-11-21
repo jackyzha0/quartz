@@ -50,6 +50,14 @@ const isAbsolute = isAbsoluteUrl as (url: string, options?: { httpOnly?: boolean
 // As in Obsidian: a URL with a scheme (`x:y`, but not `../x:y`), or a link whose path is not valid
 // percent-encoding (`%zz`, `a%E2.md`), which names no file
 const isExternalUrl = (url: string) => isAbsolute(url, { httpOnly: false }) || !linkPathDecodes(url)
+// An href percent-decoded, to compare with link text; left as it is when it does not decode
+const decodedHref = (href: string) => {
+  try {
+    return decodeURI(href)
+  } catch {
+    return href
+  }
+}
 
 const EXTERNAL_ICON_PATH =
   "M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"
@@ -131,12 +139,14 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
                   })
                 }
 
-                // link text differs from the href → it's an alias ("[[note|text]]")
+                // link text differs from the href → it's an alias ("[[note|text]]"). The href is
+                // percent-encoded by now ("a%20b" for "a b"), so it is compared decoded too (#2643)
                 const firstChild = node.children[0]
                 if (
                   node.children.length === 1 &&
                   firstChild?.type === "text" &&
-                  firstChild.value !== dest
+                  firstChild.value !== dest &&
+                  firstChild.value !== decodedHref(dest)
                 ) {
                   classes.push("alias")
                 }
