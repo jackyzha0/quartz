@@ -23,9 +23,12 @@ $boldWeight: 700;
 $semiBoldWeight: 600;
 $normalWeight: 400;
 
+// The content column is minmax(0, 1fr), not auto: an auto track grows to its widest item's
+// min-content, so one wide element (a themed header row, a long unbreakable word) widened the
+// whole page past the screen instead of overflowing on its own.
 $mobileGrid: (
   templateRows: "auto auto auto auto auto",
-  templateColumns: "auto",
+  templateColumns: "minmax(0, 1fr)",
   rowGap: "5px",
   columnGap: "5px",
   templateAreas:
@@ -37,7 +40,7 @@ $mobileGrid: (
 );
 $tabletGrid: (
   templateRows: "auto auto auto auto",
-  templateColumns: "#{$sidePanelWidth} auto",
+  templateColumns: "#{$sidePanelWidth} minmax(0, 1fr)",
   rowGap: "5px",
   columnGap: "5px",
   templateAreas:
