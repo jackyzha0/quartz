@@ -83,7 +83,7 @@
     "@quartz-community/tag-list": "^1.0.3",
     "@quartz-community/tag-page": "^1.0.5",
     "@quartz-community/unlisted-pages": "^1.2.0",
-    "@quartz-themes/core": "^2.0.1",
+    "@quartz-themes/core": "^3.1.0",
     "ansi-truncate": "^1.4.0",
     "async-mutex": "^0.5.0",
     "chokidar": "^5.0.0",

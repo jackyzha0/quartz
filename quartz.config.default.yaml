@@ -99,7 +99,7 @@ plugins:
   - source: "@quartz-themes/core"
     enabled: false
     options:
-      theme: tokyo-night
+      theme: Tokyo Night
       mode: both
   - source: "@quartz-community/explicit-publish"
     enabled: false
