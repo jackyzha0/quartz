@@ -264,6 +264,12 @@ a {
         flex-direction: row;
         padding: 0;
         padding-top: 2rem;
+        // text in the header row (a long page title) may break anywhere, so the row fits the
+        // screen; the buttons keep their size. Links set their own overflow-wrap.
+        & > *,
+        & > * a {
+          overflow-wrap: anywhere;
+        }
       }
     }
 
@@ -355,7 +361,7 @@ a {
 
 // Full-width frame: no sidebars, center content spans full width
 .page[data-frame="full-width"] > #quartz-body {
-  grid-template-columns: auto;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto auto auto;
   grid-template-areas:
     "grid-header"
@@ -363,7 +369,7 @@ a {
     "grid-footer";
 
   @media all and ($tablet) {
-    grid-template-columns: auto;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   & .center.full-width {
@@ -374,14 +380,14 @@ a {
 
 // Minimal frame: no sidebars, no header/footer chrome, body content only + footer
 .page[data-frame="minimal"] > #quartz-body {
-  grid-template-columns: auto;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto auto;
   grid-template-areas:
     "grid-center"
     "grid-footer";
 
   @media all and ($tablet) {
-    grid-template-columns: auto;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   & .center.minimal {
