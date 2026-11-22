@@ -1,5 +1,31 @@
 # @jackyzha0/quartz
 
+## 5.2.0
+
+### Minor Changes
+
+- 4ed26b3: `quartz build --config <path>` (or `-C`) reads the site configuration from another file than `./quartz.config.yaml`, so the config can live with the content outside the Quartz folder, and one Quartz install can build several content repositories (#2646). With `--watch`/`--serve`, changes to that file trigger a rebuild.
+- 607ccb8: Theme support for Obsidian themes: plugin factories may be async (Quartz awaits them); font loading is built in as `configuration.fonts` (formerly the `@quartz-community/quartz-fonts` plugin, whose config entry is applied automatically); callouts and transclusions render as `<div>` like in Obsidian; popovers carry Obsidian's `hover-popover`/`markdown-embed` classes.
+- 9705969: Transformers can declare `renderTransforms`: transforms of a page's content when it is rendered, `before` transclusions are inlined and page types' `treeTransforms` run (bases are filled in), and `after` them, on the finished content. encrypted-pages uses them to encrypt a note's finished content, so bases and transclusions in encrypted notes show when unlocked (quartz-community/encrypted-pages#2).
+
+### Patch Changes
+
+- ed4f653: Bases (bases-page 1.4.0) render closer to Obsidian:
+
+  - custom summaries are evaluated, and summaries show their name and appear per group;
+  - `html()`, `image()`, `icon()`, regular expressions and `file.backlinks` work in formulas;
+  - `kanban` views, `groupOrder`, grouped list and cards views, and the list and row height options work.
+
+- 99685cf: Bases inside a transcluded note render that note's own base, and links in bases follow `configuration.links` (external-link icon, new tab, lazy images, popovers) (bases-page 1.5.1).
+- 9a04652: Bases columns are labelled with the property's name, as in Obsidian (`priority`, `file name`), instead of title-cased (`Priority`, `Name`); bases-page's new `propertyLabels: title` option keeps the title-cased labels (bases-page 1.5.0).
+- 9c46b01: Updates `@quartz-community/obsidian-flavored-markdown` to 2.3.1, which renders callout titles in `.callout-title-inner` without a `<p>`, as in Obsidian (themes put the title below its icon otherwise). Callout titles are styled on `.callout-title-inner` itself (colour, margin, line height); the `> p` rule stays for sites on an older obsidian-flavored-markdown.
+- cdc5a02: Updates dependencies with minor and patch releases: `@clack/prompts` 1.9.0, `@napi-rs/simple-git` 1.2.0, `isomorphic-git` 1.44.18, `minimatch` 11.0.9, `preact-render-to-string` 6.8.3 and `prettier` 3.10.1.
+- 8578f2f: Permalinks work on large sites: sites of 192 or more files are parsed in worker threads, which didn't receive the permalinks, so a note with a `permalink` was published at its file path (#2644). A permalink with `.` or `..` segments is ignored with a warning instead of writing pages outside the output folder (#2641). With `prettyLinks`, a wikilink to a note whose name has a space or a non-ASCII letter reads as the note's name without its folder, as other links do (#2643).
+- 166d09b: `quartz plugin install` moves a plugin to its pinned commit even when the plugin's build left tracked files changed (its `package-lock.json`). In CI, a plugin cache restored through `restore-keys` kept those changes, and installing an updated plugin failed with "Please commit your changes or stash them" (#2639).
+- 6f872d4: Updates `@quartz-community/alias-redirects` to 1.0.4 (aliases that point outside the site are skipped, #2641) and `@quartz-community/note-properties` to 1.1.5 (links in properties to missing pages get the `broken` class with `disableBrokenWikilinks`, #2635).
+- 0ab525c: Updated plugins that rely on Quartz 5.1 and now declare it (`quartzVersion: ">=5.1.0"`): encrypted-pages 1.2.0, explicit-publish 1.2.0, unlisted-pages 1.2.0, obsidian-flavored-markdown 2.2.0, folder-page 1.1.0 and bases-page 1.3.0.
+- 49d0563: Transcluded content no longer duplicates ids. Headings and footnotes inside a transclusion get ids unique on the page, and the links inside it go to them, so the host's footnotes and a `[[#Heading]]` link inside a transclusion jump to the right place. A same-page link whose target isn't in the transcluded section links to the transcluded page. A heading transclusion (`![[note#Heading]]`) holds only the footnotes it references instead of the page's whole footnotes section.
+
 ## 5.1.0
 
 ### Minor Changes
