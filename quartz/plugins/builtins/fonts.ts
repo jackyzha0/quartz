@@ -310,15 +310,37 @@ export function buildLayeredCSS(fonts: ResolvedFonts, options: FontsConfig, them
   ].join("\n")
 }
 
-/** Unlayered heading fonts beat every layer; with a theme, only explicitly configured ones. */
+/** Obsidian's override variables for the body, interface and code roles. */
+const OBSIDIAN_OVERRIDES: [string, "body" | "interface" | "code"][] = [
+  ["--font-text-override", "body"],
+  ["--font-interface-override", "interface"],
+  ["--font-monospace-override", "code"],
+]
+
+/**
+ * Unlayered heading fonts beat every layer; with a theme, only explicitly configured ones.
+ *
+ * Explicitly configured body/interface/code fonts also go to Obsidian's `--font-*-override`
+ * variables on `body`: an Obsidian theme's app.css sets `--font-text` and friends on `body`
+ * itself, so the `:root` values from {@link buildLayeredCSS} never reach the page. This holds
+ * whether or not the theme registers its fonts (with `themeFonts: false` it maps the overrides
+ * to Quartz's font variables on `body`), so the selector is `html body`, which wins over a
+ * theme's `body` rule regardless of stylesheet order. Without an Obsidian theme nothing reads
+ * the overrides.
+ */
 export function buildUnlayeredCSS(
   fonts: ResolvedFonts,
   options: FontsConfig,
   themeActive: boolean,
 ) {
-  return HEADING_LEVELS.filter((l) => !themeActive || isExplicit(options, l))
-    .map((l) => `${l} { font-family: ${fonts[l]}; }`)
-    .join("\n")
+  const rules = HEADING_LEVELS.filter((l) => !themeActive || isExplicit(options, l)).map(
+    (l) => `${l} { font-family: ${fonts[l]}; }`,
+  )
+  const overrides = OBSIDIAN_OVERRIDES.filter(([, key]) => options[key] !== undefined).map(
+    ([name, key]) => `  ${name}: ${fonts[key]};`,
+  )
+  if (overrides.length > 0) rules.push(["html body {", ...overrides, "}"].join("\n"))
+  return rules.join("\n")
 }
 
 // ---- plugin ------------------------------------------------------------------------

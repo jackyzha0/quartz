@@ -642,4 +642,26 @@ describe("fonts built-in", () => {
       delete (globalThis as Record<string, unknown>).__quartzFonts
     }
   })
+
+  test("explicit body/interface/code fonts set Obsidian's overrides on body", () => {
+    ;(globalThis as Record<string, unknown>).__quartzFonts = {
+      themeName: "Things",
+      fonts: { "--font-text": "Inter", "--font-monospace": "JetBrains Mono" },
+    }
+    try {
+      const opts = { body: "Lora", code: "Fira Code" }
+      const css = buildUnlayeredCSS(resolveFonts(opts, {}), opts, true)
+      assert.match(css, /html body \{[^}]*--font-text-override: Lora;/)
+      assert.match(css, /html body \{[^}]*--font-monospace-override: Fira Code;/)
+      assert.doesNotMatch(css, /--font-interface-override/)
+      // a theme with themeFonts: false registers no fonts, but still reads the overrides
+      assert.match(
+        buildUnlayeredCSS(resolveFonts({ interface: "Inter" }, {}), { interface: "Inter" }, false),
+        /html body \{\n  --font-interface-override: Inter;\n\}/,
+      )
+      assert.doesNotMatch(buildUnlayeredCSS(resolveFonts({}, {}), {}, true), /override/)
+    } finally {
+      delete (globalThis as Record<string, unknown>).__quartzFonts
+    }
+  })
 })
