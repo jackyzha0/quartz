@@ -4,7 +4,7 @@ import os from "node:os"
 import path from "node:path"
 import { afterEach, describe, test } from "node:test"
 import type { BuildCtx } from "../../util/ctx"
-import type { FilePath, FullSlug } from "../../util/path"
+import { type FilePath, type FullSlug, joinSegments } from "../../util/path"
 import type { StaticResources } from "../../util/resources"
 import { defaultProcessedContent, type ProcessedContent } from "../vfile"
 import { ShortPermalinks, shortPermalinkHash } from "./shortPermalinks"
@@ -76,7 +76,7 @@ describe("ShortPermalinks", () => {
     const emitted = Symbol.asyncIterator in files ? await emittedFiles(files) : files
 
     const hash = shortPermalinkHash("notes/日本語/電卓.md", 10)
-    const redirectPath = path.join(ctx.argv.output, "go", `${hash}.html`)
+    const redirectPath = joinSegments(ctx.argv.output, "go", `${hash}.html`) as FilePath
     assert.deepStrictEqual(emitted, [redirectPath])
 
     const html = await fs.readFile(redirectPath, "utf8")
@@ -162,14 +162,15 @@ describe("ShortPermalinks", () => {
     const result = await plugin.emit(ctx, [original, occupied], {} as StaticResources)
     const emitted = Symbol.asyncIterator in result ? await emittedFiles(result) : result
 
-    assert.ok(emitted.every((file) => file !== path.join(ctx.argv.output, "s", `${hash}.html`)))
+    const occupiedPath = joinSegments(ctx.argv.output, "s", `${hash}.html`)
+    assert.ok(emitted.every((file) => file !== occupiedPath))
   })
 
   test("removes stale redirects during an incremental rebuild", async () => {
     const ctx = await context()
     const original = page("article", "notes/article.md")
     const hash = shortPermalinkHash("notes/article.md", 8)
-    const redirectPath = path.join(ctx.argv.output, "s", `${hash}.html`)
+    const redirectPath = joinSegments(ctx.argv.output, "s", `${hash}.html`) as FilePath
     const plugin = ShortPermalinks()
 
     const initial = await plugin.emit(ctx, [original], {} as StaticResources)
