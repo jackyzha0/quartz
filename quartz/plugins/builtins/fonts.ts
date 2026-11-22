@@ -23,7 +23,7 @@ import { QuartzEmitterPlugin } from "../types"
 
 const HEADING_LEVELS = ["h1", "h2", "h3", "h4", "h5", "h6"] as const
 type HeadingLevel = (typeof HEADING_LEVELS)[number]
-type FontRole = "title" | "header" | "body" | "code"
+type FontRole = "title" | "header" | "body" | "code" | "interface"
 
 export const SELF_HOSTED_STYLESHEET = "static/fonts/quartz-fonts.css"
 export const QUARTZ_DEFAULT_HEADER = "Schibsted Grotesk"
@@ -40,12 +40,14 @@ const DEFAULT_WEIGHTS: Record<FontRole, number[]> = {
   header: [400, 700],
   body: [400, 600],
   code: [400, 600],
+  interface: [400, 600],
 }
 const DEFAULT_ITALIC: Record<FontRole, boolean> = {
   title: false,
   header: false,
   body: true,
   code: false,
+  interface: false,
 }
 
 /** Option defaults; every key is listed so unknown options can be reported. */
@@ -107,13 +109,20 @@ export function readConfiguredTypography(ctx: BuildCtx | undefined): ConfiguredT
   return result
 }
 
-/** Options first, then `configuration.theme.typography`, then Quartz's defaults. */
+/**
+ * Options first, then `configuration.theme.typography`, then Quartz's defaults. The interface
+ * and per-heading fonts exist only as options.
+ */
 export function resolveFontSpecs(options: FontsConfig, typography: ConfiguredTypography) {
   return {
     title: options.title ?? typography.title,
     header: options.header ?? typography.header ?? QUARTZ_DEFAULT_HEADER,
     body: options.body ?? typography.body ?? QUARTZ_DEFAULT_BODY,
     code: options.code ?? typography.code ?? QUARTZ_DEFAULT_CODE,
+    interface: options.interface,
+    headings: HEADING_LEVELS.map((l) => options[l]).filter(
+      (spec): spec is FontSpecification => spec !== undefined,
+    ),
   }
 }
 
@@ -140,20 +149,16 @@ function mergeInto(map: Map<string, MergedFont>, role: FontRole, spec: FontSpeci
   }
 }
 
+/** Google Fonts css2 `family` value; a single weight still names its axis unless it's 400. */
 function formatMerged(entry: MergedFont): string {
   const weights = [...entry.weights].sort((a, b) => a - b)
-  const features: string[] = []
-  if (entry.italic) features.push("ital")
-  if (weights.length > 1) {
-    const spec = entry.italic
-      ? weights
-          .flatMap((w) => [`0,${w}`, `1,${w}`])
-          .sort()
-          .join(";")
-      : weights.join(";")
-    features.push(`wght@${spec}`)
+  const defaultWeight = weights.length === 1 && weights[0] === 400
+  if (entry.italic) {
+    if (defaultWeight) return `${entry.name}:ital@0;1`
+    const tuples = [...weights.map((w) => `0,${w}`), ...weights.map((w) => `1,${w}`)]
+    return `${entry.name}:ital,wght@${tuples.join(";")}`
   }
-  return features.length > 0 ? `${entry.name}:${features.join(",")}` : entry.name
+  return defaultWeight ? entry.name : `${entry.name}:wght@${weights.join(";")}`
 }
 
 export function googleFontHref(fonts: ReturnType<typeof resolveFontSpecs>): string {
@@ -162,6 +167,8 @@ export function googleFontHref(fonts: ReturnType<typeof resolveFontSpecs>): stri
   mergeInto(merged, "body", fonts.body)
   mergeInto(merged, "code", fonts.code)
   if (fonts.title) mergeInto(merged, "title", fonts.title)
+  if (fonts.interface) mergeInto(merged, "interface", fonts.interface)
+  for (const spec of fonts.headings) mergeInto(merged, "header", spec)
   const params = [...merged.values()]
     .map(formatMerged)
     .map((f) => `family=${encodeURIComponent(f)}`)
@@ -218,6 +225,7 @@ function validate(options: FontsConfig) {
   check("header", options.header, "header")
   check("body", options.body, "body")
   check("code", options.code, "code")
+  check("interface", options.interface, "interface")
   for (const level of HEADING_LEVELS) check(level, options[level], "header")
 }
 
@@ -310,15 +318,37 @@ export function buildLayeredCSS(fonts: ResolvedFonts, options: FontsConfig, them
   ].join("\n")
 }
 
-/** Unlayered heading fonts beat every layer; with a theme, only explicitly configured ones. */
+/** Obsidian's override variables for the body, interface and code roles. */
+const OBSIDIAN_OVERRIDES: [string, "body" | "interface" | "code"][] = [
+  ["--font-text-override", "body"],
+  ["--font-interface-override", "interface"],
+  ["--font-monospace-override", "code"],
+]
+
+/**
+ * Unlayered heading fonts beat every layer; with a theme, only explicitly configured ones.
+ *
+ * Explicitly configured body/interface/code fonts also go to Obsidian's `--font-*-override`
+ * variables on `body`: an Obsidian theme's app.css sets `--font-text` and friends on `body`
+ * itself, so the `:root` values from {@link buildLayeredCSS} never reach the page. This holds
+ * whether or not the theme registers its fonts (with `themeFonts: false` it maps the overrides
+ * to Quartz's font variables on `body`), so the selector is `html body`, which wins over a
+ * theme's `body` rule regardless of stylesheet order. Without an Obsidian theme nothing reads
+ * the overrides.
+ */
 export function buildUnlayeredCSS(
   fonts: ResolvedFonts,
   options: FontsConfig,
   themeActive: boolean,
 ) {
-  return HEADING_LEVELS.filter((l) => !themeActive || isExplicit(options, l))
-    .map((l) => `${l} { font-family: ${fonts[l]}; }`)
-    .join("\n")
+  const rules = HEADING_LEVELS.filter((l) => !themeActive || isExplicit(options, l)).map(
+    (l) => `${l} { font-family: ${fonts[l]}; }`,
+  )
+  const overrides = OBSIDIAN_OVERRIDES.filter(([, key]) => options[key] !== undefined).map(
+    ([name, key]) => `  ${name}: ${fonts[key]};`,
+  )
+  if (overrides.length > 0) rules.push(["html body {", ...overrides, "}"].join("\n"))
+  return rules.join("\n")
 }
 
 // ---- plugin ------------------------------------------------------------------------
@@ -345,9 +375,9 @@ export const Fonts: QuartzEmitterPlugin<FontsConfig> = (userOpts) => {
       const theme = ctx?.cfg?.configuration?.theme as
         { cdnCaching?: boolean; fontOrigin?: string } | undefined
       const headLinksTypography = theme?.cdnCaching === true && theme?.fontOrigin === "googleFonts"
-      const overridesTypography = (["title", "header", "body", "code"] as const).some(
-        (k) => options[k] !== undefined,
-      )
+      const overridesTypography = (
+        ["title", "header", "body", "code", "interface", ...HEADING_LEVELS] as const
+      ).some((k) => options[k] !== undefined)
       if (options.fontOrigin === "googleFonts" && (!headLinksTypography || overridesTypography)) {
         const href = googleFontHref(resolveFontSpecs(options, typography))
         additionalHead = [

@@ -14,7 +14,13 @@ import {
   readFrontmatterData,
 } from "./frontmatter"
 import { Links } from "./links"
-import { buildLayeredCSS, buildUnlayeredCSS, resolveFonts } from "./fonts"
+import {
+  buildLayeredCSS,
+  buildUnlayeredCSS,
+  googleFontHref,
+  resolveFontSpecs,
+  resolveFonts,
+} from "./fonts"
 import { isContentError } from "../../util/pluginErrors"
 import { Drafts, isDraft } from "./drafts"
 import {
@@ -638,6 +644,53 @@ describe("fonts built-in", () => {
         buildUnlayeredCSS(resolveFonts({ h2: "Lora" }, {}), { h2: "Lora" }, true),
         /^h2 \{ font-family: Lora; \}$/,
       )
+    } finally {
+      delete (globalThis as Record<string, unknown>).__quartzFonts
+    }
+  })
+
+  test("the interface and per-heading fonts are loaded from Google Fonts", () => {
+    const href = decodeURIComponent(
+      googleFontHref(
+        resolveFontSpecs(
+          { interface: "Inter", h1: { name: "Playfair Display", weights: [700] } },
+          {},
+        ),
+      ),
+    )
+    assert.match(href, /family=Inter:wght@400;600/)
+    assert.match(href, /family=Playfair Display:wght@700/)
+    assert.doesNotMatch(decodeURIComponent(googleFontHref(resolveFontSpecs({}, {}))), /Inter/)
+    const single = (spec: object) =>
+      decodeURIComponent(googleFontHref(resolveFontSpecs({ title: spec as never }, {})))
+    assert.match(single({ name: "Lora", weights: [400] }), /family=Lora&/)
+    assert.match(
+      single({ name: "Lora", weights: [400], includeItalic: true }),
+      /family=Lora:ital@0;1&/,
+    )
+    assert.match(
+      single({ name: "Lora", weights: [700], includeItalic: true }),
+      /family=Lora:ital,wght@0,700;1,700&/,
+    )
+  })
+
+  test("explicit body/interface/code fonts set Obsidian's overrides on body", () => {
+    ;(globalThis as Record<string, unknown>).__quartzFonts = {
+      themeName: "Things",
+      fonts: { "--font-text": "Inter", "--font-monospace": "JetBrains Mono" },
+    }
+    try {
+      const opts = { body: "Lora", code: "Fira Code" }
+      const css = buildUnlayeredCSS(resolveFonts(opts, {}), opts, true)
+      assert.match(css, /html body \{[^}]*--font-text-override: Lora;/)
+      assert.match(css, /html body \{[^}]*--font-monospace-override: Fira Code;/)
+      assert.doesNotMatch(css, /--font-interface-override/)
+      // a theme with themeFonts: false registers no fonts, but still reads the overrides
+      assert.match(
+        buildUnlayeredCSS(resolveFonts({ interface: "Inter" }, {}), { interface: "Inter" }, false),
+        /html body \{\n  --font-interface-override: Inter;\n\}/,
+      )
+      assert.doesNotMatch(buildUnlayeredCSS(resolveFonts({}, {}), {}, true), /override/)
     } finally {
       delete (globalThis as Record<string, unknown>).__quartzFonts
     }
