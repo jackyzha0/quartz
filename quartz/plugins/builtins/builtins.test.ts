@@ -14,7 +14,13 @@ import {
   readFrontmatterData,
 } from "./frontmatter"
 import { Links } from "./links"
-import { buildLayeredCSS, buildUnlayeredCSS, resolveFonts } from "./fonts"
+import {
+  buildLayeredCSS,
+  buildUnlayeredCSS,
+  googleFontHref,
+  resolveFontSpecs,
+  resolveFonts,
+} from "./fonts"
 import { isContentError } from "../../util/pluginErrors"
 import { Drafts, isDraft } from "./drafts"
 import {
@@ -641,6 +647,31 @@ describe("fonts built-in", () => {
     } finally {
       delete (globalThis as Record<string, unknown>).__quartzFonts
     }
+  })
+
+  test("the interface and per-heading fonts are loaded from Google Fonts", () => {
+    const href = decodeURIComponent(
+      googleFontHref(
+        resolveFontSpecs(
+          { interface: "Inter", h1: { name: "Playfair Display", weights: [700] } },
+          {},
+        ),
+      ),
+    )
+    assert.match(href, /family=Inter:wght@400;600/)
+    assert.match(href, /family=Playfair Display:wght@700/)
+    assert.doesNotMatch(decodeURIComponent(googleFontHref(resolveFontSpecs({}, {}))), /Inter/)
+    const single = (spec: object) =>
+      decodeURIComponent(googleFontHref(resolveFontSpecs({ title: spec as never }, {})))
+    assert.match(single({ name: "Lora", weights: [400] }), /family=Lora&/)
+    assert.match(
+      single({ name: "Lora", weights: [400], includeItalic: true }),
+      /family=Lora:ital@0;1&/,
+    )
+    assert.match(
+      single({ name: "Lora", weights: [700], includeItalic: true }),
+      /family=Lora:ital,wght@0,700;1,700&/,
+    )
   })
 
   test("explicit body/interface/code fonts set Obsidian's overrides on body", () => {
