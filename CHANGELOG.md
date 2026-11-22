@@ -1,5 +1,14 @@
 # @jackyzha0/quartz
 
+## 5.2.1
+
+### Patch Changes
+
+- 3f8104f: Fonts: explicitly configured `body`, `code` and `interface` fonts now apply with an Obsidian theme. They are also written to Obsidian's `--font-*-override` variables on `body`, which the theme's styles read; before, the theme's own `body` font variables won over Quartz's `:root` ones.
+- c392e17: Fonts: the `interface` font and per-heading fonts (`h1` … `h6`) are now loaded from Google Fonts (or self-hosted with `fontOrigin: selfHosted`) like the other fonts; before, they only rendered if installed locally. A font with a single weight now loads that weight (`weights: [700]` loaded 400), and a single-weight italic font no longer makes the Google Fonts request fail.
+- 7531e67: On phones and tablets, one too-wide item in the header row (a long page title, or an Obsidian theme's styled header) no longer widens the page past the screen. The content column is `minmax(0, 1fr)` instead of `auto` (also in the full-width and minimal frames), and text in the phone header row may break anywhere.
+- 95e96b4: Updates `@quartz-themes/core` to 3.1, which converts any Obsidian community theme at build time: name a theme as Obsidian lists it (`Minimal`, `AnuPpuccin`), a GitHub repository, a URL or a local `theme.css`; Style Settings exports and CSS snippets apply as in Obsidian. Theme ids from 2.x (`tokyo-night`) keep working; `aspects`, `include`, `calloutStyle` and `fonts` were removed, and the `@quartz-themes/<theme>` packages are no longer needed. Quartz keeps its own page layout under a theme, `themeFonts: false` uses the site's Quartz fonts, and a theme's embedded fonts ship as separate files. See [ThemesCore](https://quartz.jzhao.xyz/plugins/ThemesCore).
+
 ## 5.2.0
 
 ### Minor Changes
