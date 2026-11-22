@@ -176,11 +176,13 @@ async function cloneAtCommitAsync({ url, ref, commit, dir }) {
 /**
  * Move a shallow clone to a pinned commit. The commit is fetched by SHA (GitHub and most hosts
  * allow fetching reachable commits), so a pin that is no longer the branch tip works (#2559).
+ * The checkout is forced: the plugin directory is Quartz's clone, and its build (npm install)
+ * rewrites tracked files such as package-lock.json, which a restored CI cache keeps (#2639).
  */
-async function checkoutPinnedCommitAsync(dir, commit) {
+export async function checkoutPinnedCommitAsync(dir, commit) {
   assertCommit(commit)
   await gitAsync(["fetch", "--depth", "1", "origin", commit], { cwd: dir })
-  await gitAsync(["checkout", "--quiet", commit], { cwd: dir })
+  await gitAsync(["checkout", "--quiet", "--force", commit], { cwd: dir })
 }
 
 /**

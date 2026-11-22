@@ -4,7 +4,13 @@ import { execSync } from "child_process"
 import fs from "fs"
 import os from "os"
 import path from "path"
-import { buildPluginAsync, linkPeerPlugins, pluginSourceChanged } from "./plugin-git-handlers.js"
+import { pathToFileURL } from "url"
+import {
+  buildPluginAsync,
+  checkoutPinnedCommitAsync,
+  linkPeerPlugins,
+  pluginSourceChanged,
+} from "./plugin-git-handlers.js"
 
 let root
 let hostPreact
@@ -159,5 +165,50 @@ describe("pluginSourceChanged", () => {
   test("is true when the repo itself changed", () => {
     const priorEntry = { source: "github:owner/old-repo", resolved: "...", commit: "abc123" }
     assert.strictEqual(pluginSourceChanged(priorEntry, "github:owner/new-repo"), true)
+  })
+})
+
+describe("checkoutPinnedCommitAsync", () => {
+  const git = (cwd, cmd) =>
+    execSync(`git -c user.name=t -c user.email=t@t -c commit.gpgsign=false ${cmd}`, {
+      cwd,
+      stdio: "pipe",
+      timeout: 30000,
+    })
+      .toString()
+      .trim()
+
+  function makeRemote() {
+    const remote = path.join(root, "remote")
+    fs.mkdirSync(remote)
+    git(remote, "init -q -b main")
+    git(remote, "config uploadpack.allowAnySHA1InWant true")
+    fs.writeFileSync(path.join(remote, "package-lock.json"), `{ "v": 1 }`)
+    git(remote, "add -A")
+    git(remote, "commit -q -m one")
+    const first = git(remote, "rev-parse HEAD")
+    fs.writeFileSync(path.join(remote, "package-lock.json"), `{ "v": 2 }`)
+    git(remote, "commit -q -am two")
+    return { remote, first }
+  }
+
+  test("moves to a pinned commit that is not the branch tip", async () => {
+    const { remote, first } = makeRemote()
+    const dir = path.join(root, "plugin")
+    git(root, `clone -q --depth 1 ${pathToFileURL(remote).href} "${dir}"`)
+    await checkoutPinnedCommitAsync(dir, first)
+    assert.strictEqual(git(dir, "rev-parse HEAD"), first)
+  })
+
+  // a plugin's build (npm install) rewrites its tracked package-lock.json; a restored CI cache
+  // keeps that change, and the checkout refused to move ("commit your changes or stash them")
+  test("moves even when the plugin's build left tracked files changed (#2639)", async () => {
+    const { remote, first } = makeRemote()
+    const dir = path.join(root, "plugin")
+    git(root, `clone -q --depth 1 ${pathToFileURL(remote).href} "${dir}"`)
+    fs.writeFileSync(path.join(dir, "package-lock.json"), `{ "v": "rewritten by npm" }`)
+    await checkoutPinnedCommitAsync(dir, first)
+    assert.strictEqual(git(dir, "rev-parse HEAD"), first)
+    assert.strictEqual(fs.readFileSync(path.join(dir, "package-lock.json"), "utf-8"), `{ "v": 1 }`)
   })
 })
