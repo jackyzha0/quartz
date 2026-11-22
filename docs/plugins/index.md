@@ -11,7 +11,7 @@ Quartz's functionality is provided by a collection of first-party community plug
 > - **Community plugins** are standalone repositories under [`quartz-community`](https://github.com/quartz-community), published to npm. In TS overrides, they use `ExternalPlugin.X()` (imported from `./.quartz/plugins`).
 > - **Internal plugins** are built into Quartz core (Assets, Static, ComponentResources, NotFoundPage). In TS overrides, they use `Plugin.X()` (imported from `./quartz/plugins`).
 >
-> Frontmatter parsing, link processing, drafts and the content index are [[built-in processing]], configured under `configuration` rather than listed as plugins.
+> Frontmatter parsing, link processing, drafts, the content index, fonts and short permalinks are [[built-in processing]], configured under `configuration` rather than listed as plugins.
 
 ## Plugin types
 
