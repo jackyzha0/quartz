@@ -23,25 +23,34 @@ afterEach(async () => {
   )
 })
 
-function page(slug: string, relativePath: string, title = slug): ProcessedContent {
+function page(
+  slug: string,
+  relativePath: string,
+  title = slug,
+  aliases: string[] = [],
+): ProcessedContent {
   return defaultProcessedContent({
     slug: slug as FullSlug,
     relativePath: relativePath as FilePath,
     frontmatter: { title },
+    aliases: aliases as FullSlug[],
   })
 }
 
-async function context(): Promise<BuildCtx> {
+async function context(enableAliases = false): Promise<BuildCtx> {
   const output = await fs.mkdtemp(path.join(os.tmpdir(), "quartz-short-permalinks-"))
   outputs.push(output)
   return {
     argv: { output },
-    cfg: { configuration: { locale: "en-US" } },
+    cfg: {
+      configuration: { locale: "en-US" },
+      plugins: { emitters: enableAliases ? [{ name: "AliasRedirects" }] : [] },
+    },
   } as unknown as BuildCtx
 }
 
 async function emittedFiles(
-  result: ReturnType<NonNullable<ReturnType<typeof ShortPermalinks>["partialEmit"]>>,
+  result: FilePath[] | ReturnType<NonNullable<ReturnType<typeof ShortPermalinks>["partialEmit"]>>,
 ): Promise<FilePath[]> {
   if (result === null) return []
   if (Symbol.asyncIterator in result) {
@@ -164,6 +173,119 @@ describe("ShortPermalinks", () => {
 
     const occupiedPath = joinSegments(ctx.argv.output, "s", `${hash}.html`)
     assert.ok(emitted.every((file) => file !== occupiedPath))
+  })
+
+  test("honors collision policies for IDs that differ only in case", async () => {
+    const ctx = await context()
+    const seen = new Map<string, { hash: string; sourcePath: string }>()
+    let pair:
+      [{ hash: string; sourcePath: string }, { hash: string; sourcePath: string }] | undefined
+    for (let i = 0; i < 1000 && !pair; i++) {
+      const sourcePath = `notes/case-${i}.md`
+      const hash = shortPermalinkHash(sourcePath, 1)
+      const previous = seen.get(hash.toLowerCase())
+      if (previous && previous.hash !== hash) pair = [previous, { hash, sourcePath }]
+      else seen.set(hash.toLowerCase(), { hash, sourcePath })
+    }
+    assert(pair, "expected two case-distinct hashes")
+
+    const options = { hashLength: 1 }
+    const content = pair.map(({ sourcePath }, i) => page(`case-${i}`, sourcePath))
+    const resources = {} as StaticResources
+    const plugin = ShortPermalinks(options)
+    const result = await plugin.emit(ctx, content, resources)
+    const files = await emittedFiles(result)
+    assert.deepStrictEqual(files, [
+      joinSegments(ctx.argv.output, "s", `${pair.map(({ hash }) => hash).sort()[0]}.html`),
+    ])
+    const html = await fs.readFile(files[0], "utf8")
+    assert.match(html, /Did you mean one of these pages/)
+    assert.match(html, />case-0</)
+    assert.match(html, />case-1</)
+    const skip = ShortPermalinks({ ...options, onCollision: "skip" })
+    assert.deepStrictEqual(await emittedFiles(await skip.emit(ctx, content, resources)), [])
+  })
+
+  test("does not overwrite case-insensitive page paths", async () => {
+    const ctx = await context()
+    const source = "notes/article.md"
+    const hash = shortPermalinkHash(source)
+    const occupied = `s/${hash === hash.toLowerCase() ? hash.toUpperCase() : hash.toLowerCase()}`
+    assert.notStrictEqual(occupied, `s/${hash}`)
+    const plugin = ShortPermalinks()
+    const files = await emittedFiles(
+      await plugin.emit(
+        ctx,
+        [page("article", source), page(occupied, `${occupied}.md`)],
+        {} as StaticResources,
+      ),
+    )
+    assert(
+      files.every(
+        (file) =>
+          file.toLowerCase() !== joinSegments(ctx.argv.output, "s", `${hash}.html`).toLowerCase(),
+      ),
+    )
+  })
+
+  test("reserves resolved aliases and permalink source redirects", async () => {
+    const ctx = await context(true)
+    const source = "notes/article.md"
+    const hash = shortPermalinkHash(source)
+    const shortSlug = `s/${hash}`
+    const relative = page("folder/note", "folder/note.md", "Note", [`../${shortSlug}`])
+    const moved = page("custom-address", `${shortSlug}.md`, "Permalinked", [shortSlug])
+    for (const owner of [relative, moved]) {
+      const plugin = ShortPermalinks()
+      const result = await plugin.emit(ctx, [page("article", source), owner], {} as StaticResources)
+      const files = await emittedFiles(result)
+      assert(files.every((file) => file !== joinSegments(ctx.argv.output, `${shortSlug}.html`)))
+    }
+  })
+
+  test("removes a flat short redirect when a new index page occupies its route", async () => {
+    const ctx = await context()
+    const source = "notes/article.md"
+    const hash = shortPermalinkHash(source)
+    const shortSlug = `s/${hash}`
+    const original = page("article", source)
+    const plugin = ShortPermalinks()
+    const resources = {} as StaticResources
+    const [flat] = await emittedFiles(await plugin.emit(ctx, [original], resources))
+    const index = joinSegments(ctx.argv.output, shortSlug, "index.html")
+    await fs.mkdir(path.dirname(index), { recursive: true })
+    await fs.writeFile(index, "page")
+
+    assert(plugin.partialEmit)
+    await emittedFiles(
+      plugin.partialEmit(
+        ctx,
+        [original, page(`${shortSlug}/index`, `${shortSlug}/index.md`)],
+        resources,
+        [],
+      ),
+    )
+    await assert.rejects(fs.access(flat), { code: "ENOENT" })
+    assert.strictEqual(await fs.readFile(index, "utf8"), "page")
+  })
+
+  test("preserves a flat file taken over by a content page or alias on rebuild", async () => {
+    const source = "notes/article.md"
+    const shortSlug = `s/${shortPermalinkHash(source)}`
+    const original = page("article", source)
+    const resources = {} as StaticResources
+    for (const owner of [
+      page(shortSlug, `${shortSlug}.md`),
+      page("new-address", `${shortSlug}.md`, "Alias owner", [shortSlug]),
+    ]) {
+      const ctx = await context(true)
+      const plugin = ShortPermalinks()
+      const [flat] = await emittedFiles(await plugin.emit(ctx, [original], resources))
+      await fs.writeFile(flat, "replacement")
+      assert(plugin.partialEmit)
+      await emittedFiles(plugin.partialEmit(ctx, [original, owner], resources, []))
+      assert.strictEqual(await fs.readFile(flat, "utf8"), "replacement")
+    }
   })
 
   test("removes stale redirects during an incremental rebuild", async () => {

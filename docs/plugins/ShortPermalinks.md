@@ -30,11 +30,11 @@ Options:
 
 - `prefix`: URL path under which short links are written. Defaults to `s`.
 - `hashLength`: number of base62 characters from the SHA-256 path hash. Defaults to `8`; valid values are `1` through `43`.
-- `onCollision`: what happens if truncated hashes collide. `disambiguation-page` (the default) writes a page linking to every match; `skip` writes no short link for that hash.
+- `onCollision`: what happens if truncated hashes collide, including IDs that differ only in case. `disambiguation-page` (the default) writes a page linking to every match; `skip` writes no short link for that hash.
 - `enabled`: explicitly enable or disable the emitter. Supplying the object above, or the shorthand `shortPermalinks: true`, enables it.
 - `order`: emitter order. Defaults to `70`.
 
-ShortPermalinks never replaces an existing content page at the same path. In watch mode, redirects for deleted or renamed source files are removed on the next rebuild.
+ShortPermalinks skips URLs occupied by a content page or an AliasRedirects redirect. In watch mode, redirects for deleted or renamed source files are removed on the next rebuild.
 
 ## API
 

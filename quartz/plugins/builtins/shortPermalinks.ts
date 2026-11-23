@@ -8,6 +8,7 @@ import {
   type FilePath,
   type FullSlug,
   isFullSlug,
+  isRelativeURL,
   joinSegments,
   resolveRelative,
   simplifySlug,
@@ -69,9 +70,75 @@ function normalizePrefix(prefix: string): string {
   return normalized
 }
 
-function normalizeForComparison(slug: string): string {
-  const simplified = simplifySlug(slug as FullSlug)
-  return simplified === "/" ? "" : stripSlashes(simplified)
+function routeKey(slug: string): string {
+  const normalized = stripSlashes(path.posix.normalize(slug.replace(/\\/g, "/")))
+  if (normalized === "." || normalized === "index") return ""
+  return normalized.replace(/\/index$/, "")
+}
+
+function outputFile(slug: string): string {
+  return path.posix.normalize(stripSlashes(`${slug}.html`))
+}
+
+function portableKey(value: string): string {
+  return value.normalize("NFC").toLowerCase()
+}
+
+function occupiedPaths(
+  ctx: BuildCtx,
+  content: ProcessedContent[],
+  pages: Map<string, ShortPermalinkPage>,
+) {
+  const contentRoutes = new Set(Array.from(pages.keys(), routeKey))
+  const routes = new Set(Array.from(contentRoutes, portableKey))
+  const files = new Map<string, Set<string>>()
+
+  function reserve(slug: string) {
+    routes.add(portableKey(routeKey(slug)))
+    const file = outputFile(slug)
+    const key = portableKey(file)
+    const owners = files.get(key) ?? new Set<string>()
+    owners.add(file)
+    files.set(key, owners)
+  }
+
+  for (const slug of pages.keys()) reserve(slug)
+  if (ctx.cfg.plugins.emitters.some((emitter) => emitter.name === "AliasRedirects")) {
+    // Mirror AliasRedirects. Frontmatter also supplies a permalinked page's source slug here.
+    for (const [, file] of content) {
+      const slug = file.data.slug
+      if (!slug) continue
+      for (const alias of file.data.aliases ?? []) {
+        const target = isRelativeURL(alias)
+          ? path.posix.normalize(path.posix.join(simplifySlug(slug), "..", alias))
+          : alias
+        const normalized = path.posix.normalize(stripSlashes(target.replace(/\\/g, "/")))
+        if (normalized === ".." || normalized.startsWith("../")) continue
+        if (!contentRoutes.has(routeKey(target))) reserve(target)
+      }
+    }
+  }
+  return { routes, files }
+}
+
+async function isOwnedOutput(ctx: BuildCtx, staleSlug: FullSlug, files: Map<string, Set<string>>) {
+  const stale = outputFile(staleSlug)
+  const owners = files.get(portableKey(stale))
+  if (!owners || owners.size === 0) return false
+  if (owners.has(stale)) return true
+
+  // A differently cased path can refer to the same file on a case-insensitive filesystem.
+  const stat = (file: string) =>
+    fs.stat(joinSegments(ctx.argv.output, file)).catch((err: NodeJS.ErrnoException) => {
+      if (err.code !== "ENOENT" && err.code !== "ENOTDIR") throw err
+    })
+  const existing = await stat(stale)
+  if (!existing) return false
+  for (const owner of owners) {
+    const candidate = await stat(owner)
+    if (candidate && candidate.dev === existing.dev && candidate.ino === existing.ino) return true
+  }
+  return false
 }
 
 function pageFromContent(content: ProcessedContent): ShortPermalinkPage | undefined {
@@ -89,33 +156,37 @@ function pageFromContent(content: ProcessedContent): ShortPermalinkPage | undefi
 }
 
 function planShortPermalinks(
+  ctx: BuildCtx,
   content: ProcessedContent[],
   prefix: string,
   hashLength: number,
   onCollision: NonNullable<ShortPermalinksConfig["onCollision"]>,
-): { redirects: PlannedShortPermalink[]; occupied: Set<string> } {
+) {
   const pages = new Map<string, ShortPermalinkPage>()
   for (const item of content) {
     const page = pageFromContent(item)
     if (page) pages.set(page.slug, page)
   }
 
-  const occupied = new Set(Array.from(pages, ([slug]) => normalizeForComparison(slug)))
-  const groups = new Map<string, ShortPermalinkPage[]>()
+  const occupied = occupiedPaths(ctx, content, pages)
+  const groups = new Map<string, PlannedShortPermalink>()
   for (const page of pages.values()) {
     const hash = shortPermalinkHash(page.sourcePath, hashLength)
-    const shortSlug = joinSegments(prefix, hash)
-    const group = groups.get(shortSlug) ?? []
-    group.push(page)
-    groups.set(shortSlug, group)
+    const slug = joinSegments(prefix, hash) as FullSlug
+    const key = portableKey(outputFile(slug))
+    const group = groups.get(key) ?? { slug, pages: [] }
+    // Choose one spelling deterministically when different hashes differ only in case.
+    if (slug < group.slug) group.slug = slug
+    group.pages.push(page)
+    groups.set(key, group)
   }
 
   const redirects: PlannedShortPermalink[] = []
-  for (const [shortSlug, group] of groups) {
+  for (const { slug: shortSlug, pages: group } of groups.values()) {
     group.sort((a, b) => a.slug.localeCompare(b.slug))
-    if (occupied.has(normalizeForComparison(shortSlug))) {
+    if (occupied.routes.has(portableKey(routeKey(shortSlug)))) {
       console.warn(
-        `[ShortPermalinks] ${shortSlug} collides with an existing page; skipping the short permalink.`,
+        `[ShortPermalinks] ${shortSlug} collides with an existing page or alias; skipping the short permalink.`,
       )
       continue
     }
@@ -125,7 +196,7 @@ function planShortPermalinks(
       )
       continue
     }
-    redirects.push({ slug: shortSlug as FullSlug, pages: group })
+    redirects.push({ slug: shortSlug, pages: group })
   }
 
   redirects.sort((a, b) => a.slug.localeCompare(b.slug))
@@ -206,6 +277,7 @@ export const ShortPermalinks: QuartzEmitterPlugin<ShortPermalinksConfig> = (user
 
   async function* emitPages(ctx: BuildCtx, content: ProcessedContent[], incremental: boolean) {
     const { redirects, occupied } = planShortPermalinks(
+      ctx,
       content,
       prefix,
       opts.hashLength,
@@ -221,10 +293,17 @@ export const ShortPermalinks: QuartzEmitterPlugin<ShortPermalinksConfig> = (user
       ]),
     )
 
-    for (const staleSlug of previouslyRendered.keys()) {
-      if (!currentlyRendered.has(staleSlug) && !occupied.has(normalizeForComparison(staleSlug))) {
+    for (const [staleSlug, previousHtml] of previouslyRendered) {
+      if (
+        !currentlyRendered.has(staleSlug) &&
+        !(await isOwnedOutput(ctx, staleSlug, occupied.files))
+      ) {
         const stalePath = joinSegments(ctx.argv.output, `${staleSlug}.html`)
-        await fs.rm(stalePath, { force: true })
+        // Other emitters can take over files on a rebuild. Never remove a file they already wrote.
+        const html = await fs.readFile(stalePath, "utf8").catch((err: NodeJS.ErrnoException) => {
+          if (err.code !== "ENOENT" && err.code !== "ENOTDIR") throw err
+        })
+        if (html === previousHtml) await fs.rm(stalePath, { force: true })
       }
     }
 
