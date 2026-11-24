@@ -442,6 +442,15 @@ describe("links built-in", () => {
     assert.ok(!(els[1].properties.className as string[]).includes("broken"))
   })
 
+  test("tag and folder pages, generated later, are not broken", () => {
+    const { els } = run([a("tags/specimen"), a("folder/"), a("empty/")], "page", {}, [
+      "page",
+      "folder/note",
+    ])
+    const broken = els.map((e) => (e.properties.className as string[]).includes("broken"))
+    assert.deepStrictEqual(broken, [false, false, true])
+  })
+
   test("disableBrokenWikilinks: false leaves missing targets unmarked", () => {
     const { els } = run([a("missing")], "page", { disableBrokenWikilinks: false }, ["page"])
     assert.ok(!(els[0].properties.className as string[]).includes("broken"))
