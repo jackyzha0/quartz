@@ -342,6 +342,7 @@ describe("links built-in", () => {
       [a("other/note", "Note"), a("https://example.com"), a("#heading")],
       "folder/page",
       { markdownLinkResolution: "absolute" },
+      ["folder/page", "other/note"],
     )
     const [internal, external] = els.filter((e) => e.tagName === "a")
     assert.strictEqual(internal.properties.href, "../other/note")
@@ -433,6 +434,17 @@ describe("links built-in", () => {
       links.map((e) => (e.properties.className as string[]).includes("alias")),
       [false, false, true],
     )
+  })
+
+  test("missing targets get the broken class by default, as Obsidian marks them", () => {
+    const { els } = run([a("missing"), a("page")], "page", {}, ["page"])
+    assert.ok((els[0].properties.className as string[]).includes("broken"))
+    assert.ok(!(els[1].properties.className as string[]).includes("broken"))
+  })
+
+  test("disableBrokenWikilinks: false leaves missing targets unmarked", () => {
+    const { els } = run([a("missing")], "page", { disableBrokenWikilinks: false }, ["page"])
+    assert.ok(!(els[0].properties.className as string[]).includes("broken"))
   })
 
   test("disableBrokenWikilinks adds a broken class to missing targets", () => {

@@ -38,7 +38,7 @@ export const linksDefaults: Required<Omit<LinksConfig, "enabled" | "order">> = {
   openLinksInNewTab: false,
   lazyLoad: false,
   externalLinkIcon: true,
-  disableBrokenWikilinks: false,
+  disableBrokenWikilinks: true,
 }
 
 /** Defaults of the former crawl-links plugin, applied when its config entry is migrated. */
