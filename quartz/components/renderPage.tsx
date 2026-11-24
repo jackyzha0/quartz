@@ -139,6 +139,36 @@ export function pageResources(
   return resources
 }
 
+/**
+ * Obsidian's embed markup around transcluded content, so Obsidian themes' embed
+ * styles apply: the title (the note's, for a whole-note embed), then the content in a
+ * rendered view, then Quartz's link to the original.
+ */
+function obsidianEmbed(title: string, content: ElementContent[], link: Element): ElementContent[] {
+  return [
+    {
+      type: "element",
+      tagName: "div",
+      properties: { className: ["embed-title", "markdown-embed-title"] },
+      children: title ? [{ type: "text", value: title }] : [],
+    },
+    {
+      type: "element",
+      tagName: "div",
+      properties: { className: ["markdown-embed-content"] },
+      children: [
+        {
+          type: "element",
+          tagName: "div",
+          properties: { className: ["markdown-preview-view", "markdown-rendered"] },
+          children: content,
+        },
+      ],
+    },
+    link,
+  ]
+}
+
 /** @internal Exported for testing only. */
 export function renderTranscludes(
   root: Root,
@@ -172,6 +202,15 @@ export function renderTranscludes(
       }
 
       const inner = el.children[0] as Element
+      const linkToOriginal = (): Element => ({
+        type: "element",
+        tagName: "a",
+        properties: {
+          href: inner.properties?.href,
+          class: ["internal", "internal-link", "transclude-src"],
+        },
+        children: [{ type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal }],
+      })
       const transcludeTarget = (inner.properties["data-slug"] ?? slug) as FullSlug
       if (visited.has(transcludeTarget)) {
         console.warn(
@@ -227,20 +266,11 @@ export function renderTranscludes(
             }
           }
 
-          el.children = [
-            normalizeHastElement(blockNode, slug, transcludeTarget),
-            {
-              type: "element",
-              tagName: "a",
-              properties: {
-                href: inner.properties?.href,
-                class: ["internal", "internal-link", "transclude-src"],
-              },
-              children: [
-                { type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal },
-              ],
-            },
-          ]
+          el.children = obsidianEmbed(
+            "",
+            [normalizeHastElement(blockNode, slug, transcludeTarget)],
+            linkToOriginal(),
+          )
         }
       } else if (blockRef?.startsWith("#") && page.htmlAst) {
         // header transclude
@@ -268,55 +298,25 @@ export function renderTranscludes(
           continue
         }
 
-        el.children = [
-          ...sliceWithFootnotes(page.htmlAst.children as ElementContent[], startIdx, endIdx).map(
-            (c) => normalizeHastElement(c as Element, slug, transcludeTarget),
-          ),
-          {
-            type: "element",
-            tagName: "a",
-            properties: {
-              href: inner.properties?.href,
-              class: ["internal", "internal-link", "transclude-src"],
-            },
-            children: [
-              { type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal },
-            ],
-          },
-        ]
-      } else if (page.htmlAst) {
-        // page transclude
-        el.children = [
-          {
-            type: "element",
-            tagName: "h1",
-            properties: {},
-            children: [
-              {
-                type: "text",
-                value:
-                  page.frontmatter?.title ??
-                  i18n(cfg.locale).components.transcludes.transcludeOf({
-                    targetSlug: page.slug!,
-                  }),
-              },
-            ],
-          },
-          ...(page.htmlAst.children as ElementContent[]).map((c) =>
+        el.children = obsidianEmbed(
+          "",
+          sliceWithFootnotes(page.htmlAst.children as ElementContent[], startIdx, endIdx).map((c) =>
             normalizeHastElement(c as Element, slug, transcludeTarget),
           ),
-          {
-            type: "element",
-            tagName: "a",
-            properties: {
-              href: inner.properties?.href,
-              class: ["internal", "internal-link", "transclude-src"],
-            },
-            children: [
-              { type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal },
-            ],
-          },
-        ]
+          linkToOriginal(),
+        )
+      } else if (page.htmlAst) {
+        // page transclude
+        el.children = obsidianEmbed(
+          page.frontmatter?.title ??
+            i18n(cfg.locale).components.transcludes.transcludeOf({
+              targetSlug: page.slug!,
+            }),
+          (page.htmlAst.children as ElementContent[]).map((c) =>
+            normalizeHastElement(c as Element, slug, transcludeTarget),
+          ),
+          linkToOriginal(),
+        )
       }
 
       // Recurse into the replaced children to resolve nested transclusions,

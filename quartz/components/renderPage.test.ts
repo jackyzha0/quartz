@@ -49,6 +49,38 @@ function makeComponentData(
 }
 
 describe("renderTranscludes", () => {
+  test("wraps transcluded content in Obsidian's embed markup", () => {
+    const root: Root = { type: "root", children: [makeTranscludeBlockquote("target")] }
+    const targetHtml: Root = {
+      type: "root",
+      children: [
+        {
+          type: "element",
+          tagName: "p",
+          properties: {},
+          children: [{ type: "text", value: "Target content" }],
+        },
+      ],
+    }
+    renderTranscludes(
+      root,
+      cfg,
+      "current" as FullSlug,
+      makeComponentData([makePageData("target", targetHtml)]) as QuartzComponentProps,
+      new Set<FullSlug>(["current" as FullSlug]),
+    )
+    const [title, content, link] = (root.children[0] as Element).children as Element[]
+    assert.deepStrictEqual(title.properties.className, ["embed-title", "markdown-embed-title"])
+    assert.deepStrictEqual(content.properties.className, ["markdown-embed-content"])
+    const view = content.children[0] as Element
+    assert.deepStrictEqual(view.properties.className, [
+      "markdown-preview-view",
+      "markdown-rendered",
+    ])
+    assert.strictEqual((view.children[0] as Element).tagName, "p")
+    assert.deepStrictEqual(link.properties.class, ["internal", "internal-link", "transclude-src"])
+  })
+
   test("resolves a single page transclusion", () => {
     const root: Root = {
       type: "root",
