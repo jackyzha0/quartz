@@ -69,7 +69,7 @@ describe("renderTranscludes", () => {
       makeComponentData([makePageData("target", targetHtml)]) as QuartzComponentProps,
       new Set<FullSlug>(["current" as FullSlug]),
     )
-    const [title, content, link] = (root.children[0] as Element).children as Element[]
+    const [title, content, link, embedLink] = (root.children[0] as Element).children as Element[]
     assert.deepStrictEqual(title.properties.className, ["embed-title", "markdown-embed-title"])
     assert.deepStrictEqual(content.properties.className, ["markdown-embed-content"])
     const view = content.children[0] as Element
@@ -79,6 +79,10 @@ describe("renderTranscludes", () => {
     ])
     assert.strictEqual((view.children[0] as Element).tagName, "p")
     assert.deepStrictEqual(link.properties.class, ["internal", "internal-link", "transclude-src"])
+    // Obsidian's icon link to the note, after Quartz's (hidden unless a theme shows it).
+    assert.deepStrictEqual(embedLink.properties.className, ["markdown-embed-link"])
+    assert.strictEqual(embedLink.properties.href, link.properties.href)
+    assert.strictEqual((embedLink.children[0] as Element).tagName, "svg")
   })
 
   test("resolves a single page transclusion", () => {

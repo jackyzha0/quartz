@@ -734,6 +734,12 @@ ol.overflow {
       display: none;
     }
   }
+
+  // Obsidian's icon link to the embedded note, for Obsidian themes (whose styles show
+  // it); Quartz links to the original below the content instead
+  > .markdown-embed-link {
+    display: none;
+  }
 }
 
 .katex-display {
