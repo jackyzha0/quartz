@@ -46,10 +46,10 @@ export const legacyCrawlLinksDefaults: Partial<LinksConfig> = {
   markdownLinkResolution: "absolute",
 }
 
-const isAbsolute = isAbsoluteUrl as (url: string, options?: { httpOnly?: boolean }) => boolean
 // As in Obsidian: a URL with a scheme (`x:y`, but not `../x:y`), or a link whose path is not valid
 // percent-encoding (`%zz`, `a%E2.md`), which names no file
-const isExternalUrl = (url: string) => isAbsolute(url, { httpOnly: false }) || !linkPathDecodes(url)
+const isExternalUrl = (url: string) =>
+  isAbsoluteUrl(url, { httpOnly: false }) || !linkPathDecodes(url)
 // An href percent-decoded, to compare with link text; left as it is when it does not decode
 const decodedHref = (href: string) => {
   try {
