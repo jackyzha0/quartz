@@ -34,6 +34,8 @@ This plugin accepts the following configuration options:
 - `enableVideoEmbed`: If `true` (default), enables the embedding of video files.
 - `enableCheckbox`: If `true`, adds support for interactive checkboxes in content, including custom task characters (e.g. `- [?]`, `- [!]`, `- [/]`). Defaults to `false`; the default `quartz.config.yaml` turns it on.
 - `enableObsidianUri`: If `true` (default), marks `obsidian://` protocol links with a CSS class and data attribute for custom styling.
+- `foldHeadings`: If `true`, headings fold as in Obsidian's reading view ("Fold heading"): an arrow before each heading, shown on hover, hides everything up to the next heading of the same or a higher level. Defaults to `false`.
+- `foldLists`: If `true`, list items with a sublist fold as in Obsidian's reading view ("Fold indent"): an arrow before the item, shown on hover, hides its sublist. Defaults to `false`.
 
 Also supported:
 
