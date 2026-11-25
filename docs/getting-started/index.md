@@ -8,7 +8,7 @@ This guide walks you through setting up Quartz from scratch. If you already ran 
 
 You need these tools installed before continuing:
 
-- **[Node.js](https://nodejs.org/) v22 or later** (run `node -v` to check)
+- **[Node.js](https://nodejs.org/) v22.22 or later** (run `node -v` to check)
 - **npm v10.9.2 or later** (bundled with Node — run `npm -v` to check)
 - **[Git](https://git-scm.com/)** (run `git -v` to check)
 
