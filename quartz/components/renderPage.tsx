@@ -15,7 +15,7 @@ import { i18n } from "../i18n"
 import { styleText } from "util"
 import { resolveFrame } from "./frames"
 import type { PageTreeTransforms, TreeTransform } from "../plugins/types"
-import { createIdScopes, scopeTranscludedIds, sliceWithFootnotes } from "./transcludeScope"
+import { blockOf, createIdScopes, scopeTranscludedIds, sliceWithFootnotes } from "./transcludeScope"
 import type { BuildCtx } from "../util/ctx"
 
 interface RenderComponents {
@@ -248,7 +248,9 @@ export function renderTranscludes(
         let startIdx = undefined
         let startDepth = undefined
         let endIdx = undefined
-        for (const [i, htmlEl] of page.htmlAst.children.entries()) {
+        for (const [i, child] of page.htmlAst.children.entries()) {
+          // The heading, inside its block wrapper if it has one (`div.el-h2 > h2`).
+          const htmlEl = blockOf(child as ElementContent)
           if (!(htmlEl.type === "element" && htmlEl.tagName.match(headerRegex))) continue
           const depth = Number(htmlEl.tagName.substring(1))
 
