@@ -25,7 +25,7 @@
   },
   "engines": {
     "npm": ">=10.9.2",
-    "node": ">=22"
+    "node": ">=22.22"
   },
   "keywords": [
     "site generator",
@@ -86,7 +86,7 @@
     "@quartz-themes/core": "^3.1.0",
     "ansi-truncate": "^1.4.0",
     "async-mutex": "^0.5.0",
-    "chokidar": "^5.0.0",
+    "chokidar": "^6.0.0",
     "esbuild-sass-plugin": "^3.6.0",
     "globby": "^16.1.0",
     "gray-matter": "^4.0.3",

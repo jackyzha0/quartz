@@ -14,7 +14,7 @@ You need these tools installed before continuing:
 
 > [!warning] Common issues
 >
-> - **Linux**: System packages (`apt install nodejs`) often ship much older versions. Use [nvm](https://github.com/nvm-sh/nvm) or the [NodeSource](https://github.com/nodesource/distributions) repository to get Node.js v22.
+> - **Linux**: System packages (`apt install nodejs`) often ship much older versions. Use [nvm](https://github.com/nvm-sh/nvm) or the [NodeSource](https://github.com/nodesource/distributions) repository to get Node.js v22.22 or later.
 > - **Windows**: When installing Git, make sure **"Git from the command line and also from 3rd-party software"** is selected so that `git` is available in your terminal. If `node -v` or `git -v` shows "command not found", restart your terminal or check your PATH.
 > - **macOS**: The Xcode command-line tools include Git (`xcode-select --install`). For Node.js, [nvm](https://github.com/nvm-sh/nvm) or the [official installer](https://nodejs.org/) both work.
 
