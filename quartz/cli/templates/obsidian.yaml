@@ -80,6 +80,8 @@ plugins:
       enableYouTubeEmbed: true
       enableVideoEmbed: true
       enableCheckbox: true
+      foldHeadings: true
+      foldLists: true
     order: 40
   - source: "@quartz-community/github-flavored-markdown"
     enabled: true
