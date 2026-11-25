@@ -2,26 +2,19 @@ import assert from "node:assert/strict"
 import { readFileSync } from "node:fs"
 import test, { describe } from "node:test"
 import { createContext, runInContext, runInNewContext } from "node:vm"
-import ts from "typescript"
 
 // Exercise the actual generated script without importing the emitter's SCSS
 // and inline-script assets into Node or copying its counting implementation.
-const source = ts.createSourceFile(
-  "componentResources.ts",
-  readFileSync(new URL("./componentResources.ts", import.meta.url), "utf8"),
-  ts.ScriptTarget.Latest,
-  true,
-)
-let template: ts.TemplateExpression | undefined
-function findTemplate(node: ts.Node) {
-  if (ts.isTemplateExpression(node) && node.head.text.includes("window.goatcounter = {")) {
-    assert.equal(template, undefined, "expected a single GoatCounter script")
-    template = node
-  }
-  ts.forEachChild(node, findTemplate)
-}
-findTemplate(source)
-assert.ok(template, "GoatCounter script template must exist")
+// The script is a template literal without nested template literals: it runs from the
+// backtick before its first line to the next backtick.
+const emitterSource = readFileSync(new URL("./componentResources.ts", import.meta.url), "utf8")
+const marker = "window.goatcounter = {"
+assert.equal(emitterSource.split(marker).length, 2, "expected a single GoatCounter script")
+const markerAt = emitterSource.indexOf(marker)
+const templateStart = emitterSource.lastIndexOf("`", markerAt)
+const templateEnd = emitterSource.indexOf("`", markerAt)
+assert.ok(templateStart >= 0 && templateEnd > markerAt, "GoatCounter script template must exist")
+const template = emitterSource.slice(templateStart, templateEnd + 1)
 
 type Pageview = { path: string; title?: string }
 type Script = {
@@ -65,7 +58,7 @@ function setup(
   context.window = context
   // the emitter writes config values with this helper (JSON string literals)
   const js = (value: unknown) => JSON.stringify(String(value)).replace(/</g, "\\u003c")
-  const script = runInNewContext(template!.getText(source), { analytics, js })
+  const script = runInNewContext(template, { analytics, js })
   runInContext(script, context)
 
   return {
