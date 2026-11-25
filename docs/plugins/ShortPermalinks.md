@@ -30,7 +30,7 @@ Options:
 
 - `prefix`: URL path under which short links are written. Defaults to `s`.
 - `hashLength`: number of base62 characters from the SHA-256 path hash. Defaults to `8`; valid values are `1` through `43`.
-- `onCollision`: what happens if truncated hashes collide, including IDs that differ only in case. `disambiguation-page` (the default) writes a page linking to every match; `skip` writes no short link for that hash.
+- `onCollision`: what happens if truncated hashes collide. IDs that differ only in case are treated as a collision on case-insensitive output filesystems. `disambiguation-page` (the default) writes a page linking to every match; `skip` writes no short link for that hash. If any match is [[UnlistedPages|unlisted]], the colliding short link is skipped to keep unlisted pages out of the listing.
 - `enabled`: explicitly enable or disable the emitter. Supplying the object above, or the shorthand `shortPermalinks: true`, enables it.
 - `order`: emitter order. Defaults to `70`.
 

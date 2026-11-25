@@ -6,6 +6,7 @@ import { afterEach, describe, test } from "node:test"
 import type { BuildCtx } from "../../util/ctx"
 import { type FilePath, type FullSlug, joinSegments } from "../../util/path"
 import type { StaticResources } from "../../util/resources"
+import { removeStalePageOutput } from "../pageTypes/dispatcher"
 import { defaultProcessedContent, type ProcessedContent } from "../vfile"
 import { ShortPermalinks, shortPermalinkHash } from "./shortPermalinks"
 
@@ -47,6 +48,18 @@ async function context(enableAliases = false): Promise<BuildCtx> {
       plugins: { emitters: enableAliases ? [{ name: "AliasRedirects" }] : [] },
     },
   } as unknown as BuildCtx
+}
+
+async function isCaseSensitive(directory: string): Promise<boolean> {
+  await fs.mkdir(directory, { recursive: true })
+  await fs.writeFile(path.join(directory, "CheckCase"), "")
+  return fs.access(path.join(directory, "checkcase")).then(
+    () => false,
+    (err: NodeJS.ErrnoException) => {
+      assert.strictEqual(err.code, "ENOENT")
+      return true
+    },
+  )
 }
 
 async function emittedFiles(
@@ -162,6 +175,23 @@ describe("ShortPermalinks", () => {
     assert.deepStrictEqual(emitted, [])
   })
 
+  test("skips collision listings that would reveal an unlisted page", async () => {
+    const ctx = await context()
+    const listed = page("article", "notes/a.md")
+    const unlisted = page("unlisted", "notes/e.md")
+    unlisted[1].data.unlisted = true
+    assert.strictEqual(shortPermalinkHash("notes/a.md", 1), shortPermalinkHash("notes/e.md", 1))
+    const plugin = ShortPermalinks({ hashLength: 1 })
+    const resources = {} as StaticResources
+    const [redirect] = await emittedFiles(await plugin.emit(ctx, [unlisted], resources))
+    assert.match(await fs.readFile(redirect, "utf8"), /location\.replace\("\.\.\/unlisted"\)/)
+
+    assert(plugin.partialEmit)
+    const outputs = await emittedFiles(plugin.partialEmit(ctx, [listed, unlisted], resources, []))
+    assert.deepStrictEqual(outputs, [])
+    await assert.rejects(fs.access(redirect), { code: "ENOENT" })
+  })
+
   test("does not overwrite an existing page at a generated short path", async () => {
     const ctx = await context()
     const original = page("article", "notes/article.md")
@@ -175,8 +205,9 @@ describe("ShortPermalinks", () => {
     assert.ok(emitted.every((file) => file !== occupiedPath))
   })
 
-  test("honors collision policies for IDs that differ only in case", async () => {
+  test("preserves case-distinct URLs where supported and handles case collisions otherwise", async () => {
     const ctx = await context()
+    const caseSensitive = await isCaseSensitive(path.join(ctx.argv.output, "s"))
     const seen = new Map<string, { hash: string; sourcePath: string }>()
     let pair:
       [{ hash: string; sourcePath: string }, { hash: string; sourcePath: string }] | undefined
@@ -190,20 +221,31 @@ describe("ShortPermalinks", () => {
     assert(pair, "expected two case-distinct hashes")
 
     const options = { hashLength: 1 }
-    const content = pair.map(({ sourcePath }, i) => page(`case-${i}`, sourcePath))
+    const ordered = [...pair].sort((a, b) => (a.hash < b.hash ? -1 : 1))
+    const content = ordered.map(({ sourcePath }, i) => page(`case-${i}`, sourcePath))
+    const expected = ordered.map(({ hash }) => joinSegments(ctx.argv.output, "s", `${hash}.html`))
     const resources = {} as StaticResources
     const plugin = ShortPermalinks(options)
-    const result = await plugin.emit(ctx, content, resources)
-    const files = await emittedFiles(result)
-    assert.deepStrictEqual(files, [
-      joinSegments(ctx.argv.output, "s", `${pair.map(({ hash }) => hash).sort()[0]}.html`),
+    assert.deepStrictEqual(await emittedFiles(await plugin.emit(ctx, [content[1]], resources)), [
+      expected[1],
     ])
-    const html = await fs.readFile(files[0], "utf8")
-    assert.match(html, /Did you mean one of these pages/)
-    assert.match(html, />case-0</)
-    assert.match(html, />case-1</)
+    assert(plugin.partialEmit)
+    const updated = await emittedFiles(plugin.partialEmit(ctx, content, resources, []))
+    assert.deepStrictEqual(updated, [expected[0]])
+
+    for (const [i, file] of expected.entries()) {
+      const html = await fs.readFile(file, "utf8")
+      if (caseSensitive) {
+        assert.match(html, new RegExp(`location\\.replace\\("\\.\\./case-${i}"\\)`))
+      } else {
+        assert.match(html, /Did you mean one of these pages/)
+        assert.match(html, />case-0</)
+        assert.match(html, />case-1</)
+      }
+    }
     const skip = ShortPermalinks({ ...options, onCollision: "skip" })
-    assert.deepStrictEqual(await emittedFiles(await skip.emit(ctx, content, resources)), [])
+    const files = await emittedFiles(await skip.emit(ctx, content, resources))
+    assert.deepStrictEqual(files.sort(), caseSensitive ? expected : [])
   })
 
   test("does not overwrite case-insensitive page paths", async () => {
@@ -220,12 +262,28 @@ describe("ShortPermalinks", () => {
         {} as StaticResources,
       ),
     )
-    assert(
-      files.every(
-        (file) =>
-          file.toLowerCase() !== joinSegments(ctx.argv.output, "s", `${hash}.html`).toLowerCase(),
-      ),
+    const redirect = joinSegments(ctx.argv.output, "s", `${hash}.html`)
+    assert(!files.some((file) => file === redirect))
+  })
+
+  test("recreates an unchanged redirect deleted by the page dispatcher", async () => {
+    const ctx = await context()
+    const sourcePath = "notes/a.md"
+    const original = page("article", sourcePath)
+    const resources = {} as StaticResources
+    const plugin = ShortPermalinks({ hashLength: 1 })
+    const [redirect] = await emittedFiles(await plugin.emit(ctx, [original], resources))
+    const originalHtml = await fs.readFile(redirect, "utf8")
+    const draftSource = `s/${shortPermalinkHash(sourcePath, 1)}.md` as FilePath
+    await removeStalePageOutput(ctx.argv.output, draftSource, new Set(["article" as FullSlug]))
+    await assert.rejects(fs.access(redirect), { code: "ENOENT" })
+
+    assert(plugin.partialEmit)
+    const outputs = await emittedFiles(
+      plugin.partialEmit(ctx, [original], resources, [{ type: "add", path: draftSource }]),
     )
+    assert.deepStrictEqual(outputs, [redirect])
+    assert.strictEqual(await fs.readFile(redirect, "utf8"), originalHtml)
   })
 
   test("reserves resolved aliases and permalink source redirects", async () => {
@@ -243,31 +301,33 @@ describe("ShortPermalinks", () => {
     }
   })
 
-  test("removes a flat short redirect when a new index page occupies its route", async () => {
-    const ctx = await context()
-    const source = "notes/article.md"
-    const hash = shortPermalinkHash(source)
-    const shortSlug = `s/${hash}`
-    const original = page("article", source)
-    const plugin = ShortPermalinks()
-    const resources = {} as StaticResources
-    const [flat] = await emittedFiles(await plugin.emit(ctx, [original], resources))
-    const index = joinSegments(ctx.argv.output, shortSlug, "index.html")
-    await fs.mkdir(path.dirname(index), { recursive: true })
-    await fs.writeFile(index, "page")
+  for (const indexName of ["index", "INDEX"]) {
+    test(`removes a flat short redirect when a new ${indexName} page occupies its route`, async () => {
+      const ctx = await context()
+      const source = "notes/article.md"
+      const hash = shortPermalinkHash(source)
+      const shortSlug = `s/${hash}`
+      const original = page("article", source)
+      const plugin = ShortPermalinks()
+      const resources = {} as StaticResources
+      const [flat] = await emittedFiles(await plugin.emit(ctx, [original], resources))
+      const index = joinSegments(ctx.argv.output, shortSlug, `${indexName}.html`)
+      await fs.mkdir(path.dirname(index), { recursive: true })
+      await fs.writeFile(index, "page")
 
-    assert(plugin.partialEmit)
-    await emittedFiles(
-      plugin.partialEmit(
-        ctx,
-        [original, page(`${shortSlug}/index`, `${shortSlug}/index.md`)],
-        resources,
-        [],
-      ),
-    )
-    await assert.rejects(fs.access(flat), { code: "ENOENT" })
-    assert.strictEqual(await fs.readFile(index, "utf8"), "page")
-  })
+      assert(plugin.partialEmit)
+      await emittedFiles(
+        plugin.partialEmit(
+          ctx,
+          [original, defaultProcessedContent({ slug: `${shortSlug}/${indexName}` as FullSlug })],
+          resources,
+          [],
+        ),
+      )
+      await assert.rejects(fs.access(flat), { code: "ENOENT" })
+      assert.strictEqual(await fs.readFile(index, "utf8"), "page")
+    })
+  }
 
   test("preserves a flat file taken over by a content page or alias on rebuild", async () => {
     const source = "notes/article.md"

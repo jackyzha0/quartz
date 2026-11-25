@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto"
+import { createHash, randomUUID } from "node:crypto"
 import fs from "node:fs/promises"
 import path from "node:path"
 import type { ShortPermalinksConfig } from "../../cfg"
@@ -30,6 +30,7 @@ interface ShortPermalinkPage {
   slug: string
   sourcePath: string
   title: string
+  unlisted: boolean
 }
 
 interface PlannedShortPermalink {
@@ -84,17 +85,57 @@ function portableKey(value: string): string {
   return value.normalize("NFC").toLowerCase()
 }
 
+async function outputStat(file: string) {
+  try {
+    return await fs.stat(file)
+  } catch (err) {
+    const { code } = err as NodeJS.ErrnoException
+    if (code !== "ENOENT" && code !== "ENOTDIR") throw err
+  }
+}
+
+async function isCaseSensitiveOutput(directory: string): Promise<boolean> {
+  await fs.mkdir(directory, { recursive: true })
+  // Some filesystems support per-directory case sensitivity, so probe beside the redirects.
+  const probe = path.join(directory, `.quartz-short-permalinks-${randomUUID()}`)
+  const file = await fs.open(`${probe}-a`, "wx")
+  try {
+    await file.close()
+    return !(await outputStat(`${probe}-A`))
+  } finally {
+    await fs.rm(`${probe}-a`, { force: true })
+  }
+}
+
+async function existingOutputFiles(
+  directory: string,
+  caseSensitive: boolean,
+): Promise<Set<string>> {
+  try {
+    const entries = await fs.readdir(directory, { withFileTypes: true })
+    return new Set(
+      entries
+        .filter((entry) => entry.isFile() || entry.isSymbolicLink())
+        .map(({ name }) => (caseSensitive ? name : portableKey(name))),
+    )
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException).code !== "ENOENT") throw err
+    return new Set()
+  }
+}
+
 function occupiedPaths(
   ctx: BuildCtx,
   content: ProcessedContent[],
   pages: Map<string, ShortPermalinkPage>,
 ) {
   const contentRoutes = new Set(Array.from(pages.keys(), routeKey))
-  const routes = new Set(Array.from(contentRoutes, portableKey))
+  const routes = new Set<string>()
   const files = new Map<string, Set<string>>()
 
   function reserve(slug: string) {
-    routes.add(portableKey(routeKey(slug)))
+    // Reserve page routes across platforms, including case variants of directory indexes.
+    routes.add(routeKey(portableKey(slug)))
     const file = outputFile(slug)
     const key = portableKey(file)
     const owners = files.get(key) ?? new Set<string>()
@@ -128,10 +169,7 @@ async function isOwnedOutput(ctx: BuildCtx, staleSlug: FullSlug, files: Map<stri
   if (owners.has(stale)) return true
 
   // A differently cased path can refer to the same file on a case-insensitive filesystem.
-  const stat = (file: string) =>
-    fs.stat(joinSegments(ctx.argv.output, file)).catch((err: NodeJS.ErrnoException) => {
-      if (err.code !== "ENOENT" && err.code !== "ENOTDIR") throw err
-    })
+  const stat = (file: string) => outputStat(joinSegments(ctx.argv.output, file))
   const existing = await stat(stale)
   if (!existing) return false
   for (const owner of owners) {
@@ -152,7 +190,7 @@ function pageFromContent(content: ProcessedContent): ShortPermalinkPage | undefi
       : slug
   const frontmatter = data.frontmatter as Record<string, unknown> | undefined
   const title = typeof frontmatter?.title === "string" ? frontmatter.title : slug
-  return { slug, sourcePath, title }
+  return { slug, sourcePath, title, unlisted: data.unlisted === true }
 }
 
 function planShortPermalinks(
@@ -161,6 +199,7 @@ function planShortPermalinks(
   prefix: string,
   hashLength: number,
   onCollision: NonNullable<ShortPermalinksConfig["onCollision"]>,
+  caseSensitive: boolean,
 ) {
   const pages = new Map<string, ShortPermalinkPage>()
   for (const item of content) {
@@ -173,7 +212,7 @@ function planShortPermalinks(
   for (const page of pages.values()) {
     const hash = shortPermalinkHash(page.sourcePath, hashLength)
     const slug = joinSegments(prefix, hash) as FullSlug
-    const key = portableKey(outputFile(slug))
+    const key = caseSensitive ? slug : portableKey(outputFile(slug))
     const group = groups.get(key) ?? { slug, pages: [] }
     // Choose one spelling deterministically when different hashes differ only in case.
     if (slug < group.slug) group.slug = slug
@@ -184,13 +223,17 @@ function planShortPermalinks(
   const redirects: PlannedShortPermalink[] = []
   for (const { slug: shortSlug, pages: group } of groups.values()) {
     group.sort((a, b) => a.slug.localeCompare(b.slug))
-    if (occupied.routes.has(portableKey(routeKey(shortSlug)))) {
+    if (
+      occupied.routes.has(routeKey(portableKey(shortSlug))) ||
+      occupied.files.has(portableKey(outputFile(shortSlug)))
+    ) {
       console.warn(
         `[ShortPermalinks] ${shortSlug} collides with an existing page or alias; skipping the short permalink.`,
       )
       continue
     }
-    if (group.length > 1 && onCollision === "skip") {
+    // A collision page would list otherwise unlisted destinations at a publicly shared URL.
+    if (group.length > 1 && (onCollision === "skip" || group.some((page) => page.unlisted))) {
       console.warn(
         `[ShortPermalinks] ${shortSlug} maps to ${group.length} pages; skipping the colliding short permalink.`,
       )
@@ -258,8 +301,7 @@ ${links}
 `
 }
 
-async function writePage(ctx: BuildCtx, slug: FullSlug, html: string): Promise<FilePath> {
-  const outputPath = joinSegments(ctx.argv.output, `${slug}.html`) as FilePath
+async function writePage(outputPath: FilePath, html: string): Promise<FilePath> {
   await fs.mkdir(path.dirname(outputPath), { recursive: true })
   await fs.writeFile(outputPath, html)
   return outputPath
@@ -274,14 +316,21 @@ export const ShortPermalinks: QuartzEmitterPlugin<ShortPermalinksConfig> = (user
     throw new Error('Short permalink onCollision must be either "disambiguation-page" or "skip"')
   }
   let previouslyRendered = new Map<FullSlug, string>()
+  let output: { directory: string; caseSensitive: boolean } | undefined
 
   async function* emitPages(ctx: BuildCtx, content: ProcessedContent[], incremental: boolean) {
+    const directory = joinSegments(ctx.argv.output, prefix)
+    if (!incremental || output?.directory !== directory) {
+      if (output?.directory !== directory) previouslyRendered.clear()
+      output = { directory, caseSensitive: await isCaseSensitiveOutput(directory) }
+    }
     const { redirects, occupied } = planShortPermalinks(
       ctx,
       content,
       prefix,
       opts.hashLength,
       opts.onCollision,
+      output.caseSensitive,
     )
     const lang = ctx.cfg.configuration.locale
     const currentlyRendered = new Map(
@@ -307,10 +356,16 @@ export const ShortPermalinks: QuartzEmitterPlugin<ShortPermalinksConfig> = (user
       }
     }
 
+    let existingFiles: Set<string> | undefined
     for (const [slug, html] of currentlyRendered) {
-      if (!incremental || previouslyRendered.get(slug) !== html) {
-        yield await writePage(ctx, slug, html)
+      const outputPath = joinSegments(ctx.argv.output, `${slug}.html`) as FilePath
+      // An earlier emitter can remove a short link while cleaning up unpublished pages.
+      if (incremental && previouslyRendered.get(slug) === html) {
+        existingFiles ??= await existingOutputFiles(directory, output.caseSensitive)
+        const name = path.basename(outputPath)
+        if (existingFiles.has(output.caseSensitive ? name : portableKey(name))) continue
       }
+      yield await writePage(outputPath, html)
     }
 
     previouslyRendered = currentlyRendered
