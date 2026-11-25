@@ -91,7 +91,7 @@
     "globby": "^16.1.0",
     "gray-matter": "^4.0.3",
     "hast-util-from-html": "^2.0.0",
-    "hast-util-to-html": "^9.0.5",
+    "hast-util-to-html": "^9.0.7",
     "hast-util-to-jsx-runtime": "^2.3.6",
     "is-absolute-url": "^5.0.0",
     "isomorphic-git": "^1.36.3",
@@ -117,7 +117,7 @@
     "unist-util-visit": "^5.1.0",
     "vfile": "^6.0.3",
     "workerpool": "^10.0.1",
-    "ws": "^8.19.0",
+    "ws": "^8.23.0",
     "yaml": "^2.8.2",
     "yargs": "^18.0.0"
   },
