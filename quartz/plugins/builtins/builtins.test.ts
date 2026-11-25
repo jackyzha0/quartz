@@ -223,6 +223,23 @@ describe("frontmatter built-in", () => {
     )
   })
 
+  test("reads YAML frontmatter with YAML 1.2's core schema, as Obsidian does", () => {
+    const data = readFrontmatterData(
+      "---\ntitle: Hello world\ndate: 2024-01-02\ndraft: True\nn: 012\nnone: ~\nratio: .5\nalias: yes\n---\n",
+    )
+    assert.deepStrictEqual(data, {
+      title: "Hello world",
+      date: "2024-01-02",
+      draft: true,
+      n: 12,
+      none: null,
+      ratio: 0.5,
+      alias: "yes",
+    })
+    // a block without a document holds no properties
+    assert.deepStrictEqual(readFrontmatterData("---\n# only a comment\n---\nbody\n"), {})
+  })
+
   test("refuses JavaScript frontmatter instead of executing it", async () => {
     const g = globalThis as { __quartzFrontmatterRan?: boolean }
     delete g.__quartzFrontmatterRan
