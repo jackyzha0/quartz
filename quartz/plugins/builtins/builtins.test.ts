@@ -13,7 +13,7 @@ import {
   extractLinksFromValue,
   readFrontmatterData,
 } from "./frontmatter"
-import { Links } from "./links"
+import { Links, LinksInstance, markLinksToRemovedPages } from "./links"
 import {
   buildLayeredCSS,
   buildUnlayeredCSS,
@@ -758,5 +758,77 @@ describe("fonts built-in", () => {
     } finally {
       delete (globalThis as Record<string, unknown>).__quartzFonts
     }
+  })
+})
+
+describe("links to pages removed by filters (crawl-links#7)", () => {
+  const link = (slug: string, className: string[] = ["internal", "internal-link"]): Element => ({
+    type: "element",
+    tagName: "a",
+    properties: { href: `./${slug}`, "data-slug": slug, className: [...className] },
+    children: [{ type: "text", value: slug }],
+  })
+  const page = (slug: string, links: Element[], data: Record<string, unknown> = {}) => {
+    const file = new VFile("")
+    file.data = { slug: slug as FullSlug, ...data } as VFile["data"]
+    return [{ type: "root", children: links } as Root, file] as ProcessedContent
+  }
+  const anchors = (item: ProcessedContent) => (item[0] as Root).children as Element[]
+
+  test("marks links to removed pages and their aliases broken, with the filter", () => {
+    const home = page("index", [
+      link("draft"),
+      link("old-name"),
+      link("published"),
+      link("folder/index"),
+    ])
+    const draft = page("draft", [], { aliases: ["old-name"] })
+    const published = page("published", [])
+    const folderIndex = page("folder/index", [])
+    const all = [home, draft, published, folderIndex]
+    const marked = markLinksToRemovedPages(all, [home, published], (s) =>
+      s === "draft" || s === "folder/index" ? "RemoveDrafts" : undefined,
+    )
+    const [toDraft, toAlias, toPublished, toFolder] = anchors(home)
+    assert.strictEqual(marked, 2)
+    assert.ok((toDraft.properties.className as string[]).includes("broken"))
+    assert.strictEqual(toDraft.properties["data-filtered"], "RemoveDrafts")
+    assert.ok((toAlias.properties.className as string[]).includes("broken"))
+    assert.ok(!(toPublished.properties.className as string[]).includes("broken"))
+    // a folder whose index note is a draft still gets a generated folder page
+    assert.ok(!(toFolder.properties.className as string[]).includes("broken"))
+  })
+
+  test("a removed page's alias that a published page owns is not broken", () => {
+    const home = page("index", [link("shared")])
+    const draft = page("draft", [], { aliases: ["shared"] })
+    const owner = page("shared", [])
+    markLinksToRemovedPages([home, draft, owner], [home, owner])
+    assert.ok(!(anchors(home)[0].properties.className as string[]).includes("broken"))
+  })
+
+  test("unmarks links when the target is published again (watch mode)", () => {
+    const home = page("index", [link("draft")])
+    const draft = page("draft", [])
+    markLinksToRemovedPages([home, draft], [home])
+    assert.ok((anchors(home)[0].properties.className as string[]).includes("broken"))
+    markLinksToRemovedPages([home, draft], [home, draft])
+    const a = anchors(home)[0]
+    assert.deepStrictEqual(a.properties.className, ["internal", "internal-link"])
+    assert.strictEqual(a.properties["data-filtered"], undefined)
+  })
+
+  test("leaves links marked broken by the links transformer alone", () => {
+    const home = page("index", [link("missing", ["internal", "internal-link", "broken"])])
+    markLinksToRemovedPages([home], [home])
+    assert.ok((anchors(home)[0].properties.className as string[]).includes("broken"))
+  })
+
+  test("the Links instance says whether it marks broken links", () => {
+    assert.strictEqual((Links() as LinksInstance).marksBrokenLinks, true)
+    assert.strictEqual(
+      (Links({ disableBrokenWikilinks: false }) as LinksInstance).marksBrokenLinks,
+      false,
+    )
   })
 })

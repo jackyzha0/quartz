@@ -26,7 +26,8 @@ import { minimatch } from "minimatch"
 import { formatLayoutReport, getLayoutReport } from "./plugins/loader/layoutReport"
 import { getBuiltinPlan } from "./plugins/loader/config-loader"
 import { prepareContentIndex } from "./plugins/builtins/contentIndex"
-import { printDiagnosticsSummary, warn } from "./util/diagnostics"
+import { filteredBy, printDiagnosticsSummary, warn } from "./util/diagnostics"
+import { LinksInstance, markLinksToRemovedPages } from "./plugins/builtins/links"
 import { collectPermalinks } from "./util/permalinks"
 import { readFrontmatterData } from "./plugins/builtins/frontmatter"
 import { ChangeRecord, clearChangeRecord } from "./util/incremental"
@@ -64,6 +65,18 @@ function updateSlugs(ctx: BuildCtx, allFiles: string[]): void {
     : {}
   const pathSlugs = allFiles.map((fp) => slugifyFilePath(fp as FilePath))
   ctx.allSlugs = [...new Set([...pathSlugs, ...Object.values(ctx.permalinks)])]
+}
+
+/** Mark links to pages the filters removed as broken (built-in links, crawl-links#7). */
+function markRemovedLinks(
+  ctx: BuildCtx,
+  all: ProcessedContent[],
+  published: ProcessedContent[],
+): void {
+  const links = ctx.cfg.plugins.transformers.find((t) => t.name === "Links") as
+    LinksInstance | undefined
+  // also when nothing was removed: in watch mode, marks from the last build may need undoing
+  if (links?.marksBrokenLinks) markLinksToRemovedPages(all, published, filteredBy)
 }
 
 function reportSlugCollisions(content: ProcessedContent[]): void {
@@ -161,6 +174,7 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   const parsedFiles = await parseMarkdown(ctx, filePaths)
   reportSlugCollisions(parsedFiles)
   const filteredContent = filterContent(ctx, parsedFiles)
+  markRemovedLinks(ctx, parsedFiles, filteredContent)
 
   await emitContent(ctx, filteredContent)
   console.log(
@@ -418,6 +432,7 @@ async function rebuild(changes: ChangeEvent[], clientRefresh: () => void, buildD
       .map((file) => file.content)
     reportSlugCollisions(markdownContent)
     let processedFiles = filterContent(ctx, markdownContent)
+    markRemovedLinks(ctx, markdownContent, processedFiles)
 
     let emittedFiles = 0
 

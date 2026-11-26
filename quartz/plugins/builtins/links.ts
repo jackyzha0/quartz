@@ -3,7 +3,8 @@ import { visit } from "unist-util-visit"
 import isAbsoluteUrl from "is-absolute-url"
 import { Element, Root, Text } from "hast"
 import { VFile } from "vfile"
-import { QuartzTransformerPlugin } from "../types"
+import { QuartzTransformerPlugin, QuartzTransformerPluginInstance } from "../types"
+import { ProcessedContent } from "../vfile"
 import { LinksConfig } from "../../cfg"
 import {
   FullSlug,
@@ -86,10 +87,76 @@ export function pageExists(allSlugs: readonly string[], full: string): boolean {
   return false
 }
 
+/** The `broken` mark added after filtering, so a later rebuild can take it off again. */
+const FILTERED_ATTR = "data-filtered"
+
+/**
+ * Links are classified while the transformers run, before the filters decide what is
+ * published, so a link to a page a filter removes (a draft, a page without `publish: true`)
+ * still points at an address in `allSlugs` and is not marked `broken` — yet it 404s
+ * (crawl-links#7). This runs after the filters: links in published pages whose target was
+ * removed get the `broken` class and `data-filtered="<filter>"`. Links that were marked this
+ * way and whose target is published again (watch mode) lose both. Returns the number of links
+ * marked.
+ */
+export function markLinksToRemovedPages(
+  all: ProcessedContent[],
+  published: ProcessedContent[],
+  filteredBy: (slug: string) => string | undefined = () => "filter",
+): number {
+  const publishedSet = new Set(published)
+  const live = new Set<string>()
+  for (const item of published) {
+    const data = item[1].data
+    if (data.slug) live.add(data.slug)
+    for (const alias of data.aliases ?? []) live.add(alias)
+  }
+  const removed = new Map<string, string>()
+  for (const item of all) {
+    if (publishedSet.has(item)) continue
+    const data = item[1].data
+    if (!data.slug) continue
+    const reason = filteredBy(data.slug) ?? "filter"
+    // its aliases (and the file path of a page with a permalink) are gone with it
+    for (const slug of [data.slug, ...(data.aliases ?? [])]) {
+      // a folder whose index note is removed still gets a generated folder page
+      if (slug.endsWith("/index")) continue
+      if (!live.has(slug) && !removed.has(slug)) removed.set(slug, reason)
+    }
+  }
+
+  let marked = 0
+  for (const [tree] of published) {
+    visit(tree as Root, "element", (node: Element) => {
+      if (node.tagName !== "a" || !node.properties) return
+      const target = node.properties["data-slug"]
+      if (typeof target !== "string") return
+      const classes = Array.isArray(node.properties.className)
+        ? (node.properties.className as string[])
+        : []
+      const reason = removed.get(target)
+      if (reason !== undefined) {
+        if (!classes.includes("broken")) classes.push("broken")
+        node.properties.className = classes
+        node.properties[FILTERED_ATTR] = reason
+        marked++
+      } else if (node.properties[FILTERED_ATTR] !== undefined) {
+        node.properties.className = classes.filter((c) => c !== "broken")
+        delete node.properties[FILTERED_ATTR]
+      }
+    })
+  }
+  return marked
+}
+
+/** The Links instance marks links to removed pages after filtering (see build.ts). */
+export type LinksInstance = QuartzTransformerPluginInstance & { marksBrokenLinks: boolean }
+
 export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
   const opts = { ...linksDefaults, ...userOpts }
-  return {
+  const instance: LinksInstance = {
     name: "Links",
+    marksBrokenLinks: opts.disableBrokenWikilinks,
     htmlPlugins(ctx) {
       return [
         () => {
@@ -262,4 +329,5 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
       ]
     },
   }
+  return instance
 }
