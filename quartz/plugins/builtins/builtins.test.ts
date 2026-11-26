@@ -14,7 +14,13 @@ import {
   extractLinksFromValue,
   readFrontmatterData,
 } from "./frontmatter"
-import { Links, LinksInstance, markLinksToRemovedPages } from "./links"
+import {
+  Links,
+  LinksInstance,
+  markLinksToRemovedPages,
+  markUnpublishedLinks,
+  removedPages,
+} from "./links"
 import {
   buildLayeredCSS,
   buildUnlayeredCSS,
@@ -1052,6 +1058,43 @@ describe("links to pages removed by filters (crawl-links#7)", () => {
     const home = page("index", [link("missing", ["internal", "internal-link", "broken"])])
     markLinksToRemovedPages([home], [home])
     assert.ok((anchors(home)[0].properties.className as string[]).includes("broken"))
+  })
+
+  test("marks links to folder and tag pages no page type generated", () => {
+    const home = page("index", [
+      link("drafts/index"),
+      link("notes/index"),
+      link("tags/unused"),
+      link("tags/used"),
+      link("tags/parent"),
+      link("index"),
+    ])
+    const generated = new Set(["notes/index", "tags/used", "tags/parent/index", "tags/index"])
+    const changed = new Set<FullSlug>()
+    const marked = markUnpublishedLinks([home], new Map(), generated, changed)
+    const broken = anchors(home).map((a) => (a.properties.className as string[]).includes("broken"))
+    assert.deepStrictEqual(broken, [true, false, true, false, false, false])
+    assert.strictEqual(marked, 2)
+    assert.strictEqual(anchors(home)[0].properties["data-missing"], "")
+    assert.deepStrictEqual([...changed], ["index"])
+  })
+
+  test("reports the pages whose marks changed, so watch mode re-emits them", () => {
+    const home = page("index", [link("draft")])
+    const other = page("other", [link("published")])
+    const draft = page("draft", [])
+    const all = [home, other, draft]
+    const changed = new Set<FullSlug>()
+    markUnpublishedLinks([home, other], removedPages(all, [home, other]), new Set(), changed)
+    assert.deepStrictEqual([...changed], ["index"])
+    changed.clear()
+    // nothing changed: nothing to re-emit
+    markUnpublishedLinks([home, other], removedPages(all, [home, other]), new Set(), changed)
+    assert.deepStrictEqual([...changed], [])
+    // the draft is published: its link is unmarked, the page re-emitted
+    markUnpublishedLinks([home, other, draft], removedPages(all, all), new Set(), changed)
+    assert.deepStrictEqual([...changed], ["index"])
+    assert.deepStrictEqual(anchors(home)[0].properties.className, ["internal", "internal-link"])
   })
 
   test("the Links instance says whether it marks broken links", () => {

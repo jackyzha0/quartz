@@ -27,7 +27,7 @@ import { formatLayoutReport, getLayoutReport } from "./plugins/loader/layoutRepo
 import { getBuiltinPlan } from "./plugins/loader/config-loader"
 import { prepareContentIndex } from "./plugins/builtins/contentIndex"
 import { filteredBy, printDiagnosticsSummary, warn } from "./util/diagnostics"
-import { LinksInstance, markLinksToRemovedPages } from "./plugins/builtins/links"
+import { LinksInstance, removedPages } from "./plugins/builtins/links"
 import { collectPermalinks } from "./util/permalinks"
 import { readFrontmatterData } from "./plugins/builtins/frontmatter"
 import { ChangeRecord, clearChangeRecord } from "./util/incremental"
@@ -67,7 +67,10 @@ function updateSlugs(ctx: BuildCtx, allFiles: string[]): void {
   ctx.allSlugs = [...new Set([...pathSlugs, ...Object.values(ctx.permalinks)])]
 }
 
-/** Mark links to pages the filters removed as broken (built-in links, crawl-links#7). */
+/**
+ * Record the pages the filters removed, so PageTypeDispatcher marks links to them as broken
+ * (built-in links, crawl-links#7) once it knows which folder and tag pages are generated.
+ */
 function markRemovedLinks(
   ctx: BuildCtx,
   all: ProcessedContent[],
@@ -76,7 +79,7 @@ function markRemovedLinks(
   const links = ctx.cfg.plugins.transformers.find((t) => t.name === "Links") as
     LinksInstance | undefined
   // also when nothing was removed: in watch mode, marks from the last build may need undoing
-  if (links?.marksBrokenLinks) markLinksToRemovedPages(all, published, filteredBy)
+  ctx.removedPages = links?.marksBrokenLinks ? removedPages(all, published, filteredBy) : undefined
 }
 
 function reportSlugCollisions(content: ProcessedContent[]): void {

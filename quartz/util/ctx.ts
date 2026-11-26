@@ -49,6 +49,12 @@ export interface BuildCtx {
    * `.base` / `.canvas` pages).
    */
   virtualPages: ProcessedContent[]
+  /**
+   * Pages the filters removed (and their aliases) → the filter, set after filtering when the
+   * Links transformer marks broken links. PageTypeDispatcher marks links to them, and to folder
+   * and tag pages no page type generated, once the virtual pages exist (markUnpublishedLinks).
+   */
+  removedPages?: ReadonlyMap<string, string>
   /** Content-hashed asset filenames, populated by ComponentResources emitter */
   hashedResourceNames?: HashedResourceNames
   /** Maps CSS content strings to their emitted hashed filenames. Populated by ComponentResources. */
