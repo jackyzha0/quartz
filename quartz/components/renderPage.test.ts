@@ -120,6 +120,48 @@ describe("renderTranscludes", () => {
     assert.ok(texts.includes("Target content"), "transcluded content should be inlined")
   })
 
+  test("a block transclusion finds the block by its name and scopes its ^id", () => {
+    const block: Element = {
+      type: "element",
+      tagName: "p",
+      properties: { id: "^para-1" },
+      children: [
+        { type: "text", value: "Block text " },
+        {
+          type: "element",
+          tagName: "a",
+          properties: { href: "#^para-1" },
+          children: [{ type: "text", value: "self" }],
+        },
+      ],
+    }
+    const heading: Element = {
+      type: "element",
+      tagName: "h2",
+      properties: { id: "para-1" },
+      children: [{ type: "text", value: "Para 1" }],
+    }
+    const targetHtml: Root = { type: "root", children: [heading, block] }
+    const allFiles = [makePageData("target", targetHtml, { blocks: { "para-1": block } })]
+    const root: Root = {
+      type: "root",
+      children: [makeTranscludeBlockquote("target", "#^Para-1")],
+    }
+    renderTranscludes(
+      root,
+      cfg,
+      "current" as FullSlug,
+      makeComponentData(allFiles) as QuartzComponentProps,
+      new Set<FullSlug>(["current" as FullSlug]),
+    )
+    const html = toHtml(root)
+    assert.ok(html.includes("Block text"), html)
+    assert.ok(!html.includes("Para 1"), "the heading of the same name isn't transcluded")
+    const id = /<p id="([^"]+)"/.exec(html)?.[1]
+    assert.ok(id?.endsWith("^para-1") && id !== "^para-1", `scoped block id, got ${id}`)
+    assert.ok(html.includes(`href="#${id}"`), "the link inside points at the scoped id")
+  })
+
   test("allows the same page to be embedded twice as siblings", () => {
     const root: Root = {
       type: "root",
