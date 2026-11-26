@@ -132,12 +132,15 @@ plugins:
 
 Available conditions:
 
-| Condition       | Effect                                                                   |
-| --------------- | ------------------------------------------------------------------------ |
-| `not-index`     | Hidden on the root index page, shown everywhere else                     |
-| `has-tags`      | Only shown on pages that have tags in frontmatter                        |
-| `has-backlinks` | Only shown on pages that another (listed) page links to                  |
-| `has-toc`       | Only shown on pages with a table of contents (needs `table-of-contents`) |
+| Condition         | Effect                                                                       |
+| ----------------- | ---------------------------------------------------------------------------- |
+| `is-index`        | Only shown on the root index page (the home page)                            |
+| `not-index`       | Hidden on the root index page, shown everywhere else                         |
+| `is-folder-index` | Only shown on folder index pages (`folder/index.md` or a generated one)      |
+| `has-tags`        | Only shown on pages that have tags in frontmatter                            |
+| `has-backlinks`   | Only shown on pages that another (listed) page links to                      |
+| `has-toc`         | Only shown on pages with a table of contents (needs `table-of-contents`)     |
+| `not-<condition>` | Negates any condition, built-in or registered: `not-has-tags`, `not-has-toc` |
 
 Plugins can register additional conditions. An unknown condition name prints a warning at build time and the component is always shown.
 

@@ -432,7 +432,7 @@
               },
               "condition": {
                 "type": "string",
-                "description": "Render only when this condition holds. Built-in: not-index, has-tags, has-backlinks, has-toc; plugins may register more."
+                "description": "Render only when this condition holds. Built-in: is-index, not-index, is-folder-index, has-tags, has-backlinks, has-toc; plugins may register more. Prefix any condition with not- to negate it (not-has-tags)."
               },
               "group": {
                 "type": "string",
