@@ -556,10 +556,10 @@ export const MyFrame: PageFrame = {
 `,
   render({ componentData, pageBody: Content, footer: Footers }: PageFrameProps): unknown {
     return (
-      <div class="center">
+      <main class="center">
         {Content(componentData) as ComponentChildren}
         {Footers.map((Footer) => Footer(componentData) as ComponentChildren)}
-      </div>
+      </main>
     )
   },
 }
@@ -569,6 +569,7 @@ Key requirements:
 
 - `name`: A unique string identifier. This is what page types and YAML config reference.
 - `render()`: Receives all layout slots (header, sidebars, content, footer) and returns JSX for the inner page structure. Note that `footer` is a `QuartzComponent[]` (an array) — frames should iterate over it with `.map()` to render all footer components.
+- Put the page's content in a `<main>` element (and sidebars in `<aside>`), as the built-in frames do, so screen readers can jump to it.
 - `css` (optional): Frame-specific CSS. Scope it with `.page[data-frame="my-frame"]` selectors to avoid conflicts.
 
 **2. Re-export the frame:**

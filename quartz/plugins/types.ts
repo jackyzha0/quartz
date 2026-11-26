@@ -31,7 +31,10 @@ export type ContentDetails = {
   tags: string[]
   content: string
   richContent?: string
-  /** RSS / sitemap only — not written to contentIndex.json. */
+  /**
+   * The page's date (see `defaultDateType`). Written to contentIndex.json as an ISO 8601
+   * string, and only for pages that have a date.
+   */
   date?: Date
   /** RSS / sitemap only — not written to contentIndex.json. */
   description?: string

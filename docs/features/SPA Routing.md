@@ -15,4 +15,6 @@ Under the hood, this is done by hijacking page navigations and instead fetching 
 
 Pages are fetched ahead of a click by [[prefetching]], which the router uses to show them at once; the fetched pages are also reused by [[popover previews]].
 
+Back and Forward return to where you were on each page: the router keeps each history entry's scroll position and restores it after the page is swapped in, and a reload keeps it too. Links to a heading on the same page add a history entry and only scroll, so Back returns to where you clicked.
+
 Redirects are followed: when a link is redirected (for example `folder` → `folder/` on static hosts, or an alias page to its canonical page), the address bar shows the final URL and relative links on the new page resolve against it.

@@ -34,7 +34,8 @@ import {
 import type { PluginJsonEntry } from "../loader/types"
 import type { BuildCtx } from "../../util/ctx"
 import type { ContentDetails } from "../types"
-import type { FullSlug } from "../../util/path"
+import type { FullSlug, SimpleSlug } from "../../util/path"
+import { setSlugOptions } from "../../util/path"
 import type { ProcessedContent } from "../vfile"
 
 const entry = (source: string, extra: Partial<PluginJsonEntry> = {}): PluginJsonEntry => ({
@@ -365,6 +366,43 @@ describe("links built-in", () => {
     assert.deepStrictEqual(file.data.links?.sort(), ["folder/sibling", "t"])
   })
 
+  test("slugs.stripDiacritics: link targets are stripped like the slugs they point at (#2410)", () => {
+    setSlugOptions({ stripDiacritics: true })
+    try {
+      const img: Element = {
+        type: "element",
+        tagName: "img",
+        properties: { src: "obr%C3%A1zek.png" },
+        children: [],
+      }
+      const { els, file } = run(
+        [a("./%C4%8Ce%C5%A1tina#%C4%8Cesk%C3%BD-nadpis", "Čeština"), a("Příliš"), img],
+        "ceske/page",
+        { markdownLinkResolution: "shortest" },
+        ["ceske/page", "ceske/cestina", "jine/prilis", "ceske/obrazek.png"],
+      )
+      const [cestina, prilis] = els.filter((e) => e.tagName === "a")
+      assert.strictEqual(cestina.properties.href, "../ceske/cestina#český-nadpis")
+      assert.ok(!(cestina.properties.className as string[]).includes("broken"))
+      assert.strictEqual(prilis.properties.href, "../jine/prilis")
+      assert.strictEqual(
+        els.find((e) => e.tagName === "img")!.properties.src,
+        "../ceske/obrazek.png",
+      )
+      assert.ok(file.data.links?.includes("ceske/cestina" as SimpleSlug))
+    } finally {
+      setSlugOptions(undefined)
+    }
+  })
+
+  test("without slugs.stripDiacritics link targets keep their diacritics", () => {
+    const { els } = run([a("Příliš")], "page", { markdownLinkResolution: "shortest" }, [
+      "page",
+      "jine/příliš",
+    ])
+    assert.strictEqual(els[0].properties.href, "./jine/příliš")
+  })
+
   test("footnote anchors stay internal without Obsidian's note-link class", () => {
     const fn = (props: Record<string, unknown>): Element => ({
       type: "element",
@@ -552,6 +590,57 @@ describe("content index built-in", () => {
       "tags",
       "title",
     ])
+  })
+
+  test("writes the page date to contentIndex.json as an ISO string (explorer#5)", () => {
+    const created = new Date("2024-01-02T03:04:05.000Z")
+    const modified = new Date("2025-06-07T08:09:10.000Z")
+    const dated = page("dated", { defaultDateType: "created", dates: { created, modified } })
+    const idx = buildContentIndex(ctxWith([]), [dated, page("undated")])
+    const json = JSON.parse(serializeContentIndex(idx))
+    assert.strictEqual(json.dated.date, "2024-01-02T03:04:05.000Z")
+    assert.ok(!("description" in json.dated))
+    // pages without a date keep the build-time stand-in for RSS, but not in the JSON
+    assert.ok(idx.get("undated" as FullSlug)!.date instanceof Date)
+    assert.ok(!("date" in json.undated))
+  })
+
+  test("dateFromFrontmatter marks dates set in frontmatter for the configured type", () => {
+    const fmModified = new Date("2024-03-04T00:00:00") // local midnight, like the date plugin
+    const gitModified = new Date("2025-01-01T10:00:00.000Z")
+    const created = new Date("2020-01-01T00:00:00.000Z")
+    const fromFm = page("fm", {
+      defaultDateType: "modified",
+      frontmatter: { title: "FM", modified: "2024-03-04" },
+      dates: { created, modified: fmModified },
+    })
+    const fromGit = page("git", {
+      defaultDateType: "modified",
+      frontmatter: { title: "GIT", created: "2020-01-01T00:00:00.000Z" },
+      dates: { created, modified: gitModified },
+    })
+    // frontmatter has a date, but for another type than the configured one
+    const otherType = page("other", {
+      defaultDateType: "created",
+      frontmatter: { title: "O", modified: "2024-03-04" },
+      dates: { created: gitModified, modified: fmModified },
+    })
+    // frontmatter value lost to a higher-priority source (date differs)
+    const overridden = page("over", {
+      defaultDateType: "modified",
+      frontmatter: { title: "OV", modified: "2023-01-01" },
+      dates: { created, modified: gitModified },
+    })
+    const json = JSON.parse(
+      serializeContentIndex(
+        buildContentIndex(ctxWith([]), [fromFm, fromGit, otherType, overridden, page("undated")]),
+      ),
+    )
+    assert.strictEqual(json.fm.dateFromFrontmatter, true)
+    assert.strictEqual(json.fm.date, fmModified.toISOString())
+    for (const slug of ["git", "other", "over", "undated"]) {
+      assert.ok(!("dateFromFrontmatter" in json[slug]), slug)
+    }
   })
 
   test("plugins add fields through extendContentIndex", () => {

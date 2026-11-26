@@ -23,6 +23,35 @@ layout:
 
 `configuration` and `plugins` are described below; the `layout` section (component groups, `byPageType` overrides, sidebar modes) is described in [[layout]].
 
+## Extending the default configuration
+
+Without a `quartz.config.yaml`, Quartz uses `quartz.config.default.yaml`. A `quartz.config.yaml` normally replaces it completely. With `extends`, your file can hold just the changes you make to another configuration instead:
+
+```yaml title="quartz.config.yaml"
+extends: default # quartz.config.default.yaml
+configuration:
+  pageTitle: "My Site"
+  baseUrl: example.com
+plugins:
+  - source: "@quartz-community/graph"
+    enabled: false # turn off a default plugin
+  - source: "@quartz-community/explorer"
+    options:
+      folderDefaultState: open # only this option changes
+  - source: github:me/my-plugin # a plugin the defaults don't have
+    enabled: true
+```
+
+- `extends` is `default`, a path to another config file relative to this one (which may itself extend another), an `https://` URL, or a list of those. Later entries in the list win.
+  - A URL is fetched when the config is loaded (10 s timeout, at most 1 MB) and kept in `.quartz-cache/extends/`. If a later fetch fails (offline, timeout, HTTP error), Quartz uses the cached copy and warns; without one, the build stops. `QUARTZ_EXTENDS_OFFLINE=1` uses only the cached copy. Relative `extends` inside a fetched file are resolved against its URL; `default` always means your local `quartz.config.default.yaml`. Only `https://` URLs are allowed, and only extend configs you trust: they choose which plugins your build runs.
+- `configuration` and `layout` merge key by key, including nested objects (`theme.colors.lightMode.secondary` changes only that colour). Any other value replaces the default: strings, numbers and lists such as `ignorePatterns` or `byPageType.<type>.exclude`. Setting a key to `null` removes it, so the built-in default applies.
+- A plugin entry changes the default entry for the same plugin, matched by name (`github:quartz-community/explorer` matches `@quartz-community/explorer`, and a fork with the same name replaces it). `enabled`, `order` and `source` replace the default values. `options` and `layout` merge like `configuration`, and `null` drops them so the plugin's own defaults apply. A plugin that is not in the base is added, and it needs `enabled: true` just as in a full config.
+- Plugins run in `order` as before. Your file can change a default plugin's `order`. Where two plugins have the same order, the base config's list order decides, and added plugins come last.
+- Your updates to `quartz.config.default.yaml` (for example after `npx quartz upgrade`) reach your site without copying them over.
+
+> [!warning] Experimental
+> `npx quartz plugin` commands that edit plugin entries (`enable`, `disable`, `config`, …) only see the entries in your own file so far. Edit an extending `quartz.config.yaml` by hand.
+
 ## General Configuration
 
 This part of the configuration concerns anything that can affect the whole site. The following is a list breaking down all the things you can configure:
@@ -54,6 +83,11 @@ This part of the configuration concerns anything that can affect the whole site.
   - `"all"` (default): every file that isn't ignored.
   - `"referenced"`: only files a published page links to or embeds. Use this with [[ExplicitPublish]] or [[private pages|drafts]], so that files only unpublished notes use stay private.
   - Files that Quartz renders as pages themselves (e.g. `.base` and `.canvas` files) are never copied as raw assets.
+- `slugs`: how file paths become URLs.
+  - `stripDiacritics`: `true` strips accents and other diacritics from page, folder and file URLs, e.g. `české/čeština.md` is published at `/ceske/cestina` instead of `/české/čeština` (which browsers show as `%C4%8Desk%C3%A9/...` when copied). Off by default.
+    - Links keep working as written in your notes: `[[čeština]]`, `[[české/čeština#Nadpis]]` and embeds like `![[obrázek.png]]` resolve to the stripped addresses. Aliases and `permalink`s are stripped the same way. Heading anchors (`#Nadpis`) keep their diacritics. Tag pages and the pages plugins generate from files (canvas, bases, …) are stripped too with `@quartz-community/utils` 1.3 or newer; with older versions they keep their diacritics.
+    - Only combining accents (`á č é ů …`) are removed. Letters without a decomposition (`ø`, `ł`, `ß`, `æ`) and non-Latin scripts (Chinese, Japanese, Korean, Arabic, Devanagari, …) are kept as they are.
+    - Turning it on changes the URLs of existing pages; links shared elsewhere to the old addresses will 404 unless you add the old addresses as `aliases`.
 - `ignorePatterns`: a list of [glob](<https://en.wikipedia.org/wiki/Glob_(programming)>) patterns that Quartz should ignore and not search through when looking for files inside the `content` folder. See [[private pages]] for more details.
 - `theme`: configure how the site looks.
   - `fontOrigin`: where to load fonts from.
@@ -132,6 +166,20 @@ plugins:
 ```
 
 Plugins are categorized by their type (transformer, filter, emitter, pageType) based on their manifest. The `order` field controls execution order within each category.
+
+`before` and `after` name plugins that this one must run before or after (one name or a list; `obsidian-flavored-markdown`, `ObsidianFlavoredMarkdown` and `@quartz-community/obsidian-flavored-markdown` all work, as do the built-ins `frontmatter`, `links`, `drafts` and `contentIndex`). They never override `order`; they are checked against it:
+
+```yaml title="quartz.config.yaml"
+plugins:
+  - source: github:me/my-transformer
+    enabled: true
+    order: 45
+    after: obsidian-flavored-markdown # needs the links OFM creates
+```
+
+- Between plugins with the same `order`, `before`/`after` decide the order (otherwise the list order does).
+- If `order` contradicts a constraint (here: OFM moved to order 50), the build stops with an error that names both orders, instead of silently running the plugins the wrong way round.
+- A name that isn't in your config is an error. A plugin that is disabled, or runs in another category (a filter named by a transformer), is skipped: the constraint applies only where both plugins run.
 
 > [!note]
 > For advanced TS override of plugin configuration, you can modify `quartz.ts`:

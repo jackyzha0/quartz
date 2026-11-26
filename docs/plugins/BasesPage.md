@@ -63,6 +63,7 @@ With Quartz 5.1, `.base` pages follow the site's publish filters (e.g. [[Explici
 
 This plugin accepts the following configuration options:
 
+- `propertyLabels`: How column and property labels are shown. `"name"` (default) shows a property's name as Obsidian does (`priority`, `file name`); `"title"` title-cases it (`Priority`, `Name`). A property's `displayName` is always used.
 - `defaultViewType`: Open a base on its first view of this type. Unset by default: a base opens on its first view, as in Obsidian.
 - `linkResolution`: How to resolve internal links in view renderers. Should match `configuration.links.markdownLinkResolution` (built-in [[CrawlLinks|link processing]]). Can be `"absolute"`, `"relative"`, or `"shortest"`. Defaults to `"shortest"`.
 - `customViews`: A map of custom view renderers. Keys are view type names. These override built-in renderers for the same type, or add new view types. Requires a TS override.

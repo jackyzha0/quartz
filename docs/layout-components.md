@@ -170,12 +170,17 @@ plugins:
 
 Available built-in conditions:
 
-| Condition       | Description                                           |
-| --------------- | ----------------------------------------------------- |
-| `not-index`     | Only render when the page is not the root `index.md`  |
-| `has-tags`      | Only render when the page has tags in its frontmatter |
-| `has-backlinks` | Only render when the page has backlinks               |
-| `has-toc`       | Only render when the page has a table of contents     |
+| Condition         | Description                                                                 |
+| ----------------- | --------------------------------------------------------------------------- |
+| `is-index`        | Only render on the root `index.md` (the home page)                          |
+| `not-index`       | Only render when the page is not the root `index.md`                        |
+| `is-folder-index` | Only render on a folder's index page (`folder/index.md` or a generated one) |
+| `has-tags`        | Only render when the page has tags in its frontmatter                       |
+| `has-backlinks`   | Only render when the page has backlinks                                     |
+| `has-toc`         | Only render when the page has a table of contents                           |
+| `not-<condition>` | Negates any other condition, e.g. `not-has-tags`, `not-has-backlinks`       |
+
+The `not-` prefix also works for conditions registered by plugins or in `quartz.ts`. To change the layout of a whole page type (folder pages, tag pages, …) rather than single pages, use `layout.byPageType` (see [[layout#Per-page-type overrides]]).
 
 ### TS Override
 

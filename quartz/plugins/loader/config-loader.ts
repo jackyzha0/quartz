@@ -61,6 +61,9 @@ import {
 import { collectPluginConfigWarnings, printPluginConfigWarnings } from "./option-validation"
 import { componentRegistry, RegisteredComponent } from "../../components/registry"
 import { frameRegistry } from "../../components/frames/registry"
+import { OrderItem, constraintList, normalizePluginName, orderPlugins } from "./plugin-order"
+import { resolveExtends } from "./config-extends"
+import { setSlugOptions } from "../../util/path"
 import { getCondition, getAllConditionNames } from "./conditions"
 import {
   LAYOUT_SLOTS,
@@ -92,16 +95,18 @@ export function resolveConfigPath(): string {
   if (fs.existsSync(LEGACY_DEFAULT_PLUGINS_JSON_PATH)) return LEGACY_DEFAULT_PLUGINS_JSON_PATH
   return CONFIG_YAML_PATH
 }
-function readPluginsJson(): QuartzPluginsJson | null {
+async function readPluginsJson(): Promise<QuartzPluginsJson | null> {
   const configPath = resolveConfigPath()
   if (!fs.existsSync(configPath)) {
     return null
   }
   const raw = fs.readFileSync(configPath, "utf-8")
-  if (configPath.endsWith(".yaml") || configPath.endsWith(".yml")) {
-    return YAML.parse(raw) as QuartzPluginsJson
-  }
-  return JSON.parse(raw) as QuartzPluginsJson
+  const data =
+    configPath.endsWith(".yaml") || configPath.endsWith(".yml") ? YAML.parse(raw) : JSON.parse(raw)
+  // `extends:` (#2440): merge onto the base config; a config without it is used as written
+  return data && typeof data === "object" && "extends" in data
+    ? resolveExtends(data, configPath)
+    : (data as QuartzPluginsJson)
 }
 
 function extractPluginName(source: PluginSource): string {
@@ -360,11 +365,12 @@ async function getManifest(source: PluginSource): Promise<PluginManifest | null>
 export async function loadQuartzConfig(
   configOverrides?: Partial<GlobalConfiguration>,
 ): Promise<QuartzConfig> {
-  const json = readPluginsJson()
+  const json = await readPluginsJson()
 
   if (!json) {
     // Fallback: import old-style config directly
     const oldConfig = await import("../../../quartz")
+    setSlugOptions(oldConfig.default?.configuration?.slugs)
     return oldConfig.default
   }
 
@@ -372,6 +378,8 @@ export async function loadQuartzConfig(
     ...(json.configuration as unknown as GlobalConfiguration),
     ...configOverrides,
   }
+  // before anything computes a slug (this runs in the main thread and in every worker)
+  setSlugOptions(configuration.slugs)
 
   // Entries of official plugins that are now built into core (crawl-links, remove-draft,
   // content-index) are handled by the built-ins below and never installed or loaded.
@@ -656,7 +664,7 @@ export async function loadQuartzConfig(
     items: { entry: PluginJsonEntry; manifest: PluginManifest | undefined }[],
     expectedCategory: ProcessingCategory,
   ) => {
-    const instances: { order: number; instance: any }[] = []
+    const instances: OrderItem<any>[] = []
     for (const { entry, manifest } of items) {
       try {
         const spec = parsePluginSource(entry.source)
@@ -715,7 +723,19 @@ export async function loadQuartzConfig(
           issues: manifest?.issues,
           quartzVersion: manifest?.quartzVersion,
         })
-        instances.push({ order: entry.order ?? manifest?.defaultOrder ?? 50, instance })
+        const label = extractPluginName(entry.source)
+        instances.push({
+          order: entry.order ?? manifest?.defaultOrder ?? 50,
+          instance,
+          label,
+          names: [
+            label,
+            manifest?.name,
+            typeof instance.name === "string" ? instance.name : "",
+          ].filter((n): n is string => typeof n === "string" && n !== ""),
+          before: constraintList(entry.before, "before", label),
+          after: constraintList(entry.after, "after", label),
+        })
       } catch (err) {
         pluginLoadFailed(entry, manifest, "was skipped: it failed to initialise", err)
       }
@@ -733,15 +753,33 @@ export async function loadQuartzConfig(
   const builtinPageTypes = [builtinPlugins.PageTypes.NotFoundPageType()]
 
   // Built-in processing steps take their place in plugin order (frontmatter at 0, links at 60 …);
-  // on equal order a built-in runs before plugins (stable sort, built-ins listed first).
+  // on equal order a built-in runs before plugins (stable sort, built-ins listed first), unless
+  // `before`/`after` on an entry say otherwise (see plugin-order.ts).
+  const knownPluginNames = new Set(
+    [
+      ...json.plugins.map((e) => extractPluginName(e.source)),
+      ...builtinPlan.builtins.map((b) => b.spec.configKey),
+      "Frontmatter",
+      "Links",
+      "Drafts",
+      "ContentIndex",
+      "Fonts",
+    ].map(normalizePluginName),
+  )
   const withBuiltins = <T>(
     builtins: { order: number; instance: unknown }[],
-    instances: { order: number; instance: T }[],
+    instances: OrderItem<T>[],
   ): T[] =>
-    [...builtins, ...instances]
-      .map((item, index) => ({ ...item, index }))
-      .sort((a, b) => a.order - b.order || a.index - b.index)
-      .map((item) => item.instance as T)
+    orderPlugins(
+      [
+        ...builtins.map(({ order, instance }) => {
+          const name = (instance as { name: string }).name
+          return { order, instance: instance as T, label: name, names: [name] }
+        }),
+        ...instances,
+      ],
+      knownPluginNames,
+    )
 
   const plugins: PluginTypes = {
     transformers: withBuiltins(
@@ -760,7 +798,7 @@ export async function loadQuartzConfig(
       ),
     ],
     pageTypes: [
-      ...(await instantiate(pageTypes, "pageType")).map((item) => item.instance),
+      ...orderPlugins(await instantiate(pageTypes, "pageType"), knownPluginNames),
       ...builtinPageTypes,
     ],
   }
@@ -1175,7 +1213,7 @@ export function buildQuartzLayout(
  * the renderer's layout is updated in place with the overrides applied.
  */
 export async function loadQuartzLayout(layoutOverrides?: LayoutOverrides): Promise<QuartzLayout> {
-  const json = readPluginsJson()
+  const json = await readPluginsJson()
 
   if (!json) {
     // Fallback: import old-style layout directly

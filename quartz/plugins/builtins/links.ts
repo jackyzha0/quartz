@@ -15,6 +15,8 @@ import {
   resolveRelative,
   simplifySlug,
   slugifyFilePath,
+  applySlugOptions,
+  getSlugOptions,
   splitAnchor,
   stripSlashes,
   transformLink,
@@ -152,6 +154,28 @@ export function markLinksToRemovedPages(
 /** The Links instance marks links to removed pages after filtering (see build.ts). */
 export type LinksInstance = QuartzTransformerPluginInstance & { marksBrokenLinks: boolean }
 
+/**
+ * Link targets are written as in the vault (`[[Čeština]]`, `../české/x.png`). With
+ * `configuration.slugs.stripDiacritics` the pages and files they point at have stripped slugs,
+ * so the path part of the target is stripped the same way before it is resolved (wikilinks
+ * from obsidian-flavored-markdown are slugged with the plain rules first). The `#anchor` is
+ * left alone: heading ids keep their diacritics.
+ */
+function slugOptionsOnLinkPath(raw: string): string {
+  if (!getSlugOptions().stripDiacritics) return raw
+  const hash = raw.indexOf("#")
+  const linkPath = hash === -1 ? raw : raw.slice(0, hash)
+  const anchor = hash === -1 ? "" : raw.slice(hash)
+  let decoded = linkPath
+  try {
+    decoded = decodeURI(linkPath)
+  } catch {
+    // not percent-encoded (or malformed): strip as written
+  }
+  const stripped = applySlugOptions(decoded)
+  return stripped === decoded ? raw : stripped + anchor
+}
+
 export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
   const opts = { ...linksDefaults, ...userOpts }
   const instance: LinksInstance = {
@@ -178,7 +202,7 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
               : fileSlug
             const rebase = targets.size > 0 || pathSlug !== fileSlug
             const resolveLink = (raw: string): RelativeURL => {
-              const rel = transformLink(pathSlug, raw, transformOptions)
+              const rel = transformLink(pathSlug, slugOptionsOnLinkPath(raw), transformOptions)
               if (!rebase) return rel
               const hash = rel.indexOf("#")
               const anchor = hash === -1 ? "" : rel.slice(hash)
