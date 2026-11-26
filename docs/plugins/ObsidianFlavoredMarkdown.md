@@ -22,10 +22,11 @@ This plugin accepts the following configuration options:
 - `strictLineBreaks`: Obsidian's "Strict line breaks" setting. `false` (the default under `preset: "legacy"`) renders a single line break inside a paragraph as a `<br>`, as in Obsidian's default reading view. `true` (the default under `preset: "strict"`) renders it as a space, as CommonMark does. This replaces the deprecated [[HardLineBreaks]] plugin.
 - `comments`: If `true` (default), enables parsing of `%%` style Obsidian comment blocks.
 - `highlight`: If `true` (default), enables parsing of `==` style highlights within content. A highlight that starts with a colour emoji (🔴 🟠 🟡 🟢 🔵 🟣, or the matching squares) is coloured as in Obsidian 1.14, e.g. `==🔴 urgent==`.
+- `math`: If `true` (default), parses `$inline$` and `$$display$$` math. With `false`, dollar signs stay text (`cost of $2-$3`), for sites without math.
 - `wikilinks`: If `true` (default), turns [[wikilinks]] into regular links.
 - `callouts`: If `true` (default), adds support for [[callouts|callout]] blocks for emphasizing content.
 - `mermaid`: If `true` (default), enables [[Mermaid diagrams|Mermaid diagram]] parsing within Markdown files.
-- `diagramRenderer`: `"mermaid"` (default) or `"pele"`. Which engine draws Mermaid fences. [Pele](https://pele.run) is opt-in; Mermaid.js is deprecated.
+- `diagramRenderer`: `"pele"` (default) or `"mermaid"`. Which engine draws Mermaid fences: [Pele](https://pele.run), as in Obsidian, or the deprecated Mermaid.js.
 - `parseTags`: If `true` (default), parses and links tags within the content.
 - `parseBlockReferences`: If `true` (default), handles block references, linking to specific content blocks.
 - `enableInHtmlEmbed`: If `true`, allows embedding of content directly within HTML. Defaults to `false`.
@@ -34,6 +35,7 @@ This plugin accepts the following configuration options:
 - `enableVideoEmbed`: If `true` (default), enables the embedding of video files.
 - `enableCheckbox`: If `true`, adds support for interactive checkboxes in content, including custom task characters (e.g. `- [?]`, `- [!]`, `- [/]`). Defaults to `false`; the default `quartz.config.yaml` turns it on.
 - `enableObsidianUri`: If `true` (default), marks `obsidian://` protocol links with a CSS class and data attribute for custom styling.
+- `markdownEmbeds`: If `true` (default), a note, canvas or base embedded with a Markdown link (`![](note.md#Section)`, `![](note)`, `![alt](board.canvas)`, `![](projects.base)`) is transcluded like `![[note#Section]]`, as in Obsidian (which writes embeds this way when its `Use [[Wikilinks]]` setting is off), instead of shown as a broken image. The link resolves like any Markdown link, by `configuration.links.markdownLinkResolution`.
 - `blockWrappers`: If `true` (default), wraps each top-level block in the `div` Obsidian puts it in (`div.el-p > p`), which Obsidian themes space blocks with. No visible change without a theme.
 - `foldHeadings`: If `true`, headings fold as in Obsidian's reading view ("Fold heading"): an arrow before each heading, shown on hover, hides everything up to the next heading of the same or a higher level. Defaults to `false`.
 - `foldLists`: If `true`, list items with a sublist fold as in Obsidian's reading view ("Fold indent"): an arrow before the item, shown on hover, hides its sublist. Defaults to `false`.

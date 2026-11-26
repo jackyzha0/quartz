@@ -6,7 +6,7 @@ tags:
 
 Quartz supports [Mermaid](https://mermaid.js.org) for diagrams and charts in your notes (flow charts, sequence diagrams, timelines, and so on). This is part of [[Obsidian compatibility]] and can be turned on or off on that plugin.
 
-Default renderer is Mermaid.js. Set `diagramRenderer: pele` on [[ObsidianFlavoredMarkdown]] to use [Pele](https://pele.run) instead. Mermaid.js is deprecated; Pele will become the default later.
+Diagrams are drawn with [Pele](https://pele.run), as in Obsidian 1.15 (since [[ObsidianFlavoredMarkdown]] 2.4 / Quartz 5.3), inside a `<div class="mermaid">`. Set `diagramRenderer: mermaid` on ObsidianFlavoredMarkdown to use the deprecated Mermaid.js instead.
 
 > [!note]
 > In the default config [[ObsidianFlavoredMarkdown]] (`order: 40`) runs after [[SyntaxHighlighting]] (`order: 20`). If Mermaid diagrams don't show up and you changed either `order`, restore that sequence.
@@ -16,7 +16,7 @@ plugins:
   - source: "@quartz-community/obsidian-flavored-markdown"
     options:
       mermaid: true
-      diagramRenderer: pele # default: mermaid
+      diagramRenderer: pele # or mermaid (deprecated)
 ```
 
 Both renderers only load on pages that contain a Mermaid diagram. Pele is served from your own site (Quartz 5.1+) and only downloads the code for the diagram types on the page; on older Quartz versions it is loaded from jsDelivr. Mermaid.js is always loaded from a CDN.

@@ -7,6 +7,36 @@ aliases:
 
 Quartz 5 is a ground-up rearchitecture of Quartz focused on extensibility, performance, and Obsidian compatibility. If you're coming from v4, see [[migrating|Migrating to Quartz 5]] for the upgrade path.
 
+## New in 5.3
+
+Upgrading from 5.2? See [[upgrading#Upgrading from 5.2 to 5.3|Upgrading from 5.2 to 5.3]] for the changes you may notice.
+
+- **Accessibility** — the templates' colours meet WCAG AA contrast, and so does text in the table of contents, footer, folder and tag listings, search button and Bases group headings. The centre column is a `<main>` and the sidebars are `<aside>` elements, page listings no longer skip heading levels, and ARIA attributes and ids are valid in the table of contents, explorer, backlinks, heading anchors and Bases views.
+- **Faster pages** — component styles are one stylesheet (about 20 fewer render-blocking requests per page), the [[graph view]] loads d3 and PixiJS only when it is shown and opens five times faster on large sites, and KaTeX's stylesheet no longer blocks pages without math.
+- **Back and Forward** — with [[SPA Routing]], Back and Forward return to where you were on each page, and moving between headings of the same page only scrolls.
+- **Markup as in Obsidian** — [[ObsidianFlavoredMarkdown]] wraps each top-level block in Obsidian's `div.el-*` wrappers, renders [[Mermaid diagrams]] with Pele by default, and can fold headings and lists (`foldHeadings`, `foldLists`; on in the `obsidian` template). Transclusions use Obsidian's embed markup, a missing attachment reads "could not be found", and notes embedded with a Markdown link (`![](note.md#Section)`) are transcluded. Obsidian themes ([[ThemesCore]] 3.2) style all of these.
+- **Unresolved links** — links to pages that don't exist, or that a filter removed (drafts, [[ExplicitPublish]]), get the `broken` class, as Obsidian marks unresolved links (`links.disableBrokenWikilinks` is on by default). See [[CrawlLinks]].
+- **Extending a configuration** (experimental) — `extends: default` in `quartz.config.yaml` keeps only your changes to the default configuration; it also takes a path or an `https://` URL. Plugin entries can declare `before:` / `after:` other plugins. See [[configuration#Extending the default configuration]].
+- **Slugs without accents** — `configuration.slugs.stripDiacritics` publishes `české/čeština.md` at `/ceske/cestina`. See [[configuration#General Configuration]].
+- **Layout conditions** — `is-index` (home page), `is-folder-index`, and `not-<condition>` for any condition (`not-has-tags`). See [[layout#Conditional Rendering]].
+- **Explorer** 1.2 — sort from YAML with rules applied in sequence (`sort: [folder, { by: date, direction: desc }]`), several explorers on a page (`rootFolder`), and `order` in YAML. See [[plugins/Explorer|Explorer]].
+- **Plugin options** — [[GitHubFlavoredMarkdown]]: `singleTilde` and `replacements` (for example Quartz 4's arrows); [[ObsidianFlavoredMarkdown]]: `math`; [[CanvasPage]]: the wheel and trackpad pan the canvas as in Obsidian, and text nodes render with the site's Markdown plugins (Mermaid, callouts, math).
+- **Link previews and search engines** — each page has a canonical link, and `og:url`, `og:type` and the article times are set as Open Graph readers expect.
+- **Content index** — `contentIndex.json` entries carry the page's `date`, for client-side components such as the explorer.
+- **Releases** — release tags are verified on GitHub, and each release publishes a versioned Docker image.
+
+## New in 5.2
+
+Upgrading from 5.1? See [[upgrading#Upgrading from 5.1 to 5.2|Upgrading from 5.1 to 5.2]].
+
+- **Obsidian themes** — [[ThemesCore]] 3.1 converts any Obsidian community theme at build time: name it as Obsidian lists it (`Minimal`, `AnuPpuccin`), or give a GitHub repository, a URL or a local `theme.css`. Style Settings exports and CSS snippets apply as in Obsidian.
+- **Fonts built in** — font loading is part of Quartz as `configuration.fonts` (formerly the Fonts plugin), including the interface font and per-heading fonts. See [[configuration#Fonts]].
+- **`quartz build --config <path>`** — read the configuration from another file, so it can live with your content and one Quartz install can build several sites.
+- **Bases** closer to Obsidian ([[BasesPage]] 1.5) — custom summaries, `html()`, `image()`, `icon()`, regular expressions and `file.backlinks` in formulas, `kanban` views, `groupOrder`, grouped lists and cards, and columns labelled with the property's name. Bases inside a transcluded note render, and links in bases follow `configuration.links`.
+- **Transclusions** — headings and footnotes inside a transclusion get ids unique on the page, and a heading transclusion holds only the footnotes it references.
+- **Permalinks on large sites** — notes with a `permalink` are published at it on sites of any size.
+- **Plugins** can be async and declare `renderTransforms`, so encrypted notes show their bases and transclusions once unlocked ([[EncryptedPages]]).
+
 ## New in 5.1
 
 Upgrading from 5.0? See [[upgrading#Upgrading from 5.0 to 5.1|Upgrading from 5.0 to 5.1]] for the steps and the changes you may notice.
