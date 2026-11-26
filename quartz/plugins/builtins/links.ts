@@ -116,21 +116,19 @@ export function linkTargetMissing(allSlugs: readonly string[], full: string): bo
 
 /** The `broken` mark added after filtering, so a later rebuild can take it off again. */
 const FILTERED_ATTR = "data-filtered"
+/** The `broken` mark for links to folder and tag pages that no page type generated. */
+const MISSING_ATTR = "data-missing"
 
 /**
- * Links are classified while the transformers run, before the filters decide what is
- * published, so a link to a page a filter removes (a draft, a page without `publish: true`)
- * still points at an address in `allSlugs` and is not marked `broken` — yet it 404s
- * (crawl-links#7). This runs after the filters: links in published pages whose target was
- * removed get the `broken` class and `data-filtered="<filter>"`. Links that were marked this
- * way and whose target is published again (watch mode) lose both. Returns the number of links
- * marked.
+ * The pages the filters removed (drafts, pages without `publish: true`, …) and their aliases,
+ * each with the filter that removed it. A folder's `index` note is left out: the folder may still
+ * get a generated folder page, which only the generated pages tell (markUnpublishedLinks).
  */
-export function markLinksToRemovedPages(
+export function removedPages(
   all: ProcessedContent[],
   published: ProcessedContent[],
   filteredBy: (slug: string) => string | undefined = () => "filter",
-): number {
+): Map<string, string> {
   const publishedSet = new Set(published)
   const live = new Set<string>()
   for (const item of published) {
@@ -146,34 +144,92 @@ export function markLinksToRemovedPages(
     const reason = filteredBy(data.slug) ?? "filter"
     // its aliases (and the file path of a page with a permalink) are gone with it
     for (const slug of [data.slug, ...(data.aliases ?? [])]) {
-      // a folder whose index note is removed still gets a generated folder page
       if (slug.endsWith("/index")) continue
       if (!live.has(slug) && !removed.has(slug)) removed.set(slug, reason)
     }
   }
+  return removed
+}
 
+/** Link targets that page types generate (folder pages, tag pages), unknown while transforming. */
+function isGeneratedTarget(slug: string): boolean {
+  return (
+    slug === "tags" || slug.startsWith("tags/") || (slug !== "index" && slug.endsWith("/index"))
+  )
+}
+
+/**
+ * Links are classified while the transformers run, before the filters decide what is
+ * published and before page types generate folder and tag pages, so two kinds of links that
+ * 404 are not marked `broken` then:
+ *
+ * - a link to a page a filter removes (a draft, a page without `publish: true`) still points at
+ *   an address in `allSlugs` (crawl-links#7): it gets `data-filtered="<filter>"`;
+ * - a link to a folder or tag page (see pageExists) that no page type generated — a folder whose
+ *   notes are all drafts or that holds only images, a tag no published page uses, any folder or
+ *   tag when folder-page / tag-page isn't installed: it gets `data-missing`.
+ *
+ * With `generated` (the slugs of the virtual pages, once page types ran) both are checked;
+ * without it only removed pages, and folder pages are assumed to exist. Links marked this way
+ * whose target is published again (watch mode) lose the mark; pages whose tree changed are added
+ * to `changed`, so watch mode re-emits them. Returns the number of links marked.
+ */
+export function markUnpublishedLinks(
+  published: ProcessedContent[],
+  removed: ReadonlyMap<string, string>,
+  generated?: ReadonlySet<string>,
+  changed?: Set<FullSlug>,
+): number {
+  const live = new Set<string>(generated ?? [])
+  for (const [, file] of published) {
+    if (file.data.slug) live.add(file.data.slug)
+    for (const alias of file.data.aliases ?? []) live.add(alias)
+  }
   let marked = 0
-  for (const [tree] of published) {
+  for (const [tree, file] of published) {
+    let touched = false
     visit(tree as Root, "element", (node: Element) => {
       if (node.tagName !== "a" || !node.properties) return
       const target = node.properties["data-slug"]
       if (typeof target !== "string") return
-      const classes = Array.isArray(node.properties.className)
-        ? (node.properties.className as string[])
-        : []
-      const reason = removed.get(target)
-      if (reason !== undefined) {
+      const props = node.properties
+      const classes = Array.isArray(props.className) ? (props.className as string[]) : []
+      let attr: string | undefined
+      let value = ""
+      // a parent tag's page is `tags/a/index`, served at `tags/a` too
+      if (!live.has(target) && !live.has(`${target}/index`)) {
+        const reason = removed.get(target)
+        if (reason !== undefined) [attr, value] = [FILTERED_ATTR, reason]
+        else if (generated && isGeneratedTarget(target)) attr = MISSING_ATTR
+      }
+      let cleared = false
+      for (const other of [FILTERED_ATTR, MISSING_ATTR]) {
+        if (other === attr || props[other] === undefined) continue
+        delete props[other]
+        cleared = touched = true
+      }
+      if (attr !== undefined) {
+        if (props[attr] !== value || !classes.includes("broken")) touched = true
         if (!classes.includes("broken")) classes.push("broken")
-        node.properties.className = classes
-        node.properties[FILTERED_ATTR] = reason
+        props.className = classes
+        props[attr] = value
         marked++
-      } else if (node.properties[FILTERED_ATTR] !== undefined) {
-        node.properties.className = classes.filter((c) => c !== "broken")
-        delete node.properties[FILTERED_ATTR]
+      } else if (cleared) {
+        props.className = classes.filter((c) => c !== "broken")
       }
     })
+    if (touched && changed && file.data.slug) changed.add(file.data.slug)
   }
   return marked
+}
+
+/** {@link removedPages} + {@link markUnpublishedLinks}, before page types ran. */
+export function markLinksToRemovedPages(
+  all: ProcessedContent[],
+  published: ProcessedContent[],
+  filteredBy: (slug: string) => string | undefined = () => "filter",
+): number {
+  return markUnpublishedLinks(published, removedPages(all, published, filteredBy))
 }
 
 /** The Links instance marks links to removed pages after filtering (see build.ts). */
