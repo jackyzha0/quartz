@@ -49,6 +49,42 @@ function makeComponentData(
 }
 
 describe("renderTranscludes", () => {
+  test("wraps transcluded content in Obsidian's embed markup", () => {
+    const root: Root = { type: "root", children: [makeTranscludeBlockquote("target")] }
+    const targetHtml: Root = {
+      type: "root",
+      children: [
+        {
+          type: "element",
+          tagName: "p",
+          properties: {},
+          children: [{ type: "text", value: "Target content" }],
+        },
+      ],
+    }
+    renderTranscludes(
+      root,
+      cfg,
+      "current" as FullSlug,
+      makeComponentData([makePageData("target", targetHtml)]) as QuartzComponentProps,
+      new Set<FullSlug>(["current" as FullSlug]),
+    )
+    const [title, content, link, embedLink] = (root.children[0] as Element).children as Element[]
+    assert.deepStrictEqual(title.properties.className, ["embed-title", "markdown-embed-title"])
+    assert.deepStrictEqual(content.properties.className, ["markdown-embed-content"])
+    const view = content.children[0] as Element
+    assert.deepStrictEqual(view.properties.className, [
+      "markdown-preview-view",
+      "markdown-rendered",
+    ])
+    assert.strictEqual((view.children[0] as Element).tagName, "p")
+    assert.deepStrictEqual(link.properties.class, ["internal", "internal-link", "transclude-src"])
+    // Obsidian's icon link to the note, after Quartz's (hidden unless a theme shows it).
+    assert.deepStrictEqual(embedLink.properties.className, ["markdown-embed-link"])
+    assert.strictEqual(embedLink.properties.href, link.properties.href)
+    assert.strictEqual((embedLink.children[0] as Element).tagName, "svg")
+  })
+
   test("resolves a single page transclusion", () => {
     const root: Root = {
       type: "root",
@@ -182,6 +218,43 @@ describe("renderTranscludes", () => {
     )
     assert.ok(secondText.includes("Details text"), "second header section should resolve")
     assert.ok(!secondText.includes("Circular transclusion"), "should not show circular warning")
+  })
+
+  test("a header transclusion finds headings inside Obsidian's block wrappers", () => {
+    const root: Root = {
+      type: "root",
+      children: [makeTranscludeBlockquote("target", "#details")],
+    }
+    const wrap = (tagName: string, properties: Element["properties"], value: string): Element => ({
+      type: "element",
+      tagName: "div",
+      properties: { className: [`el-${tagName}`] },
+      children: [{ type: "element", tagName, properties, children: [{ type: "text", value }] }],
+    })
+    const targetHtml: Root = {
+      type: "root",
+      children: [
+        wrap("h2", { id: "intro" }, "Intro"),
+        wrap("p", {}, "Intro text"),
+        wrap("h2", { id: "details" }, "Details"),
+        wrap("p", {}, "Details text"),
+        wrap("h2", { id: "after" }, "After"),
+        wrap("p", {}, "After text"),
+      ],
+    }
+
+    renderTranscludes(
+      root,
+      cfg,
+      "current" as FullSlug,
+      makeComponentData([makePageData("target", targetHtml)]) as QuartzComponentProps,
+      new Set<FullSlug>(["current" as FullSlug]),
+    )
+
+    const html = toHtml(root.children[0] as Element)
+    assert.ok(html.includes('<div class="el-p"><p>Details text</p></div>'), html)
+    assert.ok(!html.includes("Intro text"), "the slice starts at its heading")
+    assert.ok(!html.includes("After text"), "the slice ends at the next heading")
   })
 
   test("a header transclusion matches a heading's Obsidian-anchor alias", () => {

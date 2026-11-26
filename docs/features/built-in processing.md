@@ -33,7 +33,7 @@ configuration:
     openLinksInNewTab: false
     lazyLoad: false
     externalLinkIcon: true
-    disableBrokenWikilinks: false
+    disableBrokenWikilinks: true
   drafts:
     publish: false # true = publish drafts anyway (e.g. preview deployments)
   contentIndex:
