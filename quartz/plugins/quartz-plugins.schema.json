@@ -3,16 +3,54 @@
   "title": "Quartz Plugins Configuration Schema",
   "description": "Schema for validating quartz.config.yaml (and legacy quartz.plugins.json) configuration files",
   "type": "object",
-  "required": ["configuration", "plugins"],
   "additionalProperties": false,
+  "if": {
+    "required": ["extends"]
+  },
+  "then": {
+    "properties": {
+      "plugins": {
+        "items": {
+          "required": ["source"]
+        }
+      }
+    }
+  },
+  "else": {
+    "required": ["configuration", "plugins"],
+    "properties": {
+      "configuration": {
+        "required": ["pageTitle", "enableSPA", "locale", "theme"]
+      },
+      "plugins": {
+        "items": {
+          "required": ["source", "enabled"]
+        }
+      }
+    }
+  },
   "properties": {
     "$schema": {
       "type": "string",
       "description": "JSON Schema reference"
     },
+    "extends": {
+      "description": "Start from another config and apply this file on top: \"default\" (quartz.config.default.yaml) or a path relative to this file, or a list of them (later ones win). Objects merge key by key, other values replace, null removes a key; plugin entries match the base entry of the same plugin by name. Without extends, this file is the whole configuration.",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      ]
+    },
     "configuration": {
       "type": "object",
-      "required": ["pageTitle", "enableSPA", "locale", "theme"],
       "additionalProperties": false,
       "properties": {
         "pageTitle": {
@@ -374,7 +412,6 @@
       "description": "Array of plugin configurations",
       "items": {
         "type": "object",
-        "required": ["source", "enabled"],
         "additionalProperties": false,
         "properties": {
           "source": {
@@ -418,6 +455,36 @@
             "type": "number",
             "minimum": 0,
             "description": "Plugin execution order"
+          },
+          "before": {
+            "description": "Plugin name(s) this plugin must run before. Checked against order: between plugins with the same order it decides, a contradiction with order is an error.",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              }
+            ]
+          },
+          "after": {
+            "description": "Plugin name(s) this plugin must run after. Checked against order: between plugins with the same order it decides, a contradiction with order is an error.",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              }
+            ]
           },
           "options": {
             "type": "object",
