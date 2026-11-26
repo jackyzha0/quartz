@@ -720,6 +720,26 @@ ol.overflow {
   ul {
     padding-left: 1rem;
   }
+
+  // Obsidian's embed title (the note's title, for a whole-note embed), styled as the
+  // heading it replaces
+  > .markdown-embed-title {
+    font-family: var(--headerFont);
+    color: var(--dark);
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin: 2.25rem 0 1rem;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  // Obsidian's icon link to the embedded note, for Obsidian themes (whose styles show
+  // it); Quartz links to the original below the content instead
+  > .markdown-embed-link {
+    display: none;
+  }
 }
 
 .katex-display {
