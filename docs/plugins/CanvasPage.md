@@ -21,6 +21,8 @@ This plugin accepts the following configuration options:
 - `initialZoom`: The initial zoom level when the canvas is first displayed. Default: `1{:ts}`.
 - `minZoom`: The minimum zoom level allowed when zooming out. Default: `0.1{:ts}`.
 - `maxZoom`: The maximum zoom level allowed when zooming in. Default: `5{:ts}`.
+- `wheelBehavior`: What the mouse wheel and two-finger trackpad scroll do. `"pan"` (default) moves the canvas, as in Obsidian (Shift + wheel: sideways); Ctrl/Cmd + wheel and pinching zoom. `"zoom"`: the wheel always zooms.
+- `textNodeMarkdown`: How text nodes are rendered. `"site"` (default): with the site's own Markdown plugins, like a note. `"basic"`: plain CommonMark + GFM, with wikilinks and links to notes still resolved.
 
 ### Canvas Frame
 
@@ -43,7 +45,7 @@ layout:
 
 ### Features
 
-- **Text nodes**: Render Markdown content including headings, bold, italic, strikethrough, lists, links, and code blocks via [GFM](https://github.github.com/gfm/) support.
+- **Text nodes**: Rendered with the site's own Markdown plugins, like a note, as in Obsidian: wikilinks, callouts, [[Mermaid diagrams]], math, syntax highlighting and embedded notes (`![[Note#Section]]`). Tags in text nodes count as the canvas's tags, so they get tag pages.
 - **File nodes**: Link to other pages in your vault. Supports popover previews on hover.
 - **Link nodes**: Reference external URLs.
 - **Group nodes**: Visual grouping containers with optional labels and background colors.

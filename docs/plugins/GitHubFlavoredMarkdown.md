@@ -20,6 +20,8 @@ This plugin accepts the following configuration options:
 
 - `enableSmartyPants`: When true, enables typographic enhancements. Default is true.
 - `linkHeadings`: When true, gives headings their `id`s and adds a link to each heading. Default is true. Setting it to `false` also turns off heading ids, so links to headings (`[[page#Heading]]`) and section embeds no longer reach them (on pages with a [[table of contents]], TableOfContents still gives headings ids).
+- `singleTilde`: When true (default), text between single tildes (`~text~`) is struck through, as on GitHub. `false` strikes only `~~text~~`, as Obsidian does, so a `~` meaning "about" (`~20 W and (~€120)`) stays as written. Under [[ObsidianFlavoredMarkdown]]'s default `legacy` preset, which parses as Obsidian, single tildes never strike.
+- `replacements`: Text to replace as written, outside code and math, before SmartyPants; the longest match wins. Empty by default: neither GitHub nor Obsidian replaces anything. See [[#Arrows]].
 
 ### Default options
 
@@ -29,10 +31,33 @@ This plugin accepts the following configuration options:
   options:
     enableSmartyPants: true
     linkHeadings: true
+    singleTilde: true
+    replacements: {}
   order: 30
 ```
 
 This plugin must run before [[ObsidianFlavoredMarkdown]] (order `30` and `40` in the default config). If you set `order` on either plugin, keep this one first.
+
+## Arrows
+
+Quartz 4 turned typed arrows into arrow characters (`parseArrows`). Obsidian doesn't, so Quartz 5 leaves them as typed. To render them as Quartz 4 did:
+
+```yaml title="quartz.config.yaml"
+plugins:
+  - source: "@quartz-community/github-flavored-markdown"
+    options:
+      replacements:
+        "->": "→"
+        "-->": "⇒"
+        "=>": "⇒"
+        "==>": "⇒"
+        "<-": "←"
+        "<--": "⇐"
+        "<=": "⇐"
+        "<==": "⇐"
+```
+
+Text in code, inline code and math is left alone. Note that `<=` then also replaces a "less than or equal" written in prose.
 
 ## Heading ids
 

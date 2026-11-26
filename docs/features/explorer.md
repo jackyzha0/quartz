@@ -59,7 +59,70 @@ plugins:
       priority: 50
 ```
 
-For advanced options like custom sort, filter, and map functions, use the TS override in `quartz.ts`:
+### Sorting
+
+`sort` is a list of rules. Each folder's entries are sorted by the first rule; entries it considers equal are sorted by the next one, and so on. A rule is `{ by: <key>, direction: asc | desc }` (`direction` defaults to `asc`), or just the key. As in [[Bases]] views, `direction` may also be written `ASC` / `DESC`, and `by` as `property`.
+
+| `by`     | Sorts by                                                                                                                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `folder` | Folders before files (`desc`: files before folders)                                                                                                                                                    |
+| `title`  | The displayed name (the page title), in natural order: `Note 2` before `Note 10`, case-insensitive                                                                                                     |
+| `name`   | The file or folder name, whatever the title or `mapFn` (e.g. numbered names: `10 Research`)                                                                                                            |
+| `date`   | The page's date, as `defaultDateType` picks it (created, modified or published). A folder's date is its index page's date when that page sets one in its frontmatter, else the date of its newest page |
+| `tag`    | The page's tags in the order they are written: first tags compared, then second tags when those are equal, and so on. With `firstTagOnly: true`, only the first tags                                   |
+
+Entries without a date or tags come after the others, in either direction. The default is `[folder, title]`. Newest first, folders still on top:
+
+```yaml title="quartz.config.yaml"
+plugins:
+  - source: "@quartz-community/explorer"
+    enabled: true
+    options:
+      sort:
+        - folder
+        - { by: date, direction: desc }
+        - title
+```
+
+Grouped by first tag, newest first within a tag:
+
+```yaml
+sort:
+  - by: tag
+    firstTagOnly: true
+  - by: date
+    direction: desc
+```
+
+A `sortFn` set in `quartz.ts` replaces `sort`. Sorting runs at the `sort` step of `order`, so with the default order it sees the names `mapFn` set. `order: [filter, sort, map]` sorts by the original names, for example to strip [Johnny.Decimal](https://johnnydecimal.com/) prefixes in `mapFn` while keeping the numbered order.
+
+### Several explorers
+
+List the plugin once per explorer, each entry with its own options and layout. `rootFolder` shows only one folder's contents (a folder path as in your vault, or its slug):
+
+```yaml title="quartz.config.yaml"
+plugins:
+  - source: "@quartz-community/explorer"
+    enabled: true
+    layout:
+      position: left
+      priority: 50
+  - source: "@quartz-community/explorer"
+    enabled: true
+    options:
+      title: Notes
+      rootFolder: Notes/Daily Notes
+    layout:
+      position: left
+      priority: 55
+      display: desktop-only # one menu button on phones
+```
+
+Opened folders are remembered per folder, so a folder shown in both explorers is open or closed in both; scroll positions are kept per explorer. Options set in a TypeScript override apply to every entry.
+
+### Custom functions
+
+For custom sort, filter, and map functions, use the TS override in `quartz.ts`:
 
 ```ts title="quartz.ts"
 import { loadQuartzConfig, loadQuartzLayout } from "./quartz/plugins/loader/config-loader"
@@ -100,7 +163,8 @@ Want to customize it even more?
 
 - Removing explorer: remove the `explorer` entry from `quartz.config.yaml` or set `enabled: false`
   - (optional): After removing the explorer component, you can move the [[table of contents | Table of Contents]] component back to the `left` part of the layout
-- Changing `sort`, `filter` and `map` behavior: explained in [[#Advanced customization]]
+- Changing the sort order: [[#Sorting]]
+- Custom `sort`, `filter` and `map` functions: explained in [[#Advanced customization]]
 
 ## Advanced customization
 
@@ -122,8 +186,12 @@ export type ContentDetails = {
   links: SimpleSlug[]
   tags: string[]
   content: string
+  date?: string // ISO 8601, the date `defaultDateType` picks (Quartz 5.3+)
+  dateFromFrontmatter?: true // the date is set in the page's frontmatter (Quartz 5.3+)
 }
 ```
+
+To sort by date, use `sort: [{ by: date, direction: desc }]` (see [[#Sorting]]), or compare `a.data?.date` in a `sortFn`.
 
 Every function you can pass is optional. By default, only a `sort` function will be used:
 
@@ -167,24 +235,25 @@ These examples show the basic usage of `sort`, `map` and `filter`.
 
 ### Use `sort` to put files first
 
-Using this example, the explorer will alphabetically sort everything.
+Files before folders, everything by title:
 
 ```yaml title="quartz.config.yaml"
 plugins:
   - source: "@quartz-community/explorer"
     enabled: true
     options:
-      # Simple options go in YAML
-      title: Explorer
-      folderDefaultState: collapsed
+      sort:
+        - { by: folder, direction: desc }
+        - title
 ```
 
-Custom sort functions require the TS override:
+The same with a sort function in the TS override:
 
 ```ts title="quartz.ts (override)"
 ExternalPlugin.Explorer({
   sortFn: (a, b) => {
-    return a.displayName.localeCompare(b.displayName)
+    if (a.isFolder === b.isFolder) return a.displayName.localeCompare(b.displayName)
+    return a.isFolder ? 1 : -1
   },
 })
 ```
@@ -203,7 +272,7 @@ ExternalPlugin.Explorer({
 ```
 
 > [!note]
-> The `mapFn`, `filterFn`, and `sortFn` options require JavaScript callback functions and cannot be expressed in YAML. Use the TS override for these.
+> The `mapFn`, `filterFn`, and `sortFn` options require JavaScript callback functions and cannot be expressed in YAML. Use the TS override for these. Sorting by folder, title, name, date or tag needs no code: see [[#Sorting]].
 
 ### Remove list of elements (`filter`)
 

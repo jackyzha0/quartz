@@ -28,6 +28,68 @@ npx quartz plugin install --latest
 
 See the [[upgrade|CLI reference for upgrade]] for more details on available flags.
 
+## Upgrading from 5.2 to 5.3
+
+Quartz 5.3 needs **Node.js 22.22 or later**. Then upgrade as usual:
+
+```bash
+npx quartz upgrade
+npx quartz plugin install --latest
+```
+
+### Changes you may notice
+
+- **Unresolved links**: `configuration.links.disableBrokenWikilinks` is now on by default. Links to pages that don't exist get the `broken` class and are styled as unresolved, as in Obsidian. Links to pages a filter removes (drafts, unpublished notes) are marked the same way, with `data-filtered="<filter>"`. Set `links.disableBrokenWikilinks: false` to style them as before.
+- **Mermaid diagrams** render with [Pele](https://pele.run) by default, as in Obsidian, inside a `<div class="mermaid">` rather than a code block. Set `diagramRenderer: mermaid` on [[ObsidianFlavoredMarkdown]] to keep Mermaid.js. See [[Mermaid diagrams]].
+- **Block wrappers**: each top-level block of a note is wrapped in the `div` Obsidian puts it in (`div.el-p > p`, `div.el-h2 > h2`). Custom CSS that selects a page's blocks as direct children (`article > p`) no longer matches. Select them without `>`, or set `blockWrappers: false` on ObsidianFlavoredMarkdown.
+- **Transclusions** use Obsidian's embed markup: the title of a whole-note embed is a `div.markdown-embed-title` (it was an `h1`), and the content is in `div.markdown-embed-content`. It looks the same without a theme. Custom CSS for transclusions may need new selectors.
+- **Page structure**: the centre column is a `<main>` (it was a `div`; the `center` class is unchanged) and the default frame's sidebars are `<aside>` elements. Page listings use `h2` titles (they were `h3`) at the same size. Footnote links keep the `internal` class but no longer have `internal-link`.
+- **Colours**: the templates' `gray` and `tertiary` colours meet WCAG AA contrast. Your site keeps the colours in its own `quartz.config.yaml`. To adopt the new ones, set them under `configuration.theme.colors`:
+
+  ```yaml title="quartz.config.yaml"
+  configuration:
+    theme:
+      colors:
+        lightMode:
+          gray: "#727272" # was #b8b8b8
+          tertiary: "#587971" # was #84a59d
+        darkMode:
+          gray: "#7f7f7f" # was #646464
+  ```
+
+- **Folding**: the `obsidian` template folds headings and lists. Other sites can turn it on with `foldHeadings` and `foldLists` on ObsidianFlavoredMarkdown.
+- **Stylesheets**: component styles are one `component-<hash>.css` file instead of one per component. The styles are unchanged.
+- **Frontmatter** is read as YAML 1.2. Frontmatter with only comments has no properties, as in Obsidian, instead of being reported as invalid.
+- **Custom TypeScript**: type checking (`npm run check`) uses TypeScript 7 with `moduleResolution: bundler`. Code that imports a package's internal files may need to import from the package itself.
+
+### New options
+
+- `extends` (experimental) and `before`/`after` on plugin entries. See [[configuration#Extending the default configuration]].
+- `configuration.slugs.stripDiacritics`. See [[configuration#General Configuration]].
+- The layout conditions `is-index`, `is-folder-index` and `not-<condition>`. See [[layout#Conditional Rendering]].
+- [[plugins/Explorer|Explorer]]: `sort`, `rootFolder`, and `order` in YAML. [[GitHubFlavoredMarkdown]]: `singleTilde`, `replacements`. [[ObsidianFlavoredMarkdown]]: `math`, `markdownEmbeds`, `blockWrappers`, `foldHeadings`, `foldLists`. [[CanvasPage]]: `wheelBehavior`, `textNodeMarkdown`.
+
+See [[whats-new#New in 5.3|What's new in 5.3]] for everything else.
+
+## Upgrading from 5.1 to 5.2
+
+```bash
+npx quartz upgrade
+npx quartz plugin doctor --fix
+```
+
+`--fix` moves the Fonts plugin's entry (`@quartz-community/quartz-fonts`) into `configuration.fonts`, now that font loading is built in. Until you run it, the entry keeps working and is applied automatically.
+
+### Changes you may notice
+
+- **Themes**: [[ThemesCore]] 3 converts Obsidian themes at build time, so the `@quartz-themes/<theme>` packages are no longer needed. Theme ids from 2.x (`tokyo-night`) keep working. The `aspects`, `include`, `calloutStyle` and `fonts` options were removed.
+- **Callouts and transclusions** render as `<div>` elements, as in Obsidian (callouts were `<blockquote>`). Callout titles are in `.callout-title-inner` without a `<p>`. Custom CSS for either may need new selectors.
+- **Bases** columns are labelled with the property's name (`priority`, `file name`) instead of title case (`Priority`, `Name`). Set `propertyLabels: title` on [[BasesPage]] for the old labels.
+- **Permalinks** with `.` or `..` segments are ignored with a warning.
+- **Fonts**: configured `body`, `code` and `interface` fonts now apply under an Obsidian theme, and the interface and heading fonts are loaded from Google Fonts like the others.
+
+See [[whats-new#New in 5.2|What's new in 5.2]] for everything else.
+
 ## Upgrading from 5.0 to 5.1
 
 Run the upgrade, then let `plugin doctor` update your config:
