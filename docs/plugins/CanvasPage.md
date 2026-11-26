@@ -45,7 +45,7 @@ layout:
 
 ### Features
 
-- **Text nodes**: Rendered with the site's own Markdown plugins, like a note, as in Obsidian: wikilinks, callouts, [[Mermaid diagrams]], math and syntax highlighting. Embedded notes (`![[Note]]`) inside text nodes are not filled in.
+- **Text nodes**: Rendered with the site's own Markdown plugins, like a note, as in Obsidian: wikilinks, callouts, [[Mermaid diagrams]], math, syntax highlighting and embedded notes (`![[Note#Section]]`). Tags in text nodes count as the canvas's tags, so they get tag pages.
 - **File nodes**: Link to other pages in your vault. Supports popover previews on hover.
 - **Link nodes**: Reference external URLs.
 - **Group nodes**: Visual grouping containers with optional labels and background colors.
