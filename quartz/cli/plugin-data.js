@@ -158,6 +158,65 @@ export function readPluginsJson() {
   return data
 }
 
+/** Whether a config (as read from its file) extends another (`extends:` with at least one base). */
+export function configExtends(data) {
+  if (!isPlainObject(data)) return false
+  const value = data.extends
+  if (value === undefined || value === null) return false
+  return !Array.isArray(value) || value.length > 0
+}
+
+let configExtendsModule
+/**
+ * The build's `extends` implementation (quartz/plugins/loader/config-extends.ts), loaded through
+ * tsx only when a config uses `extends`, so the CLI merges exactly as the build does.
+ */
+export function loadConfigExtendsModule() {
+  configExtendsModule ??= import("tsx/esm/api").then(({ tsImport }) =>
+    tsImport("../plugins/loader/config-extends.ts", import.meta.url),
+  )
+  return configExtendsModule
+}
+
+/**
+ * The configuration the build uses: the config file with its `extends` applied. A config
+ * without `extends` is returned as read. Read-only commands (list, status, doctor, info,
+ * install, prune) use this; commands that edit the file keep using readPluginsJson(), which
+ * returns only what the user's file contains. Throws a clear error when a base can't be loaded.
+ */
+export async function resolveEffectiveConfig(data, configPath = resolveConfigPath()) {
+  if (!configExtends(data)) return data
+  const { resolveExtends } = await loadConfigExtendsModule()
+  return resolveExtends(data, configPath)
+}
+
+/** readPluginsJson() with `extends` applied; reports a base that can't be loaded and returns null. */
+export async function readEffectivePluginsJson() {
+  const data = readPluginsJson()
+  try {
+    return await resolveEffectiveConfig(data)
+  } catch (err) {
+    console.error(`✗ ${path.basename(resolveConfigPath())}: ${String(err?.message ?? err)}`)
+    process.exitCode = 1
+    return null
+  }
+}
+
+/**
+ * Local files the config extends (directly or through other bases), for `--serve` to watch.
+ * Empty when it extends nothing or a base can't be loaded (the build reports that).
+ */
+export async function extendedConfigFiles() {
+  const data = readPluginsJson()
+  if (!configExtends(data)) return []
+  try {
+    const { localExtendsFiles } = await loadConfigExtendsModule()
+    return await localExtendsFiles(data, resolveConfigPath())
+  } catch {
+    return []
+  }
+}
+
 /** Path of the config file the CLI reads from (may be a default/legacy file). */
 export function getConfigReadPath() {
   return resolveConfigPath()

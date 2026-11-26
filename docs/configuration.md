@@ -50,8 +50,11 @@ plugins:
 - Plugins run in `order` as before. Your file can change a default plugin's `order`. Where two plugins have the same order, the base config's list order decides, and added plugins come last.
 - Your updates to `quartz.config.default.yaml` (for example after `npx quartz upgrade`) reach your site without copying them over.
 
+- `npx quartz build --serve` also rebuilds when a local file your config extends changes.
+- `npx quartz plugin` commands and `npx quartz info` read the merged configuration, as the build does: `plugin list`, `status`, `doctor`, `install` and `prune` see the plugins your bases configure. Commands that change plugins only ever write your own file, never the merged result: `enable`, `disable` and `config --set` add or change your entry for the plugin (`- source: …` with just that change), `config --unset` removes your value and, when a base sets the option, sets it to `null` so the plugin's default applies, and `add` appends a full entry. `remove` refuses a plugin that a base configures (it can't be removed from your file); disable it instead.
+
 > [!warning] Experimental
-> `npx quartz plugin` commands that edit plugin entries (`enable`, `disable`, `config`, …) only see the entries in your own file so far. Edit an extending `quartz.config.yaml` by hand.
+> `extends` is experimental: the merge rules may still change.
 
 ## General Configuration
 

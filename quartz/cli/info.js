@@ -23,6 +23,7 @@ import { builtinKeyFor, describeBuiltins } from "./builtin-migration.js"
 import { shortPluginName } from "./plugin-validation.js"
 import {
   readConfigWithDiagnostics,
+  resolveEffectiveConfig,
   readLockfile,
   extractPluginName,
   formatSource,
@@ -56,10 +57,18 @@ function readPackage(dir) {
   }
 }
 
-export function collectInfo(root = process.cwd()) {
+export async function collectInfo(root = process.cwd()) {
   const version = readQuartzVersion(root)
   const checkout = describeQuartzCheckout(root)
   const config = readConfigWithDiagnostics()
+  // with `extends`, the merged configuration the build uses
+  if (config.data && !config.error) {
+    try {
+      config.data = await resolveEffectiveConfig(config.data, config.path)
+    } catch (err) {
+      config.error = `extends: ${String(err?.message ?? err)}`
+    }
+  }
   const lockfile = readLockfile()
   const entries = Array.isArray(config.data?.plugins) ? config.data.plugins : []
 
@@ -176,7 +185,7 @@ export function formatInfoMarkdown(info) {
 }
 
 export async function handleInfo({ json = false } = {}) {
-  const info = collectInfo()
+  const info = await collectInfo()
   if (json) {
     console.log(JSON.stringify(info, null, 2))
     return
