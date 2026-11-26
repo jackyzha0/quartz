@@ -46,10 +46,10 @@ export const legacyCrawlLinksDefaults: Partial<LinksConfig> = {
   markdownLinkResolution: "absolute",
 }
 
-const isAbsolute = isAbsoluteUrl as (url: string, options?: { httpOnly?: boolean }) => boolean
 // As in Obsidian: a URL with a scheme (`x:y`, but not `../x:y`), or a link whose path is not valid
 // percent-encoding (`%zz`, `a%E2.md`), which names no file
-const isExternalUrl = (url: string) => isAbsolute(url, { httpOnly: false }) || !linkPathDecodes(url)
+const isExternalUrl = (url: string) =>
+  isAbsoluteUrl(url, { httpOnly: false }) || !linkPathDecodes(url)
 // An href percent-decoded, to compare with link text; left as it is when it does not decode
 const decodedHref = (href: string) => {
   try {
@@ -129,8 +129,17 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
                 let dest = node.properties.href as RelativeURL
                 const classes = (node.properties.className ?? []) as string[]
                 const isExternal = isExternalUrl(dest)
+                // Footnote anchors aren't note links: Obsidian gives them `footnote-link`,
+                // never `internal-link`, whose link styles would override theirs.
+                const isFootnote =
+                  node.properties.dataFootnoteRef !== undefined ||
+                  node.properties.dataFootnoteBackref !== undefined
                 classes.push(
-                  ...(isExternal ? ["external", "external-link"] : ["internal", "internal-link"]),
+                  ...(isExternal
+                    ? ["external", "external-link"]
+                    : isFootnote
+                      ? ["internal"]
+                      : ["internal", "internal-link"]),
                 )
 
                 if (isExternal && opts.externalLinkIcon) {

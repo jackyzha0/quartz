@@ -223,6 +223,23 @@ describe("frontmatter built-in", () => {
     )
   })
 
+  test("reads YAML frontmatter with YAML 1.2's core schema, as Obsidian does", () => {
+    const data = readFrontmatterData(
+      "---\ntitle: Hello world\ndate: 2024-01-02\ndraft: True\nn: 012\nnone: ~\nratio: .5\nalias: yes\n---\n",
+    )
+    assert.deepStrictEqual(data, {
+      title: "Hello world",
+      date: "2024-01-02",
+      draft: true,
+      n: 12,
+      none: null,
+      ratio: 0.5,
+      alias: "yes",
+    })
+    // a block without a document holds no properties
+    assert.deepStrictEqual(readFrontmatterData("---\n# only a comment\n---\nbody\n"), {})
+  })
+
   test("refuses JavaScript frontmatter instead of executing it", async () => {
     const g = globalThis as { __quartzFrontmatterRan?: boolean }
     delete g.__quartzFrontmatterRan
@@ -335,6 +352,21 @@ describe("links built-in", () => {
     assert.strictEqual(sibling.properties.href, "./folder/sibling") // relative to the file
     assert.strictEqual(img.properties.src, "./folder/img.png")
     assert.deepStrictEqual(file.data.links?.sort(), ["folder/sibling", "t"])
+  })
+
+  test("footnote anchors stay internal without Obsidian's note-link class", () => {
+    const fn = (props: Record<string, unknown>): Element => ({
+      type: "element",
+      tagName: "a",
+      properties: { href: "#user-content-fn-1", ...props },
+      children: [{ type: "text", value: "1" }],
+    })
+    const { els } = run([fn({ dataFootnoteRef: "" }), fn({ dataFootnoteBackref: "" })])
+    for (const el of els.filter((e) => e.tagName === "a")) {
+      const classes = el.properties.className as string[]
+      assert.ok(classes.includes("internal"))
+      assert.ok(!classes.includes("internal-link"))
+    }
   })
 
   test("makes internal links relative, records outgoing links, marks external ones", () => {
