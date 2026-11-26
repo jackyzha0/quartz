@@ -150,6 +150,18 @@ export function prepareContentIndex(ctx: BuildCtx, content: ProcessedContent[]):
   return index
 }
 
+/**
+ * Pages without a date get the build time, so RSS and the sitemap keep working as before.
+ * Those stand-in dates are remembered here and not written to contentIndex.json, where a
+ * build-time date would look like a real one to client-side sorting (explorer, recent notes).
+ */
+const buildTimeDates = new WeakSet<Date>()
+function buildTimeDate(): Date {
+  const date = new Date()
+  buildTimeDates.add(date)
+  return date
+}
+
 /** Build the index from processed content (also used by tests and potentially other emitters). */
 export function buildContentIndex(
   ctx: BuildCtx,
@@ -176,7 +188,7 @@ export function buildContentIndex(
         options.rssFullHtml && data.encrypted !== true
           ? escapeHTML(toHtml(tree as Root, { allowDangerousHtml: true }))
           : undefined,
-      date: getDate(data as Parameters<typeof getDate>[0]) ?? new Date(),
+      date: getDate(data as Parameters<typeof getDate>[0]) ?? buildTimeDate(),
       description: (data.description as string | undefined) ?? "",
     }
     index.set(slug, applyContentIndexExtensions(ctx, extensions, entry, data))
@@ -240,13 +252,17 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndexMap, limit?:
   </rss>`
 }
 
-/** Entries as written to contentIndex.json (date and description are RSS/sitemap-only). */
+/**
+ * Entries as written to contentIndex.json. `date` is the page's date (the one
+ * `defaultDateType` selects, as shown by ContentMeta and used by RSS) as an ISO 8601 string,
+ * left out for pages without a date. `description` is RSS-only.
+ */
 export function serializeContentIndex(idx: ContentIndexMap): string {
   const simplified = Object.fromEntries(
-    Array.from(idx).map(([slug, { date: _date, description: _description, ...rest }]) => [
-      slug,
-      rest,
-    ]),
+    Array.from(idx).map(([slug, { date, description: _description, ...rest }]) => {
+      const hasDate = date instanceof Date && !isNaN(date.getTime()) && !buildTimeDates.has(date)
+      return [slug, hasDate ? { ...rest, date: date.toISOString() } : rest]
+    }),
   )
   return JSON.stringify(simplified)
 }

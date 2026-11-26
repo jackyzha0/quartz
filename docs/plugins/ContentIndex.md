@@ -36,6 +36,10 @@ Options:
 > [!note]
 > An existing `@quartz-community/content-index` entry is applied to `configuration.contentIndex` automatically. Run `npx quartz plugin doctor --fix` to move it.
 
+## `contentIndex.json`
+
+Each entry of `static/contentIndex.json` is keyed by slug and holds `slug`, `filePath`, `title`, `links`, `tags` and `content` (the page's text), plus `date` when the page has one: the date selected by `defaultDateType` of [[CreatedModifiedDate]] (the same date [[ContentMeta]] shows and the RSS feed uses), as an ISO 8601 string such as `"2024-01-02T03:04:05.000Z"`. Client-side components can use it to sort by date, e.g. `new Date(entry.date)`.
+
 ## Adding fields
 
 Plugins can add their own fields to each entry of `contentIndex.json` with `extendContentIndex` — see [[making plugins#Extending the content index]].

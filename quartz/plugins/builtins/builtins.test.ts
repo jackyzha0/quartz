@@ -554,6 +554,19 @@ describe("content index built-in", () => {
     ])
   })
 
+  test("writes the page date to contentIndex.json as an ISO string (explorer#5)", () => {
+    const created = new Date("2024-01-02T03:04:05.000Z")
+    const modified = new Date("2025-06-07T08:09:10.000Z")
+    const dated = page("dated", { defaultDateType: "created", dates: { created, modified } })
+    const idx = buildContentIndex(ctxWith([]), [dated, page("undated")])
+    const json = JSON.parse(serializeContentIndex(idx))
+    assert.strictEqual(json.dated.date, "2024-01-02T03:04:05.000Z")
+    assert.ok(!("description" in json.dated))
+    // pages without a date keep the build-time stand-in for RSS, but not in the JSON
+    assert.ok(idx.get("undated" as FullSlug)!.date instanceof Date)
+    assert.ok(!("date" in json.undated))
+  })
+
   test("plugins add fields through extendContentIndex", () => {
     const ctx = ctxWith([
       {
