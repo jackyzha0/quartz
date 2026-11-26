@@ -643,6 +643,48 @@ describe("content index built-in", () => {
     }
   })
 
+  test("stand-in dates of the date plugin are not written to contentIndex.json", () => {
+    const now = new Date()
+    const published = new Date("2024-05-06T00:00:00")
+    const json = JSON.parse(
+      serializeContentIndex(
+        buildContentIndex(ctxWith([]), [
+          // created-modified-date >= 1.0.5 lists the dates it filled with the build time
+          page("marked", {
+            defaultDateType: "published",
+            dates: { created: now, modified: now, published: now },
+            fallbackDates: ["published"],
+          }),
+          // older versions don't: a published date only counts when frontmatter sets it
+          page("old", {
+            defaultDateType: "published",
+            frontmatter: { title: "OLD" },
+            dates: { created: now, modified: now, published: now },
+          }),
+          page("invalid", {
+            defaultDateType: "published",
+            frontmatter: { title: "INV", published: "not a date" },
+            dates: { created: now, modified: now, published: now },
+          }),
+          page("real", {
+            defaultDateType: "published",
+            frontmatter: { title: "REAL", published: "2024-05-06" },
+            dates: { created: now, modified: now, published },
+            fallbackDates: [],
+          }),
+          page("oldReal", {
+            defaultDateType: "published",
+            frontmatter: { title: "OR", published: "2024-05-06" },
+            dates: { created: now, modified: now, published },
+          }),
+        ]),
+      ),
+    )
+    for (const slug of ["marked", "old", "invalid"]) assert.ok(!("date" in json[slug]), slug)
+    assert.strictEqual(json.real.date, published.toISOString())
+    assert.strictEqual(json.oldReal.date, published.toISOString())
+  })
+
   test("plugins add fields through extendContentIndex", () => {
     const ctx = ctxWith([
       {

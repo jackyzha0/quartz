@@ -3,7 +3,7 @@ import fs from "node:fs/promises"
 import { Root } from "hast"
 import { toHtml } from "hast-util-to-html"
 import { styleText } from "util"
-import { getDate } from "@quartz-community/utils"
+import { dateIsFromFrontmatter as dateIsFromFrontmatterOfType, realDate } from "../../util/dates"
 import { ContentIndexConfig, GlobalConfiguration } from "../../cfg"
 import { BuildCtx } from "../../util/ctx"
 import { escapeHTML } from "../../util/escape"
@@ -152,7 +152,8 @@ export function prepareContentIndex(ctx: BuildCtx, content: ProcessedContent[]):
 }
 
 /**
- * Pages without a date get the build time, so RSS and the sitemap keep working as before.
+ * Pages without a date, or with one the date plugin filled in with the build time (its
+ * `fallbackDates`), get the build time, so RSS and the sitemap keep working as before.
  * Those stand-in dates are remembered here and not written to contentIndex.json, where a
  * build-time date would look like a real one to client-side sorting (explorer, recent notes).
  */
@@ -164,32 +165,19 @@ function buildTimeDate(): Date {
 }
 
 function entryDate(data: QuartzPluginData): Date {
-  const date = getDate(data as Parameters<typeof getDate>[0])
+  // a stand-in date of the date plugin (fallbackDates) is a build-time date as well
+  const date = realDate(data, data.defaultDateType as string | undefined)
   if (!date) return buildTimeDate()
   if (dateIsFromFrontmatter(data, date)) frontmatterDates.add(date)
   return date
 }
 
-const DATE_ONLY = /^\d{4}-\d{2}-\d{2}$/
-
 /**
  * Whether the page's `date` is the one its frontmatter sets for the configured date type
- * (`defaultDateType`: created / modified / published, after the frontmatter built-in's
- * aliases such as `date` or `lastmod`), rather than one from git or the file system. Compared
- * by value, so it holds whatever `priority` the date plugin uses. Date-only values
- * (`2024-01-02`) are local midnight, as the date plugin reads them.
+ * (`defaultDateType`). See util/dates.
  */
 export function dateIsFromFrontmatter(data: QuartzPluginData, date: Date | undefined): boolean {
-  if (!(date instanceof Date) || isNaN(date.getTime())) return false
-  const type = data.defaultDateType as string | undefined
-  const frontmatter = data.frontmatter as Record<string, unknown> | undefined
-  if (!type || !frontmatter) return false
-  let raw = frontmatter[type]
-  if (raw === undefined || raw === null || raw === "") return false
-  if (typeof raw === "string" && DATE_ONLY.test(raw)) raw = `${raw}T00:00:00`
-  if (!(raw instanceof Date) && typeof raw !== "string" && typeof raw !== "number") return false
-  const fromFrontmatter = new Date(raw)
-  return !isNaN(fromFrontmatter.getTime()) && fromFrontmatter.getTime() === date.getTime()
+  return dateIsFromFrontmatterOfType(data, date)
 }
 
 /** Pages whose date came from frontmatter (see dateIsFromFrontmatter). */

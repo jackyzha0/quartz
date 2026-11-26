@@ -4,6 +4,7 @@ import { CSSResourceToStyleElement, JSResourceToScriptElement } from "../util/re
 import { googleFontHref, googleFontSubsetHref } from "../util/theme"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { unescapeHTML } from "../util/escape"
+import { realDate } from "../util/dates"
 
 export default (() => {
   const Head: QuartzComponent = ({
@@ -39,12 +40,10 @@ export default (() => {
       fileData.relativePath !== undefined &&
       !fileData.slug!.endsWith("index") &&
       !fileData.slug!.startsWith("tags/")
-    const isoDate = (d: unknown) =>
-      d instanceof Date && !isNaN(d.getTime()) ? d.toISOString() : undefined
-    // Without a frontmatter date, the published date is only the build time.
-    const published =
-      isArticle && fileData.frontmatter?.published ? isoDate(fileData.dates?.published) : undefined
-    const modified = isArticle ? isoDate(fileData.dates?.modified) : undefined
+    // Real dates only: a date no source gave is the build time (see util/dates), and an
+    // invalid `published:` gives none.
+    const published = isArticle ? realDate(fileData, "published")?.toISOString() : undefined
+    const modified = isArticle ? realDate(fileData, "modified")?.toISOString() : undefined
 
     const usesCustomOgImage = ctx.cfg.plugins.emitters.some((e) => e.name === "CustomOgImages")
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
