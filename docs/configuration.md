@@ -23,6 +23,34 @@ layout:
 
 `configuration` and `plugins` are described below; the `layout` section (component groups, `byPageType` overrides, sidebar modes) is described in [[layout]].
 
+## Extending the default configuration
+
+Without a `quartz.config.yaml`, Quartz uses `quartz.config.default.yaml`. A `quartz.config.yaml` normally replaces it completely. With `extends`, your file can hold just the changes you make to another configuration instead:
+
+```yaml title="quartz.config.yaml"
+extends: default # quartz.config.default.yaml
+configuration:
+  pageTitle: "My Site"
+  baseUrl: example.com
+plugins:
+  - source: "@quartz-community/graph"
+    enabled: false # turn off a default plugin
+  - source: "@quartz-community/explorer"
+    options:
+      folderDefaultState: open # only this option changes
+  - source: github:me/my-plugin # a plugin the defaults don't have
+    enabled: true
+```
+
+- `extends` is `default`, a path to another config file relative to this one (which may itself extend another), or a list of those. Later entries in the list win.
+- `configuration` and `layout` merge key by key, including nested objects (`theme.colors.lightMode.secondary` changes only that colour). Any other value replaces the default: strings, numbers and lists such as `ignorePatterns` or `byPageType.<type>.exclude`. Setting a key to `null` removes it, so the built-in default applies.
+- A plugin entry changes the default entry for the same plugin, matched by name (`github:quartz-community/explorer` matches `@quartz-community/explorer`, and a fork with the same name replaces it). `enabled`, `order` and `source` replace the default values. `options` and `layout` merge like `configuration`, and `null` drops them so the plugin's own defaults apply. A plugin that is not in the base is added, and it needs `enabled: true` just as in a full config.
+- Plugins run in `order` as before. Your file can change a default plugin's `order`. Where two plugins have the same order, the base config's list order decides, and added plugins come last.
+- Your updates to `quartz.config.default.yaml` (for example after `npx quartz upgrade`) reach your site without copying them over.
+
+> [!warning] Experimental
+> `npx quartz plugin` commands that edit plugin entries (`enable`, `disable`, `config`, …) only see the entries in your own file so far. Edit an extending `quartz.config.yaml` by hand.
+
 ## General Configuration
 
 This part of the configuration concerns anything that can affect the whole site. The following is a list breaking down all the things you can configure:

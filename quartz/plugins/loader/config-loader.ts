@@ -61,6 +61,7 @@ import {
 import { collectPluginConfigWarnings, printPluginConfigWarnings } from "./option-validation"
 import { componentRegistry, RegisteredComponent } from "../../components/registry"
 import { frameRegistry } from "../../components/frames/registry"
+import { resolveExtends } from "./config-extends"
 import { getCondition, getAllConditionNames } from "./conditions"
 import {
   LAYOUT_SLOTS,
@@ -98,10 +99,12 @@ function readPluginsJson(): QuartzPluginsJson | null {
     return null
   }
   const raw = fs.readFileSync(configPath, "utf-8")
-  if (configPath.endsWith(".yaml") || configPath.endsWith(".yml")) {
-    return YAML.parse(raw) as QuartzPluginsJson
-  }
-  return JSON.parse(raw) as QuartzPluginsJson
+  const data =
+    configPath.endsWith(".yaml") || configPath.endsWith(".yml") ? YAML.parse(raw) : JSON.parse(raw)
+  // `extends:` (#2440): merge onto the base config; a config without it is used as written
+  return data && typeof data === "object" && "extends" in data
+    ? resolveExtends(data, configPath)
+    : (data as QuartzPluginsJson)
 }
 
 function extractPluginName(source: PluginSource): string {

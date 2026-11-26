@@ -5,6 +5,7 @@ import YAML from "yaml"
 import { installPlugins, parsePluginSource, regeneratePluginIndex } from "./gitLoader.js"
 import type { PluginSource, QuartzPluginsJson } from "./types.js"
 import { absorbingBuiltin } from "../builtins/index.js"
+import { resolveExtends } from "./config-extends.js"
 
 function resolveConfigPath(): string {
   if (process.env.QUARTZ_CONFIG_PATH) return path.resolve(process.env.QUARTZ_CONFIG_PATH)
@@ -24,10 +25,11 @@ function readPluginsJson(): QuartzPluginsJson | null {
   const configPath = resolveConfigPath()
   if (!fs.existsSync(configPath)) return null
   const raw = fs.readFileSync(configPath, "utf-8")
-  if (configPath.endsWith(".yaml") || configPath.endsWith(".yml")) {
-    return YAML.parse(raw)
-  }
-  return JSON.parse(raw)
+  const data =
+    configPath.endsWith(".yaml") || configPath.endsWith(".yml") ? YAML.parse(raw) : JSON.parse(raw)
+  return data && typeof data === "object" && "extends" in data
+    ? resolveExtends(data, configPath)
+    : data
 }
 
 async function getExternalPluginSources(): Promise<PluginSource[]> {
