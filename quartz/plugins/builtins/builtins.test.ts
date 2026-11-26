@@ -567,6 +567,44 @@ describe("content index built-in", () => {
     assert.ok(!("date" in json.undated))
   })
 
+  test("dateFromFrontmatter marks dates set in frontmatter for the configured type", () => {
+    const fmModified = new Date("2024-03-04T00:00:00") // local midnight, like the date plugin
+    const gitModified = new Date("2025-01-01T10:00:00.000Z")
+    const created = new Date("2020-01-01T00:00:00.000Z")
+    const fromFm = page("fm", {
+      defaultDateType: "modified",
+      frontmatter: { title: "FM", modified: "2024-03-04" },
+      dates: { created, modified: fmModified },
+    })
+    const fromGit = page("git", {
+      defaultDateType: "modified",
+      frontmatter: { title: "GIT", created: "2020-01-01T00:00:00.000Z" },
+      dates: { created, modified: gitModified },
+    })
+    // frontmatter has a date, but for another type than the configured one
+    const otherType = page("other", {
+      defaultDateType: "created",
+      frontmatter: { title: "O", modified: "2024-03-04" },
+      dates: { created: gitModified, modified: fmModified },
+    })
+    // frontmatter value lost to a higher-priority source (date differs)
+    const overridden = page("over", {
+      defaultDateType: "modified",
+      frontmatter: { title: "OV", modified: "2023-01-01" },
+      dates: { created, modified: gitModified },
+    })
+    const json = JSON.parse(
+      serializeContentIndex(
+        buildContentIndex(ctxWith([]), [fromFm, fromGit, otherType, overridden, page("undated")]),
+      ),
+    )
+    assert.strictEqual(json.fm.dateFromFrontmatter, true)
+    assert.strictEqual(json.fm.date, fmModified.toISOString())
+    for (const slug of ["git", "other", "over", "undated"]) {
+      assert.ok(!("dateFromFrontmatter" in json[slug]), slug)
+    }
+  })
+
   test("plugins add fields through extendContentIndex", () => {
     const ctx = ctxWith([
       {

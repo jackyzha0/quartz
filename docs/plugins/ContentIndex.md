@@ -38,7 +38,7 @@ Options:
 
 ## `contentIndex.json`
 
-Each entry of `static/contentIndex.json` is keyed by slug and holds `slug`, `filePath`, `title`, `links`, `tags` and `content` (the page's text), plus `date` when the page has one: the date selected by `defaultDateType` of [[CreatedModifiedDate]] (the same date [[ContentMeta]] shows and the RSS feed uses), as an ISO 8601 string such as `"2024-01-02T03:04:05.000Z"`. Client-side components can use it to sort by date, e.g. `new Date(entry.date)`.
+Each entry of `static/contentIndex.json` is keyed by slug and holds `slug`, `filePath`, `title`, `links`, `tags` and `content` (the page's text), plus `date` when the page has one: the date selected by `defaultDateType` of [[CreatedModifiedDate]] (the same date [[ContentMeta]] shows and the RSS feed uses), as an ISO 8601 string such as `"2024-01-02T03:04:05.000Z"`. Client-side components can use it to sort by date, e.g. `new Date(entry.date)`. When that date is the one the page's frontmatter sets for the configured date type (e.g. `modified:` / `lastmod:` with `defaultDateType: modified`), rather than one from git or the file system, the entry also has `dateFromFrontmatter: true`; otherwise the field is absent.
 
 ## Adding fields
 
