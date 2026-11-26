@@ -53,6 +53,7 @@ export const CORE_CONTENT_INDEX_FIELDS = new Set([
   "content",
   "richContent",
   "date",
+  "dateFromFrontmatter",
   "description",
 ])
 
@@ -150,6 +151,50 @@ export function prepareContentIndex(ctx: BuildCtx, content: ProcessedContent[]):
   return index
 }
 
+/**
+ * Pages without a date get the build time, so RSS and the sitemap keep working as before.
+ * Those stand-in dates are remembered here and not written to contentIndex.json, where a
+ * build-time date would look like a real one to client-side sorting (explorer, recent notes).
+ */
+const buildTimeDates = new WeakSet<Date>()
+function buildTimeDate(): Date {
+  const date = new Date()
+  buildTimeDates.add(date)
+  return date
+}
+
+function entryDate(data: QuartzPluginData): Date {
+  const date = getDate(data as Parameters<typeof getDate>[0])
+  if (!date) return buildTimeDate()
+  if (dateIsFromFrontmatter(data, date)) frontmatterDates.add(date)
+  return date
+}
+
+const DATE_ONLY = /^\d{4}-\d{2}-\d{2}$/
+
+/**
+ * Whether the page's `date` is the one its frontmatter sets for the configured date type
+ * (`defaultDateType`: created / modified / published, after the frontmatter built-in's
+ * aliases such as `date` or `lastmod`), rather than one from git or the file system. Compared
+ * by value, so it holds whatever `priority` the date plugin uses. Date-only values
+ * (`2024-01-02`) are local midnight, as the date plugin reads them.
+ */
+export function dateIsFromFrontmatter(data: QuartzPluginData, date: Date | undefined): boolean {
+  if (!(date instanceof Date) || isNaN(date.getTime())) return false
+  const type = data.defaultDateType as string | undefined
+  const frontmatter = data.frontmatter as Record<string, unknown> | undefined
+  if (!type || !frontmatter) return false
+  let raw = frontmatter[type]
+  if (raw === undefined || raw === null || raw === "") return false
+  if (typeof raw === "string" && DATE_ONLY.test(raw)) raw = `${raw}T00:00:00`
+  if (!(raw instanceof Date) && typeof raw !== "string" && typeof raw !== "number") return false
+  const fromFrontmatter = new Date(raw)
+  return !isNaN(fromFrontmatter.getTime()) && fromFrontmatter.getTime() === date.getTime()
+}
+
+/** Pages whose date came from frontmatter (see dateIsFromFrontmatter). */
+const frontmatterDates = new WeakSet<Date>()
+
 /** Build the index from processed content (also used by tests and potentially other emitters). */
 export function buildContentIndex(
   ctx: BuildCtx,
@@ -176,7 +221,7 @@ export function buildContentIndex(
         options.rssFullHtml && data.encrypted !== true
           ? escapeHTML(toHtml(tree as Root, { allowDangerousHtml: true }))
           : undefined,
-      date: getDate(data as Parameters<typeof getDate>[0]) ?? new Date(),
+      date: entryDate(data),
       description: (data.description as string | undefined) ?? "",
     }
     index.set(slug, applyContentIndexExtensions(ctx, extensions, entry, data))
@@ -240,13 +285,25 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndexMap, limit?:
   </rss>`
 }
 
-/** Entries as written to contentIndex.json (date and description are RSS/sitemap-only). */
+/**
+ * Entries as written to contentIndex.json. `date` is the page's date (the one
+ * `defaultDateType` selects, as shown by ContentMeta and used by RSS) as an ISO 8601 string,
+ * left out for pages without a date. `dateFromFrontmatter: true` is added when that date is the
+ * one the page's frontmatter sets for the date type (absent otherwise). `description` is
+ * RSS-only.
+ */
 export function serializeContentIndex(idx: ContentIndexMap): string {
   const simplified = Object.fromEntries(
-    Array.from(idx).map(([slug, { date: _date, description: _description, ...rest }]) => [
-      slug,
-      rest,
-    ]),
+    Array.from(idx).map(([slug, { date, description: _description, ...rest }]) => {
+      const hasDate = date instanceof Date && !isNaN(date.getTime()) && !buildTimeDates.has(date)
+      if (!hasDate) return [slug, rest]
+      return [
+        slug,
+        frontmatterDates.has(date)
+          ? { ...rest, date: date.toISOString(), dateFromFrontmatter: true }
+          : { ...rest, date: date.toISOString() },
+      ]
+    }),
   )
   return JSON.stringify(simplified)
 }

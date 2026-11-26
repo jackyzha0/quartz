@@ -592,6 +592,57 @@ describe("content index built-in", () => {
     ])
   })
 
+  test("writes the page date to contentIndex.json as an ISO string (explorer#5)", () => {
+    const created = new Date("2024-01-02T03:04:05.000Z")
+    const modified = new Date("2025-06-07T08:09:10.000Z")
+    const dated = page("dated", { defaultDateType: "created", dates: { created, modified } })
+    const idx = buildContentIndex(ctxWith([]), [dated, page("undated")])
+    const json = JSON.parse(serializeContentIndex(idx))
+    assert.strictEqual(json.dated.date, "2024-01-02T03:04:05.000Z")
+    assert.ok(!("description" in json.dated))
+    // pages without a date keep the build-time stand-in for RSS, but not in the JSON
+    assert.ok(idx.get("undated" as FullSlug)!.date instanceof Date)
+    assert.ok(!("date" in json.undated))
+  })
+
+  test("dateFromFrontmatter marks dates set in frontmatter for the configured type", () => {
+    const fmModified = new Date("2024-03-04T00:00:00") // local midnight, like the date plugin
+    const gitModified = new Date("2025-01-01T10:00:00.000Z")
+    const created = new Date("2020-01-01T00:00:00.000Z")
+    const fromFm = page("fm", {
+      defaultDateType: "modified",
+      frontmatter: { title: "FM", modified: "2024-03-04" },
+      dates: { created, modified: fmModified },
+    })
+    const fromGit = page("git", {
+      defaultDateType: "modified",
+      frontmatter: { title: "GIT", created: "2020-01-01T00:00:00.000Z" },
+      dates: { created, modified: gitModified },
+    })
+    // frontmatter has a date, but for another type than the configured one
+    const otherType = page("other", {
+      defaultDateType: "created",
+      frontmatter: { title: "O", modified: "2024-03-04" },
+      dates: { created: gitModified, modified: fmModified },
+    })
+    // frontmatter value lost to a higher-priority source (date differs)
+    const overridden = page("over", {
+      defaultDateType: "modified",
+      frontmatter: { title: "OV", modified: "2023-01-01" },
+      dates: { created, modified: gitModified },
+    })
+    const json = JSON.parse(
+      serializeContentIndex(
+        buildContentIndex(ctxWith([]), [fromFm, fromGit, otherType, overridden, page("undated")]),
+      ),
+    )
+    assert.strictEqual(json.fm.dateFromFrontmatter, true)
+    assert.strictEqual(json.fm.date, fmModified.toISOString())
+    for (const slug of ["git", "other", "over", "undated"]) {
+      assert.ok(!("dateFromFrontmatter" in json[slug]), slug)
+    }
+  })
+
   test("plugins add fields through extendContentIndex", () => {
     const ctx = ctxWith([
       {
