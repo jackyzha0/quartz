@@ -269,6 +269,35 @@ describe("frontmatter built-in", () => {
     )
   })
 
+  test("frontmatter Markdown links: parentheses, titles and escapes as CommonMark reads them (#2672)", () => {
+    assert.deepStrictEqual(
+      extractLinksFromValue([
+        "[b](<Note (2024).md>)",
+        '[c](<My Note.md> "t")',
+        "[d](notes/Note_(2024).md)",
+        "[e](other.md 'single')",
+        "[f](other.md (paren title))",
+        '[g](<a b.md>  "t" )',
+        "[h](a\\(1\\).md)",
+        "[i](./My Note.md)",
+        "[j](unclosed.md",
+        "two: [k](k.md) and [l](<l l.md>)",
+      ]),
+      [
+        "Note (2024).md",
+        "My Note.md",
+        "notes/Note_(2024).md",
+        "other.md",
+        "other.md",
+        "a b.md",
+        "a(1).md",
+        "./My Note.md",
+        "k.md",
+        "l l.md",
+      ],
+    )
+  })
+
   test("reads YAML frontmatter with YAML 1.2's core schema, as Obsidian does", () => {
     const data = readFrontmatterData(
       "---\ntitle: Hello world\ndate: 2024-01-02\ndraft: True\nn: 012\nnone: ~\nratio: .5\nalias: yes\n---\n",
