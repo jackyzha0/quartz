@@ -54,6 +54,11 @@ This part of the configuration concerns anything that can affect the whole site.
   - `"all"` (default): every file that isn't ignored.
   - `"referenced"`: only files a published page links to or embeds. Use this with [[ExplicitPublish]] or [[private pages|drafts]], so that files only unpublished notes use stay private.
   - Files that Quartz renders as pages themselves (e.g. `.base` and `.canvas` files) are never copied as raw assets.
+- `slugs`: how file paths become URLs.
+  - `stripDiacritics`: `true` strips accents and other diacritics from page, folder and file URLs, e.g. `české/čeština.md` is published at `/ceske/cestina` instead of `/české/čeština` (which browsers show as `%C4%8Desk%C3%A9/...` when copied). Off by default.
+    - Links keep working as written in your notes: `[[čeština]]`, `[[české/čeština#Nadpis]]` and embeds like `![[obrázek.png]]` resolve to the stripped addresses. Aliases and `permalink`s are stripped the same way. Heading anchors (`#Nadpis`) and tag pages keep their diacritics.
+    - Only combining accents (`á č é ů …`) are removed. Letters without a decomposition (`ø`, `ł`, `ß`, `æ`) and non-Latin scripts (Chinese, Japanese, Korean, Arabic, Devanagari, …) are kept as they are.
+    - Turning it on changes the URLs of existing pages; links shared elsewhere to the old addresses will 404 unless you add the old addresses as `aliases`.
 - `ignorePatterns`: a list of [glob](<https://en.wikipedia.org/wiki/Glob_(programming)>) patterns that Quartz should ignore and not search through when looking for files inside the `content` folder. See [[private pages]] for more details.
 - `theme`: configure how the site looks.
   - `fontOrigin`: where to load fonts from.
