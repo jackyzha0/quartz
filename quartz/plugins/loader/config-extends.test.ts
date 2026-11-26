@@ -9,7 +9,10 @@ import {
   mergeQuartzConfigs,
   pluginMatchKey,
   resolveExtends,
+  resolveTarget,
+  fetchRemoteConfig,
 } from "./config-extends"
+import os from "os"
 import type { QuartzPluginsJson } from "./types"
 
 const base = (): QuartzPluginsJson => ({
@@ -177,13 +180,16 @@ describe("resolveExtends", () => {
   }
   put("quartz.config.default.yaml", base())
 
-  test("a config without extends is returned as is", () => {
+  test("a config without extends is returned as is", async () => {
     const data = { configuration: { pageTitle: "x" }, plugins: [] }
-    assert.strictEqual(resolveExtends(data, path.join(root, "quartz.config.yaml")), data as never)
+    assert.strictEqual(
+      await resolveExtends(data, path.join(root, "quartz.config.yaml")),
+      data as never,
+    )
   })
 
-  test("extends: default merges onto quartz.config.default.yaml", () => {
-    const merged = resolveExtends(
+  test("extends: default merges onto quartz.config.default.yaml", async () => {
+    const merged = await resolveExtends(
       {
         extends: "default",
         configuration: { pageTitle: "Mine" },
@@ -201,13 +207,13 @@ describe("resolveExtends", () => {
     assert.ok(!("extends" in merged))
   })
 
-  test("relative paths, chains and lists (later wins)", () => {
+  test("relative paths, chains and lists (later wins)", async () => {
     put("configs/team.yaml", {
       extends: "default",
       configuration: { pageTitle: "Team", locale: "cs-CZ" },
     })
     put("configs/dark.yaml", { configuration: { pageTitle: "Dark" } })
-    const merged = resolveExtends(
+    const merged = await resolveExtends(
       {
         extends: ["./configs/team.yaml", "configs/dark.yaml"],
         configuration: { baseUrl: "x.org" },
@@ -221,10 +227,10 @@ describe("resolveExtends", () => {
     assert.strictEqual(merged.plugins.length, 3) // from default, through team.yaml
   })
 
-  test("cycles and missing files are reported", () => {
+  test("cycles and missing files are reported", async () => {
     put("a.yaml", { extends: "./b.yaml" })
     put("b.yaml", { extends: "./a.yaml" })
-    assert.throws(
+    await assert.rejects(
       () =>
         resolveExtends({ extends: "./a.yaml" }, path.join(root, "quartz.config.yaml"), {
           quartzRoot: root,
@@ -232,7 +238,7 @@ describe("resolveExtends", () => {
         }),
       /cycle/,
     )
-    assert.throws(
+    await assert.rejects(
       () =>
         resolveExtends({ extends: "./nope.yaml" }, path.join(root, "quartz.config.yaml"), {
           quartzRoot: root,
@@ -240,7 +246,7 @@ describe("resolveExtends", () => {
         }),
       /not found/,
     )
-    assert.throws(
+    await assert.rejects(
       () =>
         resolveExtends({ extends: 3 }, path.join(root, "quartz.config.yaml"), {
           quartzRoot: root,
@@ -250,10 +256,122 @@ describe("resolveExtends", () => {
     )
   })
 
-  test("extends: default reproduces the shipped default config exactly", () => {
+  test("extends: default reproduces the shipped default config exactly", async () => {
     const defaultFile = path.resolve("quartz.config.default.yaml")
     const shipped = YAML.parse(fs.readFileSync(defaultFile, "utf-8"))
-    const merged = resolveExtends({ extends: "default" }, path.resolve("quartz.config.yaml"))
+    const merged = await resolveExtends({ extends: "default" }, path.resolve("quartz.config.yaml"))
     assert.deepStrictEqual(merged, shipped)
+  })
+
+  describe("https bases", () => {
+    const remote: Record<string, string> = {
+      "https://cfg.example/base/site.yaml": YAML.stringify({
+        extends: "./common.yaml",
+        configuration: { pageTitle: "Remote" },
+      }),
+      "https://cfg.example/base/common.yaml": YAML.stringify({
+        extends: "default",
+        configuration: { locale: "de-DE" },
+      }),
+    }
+    const fetchRemote = async (url: string) => {
+      if (!(url in remote)) throw new ConfigExtendsError(`404 ${url}`)
+      return remote[url]
+    }
+    const opts = () => ({ quartzRoot: root, readFile, fetchRemote })
+
+    test("a URL base; its relative extends resolve against the URL; default stays local", async () => {
+      const merged = await resolveExtends(
+        { extends: "https://cfg.example/base/site.yaml", configuration: { baseUrl: "me.org" } },
+        path.join(root, "quartz.config.yaml"),
+        opts(),
+      )
+      assert.strictEqual(merged.configuration.pageTitle, "Remote")
+      assert.strictEqual(merged.configuration.locale, "de-DE")
+      assert.strictEqual(merged.configuration.baseUrl, "me.org")
+      assert.strictEqual(merged.plugins.length, 3) // the local default, via the remote chain
+    })
+
+    test("only https", async () => {
+      await assert.rejects(
+        resolveExtends({ extends: "http://cfg.example/x.yaml" }, path.join(root, "q.yaml"), opts()),
+        /only https/,
+      )
+      assert.strictEqual(
+        resolveTarget("../other.yaml", "https://cfg.example/base/site.yaml", root),
+        "https://cfg.example/other.yaml",
+      )
+    })
+  })
+})
+
+describe("fetchRemoteConfig", () => {
+  const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), "quartz-extends-"))
+  const ok = (body: string) =>
+    (async () => new Response(body, { status: 200 })) as unknown as typeof fetch
+  const failing = (async () => {
+    throw new Error("getaddrinfo ENOTFOUND")
+  }) as unknown as typeof fetch
+
+  test("caches a fetched copy and falls back to it when offline or failing", async () => {
+    const cacheDir = tmp()
+    const url = "https://cfg.example/a.yaml"
+    assert.strictEqual(
+      await fetchRemoteConfig(url, { cacheDir, fetchImpl: ok("a: 1\n"), offline: false }),
+      "a: 1\n",
+    )
+    // memoised per process: a second call does not fetch again
+    assert.strictEqual(
+      await fetchRemoteConfig(url, { cacheDir, fetchImpl: failing, offline: false }),
+      "a: 1\n",
+    )
+    const warnings: string[] = []
+    const other = tmp()
+    fs.cpSync(cacheDir, other, { recursive: true })
+    assert.strictEqual(
+      await fetchRemoteConfig(url, {
+        cacheDir: other,
+        fetchImpl: failing,
+        offline: false,
+        warn: (m) => warnings.push(m),
+      }),
+      "a: 1\n",
+    )
+    assert.match(warnings[0], /using the cached copy/)
+    // offline (QUARTZ_EXTENDS_OFFLINE=1, worker threads): the cache only
+    assert.strictEqual(
+      await fetchRemoteConfig("https://cfg.example/a.yaml?x", {
+        cacheDir: other,
+        offline: true,
+      }).catch((e: Error) => e.message),
+      `"extends: https://cfg.example/a.yaml?x": no cached copy in ${other} (offline build). Build once online first.`,
+    )
+  })
+
+  test("without a cached copy a failed fetch stops the build", async () => {
+    await assert.rejects(
+      fetchRemoteConfig("https://cfg.example/b.yaml", {
+        cacheDir: tmp(),
+        fetchImpl: failing,
+        offline: false,
+      }),
+      /could not be fetched: getaddrinfo ENOTFOUND/,
+    )
+    await assert.rejects(
+      fetchRemoteConfig("https://cfg.example/c.yaml", { cacheDir: tmp(), offline: true }),
+      /no cached copy/,
+    )
+  })
+
+  test("HTTP errors are failures, too", async () => {
+    const notFound = (async () => new Response("nope", { status: 404 })) as unknown as typeof fetch
+    await assert.rejects(
+      fetchRemoteConfig("https://cfg.example/d.yaml", {
+        cacheDir: tmp(),
+        fetchImpl: notFound,
+        offline: false,
+      }),
+      /HTTP 404/,
+    )
   })
 })

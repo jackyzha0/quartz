@@ -444,6 +444,36 @@
             "minimum": 0,
             "description": "Plugin execution order"
           },
+          "before": {
+            "description": "Plugin name(s) this plugin must run before. Checked against order: between plugins with the same order it decides, a contradiction with order is an error.",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              }
+            ]
+          },
+          "after": {
+            "description": "Plugin name(s) this plugin must run after. Checked against order: between plugins with the same order it decides, a contradiction with order is an error.",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              }
+            ]
+          },
           "options": {
             "type": "object",
             "additionalProperties": true,

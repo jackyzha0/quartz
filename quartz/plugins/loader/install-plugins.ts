@@ -21,7 +21,7 @@ function resolveConfigPath(): string {
   return configYamlPath
 }
 
-function readPluginsJson(): QuartzPluginsJson | null {
+async function readPluginsJson(): Promise<QuartzPluginsJson | null> {
   const configPath = resolveConfigPath()
   if (!fs.existsSync(configPath)) return null
   const raw = fs.readFileSync(configPath, "utf-8")
@@ -47,7 +47,7 @@ async function getExternalPluginSources(): Promise<PluginSource[]> {
     // fall back to config yaml parsing
   }
 
-  const pluginsJson = readPluginsJson()
+  const pluginsJson = await readPluginsJson()
   const entries = pluginsJson?.plugins ?? []
   return entries.filter((entry) => entry.enabled !== false).map((entry) => entry.source)
 }

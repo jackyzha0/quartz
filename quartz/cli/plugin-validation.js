@@ -5,7 +5,15 @@
 // see plugin-validation.d.ts).
 
 /** Top-level keys allowed on a plugin entry (mirrors quartz-plugins.schema.json). */
-export const PLUGIN_ENTRY_KEYS = ["source", "enabled", "options", "order", "layout"]
+export const PLUGIN_ENTRY_KEYS = [
+  "source",
+  "enabled",
+  "options",
+  "order",
+  "before",
+  "after",
+  "layout",
+]
 
 /** Keys allowed on an object-form `source`. */
 export const SOURCE_OBJECT_KEYS = ["repo", "subdir", "ref", "name"]

@@ -165,6 +165,9 @@ export interface PluginJsonEntry {
   enabled: boolean
   options?: Record<string, unknown>
   order?: number
+  /** Plugins this one must run before / after (checked against `order`; see plugin-order.ts). */
+  before?: string | string[]
+  after?: string | string[]
   layout?: PluginLayoutDeclaration
 }
 
