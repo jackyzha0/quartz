@@ -491,6 +491,13 @@ h6 {
   }
 }
 
+// Obsidian's fold arrows in headings and in list items with a sublist; hidden unless
+// obsidian-flavored-markdown's foldHeadings / foldLists turn folding on
+.heading-collapse-indicator,
+.list-collapse-indicator {
+  display: none;
+}
+
 // typography improvements
 h1 {
   font-size: 1.75rem;
