@@ -38,7 +38,8 @@ export default (() => {
     const isArticle =
       !isNotFound &&
       fileData.relativePath !== undefined &&
-      !fileData.slug!.endsWith("index") &&
+      fileData.slug !== "index" &&
+      !fileData.slug!.endsWith("/index") &&
       !fileData.slug!.startsWith("tags/")
     // Real dates only: a date no source gave is the build time (see util/dates), and an
     // invalid `published:` gives none.
