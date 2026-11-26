@@ -7,7 +7,13 @@ import {
   JSResourceToScriptElement,
   StaticResources,
 } from "../util/resources"
-import { FullSlug, RelativeURL, joinSegments, normalizeHastElement } from "../util/path"
+import {
+  FullSlug,
+  RelativeURL,
+  getSlugOptions,
+  joinSegments,
+  normalizeHastElement,
+} from "../util/path"
 import { clone } from "../util/clone"
 import { Root, Element, ElementContent } from "hast"
 import { GlobalConfiguration, SidebarModes } from "../cfg"
@@ -51,6 +57,17 @@ function headingHasId(heading: Element, id: string): boolean {
     )
   return hasAlias(heading)
 }
+/**
+ * `configuration.slugs` for scripts in the browser. @quartz-community/utils (1.3+) keeps its slug
+ * options on this global, so every plugin script that slugs (the explorer places pages by their
+ * file path) slugs as the build did. Nothing is written with the default options.
+ */
+export function slugOptionsScript(): string {
+  const options = getSlugOptions()
+  if (!options.stripDiacritics) return ""
+  return `;globalThis[Symbol.for("@quartz-community/utils/slugOptions")] = ${JSON.stringify(options)}`
+}
+
 export function pageResources(
   baseDir: FullSlug | RelativeURL,
   staticResources: StaticResources,
@@ -102,7 +119,8 @@ export function pageResources(
     `.catch(e => { console.warn("[Quartz] Could not load ${contentIndexPath} (" + e.message + "); is configuration.contentIndex disabled?"); return {} });` +
     // Absolute URL of static/ (plugin assets live in static/plugins/<to>). Resolved once on the
     // first page, so it stays valid across SPA navigations.
-    `window.quartzStaticUrl = new URL(${JSON.stringify(joinSegments(baseDir, "static") + "/")}, location.href).href`
+    `window.quartzStaticUrl = new URL(${JSON.stringify(joinSegments(baseDir, "static") + "/")}, location.href).href` +
+    slugOptionsScript()
 
   const resources: StaticResources = {
     css: [

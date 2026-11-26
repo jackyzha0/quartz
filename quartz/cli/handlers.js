@@ -39,6 +39,7 @@ import {
   readPluginsJson,
   writePluginsJson,
   updateGlobalConfig,
+  extendedConfigFiles,
   LOCKFILE_PATH,
 } from "./plugin-data.js"
 import {
@@ -619,11 +620,17 @@ export async function handleBuild(argv) {
       "quartz.config.default.yaml",
     ])
     const extraWatch = process.env.QUARTZ_CONFIG_PATH ? [process.env.QUARTZ_CONFIG_PATH] : []
-    chokidar
-      .watch([...paths, ...extraWatch], { ignoreInitial: true })
-      .on("add", () => build(clientRefresh))
-      .on("change", () => build(clientRefresh))
-      .on("unlink", () => build(clientRefresh))
+    // local files the config extends (and the files they extend); looked up again after each
+    // change, so a newly added base is watched too
+    const watcher = chokidar.watch([...paths, ...extraWatch, ...(await extendedConfigFiles())], {
+      ignoreInitial: true,
+    })
+    const rebuild = async () => {
+      await build(clientRefresh)
+      const bases = await extendedConfigFiles()
+      if (bases.length > 0) watcher.add(bases)
+    }
+    watcher.on("add", rebuild).on("change", rebuild).on("unlink", rebuild)
 
     console.log(styleText("gray", "hint: exit with ctrl+c"))
   }

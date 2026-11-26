@@ -7,9 +7,11 @@ const builtinConditions: Record<string, ConditionPredicate> = {
   "is-index": (props) => props.fileData.slug === "index",
   "not-index": (props) => props.fileData.slug !== "index",
   // A folder's index page: `folder/index.md` or a generated folder page, not the root index.
+  // Tag pages aren't folders: `tags/` belongs to them (the all-tags page `tags/index`, and
+  // `tags/<tag>` pages), so nothing under it is a folder index.
   "is-folder-index": (props) => {
     const slug = props.fileData.slug
-    return typeof slug === "string" && slug.endsWith("/index")
+    return typeof slug === "string" && slug.endsWith("/index") && !slug.startsWith("tags/")
   },
   "has-tags": (props) => {
     const tags = props.fileData.frontmatter?.tags

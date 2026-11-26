@@ -4,6 +4,11 @@ import os from "os"
 import { styleText } from "util"
 import {
   readPluginsJson,
+  readEffectivePluginsJson,
+  resolveEffectiveConfig,
+  configExtends,
+  loadConfigExtendsModule,
+  getConfigReadPath,
   writePluginsJson,
   readLockfile,
   writeLockfile,
@@ -126,6 +131,67 @@ function resolveConfigEntryOrReport(json, name) {
   else console.log(styleText("gray", "  Run 'npx quartz plugin list' to see configured plugins."))
   markFailed()
   return null
+}
+
+/**
+ * For commands that edit quartz.config.yaml: `json` is the user's own file (what gets written
+ * back) and `effective` the configuration the build uses (with `extends` applied; the same
+ * object without it). Plugins are looked up in `effective`; changes go to the user's entry for
+ * the plugin (see overlayEntryFor), never the merged configuration. Returns null after
+ * reporting when a base can't be loaded.
+ */
+async function readConfigForEdit() {
+  const json = readPluginsJson()
+  if (!configExtends(json)) return { json, effective: json, extending: false }
+  try {
+    const effective = await resolveEffectiveConfig(json, getConfigReadPath())
+    const { pluginMatchKey } = await loadConfigExtendsModule()
+    return { json, effective, extending: true, matchKey: pluginMatchKey }
+  } catch (err) {
+    console.log(
+      styleText(
+        "red",
+        `✗ ${path.basename(getConfigReadPath())}: ${String(err?.message ?? err)} — nothing changed`,
+      ),
+    )
+    markFailed()
+    return null
+  }
+}
+
+/**
+ * The user's entry for a plugin of the merged configuration (matched as `extends` merges
+ * entries; the last one wins when there are several). With `create`, an entry
+ * `{ source }` is added when the user's file has none, which then changes only what is set in it.
+ */
+function overlayEntryFor(edit, mergedEntry, create = false) {
+  if (!edit.extending) return mergedEntry
+  if (edit.json.plugins == null) edit.json.plugins = []
+  if (!Array.isArray(edit.json.plugins)) {
+    throw new Error(`"plugins" in ${path.basename(getConfigReadPath())} must be a list`)
+  }
+  const key = edit.matchKey(mergedEntry.source)
+  let entry = edit.json.plugins.findLast((e) => {
+    try {
+      return e?.source !== undefined && edit.matchKey(e.source) === key
+    } catch {
+      return false
+    }
+  })
+  if (!entry && create) {
+    entry = { source: mergedEntry.source }
+    edit.json.plugins.push(entry)
+  }
+  return entry
+}
+
+function hasOptionPath(obj, segments) {
+  let node = obj
+  for (const segment of segments) {
+    if (node === null || typeof node !== "object" || !(segment in node)) return false
+    node = node[segment]
+  }
+  return node !== undefined && node !== null
 }
 
 /** Read the manifest (`quartz` field of package.json) of a configured plugin, if installed. */
@@ -427,7 +493,7 @@ async function regeneratePluginIndex() {
   // npm plugins in the config are part of the index too (they used to be dropped here until the
   // next build regenerated it); the generator is shared with the build, see plugin-index.js
   const npmPackages = []
-  for (const entry of readPluginsJson()?.plugins ?? []) {
+  for (const entry of (await readEffectivePluginsJson())?.plugins ?? []) {
     if (builtinMessage(entry.source)) continue
     try {
       const parsed = parseGitSource(entry.source)
@@ -455,7 +521,9 @@ export async function handlePluginInstallUnified({
 
   // Plugins that are built into core now (crawl-links, remove-draft, content-index) are never
   // cloned or built, even if the config or the lockfile still lists them.
-  const rawPluginsJson = readPluginsJson()
+  // with `extends`, the plugins of the merged configuration (as the build loads them)
+  const rawPluginsJson = await readEffectivePluginsJson()
+  if (!rawPluginsJson && configExtends(readPluginsJson())) return
   const pluginsJson = rawPluginsJson && {
     ...rawPluginsJson,
     plugins: (rawPluginsJson.plugins ?? []).filter((entry) => !builtinMessage(entry.source)),
@@ -1476,8 +1544,12 @@ export async function handlePluginAdd(
     fs.mkdirSync(PLUGINS_DIR, { recursive: true })
   }
 
-  const pluginsJson = readPluginsJson()
-  const configured = pluginsJson?.plugins ?? []
+  const edit = await readConfigForEdit()
+  if (!edit) return
+  // added entries go to the user's file; "already configured" also covers plugins that come
+  // from an `extends` base
+  const pluginsJson = edit.json
+  const configured = Array.isArray(edit.effective?.plugins) ? edit.effective.plugins : []
 
   const addedPlugins = []
   let hadFailure = false
@@ -1696,7 +1768,11 @@ export async function handlePluginAdd(
     writeLockfile(lockfile)
   }
 
-  if (pluginsJson?.plugins && addedPlugins.length > 0) {
+  // an extending config may have no `plugins:` yet
+  if (pluginsJson && pluginsJson.plugins == null && addedPlugins.length > 0) {
+    pluginsJson.plugins = []
+  }
+  if (Array.isArray(pluginsJson?.plugins) && addedPlugins.length > 0) {
     for (const { pluginDir, source, configSource } of addedPlugins) {
       const manifest = readManifestFromPackageJson(pluginDir)
       const newEntry = {
@@ -1774,13 +1850,36 @@ export async function handlePluginAdd(
 
 export async function handlePluginRemove(names) {
   const lockfile = readLockfile() ?? { version: "1.0.0", plugins: {} }
-  const pluginsJson = readPluginsJson()
+  const edit = await readConfigForEdit()
+  if (!edit) return
+  const pluginsJson = edit.json
+  // With `extends`: the plugins the bases configure (without the user's entries). Those can't
+  // be removed from the user's file, only disabled.
+  const basePlugins = edit.extending
+    ? ((await resolveEffectiveConfig({ ...pluginsJson, plugins: [] }, getConfigReadPath()))
+        .plugins ?? [])
+    : []
   let lockfileChanged = false
   let configChanged = false
   let removedFiles = false
   const removedSources = []
 
   for (const name of names) {
+    const fromBase = findConfigEntries(basePlugins, name, nameHelpers).indices
+    if (fromBase.length > 0) {
+      const label = extractPluginName(basePlugins[fromBase[0]].source)
+      console.log(
+        styleText(
+          "red",
+          `✗ ${label} comes from the configuration ${path.basename(getConfigReadPath())} extends, so it can't be removed from your file.`,
+        ),
+      )
+      console.log(
+        styleText("gray", `  Turn it off with 'npx quartz plugin disable ${label}' instead.`),
+      )
+      markFailed()
+      continue
+    }
     // Prefer the config entry (accepts short names such as "explorer").
     const { indices } = findConfigEntries(pluginsJson?.plugins ?? [], name, nameHelpers)
     const configIndex = indices.length === 1 ? indices[0] : -1
@@ -1892,7 +1991,9 @@ export async function handlePluginRemove(names) {
 }
 
 async function setEnabled(names, enabled) {
-  const json = readPluginsJson()
+  const edit = await readConfigForEdit()
+  if (!edit) return
+  const json = edit.json
   const verb = enabled ? "enable" : "disable"
   if (!json) {
     console.log(styleText("red", `✗ No quartz.config.yaml found. Cannot ${verb} plugins.`))
@@ -1903,12 +2004,13 @@ async function setEnabled(names, enabled) {
   let changed = false
   for (const name of names) {
     const builtin = builtinMessage(name)
-    if (builtin && !(json.plugins ?? []).some((e) => officialPluginName(e.source) === name)) {
+    const plugins = Array.isArray(edit.effective.plugins) ? edit.effective.plugins : []
+    if (builtin && !plugins.some((e) => officialPluginName(e.source) === name)) {
       console.log(styleText("yellow", `⚠ ${builtin}`))
       markFailed()
       continue
     }
-    const resolved = resolveConfigEntryOrReport(json, name)
+    const resolved = resolveConfigEntryOrReport(edit.effective, name)
     if (!resolved) continue
     const { entry } = resolved
     const label = extractPluginName(entry.source)
@@ -1917,7 +2019,8 @@ async function setEnabled(names, enabled) {
       console.log(styleText("gray", `✓ ${label} is already ${verb}d`))
       continue
     }
-    entry.enabled = enabled
+    // with `extends`: set in the user's entry for the plugin (added if needed)
+    overlayEntryFor(edit, entry, true).enabled = enabled
     changed = true
     console.log(styleText("green", `✓ ${enabled ? "Enabled" : "Disabled"} ${label}`))
     if (
@@ -1962,14 +2065,18 @@ function printOptionIssues(issues, label) {
 }
 
 export async function handlePluginConfig(name, options = {}) {
-  const json = readPluginsJson()
+  const edit = await readConfigForEdit()
+  if (!edit) return
+  const json = edit.json
   if (!json) {
     console.log(styleText("red", "✗ No quartz.config.yaml found."))
     markFailed()
     return
   }
 
-  const resolved = resolveConfigEntryOrReport(json, name)
+  // `entry` is the plugin as the build sees it (merged with `extends` bases); changes go to
+  // `target`, the user's own entry for it
+  const resolved = resolveConfigEntryOrReport(edit.effective, name)
   if (!resolved) return
   const { entry } = resolved
   const label = extractPluginName(entry.source)
@@ -1979,7 +2086,8 @@ export async function handlePluginConfig(name, options = {}) {
   const unsets = [options.unset ?? []].flat().filter((v) => v !== undefined)
 
   if (sets.length > 0 || unsets.length > 0) {
-    if (!entry.options || typeof entry.options !== "object") entry.options = {}
+    const target = overlayEntryFor(edit, entry, true)
+    if (!target.options || typeof target.options !== "object") target.options = {}
     let changed = false
     for (const assignment of sets) {
       const eqIndex = String(assignment).indexOf("=")
@@ -1996,7 +2104,7 @@ export async function handlePluginConfig(name, options = {}) {
         continue
       }
       const value = parseCliValue(assignment.slice(eqIndex + 1))
-      setOptionPath(entry.options, segments, value)
+      setOptionPath(target.options, segments, value)
       changed = true
       console.log(
         styleText("green", `✓ Set ${label}.${segments.join(".")} = ${JSON.stringify(value)}`),
@@ -2010,7 +2118,29 @@ export async function handlePluginConfig(name, options = {}) {
     }
     for (const keyPath of unsets) {
       const segments = parseOptionPath(String(keyPath))
-      if (unsetOptionPath(entry.options, segments)) {
+      if (edit.extending) {
+        // drop the user's value, then reset a value a base still sets with `null` (merging
+        // removes the key, so the plugin's default applies)
+        const hadOwn = unsetOptionPath(target.options, segments)
+        const merged = await resolveEffectiveConfig(json, getConfigReadPath())
+        const key = edit.matchKey(entry.source)
+        const now = (merged.plugins ?? []).findLast((e) => edit.matchKey(e.source) === key)
+        const fromBase = hasOptionPath(now?.options, segments)
+        if (fromBase) setOptionPath(target.options, segments, null)
+        if (hadOwn || fromBase) {
+          changed = true
+          console.log(
+            styleText(
+              "green",
+              `✓ Unset ${label}.${segments.join(".")} (plugin default applies${fromBase ? "; null overrides the extended config" : ""})`,
+            ),
+          )
+        } else {
+          console.log(styleText("yellow", `⚠ ${label} has no option "${keyPath}" set`))
+        }
+        continue
+      }
+      if (unsetOptionPath(target.options, segments)) {
         changed = true
         console.log(
           styleText("green", `✓ Unset ${label}.${segments.join(".")} (plugin default applies)`),
@@ -2102,7 +2232,8 @@ function collectUntrackedEntries(pluginsJson, lockfile) {
 
 export async function handlePluginList() {
   const lockfile = readLockfile()
-  const pluginsJson = readPluginsJson()
+  const pluginsJson = await readEffectivePluginsJson()
+  if (!pluginsJson && configExtends(readPluginsJson())) return
   const { npm, missing } = collectUntrackedEntries(pluginsJson, lockfile)
   const lockEntries = Object.entries(lockfile?.plugins ?? {})
 
@@ -2222,7 +2353,8 @@ export async function handlePluginList() {
 
 export async function handlePluginStatus() {
   const lockfile = readLockfile() ?? { version: "1.0.0", plugins: {} }
-  const pluginsJson = readPluginsJson()
+  const pluginsJson = await readEffectivePluginsJson()
+  if (!pluginsJson && configExtends(readPluginsJson())) return
   const { npm } = collectUntrackedEntries(pluginsJson, lockfile)
   if (Object.keys(lockfile.plugins).length === 0 && npm.length === 0) {
     console.log(styleText("gray", "No plugins installed"))
@@ -2459,7 +2591,23 @@ export async function handlePluginDoctor({ verbose = false, fix = false } = {}) 
     report("info", null, `using ${configLabel} (no quartz.config.yaml yet)`)
   }
 
-  if (!Array.isArray(config.data?.plugins)) {
+  // With `extends`, check the merged configuration (what the build loads); --fix still edits
+  // only this file.
+  const extending = configExtends(config.data)
+  const effectiveOf = async (data) => (extending ? resolveEffectiveConfig(data, config.path) : data)
+  let effective
+  try {
+    effective = await effectiveOf(config.data)
+  } catch (err) {
+    report("error", configLabel, `extends: ${String(err?.message ?? err)}`)
+    markFailed()
+    return
+  }
+  if (extending) {
+    report("info", null, `${configLabel} uses extends; checking the merged configuration`)
+  }
+
+  if (!Array.isArray(effective?.plugins)) {
     report("error", configLabel, "`plugins` must be a list")
     markFailed()
     return
@@ -2474,6 +2622,7 @@ export async function handlePluginDoctor({ verbose = false, fix = false } = {}) 
     for (const change of changes) console.log(styleText("green", `✓ ${change}`))
     console.log()
     config.data = migrated
+    effective = await effectiveOf(migrated)
   } else {
     for (const { name, key } of migrations) {
       report(
@@ -2487,9 +2636,11 @@ export async function handlePluginDoctor({ verbose = false, fix = false } = {}) 
     }
   }
   const absorbed = new Set(
-    migrations.filter((m) => m.name !== "note-properties").map((m) => m.entry),
+    findBuiltinMigrations(effective)
+      .filter((m) => m.name !== "note-properties")
+      .map((m) => m.entry),
   )
-  const plugins = config.data.plugins.filter((entry) => !absorbed.has(entry))
+  const plugins = effective.plugins.filter((entry) => !absorbed.has(entry))
 
   const lockfile = readLockfile()
   if (fs.existsSync(LOCKFILE_PATH) && !lockfile) {
@@ -2669,7 +2820,7 @@ export async function handlePluginDoctor({ verbose = false, fix = false } = {}) 
         // satisfied by the built-in: its entries were absorbed above.
         const builtinKey = builtinKeyFor(dep)
         if (builtinKey) {
-          const builtin = describeBuiltins(config.data.configuration).find(
+          const builtin = describeBuiltins(effective.configuration).find(
             (b) => b.key === builtinKey,
           )
           if (builtin && !builtin.enabled) {
@@ -2771,7 +2922,13 @@ export async function handlePluginPrune({ dryRun = false } = {}) {
     return
   }
 
-  const pluginsJson = readPluginsJson()
+  // plugins of the merged configuration: a plugin from an `extends` base is not an orphan
+  const pluginsJson = await readEffectivePluginsJson()
+  if (!pluginsJson && configExtends(readPluginsJson())) {
+    console.log(styleText("red", "✗ Not pruning: the configuration could not be resolved."))
+    markFailed()
+    return
+  }
   const configuredNames = new Set(
     (pluginsJson?.plugins ?? []).map((entry) => extractPluginName(entry.source)),
   )

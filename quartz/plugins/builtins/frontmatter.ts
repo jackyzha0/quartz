@@ -67,7 +67,76 @@ export function slugifyWikilinkTarget(target: string): string {
 }
 
 const WIKILINK_PATTERN = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g
-const MDLINK_PATTERN = /\[(?:[^\]]*)\]\(([^)]+)\)/g
+/** The start of a Markdown link: `[text](`; the destination is parsed by markdownLinkTarget. */
+const MDLINK_START = /\[(?:[^\]]*)\]\(/g
+
+const ASCII_PUNCTUATION = /[!-/:-@[-`{-~]/
+const isSpace = (c: string | undefined) => c === " " || c === "\t" || c === "\n" || c === "\r"
+/** CommonMark backslash escapes: `\(` → `(` (only before ASCII punctuation). */
+const unescapeLink = (s: string) => s.replace(/\\([!-/:-@[-`{-~])/g, "$1")
+
+/**
+ * The destination of the Markdown link whose `(` ends at `start` in `s`, as CommonMark reads
+ * it: `<…>` (may hold spaces and parentheses) or a plain destination (ends at a space or an
+ * unbalanced `)`), then an optional title in `"…"`, `'…'` or `(…)`. A plain destination
+ * with spaces that isn't followed by a title (`[x](./My Note.md)`, which Obsidian accepts)
+ * runs to the closing `)`. Returns undefined when there is no closing `)`.
+ */
+export function markdownLinkTarget(s: string, start: number): string | undefined {
+  let i = start
+  while (isSpace(s[i])) i++
+  const destStart = i
+  let dest: string
+  if (s[i] === "<") {
+    let j = i + 1
+    while (j < s.length && s[j] !== ">" && s[j] !== "<" && s[j] !== "\n") {
+      j += s[j] === "\\" && ASCII_PUNCTUATION.test(s[j + 1] ?? "") ? 2 : 1
+    }
+    if (s[j] !== ">") return undefined
+    dest = unescapeLink(s.slice(i + 1, j))
+    i = j + 1
+  } else {
+    let depth = 0
+    while (i < s.length) {
+      const c = s[i]
+      if (c === "\\" && ASCII_PUNCTUATION.test(s[i + 1] ?? "")) {
+        i += 2
+        continue
+      }
+      if (isSpace(c)) break
+      if (c === "(") depth++
+      else if (c === ")") {
+        if (depth === 0) break
+        depth--
+      }
+      i++
+    }
+    dest = unescapeLink(s.slice(destStart, i))
+  }
+  while (isSpace(s[i])) i++
+  if (s[i] === ")") return dest
+  const close = s[i] === '"' ? '"' : s[i] === "'" ? "'" : s[i] === "(" ? ")" : undefined
+  if (close) {
+    let j = i + 1
+    while (j < s.length && s[j] !== close) {
+      j += s[j] === "\\" && ASCII_PUNCTUATION.test(s[j + 1] ?? "") ? 2 : 1
+    }
+    let k = j + 1
+    while (isSpace(s[k])) k++
+    if (j < s.length && s[k] === ")") return dest
+  }
+  if (s[destStart] === "<") return undefined
+  // lenient: a plain destination with spaces, up to the `)` that closes the link
+  let depth = 0
+  for (let j = destStart; j < s.length; j++) {
+    if (s[j] === "(") depth++
+    else if (s[j] === ")") {
+      if (depth === 0) return unescapeLink(s.slice(destStart, j).trim())
+      depth--
+    }
+  }
+  return undefined
+}
 
 /** All link targets (wikilinks and Markdown links) inside a frontmatter value, recursively. */
 export function extractLinksFromValue(value: unknown): string[] {
@@ -75,11 +144,11 @@ export function extractLinksFromValue(value: unknown): string[] {
     const links: string[] = []
     for (const match of value.matchAll(WIKILINK_PATTERN))
       links.push(slugifyWikilinkTarget(match[1]!))
-    for (const match of value.matchAll(MDLINK_PATTERN)) {
-      // `[x](<./My Note.md>)`: CommonMark's angle-bracket destination, which
-      // Obsidian writes for paths with spaces. The brackets aren't part of it.
-      const dest = match[1]!.trim()
-      links.push(dest.startsWith("<") && dest.endsWith(">") ? dest.slice(1, -1) : dest)
+    for (const match of value.matchAll(MDLINK_START)) {
+      // `[x](<./My Note.md> "title")`: angle-bracket destinations (which Obsidian writes for
+      // paths with spaces), balanced parentheses and titles, as CommonMark reads them
+      const dest = markdownLinkTarget(value, match.index! + match[0].length)
+      if (dest) links.push(dest)
     }
     return links
   }

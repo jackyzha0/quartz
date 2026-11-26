@@ -7,6 +7,7 @@ import { VFile } from "vfile"
 import { Element, Root, Text } from "hast"
 import { visit } from "unist-util-visit"
 import { BUILTINS, instantiateBuiltins, officialPluginName, planBuiltins, PlanInput } from "."
+import { normalizePluginName, orderPlugins } from "../loader/plugin-order"
 import {
   Frontmatter,
   normalizeFrontmatter,
@@ -181,6 +182,39 @@ describe("planBuiltins", () => {
   })
 })
 
+describe("plugin order constraints naming a replaced plugin", () => {
+  test("after: crawl-links / before: remove-draft order against the built-in", () => {
+    const transformers = instantiateBuiltins(plan([]), "transformer")
+    const links = transformers.find((b) => b.instance.name === "Links")!
+    assert.ok(links.names.includes("crawl-links"))
+    const known = new Set(
+      [...transformers.flatMap((b) => b.names), "my-plugin"].map(normalizePluginName),
+    )
+    // same order as Links (60): without the mapping the constraint was ignored and the list
+    // order (built-ins first) put Links first anyway, so run it before
+    const mine = {
+      order: 60,
+      instance: { name: "Mine" },
+      label: "my-plugin",
+      names: ["my-plugin"],
+      before: ["crawl-links"],
+    }
+    const ordered = orderPlugins(
+      [
+        ...transformers.map((b) => ({
+          order: b.order,
+          instance: b.instance as { name: string },
+          label: b.instance.name,
+          names: b.names,
+        })),
+        mine,
+      ],
+      known,
+    ).map((i) => i.name)
+    assert.ok(ordered.indexOf("Mine") < ordered.indexOf("Links"), ordered.join(", "))
+  })
+})
+
 describe("frontmatter built-in", () => {
   const ctx = () => ({ allSlugs: [] as FullSlug[] }) as unknown as BuildCtx
 
@@ -232,6 +266,35 @@ describe("frontmatter built-in", () => {
         "[y](./Exec Briefing.md)",
       ]),
       ["./Exec Briefing.md", "./Exec Briefing.md#Next steps", "./Exec Briefing.md"],
+    )
+  })
+
+  test("frontmatter Markdown links: parentheses, titles and escapes as CommonMark reads them (#2672)", () => {
+    assert.deepStrictEqual(
+      extractLinksFromValue([
+        "[b](<Note (2024).md>)",
+        '[c](<My Note.md> "t")',
+        "[d](notes/Note_(2024).md)",
+        "[e](other.md 'single')",
+        "[f](other.md (paren title))",
+        '[g](<a b.md>  "t" )',
+        "[h](a\\(1\\).md)",
+        "[i](./My Note.md)",
+        "[j](unclosed.md",
+        "two: [k](k.md) and [l](<l l.md>)",
+      ]),
+      [
+        "Note (2024).md",
+        "My Note.md",
+        "notes/Note_(2024).md",
+        "other.md",
+        "other.md",
+        "a b.md",
+        "a(1).md",
+        "./My Note.md",
+        "k.md",
+        "l l.md",
+      ],
     )
   })
 
@@ -532,6 +595,42 @@ describe("links built-in", () => {
     assert.deepStrictEqual(broken, [false, false, true])
   })
 
+  test("links to files Quartz emits are not broken; missing vault files are", () => {
+    const targets = [
+      "/index.xml",
+      "/sitemap.xml",
+      "/static/icon.png",
+      "/robots.txt",
+      "/404.html",
+      "/page.html",
+      "/pic.png",
+      "/missing.png",
+      "/missing.pdf",
+      "/missing.html",
+      "/v1.2",
+    ]
+    const { els } = run(
+      targets.map((t) => a(t)),
+      "page",
+      {},
+      ["page", "pic.png"],
+    )
+    const broken = els.map((e) => (e.properties.className as string[]).includes("broken"))
+    assert.deepStrictEqual(broken, [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+    ])
+  })
+
   test("disableBrokenWikilinks: false leaves missing targets unmarked", () => {
     const { els } = run([a("missing")], "page", { disableBrokenWikilinks: false }, ["page"])
     assert.ok(!(els[0].properties.className as string[]).includes("broken"))
@@ -641,6 +740,48 @@ describe("content index built-in", () => {
     for (const slug of ["git", "other", "over", "undated"]) {
       assert.ok(!("dateFromFrontmatter" in json[slug]), slug)
     }
+  })
+
+  test("stand-in dates of the date plugin are not written to contentIndex.json", () => {
+    const now = new Date()
+    const published = new Date("2024-05-06T00:00:00")
+    const json = JSON.parse(
+      serializeContentIndex(
+        buildContentIndex(ctxWith([]), [
+          // created-modified-date >= 1.0.5 lists the dates it filled with the build time
+          page("marked", {
+            defaultDateType: "published",
+            dates: { created: now, modified: now, published: now },
+            fallbackDates: ["published"],
+          }),
+          // older versions don't: a published date only counts when frontmatter sets it
+          page("old", {
+            defaultDateType: "published",
+            frontmatter: { title: "OLD" },
+            dates: { created: now, modified: now, published: now },
+          }),
+          page("invalid", {
+            defaultDateType: "published",
+            frontmatter: { title: "INV", published: "not a date" },
+            dates: { created: now, modified: now, published: now },
+          }),
+          page("real", {
+            defaultDateType: "published",
+            frontmatter: { title: "REAL", published: "2024-05-06" },
+            dates: { created: now, modified: now, published },
+            fallbackDates: [],
+          }),
+          page("oldReal", {
+            defaultDateType: "published",
+            frontmatter: { title: "OR", published: "2024-05-06" },
+            dates: { created: now, modified: now, published },
+          }),
+        ]),
+      ),
+    )
+    for (const slug of ["marked", "old", "invalid"]) assert.ok(!("date" in json[slug]), slug)
+    assert.strictEqual(json.real.date, published.toISOString())
+    assert.strictEqual(json.oldReal.date, published.toISOString())
   })
 
   test("plugins add fields through extendContentIndex", () => {
