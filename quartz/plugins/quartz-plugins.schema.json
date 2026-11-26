@@ -195,6 +195,18 @@
           "default": "all",
           "description": "Controls which assets are copied to public. \"all\" copies all non-markdown files; \"referenced\" only copies assets referenced by published pages"
         },
+        "slugs": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "How file paths become URLs (slugs).",
+          "properties": {
+            "stripDiacritics": {
+              "type": "boolean",
+              "default": false,
+              "description": "Strip accents and other diacritics from generated slugs (české/čeština.md → ceske/cestina). Applies to file and folder names, aliases and permalinks; links are resolved the same way."
+            }
+          }
+        },
         "frontmatter": {
           "description": "Built-in frontmatter parsing: titles, tags, aliases, dates, drafts. Default order 0.",
           "oneOf": [

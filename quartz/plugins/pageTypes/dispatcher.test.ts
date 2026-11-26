@@ -16,7 +16,7 @@ import {
 } from "./dispatcher"
 import { QuartzPageTypePluginInstance } from "../types"
 import { QuartzComponent } from "../../components/types"
-import { FilePath, FullSlug, SimpleSlug } from "../../util/path"
+import { FilePath, FullSlug, SimpleSlug, setSlugOptions } from "../../util/path"
 import { Root as HtmlRoot } from "hast"
 import { BuildCtx } from "../../util/ctx"
 import { defaultProcessedContent } from "../vfile"
@@ -276,6 +276,27 @@ describe("generateVirtualPages", () => {
     )
     assert.strictEqual(entries[1].vfile.data.slug, "mdx/b")
     assert.strictEqual(ctx.virtualPages.length, 2)
+  })
+
+  test("slugs.stripDiacritics moves folder pages to the stripped folder slug (#2410)", async () => {
+    setSlugOptions({ stripDiacritics: true })
+    try {
+      const entries = await generateVirtualPages(
+        [makePageType({ generate: () => [page("české/index"), page("tags/čeština")] })],
+        [],
+        makeCtx(),
+        { head: StubHead },
+        {},
+      )
+      // tag pages keep their slugs: tag links are slugged by the plugins that render them
+      assert.deepStrictEqual(
+        entries.map((e) => e.vpSlug),
+        ["ceske/index", "tags/čeština"],
+      )
+      assert.strictEqual(entries[0].vfile.data.slug, "ceske/index")
+    } finally {
+      setSlugOptions(undefined)
+    }
   })
 
   test("keeps the 404 page out of ctx.virtualPages", async () => {

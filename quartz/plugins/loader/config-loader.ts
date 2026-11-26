@@ -61,6 +61,7 @@ import {
 import { collectPluginConfigWarnings, printPluginConfigWarnings } from "./option-validation"
 import { componentRegistry, RegisteredComponent } from "../../components/registry"
 import { frameRegistry } from "../../components/frames/registry"
+import { setSlugOptions } from "../../util/path"
 import { getCondition, getAllConditionNames } from "./conditions"
 import {
   LAYOUT_SLOTS,
@@ -365,6 +366,7 @@ export async function loadQuartzConfig(
   if (!json) {
     // Fallback: import old-style config directly
     const oldConfig = await import("../../../quartz")
+    setSlugOptions(oldConfig.default?.configuration?.slugs)
     return oldConfig.default
   }
 
@@ -372,6 +374,8 @@ export async function loadQuartzConfig(
     ...(json.configuration as unknown as GlobalConfiguration),
     ...configOverrides,
   }
+  // before anything computes a slug (this runs in the main thread and in every worker)
+  setSlugOptions(configuration.slugs)
 
   // Entries of official plugins that are now built into core (crawl-links, remove-draft,
   // content-index) are handled by the built-ins below and never installed or loaded.

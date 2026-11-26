@@ -392,3 +392,50 @@ describe("resolveRelative", () => {
     assert.strictEqual(path.resolveRelative("abc/def" as FullSlug, "ghi/" as SimpleSlug), "../ghi/")
   })
 })
+
+describe("slugs.stripDiacritics (#2410)", () => {
+  const withStrip = <T>(fn: () => T): T => {
+    path.setSlugOptions({ stripDiacritics: true })
+    try {
+      return fn()
+    } finally {
+      path.setSlugOptions(undefined)
+    }
+  }
+
+  test("off by default: slugs keep their diacritics", () => {
+    assert.strictEqual(path.slugifyFilePath("české/čeština.md" as path.FilePath), "české/čeština")
+  })
+
+  test("strips diacritics from folder and file names", () => {
+    withStrip(() => {
+      const slug = (fp: string) => path.slugifyFilePath(fp as path.FilePath)
+      assert.strictEqual(slug("české/Čeština.md"), "ceske/cestina")
+      assert.strictEqual(slug("Příliš žluťoučký kůň.md"), "prilis-zlutoucky-kun")
+      assert.strictEqual(slug("Café/Crème brûlée.md"), "cafe/creme-brulee")
+      assert.strictEqual(slug("Tiếng Việt.md"), "tieng-viet")
+      assert.strictEqual(slug("obrázek.PNG"), "obrazek.PNG")
+      // decomposed input (macOS file names) gives the same slug
+      assert.strictEqual(slug("čeština.md"), "cestina")
+    })
+  })
+
+  test("keeps scripts whose marks are not Latin diacritics", () => {
+    withStrip(() => {
+      const slug = (fp: string) => path.slugifyFilePath(fp as path.FilePath)
+      assert.strictEqual(slug("한국어.md"), "한국어")
+      assert.strictEqual(slug("がぎぐ.md"), "がぎぐ")
+      assert.strictEqual(slug("हिन्दी.md"), "हिन्दी")
+      assert.strictEqual(slug("日本語/中文.md"), "日本語/中文")
+      // letters without a decomposition are kept
+      assert.strictEqual(slug("Łódź ø ß.md"), "łodz-ø-ß")
+    })
+  })
+
+  test("is idempotent", () => {
+    withStrip(() => {
+      const once = path.slugifyFilePath("Čeština/Ž.md" as path.FilePath)
+      assert.strictEqual(path.slugifyFilePath(`${once}.md` as path.FilePath), once)
+    })
+  })
+})

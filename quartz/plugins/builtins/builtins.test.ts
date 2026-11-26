@@ -34,7 +34,8 @@ import {
 import type { PluginJsonEntry } from "../loader/types"
 import type { BuildCtx } from "../../util/ctx"
 import type { ContentDetails } from "../types"
-import type { FullSlug } from "../../util/path"
+import type { FullSlug, SimpleSlug } from "../../util/path"
+import { setSlugOptions } from "../../util/path"
 import type { ProcessedContent } from "../vfile"
 
 const entry = (source: string, extra: Partial<PluginJsonEntry> = {}): PluginJsonEntry => ({
@@ -363,6 +364,43 @@ describe("links built-in", () => {
     assert.strictEqual(sibling.properties.href, "./folder/sibling") // relative to the file
     assert.strictEqual(img.properties.src, "./folder/img.png")
     assert.deepStrictEqual(file.data.links?.sort(), ["folder/sibling", "t"])
+  })
+
+  test("slugs.stripDiacritics: link targets are stripped like the slugs they point at (#2410)", () => {
+    setSlugOptions({ stripDiacritics: true })
+    try {
+      const img: Element = {
+        type: "element",
+        tagName: "img",
+        properties: { src: "obr%C3%A1zek.png" },
+        children: [],
+      }
+      const { els, file } = run(
+        [a("./%C4%8Ce%C5%A1tina#%C4%8Cesk%C3%BD-nadpis", "Čeština"), a("Příliš"), img],
+        "ceske/page",
+        { markdownLinkResolution: "shortest" },
+        ["ceske/page", "ceske/cestina", "jine/prilis", "ceske/obrazek.png"],
+      )
+      const [cestina, prilis] = els.filter((e) => e.tagName === "a")
+      assert.strictEqual(cestina.properties.href, "../ceske/cestina#český-nadpis")
+      assert.ok(!(cestina.properties.className as string[]).includes("broken"))
+      assert.strictEqual(prilis.properties.href, "../jine/prilis")
+      assert.strictEqual(
+        els.find((e) => e.tagName === "img")!.properties.src,
+        "../ceske/obrazek.png",
+      )
+      assert.ok(file.data.links?.includes("ceske/cestina" as SimpleSlug))
+    } finally {
+      setSlugOptions(undefined)
+    }
+  })
+
+  test("without slugs.stripDiacritics link targets keep their diacritics", () => {
+    const { els } = run([a("Příliš")], "page", { markdownLinkResolution: "shortest" }, [
+      "page",
+      "jine/příliš",
+    ])
+    assert.strictEqual(els[0].properties.href, "./jine/příliš")
   })
 
   test("footnote anchors stay internal without Obsidian's note-link class", () => {

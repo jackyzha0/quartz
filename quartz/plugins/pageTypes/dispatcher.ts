@@ -15,6 +15,7 @@ import {
   pathToRoot,
   simplifySlug,
   slugifyFilePath,
+  applySlugOptions,
 } from "../../util/path"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { write } from "../emitters/helpers"
@@ -215,7 +216,9 @@ export async function generateVirtualPages(
     const layout = resolveLayout(pt, defaults, byPageType)
     const fileBacked = (pt.fileExtensions?.length ?? 0) > 0
     for (const vp of virtualPages) {
-      const vpSlug = vp.slug as FullSlug
+      // A folder's page lives at the folder's slug; with `slugs.stripDiacritics` that is the
+      // stripped one, whatever the page type computed from the file path (folder-page).
+      const vpSlug = (vp.slug.endsWith("/index") ? applySlugOptions(vp.slug) : vp.slug) as FullSlug
       const vpRelativePath = (vpSlug + ".md") as FilePath
       const [tree, vfile] = defaultProcessedContent({
         slug: vpSlug,
