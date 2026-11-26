@@ -171,7 +171,7 @@ plugins:
 
 Plugins are categorized by their type (transformer, filter, emitter, pageType) based on their manifest. The `order` field controls execution order within each category.
 
-`before` and `after` name plugins that this one must run before or after (one name or a list; `obsidian-flavored-markdown`, `ObsidianFlavoredMarkdown` and `@quartz-community/obsidian-flavored-markdown` all work, as do the built-ins `frontmatter`, `links`, `drafts` and `contentIndex`). They never override `order`; they are checked against it:
+`before` and `after` name plugins that this one must run before or after (one name or a list; `obsidian-flavored-markdown`, `ObsidianFlavoredMarkdown` and `@quartz-community/obsidian-flavored-markdown` all work, as do the built-ins `frontmatter`, `links`, `drafts` and `contentIndex`; the names of the plugins they replaced, `crawl-links`, `remove-draft` and `content-index`, mean those built-ins). They never override `order`; they are checked against it:
 
 ```yaml title="quartz.config.yaml"
 plugins:

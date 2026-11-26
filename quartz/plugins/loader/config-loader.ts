@@ -758,7 +758,7 @@ export async function loadQuartzConfig(
   const knownPluginNames = new Set(
     [
       ...json.plugins.map((e) => extractPluginName(e.source)),
-      ...builtinPlan.builtins.map((b) => b.spec.configKey),
+      ...builtinPlan.builtins.flatMap((b) => [b.spec.configKey, ...b.spec.absorbs]),
       "Frontmatter",
       "Links",
       "Drafts",
@@ -767,14 +767,14 @@ export async function loadQuartzConfig(
     ].map(normalizePluginName),
   )
   const withBuiltins = <T>(
-    builtins: { order: number; instance: unknown }[],
+    builtins: { order: number; instance: unknown; names?: string[] }[],
     instances: OrderItem<T>[],
   ): T[] =>
     orderPlugins(
       [
-        ...builtins.map(({ order, instance }) => {
+        ...builtins.map(({ order, instance, names }) => {
           const name = (instance as { name: string }).name
-          return { order, instance: instance as T, label: name, names: [name] }
+          return { order, instance: instance as T, label: name, names: names ?? [name] }
         }),
         ...instances,
       ],

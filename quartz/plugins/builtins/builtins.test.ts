@@ -7,6 +7,7 @@ import { VFile } from "vfile"
 import { Element, Root, Text } from "hast"
 import { visit } from "unist-util-visit"
 import { BUILTINS, instantiateBuiltins, officialPluginName, planBuiltins, PlanInput } from "."
+import { normalizePluginName, orderPlugins } from "../loader/plugin-order"
 import {
   Frontmatter,
   normalizeFrontmatter,
@@ -178,6 +179,39 @@ describe("planBuiltins", () => {
       instantiateBuiltins(plan([], { drafts: { publish: true } }), "filter").length,
       0,
     )
+  })
+})
+
+describe("plugin order constraints naming a replaced plugin", () => {
+  test("after: crawl-links / before: remove-draft order against the built-in", () => {
+    const transformers = instantiateBuiltins(plan([]), "transformer")
+    const links = transformers.find((b) => b.instance.name === "Links")!
+    assert.ok(links.names.includes("crawl-links"))
+    const known = new Set(
+      [...transformers.flatMap((b) => b.names), "my-plugin"].map(normalizePluginName),
+    )
+    // same order as Links (60): without the mapping the constraint was ignored and the list
+    // order (built-ins first) put Links first anyway, so run it before
+    const mine = {
+      order: 60,
+      instance: { name: "Mine" },
+      label: "my-plugin",
+      names: ["my-plugin"],
+      before: ["crawl-links"],
+    }
+    const ordered = orderPlugins(
+      [
+        ...transformers.map((b) => ({
+          order: b.order,
+          instance: b.instance as { name: string },
+          label: b.instance.name,
+          names: b.names,
+        })),
+        mine,
+      ],
+      known,
+    ).map((i) => i.name)
+    assert.ok(ordered.indexOf("Mine") < ordered.indexOf("Links"), ordered.join(", "))
   })
 })
 
