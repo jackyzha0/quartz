@@ -223,6 +223,17 @@ describe("frontmatter built-in", () => {
     )
   })
 
+  test("frontmatter Markdown links with an angle-bracket destination drop the brackets", () => {
+    assert.deepStrictEqual(
+      extractLinksFromValue([
+        "[Exec Briefing](<./Exec Briefing.md>)",
+        "[x](<./Exec Briefing.md#Next steps>)",
+        "[y](./Exec Briefing.md)",
+      ]),
+      ["./Exec Briefing.md", "./Exec Briefing.md#Next steps", "./Exec Briefing.md"],
+    )
+  })
+
   test("reads YAML frontmatter with YAML 1.2's core schema, as Obsidian does", () => {
     const data = readFrontmatterData(
       "---\ntitle: Hello world\ndate: 2024-01-02\ndraft: True\nn: 012\nnone: ~\nratio: .5\nalias: yes\n---\n",
