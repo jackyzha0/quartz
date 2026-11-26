@@ -430,11 +430,13 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
         include: Features.MediaQueries,
       }).code.toString()
 
+      // All component styles go into one stylesheet, in their order, in one
+      // `quartz-base` layer: a file per component meant ~20 render-blocking
+      // requests per page, many for a few hundred bytes.
       const cssStringToFilename = new Map<string, string>()
-      for (const cssString of componentResources.componentCssStrings) {
-        if (cssStringToFilename.has(cssString)) continue
-
-        const wrapped = `@layer quartz-base {\n${cssString}\n}`
+      const componentCss = [...componentResources.componentCssStrings]
+      if (componentCss.length > 0) {
+        const wrapped = `@layer quartz-base {\n${componentCss.join("\n")}\n}`
         const minified = transform({
           filename: "component.css",
           code: Buffer.from(wrapped),
@@ -446,7 +448,7 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
         const hash = hashContent(minified)
         const slug = `component-${hash}`
         const filename = `${slug}.css`
-        cssStringToFilename.set(cssString, filename)
+        for (const cssString of componentCss) cssStringToFilename.set(cssString, filename)
 
         yield write({
           ctx,
