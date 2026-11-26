@@ -8,6 +8,7 @@ import {
   deepMerge,
   mergeQuartzConfigs,
   pluginMatchKey,
+  localExtendsFiles,
   resolveExtends,
   resolveTarget,
   fetchRemoteConfig,
@@ -67,6 +68,41 @@ describe("pluginMatchKey", () => {
     ]) {
       assert.strictEqual(pluginMatchKey(source as never), "explorer", JSON.stringify(source))
     }
+  })
+})
+
+describe("pluginMatchKey for monorepo subdirectories", () => {
+  test("two plugins of one repository without a name get different keys", () => {
+    const a = pluginMatchKey({ repo: "github:me/quartz-plugins", subdir: "plugins/a" })
+    const b = pluginMatchKey({ repo: "github:me/quartz-plugins", subdir: "plugins/b" })
+    assert.notStrictEqual(a, b)
+    assert.strictEqual(a, "quartz-plugins/plugins/a")
+  })
+  test("subdir spellings are normalised", () => {
+    for (const subdir of ["plugins/a", "./plugins/a/", "plugins\\a", "/plugins//a"]) {
+      assert.strictEqual(
+        pluginMatchKey({ repo: "https://github.com/me/quartz-plugins.git", subdir }),
+        "quartz-plugins/plugins/a",
+        subdir,
+      )
+    }
+    assert.strictEqual(pluginMatchKey({ repo: "github:me/explorer", subdir: "." }), "explorer")
+  })
+  test("an overlay entry for one monorepo plugin leaves the other alone", () => {
+    const merged = mergeQuartzConfigs(
+      {
+        configuration: {},
+        plugins: [
+          { source: { repo: "github:me/mono", subdir: "a" }, enabled: true },
+          { source: { repo: "github:me/mono", subdir: "b" }, enabled: true },
+        ],
+      },
+      { plugins: [{ source: { repo: "github:me/mono", subdir: "b" }, enabled: false }] },
+    )
+    assert.deepStrictEqual(
+      merged.plugins.map((p) => p.enabled),
+      [true, false],
+    )
   })
 })
 
@@ -227,6 +263,89 @@ describe("resolveExtends", () => {
     assert.strictEqual(merged.plugins.length, 3) // from default, through team.yaml
   })
 
+  test("presets stack: each listed base adds its own changes; a shared base applies once", async () => {
+    put("presets/title.yaml", {
+      extends: "default",
+      configuration: { pageTitle: "Preset A", locale: "fr-FR" },
+      plugins: [{ source: "@quartz-community/graph", enabled: false }],
+    })
+    put("presets/explorer.yaml", {
+      extends: "default",
+      configuration: { locale: "nl-NL" },
+      plugins: [{ source: "@quartz-community/explorer", options: { b: 2 } }],
+    })
+    const merged = await resolveExtends(
+      { extends: ["./presets/title.yaml", "./presets/explorer.yaml"] },
+      path.join(root, "quartz.config.yaml"),
+      { quartzRoot: root, readFile },
+    )
+    // a's changes survive b (both extend default)
+    assert.strictEqual(merged.configuration.pageTitle, "Preset A")
+    assert.strictEqual(
+      merged.plugins.find((p) => pluginMatchKey(p.source) === "graph")!.enabled,
+      false,
+    )
+    // b wins where both change something
+    assert.strictEqual(merged.configuration.locale, "nl-NL")
+    assert.deepStrictEqual(
+      merged.plugins.find((p) => pluginMatchKey(p.source) === "explorer")!.options,
+      { a: 1, nested: { x: 1 }, b: 2 },
+    )
+    assert.strictEqual(merged.plugins.length, 3)
+  })
+
+  test("diamond: a base reached twice is applied once, at its first appearance", async () => {
+    put("d/common.yaml", { extends: "default", configuration: { locale: "common" } })
+    put("d/left.yaml", { extends: "./common.yaml", configuration: { pageTitle: "Left" } })
+    put("d/right.yaml", { extends: "./common.yaml", configuration: { baseUrl: "right.org" } })
+    const merged = await resolveExtends(
+      { extends: ["./d/left.yaml", "./d/right.yaml", "./d/left.yaml"] },
+      path.join(root, "quartz.config.yaml"),
+      { quartzRoot: root, readFile },
+    )
+    assert.strictEqual(merged.configuration.pageTitle, "Left")
+    assert.strictEqual(merged.configuration.baseUrl, "right.org")
+    assert.strictEqual(merged.configuration.locale, "common")
+    assert.deepStrictEqual(
+      await localExtendsFiles(
+        { extends: ["./d/left.yaml", "./d/right.yaml"] },
+        path.join(root, "quartz.config.yaml"),
+        { quartzRoot: root, readFile },
+      ),
+      ["quartz.config.default.yaml", "d/common.yaml", "d/left.yaml", "d/right.yaml"].map((f) =>
+        path.join(root, f),
+      ),
+    )
+  })
+
+  test("extends: [] is no base; an empty base file is an empty config", async () => {
+    const data = { extends: [], configuration: { pageTitle: "x" }, plugins: [] }
+    assert.deepStrictEqual(await resolveExtends(data, path.join(root, "quartz.config.yaml")), {
+      configuration: { pageTitle: "x" },
+      plugins: [],
+    })
+    files[path.join(root, "empty.yaml")] = "# nothing here yet\n"
+    const merged = await resolveExtends(
+      { extends: ["default", "./empty.yaml"], configuration: { pageTitle: "E" } },
+      path.join(root, "quartz.config.yaml"),
+      { quartzRoot: root, readFile },
+    )
+    assert.strictEqual(merged.configuration.pageTitle, "E")
+    assert.strictEqual(merged.plugins.length, 3)
+  })
+
+  test("plugins that are not a list are reported clearly", async () => {
+    await assert.rejects(
+      () =>
+        resolveExtends(
+          { extends: "default", plugins: { explorer: { enabled: false } } },
+          path.join(root, "quartz.config.yaml"),
+          { quartzRoot: root, readFile },
+        ),
+      (err: Error) => err instanceof ConfigExtendsError && /must be a list/.test(err.message),
+    )
+  })
+
   test("cycles and missing files are reported", async () => {
     put("a.yaml", { extends: "./b.yaml" })
     put("b.yaml", { extends: "./a.yaml" })
@@ -290,6 +409,15 @@ describe("resolveExtends", () => {
       assert.strictEqual(merged.configuration.locale, "de-DE")
       assert.strictEqual(merged.configuration.baseUrl, "me.org")
       assert.strictEqual(merged.plugins.length, 3) // the local default, via the remote chain
+    })
+
+    test("uppercase HTTPS:// is https", async () => {
+      const merged = await resolveExtends(
+        { extends: "HTTPS://CFG.example/base/site.yaml" },
+        path.join(root, "quartz.config.yaml"),
+        opts(),
+      )
+      assert.strictEqual(merged.configuration.pageTitle, "Remote")
     })
 
     test("only https", async () => {
