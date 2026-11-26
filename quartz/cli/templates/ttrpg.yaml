@@ -44,7 +44,7 @@ configuration:
         textHighlight: "#b3aa0288"
   links:
     markdownLinkResolution: shortest
-    # disableBrokenWikilinks: false  # Set true to add a "broken" CSS class to internal links whose target does not exist.
+    # disableBrokenWikilinks: true  # Set false to stop adding a "broken" CSS class to internal links whose target does not exist.
   contentIndex:
     enableSiteMap: true
     enableRSS: true
