@@ -65,5 +65,6 @@ Heading ids follow the GitHub rule (`github-slugger`, as `rehype-slug` and the t
 - `slugHeading(text)`: the id of a heading with this text;
 - `HeadingSlugger`: slugs all headings of one page in order and numbers repeats (`foo`, `foo-1`, …) — create one per page;
 - `obsidianHeadingAnchor(text)`: the anchor Obsidian writes for a heading (it replaces `:`, `|`, `^`, `#` and `\` with spaces); slug it with `slugHeading` and add it as an extra id when it differs;
-- `resolveAnchorHref(href, ids)`: points a same-page `#anchor` at an id that exists on the page (an id as written, a block reference `#^name`, or a heading's text);
+- `resolveAnchorHref(href, ids)`: points a same-page `#anchor` at an id that exists on the page (an id as written, or a heading's text); a block reference `#^name` always points at the block (`#^name`), never at a heading;
+- `blockAnchor(name)`: the anchor of the block `^name`, `#^name` (lowercased). Blocks have the id `^name`, so they never share an id with a heading;
 - `slugTag(tag)`: the slug of a tag, as used for tag pages.

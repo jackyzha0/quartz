@@ -308,8 +308,9 @@ export function renderTranscludes(
 
       let blockRef = el.properties.dataBlock as string | undefined
       if (blockRef?.startsWith("#^")) {
-        // block transclude
-        blockRef = blockRef.slice("#^".length)
+        // block transclude: `data.blocks` is keyed by the block's name, lowercased (`para-1`); the
+        // block element's id is `^para-1` (rehype-obsidian), its anchor `#^para-1`
+        blockRef = blockRef.slice("#^".length).toLowerCase()
         let blockNode = page.blocks?.[blockRef]
         if (blockNode) {
           if (blockNode.tagName === "li") {

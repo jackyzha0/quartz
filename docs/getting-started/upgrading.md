@@ -39,6 +39,7 @@ npx quartz plugin install --latest
 
 ### Changes you may notice
 
+- **Block anchors**: a block's id is now `^id` and links to it are `#^id` (`[[note#^para-1]]` → `note#^para-1`, was `note#para-1`), as in Obsidian, where blocks and headings are separate namespaces: block `^para-1` and heading `## Para 1` no longer share an id, so `[[#^para-1]]` and `[[#Para 1]]` each land on their own target. Links inside the site are regenerated; old `#id` URLs of blocks from outside the site now go to the top of the page (or to a heading of that name). CSS or scripts that select a block by id need `#\^para-1` (or `getElementById`).
 - **Unresolved links**: `configuration.links.disableBrokenWikilinks` is now on by default. Links to pages that don't exist get the `broken` class and are styled as unresolved, as in Obsidian. Links to pages a filter removes (drafts, unpublished notes) are marked the same way, with `data-filtered="<filter>"`. Set `links.disableBrokenWikilinks: false` to style them as before.
 - **Mermaid diagrams** render with [Pele](https://pele.run) by default, as in Obsidian, inside a `<div class="mermaid">` rather than a code block. Set `diagramRenderer: mermaid` on [[ObsidianFlavoredMarkdown]] to keep Mermaid.js. See [[Mermaid diagrams]].
 - **Block wrappers**: each top-level block of a note is wrapped in the `div` Obsidian puts it in (`div.el-p > p`, `div.el-h2 > h2`). Custom CSS that selects a page's blocks as direct children (`article > p`) no longer matches. Select them without `>`, or set `blockWrappers: false` on ObsidianFlavoredMarkdown.
