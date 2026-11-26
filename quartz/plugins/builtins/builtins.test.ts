@@ -532,6 +532,42 @@ describe("links built-in", () => {
     assert.deepStrictEqual(broken, [false, false, true])
   })
 
+  test("links to files Quartz emits are not broken; missing vault files are", () => {
+    const targets = [
+      "/index.xml",
+      "/sitemap.xml",
+      "/static/icon.png",
+      "/robots.txt",
+      "/404.html",
+      "/page.html",
+      "/pic.png",
+      "/missing.png",
+      "/missing.pdf",
+      "/missing.html",
+      "/v1.2",
+    ]
+    const { els } = run(
+      targets.map((t) => a(t)),
+      "page",
+      {},
+      ["page", "pic.png"],
+    )
+    const broken = els.map((e) => (e.properties.className as string[]).includes("broken"))
+    assert.deepStrictEqual(broken, [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+    ])
+  })
+
   test("disableBrokenWikilinks: false leaves missing targets unmarked", () => {
     const { els } = run([a("missing")], "page", { disableBrokenWikilinks: false }, ["page"])
     assert.ok(!(els[0].properties.className as string[]).includes("broken"))

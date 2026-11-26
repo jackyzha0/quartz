@@ -89,6 +89,31 @@ export function pageExists(allSlugs: readonly string[], full: string): boolean {
   return false
 }
 
+/** File types Obsidian opens from the vault (embeds and attachments): a link to one that the content doesn't have names a missing file. */
+const VAULT_FILE_TYPES = new Set(
+  "avif bmp gif jpeg jpg png svg webp flac m4a mp3 ogg wav 3gp mkv mov mp4 ogv webm pdf canvas base".split(
+    " ",
+  ),
+)
+
+/**
+ * Whether an internal link target is known to be missing, so it gets the `broken` class.
+ * Only targets Quartz can check are: pages (see pageExists) and files of the types a vault
+ * holds (images, audio, video, PDFs, canvases, bases), which the content copies as assets.
+ * Anything else may be a file Quartz or a plugin emits and the transformers can't know about
+ * (`index.xml`, `sitemap.xml`, `robots.txt`, `static/…`, og images), so it is not marked.
+ */
+export function linkTargetMissing(allSlugs: readonly string[], full: string): boolean {
+  // the not-found page is always emitted (`.html` is dropped from links like `.md`)
+  if (full === "404" || pageExists(allSlugs, full)) return false
+  // quartz/static and plugin assets are served at static/
+  if (full.startsWith("static/")) return false
+  const name = full.slice(full.lastIndexOf("/") + 1)
+  const ext = /\.([a-z][a-z0-9]{0,9})$/i.exec(name)?.[1]?.toLowerCase()
+  if (ext === undefined) return true
+  return VAULT_FILE_TYPES.has(ext)
+}
+
 /** The `broken` mark added after filtering, so a later rebuild can take it off again. */
 const FILTERED_ATTR = "data-filtered"
 
@@ -278,7 +303,7 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
                   outgoing.add(simplifySlug(full))
                   node.properties["data-slug"] = full
 
-                  if (opts.disableBrokenWikilinks && !pageExists(ctx.allSlugs, full)) {
+                  if (opts.disableBrokenWikilinks && linkTargetMissing(ctx.allSlugs, full)) {
                     classes.push("broken")
                     node.properties.className = classes
                   }
