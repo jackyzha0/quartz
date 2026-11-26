@@ -38,7 +38,7 @@ export const linksDefaults: Required<Omit<LinksConfig, "enabled" | "order">> = {
   openLinksInNewTab: false,
   lazyLoad: false,
   externalLinkIcon: true,
-  disableBrokenWikilinks: false,
+  disableBrokenWikilinks: true,
 }
 
 /** Defaults of the former crawl-links plugin, applied when its config entry is migrated. */
@@ -69,6 +69,21 @@ function canonicalSlug(dest: string, curSlug: SimpleSlug): FullSlug {
   if (canonical.endsWith("/")) canonical += "index"
   // WHATWG URL percent-encodes everything
   return decodeURIComponent(stripSlashes(canonical, true)) as FullSlug
+}
+
+/**
+ * Whether a link's target is a page of the site. Tag and folder pages are generated after
+ * the transformers run, so they aren't in `allSlugs` yet: a tag page (`tags/…`) exists for
+ * every tag that is used, and a folder page (`folder/index`) for every folder with content.
+ */
+export function pageExists(allSlugs: readonly string[], full: string): boolean {
+  if (allSlugs.includes(full)) return true
+  if (full === "index" || full.startsWith("tags/")) return true
+  if (full.endsWith("/index")) {
+    const folder = full.slice(0, -"index".length)
+    return allSlugs.some((s) => s.startsWith(folder))
+  }
+  return false
 }
 
 export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
@@ -114,8 +129,17 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
                 let dest = node.properties.href as RelativeURL
                 const classes = (node.properties.className ?? []) as string[]
                 const isExternal = isExternalUrl(dest)
+                // Footnote anchors aren't note links: Obsidian gives them `footnote-link`,
+                // never `internal-link`, whose link styles would override theirs.
+                const isFootnote =
+                  node.properties.dataFootnoteRef !== undefined ||
+                  node.properties.dataFootnoteBackref !== undefined
                 classes.push(
-                  ...(isExternal ? ["external", "external-link"] : ["internal", "internal-link"]),
+                  ...(isExternal
+                    ? ["external", "external-link"]
+                    : isFootnote
+                      ? ["internal"]
+                      : ["internal", "internal-link"]),
                 )
 
                 if (isExternal && opts.externalLinkIcon) {
@@ -163,7 +187,7 @@ export const Links: QuartzTransformerPlugin<LinksConfig> = (userOpts) => {
                   outgoing.add(simplifySlug(full))
                   node.properties["data-slug"] = full
 
-                  if (opts.disableBrokenWikilinks && !ctx.allSlugs.includes(full)) {
+                  if (opts.disableBrokenWikilinks && !pageExists(ctx.allSlugs, full)) {
                     classes.push("broken")
                     node.properties.className = classes
                   }

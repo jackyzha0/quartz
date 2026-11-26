@@ -354,11 +354,27 @@ describe("links built-in", () => {
     assert.deepStrictEqual(file.data.links?.sort(), ["folder/sibling", "t"])
   })
 
+  test("footnote anchors stay internal without Obsidian's note-link class", () => {
+    const fn = (props: Record<string, unknown>): Element => ({
+      type: "element",
+      tagName: "a",
+      properties: { href: "#user-content-fn-1", ...props },
+      children: [{ type: "text", value: "1" }],
+    })
+    const { els } = run([fn({ dataFootnoteRef: "" }), fn({ dataFootnoteBackref: "" })])
+    for (const el of els.filter((e) => e.tagName === "a")) {
+      const classes = el.properties.className as string[]
+      assert.ok(classes.includes("internal"))
+      assert.ok(!classes.includes("internal-link"))
+    }
+  })
+
   test("makes internal links relative, records outgoing links, marks external ones", () => {
     const { els, file } = run(
       [a("other/note", "Note"), a("https://example.com"), a("#heading")],
       "folder/page",
       { markdownLinkResolution: "absolute" },
+      ["folder/page", "other/note"],
     )
     const [internal, external] = els.filter((e) => e.tagName === "a")
     assert.strictEqual(internal.properties.href, "../other/note")
@@ -450,6 +466,26 @@ describe("links built-in", () => {
       links.map((e) => (e.properties.className as string[]).includes("alias")),
       [false, false, true],
     )
+  })
+
+  test("missing targets get the broken class by default, as Obsidian marks them", () => {
+    const { els } = run([a("missing"), a("page")], "page", {}, ["page"])
+    assert.ok((els[0].properties.className as string[]).includes("broken"))
+    assert.ok(!(els[1].properties.className as string[]).includes("broken"))
+  })
+
+  test("tag and folder pages, generated later, are not broken", () => {
+    const { els } = run([a("tags/specimen"), a("folder/"), a("empty/")], "page", {}, [
+      "page",
+      "folder/note",
+    ])
+    const broken = els.map((e) => (e.properties.className as string[]).includes("broken"))
+    assert.deepStrictEqual(broken, [false, false, true])
+  })
+
+  test("disableBrokenWikilinks: false leaves missing targets unmarked", () => {
+    const { els } = run([a("missing")], "page", { disableBrokenWikilinks: false }, ["page"])
+    assert.ok(!(els[0].properties.className as string[]).includes("broken"))
   })
 
   test("disableBrokenWikilinks adds a broken class to missing targets", () => {

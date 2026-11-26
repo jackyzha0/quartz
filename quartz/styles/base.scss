@@ -85,8 +85,12 @@ path[class~="typst-shape"] {
 }
 
 article {
-  // callouts are <div class="callout"> since obsidian-flavored-markdown 2.3, <blockquote> before
+  // callouts are <div class="callout"> since obsidian-flavored-markdown 2.3, <blockquote> before;
+  // a note's blocks are in Obsidian's wrappers (div.el-div) since rehype-obsidian 1.5, and
+  // display maths in Obsidian's div.math-block since @quartz-community/latex 1.1
   > mjx-container.MathJax,
+  .el-div > mjx-container.MathJax,
+  .math-block > mjx-container.MathJax,
   :is(blockquote, .callout) > div > mjx-container.MathJax {
     display: flex;
     > svg {
@@ -94,7 +98,10 @@ article {
       margin-right: auto;
     }
   }
-  :is(blockquote, .callout) > div > mjx-container.MathJax > svg {
+  :is(blockquote, .callout)
+    > div
+    > :is(mjx-container.MathJax, .math-block > mjx-container.MathJax)
+    > svg {
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
@@ -484,6 +491,13 @@ h6 {
   }
 }
 
+// Obsidian's fold arrows in headings and in list items with a sublist; hidden unless
+// obsidian-flavored-markdown's foldHeadings / foldLists turn folding on
+.heading-collapse-indicator,
+.list-collapse-indicator {
+  display: none;
+}
+
 // typography improvements
 h1 {
   font-size: 1.75rem;
@@ -719,6 +733,26 @@ ol.overflow {
 .transclude {
   ul {
     padding-left: 1rem;
+  }
+
+  // Obsidian's embed title (the note's title, for a whole-note embed), styled as the
+  // heading it replaces
+  > .markdown-embed-title {
+    font-family: var(--headerFont);
+    color: var(--dark);
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin: 2.25rem 0 1rem;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  // Obsidian's icon link to the embedded note, for Obsidian themes (whose styles show
+  // it); Quartz links to the original below the content instead
+  > .markdown-embed-link {
+    display: none;
   }
 }
 

@@ -136,7 +136,7 @@ export interface LinksConfig extends BuiltinToggle {
   lazyLoad?: boolean
   /** Add an icon after external links. Default `true`. */
   externalLinkIcon?: boolean
-  /** Add a `broken` class to internal links whose target does not exist. Default `false`. */
+  /** Add a `broken` class to internal links whose target does not exist, as Obsidian marks unresolved links. Default `true`. */
   disableBrokenWikilinks?: boolean
 }
 

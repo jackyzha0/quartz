@@ -277,7 +277,7 @@
                 },
                 "disableBrokenWikilinks": {
                   "type": "boolean",
-                  "description": "Add a `broken` class to internal links whose target does not exist. Default false."
+                  "description": "Add a `broken` class to internal links whose target does not exist, as Obsidian marks unresolved links. Default true."
                 }
               }
             }
