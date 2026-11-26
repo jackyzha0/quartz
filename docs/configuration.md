@@ -90,7 +90,7 @@ This part of the configuration concerns anything that can affect the whole site.
 - `slugs`: how file paths become URLs.
   - `stripDiacritics`: `true` strips accents and other diacritics from page, folder and file URLs, e.g. `české/čeština.md` is published at `/ceske/cestina` instead of `/české/čeština` (which browsers show as `%C4%8Desk%C3%A9/...` when copied). Off by default.
     - Links keep working as written in your notes: `[[čeština]]`, `[[české/čeština#Nadpis]]` and embeds like `![[obrázek.png]]` resolve to the stripped addresses. Aliases and `permalink`s are stripped the same way. Heading anchors (`#Nadpis`) keep their diacritics. Tag pages and the pages plugins generate from files (canvas, bases, …) are stripped too with `@quartz-community/utils` 1.3 or newer; with older versions they keep their diacritics.
-    - Only combining accents (`á č é ů …`) are removed. Letters without a decomposition (`ø`, `ł`, `ß`, `æ`) and non-Latin scripts (Chinese, Japanese, Korean, Arabic, Devanagari, …) are kept as they are.
+    - Only Latin letters change: they lose their accents (`á č é ů …`), and Latin letters without a decomposition fold to ASCII (`ł` → `l`, `ø` → `o`, `ß` → `ss`, `æ` → `ae`). Other scripts (Chinese, Japanese, Korean, Greek, Cyrillic, Arabic, Hebrew, Devanagari, …) are left as written, marks included.
     - Turning it on changes the URLs of existing pages; links shared elsewhere to the old addresses will 404 unless you add the old addresses as `aliases`.
 - `ignorePatterns`: a list of [glob](<https://en.wikipedia.org/wiki/Glob_(programming)>) patterns that Quartz should ignore and not search through when looking for files inside the `content` folder. See [[private pages]] for more details.
 - `theme`: configure how the site looks.
