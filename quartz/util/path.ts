@@ -35,6 +35,7 @@ export type {
 // --- v5-specific exports below ---
 
 import { slugifyFilePath as slugifyFilePathBase } from "@quartz-community/utils"
+import * as quartzUtils from "@quartz-community/utils"
 import type { FilePath as _FilePath, FullSlug as _FullSlug } from "@quartz-community/utils"
 
 export interface SlugOptions {
@@ -50,6 +51,13 @@ let slugOptions: SlugOptions = {}
  */
 export function setSlugOptions(options: SlugOptions | undefined): void {
   slugOptions = { ...(options ?? {}) }
+  // @quartz-community/utils 1.3+ applies the same options to every slug it computes, for core
+  // and for plugins (tag pages, canvas, bases, alias-redirects …). Older utils lack it; core's
+  // own wrapper below and the links/dispatcher handling then cover core's slugs. Stripping is
+  // idempotent, so both applying is harmless. (Drop the wrapper once core requires utils 1.3.)
+  const utilsSetter = (quartzUtils as { setSlugOptions?: (o: SlugOptions | undefined) => void })
+    .setSlugOptions
+  utilsSetter?.(slugOptions)
 }
 
 export function getSlugOptions(): Readonly<SlugOptions> {
