@@ -354,6 +354,21 @@ describe("links built-in", () => {
     assert.deepStrictEqual(file.data.links?.sort(), ["folder/sibling", "t"])
   })
 
+  test("footnote anchors stay internal without Obsidian's note-link class", () => {
+    const fn = (props: Record<string, unknown>): Element => ({
+      type: "element",
+      tagName: "a",
+      properties: { href: "#user-content-fn-1", ...props },
+      children: [{ type: "text", value: "1" }],
+    })
+    const { els } = run([fn({ dataFootnoteRef: "" }), fn({ dataFootnoteBackref: "" })])
+    for (const el of els.filter((e) => e.tagName === "a")) {
+      const classes = el.properties.className as string[]
+      assert.ok(classes.includes("internal"))
+      assert.ok(!classes.includes("internal-link"))
+    }
+  })
+
   test("makes internal links relative, records outgoing links, marks external ones", () => {
     const { els, file } = run(
       [a("other/note", "Note"), a("https://example.com"), a("#heading")],
