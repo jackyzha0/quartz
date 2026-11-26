@@ -64,7 +64,7 @@
     "@quartz-community/folder-page": "^1.1.0",
     "@quartz-community/footer": "^1.1.1",
     "@quartz-community/github-flavored-markdown": "^2.1.1",
-    "@quartz-community/graph": "^1.0.4",
+    "@quartz-community/graph": "^1.0.5",
     "@quartz-community/hard-line-breaks": "^1.1.0",
     "@quartz-community/latex": "^1.1.0",
     "@quartz-community/note-properties": "^1.2.0",
