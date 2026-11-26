@@ -22,7 +22,7 @@ This plugin accepts the following configuration options:
 - `mathJaxOptions`: Additional options passed to the MathJax renderer. See the [MathJax docs](https://docs.mathjax.org/en/latest/options/) for available options.
 - `typstOptions`: Additional options passed to the Typst renderer.
 
-With KaTeX, the KaTeX stylesheet and its copy-tex script are loaded from jsDelivr.
+With KaTeX, the KaTeX stylesheet and its copy-tex script are loaded from jsDelivr. The stylesheet blocks rendering only on pages with math; elsewhere it loads in the background, ready for pages opened with SPA navigation.
 
 ### Default options
 
