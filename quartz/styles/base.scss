@@ -51,7 +51,8 @@ body {
   border-radius: 5px;
 }
 ::selection {
-  background: color-mix(in srgb, var(--tertiary) 60%, rgba(255, 255, 255, 0));
+  // 40%: text stays readable on it (4.5:1 for --darkgray in both default palettes).
+  background: color-mix(in srgb, var(--tertiary) 40%, rgba(255, 255, 255, 0));
   color: var(--darkgray);
 }
 
