@@ -75,7 +75,12 @@ export function extractLinksFromValue(value: unknown): string[] {
     const links: string[] = []
     for (const match of value.matchAll(WIKILINK_PATTERN))
       links.push(slugifyWikilinkTarget(match[1]!))
-    for (const match of value.matchAll(MDLINK_PATTERN)) links.push(match[1]!)
+    for (const match of value.matchAll(MDLINK_PATTERN)) {
+      // `[x](<./My Note.md>)`: CommonMark's angle-bracket destination, which
+      // Obsidian writes for paths with spaces. The brackets aren't part of it.
+      const dest = match[1]!.trim()
+      links.push(dest.startsWith("<") && dest.endsWith(">") ? dest.slice(1, -1) : dest)
+    }
     return links
   }
   if (Array.isArray(value)) return value.flatMap((item) => extractLinksFromValue(item))
