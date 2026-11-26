@@ -1,5 +1,5 @@
 import { i18n } from "../i18n"
-import { FullSlug, getFileExtension, joinSegments, pathToRoot } from "../util/path"
+import { FullSlug, getFileExtension, joinSegments, pathToRoot, simplifySlug } from "../util/path"
 import { CSSResourceToStyleElement, JSResourceToScriptElement } from "../util/resources"
 import { googleFontHref, googleFontSubsetHref } from "../util/theme"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
@@ -27,9 +27,24 @@ export default (() => {
     const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
     const iconPath = joinSegments(baseDir, "static/icon.png")
 
-    // Url of current page
-    const socialUrl =
-      fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug!)
+    // The page's public URL, as the sitemap lists it: `folder/` for `folder/index`,
+    // no `index` for the home page, encoded.
+    const isNotFound = fileData.slug === "404"
+    const pageUrl = isNotFound
+      ? url.toString()
+      : joinSegments(url.toString(), encodeURI(simplifySlug(fileData.slug!)))
+    // Notes (not the home page, folder or tag pages) are articles.
+    const isArticle =
+      !isNotFound &&
+      fileData.relativePath !== undefined &&
+      !fileData.slug!.endsWith("index") &&
+      !fileData.slug!.startsWith("tags/")
+    const isoDate = (d: unknown) =>
+      d instanceof Date && !isNaN(d.getTime()) ? d.toISOString() : undefined
+    // Without a frontmatter date, the published date is only the build time.
+    const published =
+      isArticle && fileData.frontmatter?.published ? isoDate(fileData.dates?.published) : undefined
+    const modified = isArticle ? isoDate(fileData.dates?.modified) : undefined
 
     const usesCustomOgImage = ctx.cfg.plugins.emitters.some((e) => e.name === "CustomOgImages")
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
@@ -50,19 +65,21 @@ export default (() => {
         {cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && (
           <>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            {/* Font files are fetched with CORS, so only a CORS connection is reused. */}
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
             <link rel="stylesheet" href={googleFontHref(cfg.theme)} />
             {cfg.theme.typography.title && (
               <link rel="stylesheet" href={googleFontSubsetHref(cfg.theme, cfg.pageTitle)} />
             )}
           </>
         )}
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <meta name="og:site_name" content={cfg.pageTitle}></meta>
+        <meta property="og:site_name" content={cfg.pageTitle} />
         <meta property="og:title" content={title} />
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content={isArticle ? "article" : "website"} />
+        {published && <meta property="article:published_time" content={published} />}
+        {modified && <meta property="article:modified_time" content={modified} />}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
@@ -84,8 +101,9 @@ export default (() => {
         {cfg.baseUrl && (
           <>
             <meta property="twitter:domain" content={cfg.baseUrl}></meta>
-            <meta property="og:url" content={socialUrl}></meta>
-            <meta property="twitter:url" content={socialUrl}></meta>
+            <meta property="og:url" content={pageUrl}></meta>
+            <meta property="twitter:url" content={pageUrl}></meta>
+            {!isNotFound && <link rel="canonical" href={pageUrl} />}
           </>
         )}
 
