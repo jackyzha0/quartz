@@ -91,7 +91,21 @@ export function scopeTranscludedIds(el: Element, prefix: string, sourceHref?: st
   })
 }
 
+/**
+ * The block inside Obsidian's per-block wrapper (`div.el-p > p`, `div.el-h2 > h2`), which
+ * `@quartz-community/rehype-obsidian` renders around each of a note's top-level blocks; any other
+ * node is its own block. Code walking a page's top-level blocks looks through the wrappers.
+ */
+export function blockOf(node: ElementContent): ElementContent {
+  if (node.type !== "element" || node.tagName !== "div") return node
+  const classes = ([] as unknown[]).concat(node.properties?.className ?? [])
+  if (!classes.some((c) => /^el-[a-z0-9]+$/.test(String(c)))) return node
+  const inner = node.children.filter((c) => c.type === "element")
+  return inner.length === 1 ? inner[0]! : node
+}
+
 function isFootnotesSection(node: ElementContent): node is Element {
+  node = blockOf(node)
   if (node.type !== "element" || node.tagName !== "section") return false
   const props = node.properties ?? {}
   const classes = (props.className ?? []) as string[]
@@ -101,7 +115,8 @@ function isFootnotesSection(node: ElementContent): node is Element {
 /**
  * A heading transclusion: the slice of the page from the heading to the next one of the same or
  * a higher level. The page's footnotes section is not part of the section; the footnotes the
- * slice references are added after it (in a copy of the section holding only those).
+ * slice references are added after it (in a copy of the section holding only those, in its block
+ * wrapper if it has one).
  */
 export function sliceWithFootnotes(
   pageChildren: ElementContent[],

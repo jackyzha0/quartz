@@ -220,6 +220,43 @@ describe("renderTranscludes", () => {
     assert.ok(!secondText.includes("Circular transclusion"), "should not show circular warning")
   })
 
+  test("a header transclusion finds headings inside Obsidian's block wrappers", () => {
+    const root: Root = {
+      type: "root",
+      children: [makeTranscludeBlockquote("target", "#details")],
+    }
+    const wrap = (tagName: string, properties: Element["properties"], value: string): Element => ({
+      type: "element",
+      tagName: "div",
+      properties: { className: [`el-${tagName}`] },
+      children: [{ type: "element", tagName, properties, children: [{ type: "text", value }] }],
+    })
+    const targetHtml: Root = {
+      type: "root",
+      children: [
+        wrap("h2", { id: "intro" }, "Intro"),
+        wrap("p", {}, "Intro text"),
+        wrap("h2", { id: "details" }, "Details"),
+        wrap("p", {}, "Details text"),
+        wrap("h2", { id: "after" }, "After"),
+        wrap("p", {}, "After text"),
+      ],
+    }
+
+    renderTranscludes(
+      root,
+      cfg,
+      "current" as FullSlug,
+      makeComponentData([makePageData("target", targetHtml)]) as QuartzComponentProps,
+      new Set<FullSlug>(["current" as FullSlug]),
+    )
+
+    const html = toHtml(root.children[0] as Element)
+    assert.ok(html.includes('<div class="el-p"><p>Details text</p></div>'), html)
+    assert.ok(!html.includes("Intro text"), "the slice starts at its heading")
+    assert.ok(!html.includes("After text"), "the slice ends at the next heading")
+  })
+
   test("a header transclusion matches a heading's Obsidian-anchor alias", () => {
     const root: Root = {
       type: "root",

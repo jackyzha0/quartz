@@ -1,7 +1,7 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
 import type { Element, ElementContent } from "hast"
-import { createIdScopes, scopeTranscludedIds, sliceWithFootnotes } from "./transcludeScope"
+import { blockOf, createIdScopes, scopeTranscludedIds, sliceWithFootnotes } from "./transcludeScope"
 
 const h = (
   tagName: string,
@@ -111,5 +111,42 @@ describe("sliceWithFootnotes", () => {
   test("a section without footnote references gets no footnotes section", () => {
     const plain = [h("h2", { id: "c" }), h("p"), page[4]!]
     assert.deepStrictEqual(footnoteIds(sliceWithFootnotes(plain, 0, undefined)), [])
+  })
+})
+
+describe("block wrappers", () => {
+  const wrap = (block: Element) => h("div", { className: [`el-${block.tagName}`] }, [block])
+  const page: ElementContent[] = [
+    wrap(h("h2", { id: "a" }, [text("A")])),
+    text("\n"),
+    wrap(h("p", {}, [h("a", { href: "#user-content-fn-1", dataFootnoteRef: "" }, [text("1")])])),
+    text("\n"),
+    wrap(
+      h("section", { dataFootnotes: "", className: ["footnotes"] }, [
+        h("ol", {}, [h("li", { id: "user-content-fn-1" }), h("li", { id: "user-content-fn-2" })]),
+      ]),
+    ),
+  ]
+
+  test("blockOf looks through Obsidian's per-block wrapper", () => {
+    assert.strictEqual((blockOf(page[0]!) as Element).tagName, "h2")
+    const plain = h("p")
+    assert.strictEqual(blockOf(plain), plain)
+    const callout = h("div", { className: ["callout"] }, [h("p")])
+    assert.strictEqual(blockOf(callout), callout)
+  })
+
+  test("a heading slice gets its footnotes in the section's wrapper", () => {
+    const slice = sliceWithFootnotes(page, 0, undefined)
+    const wrappers = slice.filter((n): n is Element => n.type === "element")
+    assert.deepStrictEqual(
+      wrappers.map((w) => w.properties.className),
+      [["el-h2"], ["el-p"], ["el-section"]],
+    )
+    const section = wrappers[2]!.children[0] as Element
+    const ids = ((section.children[0] as Element).children as Element[]).map(
+      (li) => li.properties.id,
+    )
+    assert.deepStrictEqual(ids, ["user-content-fn-1"])
   })
 })
