@@ -35,6 +35,8 @@ import type {
  *   replace the base values, and `options` and `layout` merge like `configuration`. Entries
  *   that match nothing are appended, as in a full config (so they need `enabled: true`). The base list keeps its order, which only matters as the
  *   tie-break between plugins with the same `order`.
+ * - `extends` lists stack (see resolveExtends): every file of the graph is applied once, after
+ *   its bases, so presets that share `default` each keep their own changes.
  * - A config without `extends` is used exactly as written, as before.
  */
 
@@ -98,20 +100,35 @@ export function deepMerge(base: unknown, overlay: unknown): unknown {
 /**
  * The name a plugin entry is matched by: the last path segment of its package or repository
  * (`@quartz-community/explorer`, `github:quartz-community/explorer#v2`, `./plugins/explorer` →
- * `explorer`), or the `name` of an object source.
+ * `explorer`), or the `name` of an object source. An object source without a `name` that
+ * points at a `subdir` of a repository is matched by both (`plugins/explorer` in
+ * `github:me/quartz-plugins` → `quartz-plugins/plugins/explorer`), so two plugins of one
+ * monorepo stay apart.
  */
 export function pluginMatchKey(source: PluginSource): string {
   if (typeof source === "object" && source !== null) {
     if (source.name) return source.name
-    return pluginMatchKey(source.repo)
+    const repoKey = pluginMatchKey(source.repo)
+    const subdir = normalizeSubdir(source.subdir)
+    return subdir ? `${repoKey}/${subdir}` : repoKey
   }
   let s = String(source).trim()
-  s = s.replace(/^git\+/, "").replace(/^github:/, "")
+  s = s.replace(/^git\+/i, "").replace(/^github:/i, "")
   s = s.split("#")[0]
-  s = s.replace(/\.git$/, "").replace(/\/+$/, "")
+  s = s.replace(/\.git$/i, "").replace(/[\\/]+$/, "")
   // an npm version/range: @scope/name@1.2.3, name@^1
   s = s.replace(/(.)@[^/]*$/, "$1")
-  return s.slice(s.lastIndexOf("/") + 1)
+  return s.slice(Math.max(s.lastIndexOf("/"), s.lastIndexOf("\\")) + 1)
+}
+
+/** `./plugins/x/`, `plugins\\x`, `/plugins/x` → `plugins/x`; empty or `.` → "". */
+function normalizeSubdir(subdir: unknown): string {
+  if (typeof subdir !== "string") return ""
+  return subdir
+    .replace(/\\/g, "/")
+    .split("/")
+    .filter((part) => part !== "" && part !== ".")
+    .join("/")
 }
 
 function mergePluginEntry(base: PluginJsonEntry, overlay: PluginOverlayEntry) {
@@ -131,6 +148,16 @@ function mergePluginEntry(base: PluginJsonEntry, overlay: PluginOverlayEntry) {
   return merged as unknown as PluginJsonEntry
 }
 
+function pluginList<T>(value: T[] | null | undefined, where: string): T[] {
+  if (value === undefined || value === null) return []
+  if (!Array.isArray(value)) {
+    throw new ConfigExtendsError(
+      `"plugins" in ${where} must be a list of plugin entries (- source: …), not ${typeof value === "object" ? "an object" : JSON.stringify(value)}`,
+    )
+  }
+  return value
+}
+
 /** `overlay` on top of `base` (see the module comment). Neither input is modified. */
 export function mergeQuartzConfigs(
   base: QuartzPluginsJson,
@@ -142,8 +169,8 @@ export function mergeQuartzConfigs(
     { ...rest, plugins: undefined },
   ) as QuartzPluginsJson
 
-  const plugins = (base.plugins ?? []).map((entry) => ({ ...entry }))
-  for (const entry of overlayPlugins ?? []) {
+  const plugins = pluginList(base.plugins, "the base config").map((entry) => ({ ...entry }))
+  for (const entry of pluginList(overlayPlugins, "the extending config")) {
     if (!entry || entry.source === undefined) {
       throw new ConfigExtendsError(`a plugin entry without "source" cannot be merged`)
     }
@@ -176,6 +203,7 @@ const REMOTE_TIMEOUT_MS = 10_000
 const REMOTE_MAX_BYTES = 1024 * 1024
 
 const isUrl = (s: string) => /^[a-z][a-z0-9+.-]*:\/\//i.test(s)
+const isHttps = (s: string) => /^https:\/\//i.test(s)
 
 function remoteCacheFile(url: string, cacheDir: string): string {
   return path.join(cacheDir, createHash("sha256").update(url).digest("hex").slice(0, 32) + ".yaml")
@@ -235,7 +263,7 @@ async function fetchUncached(url: string, cacheDir: string, opts: FetchRemoteOpt
       signal: AbortSignal.timeout(opts.timeoutMs ?? REMOTE_TIMEOUT_MS),
       headers: { accept: "application/yaml, application/json, text/plain, */*" },
     })
-    if (res.url && !res.url.startsWith("https://")) {
+    if (res.url && !isHttps(res.url)) {
       throw new ConfigExtendsError(`"extends: ${url}" redirected to ${res.url}, which is not https`)
     }
     if (!res.ok) {
@@ -263,6 +291,8 @@ async function fetchUncached(url: string, cacheDir: string, opts: FetchRemoteOpt
 
 function parseConfigFile(file: string, raw: string): PlainObject {
   const data = file.endsWith(".json") ? JSON.parse(raw) : YAML.parse(raw)
+  // an empty file (or one with only comments) is an empty config
+  if (data === null || data === undefined) return {}
   if (!isPlainObject(data)) {
     throw new ConfigExtendsError(`${file} does not contain a configuration object`)
   }
@@ -281,6 +311,14 @@ function extendsTargets(value: unknown, file: string): string[] {
   return list as string[]
 }
 
+function normalizeUrl(url: string): string {
+  try {
+    return new URL(url).href
+  } catch {
+    throw new ConfigExtendsError(`"extends: ${url}" is not a valid URL`)
+  }
+}
+
 /**
  * Where an `extends` target points, seen from the file (or URL) that names it: `default` is
  * the local quartz.config.default.yaml; a URL is used as is; a relative path is resolved
@@ -290,12 +328,13 @@ function extendsTargets(value: unknown, file: string): string[] {
  */
 export function resolveTarget(target: string, from: string, quartzRoot: string): string {
   if (target === DEFAULT_EXTENDS) return path.join(quartzRoot, DEFAULT_CONFIG_FILE)
+  // URLs are normalised (`HTTPS://Example.org/x` → `https://example.org/x`)
   const resolved = isUrl(target)
-    ? target
+    ? normalizeUrl(target)
     : isUrl(from)
       ? new URL(target, from).href
       : path.resolve(path.dirname(from), target)
-  if (isUrl(resolved) && !resolved.startsWith("https://")) {
+  if (isUrl(resolved) && !isHttps(resolved)) {
     throw new ConfigExtendsError(
       `${from}: "extends: ${target}" — only https:// URLs can be extended`,
     )
@@ -303,56 +342,111 @@ export function resolveTarget(target: string, from: string, quartzRoot: string):
   return resolved
 }
 
+interface ConfigLayer {
+  /** Resolved path or URL ("" for the config being resolved). */
+  file: string
+  /** The file's own content, without `extends`. */
+  data: PlainObject
+}
+
 /**
- * Apply `extends` of `data` (read from `file`, a path or URL): load each base (recursively;
- * later entries of an `extends` list win), then merge `data` on top. Returns `data` itself
- * when it has no `extends`, so configs without it behave exactly as before.
+ * Apply `extends` of `data` (read from `file`, a path or URL) and return the merged config.
+ * Returns `data` itself when it has no `extends` (or an empty list), so configs without it
+ * behave exactly as before.
+ *
+ * Every file in the `extends` graph is a layer of its own changes, applied once, after all of
+ * its bases (depth first, in list order). A base that several entries share (usually
+ * `default`) is applied at its first appearance, so for `extends: [./a.yaml, ./b.yaml]` where
+ * both extend `default` the order is default → a → b → this file: what a.yaml changes stays
+ * unless b.yaml changes the same thing (later entries win), and this file wins over all.
  */
 export async function resolveExtends(
   data: PlainObject,
   file: string,
   options: ResolveExtendsOptions = {},
-  seen: string[] = [],
 ): Promise<QuartzPluginsJson> {
-  if (data.extends === undefined || data.extends === null) {
+  const targets = data.extends === undefined || data.extends === null ? [] : data.extends
+  if (Array.isArray(targets) && targets.length === 0) {
     const { extends: _drop, ...rest } = data
-    return (data.extends === null ? rest : data) as unknown as QuartzPluginsJson
+    return ("extends" in data ? rest : data) as unknown as QuartzPluginsJson
   }
+  const layers = await extendsLayers(data, file, options)
+  const [first, ...rest] = layers
+  let merged = first.data as unknown as QuartzPluginsJson
+  pluginList(merged.plugins, first.file)
+  for (const layer of rest) {
+    merged = mergeQuartzConfigs(merged, layer.data as QuartzConfigOverlay)
+  }
+  return merged
+}
+
+/**
+ * The local files (absolute paths) `data` extends, directly or through other bases; URLs are
+ * left out. For `--serve`, which rebuilds when one of them changes.
+ */
+export async function localExtendsFiles(
+  data: PlainObject,
+  file: string,
+  options: ResolveExtendsOptions = {},
+): Promise<string[]> {
+  if (data.extends === undefined || data.extends === null) return []
+  const layers = await extendsLayers(data, file, options)
+  return layers.map((l) => l.file).filter((f) => f !== "" && !isUrl(f))
+}
+
+/** The layers of `data` in the order they are applied: bases first, `data` itself last. */
+async function extendsLayers(
+  data: PlainObject,
+  file: string,
+  options: ResolveExtendsOptions,
+): Promise<ConfigLayer[]> {
   const readFile = options.readFile ?? ((f: string) => fs.readFileSync(f, "utf-8"))
   const fetchRemote = options.fetchRemote ?? ((url: string) => fetchRemoteConfig(url))
   const quartzRoot = options.quartzRoot ?? process.cwd()
-  const self = isUrl(file) ? file : path.resolve(file)
-  const chain = [...seen, self]
+  const layers: ConfigLayer[] = []
+  const applied = new Set<string>()
 
-  let base: QuartzPluginsJson | undefined
-  for (const target of extendsTargets(data.extends, file)) {
-    const targetFile = resolveTarget(target, file, quartzRoot)
-    if (chain.includes(targetFile)) {
-      throw new ConfigExtendsError(
-        `"extends" cycle: ${[...chain, targetFile].map((f) => (isUrl(f) ? f : path.basename(f))).join(" → ")}`,
-      )
-    }
-    let raw: string
-    if (isUrl(targetFile)) {
-      raw = await fetchRemote(targetFile)
-    } else {
-      try {
-        raw = readFile(targetFile)
-      } catch {
-        throw new ConfigExtendsError(`${file}: "extends: ${target}" — ${targetFile} not found`)
+  const visit = async (node: PlainObject, nodeFile: string, chain: string[]) => {
+    const self = isUrl(nodeFile) ? nodeFile : path.resolve(nodeFile)
+    const here = [...chain, self]
+    const raw = node.extends
+    const targets = raw === undefined || raw === null ? [] : extendsTargets(raw, nodeFile)
+    for (const target of targets) {
+      const targetFile = resolveTarget(target, nodeFile, quartzRoot)
+      if (here.includes(targetFile)) {
+        throw new ConfigExtendsError(
+          `"extends" cycle: ${[...here, targetFile].map((f) => (isUrl(f) ? f : path.basename(f))).join(" → ")}`,
+        )
       }
+      if (applied.has(targetFile)) continue
+      let text: string
+      if (isUrl(targetFile)) {
+        text = await fetchRemote(targetFile)
+      } else {
+        try {
+          text = readFile(targetFile)
+        } catch {
+          throw new ConfigExtendsError(
+            `${nodeFile}: "extends: ${target}" — ${targetFile} not found`,
+          )
+        }
+      }
+      const parsePath = isUrl(targetFile) ? new URL(targetFile).pathname : targetFile
+      let parsed: PlainObject
+      try {
+        parsed = parseConfigFile(parsePath, text)
+      } catch (err) {
+        throw new ConfigExtendsError(
+          `"extends: ${target}": ${targetFile} is not a valid config (${err instanceof Error ? err.message : String(err)})`,
+        )
+      }
+      await visit(parsed, targetFile, here)
     }
-    const parsePath = isUrl(targetFile) ? new URL(targetFile).pathname : targetFile
-    let parsed: PlainObject
-    try {
-      parsed = parseConfigFile(parsePath, raw)
-    } catch (err) {
-      throw new ConfigExtendsError(
-        `"extends: ${target}": ${targetFile} is not a valid config (${err instanceof Error ? err.message : String(err)})`,
-      )
-    }
-    const resolved = await resolveExtends(parsed, targetFile, options, chain)
-    base = base ? mergeQuartzConfigs(base, resolved as QuartzConfigOverlay) : resolved
+    const { extends: _drop, ...own } = node
+    layers.push({ file: chain.length === 0 ? "" : self, data: own })
+    applied.add(self)
   }
-  return mergeQuartzConfigs(base!, data as QuartzConfigOverlay)
+
+  await visit(data, file, [])
+  return layers
 }

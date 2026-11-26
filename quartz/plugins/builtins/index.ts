@@ -303,7 +303,7 @@ export function planBuiltins(input: PlanInput): BuiltinPlan {
 export function instantiateBuiltins<C extends BuiltinCategory>(
   plan: BuiltinPlan,
   category: C,
-): { order: number; instance: BuiltinInstance }[] {
+): { order: number; instance: BuiltinInstance; names: string[] }[] {
   return (
     plan.builtins
       .filter((b) => b.enabled && b.spec.category === category)
@@ -318,7 +318,13 @@ export function instantiateBuiltins<C extends BuiltinCategory>(
           category: b.spec.category,
           builtin: true,
         })
-        return { order: b.order, instance }
+        // `before`/`after` may name the built-in by its config key or by the plugin it
+        // replaced (`after: crawl-links` is `after: links`)
+        return {
+          order: b.order,
+          instance,
+          names: [instance.name, b.spec.configKey, ...b.spec.absorbs],
+        }
       })
   )
 }

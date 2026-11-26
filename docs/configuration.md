@@ -42,15 +42,19 @@ plugins:
     enabled: true
 ```
 
-- `extends` is `default`, a path to another config file relative to this one (which may itself extend another), an `https://` URL, or a list of those. Later entries in the list win.
+- `extends` is `default`, a path to another config file relative to this one (which may itself extend another), an `https://` URL, or a list of those. An empty file (or one with only comments) is an empty config, and `extends: []` extends nothing.
+- A list stacks presets: each file in it adds its own changes. Quartz puts every file of the `extends` chain in one line and applies each once, its bases before it: the list's entries in order, each after the bases it extends, and your file last. A base that several entries share (usually `default`) is applied once, at its first appearance. So with `extends: [./a.yaml, ./b.yaml]`, where both extend `default`, the order is `default` → `a.yaml` → `b.yaml` → your file: what `a.yaml` changes stays unless `b.yaml` changes the same thing (later entries win), and your file wins over both. An entry that doesn't extend the shared base is applied before it if it comes first, so the base's settings win over it; make such a preset extend `default` too, or list it after the others.
   - A URL is fetched when the config is loaded (10 s timeout, at most 1 MB) and kept in `.quartz-cache/extends/`. If a later fetch fails (offline, timeout, HTTP error), Quartz uses the cached copy and warns; without one, the build stops. `QUARTZ_EXTENDS_OFFLINE=1` uses only the cached copy. Relative `extends` inside a fetched file are resolved against its URL; `default` always means your local `quartz.config.default.yaml`. Only `https://` URLs are allowed, and only extend configs you trust: they choose which plugins your build runs.
 - `configuration` and `layout` merge key by key, including nested objects (`theme.colors.lightMode.secondary` changes only that colour). Any other value replaces the default: strings, numbers and lists such as `ignorePatterns` or `byPageType.<type>.exclude`. Setting a key to `null` removes it, so the built-in default applies.
-- A plugin entry changes the default entry for the same plugin, matched by name (`github:quartz-community/explorer` matches `@quartz-community/explorer`, and a fork with the same name replaces it). `enabled`, `order` and `source` replace the default values. `options` and `layout` merge like `configuration`, and `null` drops them so the plugin's own defaults apply. A plugin that is not in the base is added, and it needs `enabled: true` just as in a full config.
+- A plugin entry changes the default entry for the same plugin, matched by name (`github:quartz-community/explorer` matches `@quartz-community/explorer`, and a fork with the same name replaces it). A source with a `name` matches by that name; a source with a `subdir` and no `name` matches by repository and folder, so two plugins of one repository stay separate. `enabled`, `order` and `source` replace the default values. `options` and `layout` merge like `configuration`, and `null` drops them so the plugin's own defaults apply. A plugin that is not in the base is added, and it needs `enabled: true` just as in a full config.
 - Plugins run in `order` as before. Your file can change a default plugin's `order`. Where two plugins have the same order, the base config's list order decides, and added plugins come last.
 - Your updates to `quartz.config.default.yaml` (for example after `npx quartz upgrade`) reach your site without copying them over.
 
+- `npx quartz build --serve` also rebuilds when a local file your config extends changes.
+- `npx quartz plugin` commands and `npx quartz info` read the merged configuration, as the build does: `plugin list`, `status`, `doctor`, `install` and `prune` see the plugins your bases configure. Commands that change plugins only ever write your own file, never the merged result: `enable`, `disable` and `config --set` add or change your entry for the plugin (`- source: …` with just that change), `config --unset` removes your value and, when a base sets the option, sets it to `null` so the plugin's default applies, and `add` appends a full entry. `remove` refuses a plugin that a base configures (it can't be removed from your file); disable it instead.
+
 > [!warning] Experimental
-> `npx quartz plugin` commands that edit plugin entries (`enable`, `disable`, `config`, …) only see the entries in your own file so far. Edit an extending `quartz.config.yaml` by hand.
+> `extends` is experimental: the merge rules may still change.
 
 ## General Configuration
 
@@ -86,7 +90,7 @@ This part of the configuration concerns anything that can affect the whole site.
 - `slugs`: how file paths become URLs.
   - `stripDiacritics`: `true` strips accents and other diacritics from page, folder and file URLs, e.g. `české/čeština.md` is published at `/ceske/cestina` instead of `/české/čeština` (which browsers show as `%C4%8Desk%C3%A9/...` when copied). Off by default.
     - Links keep working as written in your notes: `[[čeština]]`, `[[české/čeština#Nadpis]]` and embeds like `![[obrázek.png]]` resolve to the stripped addresses. Aliases and `permalink`s are stripped the same way. Heading anchors (`#Nadpis`) keep their diacritics. Tag pages and the pages plugins generate from files (canvas, bases, …) are stripped too with `@quartz-community/utils` 1.3 or newer; with older versions they keep their diacritics.
-    - Only combining accents (`á č é ů …`) are removed. Letters without a decomposition (`ø`, `ł`, `ß`, `æ`) and non-Latin scripts (Chinese, Japanese, Korean, Arabic, Devanagari, …) are kept as they are.
+    - Only Latin letters change: they lose their accents (`á č é ů …`), and Latin letters without a decomposition fold to ASCII (`ł` → `l`, `ø` → `o`, `ß` → `ss`, `æ` → `ae`). Other scripts (Chinese, Japanese, Korean, Greek, Cyrillic, Arabic, Hebrew, Devanagari, …) are left as written, marks included.
     - Turning it on changes the URLs of existing pages; links shared elsewhere to the old addresses will 404 unless you add the old addresses as `aliases`.
 - `ignorePatterns`: a list of [glob](<https://en.wikipedia.org/wiki/Glob_(programming)>) patterns that Quartz should ignore and not search through when looking for files inside the `content` folder. See [[private pages]] for more details.
 - `theme`: configure how the site looks.
@@ -167,7 +171,7 @@ plugins:
 
 Plugins are categorized by their type (transformer, filter, emitter, pageType) based on their manifest. The `order` field controls execution order within each category.
 
-`before` and `after` name plugins that this one must run before or after (one name or a list; `obsidian-flavored-markdown`, `ObsidianFlavoredMarkdown` and `@quartz-community/obsidian-flavored-markdown` all work, as do the built-ins `frontmatter`, `links`, `drafts` and `contentIndex`). They never override `order`; they are checked against it:
+`before` and `after` name plugins that this one must run before or after (one name or a list; `obsidian-flavored-markdown`, `ObsidianFlavoredMarkdown` and `@quartz-community/obsidian-flavored-markdown` all work, as do the built-ins `frontmatter`, `links`, `drafts` and `contentIndex`; the names of the plugins they replaced, `crawl-links`, `remove-draft` and `content-index`, mean those built-ins). They never override `order`; they are checked against it:
 
 ```yaml title="quartz.config.yaml"
 plugins:

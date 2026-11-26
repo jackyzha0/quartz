@@ -46,12 +46,32 @@ jobs:
         if: steps.changesets.outputs.has-changesets == 'false'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Each step can be re-run: an existing tag on this commit, or an existing release, is
+        # kept, and the Docker build is started again (a failed run used to stop at "already
+        # exists" on the next attempt).
         run: |
+          set -euo pipefail
           VERSION=$(node -p "require('./package.json').version")
           TAG="v$VERSION"
-          if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
-            echo "$TAG already exists — nothing to release."
-            exit 0
+          # The commit the tag points at on GitHub (empty when there is no tag yet); an annotated
+          # tag is followed to its commit.
+          tag_commit() {
+            local ref type sha
+            ref=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" --jq '.object.type + " " + .object.sha' 2>/dev/null) || return 0
+            read -r type sha <<<"$ref"
+            if [ "$type" = "tag" ]; then
+              sha=$(gh api "repos/$GITHUB_REPOSITORY/git/tags/$sha" --jq '.object.sha')
+            fi
+            echo "$sha"
+          }
+          EXISTING=$(tag_commit)
+          if [ -n "$EXISTING" ] && [ "$EXISTING" != "$GITHUB_SHA" ]; then
+            if git merge-base --is-ancestor "$EXISTING" "$GITHUB_SHA" 2>/dev/null; then
+              echo "$TAG was released at $EXISTING — nothing to release."
+              exit 0
+            fi
+            echo "::error::$TAG already exists but points at $EXISTING, which is not this commit ($GITHUB_SHA) or one of its ancestors. Check the tag (delete it if it is wrong), then re-run this workflow."
+            exit 1
           fi
           # Only versions produced by `changeset version` are released (guards against tagging
           # an arbitrary commit with a version that was never released through this workflow).
@@ -65,8 +85,18 @@ jobs:
           # Letting `gh release create` make the tag instead gives an unsigned annotated tag
           # object (tagger: whoever merged the release PR), which GitHub marks "Unverified"
           # (jackyzha0/quartz#2455). `git describe --tags` reads lightweight tags as well.
-          gh api "repos/$GITHUB_REPOSITORY/git/refs" -f ref="refs/tags/$TAG" -f sha="$GITHUB_SHA" >/dev/null
-          gh release create "$TAG" --verify-tag --title "Quartz $VERSION" --notes-file release-notes.md
+          if [ -z "$EXISTING" ]; then
+            gh api "repos/$GITHUB_REPOSITORY/git/refs" -f ref="refs/tags/$TAG" -f sha="$GITHUB_SHA" >/dev/null
+          else
+            echo "$TAG already points at this commit — keeping it."
+          fi
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "The $TAG release already exists — keeping it."
+          else
+            gh release create "$TAG" --verify-tag --title "Quartz $VERSION" --notes-file release-notes.md
+          fi
           # A tag created with GITHUB_TOKEN doesn't trigger `on: push: tags`, so the Docker workflow
-          # never built the versioned images; start it for the tag explicitly.
+          # never built the versioned images; start it for the tag explicitly. Started with
+          # `--ref vX.Y.Z`, the run's GITHUB_REF is refs/tags/vX.Y.Z, which is all
+          # docker/metadata-action's `type=semver` tags need (it checks the ref, not the event).
           gh workflow run docker-build-push.yaml --ref "$TAG"

@@ -427,8 +427,9 @@ describe("slugs.stripDiacritics (#2410)", () => {
       assert.strictEqual(slug("がぎぐ.md"), "がぎぐ")
       assert.strictEqual(slug("हिन्दी.md"), "हिन्दी")
       assert.strictEqual(slug("日本語/中文.md"), "日本語/中文")
-      // letters without a decomposition are kept
-      assert.strictEqual(slug("Łódź ø ß.md"), "łodz-ø-ß")
+      // Latin letters without a decomposition fold to ASCII (utils 1.3.1)
+      assert.strictEqual(slug("Łódź ø ß.md"), "lodz-o-ss")
+      assert.strictEqual(slug("Æsir.md"), "aesir")
     })
   })
 

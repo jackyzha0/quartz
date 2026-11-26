@@ -76,6 +76,13 @@ describe("index conditions (#2465)", () => {
     assert.strictEqual(run("is-folder-index", "folder/indexes"), false)
     assert.strictEqual(run("is-folder-index", undefined), false)
   })
+
+  test("is-folder-index is false on tag pages (the all-tags page is tags/index)", () => {
+    assert.strictEqual(run("is-folder-index", "tags/index"), false)
+    assert.strictEqual(run("is-folder-index", "tags/a/index"), false)
+    assert.strictEqual(run("is-folder-index", "tags/a"), false)
+    assert.strictEqual(run("is-folder-index", "my-tags/index"), true)
+  })
 })
 
 describe("not-<condition> negation", () => {
