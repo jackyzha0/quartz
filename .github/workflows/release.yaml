@@ -21,6 +21,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      actions: write # start the Docker build for the new tag
     steps:
       - uses: actions/checkout@v7
         with:
@@ -59,8 +60,13 @@ jobs:
             echo "CHANGELOG.md has no section for $VERSION — not tagging."
             exit 0
           fi
-          # GitHub creates the tag, on the commit this push brought (the merged release PR). A tag
-          # made here with `git tag -a` is an unsigned tag object, which GitHub marks "Unverified"
-          # (jackyzha0/quartz#2455). This one points straight at the commit, which shows as verified
-          # because GitHub signs the commits it merges. `git describe --tags` sees it all the same.
-          gh release create "$TAG" --target "$GITHUB_SHA" --title "Quartz $VERSION" --notes-file release-notes.md
+          # The tag is a lightweight ref straight to the merged release commit, created here
+          # before the release. GitHub signs the commits it merges, so the tag shows as verified.
+          # Letting `gh release create` make the tag instead gives an unsigned annotated tag
+          # object (tagger: whoever merged the release PR), which GitHub marks "Unverified"
+          # (jackyzha0/quartz#2455). `git describe --tags` reads lightweight tags as well.
+          gh api "repos/$GITHUB_REPOSITORY/git/refs" -f ref="refs/tags/$TAG" -f sha="$GITHUB_SHA" >/dev/null
+          gh release create "$TAG" --verify-tag --title "Quartz $VERSION" --notes-file release-notes.md
+          # A tag created with GITHUB_TOKEN doesn't trigger `on: push: tags`, so the Docker workflow
+          # never built the versioned images; start it for the tag explicitly.
+          gh workflow run docker-build-push.yaml --ref "$TAG"
