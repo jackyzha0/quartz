@@ -635,3 +635,38 @@ describe("links to unpublished pages, after the page types ran (crawl-links#7)",
     assert.ok(marks(home).every((m) => m === "ok"))
   })
 })
+
+describe("resolveLayout: every slot", () => {
+  test("a page type's override replaces each default slot; the page type's body is the page body", () => {
+    const Body = (() => null) as unknown as QuartzComponent
+    const pt = makePageType({ body: () => Body })
+    const slots = ["header", "beforeBody", "afterBody", "left", "right", "footer"] as const
+    const defaults = Object.fromEntries(slots.map((s) => [s, [StubA]]))
+    const overrides = Object.fromEntries(slots.map((s) => [s, [StubB]]))
+    const OtherHead = (() => null) as unknown as QuartzComponent
+    const layout = resolveLayout(
+      pt,
+      { head: StubHead, ...defaults },
+      { [pt.layout]: { head: OtherHead, ...overrides } },
+    )
+    for (const slot of slots) assert.deepStrictEqual(layout[slot], [StubB], slot)
+    assert.strictEqual(layout.head, OtherHead)
+    assert.strictEqual(layout.pageBody, Body)
+    // without an override, the defaults
+    const plain = resolveLayout(pt, { head: StubHead, ...defaults }, {})
+    for (const slot of slots) assert.deepStrictEqual(plain[slot], [StubA], slot)
+  })
+
+  test("collectComponents leaves out a missing head", () => {
+    const components = collectComponents([makePageType()], { left: [StubA] }, {})
+    assert.ok(!components.includes(undefined as never))
+    assert.strictEqual(components.length, 2)
+  })
+
+  test("collectTreeTransforms: page types without treeTransforms add none", () => {
+    const t = (() => {}) as never
+    const ctx = { cfg: { plugins: { transformers: [] } } } as unknown as BuildCtx
+    const result = collectTreeTransforms(ctx, [{}, { treeTransforms: () => [t] }])
+    assert.deepStrictEqual(result, { before: [], treeTransforms: [t], after: [] })
+  })
+})
