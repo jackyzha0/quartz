@@ -388,7 +388,7 @@ function populateVirtualPageHtmlAst(
  * type generated (markUnpublishedLinks). Returns the pages whose links changed, which watch mode
  * re-emits although their source didn't change.
  */
-function markLinksToUnpublishedPages(
+export function markLinksToUnpublishedPages(
   ctx: BuildCtx,
   content: ProcessedContent[],
   virtualEntries: VirtualEntry[],
