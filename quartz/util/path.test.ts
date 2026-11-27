@@ -486,7 +486,8 @@ describe("normalizeRelativeURLs (SPA navigation and popovers)", () => {
       [
         { href: "/notes/deep/sibling" },
         { href: "/notes/up/page#part" },
-        { href: "/notes/deep/page" },
+        // an empty href is the page itself, its query string included (as in the browser)
+        { href: "/notes/deep/page?q=1" },
         { src: "/notes/deep/img.png" },
         { src: "/notes/media/v.mp4" },
         { href: "https://example.com/x" },
@@ -497,17 +498,12 @@ describe("normalizeRelativeURLs (SPA navigation and popovers)", () => {
     )
   })
 
-  // _rebaseHtmlElement keeps `pathname + hash` of the resolved URL and drops its `search`, so a
-  // relative link or embed with a query string loses it after SPA navigation or in a popover
-  // (`./static/viewer.html?file=a.pdf` → `/notes/static/viewer.html`), while the page loaded
-  // directly keeps it.
-  test(
-    "keeps the query string of a relative URL",
-    { todo: "bug: normalizeRelativeURLs drops ?query (quartz/util/path.ts:60)" },
-    () => {
-      const { page, els } = fakePage([{ src: "./viewer.html?file=a.pdf#p2" }])
-      path.normalizeRelativeURLs(page, "https://garden.example/notes/page")
-      assert.deepStrictEqual(els[0].attrs, { src: "/notes/viewer.html?file=a.pdf#p2" })
-    },
-  )
+  // _rebaseHtmlElement used to keep only `pathname + hash` of the resolved URL, so a relative
+  // link or embed with a query string lost it after SPA navigation or in a popover
+  // (`./static/viewer.html?file=a.pdf` → `/notes/static/viewer.html`).
+  test("keeps the query string of a relative URL", () => {
+    const { page, els } = fakePage([{ src: "./viewer.html?file=a.pdf#p2" }])
+    path.normalizeRelativeURLs(page, "https://garden.example/notes/page")
+    assert.deepStrictEqual(els[0].attrs, { src: "/notes/viewer.html?file=a.pdf#p2" })
+  })
 })
