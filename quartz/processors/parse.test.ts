@@ -68,11 +68,13 @@ describe("parseMarkdown (one thread)", () => {
   })
 
   test("runs text, Markdown and HTML transforms in plugin order and sets the file's paths", async () => {
-    const dir = await fs.promises.mkdtemp(path.join(os.tmpdir(), "quartz-parse-"))
+    // Quartz passes POSIX-style paths (its glob yields them on Windows too)
+    const posix = (p: string) => p.split(path.sep).join("/")
+    const dir = posix(await fs.promises.mkdtemp(path.join(os.tmpdir(), "quartz-parse-")))
     try {
-      await fs.promises.mkdir(path.join(dir, "Sub Folder"))
-      const a = path.join(dir, "Sub Folder", "My Note.md")
-      const b = path.join(dir, "other.md")
+      await fs.promises.mkdir(`${dir}/Sub Folder`)
+      const a = `${dir}/Sub Folder/My Note.md`
+      const b = `${dir}/other.md`
       await fs.promises.writeFile(a, "\n\n  # Title  \n\n")
       await fs.promises.writeFile(b, "text")
       const log: string[] = []

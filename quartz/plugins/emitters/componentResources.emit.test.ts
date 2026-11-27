@@ -106,7 +106,7 @@ async function emit(
   } as unknown as BuildCtx
   const written: string[] = []
   for await (const fp of ComponentResources().emit(ctx, [], resources) as AsyncIterable<string>) {
-    written.push(path.relative(output, fp))
+    written.push(path.relative(output, fp).split(path.sep).join("/"))
   }
   const read = (name: string) => fs.readFileSync(path.join(output, name), "utf8")
   return { ctx, written, read }

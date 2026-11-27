@@ -104,7 +104,7 @@ const linkOf = ([tree]: ReturnType<typeof page>) => (tree as Root).children[0] a
 
 async function collect(gen: AsyncGenerator<FilePath> | AsyncIterable<FilePath>, output: string) {
   const out: string[] = []
-  for await (const fp of gen) out.push(path.relative(output, fp))
+  for await (const fp of gen) out.push(path.relative(output, fp).split(path.sep).join("/"))
   return out.sort()
 }
 
