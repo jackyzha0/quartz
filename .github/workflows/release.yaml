@@ -85,6 +85,8 @@ jobs:
           # Letting `gh release create` make the tag instead gives an unsigned annotated tag
           # object (tagger: whoever merged the release PR), which GitHub marks "Unverified"
           # (jackyzha0/quartz#2455). `git describe --tags` reads lightweight tags as well.
+          # This is the only place that tags a release: ci.yaml's old `publish-tag` job (an annotated
+          # tag through pkgdeps/git-tag-action) ran first and kept every release tag unverified.
           if [ -z "$EXISTING" ]; then
             gh api "repos/$GITHUB_REPOSITORY/git/refs" -f ref="refs/tags/$TAG" -f sha="$GITHUB_SHA" >/dev/null
           else
