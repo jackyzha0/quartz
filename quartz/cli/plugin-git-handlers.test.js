@@ -294,3 +294,67 @@ describe("plugin commands with an extending config", () => {
     assert.doesNotMatch(read(dir), /comments/)
   })
 })
+
+describe("plugin install --latest with a plugin that can't be updated", () => {
+  const cli = path.resolve(import.meta.dirname, "..", "bootstrap-cli.mjs")
+  // A Git plugin whose repository no longer has the configured subdirectory (an old
+  // quartz-themes entry: the repository moved its plugin out of `plugin/`).
+  const site = (enabled) => {
+    const repo = path.join(root, "repo")
+    fs.mkdirSync(repo, { recursive: true })
+    fs.writeFileSync(path.join(repo, "README.md"), "no plugin/ here\n")
+    const git = (args) => execSync(`git ${args}`, { cwd: repo, stdio: "ignore", timeout: 30_000 })
+    git("init -q -b main")
+    git("-c user.name=t -c user.email=t@t add .")
+    git("-c user.name=t -c user.email=t@t commit -q -m init")
+    const url = pathToFileURL(repo).href
+    const dir = path.join(root, "site")
+    fs.mkdirSync(path.join(dir, ".quartz", "plugins", "old-theme"), { recursive: true })
+    fs.writeFileSync(path.join(dir, "package.json"), `{ "name": "site", "version": "5.3.1" }`)
+    fs.writeFileSync(
+      path.join(dir, "quartz.config.yaml"),
+      YAML.stringify({
+        configuration: { pageTitle: "t" },
+        plugins: [{ source: { name: "old-theme", repo: url, subdir: "plugin" }, enabled }],
+      }),
+    )
+    fs.writeFileSync(
+      path.join(dir, "quartz.lock.json"),
+      JSON.stringify({
+        version: "1.0.0",
+        plugins: {
+          "old-theme": {
+            source: url,
+            resolved: url,
+            subdir: "plugin",
+            commit: "0000000000000000000000000000000000000000",
+            installedAt: "2026-01-01T00:00:00.000Z",
+          },
+        },
+      }),
+    )
+    return dir
+  }
+  const run = (dir) => {
+    const result = spawnSync(process.execPath, [cli, "plugin", "install", "--latest"], {
+      cwd: dir,
+      encoding: "utf-8",
+      timeout: 60_000,
+      env: { ...process.env, QUARTZ_CONFIG_PATH: "" },
+    })
+    return { output: result.stdout + result.stderr, status: result.status }
+  }
+
+  test("a disabled plugin only warns: the build doesn't load it", () => {
+    const { output, status } = run(site(false))
+    assert.match(output, /Could not update old-theme \(disabled/)
+    assert.match(output, /npx quartz plugin remove old-theme/)
+    assert.strictEqual(status, 0)
+  })
+
+  test("an enabled plugin fails the update", () => {
+    const { output, status } = run(site(true))
+    assert.match(output, /Failed to update old-theme/)
+    assert.strictEqual(status, 1)
+  })
+})
