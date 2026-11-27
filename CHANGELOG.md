@@ -1,5 +1,31 @@
 # @jackyzha0/quartz
 
+## 5.3.1
+
+### Patch Changes
+
+- f285e12: A plugin that depends on a plugin of another pipeline stage (an emitter or component on a transformer) no longer fails the build because of their `order`: order is checked only between plugins of the same stage.
+- ce108c8: A `locale` that Quartz has no translation for (such as `sv-SE`, `da-DK` or `es-MX`) no longer crashes the build. Quartz uses a translation of the same language (`es-MX` uses `es-ES`), else English, and prints one warning; dates still use the configured locale.
+- 9889d3f: Plugin updates: folder-page 1.1.5 (a folder's unlisted `index.md` is no longer replaced by a generated folder page), canvas-page 1.1.7 (edges drawn as in Obsidian), search 1.1.5 (Escape with tag suggestions open closes only the suggestions), graph 1.0.10 (the local graph is drawn once per page), stacked-pages 1.0.5 (unused template exports removed) and remark-obsidian 2.2.6.
+- 37a61cf: Plugin updates with the fixes from a test audit:
+
+  - note-properties: an empty `tags:` or `aliases:` no longer fails the build.
+  - bases-page: sorting, filters, formulas and group headings work as in Obsidian.
+  - encrypted-pages: a numeric `password` encrypts the page, and a custom `outputPath` works.
+  - darkmode, reader-mode, syntax-highlighting and comments: no double handlers after a page is unlocked.
+  - stacked-pages: links work under a base path.
+  - breadcrumbs: `resolveFrontmatterTitle` is honoured.
+  - canvas-page: a `#View` link selects that view.
+  - search: fields left out of `fieldPriority` are searched, and excerpts keep their last word.
+  - explorer: a note next to a folder of the same name stays listed, and folder options apply.
+  - folder-page, og-image, description, table-of-contents, graph, obsidian-flavored-markdown and utils: smaller fixes.
+  - latex: `customMacros` work with MathJax. ox-hugo: figure parameters in backticks.
+
+- 6729a1e: Relative links and embeds keep their query string after SPA navigation and in popovers (`./viewer.html?file=a.pdf` no longer loses `?file=a.pdf`).
+- c68a494: Some fixes in this release change how existing pages look, mostly to match Obsidian: Bases sorting (natural text order, empty values last, mixed types), Bases `not:` filters and `== null`, Bases group headings, canvas edges, and folders with an unlisted `index.md`. See [Upgrading from 5.3.0 to 5.3.1](https://quartz.jzhao.xyz/getting-started/upgrading#upgrading-from-530-to-531).
+- 57b3b5d: `npx quartz plugin install --latest` (and `plugin update`) no longer fails because a disabled plugin can't be updated, for example an old `quartz-themes` entry whose repository moved its plugin. The build doesn't load disabled plugins, so this is now a warning that says how to remove the entry. A failing enabled plugin still fails the command.
+- 1e1a356: utils 1.3.4: inline `#tag` links from notes two or more folders deep stay under the site's base path. They went to `/tags/…` instead of `/<base>/tags/…`, a 404 on sites served under a sub-path such as GitHub Pages project sites.
+
 ## 5.3.0
 
 ### Minor Changes
