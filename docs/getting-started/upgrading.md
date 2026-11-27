@@ -28,6 +28,32 @@ npx quartz plugin install --latest
 
 See the [[upgrade|CLI reference for upgrade]] for more details on available flags.
 
+## Upgrading from 5.3.0 to 5.3.1
+
+5.3.1 is a patch release: fixes from a test audit of Quartz and its plugins, many checked against Obsidian. Upgrade as usual:
+
+```bash
+npx quartz upgrade
+npx quartz plugin install --latest
+```
+
+### Changes you may notice
+
+Most of these make a page look the way Obsidian shows it, so an existing site can look different after the upgrade.
+
+- **[[Bases]] sorting**: text sorts naturally ("Chapter 2" before "Chapter 10") and ignores case, also for the default order by file name. Empty values come last in both directions, including descending sorts. A column that mixes types sorts numbers, dates and durations by value and everything else as text. Group order follows the same rules.
+- **[[Bases]] filters and formulas**, as in Obsidian:
+  - `not:` leaves out a note that matches _any_ of its conditions (it left out only notes matching all of them).
+  - `status == null` matches notes without `status`, and `status != null` no longer keeps them.
+  - `"5" == 5` and `1 == true` are true, two strings compare as text (`"10" > "9"` is false), and an empty list counts as false.
+  - A formula can use a formula defined after it. `x / 0` shows ∞. `sum()`, `mean()`, `min()` and `max()` skip text and booleans, and are empty without numbers. `number("abc")` is an error.
+- **[[Bases]] group headings** show their value as a cell does: dates in the local format (not an ISO timestamp, sometimes of the previous day), durations as "4 days", links as the note's name, booleans as a checkbox.
+- **[[CanvasPage|Canvas]] edges** leave and enter each card through the side they name, with Obsidian's curve, and the arrow points into that side. An edge without sides joins the sides that face each other (it joined the cards' centres).
+- **Folder pages**: a folder whose own `index.md` is unlisted shows that note, with the folder listing below it. A generated folder page used to replace it.
+- **Tag links under a base path**: inline `#tag` links from notes two or more folders deep stay on the site. On a site served under a sub-path, such as a GitHub Pages project site, they went to `/tags/…` and returned 404.
+- **Locales without a translation** (such as `sv-SE`) no longer crash the build: Quartz uses a translation of the same language, else English, and prints a warning. Dates still use your locale.
+- **`npx quartz plugin install --latest`** no longer fails because a _disabled_ plugin can't be updated (for example an old `quartz-themes` entry). It prints a warning with the command to remove the entry.
+
 ## Upgrading from 5.2 to 5.3
 
 Quartz 5.3 needs **Node.js 22.22 or later**. Then upgrade as usual:
