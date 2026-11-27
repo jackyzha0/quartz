@@ -1,5 +1,104 @@
 # @jackyzha0/quartz
 
+## 5.3.0
+
+### Minor Changes
+
+- 55311cb: Links: `disableBrokenWikilinks` is on by default. Internal links to pages that don't exist get the `broken` class, as Obsidian marks unresolved links (`is-unresolved`), so Quartz's and Obsidian themes' unresolved-link styles apply. Tag and folder pages, which are generated later, count as existing. Set `links.disableBrokenWikilinks: false` for the old behaviour.
+- 857de3b: Quartz now requires Node.js 22.22 or later (was 22), for chokidar 6, which watches content in `--serve` mode. chokidar 6 confirms each change against the file system before rebuilding and fixes missed and duplicate change events.
+- df11e31: Experimental `extends` in `quartz.config.yaml`: `extends: default` (or a path) starts from `quartz.config.default.yaml` and applies only the changes in your file. `configuration` and `layout` merge key by key, plugin entries merge with the default entry of the same plugin. Configs without `extends` behave exactly as before.
+- 09a6b03: `contentIndex.json` entries have `dateFromFrontmatter: true` when their `date` is the one set in the page's frontmatter for the configured date type (not from git or the file system), so client-side components can tell explicit dates apart, e.g. for folder dates in the explorer.
+- d5dad62: `contentIndex.json` entries now include the page's `date` (the one `defaultDateType` selects) as an ISO 8601 string, so client-side components such as the explorer can sort by date. Pages without a date have no `date` field.
+- 2209ee6: Layout conditions: add `is-index` (only on the home page) and `is-folder-index` (only on folder index pages), and let `not-<condition>` negate any condition, built-in or registered (`not-has-tags`, `not-has-backlinks`, …).
+- c770681: Transclusions use Obsidian's embed markup: a `div.markdown-embed-title` (the note's title, for a whole-note embed; it was an `h1`), then the content in `div.markdown-embed-content > div.markdown-preview-view.markdown-rendered`, then the link to the original. Obsidian themes' embed styles apply (embed titles, padding, maximum height). The title looks as before without a theme. Obsidian's icon link to the note (`a.markdown-embed-link`, Lucide's maximize-2) follows; Quartz hides it, and Obsidian themes, through @quartz-themes/core, show it in the embed's corner.
+- c229350: Plugin entries can declare `before:` / `after:` (plugin names). They are checked against `order`: between plugins with the same order they decide, and a contradiction, a cycle or an unknown name stops the build with a clear error. `extends:` also accepts an `https://` URL, fetched with a timeout and cached in `.quartz-cache/extends/` for offline builds (`QUARTZ_EXTENDS_OFFLINE=1`).
+- b25eba0: New opt-in `configuration.slugs.stripDiacritics`: strips accents and other diacritics from generated slugs (`české/čeština.md` → `/ceske/cestina`). Links, embeds, aliases, permalinks, tags and folder pages resolve to the stripped addresses; heading anchors keep their diacritics. Turning it on changes the URLs of existing pages; their old addresses redirect to the new ones. Only Latin letters change: they lose their accents and fold to ASCII (`ł` → `l`, `ø` → `o`, `ß` → `ss`, `æ` → `ae`); other scripts (Korean, Japanese, Chinese, Greek, Cyrillic, Indic, Hebrew, Arabic, …) are left as written. Plugins that make slugs follow the option when they bundle `@quartz-community/utils` 1.3 or later, as the plugins updated in this release do (1.3.1 for the ASCII folding).
+
+### Patch Changes
+
+- f7b41e7: Block anchors are `#^id`, as in Obsidian: `@quartz-community/utils` 1.3.2 and `@quartz-community/rehype-obsidian` 1.6.0, bundled by obsidian-flavored-markdown 2.5.3, github-flavored-markdown 2.2.2, canvas-page 1.1.4, note-properties 1.2.3 and bases-page 1.5.5, give blocks `id="^id"` and link to them as `#^id`. A block and a heading with the same name (`^para-1`, `## Para 1`) no longer share an id, so `[[#^para-1]]` and `[[#Para 1]]` each reach their own target. canvas-page also scopes the ids of text nodes rendered with `textNodeMarkdown: basic`.
+- 3df0062: Block anchors are `#^id`: with @quartz-community/utils 1.3.2 and rehype-obsidian 1.6.0, blocks get the id `^id` and links to them `#^id` (was `#id`), as in Obsidian, so block `^para-1` and heading `## Para 1` no longer share an id. A block transclusion finds its block whatever the case of its `^id` (`![[note#^Para-1]]`), and the popover scrolls to a block it links to.
+- 2b061ab: Links: links to files Quartz emits, such as `[feed](/index.xml)`, `/sitemap.xml`, `/static/icon.png` or `/404.html`, are no longer marked `broken`. A link is only marked when its target is known to be missing: a page that doesn't exist, or a vault file (image, audio, video, PDF, canvas, base) the content doesn't have. Other files may come from an emitter, so they are left unmarked.
+- 734e1b8: Links to pages removed by a filter (drafts, ExplicitPublish) are now marked `broken` (with `data-filtered="<filter>"`), like links to pages that don't exist — they 404 on the site.
+- 9de19e3: `extends` (experimental): `npx quartz plugin list`, `status`, `doctor`, `install`, `prune` and `npx quartz info` read the merged configuration, as the build does. Before, they saw only the entries in your own file, so `list` showed a handful of plugins and `doctor` warned that overlay entries without `enabled` are disabled. `enable`, `disable` and `config` now work on plugins from a base by adding or changing your own entry for them (only that change is written; the merged configuration never is), `config --unset` resets an option a base sets with `null`, and `remove` refuses a plugin that comes from a base. `npx quartz build --serve` also rebuilds when a local base file changes.
+- a51b7df: `extends` (experimental): presets in a list now stack. With `extends: [./a.yaml, ./b.yaml]`, where both extend `default`, everything `a.yaml` changed was lost, because `b.yaml` was merged on top with all of `default` again. Each file of the `extends` chain is now applied once, after the bases it extends, so the order is `default` → `a.yaml` → `b.yaml` → your file, and later entries win only where they change the same thing.
+
+  Also: a plugin source with a `subdir` and no `name` is matched by repository and folder, so an entry for one plugin of a monorepo no longer changes another; `extends: []` extends nothing; an empty base file is an empty config; `HTTPS://` URLs are accepted; and `plugins:` that isn't a list gets a clear error.
+
+- b2241c3: Layout conditions: `is-folder-index` is false on tag pages. The all-tags page (`tags/index`) matched it, so components meant for folder pages showed there; nothing under `tags/` counts as a folder index now.
+- cc253be: Footnote references and back-links keep the `internal` class but no longer get `internal-link`: Obsidian doesn't treat them as note links, and Obsidian themes' link styles (underline, colour) overrode their footnote styles.
+- 71454c7: Markdown links in frontmatter with an angle-bracket destination, which Obsidian writes for paths with spaces (`[Exec Briefing](<./Exec Briefing.md>)`), resolve to the note instead of a missing `….md` page, so the note gets the backlink and graph edge.
+- 8be4d8e: Markdown links in frontmatter are read as CommonMark reads them: angle-bracket destinations with parentheses (`[b](<Note (2024).md>)`), balanced parentheses in plain destinations (`[d](Note_(2024).md)`), titles in `"…"`, `'…'` or `(…)` (`[c](<My Note.md> "t")`), and backslash escapes. They pointed at `note-(2024` and `my-note.md-t`, so the linked note got no backlink or graph edge.
+- c33b6cf: @quartz-community/graph 1.0.5: the graph scales to large sites. On 3,000 notes and 33,000 links, the global graph opens in 0.5 s instead of 2.5 s, and it stops using the CPU once its layout settles. It also loads d3 and PixiJS as pinned, integrity-checked versions, with PixiJS's minified build (200 KB instead of 2.5 MB on every page).
+- 6ce31a4: - `@quartz-community/graph` 1.0.7: the local graph on folder index pages shows the folder's connections instead of a single node.
+  - `@quartz-community/utils` 1.2.1: `unescapeHTML` decodes each entity once, so a page description that mentions `&lt;br&gt;` keeps it in the page's meta tags instead of turning it into `<br>`.
+- 9d6cdba: Pages get a canonical link (`<link rel="canonical">`, the page's URL as the sitemap lists it), and `og:url` uses the same URL: `folder/` instead of `folder/index`, and the site root for the home page. `og:site_name` is a `property` (it was a `name`, which Open Graph readers ignore). Notes are `og:type: article`, with `article:modified_time` and, when the frontmatter has a date, `article:published_time`. The home page and folder and tag pages stay `website`.
+
+  The `fonts.gstatic.com` preconnect is a CORS connection, which the font files can reuse, and the unused `cdnjs.cloudflare.com` preconnect is gone.
+
+- c79adab: Each component's CSS is parsed on its own before the component stylesheet is put together, so a missing `}` or an unclosed comment in one plugin's CSS no longer swallows the rules of every component after it, and a stray `}` no longer fails the build; a syntax error is reported with the component's name.
+- 3b78d16: Frontmatter is read with js-yaml 5, using YAML 1.2's core schema (the values Quartz read before are unchanged). Frontmatter with only comments now has no properties, as in Obsidian, instead of being reported as invalid frontmatter.
+- a55f25f: The page frames mark their regions for assistive technology: the centre column is a `<main>` (it was a `div.center`; the classes are unchanged) and the default frame's sidebars are `<aside>` elements. Screen readers can jump to the page's content, and the page looks the same.
+- 7714325: Heading transclusions and their footnotes look through Obsidian's per-block wrappers (`div.el-h2 > h2`), which `@quartz-community/rehype-obsidian` now renders around each of a note's top-level blocks. `blockOf()` (in `components/transcludeScope.ts`) returns the block inside a wrapper, for other code that walks a page's top-level blocks.
+- b4d7358: Obsidian's fold arrows in headings and list items (`.heading-collapse-indicator`, `.list-collapse-indicator`, rendered by rehype-obsidian for Obsidian themes) are hidden unless obsidian-flavored-markdown's `foldHeadings` / `foldLists` turn folding on.
+- 0bab8ea: @quartz-community/obsidian-flavored-markdown 2.4.0 (Obsidian's block wrappers, heading and list folding, missing-attachment embeds, Pele diagrams) and @quartz-community/og-image 1.1.2 (no build failure on emoji variants such as the footnote back-link `↩︎`).
+- db7484e: @quartz-themes/core 3.2.0 (Obsidian's block wrappers styled natively, property inputs, fold arrows) and the plugin releases that carry Obsidian's markup:
+
+  - latex 1.1.0: maths in Obsidian's math elements;
+  - note-properties 1.2.0: Obsidian's properties markup;
+  - search 1.1.0: the quick switcher's classes, excerpts as written;
+  - explorer 1.1.2: Obsidian's folder rows;
+  - table-of-contents 1.0.4: the collapsed table of contents no longer clips its header;
+  - graph 1.0.4: colours follow Obsidian themes;
+  - syntax-highlighting 1.0.4: the copy button's stylesheet in the base layer;
+  - canvas-page 1.0.4: heading embeds look through the block wrappers.
+
+- fd744c0: The `obsidian` template folds headings and lists (obsidian-flavored-markdown's `foldHeadings` and `foldLists`), as Obsidian does by default.
+- 7b4da1c: A note whose name ends in "index" (`reindex.md`) is an `og:type: article` again. The home page and folder index pages were told apart by the slug ending in `index`, not by its last segment, so such notes were `website` and had no article dates.
+- bc0e393: Plugin order: `before:` / `after:` naming a plugin that is built into Quartz now (`crawl-links`, `remove-draft`, `content-index`) passed validation but was ignored. They now mean the built-in that replaced them (`links`, `drafts`, `contentIndex`), so `before: crawl-links` orders the plugin before link processing, and is checked against its `order` like `before: links`.
+- 52af9f1: `PageList` entries are `h2` headings under the page's `h1` (they were `h3`, which skipped a level for screen readers), at the `h3`'s size, as in `@quartz-community/folder-page` and `@quartz-community/tag-page`.
+- f646ffe: Plugin fixes from the pre-release audit:
+
+  - `@quartz-community/latex` 1.1.2: KaTeX's stylesheet applies on pages whose maths comes from a transclusion or a popover, and after SPA navigation (it stayed print-only).
+  - `@quartz-community/obsidian-flavored-markdown` 2.5.2: bundles rehype-obsidian 1.5.1 and remark-obsidian 2.2.4, so same-page block links (`[[#^id]]`) work, only real YouTube hosts become embeds, large notes use less memory, and under `preset: strict` other plugins' text rewrites survive in notes with callouts; `math: false` works under `strict` with the LaTeX plugin; Markdown-link embeds with a query or in reference style are transcluded.
+  - `@quartz-community/github-flavored-markdown` 2.2.1: `replacements` leaves autolink text alone, applies to wikilink aliases, and honours backslash escapes; `data-heading` keeps the heading as written.
+  - `@quartz-community/canvas-page` 1.1.2 and `@quartz-community/tag-page` 1.0.7: file nodes find headings as Obsidian writes them (`#Sub Section`), embeds in text nodes are filled in, text-node tags get tag pages, and ids are unique per node; the tag index lists pages as `h3` under each tag.
+  - `@quartz-community/search` 1.1.2: Enter on a result navigates without a full reload, `#tags` match with `slugs.stripDiacritics`, and searches ignore accents (`creme` finds "Crème").
+  - `@quartz-community/explorer` 1.2.2: keeps the current page open after a `render` event without details (encrypted pages), and each explorer's phone button is named after its title.
+  - `@quartz-community/bases-page` 1.5.4: view tabs follow the WAI-ARIA tabs pattern (arrow keys, unique ids).
+  - `@quartz-community/graph` 1.0.8: no animation loop while the graph is idle, closed or removed.
+  - `@quartz-community/created-modified-date` 1.0.5: stand-in dates are marked, so they stay out of `contentIndex.json`, and git dates work for a symlinked vault in a content folder outside git.
+  - `@quartz-community/og-image` 1.1.3, `@quartz-community/ox-hugo` 1.0.3, `@quartz-community/breadcrumbs` 1.0.5, `@quartz-community/folder-page` 1.1.3, `@quartz-community/note-properties` 1.2.2: descriptions decoded once and keycap/flag emoji in social images; captioned figures and indented code in ox-hugo; utils 1.3.1 (Latin-only `stripDiacritics`).
+
+- 8c61245: Plugin updates:
+
+  - `@quartz-community/explorer` 1.2.0: `sort` option (rules applied in sequence, e.g. folders first, then newest) and `rootFolder` option, so several explorers on one page work side by side; the `order` option is applied; scroll fixes (the bottom fade, the scroll position across SPA navigation with `layout.sidebars.left: scroll`, and opening a page no longer scrolls the page itself).
+  - `@quartz-community/obsidian-flavored-markdown` 2.5.0: notes, canvases and bases embedded with a Markdown link (`![](note.md#Section)`) are transcluded, as in Obsidian; `math` option (`false` leaves dollar signs as text). With `@quartz-community/rehype-obsidian` 1.5.1: same-page block links (`[[#^id]]`) reach their block, and only images on YouTube become YouTube embeds.
+  - `@quartz-community/github-flavored-markdown` 2.2.0: `singleTilde` option (`false` strikes only `~~text~~`, as Obsidian does) and `replacements` option (for example Quartz 4's arrows), empty by default.
+  - `@quartz-community/canvas-page` 1.1.0: the mouse wheel and trackpad pan the canvas, as in Obsidian (`wheelBehavior`); text nodes are rendered with the site's Markdown plugins, so Mermaid diagrams, callouts and math work in them (`textNodeMarkdown`).
+  - `@quartz-community/utils` 1.3.0: the `stripDiacritics` slug option reaches plugins too; links in embedded folder notes point at the right directory.
+  - `@quartz-community/created-modified-date` 1.0.4: git dates resolve when `content/` is a symlink to a vault in another git repository.
+  - `@quartz-community/ox-hugo` 1.0.2: the Markdown rewrites leave code alone and no longer match across unrelated text.
+
+- 96fc9c1: Plugin updates for accessibility and page speed:
+
+  - Text in the table of contents, footer, folder and tag listings, search button and Bases group headings meets WCAG AA contrast in light and dark mode. Under an Obsidian theme from quartz-themes (`@quartz-themes/core` 3.2.1), the search button and Bases group headings keep the theme's faint text colour.
+  - Page listings in folder and tag pages use `<h2>` titles (at the previous size), so headings no longer skip a level.
+  - Valid ARIA and unique ids in the table of contents, explorer, backlinks, heading anchors and Bases views.
+  - The graph loads d3 and PixiJS only when it scrolls into view (or when the global graph opens), instead of on every page.
+  - KaTeX's stylesheet no longer blocks rendering on pages without math.
+  - `@quartz-community/remark-obsidian` 2.2.3: the `legacy` parser no longer uses memory that grows with the square of the note's length on notes with many tables, lists or other blocks.
+
+- 661b56a: Release tags are verified on GitHub: the release workflow creates each `vX.Y.Z` tag as a lightweight tag on the merged release commit (which GitHub signs) instead of letting the release create an unsigned annotated tag. It also starts the Docker build for the tag, so versioned images (`5.3.0`, `5.3`) are published for each release (none were built for 5.1.0–5.2.2).
+- 799b8e3: Component styles are one stylesheet (`component-<hash>.css`, in the `quartz-base` layer as before) instead of one per component. Pages load about 20 fewer render-blocking stylesheets (29 to 11 on the docs site), and the styles they compute are unchanged.
+- e0f1e03: A scroll made just before Back (less than 150 ms) is no longer lost: Forward returns to where the reader scrolled.
+- 3ab4503: With SPA navigation, Back and Forward return to where the reader was on each page. The router keeps each history entry's scroll position and restores it after swapping the page in. The browser restored the position while the previous page was still on screen, so it came out wrong: Back after a table-of-contents link stayed at the heading, and Back to a page landed at its top or bottom. Back and Forward between headings of the same page now only scroll, instead of reloading the page, and a reload keeps the position.
+- 0d05ef7: Build-time stand-in dates are no longer written as real dates. A page whose date no source gives (for example `defaultDateType: published` and no `published:`, or an invalid one) gets the build time from the date plugin; `contentIndex.json` now leaves its `date` out, and `article:published_time` / `article:modified_time` are only set for real dates (an invalid `published:` gave the build time). RSS and the sitemap keep the build time. created-modified-date 1.0.5 lists its stand-ins in `file.data.fallbackDates`; with older versions a `published` date only counts when the frontmatter sets it.
+- dd667ee: `slugs.stripDiacritics` reaches plugins and the browser: bases-page 1.5.3, breadcrumbs 1.0.4, canvas-page 1.1.1, explorer 1.2.1, folder-page 1.1.2, note-properties 1.2.1 and obsidian-flavored-markdown 2.5.1 bundle `@quartz-community/utils` 1.3, so their links, tag pages from inline tags, canvas file nodes and base views use the stripped addresses. Quartz also passes the option to scripts in the browser, so the explorer places folders and pages with accents where the build put them.
+- 093d233: The templates' colours meet WCAG AA contrast (4.5:1) on their backgrounds. Light `gray` goes from #b8b8b8 to #727272 (was 1.9:1), dark `gray` from #646464 to #7f7f7f (was 3.1:1), and light `tertiary`, the link hover colour, from #84a59d to #587971 (was 2.5:1). Text selection mixes 40% of `tertiary` instead of 60%, so text stays readable on it in both modes. Existing sites keep the colours in their own `quartz.config.yaml`.
+- 7c3df89: Type checking (`npm run check`) uses TypeScript 7. `tsconfig.json` switches `moduleResolution` from `node` (removed in TypeScript 7) to `bundler`, which reads packages' `exports`: custom code that imports a package's internal files may need to import from the package itself.
+- af36801: Links to a folder or tag page that isn't generated (a folder whose notes are all drafts or that holds only images, a tag no published page uses) are marked broken, and in watch mode a page whose links to a page that was published or filtered out change is re-emitted, so its marks don't go stale.
+
 ## 5.2.2
 
 ### Patch Changes
