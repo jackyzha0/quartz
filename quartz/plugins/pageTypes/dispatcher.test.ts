@@ -8,6 +8,7 @@ import {
   collectTreeTransforms,
   folderTrie,
   generateVirtualPages,
+  markLinksToUnpublishedPages,
   pageOutputPath,
   processVirtualPageHtml,
   referencesByTarget,
@@ -19,7 +20,10 @@ import { QuartzComponent } from "../../components/types"
 import { FilePath, FullSlug, SimpleSlug, setSlugOptions } from "../../util/path"
 import { Root as HtmlRoot } from "hast"
 import { BuildCtx } from "../../util/ctx"
-import { defaultProcessedContent } from "../vfile"
+import { defaultProcessedContent, ProcessedContent } from "../vfile"
+import { removedPages } from "../builtins/links"
+import { Element, Root } from "hast"
+import { VFile } from "vfile"
 
 const StubA: QuartzComponent = (() => null) as unknown as QuartzComponent
 const StubB: QuartzComponent = (() => null) as unknown as QuartzComponent
@@ -555,5 +559,79 @@ describe("publish filters on pages that stand for files (bases-page#11)", () => 
     assert.strictEqual(processVirtualPageHtml(ve, ctx, []), false)
     // without such plugins nothing changes
     assert.strictEqual(processVirtualPageHtml(ve, makeCtx(), []), true)
+  })
+})
+
+describe("links to unpublished pages, after the page types ran (crawl-links#7)", () => {
+  const link = (slug: string): Element => ({
+    type: "element",
+    tagName: "a",
+    properties: { href: `./${slug}`, "data-slug": slug, className: ["internal"] },
+    children: [],
+  })
+  const content = (slug: string, links: string[] = []): ProcessedContent => {
+    const file = new VFile("")
+    file.data = { slug: slug as FullSlug, frontmatter: { title: slug } } as VFile["data"]
+    return [{ type: "root", children: links.map(link) } as Root, file]
+  }
+  const marks = (item: ProcessedContent) =>
+    ((item[0] as Root).children as Element[]).map((a) =>
+      (a.properties.className as string[]).includes("broken")
+        ? (a.properties["data-filtered"] ?? (a.properties["data-missing"] === "" ? "missing" : "?"))
+        : "ok",
+    )
+  // a folder page type that generates a page for each folder with a published note, as folder-page does
+  const folders = makePageType({
+    name: "folders",
+    generate: ({ content }) =>
+      [...new Set(content.map(([, f]) => f.data.slug!.split("/").slice(0, -1).join("/")))]
+        .filter((f) => f !== "" && !content.some(([, g]) => g.data.slug === `${f}/index`))
+        .map((f) => ({ slug: `${f}/index` as FullSlug, title: f, data: {} })),
+  })
+
+  const setup = async (removedBy: ((slug: string) => string | undefined) | undefined) => {
+    const home = content("index", [
+      "notes/a",
+      "notes/index",
+      "drafts/index",
+      "drafts/b",
+      "projects/index",
+      "missing-in-source",
+    ])
+    const all = [home, content("notes/a"), content("drafts/b"), content("projects/index")]
+    const published = all.filter(([, f]) => f.data.slug !== "drafts/b")
+    const ctx = {
+      cfg: { configuration: {} },
+      virtualPages: [],
+      removedPages: removedBy ? removedPages(all, published, removedBy) : undefined,
+    } as unknown as BuildCtx
+    const entries = await generateVirtualPages([folders], published, ctx, { head: StubHead }, {})
+    return { home, ctx, published, entries }
+  }
+
+  test("marks drafts with their filter and folders no page type generated as missing", async () => {
+    const { home, ctx, published, entries } = await setup(() => "RemoveDrafts")
+    assert.deepStrictEqual(
+      entries.map((e) => e.vpSlug),
+      ["notes/index"],
+    )
+    const changed = markLinksToUnpublishedPages(ctx, published, entries)
+    assert.deepStrictEqual(marks(home), [
+      "ok", // notes/a: published
+      "ok", // notes/index: generated folder page
+      "missing", // drafts/index: its only note is a draft, so no folder page
+      "RemoveDrafts", // drafts/b
+      "ok", // projects/index: a published folder note
+      "ok", // not in the content: the Links transformer's own check, not this one
+    ])
+    assert.deepStrictEqual([...changed], ["index"])
+    // run again (watch mode, nothing changed): nothing to re-emit
+    assert.deepStrictEqual([...markLinksToUnpublishedPages(ctx, published, entries)], [])
+  })
+
+  test("marks nothing when the Links transformer doesn't mark broken links", async () => {
+    const { home, ctx, published, entries } = await setup(undefined)
+    assert.deepStrictEqual([...markLinksToUnpublishedPages(ctx, published, entries)], [])
+    assert.ok(marks(home).every((m) => m === "ok"))
   })
 })

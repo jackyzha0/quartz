@@ -1079,6 +1079,51 @@ describe("links to pages removed by filters (crawl-links#7)", () => {
     assert.deepStrictEqual([...changed], ["index"])
   })
 
+  test("links to published folder notes and pages are not marked once page types ran", () => {
+    // `notes/index` is a content page (notes/index.md or a folder note), so no page type
+    // generates it: it is live because it is published, not because it was generated
+    const home = page("index", [
+      link("notes/index"),
+      link("projects/index"),
+      link("published"),
+      link("aka"),
+      link("tags/x"),
+    ])
+    const notes = page("notes/index", [])
+    const projects = page("projects/index", [], { aliases: ["aka"] })
+    const published = page("published", [])
+    const changed = new Set<FullSlug>()
+    const marked = markUnpublishedLinks(
+      [home, notes, projects, published],
+      new Map(),
+      new Set(["tags/x"]),
+      changed,
+    )
+    assert.strictEqual(marked, 0)
+    for (const a of anchors(home)) {
+      assert.deepStrictEqual(a.properties.className, ["internal", "internal-link"])
+      assert.strictEqual(a.properties["data-missing"], undefined)
+      assert.strictEqual(a.properties["data-filtered"], undefined)
+    }
+    assert.deepStrictEqual([...changed], [])
+  })
+
+  test("a folder note that is a draft: its folder page is generated, or the link is missing", () => {
+    const home = page("index", [link("notes/index"), link("drafts/index")])
+    const notesIndex = page("notes/index", [])
+    const draftsIndex = page("drafts/index", [])
+    const all = [home, notesIndex, draftsIndex]
+    const removed = removedPages(all, [home], () => "RemoveDrafts")
+    // folder index notes are left to the generated pages
+    assert.deepStrictEqual([...removed], [])
+    markUnpublishedLinks([home], removed, new Set(["notes/index"]))
+    const [toNotes, toDrafts] = anchors(home)
+    assert.ok(!(toNotes.properties.className as string[]).includes("broken"))
+    assert.ok((toDrafts.properties.className as string[]).includes("broken"))
+    assert.strictEqual(toDrafts.properties["data-missing"], "")
+    assert.strictEqual(toDrafts.properties["data-filtered"], undefined)
+  })
+
   test("reports the pages whose marks changed, so watch mode re-emits them", () => {
     const home = page("index", [link("draft")])
     const other = page("other", [link("published")])
