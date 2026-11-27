@@ -1,4 +1,4 @@
-import { transform } from "lightningcss"
+import { Features, Targets, transform } from "lightningcss"
 import { recordDiagnostic } from "./diagnostics"
 
 /**
@@ -30,4 +30,24 @@ export function isolateComponentCss(css: string, owner = ""): string {
       return ""
     }
   }
+}
+
+/**
+ * All components' CSS as ComponentResources emits it: each chunk isolated, in order, in one
+ * `quartz-base` layer, minified.
+ */
+export function componentStylesheet(
+  chunks: string[],
+  ownerOf: (css: string) => string | undefined = () => undefined,
+  targets?: Targets,
+): string {
+  const isolated = chunks.map((c) => isolateComponentCss(c, ownerOf(c)))
+  const wrapped = `@layer quartz-base {\n${isolated.join("\n")}\n}`
+  return transform({
+    filename: "component.css",
+    code: Buffer.from(wrapped),
+    minify: true,
+    targets,
+    include: Features.MediaQueries,
+  }).code.toString()
 }

@@ -1,6 +1,6 @@
 import test, { describe } from "node:test"
 import assert from "node:assert"
-import { realDate } from "./dates"
+import { dateIsFromFrontmatter, realDate } from "./dates"
 import type { QuartzPluginData } from "../plugins/vfile"
 
 const data = (d: Record<string, unknown>) => d as unknown as QuartzPluginData
@@ -41,5 +41,35 @@ describe("realDate", () => {
       undefined,
     )
     assert.strictEqual(realDate(data({ dates: { modified: now } }), undefined), undefined)
+  })
+})
+
+describe("dateIsFromFrontmatter", () => {
+  test("a date-time value is compared as written, a date-only one as local midnight", () => {
+    const d = data({ frontmatter: { published: "2024-01-02T10:00:00" } })
+    assert.strictEqual(dateIsFromFrontmatter(d, new Date("2024-01-02T10:00:00"), "published"), true)
+    assert.strictEqual(
+      dateIsFromFrontmatter(d, new Date("2024-01-02T00:00:00"), "published"),
+      false,
+    )
+    const dateOnly = data({ frontmatter: { published: "2024-01-02" } })
+    assert.strictEqual(
+      dateIsFromFrontmatter(dateOnly, new Date("2024-01-02T00:00:00"), "published"),
+      true,
+    )
+  })
+
+  test("YAML dates and timestamps compare by value; other values and missing ones never match", () => {
+    const when = new Date("2024-01-02T10:00:00Z")
+    const of = (published: unknown) => data({ frontmatter: { published } })
+    assert.strictEqual(dateIsFromFrontmatter(of(new Date(when)), when, "published"), true)
+    assert.strictEqual(dateIsFromFrontmatter(of(when.getTime()), when, "published"), true)
+    assert.strictEqual(dateIsFromFrontmatter(of([when.toISOString()]), when, "published"), false)
+    assert.strictEqual(dateIsFromFrontmatter(of(""), new Date(0), "published"), false)
+    assert.strictEqual(dateIsFromFrontmatter(of(null), new Date(0), "published"), false)
+    assert.strictEqual(dateIsFromFrontmatter(of(when), new Date(NaN), "published"), false)
+    // the page's default date type
+    const d = data({ frontmatter: { modified: when.toISOString() }, defaultDateType: "modified" })
+    assert.strictEqual(dateIsFromFrontmatter(d, when), true)
   })
 })

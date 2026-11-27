@@ -64,4 +64,37 @@ describe("Head", () => {
     })
     assert.strictEqual(meta(html, "article:modified_time"), undefined)
   })
+
+  test("the 404 page: no canonical, no article meta, og:url is the site's address", () => {
+    const real = new Date("2024-05-06T00:00:00Z")
+    // as the 404 page type generates it (a virtual page gets `404.md` as its relativePath)
+    const html = head({
+      slug: "404",
+      relativePath: "404.md",
+      frontmatter: { title: "Not Found", tags: [] },
+      dates: { created: real, modified: real, published: real },
+    })
+    assert.strictEqual(meta(html, "og:type"), "website")
+    assert.strictEqual(meta(html, "og:url"), "https://example.org/")
+    assert.strictEqual(meta(html, "twitter:url"), "https://example.org/")
+    assert.doesNotMatch(html, /rel="canonical"/)
+    assert.doesNotMatch(html, /article:/)
+    // a note has all three
+    const note = head({
+      slug: "notes/a b",
+      dates: { created: real, modified: real, published: real },
+    })
+    assert.strictEqual(meta(note, "og:url"), "https://example.org/notes/a%20b")
+    assert.match(note, /<link rel="canonical" href="https:\/\/example.org\/notes\/a%20b"\/>/)
+    assert.strictEqual(meta(note, "article:modified_time"), real.toISOString())
+  })
+
+  test("tag pages and pages without a file are not articles", () => {
+    assert.strictEqual(meta(head({ slug: "tags/recipes" }), "og:type"), "website")
+    assert.strictEqual(meta(head({ slug: "tags/food/recipes" }), "og:type"), "website")
+    // a note in a folder named like the tag folder is still an article
+    assert.strictEqual(meta(head({ slug: "notes/tags/recipes" }), "og:type"), "article")
+    assert.strictEqual(meta(head({ slug: "my-tags/x" }), "og:type"), "article")
+    assert.strictEqual(meta(head({ slug: "a", relativePath: undefined }), "og:type"), "website")
+  })
 })

@@ -41,8 +41,8 @@ import {
 import type { PluginJsonEntry } from "../loader/types"
 import type { BuildCtx } from "../../util/ctx"
 import type { ContentDetails } from "../types"
-import type { FullSlug, SimpleSlug } from "../../util/path"
-import { setSlugOptions } from "../../util/path"
+import type { FilePath, FullSlug, SimpleSlug } from "../../util/path"
+import { setSlugOptions, slugifyFilePath } from "../../util/path"
 import type { ProcessedContent } from "../vfile"
 
 const entry = (source: string, extra: Partial<PluginJsonEntry> = {}): PluginJsonEntry => ({
@@ -463,6 +463,31 @@ describe("links built-in", () => {
       setSlugOptions(undefined)
     }
   })
+
+  test(
+    "slugs.stripDiacritics: a percent-encoded % in a link target is decoded once",
+    {
+      todo: "slugOptionsOnLinkPath decodes the path and transformLink decodes it again, so %2520 becomes a space",
+    },
+    () => {
+      setSlugOptions({ stripDiacritics: true })
+      try {
+        // `Kódování/Mezera je %20.md`, linked as Obsidian writes a Markdown link to it
+        const target = slugifyFilePath("Kódování/Mezera je %20.md" as FilePath)
+        assert.strictEqual(target, "kodovani/mezera-je--percent20")
+        const { els } = run(
+          [a("K%C3%B3dov%C3%A1n%C3%AD/Mezera%20je%20%2520.md")],
+          "index",
+          { markdownLinkResolution: "shortest" },
+          ["index", target],
+        )
+        assert.strictEqual(els[0].properties.href, "./kodovani/mezera-je--percent20")
+        assert.ok(!(els[0].properties.className as string[]).includes("broken"))
+      } finally {
+        setSlugOptions(undefined)
+      }
+    },
+  )
 
   test("without slugs.stripDiacritics link targets keep their diacritics", () => {
     const { els } = run([a("Příliš")], "page", { markdownLinkResolution: "shortest" }, [
