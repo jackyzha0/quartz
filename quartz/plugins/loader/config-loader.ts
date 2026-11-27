@@ -159,6 +159,22 @@ interface DependencyValidationResult {
   warnings: string[]
 }
 
+/** The pipeline stages a plugin's `order` decides its place in (a component has none). */
+const ORDERED_STAGES = ["transformer", "filter", "emitter", "pageType"] as const
+
+/**
+ * Whether `order` decides between the two plugins: they run in a stage they share (all
+ * transformers run before any filter or emitter, whatever their order). Without a category on
+ * either side the stage is unknown, and they are compared.
+ */
+function sameStage(a: PluginManifest, b: PluginManifest | undefined): boolean {
+  if (!a.category || !b?.category) return true
+  const stagesOfB = [b.category].flat()
+  return [a.category]
+    .flat()
+    .some((c) => stagesOfB.includes(c) && (ORDERED_STAGES as readonly string[]).includes(c))
+}
+
 export function validateDependencies(
   entries: PluginJsonEntry[],
   manifests: Map<string, PluginManifest>,
@@ -229,7 +245,7 @@ export function validateDependencies(
       const depManifest = manifests.get(dep)
       const depOrder = depEntry.order ?? depManifest?.defaultOrder ?? 50
 
-      if (pluginOrder < depOrder) {
+      if (pluginOrder < depOrder && sameStage(manifest, depManifest)) {
         errors.push(
           `Plugin "${pluginName}" (order: ${pluginOrder}) depends on "${depName}" (order: ${depOrder}), ` +
             `but "${pluginName}" is configured to run first. Either increase "${pluginName}"'s order above ${depOrder} ` +

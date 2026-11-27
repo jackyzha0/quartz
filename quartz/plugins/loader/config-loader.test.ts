@@ -497,19 +497,28 @@ describe("dependency order between plugins", () => {
   })
 
   // Order only decides between plugins of the same stage: all transformers run before any filter or
-  // emitter, and a component-only plugin has no place in the pipeline. The check against a built-in
-  // compares categories (above); the check between plugins doesn't, so an emitter (or a
-  // component) depending on a transformer with a higher order fails the build with "is configured
-  // to run first", although the transformer always runs first.
-  test(
-    "a dependency of another stage is not ordered against the plugin",
-    { todo: "bug: validateDependencies compares order across stages (config-loader.ts:225)" },
-    () => {
-      const transformer = { category: "transformer", defaultOrder: 60 } as const
-      assert.deepStrictEqual(validate({ category: "emitter" }, transformer).errors, [])
-      assert.deepStrictEqual(validate({ category: "component" }, transformer).errors, [])
-    },
-  )
+  // emitter, and a component-only plugin has no place in the pipeline. An emitter (or a component)
+  // depending on a transformer with a higher order used to fail the build with "is configured to
+  // run first", although the transformer always runs first.
+  test("a dependency of another stage is not ordered against the plugin", () => {
+    const transformer = { category: "transformer", defaultOrder: 60 } as const
+    assert.deepStrictEqual(validate({ category: "emitter" }, transformer).errors, [])
+    assert.deepStrictEqual(validate({ category: "component" }, transformer).errors, [])
+    assert.deepStrictEqual(
+      validate({ category: "component" }, { category: "component", defaultOrder: 60 }).errors,
+      [],
+    )
+  })
+
+  test("a plugin of several stages is ordered against a dependency in a stage they share", () => {
+    const transformer = { category: "transformer", defaultOrder: 60 } as const
+    assert.match(
+      validate({ category: ["transformer", "emitter"] }, transformer).errors[0],
+      /"x" \(order: 50\) depends on "y" \(order: 60\)/,
+    )
+    // without a category the stage is unknown: still compared
+    assert.match(validate({}, { defaultOrder: 60 }).errors[0], /depends on "y" \(order: 60\)/)
+  })
 })
 
 describe("plugin names of each source form", () => {
