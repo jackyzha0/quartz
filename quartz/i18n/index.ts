@@ -85,6 +85,33 @@ export const TRANSLATIONS = {
 } as const
 
 export const defaultTranslation = "en-US"
-export const i18n = (locale: ValidLocale): Translation => TRANSLATIONS[locale ?? defaultTranslation]
+
+const warnedLocales = new Set<string>()
+
+/**
+ * The translation to use for `locale`: its own, else one of the same language (`es-MX` uses
+ * `es-ES`), else English. A locale without a translation used to crash the build
+ * (`TRANSLATIONS[locale]` is undefined); dates and numbers still use the configured locale.
+ */
+export function resolveTranslationLocale(locale: string | undefined): ValidLocale {
+  if (!locale) return defaultTranslation
+  const keys = Object.keys(TRANSLATIONS) as ValidLocale[]
+  const exact = keys.find((key) => key.toLowerCase() === locale.toLowerCase())
+  if (exact) return exact
+  const language = locale.split("-")[0]!.toLowerCase()
+  const chosen =
+    keys.find((key) => key.split("-")[0]!.toLowerCase() === language) ?? defaultTranslation
+  if (!warnedLocales.has(locale)) {
+    warnedLocales.add(locale)
+    console.warn(
+      `Quartz has no translation for locale "${locale}"; its text uses ${chosen}. ` +
+        `Dates still use ${locale}. Translations: https://quartz.jzhao.xyz/features/i18n`,
+    )
+  }
+  return chosen
+}
+
+export const i18n = (locale: ValidLocale | string | undefined): Translation =>
+  TRANSLATIONS[resolveTranslationLocale(locale)]
 export type ValidLocale = keyof typeof TRANSLATIONS
 export type ValidCallout = keyof CalloutTranslation
