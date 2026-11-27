@@ -1160,6 +1160,13 @@ export async function handlePluginInstallUnified({
     const pluginsToUpdate = nameFilter ? Array.from(nameFilter) : Object.keys(lockfile.plugins)
     const updatedPlugins = []
     let lockfileChanged = false
+    // Disabled in the config: the build never loads them, so failing to update one is a warning,
+    // not a failed update (an old entry whose repository changed layout failed every update).
+    const disabledNames = new Set(
+      (pluginsJson?.plugins ?? [])
+        .filter((entry) => entry.enabled === false)
+        .map((entry) => extractPluginName(entry.source)),
+    )
 
     // Phase 1: Validate and categorize plugins (fast, sequential)
     const validPlugins = []
@@ -1244,6 +1251,16 @@ export async function handlePluginInstallUnified({
             }
           }
         } catch (error) {
+          if (disabledNames.has(name)) {
+            console.log(
+              styleText(
+                "yellow",
+                `⚠ Could not update ${name} (disabled, so the build does not load it): ${describeCommandError(error)}\n` +
+                  `  Remove it with \`npx quartz plugin remove ${name}\` or fix its source.`,
+              ),
+            )
+            return
+          }
           console.log(
             styleText("red", `✗ Failed to update ${name}: ${describeCommandError(error)}`),
           )
