@@ -14,6 +14,9 @@ import type { PluginManifest } from "./types"
 import { componentRegistry } from "../../components/registry"
 import type { QuartzComponent, QuartzComponentConstructor } from "../../components/types"
 import { PluginJsonEntry, LayoutPosition } from "./types"
+import { LayoutDiagnostics } from "./layoutReport"
+import { h } from "preact"
+import { render } from "preact-render-to-string"
 
 describe("resolveConfigPath", () => {
   afterEach(() => {
@@ -430,5 +433,295 @@ describe("async plugin factories", () => {
       quartzCategory: "transformer",
     })
     assert.strictEqual(detectCategoryFromModule({ default: factory }), "transformer")
+  })
+})
+
+describe("dependency order between plugins", () => {
+  const validate = (
+    plugin: Partial<PluginManifest>,
+    dep: Partial<PluginManifest>,
+    order?: { plugin?: number; dep?: number },
+  ) => {
+    const entries: PluginJsonEntry[] = [
+      { source: "github:someone/x", enabled: true, options: {}, order: order?.plugin },
+      { source: "github:someone/y", enabled: true, options: {}, order: order?.dep },
+    ]
+    const manifests = new Map<string, PluginManifest>([
+      [
+        "github:someone/x",
+        { name: "x", dependencies: ["github:someone/y"], ...plugin } as PluginManifest,
+      ],
+      ["github:someone/y", { name: "y", ...dep } as PluginManifest],
+    ])
+    return validateDependencies(entries, manifests, [])
+  }
+
+  test("a dependency of the same stage must run first: entry order, else defaultOrder, else 50", () => {
+    const transformer = { category: "transformer" } as const
+    assert.deepStrictEqual(validate(transformer, { ...transformer, defaultOrder: 40 }).errors, [])
+    assert.match(
+      validate(transformer, { ...transformer, defaultOrder: 60 }).errors[0],
+      /"x" \(order: 50\) depends on "y" \(order: 60\)/,
+    )
+    // the entry's order wins over the manifest's defaultOrder, on both sides
+    assert.deepStrictEqual(
+      validate(
+        { ...transformer, defaultOrder: 10 },
+        { ...transformer, defaultOrder: 60 },
+        {
+          plugin: 70,
+        },
+      ).errors,
+      [],
+    )
+    assert.match(
+      validate(transformer, { ...transformer, defaultOrder: 10 }, { dep: 55 }).errors[0],
+      /\(order: 50\) depends on "y" \(order: 55\)/,
+    )
+    // equal order: stable, the dependency is not after the plugin
+    assert.deepStrictEqual(validate(transformer, transformer).errors, [])
+  })
+
+  test("a dependency cycle fails the build", () => {
+    const entries: PluginJsonEntry[] = [
+      { source: "github:someone/x", enabled: true, options: {} },
+      { source: "github:someone/y", enabled: true, options: {} },
+    ]
+    const manifests = new Map<string, PluginManifest>([
+      ["github:someone/x", { name: "x", dependencies: ["github:someone/y"] } as PluginManifest],
+      ["github:someone/y", { name: "y", dependencies: ["github:someone/x"] } as PluginManifest],
+    ])
+    assert.deepStrictEqual(validateDependencies(entries, manifests, []).errors, [
+      "Circular dependency detected: x → y → x",
+    ])
+  })
+
+  // Order only decides between plugins of the same stage: all transformers run before any filter or
+  // emitter, and a component-only plugin has no place in the pipeline. The check against a built-in
+  // compares categories (above); the check between plugins doesn't, so an emitter (or a
+  // component) depending on a transformer with a higher order fails the build with "is configured
+  // to run first", although the transformer always runs first.
+  test(
+    "a dependency of another stage is not ordered against the plugin",
+    { todo: "bug: validateDependencies compares order across stages (config-loader.ts:225)" },
+    () => {
+      const transformer = { category: "transformer", defaultOrder: 60 } as const
+      assert.deepStrictEqual(validate({ category: "emitter" }, transformer).errors, [])
+      assert.deepStrictEqual(validate({ category: "component" }, transformer).errors, [])
+    },
+  )
+})
+
+describe("plugin names of each source form", () => {
+  test("github:, git+…, https:// URLs, local paths and { repo, name } objects", () => {
+    const cases: [Parameters<typeof isExcluded>[0], string][] = [
+      ["github:someone/my-plugin#v2", "my-plugin"],
+      ["git+https://github.com/someone/my-plugin.git", "my-plugin"],
+      ["https://gitlab.com/group/my-plugin.git#main", "my-plugin"],
+      ["https://github.com/someone/my-plugin", "my-plugin"],
+      ["./plugins/my-plugin/", "my-plugin"],
+      [{ repo: "github:someone/repo", name: "my-plugin" }, "my-plugin"],
+      [{ repo: "github:someone/my-plugin" }, "my-plugin"],
+    ]
+    for (const [source, name] of cases) {
+      assert.ok(isExcluded(source, [name]), JSON.stringify(source))
+      assert.ok(!isExcluded(source, ["someone"]), JSON.stringify(source))
+    }
+  })
+})
+
+describe("validateDependencies: which plugins are checked", () => {
+  const entry = (source: string, extra: Partial<PluginJsonEntry> = {}): PluginJsonEntry => ({
+    source,
+    enabled: true,
+    options: {},
+    ...extra,
+  })
+  const m = (extra: Partial<PluginManifest>) => ({ name: "n", ...extra }) as PluginManifest
+
+  test("a disabled plugin's dependencies are not required", () => {
+    const { errors } = validateDependencies(
+      [entry("github:a/x", { enabled: false })],
+      new Map([["github:a/x", m({ dependencies: ["github:a/missing"] })]]),
+    )
+    assert.deepStrictEqual(errors, [])
+  })
+
+  test("messages name the plugin by its displayName", () => {
+    const { errors } = validateDependencies(
+      [entry("github:a/x")],
+      new Map([["github:a/x", m({ displayName: "Fancy X", dependencies: ["github:a/missing"] })]]),
+    )
+    assert.deepStrictEqual(errors, [
+      'Plugin "Fancy X" requires "missing". Run: npx quartz plugin add github:a/missing',
+    ])
+  })
+
+  test("a disabled dependency with a higher order is only a warning", () => {
+    const { errors, warnings } = validateDependencies(
+      [entry("github:a/x"), entry("github:a/y", { enabled: false, order: 90 })],
+      new Map([["github:a/x", m({ dependencies: ["github:a/y"] })]]),
+    )
+    assert.deepStrictEqual(errors, [])
+    assert.strictEqual(warnings.length, 1)
+  })
+
+  test("a plugin at the same order as the built-in it depends on runs after it", () => {
+    const plan = planBuiltins({
+      configuration: {},
+      entries: [],
+      nameOf: () => "",
+      providesOf: () => undefined,
+    })
+    const { errors } = validateDependencies(
+      [entry("github:a/x", { order: 60 })],
+      new Map([
+        [
+          "github:a/x",
+          m({ category: "transformer", dependencies: ["@quartz-community/crawl-links"] }),
+        ],
+      ]),
+      plan.builtins,
+    )
+    assert.deepStrictEqual(errors, [])
+  })
+
+  test("cycles of any length are found once; shared dependencies are no cycle", () => {
+    const deps = (map: Record<string, string[]>) =>
+      new Map(Object.entries(map).map(([k, d]) => [k, m({ dependencies: d })]))
+    const sources = ["github:a/w", "github:a/x", "github:a/y", "github:a/z"]
+    const entries = sources.map((s) => entry(s))
+    // w → x → y → z, and w → y: a diamond, no cycle
+    assert.deepStrictEqual(
+      validateDependencies(
+        entries,
+        deps({
+          "github:a/w": ["github:a/x", "github:a/y"],
+          "github:a/x": ["github:a/y"],
+          "github:a/y": ["github:a/z"],
+        }),
+      ).errors,
+      [],
+    )
+    // w → x → y → z → x
+    assert.deepStrictEqual(
+      validateDependencies(
+        entries,
+        deps({
+          "github:a/w": ["github:a/x"],
+          "github:a/x": ["github:a/y"],
+          "github:a/y": ["github:a/z"],
+          "github:a/z": ["github:a/x"],
+        }),
+      ).errors,
+      ["Circular dependency detected: x → y → z → x"],
+    )
+  })
+})
+
+describe("buildLayoutForEntries: components and options", () => {
+  const place = (layout: Record<string, unknown>, manifest?: Record<string, unknown>) => {
+    componentRegistry.register("p", makeComponent("P"), "test-source", manifest as never)
+    return buildLayoutForEntries(
+      [{ source: "p", enabled: true, options: {}, layout: layout as never }],
+      {},
+    )
+  }
+
+  test("mobile-only and desktop-only wrap the component in their class", () => {
+    const html = (layout: Record<string, unknown>) => {
+      const [C] = place({ position: "left", ...layout }).left!
+      return render(h(C as never, {} as never))
+    }
+    assert.strictEqual(html({ display: "mobile-only" }), '<div class="mobile-only"></div>')
+    assert.strictEqual(html({ display: "desktop-only" }), '<div class="desktop-only"></div>')
+    assert.strictEqual(html({ display: "all" }), "")
+    assert.strictEqual(html({ display: null }), "")
+  })
+
+  test("display all / null raise no warning; a non-numeric priority is 50 with a warning", () => {
+    const diag = new LayoutDiagnostics()
+    componentRegistry.register("q", makeComponent("Q"), "test-source")
+    componentRegistry.register("r", makeComponent("R"), "test-source")
+    componentRegistry.register("s", makeComponent("S"), "test-source")
+    const result = buildLayoutForEntries(
+      [
+        {
+          source: "q",
+          enabled: true,
+          options: {},
+          layout: { position: "left", priority: "high", display: "all" } as never,
+        },
+        {
+          source: "r",
+          enabled: true,
+          options: {},
+          layout: { position: "left", priority: 60, display: null } as never,
+        },
+        {
+          source: "s",
+          enabled: true,
+          options: {},
+          layout: { position: "left", priority: 40 } as never,
+        },
+      ],
+      {},
+      diag,
+    )
+    assert.deepStrictEqual(diag.warnings, [
+      'plugin "q": layout priority "high" is not a number — using 50.',
+    ])
+    assert.deepStrictEqual(
+      result.left!.map((c) => c.displayName),
+      ["S", "Q", "R"],
+    )
+  })
+
+  test("layout.position: null falls back to the manifest's defaultPosition", () => {
+    const result = place({ position: null, priority: 1 }, { defaultPosition: "right" })
+    assert.strictEqual(result.right!.length, 1)
+  })
+
+  test("a component registered under the PascalCase name of a kebab-case plugin is found", () => {
+    componentRegistry.register("TagList", makeComponent("TagListC"), "test-source")
+    const result = buildLayoutForEntries(
+      [
+        {
+          source: "tag-list",
+          enabled: true,
+          options: {},
+          layout: { position: "left", priority: 1 },
+        },
+      ],
+      {},
+    )
+    assert.deepStrictEqual(
+      result.left!.map((c) => c.displayName),
+      ["TagListC"],
+    )
+  })
+
+  test("a constructor gets the entry's options with quartz.ts overrides on top, or none", () => {
+    const received: unknown[] = []
+    const ctor = ((opts?: unknown) => {
+      received.push(opts)
+      return makeComponent(`C${received.length}`)
+    }) as QuartzComponentConstructor
+    componentRegistry.register("ctor-a", ctor, "test-source")
+    componentRegistry.register("ctor-b", ctor, "test-source")
+    componentRegistry.setOptionOverrides("ctor-a", { extra: true, base: 2 })
+    buildLayoutForEntries(
+      [
+        {
+          source: "ctor-a",
+          enabled: true,
+          options: { base: 1, own: "x" },
+          layout: { position: "left", priority: 1 },
+        },
+        { source: "ctor-b", enabled: true, options: {}, layout: { position: "left", priority: 2 } },
+      ],
+      {},
+    )
+    assert.deepStrictEqual(received, [{ base: 2, own: "x", extra: true }, undefined])
   })
 })
