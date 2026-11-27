@@ -440,3 +440,70 @@ describe("slugs.stripDiacritics (#2410)", () => {
     })
   })
 })
+
+describe("normalizeRelativeURLs (SPA navigation and popovers)", () => {
+  // A minimal stand-in for a parsed page: querySelectorAll understands the attribute selectors
+  // `[a=""]` and `[a^="v"]`, comma-separated, as a browser does.
+  function fakePage(attrs: Record<string, string>[]) {
+    const els = attrs.map((a) => ({
+      attrs: { ...a },
+      getAttribute(name: string) {
+        return this.attrs[name] ?? null
+      },
+      setAttribute(name: string, value: string) {
+        this.attrs[name] = value
+      },
+    }))
+    const matches = (el: (typeof els)[number], selector: string) =>
+      selector.split(",").some((part) => {
+        const m = part.trim().match(/^\[(\w+)(\^?)="([^"]*)"\]$/)
+        if (!m) throw new SyntaxError(`unsupported selector ${part}`)
+        const value = el.getAttribute(m[1])
+        if (value === null) return false
+        return m[2] ? value.startsWith(m[3]) : value === m[3]
+      })
+    const page = {
+      querySelectorAll: (selector: string) => els.filter((el) => matches(el, selector)),
+    }
+    return { page: page as unknown as Element, els }
+  }
+
+  test("rebases relative href and src onto the page's URL, keeping fragments; others are left", () => {
+    const { page, els } = fakePage([
+      { href: "./sibling" },
+      { href: "../up/page#part" },
+      { href: "" },
+      { src: "./img.png" },
+      { src: "../media/v.mp4" },
+      { href: "https://example.com/x" },
+      { href: "/absolute" },
+      { href: "#local" },
+      { src: "plain.png" },
+    ])
+    path.normalizeRelativeURLs(page, "https://garden.example/notes/deep/page?q=1#h")
+    assert.deepStrictEqual(
+      els.map((e) => e.attrs),
+      [
+        { href: "/notes/deep/sibling" },
+        { href: "/notes/up/page#part" },
+        // an empty href is the page itself, its query string included (as in the browser)
+        { href: "/notes/deep/page?q=1" },
+        { src: "/notes/deep/img.png" },
+        { src: "/notes/media/v.mp4" },
+        { href: "https://example.com/x" },
+        { href: "/absolute" },
+        { href: "#local" },
+        { src: "plain.png" },
+      ],
+    )
+  })
+
+  // _rebaseHtmlElement used to keep only `pathname + hash` of the resolved URL, so a relative
+  // link or embed with a query string lost it after SPA navigation or in a popover
+  // (`./static/viewer.html?file=a.pdf` → `/notes/static/viewer.html`).
+  test("keeps the query string of a relative URL", () => {
+    const { page, els } = fakePage([{ src: "./viewer.html?file=a.pdf#p2" }])
+    path.normalizeRelativeURLs(page, "https://garden.example/notes/page")
+    assert.deepStrictEqual(els[0].attrs, { src: "/notes/viewer.html?file=a.pdf#p2" })
+  })
+})

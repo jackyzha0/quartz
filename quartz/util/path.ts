@@ -57,7 +57,7 @@ export const QUARTZ = "quartz"
 // https://github.com/natemoo-re/micromorph/blob/main/src/utils.ts#L5
 const _rebaseHtmlElement = (el: Element, attr: string, newBase: string | URL) => {
   const rebased = new URL(el.getAttribute(attr)!, newBase)
-  el.setAttribute(attr, rebased.pathname + rebased.hash)
+  el.setAttribute(attr, rebased.pathname + rebased.search + rebased.hash)
 }
 export function normalizeRelativeURLs(el: Element | Document, destination: string | URL) {
   el.querySelectorAll('[href=""], [href^="./"], [href^="../"]').forEach((item) => {

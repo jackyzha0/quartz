@@ -295,9 +295,10 @@ const RenderedBody: QuartzComponent = ({ fileData, tree }: QuartzComponentProps)
  *
  * Run the transformers' `virtualPageHtmlPlugins` on the rendered body (`file.data.htmlAst`) of a
  * page that stands for a file — e.g. encrypted-pages encrypting a canvas. When they change the
- * tree, the page shows the changed tree instead of rendering its body again. A page whose body
- * failed to render, or that a plugin throws on, is left unpublished: emitting it unprocessed could
- * publish what the plugin protects.
+ * tree, the page shows the changed tree instead of rendering its body again. Both failures fail
+ * closed, as emitting the page unprocessed could publish what the plugin protects: a page whose
+ * body failed to render is left unpublished (returns false), and a plugin that throws fails the
+ * whole build (`trace` reports the error and exits the process, or throws in a worker).
  */
 export function processVirtualPageHtml(
   ve: VirtualEntry,
@@ -340,7 +341,8 @@ export function processVirtualPageHtml(
  * Render each virtual page's Body component to HTML and parse it to a hast tree,
  * populating vfile.data.htmlAst so that transclusion (e.g. ![[file.canvas]]) can inline the
  * virtual page's content, then run `virtualPageHtmlPlugins` on it (pages that stand for files).
- * Returns the entries to emit: those whose processing failed are removed from `ctx.virtualPages`.
+ * Returns the entries to emit: those whose body failed to render (so they can't be processed) are
+ * removed from `ctx.virtualPages`. A plugin throwing while processing fails the build.
  */
 function populateVirtualPageHtmlAst(
   virtualEntries: VirtualEntry[],
