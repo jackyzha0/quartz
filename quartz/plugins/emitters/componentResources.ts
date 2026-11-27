@@ -25,7 +25,7 @@ import {
 import { Features, transform } from "lightningcss"
 import { transform as transpile } from "esbuild"
 import { write } from "./helpers"
-import { isolateComponentCss } from "../../util/componentCss"
+import { componentStylesheet } from "../../util/componentCss"
 
 /**
  * Content hash for cache-busting file names (`postscript-<hash>.js`). Not a password or security
@@ -444,17 +444,11 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
       const cssStringToFilename = new Map<string, string>()
       const componentCss = [...componentResources.componentCssStrings]
       if (componentCss.length > 0) {
-        const isolated = componentCss.map((c) =>
-          isolateComponentCss(c, componentResources.cssOwners.get(c)),
+        const minified = componentStylesheet(
+          componentCss,
+          (c) => componentResources.cssOwners.get(c),
+          lightningTargets,
         )
-        const wrapped = `@layer quartz-base {\n${isolated.join("\n")}\n}`
-        const minified = transform({
-          filename: "component.css",
-          code: Buffer.from(wrapped),
-          minify: true,
-          targets: lightningTargets,
-          include: Features.MediaQueries,
-        }).code.toString()
 
         const hash = hashContent(minified)
         const slug = `component-${hash}`

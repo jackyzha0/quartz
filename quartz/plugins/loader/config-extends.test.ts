@@ -87,6 +87,7 @@ describe("pluginMatchKey for monorepo subdirectories", () => {
       )
     }
     assert.strictEqual(pluginMatchKey({ repo: "github:me/explorer", subdir: "." }), "explorer")
+    assert.strictEqual(pluginMatchKey({ repo: "github:me/explorer" }), "explorer")
   })
   test("an overlay entry for one monorepo plugin leaves the other alone", () => {
     const merged = mergeQuartzConfigs(
@@ -355,7 +356,10 @@ describe("resolveExtends", () => {
           quartzRoot: root,
           readFile,
         }),
-      /cycle/,
+      {
+        name: "ConfigExtendsError",
+        message: '"extends" cycle: quartz.config.yaml → a.yaml → b.yaml → a.yaml',
+      },
     )
     await assert.rejects(
       () =>
@@ -372,6 +376,21 @@ describe("resolveExtends", () => {
           readFile,
         }),
       ConfigExtendsError,
+    )
+  })
+
+  test("a base that is not a configuration object is an error", async () => {
+    files[path.join(root, "list.yaml")] = "- source: explorer\n- source: graph\n"
+    const file = path.join(root, "list.yaml")
+    await assert.rejects(
+      resolveExtends({ extends: "./list.yaml" }, path.join(root, "quartz.config.yaml"), {
+        quartzRoot: root,
+        readFile,
+      }),
+      {
+        name: "ConfigExtendsError",
+        message: `"extends: ./list.yaml": ${file} is not a valid config (${file} does not contain a configuration object)`,
+      },
     )
   })
 
@@ -448,11 +467,6 @@ describe("fetchRemoteConfig", () => {
       await fetchRemoteConfig(url, { cacheDir, fetchImpl: ok("a: 1\n"), offline: false }),
       "a: 1\n",
     )
-    // memoised per process: a second call does not fetch again
-    assert.strictEqual(
-      await fetchRemoteConfig(url, { cacheDir, fetchImpl: failing, offline: false }),
-      "a: 1\n",
-    )
     const warnings: string[] = []
     const other = tmp()
     fs.cpSync(cacheDir, other, { recursive: true })
@@ -500,6 +514,162 @@ describe("fetchRemoteConfig", () => {
         offline: false,
       }),
       /HTTP 404/,
+    )
+  })
+})
+
+describe("fetchRemoteConfig limits and memoisation", () => {
+  const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), "quartz-extends-"))
+  /** A fetch that answers `body` (from `finalUrl` after redirects) and counts its calls. */
+  const counting = (body: string, finalUrl?: string) => {
+    const calls: string[] = []
+    const impl = (async (url: string) => {
+      calls.push(url)
+      return {
+        ok: true,
+        status: 200,
+        url: finalUrl ?? url,
+        text: async () => body,
+      }
+    }) as unknown as typeof fetch
+    return { calls, impl }
+  }
+  const failing = (async () => {
+    throw new Error("getaddrinfo ENOTFOUND")
+  }) as unknown as typeof fetch
+
+  test("two calls for one URL fetch once", async () => {
+    const cacheDir = tmp()
+    const { calls, impl } = counting("a: 1\n")
+    const url = "https://cfg.example/memo.yaml"
+    const warnings: string[] = []
+    const opts = {
+      cacheDir,
+      fetchImpl: impl,
+      offline: false,
+      warn: (m: string) => warnings.push(m),
+    }
+    const [first, second] = await Promise.all([
+      fetchRemoteConfig(url, opts),
+      fetchRemoteConfig(url, opts),
+    ])
+    assert.strictEqual(await fetchRemoteConfig(url, opts), "a: 1\n")
+    assert.deepStrictEqual([first, second], ["a: 1\n", "a: 1\n"])
+    assert.deepStrictEqual(calls, [url])
+    assert.deepStrictEqual(warnings, [])
+  })
+
+  test("a failed fetch is tried again by the next call", async () => {
+    const cacheDir = tmp()
+    const url = "https://cfg.example/retry.yaml"
+    await assert.rejects(
+      fetchRemoteConfig(url, { cacheDir, fetchImpl: failing, offline: false }),
+      /could not be fetched: getaddrinfo ENOTFOUND/,
+    )
+    const { calls, impl } = counting("b: 2\n")
+    assert.strictEqual(
+      await fetchRemoteConfig(url, { cacheDir, fetchImpl: impl, offline: false }),
+      "b: 2\n",
+    )
+    assert.deepStrictEqual(calls, [url])
+  })
+
+  test("offline, the cached copy is returned without fetching", async () => {
+    const online = tmp()
+    const url = "https://cfg.example/offline.yaml"
+    await fetchRemoteConfig(url, { cacheDir: online, fetchImpl: counting("c: 3\n").impl })
+    const offlineDir = tmp()
+    fs.cpSync(online, offlineDir, { recursive: true })
+    const { calls, impl } = counting("c: changed\n")
+    assert.strictEqual(
+      await fetchRemoteConfig(url, { cacheDir: offlineDir, fetchImpl: impl, offline: true }),
+      "c: 3\n",
+    )
+    assert.deepStrictEqual(calls, [])
+  })
+
+  test("a redirect to http:// is an error, even with a cached copy", async () => {
+    const url = "https://cfg.example/redirected.yaml"
+    const cacheDir = tmp()
+    await fetchRemoteConfig(url, { cacheDir, fetchImpl: counting("d: 4\n").impl })
+    const other = tmp()
+    fs.cpSync(cacheDir, other, { recursive: true })
+    const warnings: string[] = []
+    await assert.rejects(
+      fetchRemoteConfig(url, {
+        cacheDir: other,
+        fetchImpl: counting("d: evil\n", "http://evil.example/x.yaml").impl,
+        offline: false,
+        warn: (m) => warnings.push(m),
+      }),
+      {
+        name: "ConfigExtendsError",
+        message: `"extends: ${url}" redirected to http://evil.example/x.yaml, which is not https`,
+      },
+    )
+    assert.deepStrictEqual(warnings, [])
+    // a redirect that stays on https is fine
+    assert.strictEqual(
+      await fetchRemoteConfig(url, {
+        cacheDir: tmp(),
+        fetchImpl: counting("d: 5\n", "https://mirror.example/x.yaml").impl,
+        offline: false,
+      }),
+      "d: 5\n",
+    )
+  })
+
+  test("a body over 1 MB is an error and is not cached", async () => {
+    const limit = 1024 * 1024
+    const exactly = tmp()
+    const atLimit = "#".repeat(limit)
+    assert.strictEqual(
+      await fetchRemoteConfig("https://cfg.example/1mb.yaml", {
+        cacheDir: exactly,
+        fetchImpl: counting(atLimit).impl,
+        offline: false,
+      }),
+      atLimit,
+    )
+    for (const [name, body] of [
+      ["over.yaml", "#".repeat(limit + 1)],
+      // 524 289 characters, 1 048 578 bytes: the limit is in bytes
+      ["utf8.yaml", "é".repeat(limit / 2 + 1)],
+    ]) {
+      const url = `https://cfg.example/${name}`
+      const cacheDir = tmp()
+      await assert.rejects(
+        fetchRemoteConfig(url, { cacheDir, fetchImpl: counting(body).impl, offline: false }),
+        { name: "ConfigExtendsError", message: `"extends: ${url}" is larger than 1 MB` },
+      )
+      assert.deepStrictEqual(fs.readdirSync(cacheDir), [])
+    }
+  })
+})
+
+describe("resolveTarget accepts only https URLs", () => {
+  const from = path.resolve("/site/quartz.config.yaml")
+  test("an http URL with https:// in its query is refused", () => {
+    for (const target of [
+      "http://evil.example/?https://cfg.example/x.yaml",
+      "http://evil.example/https://cfg.example/x.yaml",
+      "file:///etc/https://x.yaml",
+    ]) {
+      assert.throws(() => resolveTarget(target, from, "/site"), {
+        name: "ConfigExtendsError",
+        message: `${from}: "extends: ${target}" — only https:// URLs can be extended`,
+      })
+    }
+    assert.throws(
+      () => resolveTarget("?https://x", "http://evil.example/base.yaml", "/site"),
+      /only https:\/\/ URLs can be extended/,
+    )
+  })
+
+  test("a local path that contains :// is a path, not a URL", () => {
+    assert.strictEqual(
+      resolveTarget("mirror/https://cfg.example/x.yaml", from, "/site"),
+      path.resolve("/site/mirror/https:/cfg.example/x.yaml"),
     )
   })
 })

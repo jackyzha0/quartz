@@ -26,6 +26,30 @@ describe("orderPlugins", () => {
     assert.deepStrictEqual(orderPlugins(items, known("x", "y", "z")), ["z", "y", "x"])
   })
 
+  test("one plugin before several others", () => {
+    const items = [item("b", 50), item("c", 50), item("a", 50, { before: ["b", "c"] })]
+    assert.deepStrictEqual(orderPlugins(items, known("a", "b", "c")), ["a", "b", "c"])
+  })
+
+  test("one plugin after several others, and several targets in both directions", () => {
+    const items = [item("x", 50, { after: ["z", "y"] }), item("y", 50), item("z", 50)]
+    assert.deepStrictEqual(orderPlugins(items, known("x", "y", "z")), ["y", "z", "x"])
+    const mixed = [
+      item("p", 50),
+      item("q", 50, { after: ["r", "s"], before: ["p", "t"] }),
+      item("r", 50),
+      item("s", 50),
+      item("t", 50),
+    ]
+    assert.deepStrictEqual(orderPlugins(mixed, known("p", "q", "r", "s", "t")), [
+      "r",
+      "s",
+      "q",
+      "p",
+      "t",
+    ])
+  })
+
   test("constraints that agree with order are fine and change nothing", () => {
     const items = [item("late", 70, { after: ["early"] }), item("early", 40, { before: ["late"] })]
     assert.deepStrictEqual(orderPlugins(items, known("late", "early")), ["early", "late"])

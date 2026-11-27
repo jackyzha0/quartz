@@ -198,6 +198,36 @@ describe("validatePluginEntry", () => {
     )
   })
 
+  test("accepts before, after and every layout key", () => {
+    assert.deepStrictEqual(
+      validatePluginEntry({
+        source: "@quartz-community/description",
+        enabled: true,
+        order: 60,
+        before: "Links",
+        after: ["obsidian-flavored-markdown"],
+        layout: {
+          position: "right",
+          priority: 5,
+          display: "desktop-only",
+          condition: "not-index",
+          group: "toolbar",
+          groupOptions: { grow: true },
+        },
+      }),
+      [],
+    )
+  })
+
+  test("an unknown key without a close match lists the allowed keys", () => {
+    assert.deepStrictEqual(
+      validatePluginEntry({ source: "x/y", enabled: true, zzzzzz: 1 }).map((i) => i.message),
+      [
+        'unknown key "zzzzzz" is ignored (allowed: source, enabled, options, order, before, after, layout)',
+      ],
+    )
+  })
+
   test("catches typoed keys and a missing enabled flag", () => {
     const issues = validatePluginEntry({ source: "x/y", enable: true, option: {} })
     const messages = issues.map((i) => i.message).join("\n")
