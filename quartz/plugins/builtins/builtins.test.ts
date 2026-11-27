@@ -1169,3 +1169,253 @@ describe("links to pages removed by filters (crawl-links#7)", () => {
     )
   })
 })
+
+describe("links built-in: options, other elements and edge cases", () => {
+  const el = (tagName: string, properties: Element["properties"], text?: string): Element => ({
+    type: "element",
+    tagName,
+    properties,
+    children: text === undefined ? [] : [{ type: "text", value: text }],
+  })
+  const a = (href: string, text = href) => el("a", { href }, text)
+  function run(
+    nodes: Element[],
+    {
+      slug = "folder/page",
+      opts = {},
+      allSlugs = ["folder/page"],
+      data = {},
+      permalinks,
+    }: {
+      slug?: string
+      opts?: Record<string, unknown>
+      allSlugs?: string[]
+      data?: Record<string, unknown>
+      permalinks?: Record<string, string>
+    } = {},
+  ) {
+    const tree: Root = { type: "root", children: nodes }
+    const file = new VFile("")
+    file.data = { slug: slug as FullSlug, ...data } as VFile["data"]
+    const ctx = { allSlugs, permalinks } as unknown as BuildCtx
+    const [factory] = Links(opts).htmlPlugins!(ctx) as [() => (t: Root, f: VFile) => void]
+    factory()(tree, file)
+    return { nodes, file }
+  }
+  const classes = (e: Element) => e.properties.className as string[] | undefined
+  const text = (e: Element) => (e.children[0] as Text).value
+
+  test("defaults: pretty links, external links open in place with an icon, no lazy loading", () => {
+    const { nodes } = run([
+      a("https://example.com/a/b"),
+      a("other/note"),
+      el("img", { src: "pic.png", alt: "x" }),
+    ])
+    const [external, internal, img] = nodes
+    assert.strictEqual(external.properties.target, undefined)
+    assert.strictEqual(text(external), "https://example.com/a/b")
+    assert.deepStrictEqual(external.children[1], {
+      type: "element",
+      tagName: "svg",
+      properties: {
+        "aria-hidden": "true",
+        class: "external-icon",
+        style: "max-width:0.8em;max-height:0.8em",
+        viewBox: "0 0 512 512",
+      },
+      children: [
+        {
+          type: "element",
+          tagName: "path",
+          properties: {
+            d: "M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z",
+          },
+          children: [],
+        },
+      ],
+    })
+    assert.strictEqual(text(internal), "note")
+    assert.strictEqual(img.properties.loading, undefined)
+  })
+
+  test("openLinksInNewTab and externalLinkIcon: false apply to external links only", () => {
+    const { nodes } = run([a("https://example.com"), a("other")], {
+      opts: { openLinksInNewTab: true, externalLinkIcon: false },
+    })
+    const [external, internal] = nodes
+    assert.strictEqual(external.properties.target, "_blank")
+    assert.strictEqual(external.children.length, 1)
+    assert.strictEqual(internal.properties.target, undefined)
+  })
+
+  test("prettyLinks: false keeps the link text; text that isn't a single text node is left alone", () => {
+    const off = run([a("folder/note")], { opts: { prettyLinks: false } }).nodes
+    assert.strictEqual(text(off[0]), "folder/note")
+    const formatted: Element = {
+      type: "element",
+      tagName: "a",
+      properties: { href: "folder/note" },
+      children: [el("em", {}, "folder/note"), { type: "text", value: " more" }],
+    }
+    run([formatted])
+    assert.strictEqual(text(formatted.children[0] as Element), "folder/note")
+    assert.strictEqual((formatted.children[1] as Text).value, " more")
+    assert.ok(!classes(formatted)!.includes("alias"))
+  })
+
+  test("lazyLoad and src resolution for img, video, audio and iframe; external sources are kept", () => {
+    const { nodes } = run(
+      [
+        el("img", { src: "a.png", alt: "a" }),
+        el("video", { src: "v.mp4" }),
+        el("audio", { src: "s.mp3" }),
+        el("iframe", { src: "doc.pdf" }),
+        el("img", { src: "https://cdn.example.com/x.png", alt: "x" }),
+        el("script", { src: "x.js" }),
+      ],
+      { opts: { lazyLoad: true, markdownLinkResolution: "absolute" } },
+    )
+    assert.deepStrictEqual(
+      nodes.map((n) => [n.properties.src, n.properties.loading]),
+      [
+        ["../a.png", "lazy"],
+        ["../v.mp4", "lazy"],
+        ["../s.mp3", "lazy"],
+        ["../doc.pdf", "lazy"],
+        ["https://cdn.example.com/x.png", "lazy"],
+        ["x.js", undefined],
+      ],
+    )
+  })
+
+  test("only an image of a missing file gets its path as alt text", () => {
+    const { nodes } = run([el("video", { src: "missing.mp4" }), el("img", { src: "#x" })])
+    assert.strictEqual(nodes[0].properties.alt, undefined)
+    assert.strictEqual(nodes[1].properties.alt, undefined)
+  })
+
+  test("object[data] / source[src] that are empty, fragments or external are not rewritten", () => {
+    const values = ["", "#frag", "https://example.com/x.svg"]
+    const { nodes } = run([
+      ...values.map((data) => el("object", { data })),
+      ...values.map((src) => el("source", { src })),
+    ])
+    assert.deepStrictEqual(
+      nodes.map((n) => n.properties.data ?? n.properties.src),
+      [...values, ...values],
+    )
+  })
+
+  test("anchors without an href are not links", () => {
+    const named = el("a", { id: "here" }, "folder/x")
+    run([named])
+    assert.deepStrictEqual(named.properties, { id: "here" })
+    assert.strictEqual(text(named), "folder/x")
+  })
+
+  test("the home page and folder pages: index always exists; a folder needs a page under it", () => {
+    const { nodes } = run([a("/"), a("/fold/"), a("/folder/"), a("/a/")], {
+      slug: "page",
+      allSlugs: ["page", "folder/note", "a/b"],
+    })
+    assert.deepStrictEqual(
+      nodes.map((n) => classes(n)!.includes("broken")),
+      [false, true, false, false],
+    )
+  })
+
+  test("a missing vault file's type is its last extension", () => {
+    const { nodes } = run([a("/missing.txt.png"), a("/missing.png.txt")], { slug: "page" })
+    assert.deepStrictEqual(
+      nodes.map((n) => classes(n)!.includes("broken")),
+      [true, false],
+    )
+  })
+
+  test("permalinks: a link's heading anchor is kept when it is rebased onto the permalink", () => {
+    const { nodes, file } = run([a("target#Some Heading", "Target"), a("#local")], {
+      slug: "home",
+      data: { relativePath: "folder/page.md" },
+      allSlugs: ["home", "t", "folder/page", "folder/target"],
+      permalinks: { "folder/page.md": "home", "folder/target.md": "t" },
+    })
+    assert.strictEqual(nodes[0].properties.href, "./t#some-heading")
+    assert.strictEqual(nodes[1].properties.href, "#local")
+    assert.deepStrictEqual(file.data.links, ["t"])
+  })
+
+  test("frontmatter links: a bare #heading adds no outgoing link, note#heading links the note", () => {
+    const { file } = run([], {
+      data: { frontmatterLinks: ["#intro", "other#part", "https://example.com"] },
+      opts: { markdownLinkResolution: "absolute" },
+    })
+    assert.deepStrictEqual(file.data.links, ["other"])
+  })
+})
+
+describe("links to removed pages: marks that change", () => {
+  const link = (slug: string): Element => ({
+    type: "element",
+    tagName: "a",
+    properties: { href: `./${slug}`, "data-slug": slug, className: ["internal"] },
+    children: [{ type: "text", value: slug }],
+  })
+  const page = (slug: string, children: Element[], data: Record<string, unknown> = {}) => {
+    const file = new VFile("")
+    file.data = { slug: slug as FullSlug, ...data } as VFile["data"]
+    return [{ type: "root", children } as Root, file] as ProcessedContent
+  }
+
+  test("a filter that changes re-marks the link once and re-emits the page", () => {
+    const home = page("index", [link("draft")])
+    const changed = new Set<FullSlug>()
+    markUnpublishedLinks([home], new Map([["draft", "Drafts"]]), undefined, changed)
+    markUnpublishedLinks([home], new Map([["draft", "Drafts"]]), undefined, changed)
+    const a = (home[0] as Root).children[0] as Element
+    assert.deepStrictEqual(a.properties.className, ["internal", "broken"])
+    changed.clear()
+    markUnpublishedLinks([home], new Map([["draft", "ExplicitPublish"]]), undefined, changed)
+    assert.deepStrictEqual([...changed], ["index"])
+    assert.strictEqual(a.properties["data-filtered"], "ExplicitPublish")
+    assert.deepStrictEqual(a.properties.className, ["internal", "broken"])
+  })
+
+  test("removedPages names the filter, 'filter' when unknown, and the first removed page wins", () => {
+    const home = page("index", [])
+    const a = page("a", [], { aliases: ["shared"] })
+    const b = page("b", [], { aliases: ["shared"] })
+    const noSlug = page("", [])
+    noSlug[1].data.slug = undefined
+    assert.deepStrictEqual(
+      [...removedPages([home, a, b, noSlug], [home])],
+      [
+        ["a", "filter"],
+        ["shared", "filter"],
+        ["b", "filter"],
+      ],
+    )
+    const reasons = removedPages([home, a, b], [home], (s) => (s === "a" ? "Drafts" : undefined))
+    assert.deepStrictEqual(
+      [...reasons],
+      [
+        ["a", "Drafts"],
+        ["shared", "Drafts"],
+        ["b", "filter"],
+      ],
+    )
+  })
+
+  test("only <a> elements are marked; the tags index is a generated target", () => {
+    const div: Element = {
+      type: "element",
+      tagName: "div",
+      properties: { "data-slug": "draft" },
+      children: [],
+    }
+    const home = page("index", [div, link("tags")])
+    markUnpublishedLinks([home], new Map([["draft", "Drafts"]]), new Set())
+    assert.deepStrictEqual(div.properties, { "data-slug": "draft" })
+    const tags = (home[0] as Root).children[1] as Element
+    assert.strictEqual(tags.properties["data-missing"], "")
+  })
+})
