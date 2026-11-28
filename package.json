@@ -69,7 +69,7 @@
     "@quartz-community/latex": "^1.1.3",
     "@quartz-community/note-properties": "^1.2.4",
     "@quartz-community/obsidian-flavored-markdown": "^2.5.4",
-    "@quartz-community/og-image": "^1.1.4",
+    "@quartz-community/og-image": "^1.2.0",
     "@quartz-community/ox-hugo": "^1.0.4",
     "@quartz-community/page-title": "^1.0.2",
     "@quartz-community/reader-mode": "^1.0.3",
