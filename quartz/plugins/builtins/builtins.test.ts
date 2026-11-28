@@ -87,16 +87,33 @@ describe("officialPluginName", () => {
 })
 
 describe("planBuiltins", () => {
-  test("all built-ins are on by default with their defaults", () => {
+  test("core built-ins are on by default and opt-in built-ins stay off", () => {
     const p = plan([])
     assert.deepStrictEqual(
       p.builtins.map((b) => [b.spec.id, b.enabled]),
-      BUILTINS.map((b) => [b.id, true]),
+      BUILTINS.map((b) => [b.id, b.defaultEnabled ?? true]),
     )
     assert.strictEqual(byId(p, "links").options.markdownLinkResolution, "shortest")
     assert.strictEqual(byId(p, "frontmatter").order, 0)
     assert.strictEqual(byId(p, "links").order, 60)
+    assert.strictEqual(byId(p, "shortPermalinks").enabled, false)
     assert.deepStrictEqual(p.notices, [])
+  })
+
+  test("an opt-in built-in can be enabled with boolean or object configuration", () => {
+    assert.strictEqual(byId(plan([], { shortPermalinks: true }), "shortPermalinks").enabled, true)
+    const configured = byId(
+      plan([], { shortPermalinks: { prefix: "go", hashLength: 12 } }),
+      "shortPermalinks",
+    )
+    assert.strictEqual(configured.enabled, true)
+    assert.strictEqual(configured.options.prefix, "go")
+    assert.strictEqual(configured.options.hashLength, 12)
+    assert.ok(
+      instantiateBuiltins(plan([], { shortPermalinks: true }), "emitter").some(
+        ({ instance }) => instance.name === "ShortPermalinks",
+      ),
+    )
   })
 
   test("configuration.<key> sets options, `false` and enabled:false turn a built-in off", () => {

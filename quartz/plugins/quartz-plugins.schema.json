@@ -404,6 +404,43 @@
               }
             }
           ]
+        },
+        "shortPermalinks": {
+          "description": "Opt-in build-time short links that redirect to published pages. Default order 70.",
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Set to true to enable short permalinks."
+                },
+                "order": {
+                  "type": "number",
+                  "description": "Position among plugins of the same category (same scale as plugin `order`)."
+                },
+                "prefix": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "URL prefix for generated short links. Default s."
+                },
+                "hashLength": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 43,
+                  "description": "Number of base62 characters from the SHA-256 path hash. Default 8."
+                },
+                "onCollision": {
+                  "enum": ["disambiguation-page", "skip"],
+                  "description": "Emit a choice page or skip when multiple paths share a shortened hash."
+                }
+              }
+            }
+          ]
         }
       }
     },

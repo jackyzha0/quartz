@@ -103,6 +103,8 @@ export interface GlobalConfiguration {
   contentIndex?: ContentIndexConfig | boolean
   /** Built-in font loading (Google Fonts, self-hosted or local) and per-heading fonts. */
   fonts?: FontsConfig | boolean
+  /** Opt-in build-time short links that redirect to published pages. */
+  shortPermalinks?: ShortPermalinksConfig | boolean
   /**
    * Controls which assets are copied to public/
    * - "all": Copy all non-markdown files (backwards compatible, default)
@@ -193,6 +195,15 @@ export interface ContentIndexConfig extends BuiltinToggle {
   rssSlug?: string
   /** Include pages without text content. Default `true`. */
   includeEmptyFiles?: boolean
+}
+
+export interface ShortPermalinksConfig extends BuiltinToggle {
+  /** URL prefix for generated short links. Default `"s"`. */
+  prefix?: string
+  /** Number of base62 characters from the path hash. Default `8`; range 1–43. */
+  hashLength?: number
+  /** What to emit when multiple pages have the same shortened hash. */
+  onCollision?: "disambiguation-page" | "skip"
 }
 
 export interface QuartzConfig {

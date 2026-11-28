@@ -1,6 +1,6 @@
 /**
- * Built-in processing: the parts of the pipeline every site needs, which used to be separate
- * default plugins and silently broke the site when disabled or misordered.
+ * Built-in processing: core pipeline steps and opt-in features that don't need a separately
+ * installed plugin.
  *
  * | built-in      | configuration key            | formerly                             |
  * |---------------|------------------------------|--------------------------------------|
@@ -9,6 +9,7 @@
  * | drafts        | `configuration.drafts`       | remove-draft                         |
  * | contentIndex  | `configuration.contentIndex` | content-index                        |
  * | fonts         | `configuration.fonts`        | quartz-fonts                         |
+ * | shortPermalinks | `configuration.shortPermalinks` | —                                |
  *
  * Each built-in:
  * - is configured under `configuration.<key>` and can be turned off with `enabled: false`;
@@ -34,9 +35,10 @@ import { Drafts } from "./drafts"
 import { Frontmatter, frontmatterDefaults } from "./frontmatter"
 import { Links, legacyCrawlLinksDefaults, linksDefaults } from "./links"
 import { Fonts, fontsDefaults } from "./fonts"
+import { ShortPermalinks, shortPermalinksDefaults } from "./shortPermalinks"
 import { registerPluginOrigin } from "../../util/diagnostics"
 
-export { ContentIndex, Drafts, Fonts, Frontmatter, Links }
+export { ContentIndex, Drafts, Fonts, Frontmatter, Links, ShortPermalinks }
 export {
   buildContentIndex,
   applyContentIndexExtensions,
@@ -44,17 +46,20 @@ export {
   serializeContentIndex,
 } from "./contentIndex"
 
-export type BuiltinId = "frontmatter" | "links" | "drafts" | "contentIndex" | "fonts"
+export type BuiltinId =
+  "frontmatter" | "links" | "drafts" | "contentIndex" | "fonts" | "shortPermalinks"
 type BuiltinCategory = "transformer" | "filter" | "emitter"
 type BuiltinInstance =
   QuartzTransformerPluginInstance | QuartzFilterPluginInstance | QuartzEmitterPluginInstance
 
 export interface BuiltinSpec {
   id: BuiltinId
-  configKey: "frontmatter" | "links" | "drafts" | "contentIndex" | "fonts"
+  configKey: "frontmatter" | "links" | "drafts" | "contentIndex" | "fonts" | "shortPermalinks"
   category: BuiltinCategory
   /** Position among plugins of the same category (same scale as plugin `defaultOrder`). */
   order: number
+  /** Whether the built-in runs when its configuration key is absent. Default `true`. */
+  defaultEnabled?: boolean
   /** Option defaults (used for option validation and docs). */
   defaults: Record<string, unknown>
   /** Official plugins whose config entries are absorbed (short names). */
@@ -143,6 +148,18 @@ export const BUILTINS: BuiltinSpec[] = [
     replacedBy: { files: ["static/fonts/quartz-fonts.css"] },
     capabilities: { provides: { files: ["static/fonts/quartz-fonts.css"] } },
     create: (o) => Fonts(o),
+  },
+  {
+    id: "shortPermalinks",
+    configKey: "shortPermalinks",
+    category: "emitter",
+    order: 70,
+    defaultEnabled: false,
+    defaults: shortPermalinksDefaults,
+    absorbs: [],
+    replacedBy: {},
+    capabilities: { provides: {} },
+    create: (o) => ShortPermalinks(o),
   },
 ]
 
@@ -233,9 +250,17 @@ export function planBuiltins(input: PlanInput): BuiltinPlan {
 
     let options: Record<string, unknown> = { ...spec.defaults }
     let order = spec.order
-    let enabled = explicitEnabled !== false
-    let note: string | undefined =
-      explicitEnabled === false ? "disabled in configuration" : undefined
+    let enabled =
+      typeof explicitEnabled === "boolean"
+        ? explicitEnabled
+        : raw !== undefined
+          ? true
+          : (spec.defaultEnabled ?? true)
+    let note: string | undefined = !enabled
+      ? explicitEnabled === false
+        ? "disabled in configuration"
+        : "disabled by default"
+      : undefined
     let absorbed: PluginJsonEntry | undefined
     let replacedBy: string | undefined
 
